@@ -1,6 +1,6 @@
 baseURL = 'http://yukimatsuda1999.github.io/'
 languageCode = 'ja-jp'
-title = 'Notemy - A Website for Personal Documentation'
+title = 'A Website for Personal Documentation'
 
 theme = 'hugo-theme-mindoc'
 

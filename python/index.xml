@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on Notemy - A Website for Personal Documentation</title>
-    <link>http://example.org/python/</link>
+    <link>http://yukimatsuda1999.github.io/python/</link>
     <description>Recent content in Python on Notemy - A Website for Personal Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <copyright>(ɔ) 2022 Yuki Matsuda</copyright>
-    <lastBuildDate>Thu, 03 Nov 2022 11:45:13 +0900</lastBuildDate><atom:link href="http://example.org/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Nov 2022 11:45:13 +0900</lastBuildDate><atom:link href="http://yukimatsuda1999.github.io/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ArgumentParser - コマンドライン引数の実装</title>
-      <link>http://example.org/python/argparse/</link>
+      <link>http://yukimatsuda1999.github.io/python/argparse/</link>
       <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
       
-      <guid>http://example.org/python/argparse/</guid>
+      <guid>http://yukimatsuda1999.github.io/python/argparse/</guid>
       <description>https://docs.python.org/ja/3/library/argparse.html https://qiita.com/kzkadc/items/e4fc7bc9c003de1eb6d0 Pyhtonプログラム実行時にコマンドライン引数を受け取る処理を簡単に実装できる標準ライブラリ。sysとかでも似たことは実現できるけど使い勝手と可読性はargparseの方が圧倒的にいい。
 基本的な使い方 import argparse parser = argparse.ArgumentParser() # オプション引数 parser.add_argument(&amp;#39;--input&amp;#39;) # ハイフン1つの省略形も追加できる parser.add_argument(&amp;#39;-o&amp;#39;, &amp;#39;--output&amp;#39;) # ポジション引数 parser.add_argument(&amp;#39;arg1&amp;#39;) # --helpしたときの説明を書いておける parser.add_argument(&amp;#39;arg2&amp;#39;, help=&amp;#34;２つ目のポジション引数&amp;#34;) args = parser.parse_args() print(&amp;#39;arg1=&amp;#39;+args.arg1) print(&amp;#39;arg2=&amp;#39;+args.arg2) print(&amp;#39;arg3=&amp;#39;+args.input) print(&amp;#39;arg4=&amp;#39;+args.output) 実行する。
 $ python3 test.py hoge fuga --input koke -o piyo arg1=hoge arg2=fuga arg3=koke arg4=piyo # ポジション引数は順番通りならどこでもいい $ python3 test.py hoge --input koke -o piyo fuga arg1=hoge arg2=fuga arg3=koke arg4=piyo -h,--helpでヘルプを表示できる。
@@ -22,10 +22,10 @@ $ python3 test.py -h usage: test.py [-h] [--input INPUT] [-o OUTPUT] arg1 arg2 p
     
     <item>
       <title>Pandas - データ解析支援ライブラリ</title>
-      <link>http://example.org/python/pandas/</link>
+      <link>http://yukimatsuda1999.github.io/python/pandas/</link>
       <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
       
-      <guid>http://example.org/python/pandas/</guid>
+      <guid>http://yukimatsuda1999.github.io/python/pandas/</guid>
       <description>import pandas as pd 基本操作 df = pd.read_csv(&amp;#34;PATH_TO_FILE&amp;#34;, sep = &amp;#39;,&amp;#39;)	# 表データの読み込み df.head(n)	# 先頭n行 df.tail(n)	# 末尾n行 要約統計
 df.mean() df.sum() df.max() df.min() df.std()	# 不偏標準偏差 df.describe()	# 列ごとのcount,mean,std,min,25%,50%,75%,max df.corr()	# 列同士の相関係数 df.shape	# (行数, 列数) df.size	# 行数×列数 df.T	# 転地 行・列の抽出
 df[[&amp;#39;species&amp;#39;]]	# DataFrame with 1 column df[&amp;#39;species&amp;#39;]	# Series df.species	# Series (not recommended) # label-based df.loc[0] df.loc[:,&amp;#39;sepal_width&amp;#39;] # integer-based df.iloc[0] df.iloc[:,1] DataFrame・Seriesの操作
@@ -34,10 +34,10 @@ df.sort_values(&amp;#39;species&amp;#39;,ascending=True)	# 行の並べ替え。
     
     <item>
       <title>pdf2pptx - PDFからPowerPointスライドへの簡易変換</title>
-      <link>http://example.org/python/pdf2pptx/</link>
+      <link>http://yukimatsuda1999.github.io/python/pdf2pptx/</link>
       <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
       
-      <guid>http://example.org/python/pdf2pptx/</guid>
+      <guid>http://yukimatsuda1999.github.io/python/pdf2pptx/</guid>
       <description>https://pypi.org/project/pdf2pptx/
 PDFをパワーポイントに変換 PDFをページごとにパワーポイントのスライドに貼り付けて使いたい、という単純な操作が、既存の方法だとページごとにスクショして貼る、という原始的な方法くらいしかなかった。
 pdf2pptxはpdf2pptx inputという単純なコマンドでPDFの各ページをPNGイメージとしてパワポに貼り付けてくれる。
@@ -54,20 +54,20 @@ Option pdf2pptx --help -o, --output
     
     <item>
       <title>Pyhtonでデータサイエンス</title>
-      <link>http://example.org/python/python4ds/</link>
+      <link>http://yukimatsuda1999.github.io/python/python4ds/</link>
       <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
       
-      <guid>http://example.org/python/python4ds/</guid>
+      <guid>http://yukimatsuda1999.github.io/python/python4ds/</guid>
       <description>MUFG DATA SCIENCE BASIC CAMPに参加した際の覚え書き。
 # ライブラリのインポート import numpy as np import pandas as pd import matplotlib.pyplot as plt import seaborn as sns データの読み込みと前処理 データの読み込み df_train = pd.read_csv(&amp;#34;./data/train.csv&amp;#34;) df_test = pd.read_csv(&amp;#34;../data/test.csv&amp;#34;) データの可視化 散布図 統計解析 </description>
     </item>
     
     <item>
       <title>PythonのClassを理解したい！</title>
-      <link>http://example.org/python/class/</link>
+      <link>http://yukimatsuda1999.github.io/python/class/</link>
       <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
       
-      <guid>http://example.org/python/class/</guid>
+      <guid>http://yukimatsuda1999.github.io/python/class/</guid>
       <description>いまだにクラスのありがたさを実感できていない。オブジェクト指向言語であるPythonにおいて、データ（インスタンス）と、その処理の仕方（メソッド）をまとめて記述したもの（オブジェクト）を格納しておく雛形がクラスというもの。らしい。
 # シンプルなclassの例 class SimpleData: a = 0 b = 0 def sum(self): return self.a + self.b def set(self, a, b): self.a = a self.b = b # 作成したクラスを使うためにインスタンス化 data1 = SimpleData() data2 = SimpleData() # メソッドを呼び出す data1.set(3, 4) print(data1.sum()) &amp;gt;&amp;gt;&amp;gt; 7 data2.set(2.5, 8.3) print(data2.sum()) &amp;gt;&amp;gt;&amp;gt; 10.8 コンストラクタとは クラスをインスタンス化した時に最初に呼ばれるメソッドをコンストラクタとよぶ。データの初期化をするものだと思えばいい。
 class SimpleData: def __init__(self): self.a = 0 self.b = 0 def sum(self): return self.a + self.b def set(self, a, b): self.a = a self.</description>
@@ -75,10 +75,10 @@ class SimpleData: def __init__(self): self.a = 0 self.b = 0 def sum(self): retur
     
     <item>
       <title>Pythonライブラリ</title>
-      <link>http://example.org/python/library/</link>
+      <link>http://yukimatsuda1999.github.io/python/library/</link>
       <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
       
-      <guid>http://example.org/python/library/</guid>
+      <guid>http://yukimatsuda1999.github.io/python/library/</guid>
       <description>Pythonにおけるオープンソースの便利関数のまとまり。
 標準ライブラリと外部ライブラリ ライブラリにはPythonにもともと備わっている標準ライブラリ(re, mathなど)と、あとから個別にインストールして使う外部ライブラリ(pandas, scikit-learnなど)がある。
 外部ライブラリを利用する際は、Pythonライブラリの管理ソフトであるpipや pip3を用いてライブラリのインストールを行う:
@@ -94,10 +94,10 @@ import ライブラリ名.モジュール名 </description>
     
     <item>
       <title>Scikit-learn - 機械学習支援ライブラリ</title>
-      <link>http://example.org/python/scikit-learn/</link>
+      <link>http://yukimatsuda1999.github.io/python/scikit-learn/</link>
       <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
       
-      <guid>http://example.org/python/scikit-learn/</guid>
+      <guid>http://yukimatsuda1999.github.io/python/scikit-learn/</guid>
       <description>機械学習ライブラリ。さまざまな機械学習モデルを
 モデル生成 最適化（学習): fit モデルを用いた演算: predict or transform という一貫した記法で利用できる。 graph LR; 機械学習---教師あり学習 機械学習---教師なし学習 教師あり学習---回帰 教師あり学習---分類 教師なし学習---クラスタリング 教師なし学習---次元削減 import numpy as np import pandas as pd import matplotlib.pyplot as plt import seaborn as sns データ前処理 標準化：平均を0に、標準偏差を1にスケーリング
 from sklearn.preprocessing import StandardScaler sc = StandardScaler() sc.fit(df) df_fitted = pd.DataFrame(sc.transform(df), columns=df_wine.columns) 正規化：最大値を1に、最小値を0（または-1）にスケーリング

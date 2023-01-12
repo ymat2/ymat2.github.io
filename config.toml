@@ -1,0 +1,15 @@
+baseURL = 'https://yukimatsuda1999.github.io/'
+languageCode = 'ja-jp'
+title = 'Notemy - A Website for Personal Documentation'
+
+theme = 'hugo-theme-mindoc'
+
+copyright = "(ɔ) 2022 Yuki Matsuda"
+
+[markup]
+	[markup.goldmark]
+		[markup.goldmark.renderer]
+			unsafe = true
+
+	[markup.highlight]
+		noClasses=false

@@ -1,0 +1,15 @@
+# theme.toml template for a Hugo theme
+# See https://github.com/gohugoio/hugoThemes#themetoml for an example
+
+name = "hugo-theme-mindoc"
+license = "MIT"
+licenselink = "https://github.com/yukimatsuda1999/hugo-theme-minpdoc/LICENSE"
+description = "A simple theme of hugo for documentation"
+tags = ["Minimal", "Docs"]
+features = []
+min_version = "0.41.0"
+
+[author]
+name = "yukimatsuda1999"
+homepage = ""
+

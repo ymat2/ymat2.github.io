@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bioinformatics Tools on Notemy - A Website for Personal Documentation</title>
+    <link>http://example.org/bioinformatics/</link>
+    <description>Recent content in Bioinformatics Tools on Notemy - A Website for Personal Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>(ɔ) 2022 Yuki Matsuda</copyright>
+    <lastBuildDate>Thu, 03 Nov 2022 11:45:13 +0900</lastBuildDate><atom:link href="http://example.org/bioinformatics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BUSCO</title>
+      <link>http://example.org/bioinformatics/busco/</link>
+      <pubDate>Fri, 25 Nov 2022 08:05:55 +0900</pubDate>
+      
+      <guid>http://example.org/bioinformatics/busco/</guid>
+      <description>https://busco.ezlab.org/
+Universal Single Copy Orthologsが、アセンブルされた配列中にどれだけあるか調べることでゲノムや遺伝子セットの完全性を評価する。どの遺伝子がユニバーサルシングルコピーかはOrthoDBに基づいており、分類群ごとに数は異なる。（公式サイトのリストから参照可能。）
+インストール Docker Image docker pull ezlabgva/busco:v5.4.3_cv1 docker run -u $(id -u) -v $(pwd):/busco_wd ezlabgva/busco:v5.4.3_cv1 Conda Package conda install -c conda-forge -c bioconda busco=5.4.2 Homebrew brew install busco 使い方 busco -i [SEQUENCE_FILE] -l [LINEAGE] -o [OUTPUT_NAME] -m [MODE] [OTHER OPTIONS] -i, --in
+: 塩基配列またはアミノ酸配列のFastaファイル。 -o, --out
+: 出力。ここで指定した名前のディレクトリが生成される。 -m, --mode
+: ゲノムならgenome、トランスクリプトームならtranscriptome、タンパク質ならprotein。 -l, --lineage_dataset
+: ユニバーサルシングルコピーのデータセット。相対パス./bacteria_odb10か、絶対パス/home/user/bacteria_odb10で指定する。前者の場合はデータセットが自動的にダウンロードされ、後者の場合は既存であることを想定する。が、前者の場合もあらかじめ用意しておいた方が安全。(https://busco-data.ezlab.org/v4/data/lineages/) --auto-lineage
+: -l の代わりに自動でデータベースを選ばせることも可能。だが個人的にあまりお勧めしない。 出力 -oで指定したディレクトリ下にshort_summary.*.lineage_odb10.out.txtというファイルができる。
+# BUSCO version is: 5.</description>
+    </item>
+    
+    <item>
+      <title>NCBIからゲノムデータを一括ダウンロード</title>
+      <link>http://example.org/bioinformatics/ncbi_download/</link>
+      <pubDate>Mon, 21 Nov 2022 08:00:21 +0900</pubDate>
+      
+      <guid>http://example.org/bioinformatics/ncbi_download/</guid>
+      <description>https://www.ncbi.nlm.nih.gov/genome/doc/ftpfaq/
+rsync, wget, curlなどが使える。
+data_hubから分類群を指定してダウンロード https://www.ncbi.nlm.nih.gov/data-hub/genome/ にアクセス。 Selected taxaで分類群を指定。（例えば&amp;quot;Aves&amp;quot;） Filtersでフィルタリング。 Assemblyを選択してDownload。 Download Tableは検索結果の表。 Download Packageはfile type(gff, fna, faaなど)を指定してダウンロード。 Select columnsからゲノムサイズやGene Contentなども表示させることができる。 コマンドラインで一括ダウンロード Accessionを指定してダウンロード curlコマンドを使う方法。 curl -OJX GET &amp;#34;https://api.ncbi.nlm.nih.gov/datasets/v1/genome/accession/GCF_000002315.6/download?exclude_sequence=True&amp;amp;include_annotation_type=PROT_FASTA&amp;amp;filename=GCF_000002315.6.zip&amp;#34; -H &amp;#34;Accept: application/zip&amp;#34; # exclude_sequence=True: genomic.fnaを除外 # include_annotation_type: GENOME_GFF,RNA_FASTA,CDS_FASTA,PROT_FASTAから </description>
+    </item>
+    
+    <item>
+      <title>CAFE - Computational Analysis of gene Family evolution</title>
+      <link>http://example.org/bioinformatics/cafe/</link>
+      <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
+      
+      <guid>http://example.org/bioinformatics/cafe/</guid>
+      <description>遺伝子ファミリーサイズの進化（系統樹上のどのノードで、いくつ遺伝子が増減したか）を、MCMC法で推定するプログラム。
+基本的な動かし方は、入力となるシェルスクリプトを書いてCAFEに渡す、という形になる。このシェルスクリプトを書く過程で、OrthoFinderの出力であるOrthogroups.GeneCount.tsvと種の系統樹（Species_Tree/SpeciesTree_rooted.txt）が必要。
+インストール 作者たちのgithubから最新版のCAFEをダウンロードして、適当なディレクトリに置く。（例えば~/bin/） 解凍したらCAFEディレクトリまでcdしてconfigure＆make。 ~/bin/CAFE$ ./configure ~/bin/CAFE$ make PATHを通して動作確認。 ~/$ cafe # ctrl+C こんな感じのシェルスクリプトを書く #! cafe # version # date load -i data/example.tab -t 10 -l logfile.txt -p 0.05 tree (((chimp:6,human:6):81,(mouse:17,rat:17):70):6,dog:93) lambda -s -t (((1,1)1,(2,2)2)2,2) report resultfile load
+: 基本的なオプション。 -i
+: 種/遺伝子ファミリーごとの遺伝子数のテーブル。 -t
+: スレッド数。使っているコンピュータに合わせて。 -l
+: ログファイルの名前。 -p
+: 遺伝子数の増減が急速であるとする有意水準。 -filter
+: 全種の共通祖先における遺伝子数が0であると推定される遺伝子ファミリーを除くオプション。これをつける場合はload行より上にtree行を書く。 tree
+: rootから各種までの距離が同じである（ultrametricな）系統樹。 lambda
+: 単位時間あたりの遺伝子数の増減速度λの設定。 -l
+: λを指定する場合。 -s
+: λを自動推定する場合。 -t
+: λ構造。系統樹上の遺伝子増減速度が同じだと考えられる枝を同じ数字にする。全枝で同じだと仮定する場合すべて1にする。系統樹の枝長の部分を書き換えればいい。 report</description>
+    </item>
+    
+    <item>
+      <title>OrthoFinder</title>
+      <link>http://example.org/bioinformatics/orthofinder/</link>
+      <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
+      
+      <guid>http://example.org/bioinformatics/orthofinder/</guid>
+      <description>公式: https://github.com/davidemms/OrthoFinder Qiita: OrthoFinderを用いたOrthologous解析 出力ディレクトリの構造 入力ディレクトリ/ └ OrthoFinder └ Result_*date* ├ Phylogenetic_Hierarchical_Orthogroups ├ Single_Copy_Orthologue_Sequences |	└ シングルコピーオーソログの配列がOGごとに入ってる | ├ Orthogroup_Sequences |	└ 全OGのごとに配列が入ってる | ├ Comparative_Genomics_Statistics |	└ Duplications_per_Orthogroup.tsv: OGごとの重複（*）の数 |	└ OrthologuesStats_Totals.tsv: 1種対1種のオーソログの数 |	└ OrthologuesStats_one-to-many.tsv, many2one, many2many: 同上 | └ Statistics_PerSpecies.tsv: 種ごとのオーソログの数に関する要約統計 | └ Duplications_per_Species_Tree_Node.tsv: 種ごとの重複（*）の数 | └ Orthogroups_SpeciesOverlaps.tsv: OrthologuesStats_Totalsと何が違う？ | └ Statistics_Overall.tsv: 全体の要約統計 | ├ Phylogenetically_Misplaced_Genes | ├ Species_Tree |	└ 種の系統樹（.txt）が入ってる | ├ Gene_Duplication_Events | └ Duplication.</description>
+    </item>
+    
+    <item>
+      <title>遺伝研スパコン</title>
+      <link>http://example.org/bioinformatics/nig-supercomputer/</link>
+      <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
+      
+      <guid>http://example.org/bioinformatics/nig-supercomputer/</guid>
+      <description>https://sc.ddbj.nig.ac.jp/
+バッチジョブ CPU コアを 1 コアだけ使用するプログラムを少数実行する場合に用いる。
+## ジョブスクリプトを投げる qsub test.sh ## コマンドライン引数として投げる qsub -S /bun/bash -cwd &amp;#34;echo &amp;#39;hoge&amp;#39; &amp;gt; test.txt&amp;#34; コマンドライン引数。ジョブスクリプト内で#$につづけて渡すこともできる。 -cwd
+: バッチジョブをカレントディレクトリ上で実行する。デフォルトは$HOME -V
+: qsubを実行した際の環境変数を全てバッチジョブ(を実行する計算ノード）に引き継ぐ。 -l short
+: キューの指定。今のところ64GB以上ならmedium程度の認識。 -l d_rt=00:10:00,s_rt=00:10:00
+: バッチジョブの実行上限時間。デフォルトは72:00:00(=3日間) -l s_vmem=4G,-l mem_req=4G
+: 使用するメモリ量の指定。 -N an_example
+: ジョブ名の指定。 -S /bin/bash
+: インタープリタの指定。 -o,-e
+: 標準出力/標準エラーファイルの出力先。デフォルトはカレントディレクトリ。 アレイジョブ、パラレルジョブ CPUコアを複数もちいるジョブ。順次多数実行していくのがアレイジョブ。同時に少数実行するのがパラレルジョブくらいの認識。
+アレイジョブの書き方 #$ -S /bin/bash #$ -t 1-6:1 #$ -tc 3 #$ -cwd seq_ids=(SRR030253 SRR030254 SRR030255 SRR030256 SRR030257 SRR030258) seq_id=${seq_ids[$SGE_TASK_ID-1]} mv ${seq_id}.</description>
+    </item>
+    
+  </channel>
+</rss>

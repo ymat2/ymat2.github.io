@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="最低限のHTML・CSS" />
+<meta property="og:site_name" content="Notemy - A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://example.org/site/html-css/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2022-11-30
+" /> <meta property="article:modified_time" content="2022-11-30
+" />
+
+
+
+
+
+
+    <title>最低限のHTML・CSS</title>
+    <link rel="canonical" href="http://example.org/site/html-css/" />
+
+
+    
+<link rel="stylesheet" href="http://example.org/css/my-style.css" />
+<link rel="stylesheet" href="http://example.org/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://example.org/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://example.org//site"
+  	class="pagelink"
+  	>静的サイトの作成</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">最低限のHTML・CSS</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <p>HUGOはマークダウンでページを書くだけでHTMLのページが生成され、また豊富なテーマが整備されているのでHTML・CSSの知識がなくてもサイトを構築することができる。</p>
+<p>そうは言っても、サイトをカスタマイズしたり、自分でテーマを作ったりすることを考えると、最低限のHTML・CSSの知識はあっても損はない。</p>
+<h2 id="html">HTML</h2>
+<p>HTML(Hyper Text Markup Language)は、WEBページに表示される文字の役割を決める言語である。（対してCSS(Cascading Style Sheet)はその見た目を決める。）</p>
+<p>マークダウンが<code>##</code>（見出し）や<code>**</code>（斜体）、<code>-</code>（リスト）など記号で文字の役割を定めるのに対して、HTMLでは <strong>タグ(&lt;&gt;&lt;/&gt;)</strong> を用いることで同じことをする。</p>
+<h3 id="hugoにおけるマークダウンとhtmlタグの対応">HUGOにおけるマークダウンとHTMLタグの対応</h3>
+<h4 id="見出し">見出し</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gh"># 見出し1
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span><span class="gu">## 見出し2
+</span></span></span><span class="line"><span class="cl"><span class="gu">### 見出し3
+</span></span></span><span class="line"><span class="cl"><span class="gu">#### 見出し4
+</span></span></span><span class="line"><span class="cl"><span class="gu">##### 見出し5
+</span></span></span><span class="line"><span class="cl"><span class="gu">###### 見出し6
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>見出し1<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>見出し2<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>見出し3<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>見出し4<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h5</span><span class="p">&gt;</span>見出し5<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h6</span><span class="p">&gt;</span>見出し6<span class="p">&lt;/</span><span class="nt">h6</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h4 id="段落改行">段落・改行</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">段落1
+</span></span><span class="line"><span class="cl">(空行)
+</span></span><span class="line"><span class="cl">段落2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hoge(スペース2つ)
+</span></span><span class="line"><span class="cl">fuga
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>段落1<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>段落2<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hoge<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">fuga
+</span></span></code></pre></div><h4 id="引用">引用</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">引用
+</span></span></span><span class="line"><span class="cl"><span class="ge"></span>&gt;&gt; 多重引用
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>引用<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>多重引用<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;/</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h4 id="コード">コード</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="s">```
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>print hoge
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;&lt;</span><span class="nt">code</span><span class="p">&gt;</span>print hoge<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;</span><span class="nt">pre</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>＊シンタックスハイライトをつけたりするともう少し複雑になる。</p>
+<h4 id="インラインコード">インラインコード</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">これは`print`です。
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">これは<span class="p">&lt;</span><span class="nt">code</span><span class="p">&gt;</span>print<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;</span>です。
+</span></span></code></pre></div><h4 id="水平線">水平線</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">***
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">___(アンダースコア)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h4 id="箇条書き">箇条書き</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="k">-</span> hoge
+</span></span><span class="line"><span class="cl">	+ fuga
+</span></span><span class="line"><span class="cl">		<span class="k">*</span> piyo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">1.</span> hoge
+</span></span><span class="line"><span class="cl"><span class="k">1.</span> fuga
+</span></span><span class="line"><span class="cl">	<span class="k">1.</span> fuga1
+</span></span><span class="line"><span class="cl">	<span class="k">1.</span> fuga2
+</span></span><span class="line"><span class="cl"><span class="k">1.</span> piyo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">- [ ]</span> task1
+</span></span><span class="line"><span class="cl"><span class="k">- [x]</span> task2
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>hoge
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>fuga
+</span></span><span class="line"><span class="cl">		<span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>piyo<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ol</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>hoge<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>fuga
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">ol</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>fuga1<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>fuga2<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>piyo<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">disabled</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;checkbox&#34;</span><span class="p">&gt;</span> task1<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">checked</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">disabled</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;checkbox&#34;</span><span class="p">&gt;</span> task2<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h4 id="リンク">リンク</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">[<span class="nt">Google</span>](<span class="na">https://www.google.co.jp/</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://www.google.co.jp/&#34;</span><span class="p">&gt;</span>Google<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h4 id="強調斜体取り消し">強調・斜体・取り消し</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">**hoge**
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="ge">*hoge*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="ge">**</span>*hoge***
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gd">~~hoge~~</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>hoge<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>hoge<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>hoge<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">del</span><span class="p">&gt;</span>hoge<span class="p">&lt;/</span><span class="nt">del</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h4 id="表">表</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">| TH1 | TH2 |
+</span></span><span class="line"><span class="cl">----|---- 
+</span></span><span class="line"><span class="cl">| TD1 | TD3 |
+</span></span><span class="line"><span class="cl">| TD2 | TD4 |
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>TH1<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>TH2<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>TD1<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>TD3<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>TD2<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>TD4<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h2 id="css">CSS</h2>
+<p>CSS(Cascading Style Sheet)はHTMLで書いた文字の位置や色、大きさなど見た目を決める言語である。HUGOの場合、<code>static/</code>に自分で書いたものを置いたり、<code>themes/</code>内で書かれていたりする。</p>
+<p><code>*.css</code>として書いた外部ファイルをHTML内で<code>link</code>して参照する他、HTMLに直接書き込むことも可能。HUGOの場合<code>&lt;link rel=&quot;stylesheet&quot; href=*.css /&gt;</code>の形で参照することが多い。</p>
+
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

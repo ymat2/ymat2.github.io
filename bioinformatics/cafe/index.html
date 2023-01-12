@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="CAFE - Computational Analysis of gene Family evolution" />
+<meta property="og:site_name" content="Notemy - A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://example.org/bioinformatics/cafe/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2022-11-02
+" /> <meta property="article:modified_time" content="2022-11-02
+" />
+
+
+
+
+
+
+    <title>CAFE - Computational Analysis of gene Family evolution</title>
+    <link rel="canonical" href="http://example.org/bioinformatics/cafe/" />
+
+
+    
+<link rel="stylesheet" href="http://example.org/css/my-style.css" />
+<link rel="stylesheet" href="http://example.org/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://example.org/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://example.org//bioinformatics"
+  	class="pagelink"
+  	>Bioinformatics Tools</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">CAFE - Computational Analysis of gene Family evolution</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <p>遺伝子ファミリーサイズの進化（系統樹上のどのノードで、いくつ遺伝子が増減したか）を、MCMC法で推定するプログラム。</p>
+<p>基本的な動かし方は、入力となるシェルスクリプトを書いてCAFEに渡す、という形になる。このシェルスクリプトを書く過程で、OrthoFinderの出力であるOrthogroups.GeneCount.tsvと種の系統樹（Species_Tree/SpeciesTree_rooted.txt）が必要。</p>
+<h3 id="インストール">インストール</h3>
+<ul>
+<li>作者たちのgithubから<a href="https://github.com/hahnlab/CAFE/releases/latest">最新版のCAFEをダウンロード</a>して、適当なディレクトリに置く。（例えば<code>~/bin/</code>）</li>
+<li>解凍したらCAFEディレクトリまで<code>cd</code>して<code>configure</code>＆<code>make</code>。
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">~/bin/CAFE$ ./configure
+</span></span><span class="line"><span class="cl">~/bin/CAFE$ make
+</span></span></code></pre></div></li>
+<li>PATHを通して動作確認。
+<pre tabindex="0"><code>~/$ cafe  # ctrl+C
+</code></pre></li>
+</ul>
+<h3 id="こんな感じのシェルスクリプトを書く">こんな感じのシェルスクリプトを書く</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#! cafe 
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1"># version </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># date </span>
+</span></span><span class="line"><span class="cl">load -i data/example.tab -t <span class="m">10</span> -l logfile.txt -p 0.05 
+</span></span><span class="line"><span class="cl">tree <span class="o">(((</span>chimp:6,human:6<span class="o">)</span>:81,<span class="o">(</span>mouse:17,rat:17<span class="o">)</span>:70<span class="o">)</span>:6,dog:93<span class="o">)</span> 
+</span></span><span class="line"><span class="cl">lambda -s -t <span class="o">(((</span>1,1<span class="o">)</span>1,<span class="o">(</span>2,2<span class="o">)</span>2<span class="o">)</span>2,2<span class="o">)</span> 
+</span></span><span class="line"><span class="cl">report resultfile
+</span></span></code></pre></div><ul>
+<li><code>load</code><br>: 基本的なオプション。
+<ul>
+<li><code>-i</code><br>: 種/遺伝子ファミリーごとの遺伝子数のテーブル。</li>
+<li><code>-t</code><br>: スレッド数。使っているコンピュータに合わせて。</li>
+<li><code>-l</code><br>: ログファイルの名前。</li>
+<li><code>-p</code><br>: 遺伝子数の増減が急速であるとする有意水準。</li>
+<li><code>-filter</code><br>: 全種の共通祖先における遺伝子数が0であると推定される遺伝子ファミリーを除くオプション。これをつける場合はload行より上にtree行を書く。</li>
+</ul>
+</li>
+<li><code>tree</code><br>: rootから各種までの距離が同じである（ultrametricな）系統樹。</li>
+<li><code>lambda</code><br>: 単位時間あたりの遺伝子数の増減速度λの設定。
+<ul>
+<li><code>-l</code><br>: λを指定する場合。</li>
+<li><code>-s</code><br>: λを自動推定する場合。</li>
+<li><code>-t</code><br>: λ構造。系統樹上の遺伝子増減速度が同じだと考えられる枝を同じ数字にする。全枝で同じだと仮定する場合すべて1にする。系統樹の枝長の部分を書き換えればいい。</li>
+</ul>
+</li>
+<li><code>report</code><br>: 出力ファイルの名前。</li>
+</ul>
+<h3 id="インプットとなるテーブルexampletabを用意する">インプットとなるテーブル(example.tab)を用意する</h3>
+<p>OrthoFinderの出力であるOrthogroups.GeneCount.tsvなどを基に、CAFEの入力ファイルとして加工する。基本的には、</p>
+<ul>
+<li>Description列、ID列を作る。</li>
+<li>全種の遺伝子数が同じである遺伝子ファミリーを除く。</li>
+<li>1種の遺伝子数が100を超える遺伝子ファミリーを除く。
+を満たしていればどう作ってもいい。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">ID</th>
+<th style="text-align:right">Chicken</th>
+<th style="text-align:right">Lizard</th>
+<th style="text-align:right">Mouse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">OG00001</td>
+<td style="text-align:left">OG00001</td>
+<td style="text-align:right">12</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">21</td>
+</tr>
+<tr>
+<td style="text-align:left">OG00002</td>
+<td style="text-align:left">OG00002</td>
+<td style="text-align:right">9</td>
+<td style="text-align:right">13</td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<td style="text-align:left">OG00003</td>
+<td style="text-align:left">OG00003</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">4</td>
+</tr>
+</tbody>
+</table>
+<p>めんどくさい場合は下記のスクリプトを使ってもいい。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">準備中</span><span class="o">...</span>
+</span></span></code></pre></div><pre tabindex="0"><code>python3 make_cafe_input.py Orthogroups.GeneCount.tsv Cafe_input.tsv
+</code></pre><h3 id="ultrametricな系統樹を用意する">ultrametricな系統樹を用意する</h3>
+<p><a href="http://www.timetree.org/">TimeTree</a>などから取得すると楽。OrthoFinderの出力系統樹を使う場合、遺伝的距離に基づく系統樹であるため、ultrametricに加工する必要がある。Rのapeなどを使うと便利。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="n">tree</span> <span class="o">=</span> <span class="nf">read.tree</span><span class="p">(</span><span class="s">&#34;tree.txt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">mrca</span> <span class="o">=</span> <span class="nf">getMRCA</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">tip</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;spA&#39;</span><span class="p">,</span> <span class="s">&#39;spB&#39;</span><span class="p">))</span> <span class="c1">#分岐年代推定に使うノードの指定</span>
+</span></span><span class="line"><span class="cl"><span class="n">tree2</span> <span class="o">=</span> <span class="nf">chronopl</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="m">100000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">age.min</span> <span class="o">=</span> <span class="m">36</span><span class="p">,</span> <span class="c1">#推定分岐年代の最小値(MYA)</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">age.max</span> <span class="o">=</span> <span class="m">46</span><span class="p">,</span> <span class="c1">#推定分岐年代の最大値(MYA)</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">node</span> <span class="o">=</span> <span class="n">mrca</span><span class="p">,</span> <span class="c1">#getMRCAで指定したノード</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">S</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">tol</span> <span class="o">=</span> <span class="m">1e-20</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">CV</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">eval.max</span> <span class="o">=</span> <span class="m">500</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">iter.max</span> <span class="o">=</span> <span class="m">500</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="nf">is.ultrametric</span><span class="p">(</span><span class="n">tree2</span><span class="p">)</span> <span class="c1">#ultrametricかどうか確認</span>
+</span></span><span class="line"><span class="cl"><span class="nf">write.tree</span><span class="p">(</span><span class="n">tree2</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="s">&#34;tree_ultrametric.nwk&#34;</span><span class="p">)</span> <span class="c1">#ultrametric系統樹の保存</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># spAとspBが3.6~4.6億年前に分岐したという情報から全体の分岐年代を推定する。</span>
+</span></span></code></pre></div><p><strong>注意点</strong></p>
+<ul>
+<li>tipは遺伝子数のテーブルの列名に合わせる。</li>
+<li>bootstrapなどの余計な要素は消しておく。</li>
+<li>枝長は少数でも構わないが、1以上のできるだけ小さい枝長になるように約分する。（大きすぎるとエラーになるっぽい。）</li>
+</ul>
+<h3 id="cafeを実行する">CAFEを実行する</h3>
+<p>シェルスクリプトが用意できたら、次のコマンドでCAFEを実行する。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">cafe example.sh
+</span></span></code></pre></div><h3 id="出力ファイルを加工する">出力ファイルを加工する</h3>
+<p>CAFEの実行に成功すると、reportで指定した名前の.repファイルが出てくる。このままだと見づらいため、公式のスクリプトを使って加工する。</p>
+<ol>
+<li>
+<p><a href="https://github.com/hahnlab/cafe_tutorial">https://github.com/hahnlab/cafe_tutorial</a> に行き、コードをダウンロード→解凍する。（緑色の<kbd>Code▼</kbd>から。）reportファイルのあるディレクトリに置いておくと便利。</p>
+</li>
+<li>
+<p>次のコマンドでreportファイルを加工する。4つのファイルが出力される。</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">python cafe_tutrial/python_scripts/cafetutorial_report_analysis.py -i resultfile.rep -o cafe_summary
+</span></span></code></pre></div><ul>
+<li><code>-i</code><br>: cafe本体の出力ファイル。</li>
+<li><code>-o</code><br>: 加工して生成されるファイル（4つ）の名前。
+<ul>
+<li>cafe_summary_fams.txt</li>
+<li>cafe_summary_anc.txt</li>
+<li>cafe_summary_pub.txt</li>
+<li>cafe_summary_node.txt</li>
+</ul>
+</li>
+</ul>
+<h3 id="トラブルシューティング">トラブルシューティング</h3>
+<ul>
+<li><code>Failed to load tree from provided string (branch length missing)</code><br>系統樹の枝長に0が含まれているとダメ。自分は該当するノードを除外した。</li>
+<li><code>No species ‘anolis_carolinensis’ was found in the tree</code><br>系統樹を読み込む際に内部でtip nameを書き換えているようで、長すぎる種名やアンダースコアが原因と思われるエラー。tip nameを短く書き換える。（<code>AnoCal</code>とか）</li>
+<li><code>Lambda values were not set. Please set lambda values with the lambda or lambdamu command.</code><br>λを自動推定する際に、系統樹の枝長がでかい数字だとこうなるっぽい。できるだけ短くなるように約分する。</li>
+</ul>
+
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="M1 macではhomebrewでhisat2が入らない" />
+<meta property="og:site_name" content="Notemy - A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://example.org/trouble-shooting/mac-architecture/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2022-11-02
+" /> <meta property="article:modified_time" content="2022-11-02
+" />
+
+
+
+
+
+
+    <title>M1 macではhomebrewでhisat2が入らない</title>
+    <link rel="canonical" href="http://example.org/trouble-shooting/mac-architecture/" />
+
+
+    
+<link rel="stylesheet" href="http://example.org/css/my-style.css" />
+<link rel="stylesheet" href="http://example.org/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://example.org/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://example.org//trouble-shooting"
+  	class="pagelink"
+  	>トラブルシューティング</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">M1 macではhomebrewでhisat2が入らない</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <h2 id="アーキテクチャの違いが原因でコンパイル周りでつまづく">アーキテクチャの違いが原因でコンパイル周りでつまづく</h2>
+<p>macのプロセッサがIntelからM1になって以降、CPUアーキテクチャがx86_64からarm64に替わったらしく、おそらくこれが原因でhomebrewの挙動が異なるらしい。</p>
+<ul>
+<li>x86_64ではデフォルトのインストール先が/usr/local/であるのに対し、arm64では/opt/homebrew/</li>
+<li>arm64ではhomebrewインストール後に/opt/homebrew/bin/brewにPATHを通す必要がある。</li>
+<li>x86_64とarm64のどちらかでしかインストールできないツールがあり、hisat2やTrinityはarm64のhomebrewでは入らない。</li>
+</ul>
+<pre tabindex="0"><code>g++-12: error: unrecognized command-line option &#39;-msse2&#39;
+make: *** [hisat2-build-s] Error 1
+make: *** Waiting for unfinished jobs....
+g++-12: error: unrecognized command-line option &#39;-msse2&#39;
+make: *** [hisat2-build-l] Error 1
+g++-12: error: unrecognized command-line option &#39;-msse2&#39;
+make: *** [hisat2-align-s] Error 1
+make: *** wait: No child processes. Stop.
+</code></pre><p>M1macでも<code>Rosetta</code>とよばれるアーキテクチャ変換技術を使うことでx86_64のターミナルを使用できる。</p>
+<p>参考にした記事を読む限り状況に応じてIntel(x86_64)のターミナルとARM(arm64)のターミナルを切り替えて使うのがスマートらしい。
+<br>: <a href="https://qiita.com/funatsufumiya/items/cec08f1ba3387edc2eed">https://qiita.com/funatsufumiya/items/cec08f1ba3387edc2eed</a>
+<br>: <a href="https://zenn.dev/_lambda314/articles/63b851221a7016">https://zenn.dev/_lambda314/articles/63b851221a7016</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">uname -m　　#CPUアーキテクチャを確認
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#arm64の場合、ターミナルを右クリック→「情報を見る」→「Rosettaを使用して開く」にチェックを入れる</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">uname -m　　#ターミナルを再起動してCPUアーキテクチャがx86_64になっているか確認
+</span></span></code></pre></div><p>こうするとhisat2やTrinityがちゃんと入る方のhomebrewをインストールできるようになる。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/bin/bash -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh<span class="k">)</span><span class="s2">&#34;</span>
+</span></span></code></pre></div><h2 id="せっかくbrewで入れてもライブラリの参照周りでコケて動かない">せっかくbrewで入れてもライブラリの参照周りでコケて動かない</h2>
+<ul>
+<li>インストール自体は<code>brew</code>で入るが、hisat2のコマンドを叩くとライブラリの参照がうまくいっていないのかエラーが出る。</li>
+<li>追記：後日iqtreeでも同様のエラーを観測したので、おそらくbiosci系のツールはこの問題にあたる可能性がある。</li>
+</ul>
+<pre tabindex="0"><code>dyld[25473]: Symbol not found: (__ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13find_first_ofERKS4_m)
+	Referenced from: &#39;/usr/local/Cellar/hisat2/2.2.1/bin/hisat2-build-s&#39;
+	Expected in: &#39;/usr/lib/libstdc++.6.dylib&#39;
+zsh: abort   hisat2-build -h
+</code></pre><p>Finderでlibstdc++.6.0.9.dylibを消すことで解決することがある(<a href="http://qa.lifesciencedb.jp/questions/885/hisat2%E3%81%8Cerror">1</a>, <a href="https://researchmap.jp/blogs/blog_entries/view/97940/c906f1defa5760d532f4bf2aedabee28?frame_id=797498">2</a>)らしいが、自分の環境ではうまくいかなかったのと、環境ファイルをいじる怖さがある&hellip;</p>
+<h2 id="それなら直接落としてきたほうがいい">それなら直接落としてきたほうがいい</h2>
+<p>Hisat2の<a href="http://daehwankimlab.github.io/hisat2/download/">ダウンロードページ</a>からバイナリ版をダウンロードして、PATHを通すことで解決。</p>
+<p>macOS 12.3 Monterey以降のOSでは、完全にPyhton3に移行してしまい<a href="https://applech2.com/archives/20220309-apple-removed-python-from-macos-123-monterey.html">古いPythonは使えなくなっている</a>のでhisat2のソースコードをpython3で動くように書き換える必要があった。
+<br>: <a href="https://www.biostars.org/p/9494176/#9494665">https://www.biostars.org/p/9494176/#9494665</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">which python3 <span class="c1">#python3のパスを確認 &gt;&gt;&gt;/usr/bin/python3</span>
+</span></span></code></pre></div><p>適当なエディタで<code>hisat2-&lt;version&gt;/hisat2-build</code>と<code>hisat2-&lt;version&gt;/hisat2-inspect</code>（他にも必要かもしれない..）のシェバン行を編集</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>#!/usr/bin/env python</code> # となっているのを</li>
+<li><input checked="" disabled="" type="checkbox"> <code>#!/usr/bin/python3</code> # と書き換える</li>
+</ul>
+<p>これで晴れてHisat2が使えるようになった。</p>
+
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

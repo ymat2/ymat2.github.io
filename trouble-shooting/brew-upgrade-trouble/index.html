@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="homebrewでRを入れ直したときにパッケージの再インストールが必要な問題" />
+<meta property="og:site_name" content="Notemy - A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://example.org/trouble-shooting/brew-upgrade-trouble/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2022-11-02
+" /> <meta property="article:modified_time" content="2022-11-02
+" />
+
+
+
+
+
+
+    <title>homebrewでRを入れ直したときにパッケージの再インストールが必要な問題</title>
+    <link rel="canonical" href="http://example.org/trouble-shooting/brew-upgrade-trouble/" />
+
+
+    
+<link rel="stylesheet" href="http://example.org/css/my-style.css" />
+<link rel="stylesheet" href="http://example.org/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://example.org/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://example.org//trouble-shooting"
+  	class="pagelink"
+  	>トラブルシューティング</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">homebrewでRを入れ直したときにパッケージの再インストールが必要な問題</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <p><code>brew upgrade</code>や<code>brew doctor</code>からのトラブルシューティングでRをいじったときにパッケージのインストールをやり直さなきゃいけない問題に何度か直面していたけど、今日ついにインストールすらできなくなったのでやったことの備忘録を残しておく。</p>
+<h2 id="状況">状況</h2>
+<ol>
+<li><code>brew doctor</code>でrがunlinkだとWarningが出たので、<code>/usr/bin/R</code>と<code>/usr/bin/Rstudio</code>を<code>rm</code>して<code>brew link r</code>した。</li>
+<li>Rstudioをしてパッケージを読み込もうとしたら無いと怒られたので、<code>install.packages()</code>したらエラーが出た。
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 流れてしまったけどたしかコンパイルできない系の怒られだった記憶がある</span>
+</span></span></code></pre></div></li>
+</ol>
+<h2 id="試したこと">試したこと</h2>
+<ol>
+<li>
+<p>Caskじゃない<code>brew install r</code>で入れたRを使っているのが原因と踏んで、</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ brew reinstall --cask r <span class="nv">rstudio</span>
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Caveats
+</span></span><span class="line"><span class="cl">Cask r installs files under /usr/local. The presence of such
+</span></span><span class="line"><span class="cl">files can cause warnings when running <span class="sb">`</span>brew doctor<span class="sb">`</span>, which is considered
+</span></span><span class="line"><span class="cl">to be a bug in Homebrew Cask.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Downloading https://cloud.r-project.org/bin/macosx/base/R-4.2.1.pkg
+</span></span><span class="line"><span class="cl">Already downloaded: /Users/yukimatsuda/Library/Caches/Homebrew/downloads/8d1f21aad50ce25534d706c2c7885528048ce7207abf6357ec4440955cb9f83b--R-4.2.1.pkg
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Uninstalling Cask <span class="nv">r</span>
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Uninstalling packages<span class="p">;</span> your password may be necessary:
+</span></span><span class="line"><span class="cl">org.r-project.x86_64.texinfo
+</span></span><span class="line"><span class="cl">Password:
+</span></span><span class="line"><span class="cl">org.r-project.x86_64.tcltk
+</span></span><span class="line"><span class="cl">org.R-project.R.GUI.pkg
+</span></span><span class="line"><span class="cl">org.R-project.R.fw.pkg
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Removing files:
+</span></span><span class="line"><span class="cl">/Library/Frameworks/R.Framework
+</span></span><span class="line"><span class="cl">/usr/bin/R
+</span></span><span class="line"><span class="cl">/usr/bin/Rscript
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Purging files <span class="k">for</span> version 4.2.1 of Cask <span class="nv">r</span>
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Installing Cask <span class="nv">r</span>
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Running installer <span class="k">for</span> r<span class="p">;</span> your password may be necessary.
+</span></span><span class="line"><span class="cl">Package installers may write to any location<span class="p">;</span> options such as <span class="sb">`</span>--appdir<span class="sb">`</span> are ignored.
+</span></span><span class="line"><span class="cl">installer: Package name is R 4.2.1 <span class="k">for</span> macOS
+</span></span><span class="line"><span class="cl">installer: Installing at base path /
+</span></span><span class="line"><span class="cl">installer: The install was successful.
+</span></span><span class="line"><span class="cl">🍺  r was successfully installed!
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Caveats
+</span></span><span class="line"><span class="cl">rstudio depends on R. The R Project provides official binaries:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  brew install --cask r
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Alternatively, the Homebrew-compiled version of R omits the GUI app:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  brew install <span class="nv">r</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Downloading https://download1.rstudio.org/desktop/macos/RStudio-2022.07.2-576.dmg
+</span></span><span class="line"><span class="cl">Already downloaded: /Users/yukimatsuda/Library/Caches/Homebrew/downloads/fceceabc195e09ba1c8dbbfe275255c32b077f60b0267e1ad6c12798164ead19--RStudio-2022.07.2-576.dmg
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Uninstalling Cask <span class="nv">rstudio</span>
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Backing App <span class="s1">&#39;RStudio.app&#39;</span> up to <span class="s1">&#39;/usr/local/Caskroom/rstudio/2022.07.2,576/RStudio.app&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Removing App <span class="s1">&#39;/Applications/RStudio.app&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Purging files <span class="k">for</span> version 2022.07.2,576 of Cask <span class="nv">rstudio</span>
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Installing Cask <span class="nv">rstudio</span>
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Moving App <span class="s1">&#39;RStudio.app&#39;</span> to <span class="s1">&#39;/Applications/RStudio.app&#39;</span>
+</span></span><span class="line"><span class="cl">🍺  rstudio was successfully installed!
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; <span class="nv">Caveats</span>
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; r
+</span></span><span class="line"><span class="cl">Cask r installs files under /usr/local. The presence of such
+</span></span><span class="line"><span class="cl">files can cause warnings when running <span class="sb">`</span>brew doctor<span class="sb">`</span>, which is considered
+</span></span><span class="line"><span class="cl">to be a bug in Homebrew Cask.
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; rstudio
+</span></span><span class="line"><span class="cl">rstudio depends on R. The R Project provides official binaries:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  brew install --cask r
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Alternatively, the Homebrew-compiled version of R omits the GUI app:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  brew install r
+</span></span></code></pre></div></li>
+<li>
+<p>Rstudioを再起動→<code>install.packages()</code></p>
+</li>
+<li>
+<p>するとうまくインストールできた。たまにバイナリ版かソースからコンパイルか聞かれるので迷わずバイナリ版。</p>
+</li>
+<li>
+<p>読んでみると↓なる怪しい記述がある。</p>
+<pre tabindex="0"><code>Cask r installs files under /usr/local. The presence of such
+files can cause warnings when running `brew doctor`, which is considered
+to be a bug in Homebrew Cask.
+</code></pre></li>
+<li>
+<p>試しに<code>brew doctor</code>すると、さっき<code>brew doctor</code>したときとほぼ同じものが出てきた。ただし、期待していたRのunlinkは出てこなかった（？）</p>
+</li>
+<li>
+<p>そこでもう一度、消せと言われたファイルを消してRパッケージをインストールしてみる。が、何もおこらない。</p>
+</li>
+<li>
+<p><code>.libPath()</code>してみると、トラブった時とパッケージのインストール先が違う。</p>
+<pre tabindex="0"><code>### トラブった時
+/usr/local/Cellar/r/4.2.1_4/lib/R/library
+
+### いま
+/Library/Frameworks/R.framework/Versions/4.2/Resources/library　# どこ？-&gt;ルートディレクトリ。cdで行く二つ上。
+</code></pre></li>
+<li>
+<p>結局<code>brew upgrade</code>したときにCask版Rのバージョンが変わったり、ふつうの方のRになったりすることが原因？よくわからないまま。</p>
+</li>
+<li>
+<p>rのunlinkは切れたままにするのがいいのでは。</p>
+</li>
+</ol>
+<p><strong>まとめ</strong><br>
+homebrewでR入れる時はCaskから。</p>
+
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

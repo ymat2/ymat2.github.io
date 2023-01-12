@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="NCBIからゲノムデータを一括ダウンロード" />
+<meta property="og:site_name" content="Notemy - A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://example.org/bioinformatics/ncbi_download/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2022-11-21
+" /> <meta property="article:modified_time" content="2022-11-21
+" />
+
+
+
+
+
+
+    <title>NCBIからゲノムデータを一括ダウンロード</title>
+    <link rel="canonical" href="http://example.org/bioinformatics/ncbi_download/" />
+
+
+    
+<link rel="stylesheet" href="http://example.org/css/my-style.css" />
+<link rel="stylesheet" href="http://example.org/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://example.org/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://example.org//bioinformatics"
+  	class="pagelink"
+  	>Bioinformatics Tools</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">NCBIからゲノムデータを一括ダウンロード</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <p><a href="https://www.ncbi.nlm.nih.gov/genome/doc/ftpfaq/">https://www.ncbi.nlm.nih.gov/genome/doc/ftpfaq/</a></p>
+<p><code>rsync</code>, <code>wget</code>, <code>curl</code>などが使える。</p>
+<h2 id="data_hubから分類群を指定してダウンロード">data_hubから分類群を指定してダウンロード</h2>
+<ol>
+<li><a href="https://www.ncbi.nlm.nih.gov/data-hub/genome/">https://www.ncbi.nlm.nih.gov/data-hub/genome/</a> にアクセス。</li>
+<li><kbd>Selected taxa</kbd>で分類群を指定。（例えば&quot;Aves&quot;）</li>
+<li><kbd>Filters</kbd>でフィルタリング。</li>
+<li>Assemblyを選択して<kbd>Download</kbd>。
+<ul>
+<li>Download Tableは検索結果の表。</li>
+<li>Download Packageはfile type(gff, fna, faaなど)を指定してダウンロード。</li>
+</ul>
+</li>
+<li><kbd>Select columns</kbd>からゲノムサイズやGene Contentなども表示させることができる。</li>
+</ol>
+<h2 id="コマンドラインで一括ダウンロード">コマンドラインで一括ダウンロード</h2>
+<h3 id="accessionを指定してダウンロード">Accessionを指定してダウンロード</h3>
+<ul>
+<li><code>curl</code>コマンドを使う方法。
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">curl -OJX GET <span class="s2">&#34;https://api.ncbi.nlm.nih.gov/datasets/v1/genome/accession/GCF_000002315.6/download?exclude_sequence=True&amp;include_annotation_type=PROT_FASTA&amp;filename=GCF_000002315.6.zip&#34;</span> -H <span class="s2">&#34;Accept: application/zip&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># exclude_sequence=True: genomic.fnaを除外</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># include_annotation_type: GENOME_GFF,RNA_FASTA,CDS_FASTA,PROT_FASTAから</span>
+</span></span></code></pre></div></li>
+</ul>
+
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

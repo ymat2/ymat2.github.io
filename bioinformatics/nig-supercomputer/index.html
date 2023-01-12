@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="遺伝研スパコン" />
+<meta property="og:site_name" content="Notemy - A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://example.org/bioinformatics/nig-supercomputer/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2022-11-02
+" /> <meta property="article:modified_time" content="2022-11-02
+" />
+
+
+
+
+
+
+    <title>遺伝研スパコン</title>
+    <link rel="canonical" href="http://example.org/bioinformatics/nig-supercomputer/" />
+
+
+    
+<link rel="stylesheet" href="http://example.org/css/my-style.css" />
+<link rel="stylesheet" href="http://example.org/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://example.org/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://example.org//bioinformatics"
+  	class="pagelink"
+  	>Bioinformatics Tools</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">遺伝研スパコン</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <p><a href="https://sc.ddbj.nig.ac.jp/">https://sc.ddbj.nig.ac.jp/</a></p>
+<h2 id="バッチジョブ">バッチジョブ</h2>
+<p>CPU コアを 1 コアだけ使用するプログラムを少数実行する場合に用いる。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Shell" data-lang="Shell"><span class="line"><span class="cl"><span class="c1">## ジョブスクリプトを投げる</span>
+</span></span><span class="line"><span class="cl">qsub test.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## コマンドライン引数として投げる</span>
+</span></span><span class="line"><span class="cl">qsub -S /bun/bash -cwd <span class="s2">&#34;echo &#39;hoge&#39; &gt; test.txt&#34;</span>
+</span></span></code></pre></div><ul>
+<li>コマンドライン引数。ジョブスクリプト内で<code>#$</code>につづけて渡すこともできる。
+<ul>
+<li><code>-cwd</code><br>: バッチジョブをカレントディレクトリ上で実行する。デフォルトは<code>$HOME</code></li>
+<li><code>-V</code><br>: <code>qsub</code>を実行した際の環境変数を全てバッチジョブ(を実行する計算ノード）に引き継ぐ。</li>
+<li><code>-l short</code><br>: キューの指定。今のところ64GB以上なら<code>medium</code>程度の認識。</li>
+<li><code>-l d_rt=00:10:00</code>,<code>s_rt=00:10:00</code><br>: バッチジョブの実行上限時間。デフォルトは<code>72:00:00</code>(=3日間)</li>
+<li><code>-l s_vmem=4G</code>,<code>-l mem_req=4G</code><br>: 使用するメモリ量の指定。</li>
+<li><code>-N an_example</code><br>: ジョブ名の指定。</li>
+<li><code>-S /bin/bash</code><br>: インタープリタの指定。</li>
+<li><code>-o</code>,<code>-e</code><br>: 標準出力/標準エラーファイルの出力先。デフォルトはカレントディレクトリ。</li>
+</ul>
+</li>
+</ul>
+<h2 id="アレイジョブパラレルジョブ">アレイジョブ、パラレルジョブ</h2>
+<p>CPUコアを複数もちいるジョブ。順次多数実行していくのがアレイジョブ。同時に少数実行するのがパラレルジョブくらいの認識。</p>
+<h3 id="アレイジョブの書き方">アレイジョブの書き方</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Shell" data-lang="Shell"><span class="line"><span class="cl"><span class="c1">#$ -S /bin/bash</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#$ -t 1-6:1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#$ -tc 3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#$ -cwd </span>
+</span></span><span class="line"><span class="cl"><span class="nv">seq_ids</span><span class="o">=(</span>SRR030253 SRR030254 SRR030255 SRR030256 SRR030257 SRR030258<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">seq_id</span><span class="o">=</span><span class="si">${</span><span class="nv">seq_ids</span><span class="p">[</span><span class="nv">$SGE_TASK_ID</span><span class="p">-1]</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mv <span class="si">${</span><span class="nv">seq_id</span><span class="si">}</span>.hoge <span class="si">${</span><span class="nv">seq_id</span><span class="si">}</span>.fuga
+</span></span></code></pre></div><ul>
+<li>アレイジョブ、パラレルジョブ関連の引数
+<ul>
+<li><code>-pe def_slot 8</code><br>: スレッド数の指定。中で動くプログラムの指定と合わせる。
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Shell" data-lang="Shell"><span class="line"><span class="cl"><span class="c1"># 例</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#$ -S /bin/bash</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#$ -pe def_slot 5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#$ -cwd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">orthofinder -f ./fasta/ -t <span class="m">5</span> -a <span class="m">5</span>
+</span></span></code></pre></div></li>
+<li><code>-t 1-N</code><br>: N個のタスクを持つアレイジョブとして投入する。</li>
+<li><code>-tc M</code><br>: 一度に実行されるアレイジョブのタスク数の上限を指定。これをやらないとユーザーに割り振られた計算機数をオーバーしてしまうことがある
+<ul>
+<li><code>qquota</code>でリソースを確認できる。2022/9/28時点で300。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="メモリ指定">メモリ指定</h3>
+<ul>
+<li>
+<p>64GB未満のジョブ：Thinノードで実行可</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Shell" data-lang="Shell"><span class="line"><span class="cl">qsub -l <span class="nv">s_vmem</span><span class="o">=</span>32G -l <span class="nv">mem_req</span><span class="o">=</span>32G test.sh 
+</span></span></code></pre></div></li>
+<li>
+<p>64GB以上、2000GB未満のジョブ：Mediumノードを指定する。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Shell" data-lang="Shell"><span class="line"><span class="cl">qsub -l medium -l <span class="nv">s_vmem</span><span class="o">=</span>128G -l <span class="nv">mem_req</span><span class="o">=</span>128G test.sh 
+</span></span></code></pre></div></li>
+<li>
+<p>パラレルジョブの総メモリはスロット数と<code>-l</code>で指定した数字の掛け算になる。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Shell" data-lang="Shell"><span class="line"><span class="cl"><span class="c1"># 総メモリ数は4×32GB=128GB</span>
+</span></span><span class="line"><span class="cl">qsub -pe def_slot <span class="m">4</span> -l medium -l <span class="nv">s_vmem</span><span class="o">=</span>32G -l <span class="nv">mem_req</span><span class="o">=</span>32G test.sh 
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="singularity">Singularity</h2>
+<p>バイオインフォマティクスでよく使われる解析ツールがバージョン別に<code>/usr/local/biotools/</code>に配置されており、インストール不要で使うことができる。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">## どんなツールが使えるか見てみる。たとえばblast。</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## biotools/の、各ツールの頭文字ディレクトリを参照。</span>
+</span></span><span class="line"><span class="cl">ls /usr/local/biotools/b/blast*
+</span></span></code></pre></div><h3 id="使用例">使用例</h3>
+<pre tabindex="0"><code>singularity exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -h
+</code></pre><h2 id="misc">Misc.</h2>
+<h3 id="pythonの外部ライブラリをインストールする場合">Pythonの外部ライブラリをインストールする場合</h3>
+<p>遺伝研で外部ライブラリを利用するには、</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">python3 -m pip install --user ライブラリ名
+</span></span></code></pre></div><p>とすることでユーザのホームにライブラリをインストールできる。（が、再現性の観点では<code>venv</code>で仮想環境を構築する方がいい、らしい。）</p>
+
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

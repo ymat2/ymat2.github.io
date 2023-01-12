@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="nano - シンプルで軽量なテキストエディタ" />
+<meta property="og:site_name" content="Notemy - A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://example.org/commandline/nano/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2022-11-29
+" /> <meta property="article:modified_time" content="2022-11-29
+" />
+
+
+
+
+
+
+    <title>nano - シンプルで軽量なテキストエディタ</title>
+    <link rel="canonical" href="http://example.org/commandline/nano/" />
+
+
+    
+<link rel="stylesheet" href="http://example.org/css/my-style.css" />
+<link rel="stylesheet" href="http://example.org/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://example.org/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://example.org//commandline"
+  	class="pagelink"
+  	>CommandLine</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">nano - シンプルで軽量なテキストエディタ</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <ul>
+<li>公式: <a href="https://www.nano-editor.org/">https://www.nano-editor.org/</a></li>
+<li>マニュアル: <a href="https://www.nano-editor.org/dist/latest/nano.html">https://www.nano-editor.org/dist/latest/nano.html</a></li>
+</ul>
+<h2 id="install">Install</h2>
+<p>もともと入っているものを使うか、<code>brew</code>でインストールする。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">which -a nano
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">brew install nano
+</span></span></code></pre></div><h2 id="usage">Usage</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">## 新規作成</span>
+</span></span><span class="line"><span class="cl">nano
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 既存のファイルを編集</span>
+</span></span><span class="line"><span class="cl">nano hoge.txt
+</span></span></code></pre></div><h3 id="keyboard-shortcuts">Keyboard shortcuts</h3>
+<p>デフォルトで編集画面の下部に書いてある。</p>
+<h2 id="configuration">Configuration</h2>
+<p>基本的な設定は<a href="https://www.nano-editor.org/dist/latest/nano.html#Nanorc-Files:~:text=6%20Command%2Dline%20Options">コマンドラインオプション</a>で指定することもできるが、一時的な設定でなければconfigファイルに書いてしまった方が楽。</p>
+<p>読み込まれる順番は、まず<code>/etc/nanorc</code>、次に<code>~/.nanorc</code>または<code>~/.config/nano/nanorc</code>。</p>
+<p>Linuxでは<code>/etc/nanorc</code>や<code>/usr/share/doc/nano/examples/samples.nanorc</code>に、Macにbrewで入れた場合は<code>/usr/local/Cellar/nano/6.4/share/doc/nano/sample.nanorc</code>にドキュメントとコマンドがコメントアウトされて書いてあるので、これを<code>~/.nanorc</code>または<code>~/.config/nano/nanorc</code>にコピーして編集する。</p>
+<p>自分で書いてしまってもいい。たとえば:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">set</span> autoindent	<span class="c1"># 改行時にインデントを揃える</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> nowrap	<span class="c1"># 横に長い行を勝手に改行しない</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> smooth	<span class="c1"># スクロールがスムーズに（あんまり実感したことはない）</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> tabsize 4	<span class="c1"># タブサイズ（スペースの数）の設定</span>
+</span></span></code></pre></div><h3 id="syntax-highlight">Syntax highlight</h3>
+<p>デフォルトの見た目は非常に寂しい。</p>
+<p>Linuxでは<code>/usr/share/nano/</code>、Macでは<code>/usr/local/share/nano/</code>や<code>/usr/local/Cellar/nano/6.4/share/doc/nano/</code>にハイライト定義ファイルが置いてあるので、これらの設定を<code>~/.nanorc</code>に加える。または野生の定義ファイルを使う手もある。: <a href="https://github.com/scopatz/nanorc">https://github.com/scopatz/nanorc</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">include <span class="s1">&#39;/usr/share/nano/*.nanorc&#39;</span>
+</span></span></code></pre></div>
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

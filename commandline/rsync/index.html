@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="rsync" />
+<meta property="og:site_name" content="Notemy - A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://example.org/commandline/rsync/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2022-11-02
+" /> <meta property="article:modified_time" content="2022-11-02
+" />
+
+
+
+
+
+
+    <title>rsync</title>
+    <link rel="canonical" href="http://example.org/commandline/rsync/" />
+
+
+    
+<link rel="stylesheet" href="http://example.org/css/my-style.css" />
+<link rel="stylesheet" href="http://example.org/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://example.org/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://example.org//commandline"
+  	class="pagelink"
+  	>CommandLine</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">rsync</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <p>ファイルやディレクトリの同期/バックアップを行うツール。<br>2つのディレクトリの差分を検出して差分のみ反映するといった使い方が可能。</p>
+<h2 id="基本">基本</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">### Local</span>
+</span></span><span class="line"><span class="cl">rsync -option src/ dest/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### Access via remote shell:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Push:</span>
+</span></span><span class="line"><span class="cl">rsync -option src/ user@host:dest/
+</span></span><span class="line"><span class="cl"><span class="c1"># Pull:</span>
+</span></span><span class="line"><span class="cl">rsync -option user@host:dest/ src/
+</span></span></code></pre></div><ul>
+<li><code>src/ dest/</code>: src配下のファイルがdst/にコピーされる。</li>
+<li><code>src dset/</code>: srcごとdst/にコピーされる。</li>
+</ul>
+<h2 id="option">Option</h2>
+<ul>
+<li><code>-a</code>,<code>--archive</code><br>: ?</li>
+<li><code>-u</code>,<code>--update</code><br>: dest側で更新されているファイルをスキップする。</li>
+<li><code>-v</code>,<code>--verbose</code><br>: メッセージを冗長に表示させる。</li>
+<li><code>-z</code>,<code>--compress</code><br>: 送受信中にファイルを圧縮する。</li>
+</ul>
+
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

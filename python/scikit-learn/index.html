@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="Scikit-learn - 機械学習支援ライブラリ" />
+<meta property="og:site_name" content="Notemy - A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://example.org/python/scikit-learn/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2022-11-02
+" /> <meta property="article:modified_time" content="2022-11-02
+" />
+
+
+
+
+
+
+    <title>Scikit-learn - 機械学習支援ライブラリ</title>
+    <link rel="canonical" href="http://example.org/python/scikit-learn/" />
+
+
+    
+<link rel="stylesheet" href="http://example.org/css/my-style.css" />
+<link rel="stylesheet" href="http://example.org/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://example.org/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://example.org//python"
+  	class="pagelink"
+  	>Python</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">Scikit-learn - 機械学習支援ライブラリ</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <p>機械学習ライブラリ。さまざまな機械学習モデルを</p>
+<ol>
+<li>モデル生成</li>
+<li>最適化（学習): fit</li>
+<li>モデルを用いた演算: predict or transform
+という一貫した記法で利用できる。</li>
+</ol>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph LR;
+	機械学習---教師あり学習
+	機械学習---教師なし学習
+	教師あり学習---回帰
+	教師あり学習---分類
+	教師なし学習---クラスタリング
+	教師なし学習---次元削減
+</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</span></span></code></pre></div><h3 id="データ前処理">データ前処理</h3>
+<ul>
+<li>
+<p>標準化：平均を0に、標準偏差を1にスケーリング</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+</span></span><span class="line"><span class="cl"><span class="n">sc</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">sc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df_fitted</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sc</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df_wine</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</span></span></code></pre></div></li>
+<li>
+<p>正規化：最大値を1に、最小値を0（または-1）にスケーリング</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+</span></span><span class="line"><span class="cl"><span class="n">ms</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">ms</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df_fitted</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df_wine</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</span></span></code></pre></div></li>
+<li>
+<p>ラベルエンコーディング</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+</span></span><span class="line"><span class="cl"><span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;列名&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;カテゴリ変数列&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;カテゴリ変数列&#39;</span><span class="p">])</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="データ分割">データ分割</h3>
+<ul>
+<li>最もシンプルな分割
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span><span class="line"><span class="cl"><span class="n">train_data</span><span class="p">,</span><span class="n">test_data</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">train_size</span> <span class="o">=</span> <span class="mf">0.6</span> <span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>	<span class="c1"># 訓練データ:テストデータ=4:6に分割</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="教師あり学習-回帰分類">教師あり学習　 <strong>回帰・分類</strong></h3>
+<ul>
+<li>
+<p>線形回帰</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>	<span class="c1"># モデル生成</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 単回帰</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[[</span><span class="s1">&#39;Petal.Length&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;Petal.Width&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>	<span class="c1"># 説明変数、目的変数をnumpyのarrayで用意</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>	<span class="c1"># 最適化（学習）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">clf</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>	<span class="c1"># 説明変数の係数、切片</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 重回帰</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[[</span><span class="s1">&#39;Sepal.Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal.Width&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;Petal.Width&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">clf</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+</span></span></code></pre></div></li>
+<li>
+<p>ロジスティック回帰</p>
+</li>
+<li>
+<p>ランダムフォレスト</p>
+</li>
+<li>
+<p>サポートベクタマシン</p>
+</li>
+<li>
+<p>K近傍法</p>
+</li>
+</ul>
+<h3 id="教師なし学習クラスタリング次元削減">教師なし学習　<strong>クラスタリング・次元削減</strong></h3>
+<ul>
+<li>
+<p>PCA</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+</span></span><span class="line"><span class="cl"><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[[</span><span class="s1">&#39;Sepal.Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal.Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal.Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal.Width&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+</span></span><span class="line"><span class="cl"><span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">res</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+</span></span></code></pre></div></li>
+<li>
+<p>K-means</p>
+</li>
+<li>
+<p>t-SNE</p>
+</li>
+</ul>
+
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

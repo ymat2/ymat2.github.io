@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="ファイル・ディレクトリの圧縮と解凍" />
+<meta property="og:site_name" content="Notemy - A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://example.org/commandline/compress/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2022-11-28
+" /> <meta property="article:modified_time" content="2022-11-28
+" />
+
+
+
+
+
+
+    <title>ファイル・ディレクトリの圧縮と解凍</title>
+    <link rel="canonical" href="http://example.org/commandline/compress/" />
+
+
+    
+<link rel="stylesheet" href="http://example.org/css/my-style.css" />
+<link rel="stylesheet" href="http://example.org/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://example.org/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://example.org//commandline"
+  	class="pagelink"
+  	>CommandLine</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">ファイル・ディレクトリの圧縮と解凍</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <h2 id="ファイルの圧縮と展開">ファイルの圧縮と展開</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">## .zip</span>
+</span></span><span class="line"><span class="cl">zip test.txt.zip test.txt  <span class="c1"># 圧縮</span>
+</span></span><span class="line"><span class="cl">unzip test.txt.zip  <span class="c1"># 展開</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## .gz</span>
+</span></span><span class="line"><span class="cl">gzip test.txt  <span class="c1"># 圧縮</span>
+</span></span><span class="line"><span class="cl">gunzip test.txt.zip  <span class="c1"># 展開</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## .bz</span>
+</span></span><span class="line"><span class="cl">bzip2 test.txt  <span class="c1"># 圧縮</span>
+</span></span><span class="line"><span class="cl">bunzip2 test.txt.bz2  <span class="c1"># 展開</span>
+</span></span></code></pre></div><p>圧縮率は<code>.bz2</code>が最も高い</p>
+<h2 id="ディレクトリの圧縮と展開">ディレクトリの圧縮と展開</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">## tar.gz</span>
+</span></span><span class="line"><span class="cl">tar -czvf hoge.tar.gz hoge  <span class="c1"># 圧縮</span>
+</span></span><span class="line"><span class="cl">tar -xzvf hoge.tar.gz  <span class="c1"># 展開</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## tar.bz2</span>
+</span></span><span class="line"><span class="cl">tar -cjvf hoge.tar.bz2 hoge  <span class="c1"># 圧縮</span>
+</span></span><span class="line"><span class="cl">tar -xjvf hoge.tar.bz2  <span class="c1"># 展開</span>
+</span></span></code></pre></div><h3 id="tarコマンドオプション"><code>tar</code>コマンドオプション</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">option</th>
+<th style="text-align:left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>-c</code>,<code>--create</code></td>
+<td style="text-align:left">アーカイブを作成する。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-x</code>,<code>--extract</code></td>
+<td style="text-align:left">アーカイブを展開する。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-z</code>,<code>--gzip</code></td>
+<td style="text-align:left">gzip形式。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-j</code>,<code>--bzip2</code></td>
+<td style="text-align:left">bzip2形式。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-J</code>,<code>--xz</code></td>
+<td style="text-align:left">xz形式。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-v</code>,<code>--verbose</code></td>
+<td style="text-align:left">ログの冗長表示。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-f</code>,<code>--file</code></td>
+<td style="text-align:left">ファイル名の指定。使う場合は一番右に置く。</td>
+</tr>
+</tbody>
+</table>
+
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

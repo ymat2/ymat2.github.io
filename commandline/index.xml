@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CommandLine on Notemy - A Website for Personal Documentation</title>
+    <link>http://example.org/commandline/</link>
+    <description>Recent content in CommandLine on Notemy - A Website for Personal Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>(ɔ) 2022 Yuki Matsuda</copyright>
+    <lastBuildDate>Thu, 03 Nov 2022 11:45:13 +0900</lastBuildDate><atom:link href="http://example.org/commandline/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>apt - debian Linuxでのパッケージ管理</title>
+      <link>http://example.org/commandline/apt/</link>
+      <pubDate>Sun, 08 Jan 2023 14:34:31 +0900</pubDate>
+      
+      <guid>http://example.org/commandline/apt/</guid>
+      <description>aptはUbuntuなどdebin系Linuxにおけるパッケージ管理コマンド。
+https://tracker.debian.org/pkg/apt https://www.debian.org/doc/manuals/debian-faq/pkgtools.ja.html#apt-get Usage パッケージ一覧を更新する。
+sudo apt update インストール済みのソフトウェアを更新する。（必要に応じて依存パッケージをインストールすることがある。移行前のapt-getだと新規インストールは起こらない。）
+sudo apt upgrade 更新に伴い、必要なくなったパッケージを削除する。
+sudo apt autoremove パッケージのダウンロード。
+sudo apt install パッケージ名 パッケージの削除。
+sudo apt remove パケージ名 sudo apt purge パッケージ名	# 設定ファイルを含め完全削除 パッケージの検索。
+apt search 検索キーワード パッケージの表示。
+apt list --upgradable	# 更新可能なパッケージ一覧を表示 apt list --installed	# インストール済みのパッケージ一覧を表示 おまけ。
+apt moo (__) (oo) /------\/ / | || * /\---/\ ~~ ~~ ...&amp;#34;Have you mooed today?&amp;#34;... apt-get, apt-cache aptはパッケージの管理を担うapt-getと検索を担うapt-cacheの統合を図るコマンド。それぞれのコマンドの対応は以下のようになっている。
+apt-get update -&amp;gt; apt update apt-get upgrade -&amp;gt; apt upgrade apt-get dist-upgrade -&amp;gt; apt full-upgrade apt-get install package -&amp;gt; apt install package apt-get remove package -&amp;gt; apt remove package apt-get autoremove -&amp;gt; apt autoremove apt-cache search string -&amp;gt; apt search string apt-cache policy package -&amp;gt; apt list -a package apt-cache show package -&amp;gt; apt show package apt-cache showpkg package -&amp;gt; apt show -a package </description>
+    </item>
+    
+    <item>
+      <title>nano - シンプルで軽量なテキストエディタ</title>
+      <link>http://example.org/commandline/nano/</link>
+      <pubDate>Tue, 29 Nov 2022 18:09:52 +0900</pubDate>
+      
+      <guid>http://example.org/commandline/nano/</guid>
+      <description> 公式: https://www.nano-editor.org/ マニュアル: https://www.nano-editor.org/dist/latest/nano.html Install もともと入っているものを使うか、brewでインストールする。
+which -a nano brew install nano Usage ## 新規作成 nano ## 既存のファイルを編集 nano hoge.txt Keyboard shortcuts デフォルトで編集画面の下部に書いてある。
+Configuration 基本的な設定はコマンドラインオプションで指定することもできるが、一時的な設定でなければconfigファイルに書いてしまった方が楽。
+読み込まれる順番は、まず/etc/nanorc、次に~/.nanorcまたは~/.config/nano/nanorc。
+Linuxでは/etc/nanorcや/usr/share/doc/nano/examples/samples.nanorcに、Macにbrewで入れた場合は/usr/local/Cellar/nano/6.4/share/doc/nano/sample.nanorcにドキュメントとコマンドがコメントアウトされて書いてあるので、これを~/.nanorcまたは~/.config/nano/nanorcにコピーして編集する。
+自分で書いてしまってもいい。たとえば:
+set autoindent	# 改行時にインデントを揃える set nowrap	# 横に長い行を勝手に改行しない set smooth	# スクロールがスムーズに（あんまり実感したことはない） set tabsize 4	# タブサイズ（スペースの数）の設定 Syntax highlight デフォルトの見た目は非常に寂しい。
+Linuxでは/usr/share/nano/、Macでは/usr/local/share/nano/や/usr/local/Cellar/nano/6.4/share/doc/nano/にハイライト定義ファイルが置いてあるので、これらの設定を~/.nanorcに加える。または野生の定義ファイルを使う手もある。: https://github.com/scopatz/nanorc
+include &amp;#39;/usr/share/nano/*.nanorc&amp;#39; </description>
+    </item>
+    
+    <item>
+      <title>ファイル・ディレクトリの圧縮と解凍</title>
+      <link>http://example.org/commandline/compress/</link>
+      <pubDate>Mon, 28 Nov 2022 09:18:25 +0900</pubDate>
+      
+      <guid>http://example.org/commandline/compress/</guid>
+      <description>ファイルの圧縮と展開 ## .zip zip test.txt.zip test.txt # 圧縮 unzip test.txt.zip # 展開 ## .gz gzip test.txt # 圧縮 gunzip test.txt.zip # 展開 ## .bz bzip2 test.txt # 圧縮 bunzip2 test.txt.bz2 # 展開 圧縮率は.bz2が最も高い
+ディレクトリの圧縮と展開 ## tar.gz tar -czvf hoge.tar.gz hoge # 圧縮 tar -xzvf hoge.tar.gz # 展開 ## tar.bz2 tar -cjvf hoge.tar.bz2 hoge # 圧縮 tar -xjvf hoge.tar.bz2 # 展開 tarコマンドオプション option 意味 -c,--create アーカイブを作成する。 -x,--extract アーカイブを展開する。 -z,--gzip gzip形式。 -j,--bzip2 bzip2形式。 -J,--xz xz形式。 -v,--verbose ログの冗長表示。 -f,--file ファイル名の指定。使う場合は一番右に置く。 </description>
+    </item>
+    
+    <item>
+      <title>キーボードショートカット</title>
+      <link>http://example.org/commandline/shortcut/</link>
+      <pubDate>Sun, 27 Nov 2022 13:40:49 +0900</pubDate>
+      
+      <guid>http://example.org/commandline/shortcut/</guid>
+      <description>Mac ターミナル Key コマンド control+A 行頭に移動 control+E 行末に移動 control+U 行頭からカーソル上の文字までを削除（カット） control+K カーソル上の文字から行末までを削除（カット） control+W カーソル前の1単語を削除 option+D カーソル後の単1語を削除 control+Y カットした分の貼り付け（ヤンク） option+F/→ 次の単語に移動 option+B/← 前の単語に移動 command+, 環境設定を開く control+command+F フルスクリーン command+N 新規ターミナルを開く command+Q ターミナルを閉じる command+T 新規タブを開く（control Tabで移動） command+W 現在のタブを閉じる Rstudio Key コマンド control+shift+M パイプ%&amp;gt;%の挿入 control+shift+C 選択行をコメントアウト/コメントアウト解除 Windows </description>
+    </item>
+    
+    <item>
+      <title>WSL - Windows Subsystem for Linux</title>
+      <link>http://example.org/commandline/wsl/</link>
+      <pubDate>Fri, 25 Nov 2022 14:56:42 +0900</pubDate>
+      
+      <guid>http://example.org/commandline/wsl/</guid>
+      <description>WSLとは https://learn.microsoft.com/ja-jp/windows/wsl/
+乱暴に言ってしまうとWindowsでLinuxを扱える仮想環境のこと。
+WSLのインストール: Windows11の場合 参考: https://chigusa-web.com/blog/wsl2-win11/
+wslのインストール Win+X → Aでターミナルを管理者として起動。 wsl --install 再起動と設定 マシンを再起動する。 再起動後、インストール処理を経てUbuntuが起動する。 Enter new UNIX usernaem:と表示されたらユーザーネームを設定。
+(NG: 松田(日本語), y matsuda(スペース), y.matsuda(ピリオド)) Enter new UNIX password:と表示されたらパスワードを設定。sudoとかするときに要求される。 Retype new UNIX password:と表示されたらパスワードを再入力。 WSLのインストール: Windows10の場合 参考: https://lab.sonicmoov.com/development/windows-bash/
+Windows subsystem for Linux(WSL)を有効化する Win+S |&amp;gt; 「コントロールパネル」を検索 |&amp;gt; 「開く」 「プログラム」を開く。 Windowsの機能の有効化または無効化」をクリック。 「Windows Subsystem for Linux」にチェック |&amp;gt; 「OK」 「今すぐ再起動(N)」 Ubuntuのインストール Win+S |&amp;gt; 「Microsoft Store」を検索 |&amp;gt; 「開く」 「Ubuntu」を検索してクリック。 「入手」 Ubuntuの起動と設定 Win+S |&amp;gt; 「Ubuntu」を検索 |&amp;gt; 「開く」 Enter new UNIX usernaem:と表示されたらユーザーネームを設定。</description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>http://example.org/commandline/git/</link>
+      <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
+      
+      <guid>http://example.org/commandline/git/</guid>
+      <description>基本操作 Create new repositories Githubのサイト右上の&amp;quot;+&amp;ldquo;ボタンからNew repositoryを選択し、Create repositoryする。 手元のPCに同名のリモートリポジトリをつくる。 mkdir *new_repository* cd *new_repository* git init ファイルをaddしてcommitしてもいいし、空のcommitをしてもいい。 ### すでにあるファイルをadd&amp;amp;commit git add *some_file* git commit -m &amp;#34;some files added&amp;#34; ### 空のコミット git commit --allow-empty -m &amp;#34;:coffee: Create repository&amp;#34; リモートリポジトリを紐づけてpush git remote -v	# 何も表示されない git remote add origin https://github.com/*username*/*new_repository*.git git remote -v	# なんか出る git branch -M main git push -u origin main .gitignore https://docs.github.com/ja/get-started/getting-started-with-git/ignoring-files
+リポジトリのルートディレクトリに.gitignoreを配置して、git管理から除外するファイルを制御する。
+### 場所を問わず特定のファイル・ディレクトリを除外 hoge ### .gitignoreが置かれたリポジトリの特定のファイル・ディレクトリを除外 /hoge ### 場所を問わず特定のディレクトリの除外 dir/ ### .</description>
+    </item>
+    
+    <item>
+      <title>Linuxコマンド</title>
+      <link>http://example.org/commandline/linux%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/</link>
+      <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
+      
+      <guid>http://example.org/commandline/linux%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/</guid>
+      <description>基本 pwd
+: カレントディレクトリの絶対パス ls
+: カレントディレクトリにあるファイル cd
+: ディレクトリ移動 mkdir
+: ディレクトリ新規作成 touch
+: ファイル新規作成（普段はnanoでやってる） mv
+: mv source/path destination/pathで移動、mv before_name after_nameでリネーム（Windowsではできなかった記憶がある） cp
+: ファイルのコピー。-rでディレクトリをコピー。 rm
+: -fで強制削除、-rでディレクトリ以下を削除 wc
+: 行数カウント。-lでファイル名も表示。 cat
+: ファイルの中身を標準出力 head/tail -n x
+: ファイルの先頭/末尾x行を標準出力 sort,uniq
+: 行単位でソート、重複行の削除 grep str file
+: fileからstrを含む行を抽出 grep str -rl PATH
+: 中身にstrが含まれているファイルを再起的に取得 sed -e &#39;s/BEFORE/AFTER/g&#39; file
+: ファイル中の文字を置換。-iで上書き。 less
+: ファイル閲覧 du
+: ファイルの容量表示。-hでちょうどいい単位にしてくれる。--max-depth Nで階層指定。 ps
+: いまターミナルで実行中のプロセスを表示 </description>
+    </item>
+    
+    <item>
+      <title>Markdownチートシート</title>
+      <link>http://example.org/commandline/markdown/</link>
+      <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
+      
+      <guid>http://example.org/commandline/markdown/</guid>
+      <description>いちいち調べるのも億劫なので自分でまとめる。媒体によってたまにできないものもあるっぽい。
+一応たまに参照する記事も貼っておく:
+https://qiita.com/Qiita/items/c686397e4a0f4f11683d https://gist.github.com/mignonstyle/083c9e1651d7734f84c99b8cf49d57fa 見出し # 見出し1 ## 見出し2 ### 見出し3 #### 見出し4 ##### 見出し5 ###### 見出し6 見出し1 見出し2 見出し3 見出し4 見出し5 見出し6 段落と改行 ### 空行を挟むと段落 段落1 (空行) 段落2 ### スペースを二つ挟むと改行 hoge(スペース×2) fuga 段落1
+段落2
+hoge
+fuga
+引用 &amp;gt; 引用 &amp;gt;&amp;gt; 多重引用 引用
+多重引用
+コード ```python print &amp;#39;hoge&amp;#39; ``` print &amp;#39;hoge&amp;#39; シンタックスハイライト
+インラインコード 標準出力を`print`でおこなう。 標準出力をprintでおこなう。
+水平線 *** --- ___(アンダースコア) 箇条書き - hoge + fuga * piyo 1. hoge 1. fuga 1.</description>
+    </item>
+    
+    <item>
+      <title>rsync</title>
+      <link>http://example.org/commandline/rsync/</link>
+      <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
+      
+      <guid>http://example.org/commandline/rsync/</guid>
+      <description>ファイルやディレクトリの同期/バックアップを行うツール。
+2つのディレクトリの差分を検出して差分のみ反映するといった使い方が可能。
+基本 ### Local rsync -option src/ dest/ ### Access via remote shell: # Push: rsync -option src/ user@host:dest/ # Pull: rsync -option user@host:dest/ src/ src/ dest/: src配下のファイルがdst/にコピーされる。 src dset/: srcごとdst/にコピーされる。 Option -a,--archive
+: ? -u,--update
+: dest側で更新されているファイルをスキップする。 -v,--verbose
+: メッセージを冗長に表示させる。 -z,--compress
+: 送受信中にファイルを圧縮する。 </description>
+    </item>
+    
+    <item>
+      <title>SSH</title>
+      <link>http://example.org/commandline/ssh/</link>
+      <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
+      
+      <guid>http://example.org/commandline/ssh/</guid>
+      <description>リモートのサーバーに安全に接続し、管理するためのツール。
+公開鍵による認証 公開鍵と秘密鍵を作成する。
+ssh-keygen -t ed25519 -N &amp;#39;&amp;#39; -f id_ed25519_hoge -t
+: 作成する鍵の種類の指定。ed25519の他にdsa, ecdsa, ecdsa-sk, ed25519-sk, rsaなどが指定できる。 -f
+: 鍵のファイル名の指定。 公開鍵をリモートホストに登録する。方法はそれぞれ。
+## 公開鍵のコピー cat ~/.ssh/id_ed25519_hoge.pub | pbcopy ~/.ssh/config 一般的な接続方法:
+ssh username@example.com	# 毎回打つのは面倒！ そこで.ssh/configに以下のような設定を追記:
+Host hoge Hostname example.com	# ホスト名(@のうしろ) User username	# ユーザー名 IdentityFile ~/.ssh/id_ed25519_hoge	# 秘密鍵へのPATH こうすると以下の二つは等価:
+ssh username@example.com ssh hoge rsyncでリモートに接続するときも記述を省略できて便利:
+rsync -auvz src/ username@example.com:dest/ rsync -auvz src/ hoge:dest/ </description>
+    </item>
+    
+  </channel>
+</rss>

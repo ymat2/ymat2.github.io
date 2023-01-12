@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="ArgumentParser - コマンドライン引数の実装" />
+<meta property="og:site_name" content="Notemy - A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://example.org/python/argparse/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2022-11-02
+" /> <meta property="article:modified_time" content="2022-11-02
+" />
+
+
+
+
+
+
+    <title>ArgumentParser - コマンドライン引数の実装</title>
+    <link rel="canonical" href="http://example.org/python/argparse/" />
+
+
+    
+<link rel="stylesheet" href="http://example.org/css/my-style.css" />
+<link rel="stylesheet" href="http://example.org/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://example.org/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://example.org//python"
+  	class="pagelink"
+  	>Python</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">ArgumentParser - コマンドライン引数の実装</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <ul>
+<li><a href="https://docs.python.org/ja/3/library/argparse.html">https://docs.python.org/ja/3/library/argparse.html</a></li>
+<li><a href="https://qiita.com/kzkadc/items/e4fc7bc9c003de1eb6d0">https://qiita.com/kzkadc/items/e4fc7bc9c003de1eb6d0</a></li>
+</ul>
+<p>Pyhtonプログラム実行時にコマンドライン引数を受け取る処理を簡単に実装できる標準ライブラリ。<a href="https://docs.python.org/ja/3/library/sys.html?highlight=sys#module-sys"><code>sys</code></a>とかでも似たことは実現できるけど使い勝手と可読性は<code>argparse</code>の方が圧倒的にいい。</p>
+<h2 id="基本的な使い方">基本的な使い方</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># オプション引数</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--input&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ハイフン1つの省略形も追加できる</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="s1">&#39;--output&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ポジション引数</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;arg1&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --helpしたときの説明を書いておける</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;arg2&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;２つ目のポジション引数&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;arg1=&#39;</span><span class="o">+</span><span class="n">args</span><span class="o">.</span><span class="n">arg1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;arg2=&#39;</span><span class="o">+</span><span class="n">args</span><span class="o">.</span><span class="n">arg2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;arg3=&#39;</span><span class="o">+</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;arg4=&#39;</span><span class="o">+</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+</span></span></code></pre></div><p>実行する。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ python3 test.py hoge fuga --input koke -o piyo
+</span></span><span class="line"><span class="cl"><span class="nv">arg1</span><span class="o">=</span>hoge
+</span></span><span class="line"><span class="cl"><span class="nv">arg2</span><span class="o">=</span>fuga
+</span></span><span class="line"><span class="cl"><span class="nv">arg3</span><span class="o">=</span>koke
+</span></span><span class="line"><span class="cl"><span class="nv">arg4</span><span class="o">=</span>piyo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ポジション引数は順番通りならどこでもいい</span>
+</span></span><span class="line"><span class="cl">$ python3 test.py hoge --input koke -o piyo fuga
+</span></span><span class="line"><span class="cl"><span class="nv">arg1</span><span class="o">=</span>hoge
+</span></span><span class="line"><span class="cl"><span class="nv">arg2</span><span class="o">=</span>fuga
+</span></span><span class="line"><span class="cl"><span class="nv">arg3</span><span class="o">=</span>koke
+</span></span><span class="line"><span class="cl"><span class="nv">arg4</span><span class="o">=</span>piyo
+</span></span></code></pre></div><p><code>-h</code>,<code>--help</code>でヘルプを表示できる。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ python3 test.py -h
+</span></span><span class="line"><span class="cl">usage: test.py <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>--input INPUT<span class="o">]</span> <span class="o">[</span>-o OUTPUT<span class="o">]</span> arg1 arg2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">positional arguments:
+</span></span><span class="line"><span class="cl">  arg1
+</span></span><span class="line"><span class="cl">  arg2                  ２つ目のポジション引数
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">optional arguments:
+</span></span><span class="line"><span class="cl">  -h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
+</span></span><span class="line"><span class="cl">  --input INPUT
+</span></span><span class="line"><span class="cl">  -o OUTPUT, --output OUTPUT
+</span></span></code></pre></div><h2 id="ポジション引数">ポジション引数</h2>
+<p><code>parser.add_argument('argN')</code>とすると必須引数扱いになり、指定しないとエラーになる。</p>
+<h2 id="オプション引数">オプション引数</h2>
+<h3 id="デフォルト値と型の指定">デフォルト値と型の指定</h3>
+<p>オプション引数は指定しないと<code>None</code>が入る。これ以外にデフォルト値を設定したり、データ型を指定することができる。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="s1">&#39;--number&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</span></span></code></pre></div><h3 id="あらかじめ引数の選択肢を設定">あらかじめ引数の選択肢を設定</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-l&#39;</span><span class="p">,</span> <span class="s1">&#39;--letter&#39;</span><span class="p">,</span> <span class="n">choice</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;hoge&#34;</span><span class="p">,</span> <span class="s2">&#34;fuga&#34;</span><span class="p">,</span> <span class="s2">&#34;piyo&#34;</span><span class="p">])</span>
+</span></span></code></pre></div><p>選択肢以外の引数を指定するとエラーになる。</p>
+<h3 id="複数個の引数を受け取る">複数個の引数を受け取る</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--alphabet&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">alphabet</span><span class="p">)</span>
+</span></span></code></pre></div><p>受け取った引数はリストになって利用できる。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ python3 test.py --alphabet A G X
+</span></span><span class="line"><span class="cl"><span class="o">[</span><span class="s1">&#39;A&#39;</span>, <span class="s1">&#39;G&#39;</span>, <span class="s1">&#39;X&#39;</span><span class="o">]</span>
+</span></span></code></pre></div><h3 id="オプション引数を必須引数にする">オプション引数を必須引数にする</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="s1">&#39;--neeed&#39;</span><span class="p">,</span> <span class="n">requied</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span></code></pre></div>
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

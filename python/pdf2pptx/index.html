@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="pdf2pptx - PDFからPowerPointスライドへの簡易変換" />
+<meta property="og:site_name" content="Notemy - A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://example.org/python/pdf2pptx/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2022-11-02
+" /> <meta property="article:modified_time" content="2022-11-02
+" />
+
+
+
+
+
+
+    <title>pdf2pptx - PDFからPowerPointスライドへの簡易変換</title>
+    <link rel="canonical" href="http://example.org/python/pdf2pptx/" />
+
+
+    
+<link rel="stylesheet" href="http://example.org/css/my-style.css" />
+<link rel="stylesheet" href="http://example.org/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://example.org/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://example.org//python"
+  	class="pagelink"
+  	>Python</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">pdf2pptx - PDFからPowerPointスライドへの簡易変換</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <p><a href="https://pypi.org/project/pdf2pptx/">https://pypi.org/project/pdf2pptx/</a></p>
+<h2 id="pdfをパワーポイントに変換">PDFをパワーポイントに変換</h2>
+<p>PDFをページごとにパワーポイントのスライドに貼り付けて使いたい、という単純な操作が、既存の方法だとページごとにスクショして貼る、という原始的な方法くらいしかなかった。</p>
+<p>pdf2pptxは<code>pdf2pptx input</code>という単純なコマンドでPDFの各ページをPNGイメージとしてパワポに貼り付けてくれる。</p>
+<h2 id="インストール">インストール</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pip install pdf2pptx
+</span></span></code></pre></div><p>ただし生のpipは非推奨なので自分の場合は</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">python3 -m pip install pdf2pptx
+</span></span></code></pre></div><p>で入れた。</p>
+<h2 id="usage">Usage</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pdf2pptx hoge.pdf
+</span></span></code></pre></div><p>出力ファイルを指定しない場合、拡張子のみ変わった<code>hoge.pptx</code>が生成される。</p>
+<h2 id="option">Option</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pdf2pptx --help
+</span></span></code></pre></div><ul>
+<li><code>-o</code>, <code>--output</code><br>: 出力ファイルの指定</li>
+<li><code>-r</code>, <code>--resolution</code><br>: 1inchあたりのドット数で解像度を指定。デフォルトは300だが150とかでも十分可読でファイルサイズも抑えられる。</li>
+<li><code>-q</code>, <code>--quiet</code><br>: ログの非表示</li>
+<li><code>--from</code><br>: PDFの何ページ目からパワポに変換するか。</li>
+<li><code>--count</code><br>: PDFの何ページ分パワポに変換するか。</li>
+</ul>
+
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

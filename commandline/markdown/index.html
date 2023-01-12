@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="Markdownチートシート" />
+<meta property="og:site_name" content="Notemy - A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://example.org/commandline/markdown/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2022-11-02
+" /> <meta property="article:modified_time" content="2022-11-02
+" />
+
+
+
+
+
+
+    <title>Markdownチートシート</title>
+    <link rel="canonical" href="http://example.org/commandline/markdown/" />
+
+
+    
+<link rel="stylesheet" href="http://example.org/css/my-style.css" />
+<link rel="stylesheet" href="http://example.org/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://example.org/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://example.org//commandline"
+  	class="pagelink"
+  	>CommandLine</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">Markdownチートシート</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <p>いちいち調べるのも億劫なので自分でまとめる。媒体によってたまにできないものもあるっぽい。<br>
+一応たまに参照する記事も貼っておく:</p>
+<ul>
+<li><a href="https://qiita.com/Qiita/items/c686397e4a0f4f11683d">https://qiita.com/Qiita/items/c686397e4a0f4f11683d</a></li>
+<li><a href="https://gist.github.com/mignonstyle/083c9e1651d7734f84c99b8cf49d57fa">https://gist.github.com/mignonstyle/083c9e1651d7734f84c99b8cf49d57fa</a></li>
+</ul>
+<h2 id="見出し">見出し</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gh"># 見出し1
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span><span class="gu">## 見出し2
+</span></span></span><span class="line"><span class="cl"><span class="gu">### 見出し3
+</span></span></span><span class="line"><span class="cl"><span class="gu">#### 見出し4
+</span></span></span><span class="line"><span class="cl"><span class="gu">##### 見出し5
+</span></span></span><span class="line"><span class="cl"><span class="gu">###### 見出し6
+</span></span></span></code></pre></div><h1 id="見出し1">見出し1</h1>
+<h2 id="見出し2">見出し2</h2>
+<h3 id="見出し3">見出し3</h3>
+<h4 id="見出し4">見出し4</h4>
+<h5 id="見出し5">見出し5</h5>
+<h6 id="見出し6">見出し6</h6>
+<h2 id="段落と改行">段落と改行</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gu">### 空行を挟むと段落
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>段落1
+</span></span><span class="line"><span class="cl">(空行)
+</span></span><span class="line"><span class="cl">段落2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">### スペースを二つ挟むと改行
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>hoge(スペース×2)
+</span></span><span class="line"><span class="cl">fuga
+</span></span></code></pre></div><p>段落1</p>
+<p>段落2</p>
+<p>hoge<br>
+fuga</p>
+<h2 id="引用">引用</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">引用
+</span></span></span><span class="line"><span class="cl"><span class="ge"></span>&gt;&gt; 多重引用
+</span></span></code></pre></div><blockquote>
+<p>引用</p>
+<blockquote>
+<p>多重引用</p>
+</blockquote>
+</blockquote>
+<h2 id="コード">コード</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="s">```python
+</span></span></span><span class="line"><span class="cl"><span class="s"></span><span class="nb">print</span> <span class="s1">&#39;hoge&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span> <span class="s1">&#39;hoge&#39;</span>
+</span></span></code></pre></div><p><a href="https://blog.katsubemakito.net/articles/github-markdown-syntaxhighlighting">シンタックスハイライト</a></p>
+<h2 id="インラインコード">インラインコード</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">標準出力を`print`でおこなう。
+</span></span></code></pre></div><p>標準出力を<code>print</code>でおこなう。</p>
+<h2 id="水平線">水平線</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">***
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">___(アンダースコア)
+</span></span></code></pre></div><hr>
+<hr>
+<hr>
+<h2 id="箇条書き">箇条書き</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="k">-</span> hoge
+</span></span><span class="line"><span class="cl">	+ fuga
+</span></span><span class="line"><span class="cl">		<span class="k">*</span> piyo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">1.</span> hoge
+</span></span><span class="line"><span class="cl"><span class="k">1.</span> fuga
+</span></span><span class="line"><span class="cl">	<span class="k">1.</span> fuga1
+</span></span><span class="line"><span class="cl">	<span class="k">1.</span> fuga2
+</span></span><span class="line"><span class="cl"><span class="k">1.</span> piyo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">- [ ]</span> task1
+</span></span><span class="line"><span class="cl"><span class="k">- [x]</span> task2
+</span></span></code></pre></div><ul>
+<li>hoge
+<ul>
+<li>fuga
+<ul>
+<li>piyo</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>hoge</li>
+<li>fuga
+<ol>
+<li>fuga1</li>
+<li>fuga2</li>
+</ol>
+</li>
+<li>piyo</li>
+</ol>
+<ul>
+<li><input disabled="" type="checkbox"> task1</li>
+<li><input checked="" disabled="" type="checkbox"> task2</li>
+</ul>
+<h2 id="リンク">リンク</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gu">### ハイパーリンク
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>[<span class="nt">Google</span>](<span class="na">https://www.google.co.jp/</span>)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">### 外部参照
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>[Googleを見る][Google]
+</span></span><span class="line"><span class="cl">(空行)
+</span></span><span class="line"><span class="cl">[Google]: http://www.yahoo.co.jp
+</span></span></code></pre></div><p><a href="https://www.google.co.jp/">Google</a></p>
+<p><a href="http://www.yahoo.co.jp">Googleを見る</a></p>
+<h2 id="強調">強調</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gu">### Bold
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>**hoge**
+</span></span><span class="line"><span class="cl"><span class="gs">__fuga__</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">### Italic
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>*hoge*
+</span></span><span class="line"><span class="cl"><span class="ge">_fuga_</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">### Italic&amp;Bold
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>***hoge***
+</span></span><span class="line"><span class="cl"><span class="gs">___fuga___</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">### StrikeThrough
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>~~hoge~~
+</span></span></code></pre></div><p><strong>hoge</strong>
+<strong>fuga</strong></p>
+<p><em>hoge</em>
+<em>fuga</em></p>
+<p><em><strong>hoge</strong></em>
+<em><strong>fuga</strong></em></p>
+<p><del>hoge</del></p>
+<h2 id="表">表</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">| TH1 | TH2 |
+</span></span><span class="line"><span class="cl">----|---- 
+</span></span><span class="line"><span class="cl">| TD1 | TD3 |
+</span></span><span class="line"><span class="cl">| TD2 | TD4 |
+</span></span></code></pre></div><table>
+<thead>
+<tr>
+<th>TH1</th>
+<th>TH2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TD1</td>
+<td>TD3</td>
+</tr>
+<tr>
+<td>TD2</td>
+<td>TD4</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">| 左揃え | 中央揃え | 右揃え |
+</span></span><span class="line"><span class="cl">|:---|:---:|---:|
+</span></span><span class="line"><span class="cl">|1 |2 |3 |
+</span></span><span class="line"><span class="cl">|4 |5 |6 |
+</span></span></code></pre></div><table>
+<thead>
+<tr>
+<th style="text-align:left">左揃え</th>
+<th style="text-align:center">中央揃え</th>
+<th style="text-align:right">右揃え</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:right">6</td>
+</tr>
+</tbody>
+</table>
+<h2 id="便利なhtmlタグ">便利なHTMLタグ</h2>
+<h3 id="キーボード表示">キーボード表示</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-HTML" data-lang="HTML"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">kbd</span><span class="p">&gt;</span>Ctrl<span class="p">&lt;/</span><span class="nt">kbd</span><span class="p">&gt;</span>+<span class="p">&lt;</span><span class="nt">kbd</span><span class="p">&gt;</span>C<span class="p">&lt;/</span><span class="nt">kbd</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p><kbd>Ctrl</kbd>+<kbd>C</kbd></p>
+<h3 id="詳細折りたたみ要素">詳細折りたたみ要素</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-HTML" data-lang="HTML"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">details</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">summary</span><span class="p">&gt;</span>タイトルは表示される<span class="p">&lt;/</span><span class="nt">summary</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">内容は隠される
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">details</span><span class="p">&gt;</span>
+</span></span></code></pre></div><details>
+    <summary>タイトルは表示される</summary>
+内容は隠される
+</details>
+
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

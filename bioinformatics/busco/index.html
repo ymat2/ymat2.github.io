@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="BUSCO" />
+<meta property="og:site_name" content="Notemy - A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://example.org/bioinformatics/busco/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2022-11-25
+" /> <meta property="article:modified_time" content="2022-11-25
+" />
+
+
+
+
+
+
+    <title>BUSCO</title>
+    <link rel="canonical" href="http://example.org/bioinformatics/busco/" />
+
+
+    
+<link rel="stylesheet" href="http://example.org/css/my-style.css" />
+<link rel="stylesheet" href="http://example.org/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://example.org/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://example.org//bioinformatics"
+  	class="pagelink"
+  	>Bioinformatics Tools</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">BUSCO</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <p><a href="https://busco.ezlab.org/">https://busco.ezlab.org/</a></p>
+<p>Universal Single Copy Orthologsが、アセンブルされた配列中にどれだけあるか調べることでゲノムや遺伝子セットの完全性を評価する。どの遺伝子がユニバーサルシングルコピーかは<a href="http://www.orthodb.org/">OrthoDB</a>に基づいており、分類群ごとに数は異なる。（公式サイトの<a href="https://busco.ezlab.org/list_of_lineages.html">リスト</a>から参照可能。）</p>
+<h2 id="インストール">インストール</h2>
+<h3 id="docker-image">Docker Image</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">docker pull ezlabgva/busco:v5.4.3_cv1
+</span></span><span class="line"><span class="cl">docker run -u <span class="k">$(</span>id -u<span class="k">)</span> -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/busco_wd ezlabgva/busco:v5.4.3_cv1
+</span></span></code></pre></div><h3 id="conda-package">Conda Package</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">conda install -c conda-forge -c bioconda <span class="nv">busco</span><span class="o">=</span>5.4.2
+</span></span></code></pre></div><h3 id="homebrew">Homebrew</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">brew install busco
+</span></span></code></pre></div><h2 id="使い方">使い方</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">busco -i <span class="o">[</span>SEQUENCE_FILE<span class="o">]</span> -l <span class="o">[</span>LINEAGE<span class="o">]</span> -o <span class="o">[</span>OUTPUT_NAME<span class="o">]</span> -m <span class="o">[</span>MODE<span class="o">]</span> <span class="o">[</span>OTHER OPTIONS<span class="o">]</span>
+</span></span></code></pre></div><ul>
+<li><code>-i</code>, <code>--in</code><br>: 塩基配列またはアミノ酸配列のFastaファイル。</li>
+<li><code>-o</code>, <code>--out</code><br>: 出力。ここで指定した名前のディレクトリが生成される。</li>
+<li><code>-m</code>, <code>--mode</code><br>: ゲノムなら<code>genome</code>、トランスクリプトームなら<code>transcriptome</code>、タンパク質なら<code>protein</code>。</li>
+<li><code>-l</code>, <code>--lineage_dataset</code><br>: ユニバーサルシングルコピーのデータセット。相対パス<code>./bacteria_odb10</code>か、絶対パス<code>/home/user/bacteria_odb10</code>で指定する。前者の場合はデータセットが自動的にダウンロードされ、後者の場合は既存であることを想定する。が、前者の場合もあらかじめ用意しておいた方が安全。(<a href="https://busco-data.ezlab.org/v4/data/lineages/">https://busco-data.ezlab.org/v4/data/lineages/</a>)</li>
+<li><code>--auto-lineage</code><br>: <code>-l </code>の代わりに自動でデータベースを選ばせることも可能。だが個人的にあまりお勧めしない。</li>
+</ul>
+<h2 id="出力">出力</h2>
+<p><code>-o</code>で指定したディレクトリ下に<code>short_summary.*.lineage_odb10.out.txt</code>というファイルができる。</p>
+<pre tabindex="0"><code># BUSCO version is: 5.4.3 
+# The lineage dataset is: aves_odb10 (Creation date: 2020-09-10, number of genomes: 8338, number of BUSCOs: 62)
+# Summarized benchmarking in BUSCO notation for file /home/yukimatsu/avian-locom/blst/GCA_013389925.1.pep.fa
+# BUSCO was run in mode: proteins
+
+    ***** Results: *****
+
+    C:72.8%[S:72.4%,D:0.4%],F:7.4%,M:19.8%,n:8338   
+    6067    Complete BUSCOs (C)         
+    6037    Complete and single-copy BUSCOs (S) 
+    30  Complete and duplicated BUSCOs (D)  
+    618 Fragmented BUSCOs (F)           
+    1653    Missing BUSCOs (M)          
+    62  Total BUSCO groups searched     
+
+Dependencies and versions:
+    hmmsearch: 3.1
+    busco: 5.4.3
+</code></pre><p>このような形で、完全長がシングルコピー、または重複して存在する（Complete）、断片化して存在する（Fragmented）、ロストしている（Missing）遺伝子の割合が確認できる。</p>
+<h2 id="遺伝研でbuscoを動かす">遺伝研でBUSCOを動かす</h2>
+<p><code>singularity</code>で用意されているものを使うのが楽。</p>
+<ol>
+<li>
+<p>けっこうメモリを食うので、多めのメモリを指定してログイン:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">qlogin -l <span class="nv">mem_req</span><span class="o">=</span>32G,s_vmem<span class="o">=</span>32G
+</span></span></code></pre></div></li>
+<li>
+<p>使えるバージョンを見てみる:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ls /usr/local/biotools/b/busco*
+</span></span></code></pre></div></li>
+<li>
+<p><code>singularity</code>で動かす:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">singularity <span class="nb">exec</span> -e /usr/local/biotools/b/busco:version busco -i hoge.fa -o fuga -l bacteria_odb10 -m protein
+</span></span></code></pre></div></li>
+</ol>
+
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

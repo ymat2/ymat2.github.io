@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="`brew update`とRパッケージの問題に今日こそ対処する" />
+<meta property="og:site_name" content="Notemy - A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://example.org/trouble-shooting/r-pkg/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2022-11-14
+" /> <meta property="article:modified_time" content="2022-11-14
+" />
+
+
+
+
+
+
+    <title>`brew update`とRパッケージの問題に今日こそ対処する</title>
+    <link rel="canonical" href="http://example.org/trouble-shooting/r-pkg/" />
+
+
+    
+<link rel="stylesheet" href="http://example.org/css/my-style.css" />
+<link rel="stylesheet" href="http://example.org/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://example.org/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://example.org//trouble-shooting"
+  	class="pagelink"
+  	>トラブルシューティング</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">`brew update`とRパッケージの問題に今日こそ対処する</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <h2 id="状況">状況</h2>
+<p>おそらくCask版Rが使うパッケージはバージョン依存のPATHに入っていて（&quot;/Library/Frameworks/R.framework/Versions/4.2/Resources/library&quot;）、<code>brew upgrade</code>をかけるたびにそのバージョンに紐づいたパッケージごと消えてしまうせいで毎回パッケージのインストールが必要になる。</p>
+<h3 id="brew-update"><code>brew update</code></h3>
+<p>Cask版のRもそうじゃない方もoutdated。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">==</span>&gt; Outdated Formulae
+</span></span><span class="line"><span class="cl">augustus             cmake                harfbuzz             libidn2              little-cms2          openssl@1.1          readline
+</span></span><span class="line"><span class="cl">bowtie2              fontconfig           hugo                 libomp               mpfr                 python@3.9           tbb
+</span></span><span class="line"><span class="cl">ca-certificates      git                  libffi               libxext              openjdk              <span class="nv">r</span>
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Outdated Casks
+</span></span><span class="line"><span class="cl">r
+</span></span></code></pre></div><h3 id="brew-upgrade"><code>brew upgrade</code></h3>
+<p>途中で「パッケージ消すからパスワード教えて」みたいなこと聞かれてパッケージ消してるな&hellip;</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">Running <span class="sb">`</span>brew update --auto-update<span class="sb">`</span>...
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Upgrading <span class="m">20</span> outdated packages:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">r 4.2.1_4 -&gt; 4.2.2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Pouring r--4.2.2.monterey.bottle.tar.gz
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; r cask is installed, skipping link.		：Cask版があるからリンクをスキップするよ
+</span></span><span class="line"><span class="cl">🍺  /usr/local/Cellar/r/4.2.2: 2,282 files, 66.5MB
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Running <span class="sb">`</span>brew cleanup r<span class="sb">`</span>...				：Running <span class="sb">`</span>brew cleanup r<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">Removing: /usr/local/Cellar/r/4.2.1_4... <span class="o">(</span>6,743 files, 195.2MB<span class="o">)</span>		：パッケージのPATH的に関係ない気もする
+</span></span><span class="line"><span class="cl">Removing: /Users/yukimatsuda/Library/Caches/Homebrew/r--4.2.1_4... <span class="o">(</span>50MB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Casks with <span class="s1">&#39;auto_updates true&#39;</span> or <span class="s1">&#39;version :latest&#39;</span> will not be upgraded<span class="p">;</span> pass <span class="sb">`</span>--greedy<span class="sb">`</span> to upgrade them.
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Upgrading <span class="m">1</span> outdated package:	：今あるCASKのRはOUTDATEDだよ
+</span></span><span class="line"><span class="cl">r 4.2.1 -&gt; 4.2.2
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Upgrading r		：アップグレードするよ
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Caveats
+</span></span><span class="line"><span class="cl">Cask r installs files under /usr/local. The presence of such
+</span></span><span class="line"><span class="cl">files can cause warnings when running <span class="sb">`</span>brew doctor<span class="sb">`</span>, which is considered
+</span></span><span class="line"><span class="cl">to be a bug in Homebrew Cask.
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Downloading https://cloud.r-project.org/bin/macosx/base/R-4.2.2.pkg
+</span></span><span class="line"><span class="cl"><span class="c1">######################################################################## 100.0%</span>
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Uninstalling packages<span class="p">;</span> your password may be necessary:	：パッケージここでアンストされてね？
+</span></span><span class="line"><span class="cl">org.r-project.x86_64.texinfo
+</span></span><span class="line"><span class="cl">Password:
+</span></span><span class="line"><span class="cl">org.r-project.x86_64.tcltk
+</span></span><span class="line"><span class="cl">org.R-project.R.GUI.pkg
+</span></span><span class="line"><span class="cl">org.R-project.R.fw.pkg
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Removing files:
+</span></span><span class="line"><span class="cl">/Library/Frameworks/R.Framework
+</span></span><span class="line"><span class="cl">/usr/bin/R
+</span></span><span class="line"><span class="cl">/usr/bin/Rscript
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Running installer <span class="k">for</span> r<span class="p">;</span> your password may be necessary.
+</span></span><span class="line"><span class="cl">Package installers may write to any location<span class="p">;</span> options such as <span class="sb">`</span>--appdir<span class="sb">`</span> are ignored.
+</span></span><span class="line"><span class="cl">installer: Package name is R 4.2.2 <span class="k">for</span> macOS
+</span></span><span class="line"><span class="cl">installer: Installing at base path /
+</span></span><span class="line"><span class="cl">installer: The install was successful.
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Purging files <span class="k">for</span> version 4.2.1 of Cask r
+</span></span><span class="line"><span class="cl">🍺  r was successfully upgraded!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; r
+</span></span><span class="line"><span class="cl">Cask r installs files under /usr/local. The presence of such
+</span></span><span class="line"><span class="cl">files can cause warnings when running <span class="sb">`</span>brew doctor<span class="sb">`</span>, which is considered
+</span></span><span class="line"><span class="cl">to be a bug in Homebrew Cask.
+</span></span></code></pre></div><h3 id="brew-cleanup"><code>brew cleanup</code></h3>
+<pre tabindex="0"><code>Removing: /Users/yukimatsuda/Library/Caches/Homebrew/Cask/r--4.2.1.pkg... (89.7MB)
+</code></pre><h3 id="libpaths"><code>.libPaths()</code></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">[1]</span> <span class="s">&#34;/Library/Frameworks/R.framework/Versions/4.2/Resources/library&#34;</span>
+</span></span></code></pre></div><h2 id="解決策">解決策</h2>
+<p>悪さしがちな<code>brew install</code>の方のRを消した上で、<code>~/.Renviron</code>の設定でパッケージのインストール先をHomebrewに消されないところに変える。</p>
+<p>ちなみに、</p>
+<blockquote>
+<p>CRAN公式ビルドの場合でも、3→4のメジャーバージョンアップとか、4.1 → 4.2といったマイナーバージョンアップのときにはライブラリが一新される。4.2.1→4.2.2のパッチバージョンではそのまま引き継がれる。
+らしい。</p>
+</blockquote>
+<h3 id="brew-install版のrを消す"><code>brew install</code>版のRを消す</h3>
+<ul>
+<li><code>brew uninstall</code>を実行。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ brew uninstall r
+</span></span><span class="line"><span class="cl">Warning: Treating r as a formula. For the cask, use homebrew/cask/r
+</span></span><span class="line"><span class="cl">Uninstalling /usr/local/Cellar/r/4.2.2... <span class="o">(</span>2,282 files, 66.5MB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Warning: The following may be r configuration files and have not been removed!
+</span></span><span class="line"><span class="cl">If desired, remove them manually with <span class="sb">`</span>rm -rf<span class="sb">`</span>:
+</span></span><span class="line"><span class="cl">  /usr/local/etc/ca-certificates
+</span></span><span class="line"><span class="cl">  /usr/local/etc/openmpi-mca-params.conf
+</span></span><span class="line"><span class="cl">  /usr/local/etc/pmix-mca-params.conf
+</span></span><span class="line"><span class="cl">  /usr/local/etc/wgetrc
+</span></span></code></pre></div><ul>
+<li>コンフィグファイルの類を消す。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rm -rf /usr/local/etc/ca-certificates
+</span></span><span class="line"><span class="cl">rm -rf /usr/local/etc/openmpi-mca-params.conf
+</span></span><span class="line"><span class="cl">rm -rf /usr/local/etc/pmix-mca-params.conf
+</span></span><span class="line"><span class="cl">rm -rf /usr/local/etc/wgetrc
+</span></span></code></pre></div><h3 id="renvironの設定"><code>.Renviron</code>の設定</h3>
+<ul>
+<li>ホームに<code>.Renviron</code>を作成。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">touch ~/.Renviron
+</span></span></code></pre></div><ul>
+<li>パッケージのインストール先を指定。</li>
+</ul>
+<pre tabindex="0"><code>R_USER=${HOME}
+R_LIBS_USER=${R_USER}/.R/library/%v
+</code></pre><ul>
+<li>インストール先を用意。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir ~/.r/library
+</span></span><span class="line"><span class="cl">mkdir ~/.r/library/4.2
+</span></span></code></pre></div><ul>
+<li>インストール先の確認。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="o">&gt;</span> <span class="nf">.libPaths</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">[1]</span> <span class="s">&#34;/Users/yukimatsuda/.r/library/4.2&#34;</span>                             
+</span></span><span class="line"><span class="cl"><span class="n">[2]</span> <span class="s">&#34;/Library/Frameworks/R.framework/Versions/4.2/Resources/library&#34;</span>
+</span></span></code></pre></div><h3 id="パッケージのインストール">パッケージのインストール</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="o">&gt;</span> <span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;tidyverse&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> パッケージを ‘<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">yukimatsuda</span><span class="o">/</span><span class="n">.r</span><span class="o">/</span><span class="n">library</span><span class="o">/</span><span class="m">4.2</span>’ 中にインストールします 
+</span></span><span class="line"><span class="cl"> <span class="p">(</span>‘<span class="n">lib</span>’ が指定されていないため<span class="p">)</span> 
+</span></span><span class="line"><span class="cl"> <span class="p">(</span>後略<span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># ちゃんと入ってそう</span>
+</span></span><span class="line"><span class="cl">$ ls ~/.r/library/4.2 
+</span></span><span class="line"><span class="cl">DBI		bslib		dbplyr		gargle		httr		mime		rappdirs	scales		tzdb
+</span></span><span class="line"><span class="cl">R6		cachem		digest		generics	ids		modelr		readr		selectr		utf8
+</span></span><span class="line"><span class="cl">RColorBrewer	callr		dplyr		ggplot2		isoband		munsell		readxl		stringi		uuid
+</span></span><span class="line"><span class="cl">askpass		cellranger	dtplyr		glue		jquerylib	openssl		rematch		stringr		vctrs
+</span></span><span class="line"><span class="cl">assertthat	cli		ellipsis	googledrive	jsonlite	pillar		rematch2	sys		viridisLite
+</span></span><span class="line"><span class="cl">backports	clipr		evaluate	googlesheets4	knitr		pkgconfig	reprex		tibble		vroom
+</span></span><span class="line"><span class="cl">base64enc	colorspace	fansi		gtable		labeling	prettyunits	rlang		tidyr		withr
+</span></span><span class="line"><span class="cl">bit		cpp11		farver		haven		lifecycle	processx	rmarkdown	tidyselect	xfun
+</span></span><span class="line"><span class="cl">bit64		crayon		fastmap		highr		lubridate	progress	rstudioapi	tidyverse	xml2
+</span></span><span class="line"><span class="cl">blob		curl		forcats		hms		magrittr	ps		rvest		timechange	yaml
+</span></span><span class="line"><span class="cl">broom		data.table	fs		htmltools	memoise		purrr		sass		tinytex
+</span></span></code></pre></div>
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

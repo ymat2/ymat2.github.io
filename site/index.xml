@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>静的サイトの作成 on Notemy - A Website for Personal Documentation</title>
+    <link>http://example.org/site/</link>
+    <description>Recent content in 静的サイトの作成 on Notemy - A Website for Personal Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>(ɔ) 2022 Yuki Matsuda</copyright>
+    <lastBuildDate>Thu, 03 Nov 2022 22:02:28 +0900</lastBuildDate><atom:link href="http://example.org/site/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>最低限のHTML・CSS</title>
+      <link>http://example.org/site/html-css/</link>
+      <pubDate>Wed, 30 Nov 2022 08:32:29 +0900</pubDate>
+      
+      <guid>http://example.org/site/html-css/</guid>
+      <description>HUGOはマークダウンでページを書くだけでHTMLのページが生成され、また豊富なテーマが整備されているのでHTML・CSSの知識がなくてもサイトを構築することができる。
+そうは言っても、サイトをカスタマイズしたり、自分でテーマを作ったりすることを考えると、最低限のHTML・CSSの知識はあっても損はない。
+HTML HTML(Hyper Text Markup Language)は、WEBページに表示される文字の役割を決める言語である。（対してCSS(Cascading Style Sheet)はその見た目を決める。）
+マークダウンが##（見出し）や**（斜体）、-（リスト）など記号で文字の役割を定めるのに対して、HTMLでは タグ(&amp;lt;&amp;gt;&amp;lt;/&amp;gt;) を用いることで同じことをする。
+HUGOにおけるマークダウンとHTMLタグの対応 見出し # 見出し1 ## 見出し2 ### 見出し3 #### 見出し4 ##### 見出し5 ###### 見出し6 &amp;lt;h1&amp;gt;見出し1&amp;lt;/h1&amp;gt; &amp;lt;h2&amp;gt;見出し2&amp;lt;/h2&amp;gt; &amp;lt;h3&amp;gt;見出し3&amp;lt;/h3&amp;gt; &amp;lt;h4&amp;gt;見出し4&amp;lt;/h4&amp;gt; &amp;lt;h5&amp;gt;見出し5&amp;lt;/h5&amp;gt; &amp;lt;h6&amp;gt;見出し6&amp;lt;/h6&amp;gt; 段落・改行 段落1 (空行) 段落2 hoge(スペース2つ) fuga &amp;lt;p&amp;gt;段落1&amp;lt;/p&amp;gt; &amp;lt;p&amp;gt;段落2&amp;lt;/p&amp;gt; hoge&amp;lt;br&amp;gt; fuga 引用 &amp;gt; 引用 &amp;gt;&amp;gt; 多重引用 &amp;lt;blockquote&amp;gt; &amp;lt;p&amp;gt;引用&amp;lt;/p&amp;gt; &amp;lt;blockquote&amp;gt; &amp;lt;p&amp;gt;多重引用&amp;lt;/p&amp;gt; &amp;lt;/blockquote&amp;gt; &amp;lt;/blockquote&amp;gt; コード ``` print hoge ``` &amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;print hoge&amp;lt;/code&amp;gt;&amp;lt;pre&amp;gt; ＊シンタックスハイライトをつけたりするともう少し複雑になる。
+インラインコード これは`print`です。 これは&amp;lt;code&amp;gt;print&amp;lt;/code&amp;gt;です。 水平線 *** --- ___(アンダースコア) &amp;lt;hr&amp;gt; &amp;lt;hr&amp;gt; &amp;lt;hr&amp;gt; 箇条書き - hoge + fuga * piyo 1.</description>
+    </item>
+    
+    <item>
+      <title>Hugo - 静的サイトを高速生成</title>
+      <link>http://example.org/site/hugo/</link>
+      <pubDate>Thu, 03 Nov 2022 22:09:12 +0900</pubDate>
+      
+      <guid>http://example.org/site/hugo/</guid>
+      <description>https://gohugo.io/about/
+インストール homebrewで一発。
+brew install hugo Quick Start サイトの骨組みを作る。
+mkdir PATH_TO_SITE cd PATH_TO_SITE hugo new site . 生成される./content/ディレクトリの中に記事を書いていく。
+hugo new content/about.md --- title: &amp;#34;デモページ&amp;#34; date: 2022-11-03T22:09:12+09:00 --- これは**テストページ**です。 サーバーを走らせてhttp://localhost:1313/aboutにアクセス。
+hugo server -D -w . </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,3 @@
+[submodule "themes/hugo-theme-mindoc"]
+	path = themes/hugo-theme-mindoc
+	url = git@github.com:yukimatsuda1999/hugo-theme-mindoc.git

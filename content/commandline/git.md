@@ -84,6 +84,18 @@ Host github github.com
   IdentityFile ~/.ssh/id_****
 ```
 
+## `git submodule`
+外部のリポジトリを自分のリポジトリのサブディレクトリとして取り込む仕組み。
+```
+git submodule addhttps://github.com/<username>/<repository>.git directory
+```
+
+### submoduleを最新版に更新する
+```
+git submodule foreach git pull
+git add <submodule> && git commit -m "updated submodule"
+git push
+```
 
 ## そのほかのコマンド
 - 直前の操作を修正

@@ -4,7 +4,7 @@
     --color-text: #444;
     --emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Sans Emoji';
     --serif: Palatino, serif, var(--emoji);
-    --sans-serif: 'Hiragino Sans', 'avenir next', sans-serif, system-ui, -apple-system, BlinkMacSystemFont, var(--emoji);
+    --sans-serif: "Yu Gothic Medium", system-ui, -apple-system, "Hiragino Sans", "Segoe UI", "Meiryo", sans-serif, var(--emoji);
     --monospace: Menlo, Consolas, Monaco, 'DejaVu Sans Mono', monospace, var(--emoji);
 }
 

@@ -44,6 +44,8 @@ data_hubから分類群を指定してダウンロード https://www.ncbi.nlm.ni
       <guid>http://yukimatsuda1999.github.io/bioinformatics/cafe/</guid>
       <description>遺伝子ファミリーサイズの進化（系統樹上のどのノードで、いくつ遺伝子が増減したか）を、MCMC法で推定するプログラム。
 基本的な動かし方は、入力となるシェルスクリプトを書いてCAFEに渡す、という形になる。このシェルスクリプトを書く過程で、OrthoFinderの出力であるOrthogroups.GeneCount.tsvと種の系統樹（Species_Tree/SpeciesTree_rooted.txt）が必要。
+重要
+CAFE5にアップデートされ、より柔軟な推定が可能になり、動かし方も容易になったため、特に理由がなければCAFE5を推奨する。
 インストール 作者たちのgithubから最新版のCAFEをダウンロードして、適当なディレクトリに置く。（例えば~/bin/） 解凍したらCAFEディレクトリまでcdしてconfigure＆make。 ~/bin/CAFE$ ./configure ~/bin/CAFE$ make PATHを通して動作確認。 ~/$ cafe # ctrl+C こんな感じのシェルスクリプトを書く #! cafe # version # date load -i data/example.tab -t 10 -l logfile.txt -p 0.05 tree (((chimp:6,human:6):81,(mouse:17,rat:17):70):6,dog:93) lambda -s -t (((1,1)1,(2,2)2)2,2) report resultfile load
 : 基本的なオプション。 -i
 : 種/遺伝子ファミリーごとの遺伝子数のテーブル。 -t
@@ -54,8 +56,7 @@ data_hubから分類群を指定してダウンロード https://www.ncbi.nlm.ni
 : rootから各種までの距離が同じである（ultrametricな）系統樹。 lambda
 : 単位時間あたりの遺伝子数の増減速度λの設定。 -l
 : λを指定する場合。 -s
-: λを自動推定する場合。 -t
-: λ構造。系統樹上の遺伝子増減速度が同じだと考えられる枝を同じ数字にする。全枝で同じだと仮定する場合すべて1にする。系統樹の枝長の部分を書き換えればいい。 report</description>
+: λを自動推定する場合。 -t</description>
     </item>
     
     <item>

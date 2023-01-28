@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="CAFE5" />
+<meta property="og:site_name" content="A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://yukimatsuda1999.github.io/bioinformatics/cafe5/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2023-01-27
+" /> <meta property="article:modified_time" content="2023-01-27
+" />
+
+
+
+
+
+
+    <title>CAFE5</title>
+    <link rel="canonical" href="http://yukimatsuda1999.github.io/bioinformatics/cafe5/" />
+
+
+    
+<link rel="stylesheet" href="/css/my-style.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://yukimatsuda1999.github.io/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://yukimatsuda1999.github.io//bioinformatics"
+  	class="pagelink"
+  	>Bioinformatics Tools</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">CAFE5</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <ul>
+<li>Github: <a href="https://github.com/hahnlab/CAFE5">https://github.com/hahnlab/CAFE5</a></li>
+<li>論文: <a href="https://doi.org/10.1093/bioinformatics/btaa1022">https://doi.org/10.1093/bioinformatics/btaa1022</a></li>
+</ul>
+<p><a href="http://yukimatsuda1999.github.io/bioinformatics/cafe/">CAFE</a>のメジャーアップデート版。ドキュメントが丁寧に書いてあるので助かる。</p>
+<ul>
+<li><a href="https://github.com/hahnlab/CAFE5/blob/master/README.md">https://github.com/hahnlab/CAFE5/blob/master/README.md</a></li>
+<li><a href="https://github.com/hahnlab/CAFE5/blob/master/docs/tutorial/tutorial.md">https://github.com/hahnlab/CAFE5/blob/master/docs/tutorial/tutorial.md</a></li>
+</ul>
+<h2 id="新しい機能">新しい機能</h2>
+<ul>
+<li>各遺伝子ファミリーが異なる速度で進化することを仮定したパラメータ推定を行う。</li>
+<li>シェルスクリプトを書く必要がなくなった。</li>
+<li>エラーモデルの最適化やサマリーテーブルの出力が内部で行われるようになった。（Pythonスクリプトが不要になった。）</li>
+</ul>
+<h2 id="インストール">インストール</h2>
+<h3 id="download">Download</h3>
+<ul>
+<li><a href="https://github.com/hahnlab/CAFE5/releases">https://github.com/hahnlab/CAFE5/releases</a> から</li>
+<li>または、<code>git clone https://github.com/hahnlab/CAFE5.git</code></li>
+</ul>
+<h3 id="compile">Compile</h3>
+<pre tabindex="0"><code>cd CAFE5
+./configure
+make
+</code></pre><p>実行ファイルは<code>CAFE5/bin/</code>にあるので、ここに<code>$PATH</code>を通す。</p>
+<h3 id="osxの場合">OSXの場合</h3>
+<p><code>src/matrix_cache.cpp:2:10: fatal error: 'omp.h' file not found</code>などコンパイラが見つからない系のエラーが出る場合があるらしい。<code>gcc</code>を入れてシンボリックリンクを張る：</p>
+<pre tabindex="0"><code>brew install gcc
+find / -name omp.h
+ln -sv path/to/omp.h /usr/local/include/
+</code></pre><p>改めて、</p>
+<pre tabindex="0"><code>make
+</code></pre><h3 id="遺伝研">遺伝研</h3>
+<p><code>singularity</code>が楽。</p>
+<pre tabindex="0"><code>ls /usr/local/biotools/c/cafe:5*
+</code></pre><h2 id="quick-start">Quick Start</h2>
+<p>基本的に必要なファイルは以前のCAFEと同じ。</p>
+<ol>
+<li>
+<p>種ごと、遺伝子ファミリーごとの遺伝子数のテーブル（タブ区切り）。<a href="http://yukimatsuda1999.github.io/bioinformatics/orthofinder/">OrthoFinder</a>とかOrthoMCLとかでつくる。</p>
+<p>例：gene_families.txt</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">ID</th>
+<th style="text-align:right">Chicken</th>
+<th style="text-align:right">Lizard</th>
+<th style="text-align:right">Mouse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">OG00001</td>
+<td style="text-align:left">OG00001</td>
+<td style="text-align:right">12</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">21</td>
+</tr>
+<tr>
+<td style="text-align:left">OG00002</td>
+<td style="text-align:left">OG00002</td>
+<td style="text-align:right">9</td>
+<td style="text-align:right">13</td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<td style="text-align:left">OG00003</td>
+<td style="text-align:left">OG00003</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">4</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Newick形式の系統樹。binary,rooted,ultrametricである必要がある。（cf. Rパッケージ<code>ape::is.binary()</code>, <code>ape::is.rooted()</code>, <code>ape::is.ultrametric()</code>）</p>
+<p>例：species_tree.txt</p>
+<pre tabindex="0"><code>(Mouse:319.00000000,(Lizard:281.10000000,Chicken:281.10000000):37.90000000);
+</code></pre></li>
+<li>
+<p>cafeコマンドを実行。</p>
+<ul>
+<li>
+<p>遺伝子ファミリー間で進化速度が一定であるという仮定の下で、遺伝子ファミリーの進化速度を推定:</p>
+<pre tabindex="0"><code>cafe5 -i gene_families.txt -t species_tree.txt
+</code></pre></li>
+<li>
+<p>遺伝子ファミリーごとの進化速度が異なるという仮定の下で、遺伝子ファミリーの進化速度を推定:</p>
+<pre tabindex="0"><code>cafe5 -i gene_families.txt -t species_tree.txt -k 3
+</code></pre></li>
+<li>
+<p>特定の系統で遺伝子ファミリーの進化速度が異なることを仮定する場合、以前のバージョンと同じようにλ構造を規定したNewickファイルを用意する:</p>
+<p>例：lambda_structure.txt</p>
+<pre tabindex="0"><code>(Mouse:1,(Lizard:1,Chicken:2):1);  # Chickenの系統で進化速度が異なることを仮定。
+</code></pre><pre tabindex="0"><code>cafe5 -i gene_families.txt -t species_tree.txt -y lambda_structure.txt
+</code></pre></li>
+</ul>
+</li>
+</ol>
+<h2 id="出力ファイル">出力ファイル</h2>
+<p><code>-o</code>で出力先を指定しなければ実行ディレクトリに<code>result/</code>ディレクトリが作られてその中に格納される。</p>
+<ul>
+<li><em>model</em>_asr.tre<br>: 各遺伝子ファミリーごとに再構成された系統樹が書かれている。ノード名＋アンダースコアに続く形でそのノードでの推定遺伝子数が書かれており、有意な増減があったノードには<code>*</code>がふってある。</li>
+<li><em>model</em>_family_results.txt<br>: 遺伝子ファミリー、P値、変化が有意であるかどうか（y/n）がタブ区切りで記述されている。</li>
+<li><em>model</em>_clade_results.txt<br>: 各ノードごとに遺伝子数が増加/減少したファミリーの数が書いてある。</li>
+<li><em>model</em>_branch_probabilities.txt<br>: 各ノード、各遺伝子ファミリーにおける確率（なんの？）のタブ区切りリスト。ガンマモデルの場合、有意な変化があったファミリーについてのみ書かれている。</li>
+<li><em>model</em>_family_likelihoods.txt<br>: Baseモデルでは各ファミリーごとの尤度、ガンマモデルではそれに加えて事後確率がタブ区切りで書かれている。</li>
+<li><em>model</em>_result.txt<br>: 選択されたモデルの名前、そのモデルの最終的な尤度、遺伝子数の進化速度にあたるLambdaなどが書かれている。</li>
+<li><em>model</em>_change.txt<br>: 各遺伝子ファミリーについて、各ノードにおける親ノードからの遺伝子数の変化量が書いてある。</li>
+<li><em>model</em>_count.txt<br>: 各遺伝子ファミリーについて、各ノードにおける推定遺伝子数。</li>
+</ul>
+
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

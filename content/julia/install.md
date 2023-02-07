@@ -1,10 +1,9 @@
 ---
 title: "Juliaのインストール"
 date: 2023-02-08T02:51:57+09:00
-draft: true
 ---
 
-:paperclip:https://julialang.org/downloads/
+https://julialang.org/downloads/
 
 ## Homebrew
 MacOSなら`cask`でインストールできる。

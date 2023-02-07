@@ -6,9 +6,12 @@ date: 2022-11-03T22:09:12+09:00
 https://gohugo.io/about/
 
 ## インストール
-homebrewで一発。
+Macならhomebrew、Ubuntuならaptで一発。
 ```sh
 brew install hugo
+```
+```sh
+sudo apt install hugo
 ```
 
 ## Quick Start

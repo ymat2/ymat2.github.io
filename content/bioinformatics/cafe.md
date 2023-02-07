@@ -10,7 +10,7 @@ date: 2022-11-02T11:03:16+09:00
 **重要**<br>
 [CAFE5]({{< ref cafe5.md >}})にアップデートされ、より柔軟な推定が可能になり、動かし方も容易になったため、特に理由がなければCAFE5を推奨する。
 
-### インストール
+## インストール
 - 作者たちのgithubから[最新版のCAFEをダウンロード](https://github.com/hahnlab/CAFE/releases/latest)して、適当なディレクトリに置く。（例えば`~/bin/`）
 - 解凍したらCAFEディレクトリまで`cd`して`configure`＆`make`。
 	```sh
@@ -22,6 +22,7 @@ date: 2022-11-02T11:03:16+09:00
 	~/$ cafe  # ctrl+C
 	```
 
+## 使い方
 ### こんな感じのシェルスクリプトを書く
 ```sh
 #! cafe 
@@ -51,6 +52,7 @@ OrthoFinderの出力であるOrthogroups.GeneCount.tsvなどを基に、CAFEの�
 - Description列、ID列を作る。
 - 全種の遺伝子数が同じである遺伝子ファミリーを除く。
 - 1種の遺伝子数が100を超える遺伝子ファミリーを除く。
+
 を満たしていればどう作ってもいい。
 
 |Description|ID|Chicken|Lizard|Mouse|
@@ -72,6 +74,8 @@ python3 make_cafe_input.py Orthogroups.GeneCount.tsv Cafe_input.tsv
 [TimeTree](http://www.timetree.org/)などから取得すると楽。OrthoFinderの出力系統樹を使う場合、遺伝的距離に基づく系統樹であるため、ultrametricに加工する必要がある。Rのapeなどを使うと便利。
 
 ``` R
+library(ape)
+
 tree = read.tree("tree.txt")
 mrca = getMRCA(tree, tip=c('spA', 'spB')) #分岐年代推定に使うノードの指定
 tree2 = chronopl(tree,
@@ -120,7 +124,7 @@ python cafe_tutrial/python_scripts/cafetutorial_report_analysis.py -i resultfile
     - cafe\_summary_pub.txt
     - cafe\_summary_node.txt
 
-### トラブルシューティング
+## トラブルシューティング
 - `Failed to load tree from provided string (branch length missing)`<br>系統樹の枝長に0が含まれているとダメ。自分は該当するノードを除外した。
 - `No species ‘anolis_carolinensis’ was found in the tree`<br>系統樹を読み込む際に内部でtip nameを書き換えているようで、長すぎる種名やアンダースコアが原因と思われるエラー。tip nameを短く書き換える。（`AnoCal`とか）
 - `Lambda values were not set. Please set lambda values with the lambda or lambdamu command.`<br>λを自動推定する際に、系統樹の枝長がでかい数字だとこうなるっぽい。できるだけ短くなるように約分する。

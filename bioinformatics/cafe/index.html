@@ -88,7 +88,7 @@
 <p>基本的な動かし方は、入力となるシェルスクリプトを書いてCAFEに渡す、という形になる。このシェルスクリプトを書く過程で、OrthoFinderの出力であるOrthogroups.GeneCount.tsvと種の系統樹（Species_Tree/SpeciesTree_rooted.txt）が必要。</p>
 <p><strong>重要</strong><br>
 <a href="http://yukimatsuda1999.github.io/bioinformatics/cafe5/">CAFE5</a>にアップデートされ、より柔軟な推定が可能になり、動かし方も容易になったため、特に理由がなければCAFE5を推奨する。</p>
-<h3 id="インストール">インストール</h3>
+<h2 id="インストール">インストール</h2>
 <ul>
 <li>作者たちのgithubから<a href="https://github.com/hahnlab/CAFE/releases/latest">最新版のCAFEをダウンロード</a>して、適当なディレクトリに置く。（例えば<code>~/bin/</code>）</li>
 <li>解凍したらCAFEディレクトリまで<code>cd</code>して<code>configure</code>＆<code>make</code>。
@@ -99,6 +99,7 @@
 <pre tabindex="0"><code>~/$ cafe  # ctrl+C
 </code></pre></li>
 </ul>
+<h2 id="使い方">使い方</h2>
 <h3 id="こんな感じのシェルスクリプトを書く">こんな感じのシェルスクリプトを書く</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#! cafe 
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1"># version </span>
@@ -132,9 +133,9 @@
 <ul>
 <li>Description列、ID列を作る。</li>
 <li>全種の遺伝子数が同じである遺伝子ファミリーを除く。</li>
-<li>1種の遺伝子数が100を超える遺伝子ファミリーを除く。
-を満たしていればどう作ってもいい。</li>
+<li>1種の遺伝子数が100を超える遺伝子ファミリーを除く。</li>
 </ul>
+<p>を満たしていればどう作ってもいい。</p>
 <table>
 <thead>
 <tr>
@@ -174,7 +175,9 @@
 </span></span></code></pre></div><pre tabindex="0"><code>python3 make_cafe_input.py Orthogroups.GeneCount.tsv Cafe_input.tsv
 </code></pre><h3 id="ultrametricな系統樹を用意する">ultrametricな系統樹を用意する</h3>
 <p><a href="http://www.timetree.org/">TimeTree</a>などから取得すると楽。OrthoFinderの出力系統樹を使う場合、遺伝的距離に基づく系統樹であるため、ultrametricに加工する必要がある。Rのapeなどを使うと便利。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="n">tree</span> <span class="o">=</span> <span class="nf">read.tree</span><span class="p">(</span><span class="s">&#34;tree.txt&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ape</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tree</span> <span class="o">=</span> <span class="nf">read.tree</span><span class="p">(</span><span class="s">&#34;tree.txt&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">mrca</span> <span class="o">=</span> <span class="nf">getMRCA</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">tip</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;spA&#39;</span><span class="p">,</span> <span class="s">&#39;spB&#39;</span><span class="p">))</span> <span class="c1">#分岐年代推定に使うノードの指定</span>
 </span></span><span class="line"><span class="cl"><span class="n">tree2</span> <span class="o">=</span> <span class="nf">chronopl</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                 <span class="m">100000</span><span class="p">,</span>
@@ -221,7 +224,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="トラブルシューティング">トラブルシューティング</h3>
+<h2 id="トラブルシューティング">トラブルシューティング</h2>
 <ul>
 <li><code>Failed to load tree from provided string (branch length missing)</code><br>系統樹の枝長に0が含まれているとダメ。自分は該当するノードを除外した。</li>
 <li><code>No species ‘anolis_carolinensis’ was found in the tree</code><br>系統樹を読み込む際に内部でtip nameを書き換えているようで、長すぎる種名やアンダースコアが原因と思われるエラー。tip nameを短く書き換える。（<code>AnoCal</code>とか）</li>

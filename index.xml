@@ -14,7 +14,8 @@
       <pubDate>Fri, 27 Jan 2023 07:37:02 +0900</pubDate>
       
       <guid>http://yukimatsuda1999.github.io/bioinformatics/cafe5/</guid>
-      <description>Github: https://github.com/hahnlab/CAFE5 論文: https://doi.org/10.1093/bioinformatics/btaa1022 CAFEのメジャーアップデート版。ドキュメントが丁寧に書いてあるので助かる。
+      <description>CAFEのメジャーアップデート版。
+Github: https://github.com/hahnlab/CAFE5 論文: https://doi.org/10.1093/bioinformatics/btaa1022 ドキュメントが丁寧に書いてあるので助かる。
 https://github.com/hahnlab/CAFE5/blob/master/README.md https://github.com/hahnlab/CAFE5/blob/master/docs/tutorial/tutorial.md 新しい機能 各遺伝子ファミリーが異なる速度で進化することを仮定したパラメータ推定を行う。 シェルスクリプトを書く必要がなくなった。 エラーモデルの最適化やサマリーテーブルの出力が内部で行われるようになった。（Pythonスクリプトが不要になった。） インストール Download https://github.com/hahnlab/CAFE5/releases から または、git clone https://github.com/hahnlab/CAFE5.git Compile cd CAFE5 ./configure make 実行ファイルはCAFE5/bin/にあるので、ここに$PATHを通す。
 OSXの場合 src/matrix_cache.cpp:2:10: fatal error: &#39;omp.h&#39; file not foundなどコンパイラが見つからない系のエラーが出る場合があるらしい。gccを入れてシンボリックリンクを張る：
 brew install gcc find / -name omp.h ln -sv path/to/omp.h /usr/local/include/ 改めて、
@@ -22,7 +23,7 @@ make 遺伝研 singularityが楽。
 ls /usr/local/biotools/c/cafe:5* Quick Start 基本的に必要なファイルは以前のCAFEと同じ。
 種ごと、遺伝子ファミリーごとの遺伝子数のテーブル（タブ区切り）。OrthoFinderとかOrthoMCLとかでつくる。
 例：gene_families.txt
-Description ID Chicken Lizard Mouse OG00001 OG00001 12 14 21 OG00002 OG00002 9 13 5 OG00003 OG00003 7 0 4 Newick形式の系統樹。binary,rooted,ultrametricである必要がある。（cf.</description>
+Description ID Chicken Lizard Mouse OG00001 OG00001 12 14 21 OG00002 OG00002 9 13 5 OG00003 OG00003 7 0 4 Newick形式の系統樹。binary, rooted, ultrametricである必要がある。（cf.</description>
     </item>
     
     <item>
@@ -137,7 +138,7 @@ data_hubから分類群を指定してダウンロード https://www.ncbi.nlm.ni
     </item>
     
     <item>
-      <title>`brew update`とRパッケージの問題に今日こそ対処する</title>
+      <title>brew updateとRパッケージの問題に今日こそ対処する</title>
       <link>http://yukimatsuda1999.github.io/trouble-shooting/r-pkg/</link>
       <pubDate>Mon, 14 Nov 2022 13:21:15 +0900</pubDate>
       
@@ -155,8 +156,8 @@ Running `brew update --auto-update`... ==&amp;gt; Upgrading 20 outdated packages
       
       <guid>http://yukimatsuda1999.github.io/site/hugo/</guid>
       <description>https://gohugo.io/about/
-インストール homebrewで一発。
-brew install hugo Quick Start サイトの骨組みを作る。
+インストール Macならhomebrew、Ubuntuならaptで一発。
+brew install hugo sudo apt install hugo Quick Start サイトの骨組みを作る。
 mkdir PATH_TO_SITE cd PATH_TO_SITE hugo new site . 生成される./content/ディレクトリの中に記事を書いていく。
 hugo new content/about.md --- title: &amp;#34;デモページ&amp;#34; date: 2022-11-03T22:09:12+09:00 --- これは**テストページ**です。 サーバーを走らせてhttp://localhost:1313/aboutにアクセス。
 hugo server -D -w . </description>
@@ -184,7 +185,7 @@ $ python3 test.py -h usage: test.py [-h] [--input INPUT] [-o OUTPUT] arg1 arg2 p
 基本的な動かし方は、入力となるシェルスクリプトを書いてCAFEに渡す、という形になる。このシェルスクリプトを書く過程で、OrthoFinderの出力であるOrthogroups.GeneCount.tsvと種の系統樹（Species_Tree/SpeciesTree_rooted.txt）が必要。
 重要
 CAFE5にアップデートされ、より柔軟な推定が可能になり、動かし方も容易になったため、特に理由がなければCAFE5を推奨する。
-インストール 作者たちのgithubから最新版のCAFEをダウンロードして、適当なディレクトリに置く。（例えば~/bin/） 解凍したらCAFEディレクトリまでcdしてconfigure＆make。 ~/bin/CAFE$ ./configure ~/bin/CAFE$ make PATHを通して動作確認。 ~/$ cafe # ctrl+C こんな感じのシェルスクリプトを書く #! cafe # version # date load -i data/example.tab -t 10 -l logfile.txt -p 0.05 tree (((chimp:6,human:6):81,(mouse:17,rat:17):70):6,dog:93) lambda -s -t (((1,1)1,(2,2)2)2,2) report resultfile load
+インストール 作者たちのgithubから最新版のCAFEをダウンロードして、適当なディレクトリに置く。（例えば~/bin/） 解凍したらCAFEディレクトリまでcdしてconfigure＆make。 ~/bin/CAFE$ ./configure ~/bin/CAFE$ make PATHを通して動作確認。 ~/$ cafe # ctrl+C 使い方 こんな感じのシェルスクリプトを書く #! cafe # version # date load -i data/example.tab -t 10 -l logfile.txt -p 0.05 tree (((chimp:6,human:6):81,(mouse:17,rat:17):70):6,dog:93) lambda -s -t (((1,1)1,(2,2)2)2,2) report resultfile load
 : 基本的なオプション。 -i
 : 種/遺伝子ファミリーごとの遺伝子数のテーブル。 -t
 : スレッド数。使っているコンピュータに合わせて。 -l
@@ -203,7 +204,7 @@ CAFE5にアップデートされ、より柔軟な推定が可能になり、動
       <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
       
       <guid>http://yukimatsuda1999.github.io/commandline/git/</guid>
-      <description>基本操作 Create new repositories Githubのサイト右上の&amp;quot;+&amp;ldquo;ボタンからNew repositoryを選択し、Create repositoryする。 手元のPCに同名のリモートリポジトリをつくる。 mkdir *new_repository* cd *new_repository* git init ファイルをaddしてcommitしてもいいし、空のcommitをしてもいい。 ### すでにあるファイルをadd&amp;amp;commit git add *some_file* git commit -m &amp;#34;some files added&amp;#34; ### 空のコミット git commit --allow-empty -m &amp;#34;:coffee: Create repository&amp;#34; リモートリポジトリを紐づけてpush git remote -v	# 何も表示されない git remote add origin https://github.com/*username*/*new_repository*.git git remote -v	# なんか出る git branch -M main git push -u origin main .gitignore https://docs.github.com/ja/get-started/getting-started-with-git/ignoring-files
+      <description>基本操作 Create new repositories Githubのサイト右上の&amp;quot;+&amp;ldquo;ボタンからNew repositoryを選択し、Create repositoryする。 手元のPCに同名のリモートリポジトリをつくる。 mkdir *new_repository* cd *new_repository* git init ファイルをaddしてcommitしてもいいし、空のcommitをしてもいい。 ### すでにあるファイルをadd&amp;amp;commit git add *some_file* git commit -m &amp;#34;some files added&amp;#34; ### 空のコミット git commit --allow-empty -m &amp;#34;☕ Create repository&amp;#34; リモートリポジトリを紐づけてpush git remote -v	# 何も表示されない git remote add origin https://github.com/*username*/*new_repository*.git git remote -v	# なんか出る git branch -M main git push -u origin main .gitignore https://docs.github.com/ja/get-started/getting-started-with-git/ignoring-files
 リポジトリのルートディレクトリに.gitignoreを配置して、git管理から除外するファイルを制御する。
 ### 場所を問わず特定のファイル・ディレクトリを除外 hoge ### .gitignoreが置かれたリポジトリの特定のファイル・ディレクトリを除外 /hoge ### 場所を問わず特定のディレクトリの除外 dir/ ### .</description>
     </item>
@@ -349,7 +350,7 @@ class SimpleData: def __init__(self): self.a = 0 self.b = 0 def sum(self): retur
       <description>Pythonにおけるオープンソースの便利関数のまとまり。
 標準ライブラリと外部ライブラリ ライブラリにはPythonにもともと備わっている標準ライブラリ(re, mathなど)と、あとから個別にインストールして使う外部ライブラリ(pandas, scikit-learnなど)がある。
 外部ライブラリを利用する際は、Pythonライブラリの管理ソフトであるpipや pip3を用いてライブラリのインストールを行う:
-~$ python3 -m pip install ライブラリ名 :exclamation: 以下のコマンドでもインストールできるが、どの環境へのインストールを行うかが非自明であるため推奨されていないらしい。
+~$ python3 -m pip install ライブラリ名 ❗ 以下のコマンドでもインストールできるが、どの環境へのインストールを行うかが非自明であるため推奨されていないらしい。
 ~$ pip install ライブラリ名 ~$ pip3 install ライブラリ名 遺伝研で外部ライブラリをインストールする場合 遺伝研で外部ライブラリを利用するには、
 ~$ pip3 install --user ライブラリ名 とすることでユーザのホームにライブラリをインストールできる。（が、再現性の観点ではvenvで仮想環境を構築する方がいい、らしい。）
 ライブラリのインポート Pythonコード内でライブラリを利用するためには、インポートを行う必要がある:

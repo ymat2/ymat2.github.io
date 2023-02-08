@@ -84,11 +84,12 @@
     <h1 itemprop="name" id="title">CAFE5</h1>
 
     <article itemprop="articleBody" id="content" class="w-90 lh-copy">
-      <ul>
+      <p><a href="http://yukimatsuda1999.github.io/bioinformatics/cafe/">CAFE</a>のメジャーアップデート版。</p>
+<ul>
 <li>Github: <a href="https://github.com/hahnlab/CAFE5">https://github.com/hahnlab/CAFE5</a></li>
 <li>論文: <a href="https://doi.org/10.1093/bioinformatics/btaa1022">https://doi.org/10.1093/bioinformatics/btaa1022</a></li>
 </ul>
-<p><a href="http://yukimatsuda1999.github.io/bioinformatics/cafe/">CAFE</a>のメジャーアップデート版。ドキュメントが丁寧に書いてあるので助かる。</p>
+<p>ドキュメントが丁寧に書いてあるので助かる。</p>
 <ul>
 <li><a href="https://github.com/hahnlab/CAFE5/blob/master/README.md">https://github.com/hahnlab/CAFE5/blob/master/README.md</a></li>
 <li><a href="https://github.com/hahnlab/CAFE5/blob/master/docs/tutorial/tutorial.md">https://github.com/hahnlab/CAFE5/blob/master/docs/tutorial/tutorial.md</a></li>
@@ -106,21 +107,21 @@
 <li>または、<code>git clone https://github.com/hahnlab/CAFE5.git</code></li>
 </ul>
 <h3 id="compile">Compile</h3>
-<pre tabindex="0"><code>cd CAFE5
-./configure
-make
-</code></pre><p>実行ファイルは<code>CAFE5/bin/</code>にあるので、ここに<code>$PATH</code>を通す。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">cd</span> CAFE5
+</span></span><span class="line"><span class="cl">./configure
+</span></span><span class="line"><span class="cl">make
+</span></span></code></pre></div><p>実行ファイルは<code>CAFE5/bin/</code>にあるので、ここに<code>$PATH</code>を通す。</p>
 <h3 id="osxの場合">OSXの場合</h3>
 <p><code>src/matrix_cache.cpp:2:10: fatal error: 'omp.h' file not found</code>などコンパイラが見つからない系のエラーが出る場合があるらしい。<code>gcc</code>を入れてシンボリックリンクを張る：</p>
-<pre tabindex="0"><code>brew install gcc
-find / -name omp.h
-ln -sv path/to/omp.h /usr/local/include/
-</code></pre><p>改めて、</p>
-<pre tabindex="0"><code>make
-</code></pre><h3 id="遺伝研">遺伝研</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">brew install gcc
+</span></span><span class="line"><span class="cl">find / -name omp.h
+</span></span><span class="line"><span class="cl">ln -sv path/to/omp.h /usr/local/include/
+</span></span></code></pre></div><p>改めて、</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">make
+</span></span></code></pre></div><h3 id="遺伝研">遺伝研</h3>
 <p><code>singularity</code>が楽。</p>
-<pre tabindex="0"><code>ls /usr/local/biotools/c/cafe:5*
-</code></pre><h2 id="quick-start">Quick Start</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ls /usr/local/biotools/c/cafe:5*
+</span></span></code></pre></div><h2 id="quick-start">Quick Start</h2>
 <p>基本的に必要なファイルは以前のCAFEと同じ。</p>
 <ol>
 <li>
@@ -162,7 +163,7 @@ ln -sv path/to/omp.h /usr/local/include/
 </table>
 </li>
 <li>
-<p>Newick形式の系統樹。binary,rooted,ultrametricである必要がある。（cf. Rパッケージ<code>ape::is.binary()</code>, <code>ape::is.rooted()</code>, <code>ape::is.ultrametric()</code>）</p>
+<p>Newick形式の系統樹。binary, rooted, ultrametricである必要がある。（cf. Rパッケージ<code>ape::is.binary()</code>, <code>ape::is.rooted()</code>, <code>ape::is.ultrametric()</code>）</p>
 <p>例：species_tree.txt</p>
 <pre tabindex="0"><code>(Mouse:319.00000000,(Lizard:281.10000000,Chicken:281.10000000):37.90000000);
 </code></pre></li>
@@ -171,18 +172,18 @@ ln -sv path/to/omp.h /usr/local/include/
 <ul>
 <li>
 <p>遺伝子ファミリー間で進化速度が一定であるという仮定の下で、遺伝子ファミリーの進化速度を推定:</p>
-<pre tabindex="0"><code>cafe5 -i gene_families.txt -t species_tree.txt
-</code></pre></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">cafe5 -i gene_families.txt -t species_tree.txt
+</span></span></code></pre></div></li>
 <li>
 <p>遺伝子ファミリーごとの進化速度が異なるという仮定の下で、遺伝子ファミリーの進化速度を推定:</p>
-<pre tabindex="0"><code>cafe5 -i gene_families.txt -t species_tree.txt -k 3
-</code></pre></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">cafe5 -i gene_families.txt -t species_tree.txt -k <span class="m">3</span>
+</span></span></code></pre></div></li>
 <li>
 <p>特定の系統で遺伝子ファミリーの進化速度が異なることを仮定する場合、以前のバージョンと同じようにλ構造を規定したNewickファイルを用意する:</p>
 <p>例：lambda_structure.txt</p>
 <pre tabindex="0"><code>(Mouse:1,(Lizard:1,Chicken:2):1);  # Chickenの系統で進化速度が異なることを仮定。
-</code></pre><pre tabindex="0"><code>cafe5 -i gene_families.txt -t species_tree.txt -y lambda_structure.txt
-</code></pre></li>
+</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">cafe5 -i gene_families.txt -t species_tree.txt -y lambda_structure.txt
+</span></span></code></pre></div></li>
 </ul>
 </li>
 </ol>

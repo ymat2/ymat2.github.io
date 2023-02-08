@@ -14,7 +14,8 @@
       <pubDate>Fri, 27 Jan 2023 07:37:02 +0900</pubDate>
       
       <guid>http://yukimatsuda1999.github.io/bioinformatics/cafe5/</guid>
-      <description>Github: https://github.com/hahnlab/CAFE5 論文: https://doi.org/10.1093/bioinformatics/btaa1022 CAFEのメジャーアップデート版。ドキュメントが丁寧に書いてあるので助かる。
+      <description>CAFEのメジャーアップデート版。
+Github: https://github.com/hahnlab/CAFE5 論文: https://doi.org/10.1093/bioinformatics/btaa1022 ドキュメントが丁寧に書いてあるので助かる。
 https://github.com/hahnlab/CAFE5/blob/master/README.md https://github.com/hahnlab/CAFE5/blob/master/docs/tutorial/tutorial.md 新しい機能 各遺伝子ファミリーが異なる速度で進化することを仮定したパラメータ推定を行う。 シェルスクリプトを書く必要がなくなった。 エラーモデルの最適化やサマリーテーブルの出力が内部で行われるようになった。（Pythonスクリプトが不要になった。） インストール Download https://github.com/hahnlab/CAFE5/releases から または、git clone https://github.com/hahnlab/CAFE5.git Compile cd CAFE5 ./configure make 実行ファイルはCAFE5/bin/にあるので、ここに$PATHを通す。
 OSXの場合 src/matrix_cache.cpp:2:10: fatal error: &#39;omp.h&#39; file not foundなどコンパイラが見つからない系のエラーが出る場合があるらしい。gccを入れてシンボリックリンクを張る：
 brew install gcc find / -name omp.h ln -sv path/to/omp.h /usr/local/include/ 改めて、
@@ -22,7 +23,7 @@ make 遺伝研 singularityが楽。
 ls /usr/local/biotools/c/cafe:5* Quick Start 基本的に必要なファイルは以前のCAFEと同じ。
 種ごと、遺伝子ファミリーごとの遺伝子数のテーブル（タブ区切り）。OrthoFinderとかOrthoMCLとかでつくる。
 例：gene_families.txt
-Description ID Chicken Lizard Mouse OG00001 OG00001 12 14 21 OG00002 OG00002 9 13 5 OG00003 OG00003 7 0 4 Newick形式の系統樹。binary,rooted,ultrametricである必要がある。（cf.</description>
+Description ID Chicken Lizard Mouse OG00001 OG00001 12 14 21 OG00002 OG00002 9 13 5 OG00003 OG00003 7 0 4 Newick形式の系統樹。binary, rooted, ultrametricである必要がある。（cf.</description>
     </item>
     
     <item>
@@ -63,7 +64,7 @@ data_hubから分類群を指定してダウンロード https://www.ncbi.nlm.ni
 基本的な動かし方は、入力となるシェルスクリプトを書いてCAFEに渡す、という形になる。このシェルスクリプトを書く過程で、OrthoFinderの出力であるOrthogroups.GeneCount.tsvと種の系統樹（Species_Tree/SpeciesTree_rooted.txt）が必要。
 重要
 CAFE5にアップデートされ、より柔軟な推定が可能になり、動かし方も容易になったため、特に理由がなければCAFE5を推奨する。
-インストール 作者たちのgithubから最新版のCAFEをダウンロードして、適当なディレクトリに置く。（例えば~/bin/） 解凍したらCAFEディレクトリまでcdしてconfigure＆make。 ~/bin/CAFE$ ./configure ~/bin/CAFE$ make PATHを通して動作確認。 ~/$ cafe # ctrl+C こんな感じのシェルスクリプトを書く #! cafe # version # date load -i data/example.tab -t 10 -l logfile.txt -p 0.05 tree (((chimp:6,human:6):81,(mouse:17,rat:17):70):6,dog:93) lambda -s -t (((1,1)1,(2,2)2)2,2) report resultfile load
+インストール 作者たちのgithubから最新版のCAFEをダウンロードして、適当なディレクトリに置く。（例えば~/bin/） 解凍したらCAFEディレクトリまでcdしてconfigure＆make。 ~/bin/CAFE$ ./configure ~/bin/CAFE$ make PATHを通して動作確認。 ~/$ cafe # ctrl+C 使い方 こんな感じのシェルスクリプトを書く #! cafe # version # date load -i data/example.tab -t 10 -l logfile.txt -p 0.05 tree (((chimp:6,human:6):81,(mouse:17,rat:17):70):6,dog:93) lambda -s -t (((1,1)1,(2,2)2)2,2) report resultfile load
 : 基本的なオプション。 -i
 : 種/遺伝子ファミリーごとの遺伝子数のテーブル。 -t
 : スレッド数。使っているコンピュータに合わせて。 -l

@@ -29,8 +29,8 @@ HUGOにおけるマークダウンとHTMLタグの対応 見出し # 見出し1 
       
       <guid>http://yukimatsuda1999.github.io/site/hugo/</guid>
       <description>https://gohugo.io/about/
-インストール homebrewで一発。
-brew install hugo Quick Start サイトの骨組みを作る。
+インストール Macならhomebrew、Ubuntuならaptで一発。
+brew install hugo sudo apt install hugo Quick Start サイトの骨組みを作る。
 mkdir PATH_TO_SITE cd PATH_TO_SITE hugo new site . 生成される./content/ディレクトリの中に記事を書いていく。
 hugo new content/about.md --- title: &amp;#34;デモページ&amp;#34; date: 2022-11-03T22:09:12+09:00 --- これは**テストページ**です。 サーバーを走らせてhttp://localhost:1313/aboutにアクセス。
 hugo server -D -w . </description>

@@ -19,13 +19,13 @@
 
 <meta property="og:type" content="article" />
 <meta property="og:description" content="" />
-<meta property="og:title" content="Julia" />
+<meta property="og:title" content="Juliaのインストール" />
 <meta property="og:site_name" content="A Website for Personal Documentation" />
 <meta property="og:image" content="" />
 <meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="" />
 <meta property="og:image:height" content="" />
-<meta property="og:url" content="http://yukimatsuda1999.github.io/julia/" />
+<meta property="og:url" content="http://yukimatsuda1999.github.io/julia/install/" />
 <meta property="og:locale" content="ja-jp" />
 <meta property="article:published_time" content="2023-02-08
 " /> <meta property="article:modified_time" content="2023-02-08
@@ -36,16 +36,9 @@
 
 
 
-    <title>Julia</title>
-    <link rel="canonical" href="http://yukimatsuda1999.github.io/julia/" />
+    <title>Juliaのインストール</title>
+    <link rel="canonical" href="http://yukimatsuda1999.github.io/julia/install/" />
 
-
-    <link
-      href="/julia/index.xml"
-      rel="alternate"
-      type="application/rss+xml"
-      title="Julia"
-    />
 
     
 <link rel="stylesheet" href="/css/my-style.css" />
@@ -66,54 +59,54 @@
   </head>
 
 
-
-<link rel="stylesheet" href="/css/my-style.css" />
-<link rel="stylesheet" href="/css/syntax.css" />
-
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-6H2M78RD8J');
-</script>
-
-
 <body
   lang="ja-jp"
   class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
 >
+  
   <span class="b">/ </span>
   <a
     href="http://yukimatsuda1999.github.io/"
     class="pagelink"
     >HOME</a
   >
+  <span class="b"> / </span>
+  <a 
+  	href="http://yukimatsuda1999.github.io//julia"
+  	class="pagelink"
+  	>Julia</a
+  >
+
   <main>
   <section id="main" class="mt5">
-  	<h1> 
-  		Julia
-  	</h1>
-  	<article itemprop="articleBody" id="content" class="w-90 lh-copy">
-		
-	</article>
-    <div>
-      <ul id="list" class="pl0">
-      
-        
-        <li class="list pl0 lh-copy">
-          <a
-            class="pagelink"
-            href="/julia/install/"
-            >Juliaのインストール</a
-          >
-        </li>
-        
-        
-      </ul>
-    </div>
+    <h1 itemprop="name" id="title">Juliaのインストール</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <p><a href="https://julialang.org/downloads/">https://julialang.org/downloads/</a></p>
+<h2 id="homebrew">Homebrew</h2>
+<p>MacOSなら<code>cask</code>でインストールできる。</p>
+<pre tabindex="0"><code>brew install --cask julia
+</code></pre><h2 id="linux-windowsubuntu">Linux, Windows(Ubuntu)</h2>
+<ol>
+<li>
+<p>ダウンロードサイトからインストーラをダウンロードして解凍する。</p>
+<pre tabindex="0"><code>wget https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-1.8.5-linux-x86_64.tar.gz
+tar -xzvf julia-1.8.5-linux-x86_64.tar.gz
+</code></pre></li>
+<li>
+<p>適当なディレクトリに移動する。（例えば<code>~/bin/</code>）</p>
+<pre tabindex="0"><code>mv julia-1.8.5 ~/bin/
+</code></pre></li>
+<li>
+<p><code>/usr/local/bin/</code>にシンボリックリンクを貼って動作確認。</p>
+<pre tabindex="0"><code>sudo ln -s ~/bin/julia-1.8.5/bin/julia /usr/local/bin/julia
+julia --version
+</code></pre></li>
+</ol>
+
+    </article>
   </section>
   </main>
 
@@ -128,4 +121,3 @@
 
   </body>
 </html>
-

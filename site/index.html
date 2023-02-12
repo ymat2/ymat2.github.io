@@ -97,11 +97,11 @@
   		静的サイトの作成
   	</h1>
   	<article itemprop="articleBody" id="content" class="w-90 lh-copy">
-		<p>本サイトはマークダウンで書いたページをHugo + Git + Netlifyでビルド&amp;公開している。おおまかな手順としては、</p>
+		<p>本サイトはマークダウンで書いたページをHugo + Git + Github Pagesでビルド&amp;公開している。おおまかな手順としては、</p>
 <ol>
 <li>hugoをインストールしてローカルにサイトの骨組みを作る。</li>
 <li>コンテンツをgithubに<code>push</code>する。</li>
-<li>Netlifyにサイトのリポジトリをインストールしてビルド&amp;公開。</li>
+<li>Github Actionsでビルドコマンドを走らせ、Github Pagesにホストさせる。</li>
 </ol>
 <p>という流れで構築している。</p>
 <p>Hugoのインストールにはhomebrewを用いている。またGithubのアカウントがあることを前提としている。</p>

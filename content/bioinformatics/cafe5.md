@@ -98,3 +98,9 @@ ls /usr/local/biotools/c/cafe:5*
 - *model*_result.txt<br>: 選択されたモデルの名前、そのモデルの最終的な尤度、遺伝子数の進化速度にあたるLambdaなどが書かれている。
 - *model*_change.txt<br>: 各遺伝子ファミリーについて、各ノードにおける親ノードからの遺伝子数の変化量が書いてある。
 - *model*_count.txt<br>: 各遺伝子ファミリーについて、各ノードにおける推定遺伝子数。
+
+## 並列化
+`--cores`オプションで指定。
+```
+cafe5 -i gene_families.txt -t species_tree.txt --cores 5
+```

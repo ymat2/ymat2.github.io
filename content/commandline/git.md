@@ -87,7 +87,7 @@ Host github github.com
 ## `git submodule`
 外部のリポジトリを自分のリポジトリのサブディレクトリとして取り込む仕組み。
 ```
-git submodule addhttps://github.com/<username>/<repository>.git directory
+git submodule add https://github.com/<username>/<repository>.git directory
 ```
 
 ### submoduleを最新版に更新する

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>トラブルシューティング on A Website for Personal Documentation</title>
-    <link>http://yukimatsuda1999.github.io/trouble-shooting/</link>
+    <link>http://ymat2.github.io/trouble-shooting/</link>
     <description>Recent content in トラブルシューティング on A Website for Personal Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <copyright>(ɔ) 2022 Yuki Matsuda</copyright>
-    <lastBuildDate>Thu, 03 Nov 2022 11:45:13 +0900</lastBuildDate><atom:link href="http://yukimatsuda1999.github.io/trouble-shooting/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Nov 2022 11:45:13 +0900</lastBuildDate><atom:link href="http://ymat2.github.io/trouble-shooting/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>brew updateとRパッケージの問題に今日こそ対処する</title>
-      <link>http://yukimatsuda1999.github.io/trouble-shooting/r-pkg/</link>
+      <link>http://ymat2.github.io/trouble-shooting/r-pkg/</link>
       <pubDate>Mon, 14 Nov 2022 13:21:15 +0900</pubDate>
       
-      <guid>http://yukimatsuda1999.github.io/trouble-shooting/r-pkg/</guid>
+      <guid>http://ymat2.github.io/trouble-shooting/r-pkg/</guid>
       <description>状況 おそらくCask版Rが使うパッケージはバージョン依存のPATHに入っていて（&amp;quot;/Library/Frameworks/R.framework/Versions/4.2/Resources/library&amp;quot;）、brew upgradeをかけるたびにそのバージョンに紐づいたパッケージごと消えてしまうせいで毎回パッケージのインストールが必要になる。
 brew update Cask版のRもそうじゃない方もoutdated。
 ==&amp;gt; Outdated Formulae augustus cmake harfbuzz libidn2 little-cms2 openssl@1.1 readline bowtie2 fontconfig hugo libomp mpfr python@3.9 tbb ca-certificates git libffi libxext openjdk r ==&amp;gt; Outdated Casks r brew upgrade 途中で「パッケージ消すからパスワード教えて」みたいなこと聞かれてパッケージ消してるな&amp;hellip;
@@ -22,10 +22,10 @@ Running `brew update --auto-update`... ==&amp;gt; Upgrading 20 outdated packages
     
     <item>
       <title>homebrewでRを入れ直したときにパッケージの再インストールが必要な問題</title>
-      <link>http://yukimatsuda1999.github.io/trouble-shooting/brew-upgrade-trouble/</link>
+      <link>http://ymat2.github.io/trouble-shooting/brew-upgrade-trouble/</link>
       <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
       
-      <guid>http://yukimatsuda1999.github.io/trouble-shooting/brew-upgrade-trouble/</guid>
+      <guid>http://ymat2.github.io/trouble-shooting/brew-upgrade-trouble/</guid>
       <description>brew upgradeやbrew doctorからのトラブルシューティングでRをいじったときにパッケージのインストールをやり直さなきゃいけない問題に何度か直面していたけど、今日ついにインストールすらできなくなったのでやったことの備忘録を残しておく。
 状況 brew doctorでrがunlinkだとWarningが出たので、/usr/bin/Rと/usr/bin/Rstudioをrmしてbrew link rした。 Rstudioをしてパッケージを読み込もうとしたら無いと怒られたので、install.packages()したらエラーが出た。 # 流れてしまったけどたしかコンパイルできない系の怒られだった記憶がある 試したこと Caskじゃないbrew install rで入れたRを使っているのが原因と踏んで、
 $ brew reinstall --cask r rstudio ==&amp;gt; Caveats Cask r installs files under /usr/local. The presence of such files can cause warnings when running `brew doctor`, which is considered to be a bug in Homebrew Cask. ==&amp;gt; Downloading https://cloud.r-project.org/bin/macosx/base/R-4.2.1.pkg Already downloaded: /Users/yukimatsuda/Library/Caches/Homebrew/downloads/8d1f21aad50ce25534d706c2c7885528048ce7207abf6357ec4440955cb9f83b--R-4.2.1.pkg ==&amp;gt; Uninstalling Cask r ==&amp;gt; Uninstalling packages; your password may be necessary: org.r-project.x86_64.texinfo Password: org.</description>
@@ -33,10 +33,10 @@ $ brew reinstall --cask r rstudio ==&amp;gt; Caveats Cask r installs files under
     
     <item>
       <title>M1 macではhomebrewでhisat2が入らない</title>
-      <link>http://yukimatsuda1999.github.io/trouble-shooting/mac-architecture/</link>
+      <link>http://ymat2.github.io/trouble-shooting/mac-architecture/</link>
       <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
       
-      <guid>http://yukimatsuda1999.github.io/trouble-shooting/mac-architecture/</guid>
+      <guid>http://ymat2.github.io/trouble-shooting/mac-architecture/</guid>
       <description>アーキテクチャの違いが原因でコンパイル周りでつまづく macのプロセッサがIntelからM1になって以降、CPUアーキテクチャがx86_64からarm64に替わったらしく、おそらくこれが原因でhomebrewの挙動が異なるらしい。
 x86_64ではデフォルトのインストール先が/usr/local/であるのに対し、arm64では/opt/homebrew/ arm64ではhomebrewインストール後に/opt/homebrew/bin/brewにPATHを通す必要がある。 x86_64とarm64のどちらかでしかインストールできないツールがあり、hisat2やTrinityはarm64のhomebrewでは入らない。 g++-12: error: unrecognized command-line option &amp;#39;-msse2&amp;#39; make: *** [hisat2-build-s] Error 1 make: *** Waiting for unfinished jobs.... g++-12: error: unrecognized command-line option &amp;#39;-msse2&amp;#39; make: *** [hisat2-build-l] Error 1 g++-12: error: unrecognized command-line option &amp;#39;-msse2&amp;#39; make: *** [hisat2-align-s] Error 1 make: *** wait: No child processes. Stop. M1macでもRosettaとよばれるアーキテクチャ変換技術を使うことでx86_64のターミナルを使用できる。
 参考にした記事を読む限り状況に応じてIntel(x86_64)のターミナルとARM(arm64)のターミナルを切り替えて使うのがスマートらしい。 : https://qiita.com/funatsufumiya/items/cec08f1ba3387edc2eed : https://zenn.dev/_lambda314/articles/63b851221a7016

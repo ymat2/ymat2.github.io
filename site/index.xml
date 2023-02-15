@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>静的サイトの作成 on A Website for Personal Documentation</title>
-    <link>http://yukimatsuda1999.github.io/site/</link>
+    <link>http://ymat2.github.io/site/</link>
     <description>Recent content in 静的サイトの作成 on A Website for Personal Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <copyright>(ɔ) 2022 Yuki Matsuda</copyright>
-    <lastBuildDate>Thu, 03 Nov 2022 22:02:28 +0900</lastBuildDate><atom:link href="http://yukimatsuda1999.github.io/site/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Nov 2022 22:02:28 +0900</lastBuildDate><atom:link href="http://ymat2.github.io/site/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>最低限のHTML・CSS</title>
-      <link>http://yukimatsuda1999.github.io/site/html-css/</link>
+      <link>http://ymat2.github.io/site/html-css/</link>
       <pubDate>Wed, 30 Nov 2022 08:32:29 +0900</pubDate>
       
-      <guid>http://yukimatsuda1999.github.io/site/html-css/</guid>
+      <guid>http://ymat2.github.io/site/html-css/</guid>
       <description>HUGOはマークダウンでページを書くだけでHTMLのページが生成され、また豊富なテーマが整備されているのでHTML・CSSの知識がなくてもサイトを構築することができる。
 そうは言っても、サイトをカスタマイズしたり、自分でテーマを作ったりすることを考えると、最低限のHTML・CSSの知識はあっても損はない。
 HTML HTML(Hyper Text Markup Language)は、WEBページに表示される文字の役割を決める言語である。（対してCSS(Cascading Style Sheet)はその見た目を決める。）
@@ -24,10 +24,10 @@ HUGOにおけるマークダウンとHTMLタグの対応 見出し # 見出し1 
     
     <item>
       <title>Hugo - 静的サイトを高速生成</title>
-      <link>http://yukimatsuda1999.github.io/site/hugo/</link>
+      <link>http://ymat2.github.io/site/hugo/</link>
       <pubDate>Thu, 03 Nov 2022 22:09:12 +0900</pubDate>
       
-      <guid>http://yukimatsuda1999.github.io/site/hugo/</guid>
+      <guid>http://ymat2.github.io/site/hugo/</guid>
       <description>https://gohugo.io/about/
 インストール Macならhomebrew、Ubuntuならaptで一発。
 brew install hugo sudo apt install hugo Quick Start サイトの骨組みを作る。

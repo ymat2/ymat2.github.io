@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Julia on A Website for Personal Documentation</title>
-    <link>http://yukimatsuda1999.github.io/julia/</link>
+    <link>http://ymat2.github.io/julia/</link>
     <description>Recent content in Julia on A Website for Personal Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <copyright>(ɔ) 2022 Yuki Matsuda</copyright>
-    <lastBuildDate>Wed, 08 Feb 2023 04:24:23 +0900</lastBuildDate><atom:link href="http://yukimatsuda1999.github.io/julia/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Feb 2023 04:24:23 +0900</lastBuildDate><atom:link href="http://ymat2.github.io/julia/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Juliaのインストール</title>
-      <link>http://yukimatsuda1999.github.io/julia/install/</link>
+      <link>http://ymat2.github.io/julia/install/</link>
       <pubDate>Wed, 08 Feb 2023 02:51:57 +0900</pubDate>
       
-      <guid>http://yukimatsuda1999.github.io/julia/install/</guid>
+      <guid>http://ymat2.github.io/julia/install/</guid>
       <description>https://julialang.org/downloads/
 Homebrew MacOSならcaskでインストールできる。
 brew install --cask julia Linux, Windows(Ubuntu) ダウンロードサイトからインストーラをダウンロードして解凍する。

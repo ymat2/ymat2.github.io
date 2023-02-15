@@ -7,8 +7,8 @@ date: 2022-11-02T11:03:16+09:00
 
 基本的な動かし方は、入力となるシェルスクリプトを書いてCAFEに渡す、という形になる。このシェルスクリプトを書く過程で、OrthoFinderの出力であるOrthogroups.GeneCount.tsvと種の系統樹（Species_Tree/SpeciesTree_rooted.txt）が必要。
 
-**重要**<br>
-[CAFE5]({{< ref cafe5.md >}})にアップデートされ、より柔軟な推定が可能になり、動かし方も容易になったため、特に理由がなければCAFE5を推奨する。
+**重要**<br>:
+	[CAFE5]({{< ref cafe5.md >}})にアップデートされ、より柔軟な推定が可能になり、動かし方も容易になったため、特に理由がなければCAFE5を推奨する。
 
 ## インストール
 - 作者たちのgithubから[最新版のCAFEをダウンロード](https://github.com/hahnlab/CAFE/releases/latest)して、適当なディレクトリに置く。（例えば`~/bin/`）

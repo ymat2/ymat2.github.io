@@ -125,6 +125,9 @@ python cafe_tutrial/python_scripts/cafetutorial_report_analysis.py -i resultfile
     - cafe\_summary_node.txt
 
 ## トラブルシューティング
-- `Failed to load tree from provided string (branch length missing)`<br>系統樹の枝長に0が含まれているとダメ。自分は該当するノードを除外した。
-- `No species ‘anolis_carolinensis’ was found in the tree`<br>系統樹を読み込む際に内部でtip nameを書き換えているようで、長すぎる種名やアンダースコアが原因と思われるエラー。tip nameを短く書き換える。（`AnoCal`とか）
-- `Lambda values were not set. Please set lambda values with the lambda or lambdamu command.`<br>λを自動推定する際に、系統樹の枝長がでかい数字だとこうなるっぽい。できるだけ短くなるように約分する。
+- `Failed to load tree from provided string (branch length missing)`<br>:
+	系統樹の枝長に0が含まれているとダメ。自分は該当するノードを除外した。
+- `No species ‘anolis_carolinensis’ was found in the tree`<br>:
+	系統樹を読み込む際に内部でtip nameを書き換えているようで、長すぎる種名やアンダースコアが原因と思われるエラー。tip nameを短く書き換える。（`AnoCal`とか）
+- `Lambda values were not set. Please set lambda values with the lambda or lambdamu command.`<br>:
+	λを自動推定する際に、系統樹の枝長がでかい数字だとこうなるっぽい。できるだけ短くなるように約分する。

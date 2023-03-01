@@ -66,4 +66,4 @@ sudo apt upgrade
 コマンドプロンプト、PowerShell、bash (Linux 用 Windows サブシステム (WSL) 経由) など複数のコマンドラインシェルのホストアプリケーション。
 
 - <kbd>Win</kbd>+<kbd>X</kbd> → <kbd>I</kbd>/<kbd>A</kbd>(管理者として実行)
-
+- <kbd>Ctrl</kbd>+<kbd>,</kbd>で設定画面に。デフォルトのプロファイルや外観をいじれる。

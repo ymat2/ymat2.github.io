@@ -79,15 +79,9 @@ HUGOにおけるマークダウンとHTMLタグの対応 見出し # 見出し1 
       <pubDate>Tue, 29 Nov 2022 18:09:52 +0900</pubDate>
       
       <guid>http://ymat2.github.io/commandline/nano/</guid>
-      <description> 公式: https://www.nano-editor.org/ マニュアル: https://www.nano-editor.org/dist/latest/nano.html Install もともと入っているものを使うか、brewでインストールする。
-which -a nano brew install nano Usage ## 新規作成 nano ## 既存のファイルを編集 nano hoge.txt Keyboard shortcuts デフォルトで編集画面の下部に書いてある。
-Configuration 基本的な設定はコマンドラインオプションで指定することもできるが、一時的な設定でなければconfigファイルに書いてしまった方が楽。
-読み込まれる順番は、まず/etc/nanorc、次に~/.nanorcまたは~/.config/nano/nanorc。
-Linuxでは/etc/nanorcや/usr/share/doc/nano/examples/samples.nanorcに、Macにbrewで入れた場合は/usr/local/Cellar/nano/6.4/share/doc/nano/sample.nanorcにドキュメントとコマンドがコメントアウトされて書いてあるので、これを~/.nanorcまたは~/.config/nano/nanorcにコピーして編集する。
-自分で書いてしまってもいい。たとえば:
-set autoindent	# 改行時にインデントを揃える set nowrap	# 横に長い行を勝手に改行しない set smooth	# スクロールがスムーズに（あんまり実感したことはない） set tabsize 4	# タブサイズ（スペースの数）の設定 Syntax highlight デフォルトの見た目は非常に寂しい。
-Linuxでは/usr/share/nano/、Macでは/usr/local/share/nano/や/usr/local/Cellar/nano/6.4/share/doc/nano/にハイライト定義ファイルが置いてあるので、これらの設定を~/.nanorcに加える。または野生の定義ファイルを使う手もある。: https://github.com/scopatz/nanorc
-include &amp;#39;/usr/share/nano/*.nanorc&amp;#39; </description>
+      <description>公式: https://www.nano-editor.org/ マニュアル: https://www.nano-editor.org/dist/latest/nano.html Install もともと入っているものを使うか、brewでインストールする。
+which -a nano brew install nano Usage ## 新規作成 nano ## 既存のファイルを編集 nano hoge.txt Keyboard shortcuts デフォルトで編集画面の下部に書いてある。表は編集画面でのショートカット。nanoのバージョンによって異なるものもあるっぽい。
+Key コマンド 操作 Ctrl+G Help ヘルプ画面へ Ctrl+X Exit 編集画面を抜ける Ctrl+O Write Out ファイル名を指定して書き込み Ctrl+R Read File ファイル名を指定して読み込み Ctrl+W Where Is ファイル内検索 Ctrl+\ Replace ファイル内置換 Ctrl+K Cut 選択範囲を切り取り Ctrl+U Paste カーソル位置に文字列を貼り付け Ctrl+T Execute コマンドラインの操作を実行して出力を貼り付け Ctrl+J Justify 均等割付 Ctrl+C Location カーソル位置の表示 Ctrl+/ Go To Line 行数を指定してジャンプ Meta+U Undo ひとつ前の状態に戻す Meta+E Redo 同じ操作をおこなう Meta+A Set Marl 選択範囲の開始点をセット Meta+6 Copy 選択範囲をコピー MetaキーはWindowsならalt、Macならesc。</description>
     </item>
     
     <item>
@@ -247,17 +241,17 @@ $ brew reinstall --cask r rstudio ==&amp;gt; Caveats Cask r installs files under
 : ファイル新規作成（普段はnanoでやってる） mv
 : mv source/path destination/pathで移動、mv before_name after_nameでリネーム（Windowsではできなかった記憶がある） cp
 : ファイルのコピー。-rでディレクトリをコピー。 rm
-: -fで強制削除、-rでディレクトリ以下を削除 wc
+: -fで強制削除、-rでディレクトリ以下を削除。 wc
 : 行数カウント。-lでファイル名も表示。 cat
-: ファイルの中身を標準出力 head/tail -n x
+: ファイルの中身を標準出力。 head/tail -n x
 : ファイルの先頭/末尾x行を標準出力 sort,uniq
-: 行単位でソート、重複行の削除 grep str file
-: fileからstrを含む行を抽出 grep str -rl PATH
-: 中身にstrが含まれているファイルを再起的に取得 sed -e &#39;s/BEFORE/AFTER/g&#39; file
+: 行単位でソート、重複行の削除 sed -e &#39;s/BEFORE/AFTER/g&#39; file
 : ファイル中の文字を置換。-iで上書き。 less
 : ファイル閲覧 du
 : ファイルの容量表示。-hでちょうどいい単位にしてくれる。--max-depth Nで階層指定。 ps
-: いまターミナルで実行中のプロセスを表示 </description>
+: いまターミナルで実行中のプロセスを表示 grep grep STR FILE
+: 行単位でソート、重複行の削除。 grep str -rl PATH
+: 中身にstrが含まれているファイルを再起的に取得。 ln ln -s TARGET LINK_NAME</description>
     </item>
     
     <item>
@@ -334,7 +328,7 @@ Option pdf2pptx --help -o, --output
     </item>
     
     <item>
-      <title>Pyhtonでデータサイエンス</title>
+      <title>Pythonでデータサイエンス</title>
       <link>http://ymat2.github.io/python/python4ds/</link>
       <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
       

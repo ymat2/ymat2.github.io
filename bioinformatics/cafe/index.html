@@ -40,7 +40,7 @@
     <link rel="canonical" href="http://ymat2.github.io/bioinformatics/cafe/" />
 
 
-    
+	
 <link rel="stylesheet" href="/css/my-style.css" />
 <link rel="stylesheet" href="/css/syntax.css" />
 
@@ -57,6 +57,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
+
 
 
 <body
@@ -226,9 +227,12 @@
 </ul>
 <h2 id="トラブルシューティング">トラブルシューティング</h2>
 <ul>
-<li><code>Failed to load tree from provided string (branch length missing)</code><br>系統樹の枝長に0が含まれているとダメ。自分は該当するノードを除外した。</li>
-<li><code>No species ‘anolis_carolinensis’ was found in the tree</code><br>系統樹を読み込む際に内部でtip nameを書き換えているようで、長すぎる種名やアンダースコアが原因と思われるエラー。tip nameを短く書き換える。（<code>AnoCal</code>とか）</li>
-<li><code>Lambda values were not set. Please set lambda values with the lambda or lambdamu command.</code><br>λを自動推定する際に、系統樹の枝長がでかい数字だとこうなるっぽい。できるだけ短くなるように約分する。</li>
+<li><code>Failed to load tree from provided string (branch length missing)</code><br>:
+系統樹の枝長に0が含まれているとダメ。自分は該当するノードを除外した。</li>
+<li><code>No species ‘anolis_carolinensis’ was found in the tree</code><br>:
+系統樹を読み込む際に内部でtip nameを書き換えているようで、長すぎる種名やアンダースコアが原因と思われるエラー。tip nameを短く書き換える。（<code>AnoCal</code>とか）</li>
+<li><code>Lambda values were not set. Please set lambda values with the lambda or lambdamu command.</code><br>:
+λを自動推定する際に、系統樹の枝長がでかい数字だとこうなるっぽい。できるだけ短くなるように約分する。</li>
 </ul>
 
     </article>

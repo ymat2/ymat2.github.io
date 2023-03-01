@@ -40,7 +40,7 @@
     <link rel="canonical" href="http://ymat2.github.io/commandline/linux%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/" />
 
 
-    
+	
 <link rel="stylesheet" href="/css/my-style.css" />
 <link rel="stylesheet" href="/css/syntax.css" />
 
@@ -57,6 +57,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
+
 
 
 <body
@@ -93,20 +94,25 @@
 <li><code>touch</code><br>: ファイル新規作成（普段はnanoでやってる）</li>
 <li><code>mv</code><br>: <code>mv source/path destination/path</code>で移動、<code>mv before_name after_name</code>でリネーム（Windowsではできなかった記憶がある）</li>
 <li><code>cp</code><br>: ファイルのコピー。<code>-r</code>でディレクトリをコピー。</li>
-<li><code>rm</code><br>: <code>-f</code>で強制削除、<code>-r</code>でディレクトリ以下を削除</li>
+<li><code>rm</code><br>: <code>-f</code>で強制削除、<code>-r</code>でディレクトリ以下を削除。</li>
 <li><code>wc</code><br>: 行数カウント。<code>-l</code>でファイル名も表示。</li>
-<li><code>cat</code><br>: ファイルの中身を標準出力</li>
+<li><code>cat</code><br>: ファイルの中身を標準出力。</li>
 <li><code>head/tail -n x</code><br>: ファイルの先頭/末尾x行を標準出力</li>
 <li><code>sort</code>,<code>uniq</code><br>: 行単位でソート、重複行の削除</li>
-<li><code>grep str file</code><br>: fileからstrを含む行を抽出
-<ul>
-<li><code>grep str -rl PATH</code><br>: 中身にstrが含まれているファイルを再起的に取得</li>
-</ul>
-</li>
 <li><code>sed -e 's/BEFORE/AFTER/g' file</code><br>: ファイル中の文字を置換。<code>-i</code>で上書き。</li>
 <li><code>less</code><br>: ファイル閲覧</li>
 <li><code>du</code><br>: ファイルの容量表示。<code>-h</code>でちょうどいい単位にしてくれる。<code>--max-depth N</code>で階層指定。</li>
 <li><code>ps</code><br>: いまターミナルで実行中のプロセスを表示</li>
+</ul>
+<h2 id="grep"><code>grep</code></h2>
+<ul>
+<li><code>grep STR FILE</code><br>: 行単位でソート、重複行の削除。</li>
+<li><code>grep str -rl PATH</code><br>: 中身にstrが含まれているファイルを再起的に取得。</li>
+</ul>
+<h2 id="ln"><code>ln</code></h2>
+<ul>
+<li><code>ln -s TARGET LINK_NAME</code><br>: <code>TARGET</code>のシンボリックリンクを<code>LINK_NAME</code>に作成。</li>
+<li><code>ln -nfs TARGET LINK_NAME</code><br>: <code>TARGET</code>を移動したときなどにリンクを張りなおす。</li>
 </ul>
 
     </article>

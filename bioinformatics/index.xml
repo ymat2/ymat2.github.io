@@ -34,13 +34,8 @@ Description ID Chicken Lizard Mouse OG00001 OG00001 12 14 21 OG00002 OG00002 9 1
       <guid>http://ymat2.github.io/bioinformatics/busco/</guid>
       <description>https://busco.ezlab.org/
 Universal Single Copy Orthologsが、アセンブルされた配列中にどれだけあるか調べることでゲノムや遺伝子セットの完全性を評価する。どの遺伝子がユニバーサルシングルコピーかはOrthoDBに基づいており、分類群ごとに数は異なる。（公式サイトのリストから参照可能。）
-インストール Docker Image docker pull ezlabgva/busco:v5.4.3_cv1 docker run -u $(id -u) -v $(pwd):/busco_wd ezlabgva/busco:v5.4.3_cv1 Conda Package conda install -c conda-forge -c bioconda busco=5.4.2 Homebrew brew install busco 使い方 busco -i [SEQUENCE_FILE] -l [LINEAGE] -o [OUTPUT_NAME] -m [MODE] [OTHER OPTIONS] -i, --in
-: 塩基配列またはアミノ酸配列のFastaファイル。 -o, --out
-: 出力。ここで指定した名前のディレクトリが生成される。 -m, --mode
-: ゲノムならgenome、トランスクリプトームならtranscriptome、タンパク質ならprotein。 -l, --lineage_dataset
-: ユニバーサルシングルコピーのデータセット。相対パス./bacteria_odb10か、絶対パス/home/user/bacteria_odb10で指定する。前者の場合はデータセットが自動的にダウンロードされ、後者の場合は既存であることを想定する。が、前者の場合もあらかじめ用意しておいた方が安全。(https://busco-data.ezlab.org/v4/data/lineages/) --auto-lineage
-: -l の代わりに自動でデータベースを選ばせることも可能。だが個人的にあまりお勧めしない。 出力 -oで指定したディレクトリ下にshort_summary.*.lineage_odb10.out.txtというファイルができる。
-# BUSCO version is: 5.</description>
+インストール Docker Image docker pull ezlabgva/busco:v5.4.3_cv1 docker run -u $(id -u) -v $(pwd):/busco_wd ezlabgva/busco:v5.4.3_cv1 Conda Package conda install -c conda-forge -c bioconda busco=5.4.2 Homebrew brew install busco 使い方 busco -i [SEQUENCE_FILE] -l [LINEAGE] -o [OUTPUT_NAME] -m [MODE] [OTHER OPTIONS] -i, --in 塩基配列またはアミノ酸配列のFastaファイル。 -o, --out 出力。ここで指定した名前のディレクトリが生成される。 -m, --mode ゲノムならgenome、トランスクリプトームならtranscriptome、タンパク質ならprotein。 -l, --lineage_dataset ユニバーサルシングルコピーのデータセット。相対パス./bacteria_odb10か、絶対パス/home/user/bacteria_odb10で指定する。前者の場合はデータセットが自動的にダウンロードされ、後者の場合は既存であることを想定する。が、前者の場合もあらかじめ用意しておいた方が安全。(https://busco-data.ezlab.org/v4/data/lineages/) --auto-lineage -l の代わりに自動でデータベースを選ばせることも可能。だが個人的にあまりお勧めしない。 出力 -oで指定したディレクトリ下にshort_summary.*.lineage_odb10.out.txtというファイルができる。
+# BUSCO version is: 5.4.3 # The lineage dataset is: aves_odb10 (Creation date: 2020-09-10, number of genomes: 8338, number of BUSCOs: 62) # Summarized benchmarking in BUSCO notation for file /home/yukimatsu/avian-locom/blst/GCA_013389925.</description>
     </item>
     
     <item>
@@ -62,18 +57,9 @@ data_hubから分類群を指定してダウンロード https://www.ncbi.nlm.ni
       <guid>http://ymat2.github.io/bioinformatics/cafe/</guid>
       <description>遺伝子ファミリーサイズの進化（系統樹上のどのノードで、いくつ遺伝子が増減したか）を、MCMC法で推定するプログラム。
 基本的な動かし方は、入力となるシェルスクリプトを書いてCAFEに渡す、という形になる。このシェルスクリプトを書く過程で、OrthoFinderの出力であるOrthogroups.GeneCount.tsvと種の系統樹（Species_Tree/SpeciesTree_rooted.txt）が必要。
-重要
-: CAFE5にアップデートされ、より柔軟な推定が可能になり、動かし方も容易になったため、特に理由がなければCAFE5を推奨する。
-インストール 作者たちのgithubから最新版のCAFEをダウンロードして、適当なディレクトリに置く。（例えば~/bin/） 解凍したらCAFEディレクトリまでcdしてconfigure＆make。 ~/bin/CAFE$ ./configure ~/bin/CAFE$ make PATHを通して動作確認。 ~/$ cafe # ctrl+C 使い方 こんな感じのシェルスクリプトを書く #! cafe # version # date load -i data/example.tab -t 10 -l logfile.txt -p 0.05 tree (((chimp:6,human:6):81,(mouse:17,rat:17):70):6,dog:93) lambda -s -t (((1,1)1,(2,2)2)2,2) report resultfile load
-: 基本的なオプション。 -i
-: 種/遺伝子ファミリーごとの遺伝子数のテーブル。 -t
-: スレッド数。使っているコンピュータに合わせて。 -l
-: ログファイルの名前。 -p
-: 遺伝子数の増減が急速であるとする有意水準。 -filter
-: 全種の共通祖先における遺伝子数が0であると推定される遺伝子ファミリーを除くオプション。これをつける場合はload行より上にtree行を書く。 tree
-: rootから各種までの距離が同じである（ultrametricな）系統樹。 lambda
-: 単位時間あたりの遺伝子数の増減速度λの設定。 -l
-: λを指定する場合。 -s</description>
+重要 CAFE5にアップデートされ、より柔軟な推定が可能になり、動かし方も容易になったため、特に理由がなければCAFE5を推奨する。 インストール 作者たちのgithubから最新版のCAFEをダウンロードして、適当なディレクトリに置く。（例えば~/bin/） 解凍したらCAFEディレクトリまでcdしてconfigure＆make。 ~/bin/CAFE$ ./configure ~/bin/CAFE$ make PATHを通して動作確認。 ~/$ cafe # ctrl+C 使い方 こんな感じのシェルスクリプトを書く #! cafe # version # date load -i data/example.tab -t 10 -l logfile.txt -p 0.05 tree (((chimp:6,human:6):81,(mouse:17,rat:17):70):6,dog:93) lambda -s -t (((1,1)1,(2,2)2)2,2) report resultfile load 基本的なオプション。 -iで種/遺伝子ファミリーごとの遺伝子数のテーブルを指定。 -tでスレッド数を指定。使っているコンピュータに合わせる。 -lでログファイルの名前を指定。 -pで遺伝子数の増減が急速であるとする有意水準を設定する。 -filterは全種の共通祖先における遺伝子数が0であると推定される遺伝子ファミリーを除くオプション。これをつける場合はload行より上にtree行を書く。 tree rootから各種までの距離が同じである（ultrametricな）系統樹。 lambda 単位時間あたりの遺伝子数の増減速度λの設定。 λを指定する場合は-l、自動推定する場合は-s。 -tでλ構造を設定。系統樹上の遺伝子増減速度が同じだと考えられる枝を同じ数字にする。全枝で同じだと仮定する場合すべて1にする。系統樹の枝長の部分を書き換えればいい。 report 出力ファイルの名前。 インプットとなるテーブル(example.tab)を用意する OrthoFinderの出力であるOrthogroups.GeneCount.tsvなどを基に、CAFEの入力ファイルとして加工する。基本的には、
+Description列、ID列を作る。 全種の遺伝子数が同じである遺伝子ファミリーを除く。 1種の遺伝子数が100を超える遺伝子ファミリーを除く。 を満たしていればどう作ってもいい。
+Description ID Chicken Lizard Mouse OG00001 OG00001 12 14 21 OG00002 OG00002 9 13 5 OG00003 OG00003 7 0 4 めんどくさい場合は下記のスクリプトを使ってもいい。</description>
     </item>
     
     <item>
@@ -93,16 +79,12 @@ data_hubから分類群を指定してダウンロード https://www.ncbi.nlm.ni
       <guid>http://ymat2.github.io/bioinformatics/nig-supercomputer/</guid>
       <description>https://sc.ddbj.nig.ac.jp/
 バッチジョブ CPU コアを 1 コアだけ使用するプログラムを少数実行する場合に用いる。
-## ジョブスクリプトを投げる qsub test.sh ## コマンドライン引数として投げる qsub -S /bun/bash -cwd &amp;#34;echo &amp;#39;hoge&amp;#39; &amp;gt; test.txt&amp;#34; コマンドライン引数。ジョブスクリプト内で#$につづけて渡すこともできる。 -cwd
-: バッチジョブをカレントディレクトリ上で実行する。デフォルトは$HOME -V
-: qsubを実行した際の環境変数を全てバッチジョブ(を実行する計算ノード）に引き継ぐ。 -l short
-: キューの指定。今のところ64GB以上ならmedium程度の認識。 -l d_rt=00:10:00,s_rt=00:10:00
-: バッチジョブの実行上限時間。デフォルトは72:00:00(=3日間) -l s_vmem=4G,-l mem_req=4G
-: 使用するメモリ量の指定。 -N an_example
-: ジョブ名の指定。 -S /bin/bash
-: インタープリタの指定。 -o,-e
-: 標準出力/標準エラーファイルの出力先。デフォルトはカレントディレクトリ。 アレイジョブ、パラレルジョブ CPUコアを複数もちいるジョブ。順次多数実行していくのがアレイジョブ。同時に少数実行するのがパラレルジョブくらいの認識。
-アレイジョブの書き方 #$ -S /bin/bash #$ -t 1-6:1 #$ -tc 3 #$ -cwd seq_ids=(SRR030253 SRR030254 SRR030255 SRR030256 SRR030257 SRR030258) seq_id=${seq_ids[$SGE_TASK_ID-1]} mv ${seq_id}.</description>
+## ジョブスクリプトを投げる qsub test.sh ## コマンドライン引数として投げる qsub -S /bun/bash -cwd &amp;#34;echo &amp;#39;hoge&amp;#39; &amp;gt; test.txt&amp;#34; オプションはコマンドライン引数でも、ジョブスクリプト内で#$につづけて渡すこともできる。
+-cwd バッチジョブをカレントディレクトリ上で実行する。デフォルトは$HOME -V qsubを実行した際の環境変数を全てバッチジョブ(を実行する計算ノード）に引き継ぐ。 -l short キューの指定。今のところ64GB以上ならmedium程度の認識。 -l d_rt=00:10:00,s_rt=00:10:00 バッチジョブの実行上限時間。デフォルトは72:00:00(=3日間) -l s_vmem=4G,-l mem_req=4G 使用するメモリ量の指定。 -N an_example ジョブ名の指定。 -S /bin/bash インタープリタの指定。 -o,-e
+: 標準出力/標準エラーファイルの出力先。デフォルトはカレントディレクトリ。
+アレイジョブ、パラレルジョブ CPUコアを複数もちいるジョブ。順次多数実行していくのがアレイジョブ。同時に少数実行するのがパラレルジョブくらいの認識。
+アレイジョブの書き方 #$ -S /bin/bash #$ -t 1-6:1 #$ -tc 3 #$ -cwd seq_ids=(SRR030253 SRR030254 SRR030255 SRR030256 SRR030257 SRR030258) seq_id=${seq_ids[$SGE_TASK_ID-1]} mv ${seq_id}.hoge ${seq_id}.fuga アレイジョブ、パラレルジョブ関連の引数
+-pe def_slot 8 スレッド数の指定。中で動くプログラムの指定と合わせる。 ```Shell # 例 #$ -S /bin/bash #$ -pe def_slot 5 #$ -cwd orthofinder -f .</description>
     </item>
     
   </channel>

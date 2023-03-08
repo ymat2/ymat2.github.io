@@ -95,17 +95,23 @@
 </span></span><span class="line"><span class="cl">rsync -option src/ user@host:dest/
 </span></span><span class="line"><span class="cl"><span class="c1"># Pull:</span>
 </span></span><span class="line"><span class="cl">rsync -option user@host:dest/ src/
-</span></span></code></pre></div><ul>
-<li><code>src/ dest/</code>: src配下のファイルがdst/にコピーされる。</li>
-<li><code>src dset/</code>: srcごとdst/にコピーされる。</li>
-</ul>
+</span></span></code></pre></div><dl>
+<dt><code>src/ dest/</code></dt>
+<dd>src配下のファイルがdst/にコピーされる。</dd>
+<dt><code>src dset/</code></dt>
+<dd>srcごとdst/にコピーされる。</dd>
+</dl>
 <h2 id="option">Option</h2>
-<ul>
-<li><code>-a</code>,<code>--archive</code><br>: ?</li>
-<li><code>-u</code>,<code>--update</code><br>: dest側で更新されているファイルをスキップする。</li>
-<li><code>-v</code>,<code>--verbose</code><br>: メッセージを冗長に表示させる。</li>
-<li><code>-z</code>,<code>--compress</code><br>: 送受信中にファイルを圧縮する。</li>
-</ul>
+<dl>
+<dt><code>-a</code>,<code>--archive</code></dt>
+<dd>?</dd>
+<dt><code>-u</code>,<code>--update</code></dt>
+<dd>dest側で更新されているファイルをスキップする。</dd>
+<dt><code>-v</code>,<code>--verbose</code></dt>
+<dd>メッセージを冗長に表示させる。</dd>
+<dt><code>-z</code>,<code>--compress</code></dt>
+<dd>送受信中にファイルを圧縮する。</dd>
+</dl>
 
     </article>
   </section>

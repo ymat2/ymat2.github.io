@@ -66,6 +66,24 @@ li {
 	margin-block: 0.2em;
 }
 
+dl dt {
+    font-weight: bold;
+    margin-block-start: 1em;
+}
+
+dl dd {
+	margin-block: 0.3em;
+	margin-inline: 1em 0;
+	position: relative;
+}
+
+dl dd::before {
+    content: ":";
+    color: #ccc;
+    position: absolute;
+    left: -0.8em;
+}
+
 .pagelink {
 	font-weight: 600;
 	font-size: 1.2em;
@@ -101,7 +119,7 @@ code {
 	font-size: 85%;
 	padding: 0.2em 0.4em;
 	background-color: #e9e9e9;
-	border-radius: 0.25em;
+	border-radius: 0.1em;
 }
 
 pre {

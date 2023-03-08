@@ -93,20 +93,26 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">## コマンドライン引数として投げる</span>
 </span></span><span class="line"><span class="cl">qsub -S /bun/bash -cwd <span class="s2">&#34;echo &#39;hoge&#39; &gt; test.txt&#34;</span>
-</span></span></code></pre></div><ul>
-<li>コマンドライン引数。ジョブスクリプト内で<code>#$</code>につづけて渡すこともできる。
-<ul>
-<li><code>-cwd</code><br>: バッチジョブをカレントディレクトリ上で実行する。デフォルトは<code>$HOME</code></li>
-<li><code>-V</code><br>: <code>qsub</code>を実行した際の環境変数を全てバッチジョブ(を実行する計算ノード）に引き継ぐ。</li>
-<li><code>-l short</code><br>: キューの指定。今のところ64GB以上なら<code>medium</code>程度の認識。</li>
-<li><code>-l d_rt=00:10:00</code>,<code>s_rt=00:10:00</code><br>: バッチジョブの実行上限時間。デフォルトは<code>72:00:00</code>(=3日間)</li>
-<li><code>-l s_vmem=4G</code>,<code>-l mem_req=4G</code><br>: 使用するメモリ量の指定。</li>
-<li><code>-N an_example</code><br>: ジョブ名の指定。</li>
-<li><code>-S /bin/bash</code><br>: インタープリタの指定。</li>
-<li><code>-o</code>,<code>-e</code><br>: 標準出力/標準エラーファイルの出力先。デフォルトはカレントディレクトリ。</li>
-</ul>
-</li>
-</ul>
+</span></span></code></pre></div><p>オプションはコマンドライン引数でも、ジョブスクリプト内で<code>#$</code>につづけて渡すこともできる。</p>
+<dl>
+<dt><code>-cwd</code></dt>
+<dd>バッチジョブをカレントディレクトリ上で実行する。デフォルトは<code>$HOME</code></dd>
+<dt><code>-V</code></dt>
+<dd><code>qsub</code>を実行した際の環境変数を全てバッチジョブ(を実行する計算ノード）に引き継ぐ。</dd>
+<dt><code>-l short</code></dt>
+<dd>キューの指定。今のところ64GB以上なら<code>medium</code>程度の認識。</dd>
+<dt><code>-l d_rt=00:10:00</code>,<code>s_rt=00:10:00</code></dt>
+<dd>バッチジョブの実行上限時間。デフォルトは<code>72:00:00</code>(=3日間)</dd>
+<dt><code>-l s_vmem=4G</code>,<code>-l mem_req=4G</code></dt>
+<dd>使用するメモリ量の指定。</dd>
+<dt><code>-N an_example</code></dt>
+<dd>ジョブ名の指定。</dd>
+<dt><code>-S /bin/bash</code></dt>
+<dd>インタープリタの指定。</dd>
+<dd>
+<p><code>-o</code>,<code>-e</code><br>: 標準出力/標準エラーファイルの出力先。デフォルトはカレントディレクトリ。</p>
+</dd>
+</dl>
 <h2 id="アレイジョブパラレルジョブ">アレイジョブ、パラレルジョブ</h2>
 <p>CPUコアを複数もちいるジョブ。順次多数実行していくのがアレイジョブ。同時に少数実行するのがパラレルジョブくらいの認識。</p>
 <h3 id="アレイジョブの書き方">アレイジョブの書き方</h3>
@@ -118,26 +124,25 @@
 </span></span><span class="line"><span class="cl"><span class="nv">seq_id</span><span class="o">=</span><span class="si">${</span><span class="nv">seq_ids</span><span class="p">[</span><span class="nv">$SGE_TASK_ID</span><span class="p">-1]</span><span class="si">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">mv <span class="si">${</span><span class="nv">seq_id</span><span class="si">}</span>.hoge <span class="si">${</span><span class="nv">seq_id</span><span class="si">}</span>.fuga
-</span></span></code></pre></div><ul>
-<li>アレイジョブ、パラレルジョブ関連の引数
-<ul>
-<li><code>-pe def_slot 8</code><br>: スレッド数の指定。中で動くプログラムの指定と合わせる。
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Shell" data-lang="Shell"><span class="line"><span class="cl"><span class="c1"># 例</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#$ -S /bin/bash</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#$ -pe def_slot 5</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#$ -cwd</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">orthofinder -f ./fasta/ -t <span class="m">5</span> -a <span class="m">5</span>
-</span></span></code></pre></div></li>
-<li><code>-t 1-N</code><br>: N個のタスクを持つアレイジョブとして投入する。</li>
-<li><code>-tc M</code><br>: 一度に実行されるアレイジョブのタスク数の上限を指定。これをやらないとユーザーに割り振られた計算機数をオーバーしてしまうことがある
-<ul>
-<li><code>qquota</code>でリソースを確認できる。2022/9/28時点で300。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+</span></span></code></pre></div><p>アレイジョブ、パラレルジョブ関連の引数</p>
+<dl>
+<dt><code>-pe def_slot 8</code></dt>
+<dd>スレッド数の指定。中で動くプログラムの指定と合わせる。
+```Shell
+# 例
+#$ -S /bin/bash
+#$ -pe def_slot 5
+#$ -cwd
+<pre><code>orthofinder -f ./fasta/ -t 5 -a 5
+```
+</code></pre>
+</dd>
+<dt><code>-t 1-N</code></dt>
+<dd>N個のタスクを持つアレイジョブとして投入する。</dd>
+<dt><code>-tc M</code></dt>
+<dd>一度に実行されるアレイジョブのタスク数の上限を指定。これをやらないとユーザーに割り振られた計算機数をオーバーしてしまうことがある</dd>
+<dd><code>qquota</code>でリソースを確認できる。2022/9/28時点で300。</dd>
+</dl>
 <h3 id="メモリ指定">メモリ指定</h3>
 <ul>
 <li>

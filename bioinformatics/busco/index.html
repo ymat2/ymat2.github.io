@@ -97,13 +97,18 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">brew install busco
 </span></span></code></pre></div><h2 id="使い方">使い方</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">busco -i <span class="o">[</span>SEQUENCE_FILE<span class="o">]</span> -l <span class="o">[</span>LINEAGE<span class="o">]</span> -o <span class="o">[</span>OUTPUT_NAME<span class="o">]</span> -m <span class="o">[</span>MODE<span class="o">]</span> <span class="o">[</span>OTHER OPTIONS<span class="o">]</span>
-</span></span></code></pre></div><ul>
-<li><code>-i</code>, <code>--in</code><br>: 塩基配列またはアミノ酸配列のFastaファイル。</li>
-<li><code>-o</code>, <code>--out</code><br>: 出力。ここで指定した名前のディレクトリが生成される。</li>
-<li><code>-m</code>, <code>--mode</code><br>: ゲノムなら<code>genome</code>、トランスクリプトームなら<code>transcriptome</code>、タンパク質なら<code>protein</code>。</li>
-<li><code>-l</code>, <code>--lineage_dataset</code><br>: ユニバーサルシングルコピーのデータセット。相対パス<code>./bacteria_odb10</code>か、絶対パス<code>/home/user/bacteria_odb10</code>で指定する。前者の場合はデータセットが自動的にダウンロードされ、後者の場合は既存であることを想定する。が、前者の場合もあらかじめ用意しておいた方が安全。(<a href="https://busco-data.ezlab.org/v4/data/lineages/">https://busco-data.ezlab.org/v4/data/lineages/</a>)</li>
-<li><code>--auto-lineage</code><br>: <code>-l </code>の代わりに自動でデータベースを選ばせることも可能。だが個人的にあまりお勧めしない。</li>
-</ul>
+</span></span></code></pre></div><dl>
+<dt><code>-i</code>, <code>--in</code></dt>
+<dd>塩基配列またはアミノ酸配列のFastaファイル。</dd>
+<dt><code>-o</code>, <code>--out</code></dt>
+<dd>出力。ここで指定した名前のディレクトリが生成される。</dd>
+<dt><code>-m</code>, <code>--mode</code></dt>
+<dd>ゲノムなら<code>genome</code>、トランスクリプトームなら<code>transcriptome</code>、タンパク質なら<code>protein</code>。</dd>
+<dt><code>-l</code>, <code>--lineage_dataset</code></dt>
+<dd>ユニバーサルシングルコピーのデータセット。相対パス<code>./bacteria_odb10</code>か、絶対パス<code>/home/user/bacteria_odb10</code>で指定する。前者の場合はデータセットが自動的にダウンロードされ、後者の場合は既存であることを想定する。が、前者の場合もあらかじめ用意しておいた方が安全。(<a href="https://busco-data.ezlab.org/v4/data/lineages/">https://busco-data.ezlab.org/v4/data/lineages/</a>)</dd>
+<dt><code>--auto-lineage</code></dt>
+<dd><code>-l </code>の代わりに自動でデータベースを選ばせることも可能。だが個人的にあまりお勧めしない。</dd>
+</dl>
 <h2 id="出力">出力</h2>
 <p><code>-o</code>で指定したディレクトリ下に<code>short_summary.*.lineage_odb10.out.txt</code>というファイルができる。</p>
 <pre tabindex="0"><code># BUSCO version is: 5.4.3 

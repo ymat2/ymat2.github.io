@@ -85,12 +85,14 @@
     <h1 itemprop="name" id="title">CAFE - Computational Analysis of gene Family evolution</h1>
 
     <article itemprop="articleBody" id="content" class="w-90 lh-copy">
-      <p>遺伝子ファミリーサイズの進化（系統樹上のどのノードで、いくつ遺伝子が増減したか）を、MCMC法で推定するプログラム。</p>
-<p>基本的な動かし方は、入力となるシェルスクリプトを書いてCAFEに渡す、という形になる。このシェルスクリプトを書く過程で、OrthoFinderの出力であるOrthogroups.GeneCount.tsvと種の系統樹（Species_Tree/SpeciesTree_rooted.txt）が必要。</p>
-<p><strong>重要</strong><br>:
-<a href="http://ymat2.github.io/bioinformatics/cafe5/">CAFE5</a>にアップデートされ、より柔軟な推定が可能になり、動かし方も容易になったため、特に理由がなければCAFE5を推奨する。</p>
+      <p>遺伝子ファミリーサイズの進化（系統樹上のどのノードで、いくつ遺伝子が増減したか）を、MCMC法で推定するプログラム。<br>
+基本的な動かし方は、入力となるシェルスクリプトを書いてCAFEに渡す、という形になる。このシェルスクリプトを書く過程で、OrthoFinderの出力であるOrthogroups.GeneCount.tsvと種の系統樹（Species_Tree/SpeciesTree_rooted.txt）が必要。</p>
+<dl>
+<dt><strong>重要</strong></dt>
+<dd><a href="http://ymat2.github.io/bioinformatics/cafe5/">CAFE5</a>にアップデートされ、より柔軟な推定が可能になり、動かし方も容易になったため、特に理由がなければCAFE5を推奨する。</dd>
+</dl>
 <h2 id="インストール">インストール</h2>
-<ul>
+<ol>
 <li>作者たちのgithubから<a href="https://github.com/hahnlab/CAFE/releases/latest">最新版のCAFEをダウンロード</a>して、適当なディレクトリに置く。（例えば<code>~/bin/</code>）</li>
 <li>解凍したらCAFEディレクトリまで<code>cd</code>して<code>configure</code>＆<code>make</code>。
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">~/bin/CAFE$ ./configure
@@ -99,7 +101,7 @@
 <li>PATHを通して動作確認。
 <pre tabindex="0"><code>~/$ cafe  # ctrl+C
 </code></pre></li>
-</ul>
+</ol>
 <h2 id="使い方">使い方</h2>
 <h3 id="こんな感じのシェルスクリプトを書く">こんな感じのシェルスクリプトを書く</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#! cafe 
@@ -109,26 +111,23 @@
 </span></span><span class="line"><span class="cl">tree <span class="o">(((</span>chimp:6,human:6<span class="o">)</span>:81,<span class="o">(</span>mouse:17,rat:17<span class="o">)</span>:70<span class="o">)</span>:6,dog:93<span class="o">)</span> 
 </span></span><span class="line"><span class="cl">lambda -s -t <span class="o">(((</span>1,1<span class="o">)</span>1,<span class="o">(</span>2,2<span class="o">)</span>2<span class="o">)</span>2,2<span class="o">)</span> 
 </span></span><span class="line"><span class="cl">report resultfile
-</span></span></code></pre></div><ul>
-<li><code>load</code><br>: 基本的なオプション。
-<ul>
-<li><code>-i</code><br>: 種/遺伝子ファミリーごとの遺伝子数のテーブル。</li>
-<li><code>-t</code><br>: スレッド数。使っているコンピュータに合わせて。</li>
-<li><code>-l</code><br>: ログファイルの名前。</li>
-<li><code>-p</code><br>: 遺伝子数の増減が急速であるとする有意水準。</li>
-<li><code>-filter</code><br>: 全種の共通祖先における遺伝子数が0であると推定される遺伝子ファミリーを除くオプション。これをつける場合はload行より上にtree行を書く。</li>
-</ul>
-</li>
-<li><code>tree</code><br>: rootから各種までの距離が同じである（ultrametricな）系統樹。</li>
-<li><code>lambda</code><br>: 単位時間あたりの遺伝子数の増減速度λの設定。
-<ul>
-<li><code>-l</code><br>: λを指定する場合。</li>
-<li><code>-s</code><br>: λを自動推定する場合。</li>
-<li><code>-t</code><br>: λ構造。系統樹上の遺伝子増減速度が同じだと考えられる枝を同じ数字にする。全枝で同じだと仮定する場合すべて1にする。系統樹の枝長の部分を書き換えればいい。</li>
-</ul>
-</li>
-<li><code>report</code><br>: 出力ファイルの名前。</li>
-</ul>
+</span></span></code></pre></div><dl>
+<dt><code>load</code></dt>
+<dd>基本的なオプション。</dd>
+<dd><code>-i</code>で種/遺伝子ファミリーごとの遺伝子数のテーブルを指定。</dd>
+<dd><code>-t</code>でスレッド数を指定。使っているコンピュータに合わせる。</dd>
+<dd><code>-l</code>でログファイルの名前を指定。</dd>
+<dd><code>-p</code>で遺伝子数の増減が急速であるとする有意水準を設定する。</dd>
+<dd><code>-filter</code>は全種の共通祖先における遺伝子数が0であると推定される遺伝子ファミリーを除くオプション。<strong>これをつける場合はload行より上にtree行を書く。</strong></dd>
+<dt><code>tree</code></dt>
+<dd>rootから各種までの距離が同じである（ultrametricな）系統樹。</dd>
+<dt><code>lambda</code></dt>
+<dd>単位時間あたりの遺伝子数の増減速度λの設定。</dd>
+<dd>λを指定する場合は<code>-l</code>、自動推定する場合は<code>-s</code>。</dd>
+<dd><code>-t</code>でλ構造を設定。系統樹上の遺伝子増減速度が同じだと考えられる枝を同じ数字にする。全枝で同じだと仮定する場合すべて1にする。系統樹の枝長の部分を書き換えればいい。</dd>
+<dt><code>report</code></dt>
+<dd>出力ファイルの名前。</dd>
+</dl>
 <h3 id="インプットとなるテーブルexampletabを用意する">インプットとなるテーブル(example.tab)を用意する</h3>
 <p>OrthoFinderの出力であるOrthogroups.GeneCount.tsvなどを基に、CAFEの入力ファイルとして加工する。基本的には、</p>
 <ul>
@@ -194,12 +193,12 @@
 </span></span><span class="line"><span class="cl"><span class="nf">write.tree</span><span class="p">(</span><span class="n">tree2</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="s">&#34;tree_ultrametric.nwk&#34;</span><span class="p">)</span> <span class="c1">#ultrametric系統樹の保存</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># spAとspBが3.6~4.6億年前に分岐したという情報から全体の分岐年代を推定する。</span>
-</span></span></code></pre></div><p><strong>注意点</strong></p>
-<ul>
-<li>tipは遺伝子数のテーブルの列名に合わせる。</li>
-<li>bootstrapなどの余計な要素は消しておく。</li>
-<li>枝長は少数でも構わないが、1以上のできるだけ小さい枝長になるように約分する。（大きすぎるとエラーになるっぽい。）</li>
-</ul>
+</span></span></code></pre></div><dl>
+<dt><strong>注意点</strong></dt>
+<dd>tipは遺伝子数のテーブルの列名に合わせる。</dd>
+<dd>bootstrapなどの余計な要素は消しておく。</dd>
+<dd>枝長は少数でも構わないが、1以上のできるだけ小さい枝長になるように約分する。（大きすぎるとエラーになるっぽい。）</dd>
+</dl>
 <h3 id="cafeを実行する">CAFEを実行する</h3>
 <p>シェルスクリプトが用意できたら、次のコマンドでCAFEを実行する。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">cafe example.sh
@@ -214,26 +213,28 @@
 </li>
 </ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">python cafe_tutrial/python_scripts/cafetutorial_report_analysis.py -i resultfile.rep -o cafe_summary
-</span></span></code></pre></div><ul>
-<li><code>-i</code><br>: cafe本体の出力ファイル。</li>
-<li><code>-o</code><br>: 加工して生成されるファイル（4つ）の名前。
+</span></span></code></pre></div><dl>
+<dt><code>-i</code></dt>
+<dd>cafe本体の出力ファイル。</dd>
+<dt><code>-o</code></dt>
+<dd>加工して生成されるファイル（4つ）の名前。
 <ul>
 <li>cafe_summary_fams.txt</li>
 <li>cafe_summary_anc.txt</li>
 <li>cafe_summary_pub.txt</li>
 <li>cafe_summary_node.txt</li>
 </ul>
-</li>
-</ul>
+</dd>
+</dl>
 <h2 id="トラブルシューティング">トラブルシューティング</h2>
-<ul>
-<li><code>Failed to load tree from provided string (branch length missing)</code><br>:
-系統樹の枝長に0が含まれているとダメ。自分は該当するノードを除外した。</li>
-<li><code>No species ‘anolis_carolinensis’ was found in the tree</code><br>:
-系統樹を読み込む際に内部でtip nameを書き換えているようで、長すぎる種名やアンダースコアが原因と思われるエラー。tip nameを短く書き換える。（<code>AnoCal</code>とか）</li>
-<li><code>Lambda values were not set. Please set lambda values with the lambda or lambdamu command.</code><br>:
-λを自動推定する際に、系統樹の枝長がでかい数字だとこうなるっぽい。できるだけ短くなるように約分する。</li>
-</ul>
+<dl>
+<dt><code>Failed to load tree from provided string (branch length missing)</code></dt>
+<dd>系統樹の枝長に0が含まれているとダメ。自分は該当するノードを除外した。</dd>
+<dt><code>No species ‘anolis_carolinensis’ was found in the tree</code></dt>
+<dd>系統樹を読み込む際に内部でtip nameを書き換えているようで、長すぎる種名やアンダースコアが原因と思われるエラー。tip nameを短く書き換える。（<code>AnoCal</code>とか）</dd>
+<dt><code>Lambda values were not set. Please set lambda values with the lambda or lambdamu command.</code></dt>
+<dd>λを自動推定する際に、系統樹の枝長がでかい数字だとこうなるっぽい。できるだけ短くなるように約分する。</dd>
+</dl>
 
     </article>
   </section>

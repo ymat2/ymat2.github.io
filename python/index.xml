@@ -44,12 +44,7 @@ pdf2pptxはpdf2pptx inputという単純なコマンドでPDFの各ページをP
 インストール pip install pdf2pptx ただし生のpipは非推奨なので自分の場合は
 python3 -m pip install pdf2pptx で入れた。
 Usage pdf2pptx hoge.pdf 出力ファイルを指定しない場合、拡張子のみ変わったhoge.pptxが生成される。
-Option pdf2pptx --help -o, --output
-: 出力ファイルの指定 -r, --resolution
-: 1inchあたりのドット数で解像度を指定。デフォルトは300だが150とかでも十分可読でファイルサイズも抑えられる。 -q, --quiet
-: ログの非表示 --from
-: PDFの何ページ目からパワポに変換するか。 --count
-: PDFの何ページ分パワポに変換するか。 </description>
+Option pdf2pptx --help -o, --output 出力ファイルの指定 -r, --resolution 1inchあたりのドット数で解像度を指定。デフォルトは300だが150とかでも十分可読でファイルサイズも抑えられる。 -q, --quiet ログの非表示 --from PDFの何ページ目からパワポに変換するか。 --count PDFの何ページ分パワポに変換するか。 </description>
     </item>
     
     <item>

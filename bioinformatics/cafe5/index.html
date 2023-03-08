@@ -190,16 +190,24 @@
 </ol>
 <h2 id="出力ファイル">出力ファイル</h2>
 <p><code>-o</code>で出力先を指定しなければ実行ディレクトリに<code>result/</code>ディレクトリが作られてその中に格納される。</p>
-<ul>
-<li><em>model</em>_asr.tre<br>: 各遺伝子ファミリーごとに再構成された系統樹が書かれている。ノード名＋アンダースコアに続く形でそのノードでの推定遺伝子数が書かれており、有意な増減があったノードには<code>*</code>がふってある。</li>
-<li><em>model</em>_family_results.txt<br>: 遺伝子ファミリー、P値、変化が有意であるかどうか（y/n）がタブ区切りで記述されている。</li>
-<li><em>model</em>_clade_results.txt<br>: 各ノードごとに遺伝子数が増加/減少したファミリーの数が書いてある。</li>
-<li><em>model</em>_branch_probabilities.txt<br>: 各ノード、各遺伝子ファミリーにおける確率（なんの？）のタブ区切りリスト。ガンマモデルの場合、有意な変化があったファミリーについてのみ書かれている。</li>
-<li><em>model</em>_family_likelihoods.txt<br>: Baseモデルでは各ファミリーごとの尤度、ガンマモデルではそれに加えて事後確率がタブ区切りで書かれている。</li>
-<li><em>model</em>_result.txt<br>: 選択されたモデルの名前、そのモデルの最終的な尤度、遺伝子数の進化速度にあたるLambdaなどが書かれている。</li>
-<li><em>model</em>_change.txt<br>: 各遺伝子ファミリーについて、各ノードにおける親ノードからの遺伝子数の変化量が書いてある。</li>
-<li><em>model</em>_count.txt<br>: 各遺伝子ファミリーについて、各ノードにおける推定遺伝子数。</li>
-</ul>
+<dl>
+<dt><em>model</em>_asr.tre</dt>
+<dd>各遺伝子ファミリーごとに再構成された系統樹が書かれている。ノード名＋アンダースコアに続く形でそのノードでの推定遺伝子数が書かれており、有意な増減があったノードには<code>*</code>がふってある。</dd>
+<dt><em>model</em>_family_results.txt</dt>
+<dd>遺伝子ファミリー、P値、変化が有意であるかどうか（y/n）がタブ区切りで記述されている。</dd>
+<dt><em>model</em>_clade_results.txt</dt>
+<dd>各ノードごとに遺伝子数が増加/減少したファミリーの数が書いてある。</dd>
+<dt><em>model</em>_branch_probabilities.txt</dt>
+<dd>各ノード、各遺伝子ファミリーにおける確率（なんの？）のタブ区切りリスト。ガンマモデルの場合、有意な変化があったファミリーについてのみ書かれている。</dd>
+<dt><em>model</em>_family_likelihoods.txt</dt>
+<dd>Baseモデルでは各ファミリーごとの尤度、ガンマモデルではそれに加えて事後確率がタブ区切りで書かれている。</dd>
+<dt><em>model</em>_result.txt</dt>
+<dd>選択されたモデルの名前、そのモデルの最終的な尤度、遺伝子数の進化速度にあたるLambdaなどが書かれている。</dd>
+<dt><em>model</em>_change.txt</dt>
+<dd>各遺伝子ファミリーについて、各ノードにおける親ノードからの遺伝子数の変化量が書いてある。</dd>
+<dt><em>model</em>_count.txt</dt>
+<dd>各遺伝子ファミリーについて、各ノードにおける推定遺伝子数。</dd>
+</dl>
 <h2 id="並列化">並列化</h2>
 <p><code>--cores</code>オプションで指定。</p>
 <pre tabindex="0"><code>cafe5 -i gene_families.txt -t species_tree.txt --cores 5

@@ -17,11 +17,21 @@ rsync -option src/ user@host:dest/
 rsync -option user@host:dest/ src/
 ```
 
-- `src/ dest/`: src配下のファイルがdst/にコピーされる。
-- `src dset/`: srcごとdst/にコピーされる。
+`src/ dest/`
+:	src配下のファイルがdst/にコピーされる。
+
+`src dset/`
+:	srcごとdst/にコピーされる。
 
 ## Option
-- `-a`,`--archive`<br>: ?
-- `-u`,`--update`<br>: dest側で更新されているファイルをスキップする。
-- `-v`,`--verbose`<br>: メッセージを冗長に表示させる。
-- `-z`,`--compress`<br>: 送受信中にファイルを圧縮する。
+`-a`,`--archive`
+:	?
+
+`-u`,`--update`
+:	dest側で更新されているファイルをスキップする。
+
+`-v`,`--verbose`
+:	メッセージを冗長に表示させる。
+
+`-z`,`--compress`
+:	送受信中にファイルを圧縮する。

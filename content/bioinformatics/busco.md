@@ -31,11 +31,20 @@ brew install busco
 busco -i [SEQUENCE_FILE] -l [LINEAGE] -o [OUTPUT_NAME] -m [MODE] [OTHER OPTIONS]
 ```
 
-- `-i`, `--in`<br>: 塩基配列またはアミノ酸配列のFastaファイル。
-- `-o`, `--out`<br>: 出力。ここで指定した名前のディレクトリが生成される。
-- `-m`, `--mode`<br>: ゲノムなら`genome`、トランスクリプトームなら`transcriptome`、タンパク質なら`protein`。
-- `-l`, `--lineage_dataset`<br>: ユニバーサルシングルコピーのデータセット。相対パス`./bacteria_odb10`か、絶対パス`/home/user/bacteria_odb10`で指定する。前者の場合はデータセットが自動的にダウンロードされ、後者の場合は既存であることを想定する。が、前者の場合もあらかじめ用意しておいた方が安全。(https://busco-data.ezlab.org/v4/data/lineages/)
-- `--auto-lineage`<br>: `-l `の代わりに自動でデータベースを選ばせることも可能。だが個人的にあまりお勧めしない。
+`-i`, `--in`
+:	塩基配列またはアミノ酸配列のFastaファイル。
+
+`-o`, `--out`
+:	出力。ここで指定した名前のディレクトリが生成される。
+
+`-m`, `--mode`
+:	ゲノムなら`genome`、トランスクリプトームなら`transcriptome`、タンパク質なら`protein`。
+
+`-l`, `--lineage_dataset`
+:	ユニバーサルシングルコピーのデータセット。相対パス`./bacteria_odb10`か、絶対パス`/home/user/bacteria_odb10`で指定する。前者の場合はデータセットが自動的にダウンロードされ、後者の場合は既存であることを想定する。が、前者の場合もあらかじめ用意しておいた方が安全。(https://busco-data.ezlab.org/v4/data/lineages/)
+
+`--auto-lineage`
+:	`-l `の代わりに自動でデータベースを選ばせることも可能。だが個人的にあまりお勧めしない。
 
 
 ## 出力

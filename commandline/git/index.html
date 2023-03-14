@@ -86,9 +86,9 @@
 
     <article itemprop="articleBody" id="content" class="w-90 lh-copy">
       <h2 id="基本操作">基本操作</h2>
-<h3 id="create-new-repositories">Create new repositories</h3>
+<h3 id="新しいリポジトリの作成">新しいリポジトリの作成</h3>
 <ol>
-<li>Githubのサイト右上の&quot;+&ldquo;ボタンからNew repositoryを選択し、Create repositoryする。</li>
+<li>Githubのサイト右上の<code>+</code>ボタンからNew repositoryを選択し、Create repositoryする。</li>
 <li>手元のPCに同名のリモートリポジトリをつくる。
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir *new_repository*
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> *new_repository*
@@ -104,12 +104,47 @@
 </span></span></code></pre></div></li>
 <li>リモートリポジトリを紐づけて<code>push</code>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git remote -v	<span class="c1"># 何も表示されない</span>
-</span></span><span class="line"><span class="cl">git remote add origin https://github.com/*username*/*new_repository*.git
+</span></span><span class="line"><span class="cl">git remote add origin https://github.com/*username*/*new_repository*.git	<span class="c1"># HTTPの場合</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># git remote add origin git@github.com:*username*/*new_repository*.git	# SSHの場合</span>
 </span></span><span class="line"><span class="cl">git remote -v	<span class="c1"># なんか出る</span>
 </span></span><span class="line"><span class="cl">git branch -M main
 </span></span><span class="line"><span class="cl">git push -u origin main
 </span></span></code></pre></div></li>
 </ol>
+<h3 id="ローカルリポジトリの変更をリモートリポジトリに反映">ローカルリポジトリの変更をリモートリポジトリに反映</h3>
+<ol>
+<li>
+<p>手元でファイルをいじって変更を確認。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Hello, Github&#34;</span> &gt; hoge.txt
+</span></span><span class="line"><span class="cl">git status	<span class="c1"># hoge.txtが`Changes not staged for commit:`に表示される。</span>
+</span></span></code></pre></div></li>
+<li>
+<p>変更したファイルをインデックスに登録。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git add hoge.txt
+</span></span><span class="line"><span class="cl">git status	<span class="c1"># hoge.txtが`Changes to be committed:`に表示される。</span>
+</span></span></code></pre></div></li>
+<li>
+<p>変更をコミット。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git commit -m <span class="s2">&#34;modified hoge.txt&#34;</span>
+</span></span><span class="line"><span class="cl">git status	<span class="c1"># `nothing to commit, working tree clean`となる。</span>
+</span></span></code></pre></div></li>
+<li>
+<p>リモートリポジトリへ<code>push</code>。</p>
+<pre tabindex="0"><code>git push
+</code></pre></li>
+</ol>
+<h3 id="リモートリポジトリの変更をローカルリポジトリに反映">リモートリポジトリの変更をローカルリポジトリに反映</h3>
+<ul>
+<li>
+<p>リモートブランチの状態を直接ローカルブランチに反映。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git pull
+</span></span></code></pre></div></li>
+<li>
+<p>リモートブランチの変更を一度ローカルのアップストリームブランチに反映させてからローカルブランチに反映。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git fetch
+</span></span><span class="line"><span class="cl">git merge
+</span></span></code></pre></div></li>
+</ul>
 <h2 id="gitignore"><code>.gitignore</code></h2>
 <p><a href="https://docs.github.com/ja/get-started/getting-started-with-git/ignoring-files">https://docs.github.com/ja/get-started/getting-started-with-git/ignoring-files</a></p>
 <ul>

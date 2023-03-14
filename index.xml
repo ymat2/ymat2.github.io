@@ -9,6 +9,18 @@
     <copyright>(ɔ) 2022 Yuki Matsuda</copyright>
     <lastBuildDate>Thu, 03 Nov 2022 11:45:13 +0900</lastBuildDate><atom:link href="http://ymat2.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>ファイルの読み書き</title>
+      <link>http://ymat2.github.io/python/methods_for_file/</link>
+      <pubDate>Thu, 09 Mar 2023 01:05:42 +0900</pubDate>
+      
+      <guid>http://ymat2.github.io/python/methods_for_file/</guid>
+      <description>https://docs.python.org/ja/3/tutorial/inputoutput.html#reading-and-writing-files
+Short Summary ファイルの読み書き with oepn(filename, mode, encoding=None) as f: ファイルオブジェクトに対するメソッド ### すべて読む f.read() ### 一行だけ読む f.readline() ### 一行ずつ読む for line in f: ### 行ごとにリストに格納 f.readlines() list(f) ### 書く f.write(str) open() f = open(filename, mode, encoding=None) filename ファイルのパス。 mode rは読み込み専用。modeを省略した場合はこれで開かれる。 wは書き込み専用。同名ファイルがあれば上書きされる。 aは追記。ファイルの終端に追加していく。 r+は読み書き両用。 with open(filename, mode, encoding=None) as f: withを使ってファイルを開くとブロックの終わりで自動的にファイルがclose()される。むしろ、生のopen()を使ったときにclose()し忘れるとリソースを圧迫したり、f.write()が正常に書き込まれなかったりするので習慣的にwithを使うほうが良い。
+readメソッド f.read(size) サイズを指定して開く。（テキストモードでは文字数、バイナリモードではbyte数。） f.readline() 一行だけ読む。 for line in f: 一行ずつ読む。 f.readlines() 各行を要素とするリストに格納。 例 sample.txt
+hoge fuga koke piyo ## fとして読み込む ## read() print(f.</description>
+    </item>
+    
+    <item>
       <title>Juliaのインストール</title>
       <link>http://ymat2.github.io/julia/install/</link>
       <pubDate>Wed, 08 Feb 2023 02:51:57 +0900</pubDate>
@@ -197,9 +209,7 @@ Description ID Chicken Lizard Mouse OG00001 OG00001 12 14 21 OG00002 OG00002 9 1
       <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
       
       <guid>http://ymat2.github.io/commandline/git/</guid>
-      <description>基本操作 Create new repositories Githubのサイト右上の&amp;quot;+&amp;ldquo;ボタンからNew repositoryを選択し、Create repositoryする。 手元のPCに同名のリモートリポジトリをつくる。 mkdir *new_repository* cd *new_repository* git init ファイルをaddしてcommitしてもいいし、空のcommitをしてもいい。 ### すでにあるファイルをadd&amp;amp;commit git add *some_file* git commit -m &amp;#34;some files added&amp;#34; ### 空のコミット git commit --allow-empty -m &amp;#34;☕ Create repository&amp;#34; リモートリポジトリを紐づけてpush git remote -v	# 何も表示されない git remote add origin https://github.com/*username*/*new_repository*.git git remote -v	# なんか出る git branch -M main git push -u origin main .gitignore https://docs.github.com/ja/get-started/getting-started-with-git/ignoring-files
-リポジトリのルートディレクトリに.gitignoreを配置して、git管理から除外するファイルを制御する。
-### 場所を問わず特定のファイル・ディレクトリを除外 hoge ### .gitignoreが置かれたリポジトリの特定のファイル・ディレクトリを除外 /hoge ### 場所を問わず特定のディレクトリの除外 dir/ ### .</description>
+      <description>基本操作 新しいリポジトリの作成 Githubのサイト右上の+ボタンからNew repositoryを選択し、Create repositoryする。 手元のPCに同名のリモートリポジトリをつくる。 mkdir *new_repository* cd *new_repository* git init ファイルをaddしてcommitしてもいいし、空のcommitをしてもいい。 ### すでにあるファイルをadd&amp;amp;commit git add *some_file* git commit -m &amp;#34;some files added&amp;#34; ### 空のコミット git commit --allow-empty -m &amp;#34;☕ Create repository&amp;#34; リモートリポジトリを紐づけてpush git remote -v	# 何も表示されない git remote add origin https://github.com/*username*/*new_repository*.git	# HTTPの場合 # git remote add origin git@github.com:*username*/*new_repository*.git	# SSHの場合 git remote -v	# なんか出る git branch -M main git push -u origin main ローカルリポジトリの変更をリモートリポジトリに反映 手元でファイルをいじって変更を確認。</description>
     </item>
     
     <item>
@@ -219,7 +229,7 @@ $ brew reinstall --cask r rstudio ==&amp;gt; Caveats Cask r installs files under
       <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>
       
       <guid>http://ymat2.github.io/commandline/linux-cmd/</guid>
-      <description>基本 pwd カレントディレクトリの絶対パス ls カレントディレクトリにあるファイル cd ディレクトリ移動 mkdir ディレクトリ新規作成 touch ファイル新規作成（普段はnanoでやってる） mv mv source/path destination/pathで移動、mv before_name after_nameでリネーム（Windowsではできなかった記憶がある） cp ファイルのコピー。-rでディレクトリをコピー。 rm -fで強制削除、-rでディレクトリ以下を削除。 wc 行数カウント。-lでファイル名も表示。 cat ファイルの中身を標準出力。 head/tail -n x ファイルの先頭/末尾x行を標準出力 sort,uniq 行単位でソート、重複行の削除 sed -e &#39;s/BEFORE/AFTER/g&#39; file ファイル中の文字を置換。-iで上書き。 less ファイル閲覧 du ファイルの容量表示。-hでちょうどいい単位にしてくれる。--max-depth Nで階層指定。 ps いまターミナルで実行中のプロセスを表示 grep grep STR FILE 行単位でソート、重複行の削除。 grep str -rl PATH 中身にstrが含まれているファイルを再起的に取得。 ln ln -s TARGET LINK_NAME TARGETのシンボリックリンクをLINK_NAMEに作成。 ln -nfs TARGET LINK_NAME TARGETを移動したときなどにリンクを張りなおす。 </description>
+      <description>基本 pwd カレントディレクトリの絶対パス ls カレントディレクトリにあるファイル cd ディレクトリ移動 mkdir ディレクトリ新規作成 touch ファイル新規作成（普段はnanoでやってる） mv mv source/path destination/pathで移動、mv before_name after_nameでリネーム（Windowsではできなかった記憶がある） cp ファイルのコピー。-rでディレクトリをコピー。 rm -fで強制削除、-rでディレクトリ以下を削除。 wc 行数カウント。-lでファイル名も表示。 cat ファイルの中身を標準出力。 head/tail -n x ファイルの先頭/末尾x行を標準出力 sort,uniq 行単位でソート、重複行の削除 sed -e &#39;s/BEFORE/AFTER/g&#39; file ファイル中の文字を置換。-iで上書き。 less ファイル閲覧 du ファイルの容量表示。-hでちょうどいい単位にしてくれる。--max-depth Nで階層指定。 ps いまターミナルで実行中のプロセスを表示 grep, find find PATH -name str PATH配下の&amp;quot;str&amp;quot;という名前のファイルをすべて表示する。ワイルドカード*も使える。Operetion not permittedではじかれると邪魔になるので2&amp;gt;/dev/nullする。 grep str -rl PATH 中身にstrが含まれているファイルを再起的に取得。 ln ln -s TARGET LINK_NAME TARGETのシンボリックリンクをLINK_NAMEに作成。 ln -nfs TARGET LINK_NAME TARGETを移動したときなどにリンクを張りなおす。 pbcopy pbcopyは、ターミナルの標準出力をクリップボードにコピーするMac固有のコマンド。</description>
     </item>
     
     <item>

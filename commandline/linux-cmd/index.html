@@ -120,10 +120,10 @@
 <dt><code>ps</code></dt>
 <dd>いまターミナルで実行中のプロセスを表示</dd>
 </dl>
-<h2 id="grep"><code>grep</code></h2>
+<h2 id="grep-find"><code>grep</code>, <code>find</code></h2>
 <dl>
-<dt><code>grep STR FILE</code></dt>
-<dd>行単位でソート、重複行の削除。</dd>
+<dt><code>find PATH -name str</code></dt>
+<dd><code>PATH</code>配下の&quot;str&quot;という名前のファイルをすべて表示する。ワイルドカード<code>*</code>も使える。<code>Operetion not permitted</code>ではじかれると邪魔になるので<code>2&gt;/dev/null</code>する。</dd>
 <dt><code>grep str -rl PATH</code></dt>
 <dd>中身にstrが含まれているファイルを再起的に取得。</dd>
 </dl>
@@ -134,7 +134,16 @@
 <dt><code>ln -nfs TARGET LINK_NAME</code></dt>
 <dd><code>TARGET</code>を移動したときなどにリンクを張りなおす。</dd>
 </dl>
-
+<h2 id="pbcopy"><code>pbcopy</code></h2>
+<p><code>pbcopy</code>は、ターミナルの標準出力をクリップボードにコピーするMac固有のコマンド。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">cat hoge.txt <span class="p">|</span> pbcopy  <span class="c1"># hoge.txtの中身がクリップボードにコピーされる。</span>
+</span></span></code></pre></div><h3 id="linuxでもpbcopyを使いたい">Linuxでも<code>pbcopy</code>を使いたい</h3>
+<p>linuxでは<code>xsel</code>を使うことで<code>pbcopy</code>を再現できる。(<a href="https://qiita.com/yoshikyoto/items/1676b925580717c0a443">参考</a>)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt install xsel  <span class="c1"># xselをインストール</span>
+</span></span><span class="line"><span class="cl">cat hoge.txt <span class="p">|</span> xsel --clipboard --input  <span class="c1"># hoge.txtの中身を標準出力し、クリップボードにコピー</span>
+</span></span></code></pre></div><p><code>~/.bashrc</code>とかにエイリアスを作る。</p>
+<pre tabindex="0"><code>alias pbcopy=&#39;xsel --clipboard --input&#39;
+</code></pre>
     </article>
   </section>
   </main>

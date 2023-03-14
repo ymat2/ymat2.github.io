@@ -9,6 +9,18 @@
     <copyright>(ɔ) 2022 Yuki Matsuda</copyright>
     <lastBuildDate>Thu, 03 Nov 2022 11:45:13 +0900</lastBuildDate><atom:link href="http://ymat2.github.io/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>ファイルの読み書き</title>
+      <link>http://ymat2.github.io/python/methods_for_file/</link>
+      <pubDate>Thu, 09 Mar 2023 01:05:42 +0900</pubDate>
+      
+      <guid>http://ymat2.github.io/python/methods_for_file/</guid>
+      <description>https://docs.python.org/ja/3/tutorial/inputoutput.html#reading-and-writing-files
+Short Summary ファイルの読み書き with oepn(filename, mode, encoding=None) as f: ファイルオブジェクトに対するメソッド ### すべて読む f.read() ### 一行だけ読む f.readline() ### 一行ずつ読む for line in f: ### 行ごとにリストに格納 f.readlines() list(f) ### 書く f.write(str) open() f = open(filename, mode, encoding=None) filename ファイルのパス。 mode rは読み込み専用。modeを省略した場合はこれで開かれる。 wは書き込み専用。同名ファイルがあれば上書きされる。 aは追記。ファイルの終端に追加していく。 r+は読み書き両用。 with open(filename, mode, encoding=None) as f: withを使ってファイルを開くとブロックの終わりで自動的にファイルがclose()される。むしろ、生のopen()を使ったときにclose()し忘れるとリソースを圧迫したり、f.write()が正常に書き込まれなかったりするので習慣的にwithを使うほうが良い。
+readメソッド f.read(size) サイズを指定して開く。（テキストモードでは文字数、バイナリモードではbyte数。） f.readline() 一行だけ読む。 for line in f: 一行ずつ読む。 f.readlines() 各行を要素とするリストに格納。 例 sample.txt
+hoge fuga koke piyo ## fとして読み込む ## read() print(f.</description>
+    </item>
+    
+    <item>
       <title>ArgumentParser - コマンドライン引数の実装</title>
       <link>http://ymat2.github.io/python/argparse/</link>
       <pubDate>Wed, 02 Nov 2022 11:03:16 +0900</pubDate>

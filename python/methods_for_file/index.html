@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html
+  class=""
+  lang="ja-jp"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="keywords" content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="ファイルの読み書き" />
+<meta property="og:site_name" content="A Website for Personal Documentation" />
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<meta property="og:url" content="http://ymat2.github.io/python/methods_for_file/" />
+<meta property="og:locale" content="ja-jp" />
+<meta property="article:published_time" content="2023-03-09
+" /> <meta property="article:modified_time" content="2023-03-09
+" />
+
+
+
+
+
+
+    <title>ファイルの読み書き</title>
+    <link rel="canonical" href="http://ymat2.github.io/python/methods_for_file/" />
+
+
+	
+<link rel="stylesheet" href="/css/my-style.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H2M78RD8J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6H2M78RD8J');
+</script>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+
+
+<body
+  lang="ja-jp"
+  class="sans-serif w-90 w-60-ns center center-ns mv2 mv5-ns"
+  itemscope
+  itemtype="http://schema.org/Article"
+>
+  
+  <span class="b">/ </span>
+  <a
+    href="http://ymat2.github.io/"
+    class="pagelink"
+    >HOME</a
+  >
+  <span class="b"> / </span>
+  <a 
+  	href="http://ymat2.github.io//python"
+  	class="pagelink"
+  	>Python</a
+  >
+
+  <main>
+  <section id="main" class="mt5">
+    <h1 itemprop="name" id="title">ファイルの読み書き</h1>
+
+    <article itemprop="articleBody" id="content" class="w-90 lh-copy">
+      <p><a href="https://docs.python.org/ja/3/tutorial/inputoutput.html#reading-and-writing-files">https://docs.python.org/ja/3/tutorial/inputoutput.html#reading-and-writing-files</a></p>
+<h2 id="short-summary">Short Summary</h2>
+<ul>
+<li>ファイルの読み書き</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">with</span> <span class="n">oepn</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span></code></pre></div><ul>
+<li>ファイルオブジェクトに対するメソッド</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">### すべて読む</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 一行だけ読む</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 一行ずつ読む</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 行ごとにリストに格納</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">list</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 書く</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="open"><code>open()</code></h2>
+<h3 id="f--openfilename-mode-encodingnone"><code>f = open(filename, mode, encoding=None)</code></h3>
+<dl>
+<dt><code>filename</code></dt>
+<dd>ファイルのパス。</dd>
+<dt><code>mode</code></dt>
+<dd><code>r</code>は読み込み専用。<code>mode</code>を省略した場合はこれで開かれる。</dd>
+<dd><code>w</code>は書き込み専用。同名ファイルがあれば上書きされる。</dd>
+<dd><code>a</code>は追記。ファイルの終端に追加していく。</dd>
+<dd><code>r+</code>は読み書き両用。</dd>
+</dl>
+<h3 id="with-openfilename-mode-encodingnone-as-f"><code>with open(filename, mode, encoding=None) as f:</code></h3>
+<p><code>with</code>を使ってファイルを開くとブロックの終わりで自動的にファイルが<code>close()</code>される。むしろ、生の<code>open()</code>を使ったときに<code>close()</code>し忘れるとリソースを圧迫したり、<code>f.write()</code>が正常に書き込まれなかったりするので習慣的に<code>with</code>を使うほうが良い。</p>
+<h2 id="readメソッド">readメソッド</h2>
+<dl>
+<dt><code>f.read(size)</code></dt>
+<dd>サイズを指定して開く。（テキストモードでは文字数、バイナリモードではbyte数。）</dd>
+<dt><code>f.readline()</code></dt>
+<dd>一行だけ読む。</dd>
+<dt><code>for line in f:</code></dt>
+<dd>一行ずつ読む。</dd>
+<dt><code>f.readlines()</code></dt>
+<dd>各行を要素とするリストに格納。</dd>
+</dl>
+<h3 id="例">例</h3>
+<p>sample.txt</p>
+<pre tabindex="0"><code>hoge
+fuga
+koke
+piyo
+</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">## fとして読み込む</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## read()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">hoge</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">fu</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## readline()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">hoge</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">fuga</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## for line in f:</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">hoge</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">fuga</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">koke</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">piyo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### readlines()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="s1">&#39;hoge</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;fuga</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;koke</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;piyo</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">]</span>
+</span></span></code></pre></div><h2 id="writeメソッド">writeメソッド</h2>
+<dl>
+<dt><code>f.write(string)</code></dt>
+<dd>fに文字列を書き込む。書き込めるのは<strong>文字列型</strong>のみなので、他の型は<code>str()</code>で変換する必要がある。</dd>
+</dl>
+
+    </article>
+  </section>
+  </main>
+
+  <footer>
+	<div>
+		<p style="text-align: right; font-size: 14px; color: #444">
+			(ɔ) 2022 Yuki Matsuda
+		</p>
+	</div>
+</footer>
+
+
+  </body>
+</html>

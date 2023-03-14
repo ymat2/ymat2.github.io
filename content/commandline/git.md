@@ -4,8 +4,8 @@ date: 2022-11-02T11:03:16+09:00
 ---
 
 ## 基本操作
-### Create new repositories
-1. Githubのサイト右上の"+"ボタンからNew repositoryを選択し、Create repositoryする。
+### 新しいリポジトリの作成
+1. Githubのサイト右上の`+`ボタンからNew repositoryを選択し、Create repositoryする。
 1. 手元のPCに同名のリモートリポジトリをつくる。
 	```sh
 	mkdir *new_repository*
@@ -24,10 +24,47 @@ date: 2022-11-02T11:03:16+09:00
 1. リモートリポジトリを紐づけて`push`
 	```sh
 	git remote -v	# 何も表示されない
-	git remote add origin https://github.com/*username*/*new_repository*.git
+	git remote add origin https://github.com/*username*/*new_repository*.git	# HTTPの場合
+	# git remote add origin git@github.com:*username*/*new_repository*.git	# SSHの場合
 	git remote -v	# なんか出る
 	git branch -M main
 	git push -u origin main
+	```
+
+### ローカルリポジトリの変更をリモートリポジトリに反映
+1. 手元でファイルをいじって変更を確認。
+	```sh
+	echo "Hello, Github" > hoge.txt
+	git status	# hoge.txtが`Changes not staged for commit:`に表示される。
+	```
+
+1. 変更したファイルをインデックスに登録。
+	```sh
+	git add hoge.txt
+	git status	# hoge.txtが`Changes to be committed:`に表示される。
+	```
+
+1. 変更をコミット。
+	```sh
+	git commit -m "modified hoge.txt"
+	git status	# `nothing to commit, working tree clean`となる。
+	```
+
+1. リモートリポジトリへ`push`。
+	```
+	git push
+	```
+
+### リモートリポジトリの変更をローカルリポジトリに反映
+- リモートブランチの状態を直接ローカルブランチに反映。
+	```sh
+	git pull
+	```
+
+- リモートブランチの変更を一度ローカルのアップストリームブランチに反映させてからローカルブランチに反映。
+	```sh
+	git fetch
+	git merge
 	```
 
 ## `.gitignore`

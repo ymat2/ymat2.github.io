@@ -53,7 +53,7 @@ MetaキーはWindowsなら<kbd>alt</kbd>、Macなら<kbd>esc</kbd>。
 
 読み込まれる順番は、まず`/etc/nanorc`、次に`~/.nanorc`または`~/.config/nano/nanorc`。
 
-Linuxでは`/etc/nanorc`や`/usr/share/doc/nano/examples/samples.nanorc`に、Macにbrewで入れた場合は`/usr/local/Cellar/nano/6.4/share/doc/nano/sample.nanorc`にドキュメントとコマンドがコメントアウトされて書いてあるので、これを`~/.nanorc`または`~/.config/nano/nanorc`にコピーして編集する。
+Linuxでは`/etc/nanorc`や`/usr/share/doc/nano/examples/samples.nanorc`に、Macにbrewで入れた場合は`/usr/local/Cellar/nano/%v/share/doc/nano/sample.nanorc`にドキュメントとコマンドがコメントアウトされて書いてあるので、これを`~/.nanorc`または`~/.config/nano/nanorc`にコピーして編集する。(`%v`は`nano`のバージョン)
 
 自分で書いてしまってもいい。たとえば:
 ```
@@ -69,15 +69,15 @@ set tabsize 4	# タブサイズ（スペースの数）の設定
 ### Syntax highlight
 デフォルトの見た目は非常に寂しい。
 
-Linuxでは`/usr/share/nano/`、Macでは`/usr/local/share/nano/`や`/usr/local/Cellar/nano/6.4/share/doc/nano/`にハイライト定義ファイルが置いてあるので、これらの設定を`~/.nanorc`に加える。または野生の定義ファイルを使う手もある。: https://github.com/scopatz/nanorc
+Linuxでは`/usr/share/nano/`、Macでは`/usr/local/share/nano/`や`/usr/local/Cellar/nano/%v/share/doc/nano/`にハイライト定義ファイルが置いてあるので、これらの設定を`~/.nanorc`に加える。または野生の定義ファイルを使う手もある。: https://github.com/scopatz/nanorc
 
 ```
 include '/usr/share/nano/*.nanorc'
 ```
 
 ### Key Bind
-キーボードショートカットは変更可能。例えば<kbd>Ctrl</kbd>+<kbd>Z</kbd>を`Redo`に割り当てたい場合、以下のように書く。
+キーボードショートカットは変更可能。例えば<kbd>Ctrl</kbd>+<kbd>Z</kbd>を`Undo`に割り当てたい場合、以下のように書く。
 
 ```
-bind ^Z redo	main
+bind ^Z undo	main
 ```

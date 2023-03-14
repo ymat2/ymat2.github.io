@@ -52,9 +52,9 @@ date: 2022-11-02T11:03:16+09:00
 `ps`
 :	いまターミナルで実行中のプロセスを表示
 
-## `grep`
-`grep STR FILE`
-:	行単位でソート、重複行の削除。
+## `grep`, `find`
+`find PATH -name str`
+:	`PATH`配下の"str"という名前のファイルをすべて表示する。ワイルドカード`*`も使える。`Operetion not permitted`ではじかれると邪魔になるので`2>/dev/null`する。
 
 `grep str -rl PATH`
 :	中身にstrが含まれているファイルを再起的に取得。
@@ -65,3 +65,21 @@ date: 2022-11-02T11:03:16+09:00
 
 `ln -nfs TARGET LINK_NAME`
 :	`TARGET`を移動したときなどにリンクを張りなおす。
+
+## `pbcopy`
+`pbcopy`は、ターミナルの標準出力をクリップボードにコピーするMac固有のコマンド。
+```sh
+cat hoge.txt | pbcopy  # hoge.txtの中身がクリップボードにコピーされる。
+```
+
+### Linuxでも`pbcopy`を使いたい
+linuxでは`xsel`を使うことで`pbcopy`を再現できる。([参考](https://qiita.com/yoshikyoto/items/1676b925580717c0a443))
+```sh
+sudo apt install xsel  # xselをインストール
+cat hoge.txt | xsel --clipboard --input  # hoge.txtの中身を標準出力し、クリップボードにコピー
+```
+
+`~/.bashrc`とかにエイリアスを作る。
+```
+alias pbcopy='xsel --clipboard --input'
+```

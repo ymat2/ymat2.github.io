@@ -8,7 +8,7 @@ draft: true
 - Hugo公式: https://gohugo.io/hosting-and-deployment/hosting-on-github/
 - Github Pages: https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages
 
-ローカルでのサイト構築は[こちら]({{< ref "hugo.md" >}})を参照。
+ローカルでのサイト構築は[こちら]({{< ref "hugo_basic.md" >}})を参照。
 
 ## Quick & Minimal start（非推奨）
 1. Githubで<username>.github.ioという名の[リポジトリを作成]({{< ref "git.md" >}})。

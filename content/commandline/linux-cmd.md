@@ -52,7 +52,10 @@ date: 2022-11-02T11:03:16+09:00
 `ps`
 :	いまターミナルで実行中のプロセスを表示
 
-## `grep`, `find`
+`time`
+:	`time sleep 30`など、コマンドの実行時間を表示する。
+
+## `grep`, `find`でファイル検索
 `find PATH -name str`
 :	`PATH`配下の"str"という名前のファイルをすべて表示する。ワイルドカード`*`も使える。`Operetion not permitted`ではじかれると邪魔になるので`2>/dev/null`する。
 

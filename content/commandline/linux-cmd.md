@@ -57,7 +57,7 @@ date: 2022-11-02T11:03:16+09:00
 
 ## `grep`, `find`でファイル検索
 `find PATH -name str`
-:	`PATH`配下の"str"という名前のファイルをすべて表示する。ワイルドカード`*`も使える。`Operetion not permitted`ではじかれると邪魔になるので`2>/dev/null`する。
+:	`PATH`配下の"str"という名前のファイルをすべて表示する。ワイルドカード`*`も使える。`Operetion not permitted`する出力は邪魔になるので`2>/dev/null`に流す。
 
 `grep str -rl PATH`
 :	中身にstrが含まれているファイルを再起的に取得。

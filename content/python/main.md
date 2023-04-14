@@ -1,7 +1,6 @@
 ---
-title: "main()関数の書き方"
+title: "main()関数を使う"
 date: 2023-04-02T15:32:52+09:00
-draft: true
 ---
 
 ## `main()`関数とは

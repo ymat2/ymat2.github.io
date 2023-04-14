@@ -1,6 +1,7 @@
 ---
 title: "Pythonでデータサイエンス"
 date: 2022-11-02T11:03:16+09:00
+draft: true
 ---
 
 [MUFG DATA SCIENCE BASIC CAMP](https://mypage.1170.i-web.jpn.com/mutb2024/op/event/internship/datascience.html)に参加した際の覚え書き。

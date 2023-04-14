@@ -1,5 +1,5 @@
 ---
-title: "PythonのClassを理解したい！"
+title: "PythonのClassを理解したい"
 date: 2022-11-02T11:03:16+09:00
 ---
 

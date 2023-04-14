@@ -7,7 +7,7 @@ https://sc.ddbj.nig.ac.jp/
 
 ## バッチジョブ
 CPU コアを 1 コアだけ使用するプログラムを少数実行する場合に用いる。
-```Shell
+```bash
 ## ジョブスクリプトを投げる
 qsub test.sh
 
@@ -44,7 +44,7 @@ qsub -S /bun/bash -cwd "echo 'hoge' > test.txt"
 CPUコアを複数もちいるジョブ。順次多数実行していくのがアレイジョブ。同時に少数実行するのがパラレルジョブくらいの認識。
 
 ### アレイジョブの書き方
-```Shell
+```bash
 #$ -S /bin/bash
 #$ -t 1-6:1
 #$ -tc 3
@@ -59,7 +59,7 @@ mv ${seq_id}.hoge ${seq_id}.fuga
 
 `-pe def_slot 8`
 :	スレッド数の指定。中で動くプログラムの指定と合わせる。
-		```Shell
+		```bash
 		# 例
 		#$ -S /bin/bash
 		#$ -pe def_slot 5
@@ -77,30 +77,30 @@ mv ${seq_id}.hoge ${seq_id}.fuga
 
 ### メモリ指定
 - 64GB未満のジョブ：Thinノードで実行可
-	```Shell
+	```bash
 	qsub -l s_vmem=32G -l mem_req=32G test.sh 
 	```
 - 64GB以上、2000GB未満のジョブ：Mediumノードを指定する。
-	```Shell
+	```bash
 	qsub -l medium -l s_vmem=128G -l mem_req=128G test.sh 
 	```
 
 - パラレルジョブの総メモリはスロット数と`-l`で指定した数字の掛け算になる。
-	```Shell
+	```bash
 	# 総メモリ数は4×32GB=128GB
 	qsub -pe def_slot 4 -l medium -l s_vmem=32G -l mem_req=32G test.sh 
 	```
 
 ## Singularity
 バイオインフォマティクスでよく使われる解析ツールがバージョン別に`/usr/local/biotools/`に配置されており、インストール不要で使うことができる。
-```sh
+```bash
 ## どんなツールが使えるか見てみる。たとえばblast。
 ## biotools/の、各ツールの頭文字ディレクトリを参照。
 ls /usr/local/biotools/b/blast*
 ```
 
 ### 使用例
-```
+```bash
 singularity exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -h
 ```
 
@@ -108,7 +108,7 @@ singularity exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -h
 ## Misc.
 ### Pythonの外部ライブラリをインストールする場合
 遺伝研で外部ライブラリを利用するには、
-```sh
+```bash
 python3 -m pip install --user ライブラリ名
 ```
 とすることでユーザのホームにライブラリをインストールできる。（が、再現性の観点では`venv`で仮想環境を構築する方がいい、らしい。）

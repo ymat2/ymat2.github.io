@@ -4,7 +4,7 @@ date: 2022-11-28T09:18:25+09:00
 ---
 
 ## ファイルの圧縮と展開
-```sh
+```bash
 ## .zip
 zip test.txt.zip test.txt  # 圧縮
 unzip test.txt.zip  # 展開
@@ -22,7 +22,7 @@ bunzip2 test.txt.bz2  # 展開
 
 
 ## ディレクトリの圧縮と展開
-```sh
+```bash
 ## tar.gz
 tar -czvf hoge.tar.gz hoge  # 圧縮
 tar -xzvf hoge.tar.gz  # 展開

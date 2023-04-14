@@ -10,24 +10,24 @@ Universal Single Copy Orthologsが、アセンブルされた配列中にどれ�
 
 ## インストール
 ### Docker Image
-```sh
+```bash
 docker pull ezlabgva/busco:v5.4.3_cv1
 docker run -u $(id -u) -v $(pwd):/busco_wd ezlabgva/busco:v5.4.3_cv1
 ```
 
 ### Conda Package
-```sh
+```bash
 conda install -c conda-forge -c bioconda busco=5.4.2
 ```
 
 ### Homebrew
-```sh
+```bash
 brew install busco
 ```
 
 
 ## 使い方
-```sh
+```bash
 busco -i [SEQUENCE_FILE] -l [LINEAGE] -o [OUTPUT_NAME] -m [MODE] [OTHER OPTIONS]
 ```
 
@@ -77,17 +77,17 @@ Dependencies and versions:
 `singularity`で用意されているものを使うのが楽。
 
 1. けっこうメモリを食うので、多めのメモリを指定してログイン:
-	```sh
+	```bash
 	qlogin -l mem_req=32G,s_vmem=32G
 	```
 
 2. 使えるバージョンを見てみる:
-	```sh
+	```bash
 	ls /usr/local/biotools/b/busco*
 	```
 
 3. `singularity`で動かす:
-	```sh
+	```bash
 	singularity exec -e /usr/local/biotools/b/busco:version busco -i hoge.fa -o fuga -l bacteria_odb10 -m protein
 	```
 

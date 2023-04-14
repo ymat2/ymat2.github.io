@@ -12,18 +12,18 @@ date: 2022-11-02T11:03:16+09:00
 ## インストール
 1. 作者たちのgithubから[最新版のCAFEをダウンロード](https://github.com/hahnlab/CAFE/releases/latest)して、適当なディレクトリに置く。（例えば`~/bin/`）
 2. 解凍したらCAFEディレクトリまで`cd`して`configure`＆`make`。
-	```sh
+	```bash
 	~/bin/CAFE$ ./configure
 	~/bin/CAFE$ make
 	```
 3. PATHを通して動作確認。
-	```
+	```bash
 	~/$ cafe  # ctrl+C
 	```
 
 ## 使い方
 ### こんな感じのシェルスクリプトを書く
-```sh
+```bash
 #! cafe 
 # version 
 # date 
@@ -67,18 +67,18 @@ OrthoFinderの出力であるOrthogroups.GeneCount.tsvなどを基に、CAFEの�
 |OG00003|OG00003|7|0|4|
 
 めんどくさい場合は下記のスクリプトを使ってもいい。
-``` python
+```python
 準備中...
 ```
 
-```
+```bash
 python3 make_cafe_input.py Orthogroups.GeneCount.tsv Cafe_input.tsv
 ```
 
 ### ultrametricな系統樹を用意する
 [TimeTree](http://www.timetree.org/)などから取得すると楽。OrthoFinderの出力系統樹を使う場合、遺伝的距離に基づく系統樹であるため、ultrametricに加工する必要がある。Rのapeなどを使うと便利。
 
-``` R
+```R
 library(ape)
 
 tree = read.tree("tree.txt")
@@ -107,7 +107,7 @@ write.tree(tree2, file = "tree_ultrametric.nwk") #ultrametric系統樹の保存
 ### CAFEを実行する
 シェルスクリプトが用意できたら、次のコマンドでCAFEを実行する。
 
-```sh
+```bash
 cafe example.sh
 ```
 
@@ -118,7 +118,7 @@ CAFEの実行に成功すると、reportで指定した名前の.repファイル
 
 2. 次のコマンドでreportファイルを加工する。4つのファイルが出力される。
 
-```sh
+```bash
 python cafe_tutrial/python_scripts/cafetutorial_report_analysis.py -i resultfile.rep -o cafe_summary
 ```
 

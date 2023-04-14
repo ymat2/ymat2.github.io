@@ -3,19 +3,19 @@ title: "Pandas - データ解析支援ライブラリ"
 date: 2022-11-02T11:03:16+09:00
 ---
 
-```Python
+```python
 import pandas as pd
 ```
 
 ## 基本操作
-```Python
+```python
 df = pd.read_csv("PATH_TO_FILE", sep = ',')	# 表データの読み込み
 df.head(n)	# 先頭n行
 df.tail(n)	# 末尾n行
 ```
 
 - 要約統計
-	```Python
+	```python
 	df.mean()
 	df.sum()
 	df.max()
@@ -29,7 +29,7 @@ df.tail(n)	# 末尾n行
 	```
 
 - 行・列の抽出
-	```Python
+	```python
 	df[['species']]	# DataFrame with 1 column
 	df['species']	# Series
 	df.species	# Series (not recommended)
@@ -44,7 +44,7 @@ df.tail(n)	# 末尾n行
 	```
 
 - DataFrame・Seriesの操作
-	```Python
+	```python
 	df.sort_values('species',ascending=True)	# 行の並べ替え。デフォルトは降順。
 	df['species'].drop_duplicates()	# カテゴリカルデータの重複を取り除く。
 	df['species'].value_counts()	# 値ごとの数を数える。	
@@ -53,12 +53,12 @@ df.tail(n)	# 末尾n行
 ## データ内容の処理
 ### 欠損値
 - 欠損値の有無を調べる:
-	```Python
+	```python
 	df.isnull()	# 欠損値をTrueとするdataframeを返す
 	df.isnull().sum()	# 列ごとに欠損値の数をカウント
 	```
 
 - 欠損値を含む行を削除:
-	```Python
+	```python
 	df.dropna(inplace=False)
 	```

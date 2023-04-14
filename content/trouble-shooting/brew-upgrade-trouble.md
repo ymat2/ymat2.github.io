@@ -14,7 +14,7 @@ date: 2022-11-02T11:03:16+09:00
 
 ## 試したこと
 1. Caskじゃない`brew install r`で入れたRを使っているのが原因と踏んで、
-	```sh
+	```bash
 	$ brew reinstall --cask r rstudio
 	==> Caveats
 	Cask r installs files under /usr/local. The presence of such
@@ -81,7 +81,7 @@ date: 2022-11-02T11:03:16+09:00
 
 
 1. 読んでみると↓なる怪しい記述がある。
-	```
+	```bash
 	Cask r installs files under /usr/local. The presence of such
     files can cause warnings when running `brew doctor`, which is considered
     to be a bug in Homebrew Cask.
@@ -90,7 +90,7 @@ date: 2022-11-02T11:03:16+09:00
 1. 試しに`brew doctor`すると、さっき`brew doctor`したときとほぼ同じものが出てきた。ただし、期待していたRのunlinkは出てこなかった（？）
 1. そこでもう一度、消せと言われたファイルを消してRパッケージをインストールしてみる。が、何もおこらない。
 1. `.libPath()`してみると、トラブった時とパッケージのインストール先が違う。
-	```
+	```bash
 	### トラブった時
 	/usr/local/Cellar/r/4.2.1_4/lib/R/library
 
@@ -100,5 +100,5 @@ date: 2022-11-02T11:03:16+09:00
 1. 結局`brew upgrade`したときにCask版Rのバージョンが変わったり、ふつうの方のRになったりすることが原因？よくわからないまま。
 1. rのunlinkは切れたままにするのがいいのでは。
 
-**まとめ**<br>
-homebrewでR入れる時はCaskから。
+まとめ
+:	homebrewでR入れる時はCaskから。

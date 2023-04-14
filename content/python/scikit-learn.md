@@ -19,7 +19,7 @@ graph LR;
 	教師なし学習---次元削減
 ```
 
-```Python
+```python
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -28,7 +28,7 @@ import seaborn as sns
 
 ### データ前処理
 - 標準化：平均を0に、標準偏差を1にスケーリング
-	```Python
+	```python
 	from sklearn.preprocessing import StandardScaler
 	sc = StandardScaler()
 	sc.fit(df)
@@ -36,7 +36,7 @@ import seaborn as sns
 	```
 
 - 正規化：最大値を1に、最小値を0（または-1）にスケーリング
-	```Python
+	```python
 	from sklearn.preprocessing import MinMaxScaler
 	ms = StandardScaler([0,1])
 	ms.fit(df)
@@ -44,7 +44,7 @@ import seaborn as sns
 	```
 
 - ラベルエンコーディング
-	```Python
+	```python
 	from sklearn.preprocessing import LabelEncoder
 	le = LabelEncoder()
 	df['列名'] = le.fit(df['カテゴリ変数列']).transform(df['カテゴリ変数列'])
@@ -52,14 +52,14 @@ import seaborn as sns
 
 ### データ分割
 - 最もシンプルな分割
-	```Python
+	```python
 	from sklearn.model_selection import train_test_split
 	train_data,test_data = train_test_split(df,train_size = 0.6 ,random_state=0)	# 訓練データ:テストデータ=4:6に分割
 	```
 
 ### 教師あり学習　 **回帰・分類**
 - 線形回帰
-	```Python
+	```python
 	from sklearn.linear_model import LinearRegression
 	clf = LinearRegression()
 
@@ -86,7 +86,7 @@ import seaborn as sns
 
 ### 教師なし学習　**クラスタリング・次元削減**
 - PCA
-	```Python
+	```python
 	from sklearn.decomposition import PCA
 	pca = PCA()
 	

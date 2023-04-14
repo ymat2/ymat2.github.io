@@ -9,7 +9,7 @@ macのプロセッサがIntelからM1になって以降、CPUアーキテクチ�
 - arm64ではhomebrewインストール後に/opt/homebrew/bin/brewにPATHを通す必要がある。
 - x86_64とarm64のどちらかでしかインストールできないツールがあり、hisat2やTrinityはarm64のhomebrewでは入らない。
 
-```
+```bash
 g++-12: error: unrecognized command-line option '-msse2'
 make: *** [hisat2-build-s] Error 1
 make: *** Waiting for unfinished jobs....
@@ -26,7 +26,7 @@ M1macでも`Rosetta`とよばれるアーキテクチャ変換技術を使うこ
 <br>: https://qiita.com/funatsufumiya/items/cec08f1ba3387edc2eed
 <br>: https://zenn.dev/_lambda314/articles/63b851221a7016
 
-```sh
+```bash
 uname -m　　#CPUアーキテクチャを確認
 
 #arm64の場合、ターミナルを右クリック→「情報を見る」→「Rosettaを使用して開く」にチェックを入れる
@@ -35,7 +35,7 @@ uname -m　　#ターミナルを再起動してCPUアーキテクチャがx86_6
 ```
 
 こうするとhisat2やTrinityがちゃんと入る方のhomebrewをインストールできるようになる。
-```sh
+```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
@@ -44,7 +44,7 @@ uname -m　　#ターミナルを再起動してCPUアーキテクチャがx86_6
 - インストール自体は`brew`で入るが、hisat2のコマンドを叩くとライブラリの参照がうまくいっていないのかエラーが出る。
 - 追記：後日iqtreeでも同様のエラーを観測したので、おそらくbiosci系のツールはこの問題にあたる可能性がある。
 
-```
+```bash
 dyld[25473]: Symbol not found: (__ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13find_first_ofERKS4_m)
 	Referenced from: '/usr/local/Cellar/hisat2/2.2.1/bin/hisat2-build-s'
 	Expected in: '/usr/lib/libstdc++.6.dylib'
@@ -63,7 +63,7 @@ Hisat2の[ダウンロードページ](http://daehwankimlab.github.io/hisat2/dow
 macOS 12.3 Monterey以降のOSでは、完全にPyhton3に移行してしまい[古いPythonは使えなくなっている](https://applech2.com/archives/20220309-apple-removed-python-from-macos-123-monterey.html)のでhisat2のソースコードをpython3で動くように書き換える必要があった。
 <br>: https://www.biostars.org/p/9494176/#9494665
 
-```sh
+```bash
 which python3 #python3のパスを確認 >>>/usr/bin/python3
 ```
 

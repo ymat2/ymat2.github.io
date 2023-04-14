@@ -23,6 +23,7 @@ date: 2022-11-27T13:40:49+09:00
 |<kbd>command</kbd>+<kbd>T</kbd>|新規タブを開く（<kbd>control</kbd> <kbd>Tab</kbd>で移動） |
 |<kbd>command</kbd>+<kbd>W</kbd>|現在のタブを閉じる |
 |<kbd>command</kbd>+<kbd>+/-</kbd>|文字サイズを大きく/小さくする |
+|<kbd>control</kbd>+<kbd>Tab</kbd>/<kbd>control</kbd>+<kbd>shift</kbd>+<kbd>Tab</kbd>|次のタブ/前のタブ|
 
 ### Rstudio
 | Key | コマンド |

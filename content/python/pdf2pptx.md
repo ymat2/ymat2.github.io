@@ -12,26 +12,26 @@ pdf2pptxは`pdf2pptx input`という単純なコマンドでPDFの各ページ�
 
 
 ## インストール
-```sh
+```bash
 pip install pdf2pptx
 ```
 
 ただし生のpipは非推奨なので自分の場合は
-```sh
+```bash
 python3 -m pip install pdf2pptx
 ```
 で入れた。
 
 
 ## Usage
-```sh
+```bash
 pdf2pptx hoge.pdf
 ```
 出力ファイルを指定しない場合、拡張子のみ変わった`hoge.pptx`が生成される。
 
 
 ## Option
-```sh
+```bash
 pdf2pptx --help
 ```
 

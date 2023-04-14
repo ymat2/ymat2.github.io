@@ -45,7 +45,7 @@ https://learn.microsoft.com/ja-jp/windows/wsl/
 
 
 ## Ubuntuの更新・アップグレード
-```sh
+```bash
 # 最新のパッケージ情報を取得
 sudo apt update
 

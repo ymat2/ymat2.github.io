@@ -71,18 +71,18 @@ date: 2022-11-02T11:03:16+09:00
 
 ## `pbcopy`
 `pbcopy`は、ターミナルの標準出力をクリップボードにコピーするMac固有のコマンド。
-```sh
+```bash
 cat hoge.txt | pbcopy  # hoge.txtの中身がクリップボードにコピーされる。
 ```
 
 ### Linuxでも`pbcopy`を使いたい
 linuxでは`xsel`を使うことで`pbcopy`を再現できる。([参考](https://qiita.com/yoshikyoto/items/1676b925580717c0a443))
-```sh
+```bash
 sudo apt install xsel  # xselをインストール
 cat hoge.txt | xsel --clipboard --input  # hoge.txtの中身を標準出力し、クリップボードにコピー
 ```
 
 `~/.bashrc`とかにエイリアスを作る。
-```
+```bash
 alias pbcopy='xsel --clipboard --input'
 ```

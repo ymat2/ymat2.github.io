@@ -8,7 +8,7 @@ date: 2022-11-14T13:21:15+09:00
 
 ### `brew update`
 Cask版のRもそうじゃない方もoutdated。
-```sh
+```bash
 ==> Outdated Formulae
 augustus             cmake                harfbuzz             libidn2              little-cms2          openssl@1.1          readline
 bowtie2              fontconfig           hugo                 libomp               mpfr                 python@3.9           tbb
@@ -19,7 +19,7 @@ r
 
 ### `brew upgrade`
 途中で「パッケージ消すからパスワード教えて」みたいなこと聞かれてパッケージ消してるな...
-```sh
+```bash
 Running `brew update --auto-update`...
 ==> Upgrading 20 outdated packages:
 
@@ -86,7 +86,7 @@ Removing: /Users/yukimatsuda/Library/Caches/Homebrew/Cask/r--4.2.1.pkg... (89.7M
 
 ### `brew install`版のRを消す
 - `brew uninstall`を実行。
-```sh
+```bash
 $ brew uninstall r
 Warning: Treating r as a formula. For the cask, use homebrew/cask/r
 Uninstalling /usr/local/Cellar/r/4.2.2... (2,282 files, 66.5MB)
@@ -100,7 +100,7 @@ If desired, remove them manually with `rm -rf`:
 ```
 
 - コンフィグファイルの類を消す。
-```sh
+```bash
 rm -rf /usr/local/etc/ca-certificates
 rm -rf /usr/local/etc/openmpi-mca-params.conf
 rm -rf /usr/local/etc/pmix-mca-params.conf
@@ -109,7 +109,7 @@ rm -rf /usr/local/etc/wgetrc
 
 ### `.Renviron`の設定
 - ホームに`.Renviron`を作成。
-```sh
+```bash
 touch ~/.Renviron
 ```
 
@@ -120,7 +120,7 @@ R_LIBS_USER=${R_USER}/.R/library/%v
 ```
 
 - インストール先を用意。
-```sh
+```bash
 mkdir ~/.r/library
 mkdir ~/.r/library/4.2
 ```
@@ -140,7 +140,7 @@ mkdir ~/.r/library/4.2
  (後略)
 ```
 
-```sh
+```bash
 # ちゃんと入ってそう
 $ ls ~/.r/library/4.2 
 DBI		bslib		dbplyr		gargle		httr		mime		rappdirs	scales		tzdb

@@ -7,23 +7,24 @@ https://gohugo.io/about/
 
 ## インストール
 Macならhomebrew、Ubuntuならaptで一発。
-```sh
+```bash
+## homebrew
 brew install hugo
-```
-```sh
+
+## apt
 sudo apt install hugo
 ```
 
 ## Quick Start
 1. サイトの骨組みを作る。
-	```sh
+	```bash
 	mkdir PATH_TO_SITE
 	cd PATH_TO_SITE
 	hugo new site .
 	```
 
 2. 生成される`./content/`ディレクトリの中に記事を書いていく。
-	```sh
+	```bash
 	hugo new content/about.md
 	```
 
@@ -37,6 +38,6 @@ sudo apt install hugo
 	```
 
 3. サーバーを走らせて[http://localhost:1313/about](http://localhost:1313/about)にアクセス。
-	```sh
+	```bash
 	hugo server -D -w .
 	```

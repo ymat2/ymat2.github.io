@@ -8,15 +8,15 @@ date: 2022-11-29T18:09:52+09:00
 
 ## Install
 もともと入っているものを使うか、`brew`でインストールする。
-```sh
+```bash
 which -a nano
 ```
-```sh
+```bash
 brew install nano
 ```
 
 ## Usage
-```sh
+```bash
 ## 新規作成
 nano
 

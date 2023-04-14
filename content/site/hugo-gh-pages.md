@@ -13,7 +13,7 @@ draft: true
 ## Quick & Minimal start（非推奨）
 1. Githubで<username>.github.ioという名の[リポジトリを作成]({{< ref "git.md" >}})。
 1. ローカルにサイトを構築して[`git init`]({{< ref "git.md" >}})。
-	```
+	```bash
 	hugo new site <username>.github.io && cd <username>.github.io
 	git init
 	git commit --allow-empty -m "Create my site"
@@ -22,12 +22,12 @@ draft: true
 	git push -u origin main
 	```
 1. `contents/`にページを作成。
-	```
+	```bash
 	hugo new contents/example.md
 	echo "hello, world!" > contents/example.md
 	```
 1. ビルド。`public/`にページが生成される。
-	```
+	```bash
 	hugo
 	```
 

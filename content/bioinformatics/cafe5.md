@@ -22,7 +22,7 @@ date: 2023-01-27T07:37:02+09:00
 - または、`git clone https://github.com/hahnlab/CAFE5.git`
 
 ### Compile
-```sh
+```bash
 cd CAFE5
 ./configure
 make
@@ -31,19 +31,19 @@ make
 
 ### OSXの場合
 `src/matrix_cache.cpp:2:10: fatal error: 'omp.h' file not found`などコンパイラが見つからない系のエラーが出る場合があるらしい。`gcc`を入れてシンボリックリンクを張る：
-```sh
+```bash
 brew install gcc
 find / -name omp.h
 ln -sv path/to/omp.h /usr/local/include/
 ```
 改めて、
-```sh
+```bash
 make
 ```
 
 ### 遺伝研
 `singularity`が楽。
-```sh
+```bash
 ls /usr/local/biotools/c/cafe:5*
 ```
 
@@ -68,12 +68,12 @@ ls /usr/local/biotools/c/cafe:5*
 
 3. cafeコマンドを実行。
 	- 遺伝子ファミリー間で進化速度が一定であるという仮定の下で、遺伝子ファミリーの進化速度を推定:
-		```sh
+		```bash
 		cafe5 -i gene_families.txt -t species_tree.txt
 		```
 
 	- 遺伝子ファミリーごとの進化速度が異なるという仮定の下で、遺伝子ファミリーの進化速度を推定:
-		```sh
+		```bash
 		cafe5 -i gene_families.txt -t species_tree.txt -k 3
 		```
 
@@ -83,7 +83,7 @@ ls /usr/local/biotools/c/cafe:5*
 		```
 		(Mouse:1,(Lizard:1,Chicken:2):1);  # Chickenの系統で進化速度が異なることを仮定。
 		```
-		```sh
+		```bash
 		cafe5 -i gene_families.txt -t species_tree.txt -y lambda_structure.txt
 		```
 

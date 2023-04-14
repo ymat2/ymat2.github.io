@@ -38,7 +38,8 @@ qsub -S /bun/bash -cwd "echo 'hoge' > test.txt"
 `-S /bin/bash`
 :	インタープリタの指定。
 
-:	`-o`,`-e`<br>: 標準出力/標準エラーファイルの出力先。デフォルトはカレントディレクトリ。
+`-o`,`-e`
+:	標準出力/標準エラーファイルの出力先。デフォルトはカレントディレクトリ。
 
 ## アレイジョブ、パラレルジョブ
 CPUコアを複数もちいるジョブ。順次多数実行していくのがアレイジョブ。同時に少数実行するのがパラレルジョブくらいの認識。
@@ -59,14 +60,15 @@ mv ${seq_id}.hoge ${seq_id}.fuga
 
 `-pe def_slot 8`
 :	スレッド数の指定。中で動くプログラムの指定と合わせる。
-		```bash
-		# 例
-		#$ -S /bin/bash
-		#$ -pe def_slot 5
-		#$ -cwd
 
-		orthofinder -f ./fasta/ -t 5 -a 5
-		```
+	```bash
+	# 例
+	#$ -S /bin/bash
+	#$ -pe def_slot 5
+	#$ -cwd
+
+	orthofinder -f ./fasta/ -t 5 -a 5
+	```
 
 `-t 1-N`
 :	N個のタスクを持つアレイジョブとして投入する。

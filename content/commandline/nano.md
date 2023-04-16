@@ -61,7 +61,12 @@ set autoindent	# 改行時にインデントを揃える
 set nowrap	# 横に長い行を勝手に改行しない
 set smooth	# スクロールがスムーズに（あんまり実感したことはない）
 set tabsize 4	# タブサイズ（スペースの数）の設定
+set mouse	# マウスを使えるようにする
 ```
+
+`set mouse`の挙動について
+:	設定しなくても一応使える。普通に文章を選択して<kbd>Ctrl</kbd><kbd>C</kbd>したり<kbd>Ctrl</kbd><kbd>V</kbd>したり。ただカーソルは動かせないっぽい。
+:	`set mouse`すると完全に`nano`の中の挙動になる。カーソルも動く。ダブルクリックで範囲選択開始(`Set Mark`)、次のクリックで範囲決定。もう一度クリックすると解除(`Unset Mark`)。
 
 [cmd]: https://www.nano-editor.org/dist/latest/nano.html#Nanorc-Files:~:text=6%20Command%2Dline%20Options
 

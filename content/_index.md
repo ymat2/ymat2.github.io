@@ -10,7 +10,8 @@ Mail
 :	yuki.matsuda.r7あdc.tohoku.ac.jp
 
 Link
-:	https://github.com/ymat2
+:	[Github](https://github.com/ymat2/)
+:	[Slides](https://ymat2.github.io/slides/)
 
 <!--
 Development

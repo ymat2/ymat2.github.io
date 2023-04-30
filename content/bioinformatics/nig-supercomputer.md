@@ -106,6 +106,34 @@ ls /usr/local/biotools/b/blast*
 singularity exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -h
 ```
 
+## パッケージ管理
+### `guix`
+ユーザー権限で利用できるパッケージマネージャで、最初から使えるようになっている。
+- [GNU Guix Reference Manual](https://guix.gnu.org/manual/en/html_node/index.html) (公式マニュアル)
+- [遺伝研での使い方ページ](https://sc.ddbj.nig.ac.jp/software/guix)
+
+#### 1. 前準備
+`~/.bashrc`に以下を追記。
+```bash
+export GUIX_DAEMON_SOCKET=guix://at111
+export GUIX_PROFILE="$HOME/.guix-profile"
+source "$GUIX_PROFILE/etc/profile"
+```
+
+#### 2. 利用可能なパッケージの検索
+`guix search`
+
+`less`っぽい画面になるので`q`で終了。
+
+バイオインフォマティクス関連のパッケージ
+- https://github.com/genenetwork/guix-bioinformatics
+- https://guix.gnu.org/en/blog/2018/paper-on-reproducible-bioinformatics-pipelines-with-guix/
+
+#### 3. パッケージのインストール
+`guix install nano`
+
+上記のように設定した場合のデフォルトのインストールパスは`$HOME/.guix-profile/bin/`になる。
+
 
 ## Misc.
 ### Pythonの外部ライブラリをインストールする場合

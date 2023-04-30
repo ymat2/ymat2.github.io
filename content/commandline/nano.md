@@ -1,5 +1,5 @@
 ---
-title: "nano - シンプルで軽量なテキストエディタ"
+title: "nano - smallでfriendlyなテキストエディタ"
 date: 2022-11-29T18:09:52+09:00
 ---
 
@@ -29,22 +29,23 @@ nano hoge.txt
 
 |Key|コマンド|操作|
 |:---|:---|:---|
-|Ctrl+G|Help|ヘルプ画面へ|
-|Ctrl+X|Exit|編集画面を抜ける|
-|Ctrl+O|Write Out|ファイル名を指定して書き込み|
-|Ctrl+R|Read File|ファイル名を指定して読み込み|
-|Ctrl+W|Where Is|ファイル内検索|
-|Ctrl+\ |Replace|ファイル内置換|
-|Ctrl+K|Cut|選択範囲を切り取り|
-|Ctrl+U|Paste|カーソル位置に文字列を貼り付け|
-|Ctrl+T|Execute|コマンドラインの操作を実行して出力を貼り付け|
-|Ctrl+J|Justify|均等割付|
-|Ctrl+C|Location|カーソル位置の表示|
-|Ctrl+/|Go To Line|行数を指定してジャンプ|
-|Meta+U|Undo|ひとつ前の状態に戻す|
-|Meta+E|Redo|同じ操作をおこなう|
-|Meta+A|Set Marl|選択範囲の開始点をセット|
-|Meta+6|Copy|選択範囲をコピー|
+|<kbd>Ctrl</kbd>+<kbd>G</kbd>|Help|ヘルプ画面へ|
+|<kbd>Ctrl</kbd>+<kbd>X</kbd>|Exit|編集画面を抜ける|
+|<kbd>Ctrl</kbd>+<kbd>O</kbd>|Write Out|ファイル名を指定して書き込み|
+|<kbd>Ctrl</kbd>+<kbd>R</kbd>|Read File|ファイル名を指定して読み込み|
+|<kbd>Ctrl</kbd>+<kbd>W</kbd>|Where Is|ファイル内検索|
+|<kbd>Ctrl</kbd>+<kbd>\ </kbd>|Replace|ファイル内置換|
+|<kbd>Ctrl</kbd>+<kbd>K</kbd>|Cut|選択範囲を切り取り|
+|<kbd>Ctrl</kbd>+<kbd>U</kbd>|Paste|カーソル位置に文字列を貼り付け|
+|<kbd>Ctrl</kbd>+<kbd>T</kbd>|Execute|コマンドラインの操作を実行して出力を貼り付け|
+|<kbd>Ctrl</kbd>+<kbd>J</kbd>|Justify|均等割付|
+|<kbd>Ctrl</kbd>+<kbd>C</kbd>|Location|カーソル位置の表示|
+|<kbd>Ctrl</kbd>+<kbd>/</kbd>|Go To Line|行数を指定してジャンプ|
+|<kbd>Ctrl</kbd>+<kbd>]</kbd>|Complete|ファイル中にあるほかの単語を探して補完|
+|<kbd>Meta</kbd>+<kbd>U</kbd>|Undo|ひとつ前の状態に戻す|
+|<kbd>Meta</kbd>+<kbd>E</kbd>|Redo|同じ操作をおこなう|
+|<kbd>Meta</kbd>+<kbd>A</kbd>|Set Marl|選択範囲の開始点をセット|
+|<kbd>Meta</kbd>+<kbd>6</kbd>|Copy|選択範囲をコピー|
 
 MetaキーはWindowsなら<kbd>alt</kbd>、Macなら<kbd>esc</kbd>。
 

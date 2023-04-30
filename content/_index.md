@@ -9,15 +9,12 @@ date: 2022-11-03T11:45:13+09:00
 Mail
 :	yuki.matsuda.r7あdc.tohoku.ac.jp
 
-Link
-:	[Github](https://github.com/ymat2/)
-:	[Slides](https://ymat2.github.io/slides/)
+Links
+:	[github](https://github.com/ymat2/)
+:	[slides](https://ymat2.github.io/slides/)
 
-<!--
-Development
+Developments
 :	[hugo-theme-mindoc](https://github.com/ymat2/hugo-theme-mindoc) &mdash; A simple hugo theme for documentation
-:	[reef.js](https://ymat2.github.io/reef.js/) &mdash; Regular Expression Easy Finder based on JavaScript
-:	[randomotion](https://ymat2.github.io/randomotion/) &mdash; A toy web application that simulate particle motion
-:	[lovo.js](https://ymat2.github.io/lovo.js/) &mdash; A toy web application that simulate Lotka-Volterra population dynamics
--->
+:	[coffee](https://github.com/ymat2/coffee) &mdash; A joke command writen in C++
+
 ## Documents

@@ -3,7 +3,7 @@ title: "Markdownチートシート"
 date: 2022-11-02T11:03:16+09:00
 ---
 
-いちいち調べるのも億劫なので自分でまとめる。HTMLにした際の挙動はどのパーサーを使うかによって微妙に異なる。HUGOの場合は[Goldmark](https://gohugo.io/getting-started/configuration-markup/#goldmark)。
+いちいち調べるのも億劫なので自分でまとめる。HTMLにした際の挙動はどのパーサーを使うかによって異なる。HUGOの場合は[Goldmark](https://gohugo.io/getting-started/configuration-markup/#goldmark)。
 一応たまに参照する記事も貼っておく:
 - https://qiita.com/Qiita/items/c686397e4a0f4f11683d
 - https://gist.github.com/mignonstyle/083c9e1651d7734f84c99b8cf49d57fa
@@ -39,9 +39,9 @@ fuga
 
 段落1
 
-段落2 
+段落2
 
-hoge  
+hoge
 fuga
 
 ## 引用
@@ -173,13 +173,13 @@ ___fuga___
 ## 表
 ```md
 | TH1 | TH2 |
-----|---- 
+----|----
 | TD1 | TD3 |
 | TD2 | TD4 |
 ```
 
 | TH1 | TH2 |
-----|---- 
+----|----
 | TD1 | TD3 |
 | TD2 | TD4 |
 

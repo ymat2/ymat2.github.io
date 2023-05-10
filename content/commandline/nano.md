@@ -7,13 +7,15 @@ date: 2022-11-29T18:09:52+09:00
 - マニュアル: https://www.nano-editor.org/dist/latest/nano.html
 
 ## Install
-もともと入っているものを使うか、`brew`でインストールする。
+もともと入っているものを使うか、`brew`や`apt`でインストールする。
 ```bash
 which -a nano
+
+brew install nano  ## mac
+sudo apt install nano  ## ubuntu
 ```
-```bash
-brew install nano
-```
+
+macOS 12.3 Monterey以降、Macの`nano`の正体は`pico`なので、いろいろ設定して使う場合は`brew`でインストールする。
 
 ## Usage
 ```bash
@@ -75,10 +77,12 @@ set mouse	# マウスを使えるようにする
 ### Syntax highlight
 デフォルトの見た目は非常に寂しい。
 
-Linuxでは`/usr/share/nano/`、Macでは`/usr/local/share/nano/`や`/usr/local/Cellar/nano/%v/share/doc/nano/`にハイライト定義ファイルが置いてあるので、これらの設定を`~/.nanorc`に加える。または野生の定義ファイルを使う手もある。: https://github.com/scopatz/nanorc
+Linuxでは`/usr/share/nano/`、Mac(brew)では`/usr/local/share/nano/`や`/usr/local/Cellar/nano/%v/share/nano/`にハイライト定義ファイルが置いてあるので、これらの設定を`~/.nanorc`に加える。
+
+または野生の定義ファイルを使う手もある。: https://github.com/scopatz/nanorc
 
 ```
-include '/usr/share/nano/*.nanorc'
+include "/usr/share/nano/*.nanorc"
 ```
 
 ### Key Bind

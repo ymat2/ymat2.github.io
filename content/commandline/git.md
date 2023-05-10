@@ -87,7 +87,7 @@ https://docs.github.com/ja/get-started/getting-started-with-git/ignoring-files
 	### 特定のファイル・ディレクトリのみ追跡
 	*
 	!hoge
-	
+
 	### ワイルドカードの使用
 	/*.py
 	/*.Rproj
@@ -124,7 +124,7 @@ Host github github.com
 ## `git submodule`
 外部のリポジトリを自分のリポジトリのサブディレクトリとして取り込む仕組み。
 ```bash
-git submodule add https://github.com/<username>/<repository>.git directory
+git submodule add https://github.com/<username>/<repository>.git <directory>
 ```
 
 ### submoduleを最新版に更新する
@@ -171,4 +171,3 @@ git push
 	```bash
 	rm -rf .git
 	```
-

@@ -69,6 +69,15 @@ date: 2022-11-02T11:03:16+09:00
 `ln -nfs TARGET LINK_NAME`
 :	`TARGET`を移動したときなどにリンクを張りなおす。
 
+相対PATHで書く場合、`TARGET`は作られる`LINK_NAME`から見たPATHで書く。例えばカレントディレクトリ`dirB`の`file1.txt`を一個上のディレクトリ`dirB`に`file2.txt`という名前でリンクする場合、`ln -s ./file1.txt ../file2.txt`と書きたくなるが、正しくは`ln -s ./dirB/file1.txt ../file2.txt`となる。
+
+```
+dirA
+  L file2.txt(LINK_NAME)  ->  file1.txt
+  L dirB
+    L file1.txt(TARGET)
+```
+
 ## `awk`で列の集計
 例えば下の`sample.tab`みたいなファイルの2行目を合計したかったら、
 ```sh

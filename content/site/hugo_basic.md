@@ -48,7 +48,8 @@ sudo apt install hugo
 ウェブサイトの骨組みを作る。
 
 `config.toml`
-:	設定ファイル。例: https://github.com/ymat2/ymat2.github.io/blob/main/config.toml
+:	設定ファイル。例: https://github.com/ymat2/ymat2.github.io/blob/main/hugo.toml
+:	version`0.110.0`以降、`config.toml`に代わって`hugo.toml`というファイル名が[推奨されている](https://gohugo.io/getting-started/configuration/#hugotoml-vs-configtoml)。
 
 `content/`
 :	この中にマークダウンでページを書いていく。
@@ -61,7 +62,7 @@ sudo apt install hugo
 
 `themes/`
 :	サイトの見た目を決めるテーマを入れる。 https://themes.gohugo.io/ から好きなテーマを選んで`git clone`する。
-:	自分で作ってもいい。 https://github.com/ymat2/hugo-theme-mindoc
+:	自分で作ってもいい。例: https://github.com/ymat2/hugo-theme-mindoc
 
 
 ## `hugo new`

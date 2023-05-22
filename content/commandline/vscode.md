@@ -25,42 +25,42 @@ sudo apt install wget ca-certificates
 ```
 
 ### プロジェクトを開く
-WSLから`code .`、もしくはVSCodeから<kbd>Control</kbd><kbd>Shift</kbd><kbd>P</kbd>でコマンドパレットを開いて'WSL: Connect to WSL'を選択。
+WSLから `code .` 、もしくはVSCodeから <kbd>Control</kbd><kbd>Shift</kbd><kbd>P</kbd> でコマンドパレットを開いて'WSL: Connect to WSL'を選択。
 
-なお、WSLからVSCodeを立ち上げた場合、ログインシェルの設定(`~/.bash_profile`, `~/.zprofile`)は読まれない。
+なお、WSLからVSCodeを立ち上げた場合、ログインシェルの設定( `~/.bash_profile`, `~/.zprofile` )は読まれない。
 
 ### 環境設定
 VSCode本体はWindowsのものなのでユーザー設定もWindows側。WSLで使う場合これをWSL用の設定が上書きする。
-- 拡張機能は`.vscode/extensions/`
-- 環境設定は`/AppData/Roaming/Code/User/settings.json`
-- キーボードショートカットは`/AppData/Roaming/Code/User/keybindings.json`
+- 拡張機能は `.vscode/extensions/`
+- 環境設定は `/AppData/Roaming/Code/User/settings.json`
+- キーボードショートカットは `/AppData/Roaming/Code/User/keybindings.json`
 
-WSLでVSCodeを使う場合、ユーザーホームに`.vscode-server/`が作られてこの中で設定をいじったりする。
-- 拡張機能は`.vscode-server/extensions/`
-- 環境設定は`.vscode-server/data/Machine/settings.json`
+WSLでVSCodeを使う場合、ユーザーホームに `.vscode-server/` が作られてこの中で設定をいじったりする。
+- 拡張機能は `.vscode-server/extensions/`
+- 環境設定は `.vscode-server/data/Machine/settings.json`
 
 
 ## Mac
 ### VSCodeのインストール
 https://code.visualstudio.com/download
 - Mac版のVSCodeをダウンロードして解凍。
-- `Visual Studio Code.app`を`/Applications`フォルダに移動。
+- `Visual Studio Code.app` を `/Applications` フォルダに移動。
 
 ### terminalからVSCodeを起動する設定
-`code`の実行ファイルは`/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code`にある。ここに`$PATH`を通せばいい。
+`code` の実行ファイルは `/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code` にある。ここに `$PATH` を通せばいい。
 
 公式のやり方
 : VSCodeを起動してコマンドパレットを開き(<kbd>Command</kbd><kbd>Shift</kbd><kbd>P</kbd>)、"shell"と検索して出てくる"Shell Command: Install 'cpde' command in PATH"をクリック。
-: これで上記の実行ファイルPATHが`/usr/local/bin/`にシンボリックリンクされる。
+: これで上記の実行ファイルPATHが `/usr/local/bin/` にシンボリックリンクされる。
 
 もしくは
-: `.zshrc`とかに上記のPATHを通す。
+: `.zshrc` とかに上記のPATHを通す。
 
 ### 環境設定
-MacのVSCodeの環境設定ファイルは`/Library/application Support/Code/User/settings.json`にある。
+MacのVSCodeの環境設定ファイルは `/Library/application Support/Code/User/settings.json` にある。
 
-#### WSLとの設定の共有
-[他人の`dotfiles`](https://github.com/shuntaka9576/dotfiles/tree/master/vscode)を見てみると、MacとWSLそれぞれの環境設定ファイルに共通の`settings.json`をシンボリックリンクしているよう?
+### WSLとの設定の共有
+[他人の `dotfiles` ](https://github.com/shuntaka9576/dotfiles/tree/master/vscode)を見てみると、MacとWSLそれぞれの環境設定ファイルに共通の `settings.json` をシンボリックリンクしているよう?
 
 ということで自分もいったんその方針でやってみる: https://github.com/ymat2/dotfiles/tree/main/.config/Code
 
@@ -71,10 +71,10 @@ https://code.visualstudio.com/docs/remote/ssh-tutorial
 コマンドパレットを開いて"ssh"で検索し、"Romote-SSH: Connect to host..."を選択して接続先を選ぶだけ。
 
 WSLで使う場合すでにRemoteで使っている扱いになるからかSSHできない...?
-- これはWindows側のホームを参照してコマンドプロンプトから`ssh`しようとするかららしい。
+- これはWindows側のホームを参照してコマンドプロンプトから `ssh` しようとするかららしい。
 - 解決策を調べてみると鍵をWindowsホームに置くとか出るけどほんとにそれでええんか？
 - WSLで動かしてるときはWSLのホームを参照する、みたいな設定できないだろうか。
-  - これは[偉大な先人たちが試している](https://github.com/microsoft/vscode-remote-release/issues/937)けどどうも`settings.json`の設定では無理らしい。windows側に.batおいてwslのssh使わせれば行けるらしいがそこまでするのは気が引ける。
+  - これは[偉大な先人たちが試している](https://github.com/microsoft/vscode-remote-release/issues/937)けどどうも `settings.json` の設定では無理らしい。windows側に.batおいてwslのssh使わせれば行けるらしいがそこまでするのは気が引ける。
 - WSLでLinuxのVSCode入れれば解決する気がするけどWSLでVSCode使う公式のやり方には従いたい。
 
 ## Quarto
@@ -94,4 +94,30 @@ https://quarto.org/docs/tools/vscode.html
    ```
 
 ### render
-右上のRenderボタンから、もしくは<kbd>Control/Command</kbd><kbd>Shift</kbd><kbd>K</kbd>。
+右上のRenderボタンから、もしくは <kbd>Control/Command</kbd><kbd>Shift</kbd><kbd>K</kbd>。
+
+## R
+1. Rに `languageserver` を入れる。
+   ```R
+   install.packages("languageserver")
+   ```
+
+2. VSCodeに[Rの拡張機能](https://marketplace.visualstudio.com/items?itemName=REditorSupport.r)を入れる。
+3. 環境設定
+   1. `settings.json`
+      ```json
+      "r.sessionWatcher": true
+      ```
+   2. `keybindings.json`
+      ```json
+      # ctrl+enterでコマンドをターミナルに送るための設定
+      [
+        {
+          "key": "ctrl+enter",
+          "command": "workbench.action.terminal.runSelectedText",
+          "when": "editorTextFocus"
+        }
+      ]
+      ```
+
+4. コマンドパレットを開いて"R: Create R terminal"。

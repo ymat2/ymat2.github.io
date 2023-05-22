@@ -16,20 +16,20 @@ import argparse
 parser = argparse.ArgumentParser()
 
 # オプション引数
-parser.add_argument('--input')
+parser.add_argument("--input")
 # ハイフン1つの省略形も追加できる
-parser.add_argument('-o', '--output')
+parser.add_argument("-o", "--output")
 # ポジション引数
-parser.add_argument('arg1')
+parser.add_argument("arg1")
 # --helpしたときの説明を書いておける
-parser.add_argument('arg2', help="２つ目のポジション引数")
+parser.add_argument("arg2", help="２つ目のポジション引数")
 
 args = parser.parse_args()
 
-print('arg1='+args.arg1)
-print('arg2='+args.arg2)
-print('arg3='+args.input)
-print('arg4='+args.output)
+print("arg1="+args.arg1)
+print("arg2="+args.arg2)
+print("arg3="+args.input)
+print("arg4="+args.output)
 ```
 
 実行する。
@@ -65,26 +65,26 @@ optional arguments:
 
 
 ## ポジション引数
-`parser.add_argument('argN')`とすると必須引数扱いになり、指定しないとエラーになる。
+`parser.add_argument("argN")`とすると必須引数扱いになり、指定しないとエラーになる。
 
 ## オプション引数
 ### デフォルト値と型の指定
 オプション引数は指定しないと`None`が入る。これ以外にデフォルト値を設定したり、データ型を指定することができる。
 ```python
-parser.add_argument('-n', '--number', type=float, default=0.0)
+parser.add_argument("-n", "--number", type=float, default=0.0)
 ```
 
 
 ### あらかじめ引数の選択肢を設定
 ```python
-parser.add_argument('-l', '--letter', choice=["hoge", "fuga", "piyo"])
+parser.add_argument("-l", "--letter", choice=["hoge", "fuga", "piyo"])
 ```
 選択肢以外の引数を指定するとエラーになる。
 
 
 ### 複数個の引数を受け取る
 ```python
-parser.add_argument('-a', '--alphabet', nargs='*')
+parser.add_argument("-a", "--alphabet", nargs="*")
 args = parser.parse_args()
 print(args.alphabet)
 ```
@@ -99,5 +99,5 @@ $ python3 test.py --alphabet A G X
 
 ### オプション引数を必須引数にする
 ```python
-parser.add_argument('-n', '--neeed', requied=True)
+parser.add_argument("-n", "--neeed", requied=True)
 ```

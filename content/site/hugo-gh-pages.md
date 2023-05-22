@@ -12,13 +12,13 @@ draft: true
 
 ## Github Actionsによる自動デプロイ
 
-1. Githubで<username>.github.ioという名の[リポジトリを作成]({{< ref "git.md" >}})。
+1. Githubで\<username\>.github.ioという名の[リポジトリを作成]({{< ref "git.md" >}})。
 
 1. ローカルにサイトを構築して[`git init`]({{< ref "git.md" >}})。
 	```bash
 	hugo new site <username>.github.io && cd <username>.github.io
 	git init
-	git commit --allow-empty -m "Create my site"
+	git commit -m "Create site"
 	git remote add origin https://github.com/<username>/<username>.github.io.git
 	git branch -M main
 	git push -u origin main
@@ -26,8 +26,49 @@ draft: true
 
 1. `contents/`にページを作成。
 	```bash
-	hugo new contents/example.md
-	echo "hello, world!" > contents/example.md
+	hugo new contents/index.md
+	echo "hello, world!" > contents/index.md
 	```
 
-1. Actions
+1. Actionsの設定
+
+	`git push` をトリガーに、自動でビルドコマンドを走らせて `gh-pages` ブランチにページを生成するように[Actions](https://github.co.jp/features/actions)を設定する。
+
+	[`.github/workflows/gh-pages.yml`](https://github.com/ymat2/ymat2.github.io/blob/main/.github/workflows/gh-pages.yml)に以下のように記述する。
+
+	```
+	name: GitHub Pages
+
+	on:
+		push:
+			branches:
+				- main  # Set a branch name to trigger deployment
+		pull_request:
+
+	jobs:
+		deploy:
+			runs-on: ubuntu-22.04
+			steps:
+				- uses: actions/checkout@v3
+					with:
+						submodules: true  # Fetch Hugo themes (true OR recursive)
+						fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+				- name: Setup Hugo
+					uses: peaceiris/actions-hugo@v2
+					with:
+						hugo-version: 'latest'
+
+				- name: Build
+					run: hugo
+
+				- name: Deploy
+					uses: peaceiris/actions-gh-pages@v3
+					# If you're changing the branch from main,
+					# also change the `main` in `refs/heads/main`
+					# below accordingly.
+					if: ${{ github.ref == 'refs/heads/main' }}
+					with:
+						github_token: ${{ secrets.GITHUB_TOKEN }}
+						publish_dir: ./public
+	```

@@ -67,8 +67,10 @@ macOS 12.3 Monterey以降のOSでは、完全にPyhton3に移行してしまい[
 which python3 #python3のパスを確認 >>>/usr/bin/python3
 ```
 
-適当なエディタで`hisat2-<version>/hisat2-build`と`hisat2-<version>/hisat2-inspect`（他にも必要かもしれない..）のシェバン行を編集
-- [ ] `#!/usr/bin/env python` # となっているのを
-- [x] `#!/usr/bin/python3` # と書き換える
+~~適当なエディタで`hisat2-<version>/hisat2-build`と`hisat2-<version>/hisat2-inspect`（他にも必要かもしれない..）のシェバン行を編集~~
+- [ ] ~~`#!/usr/bin/env python` # となっているのを~~
+- [x] ~~`#!/usr/bin/python3` # と書き換える~~
+
+このやり方はよろしくない。pyenvとかvenvで使えるpythonを用意してあげるのがいい？
 
 これで晴れてHisat2が使えるようになった。

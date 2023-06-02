@@ -3,8 +3,6 @@ title: "Visual Studio Code"
 date: 2023-05-09T12:52:36+09:00
 ---
 
-重たい腰を上げてVSCodeの利用を開始したのでいろいろメモっていく。
-
 https://code.visualstudio.com/
 
 ## WSL
@@ -12,6 +10,7 @@ https://learn.microsoft.com/ja-jp/windows/wsl/tutorials/wsl-vscode
 
 ### VSCode本体と拡張機能のインストール
 https://code.visualstudio.com/download
+
 1. VSCodeを(WSLではなく)Windowsにインストールする。
 2. インストール中に [追加タスクの選択] が求められたときは、[PATH への追加] オプションをオンにする。
 3. [Remote Development 拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)をインストールする。
@@ -71,6 +70,7 @@ https://code.visualstudio.com/docs/remote/ssh-tutorial
 コマンドパレットを開いて"ssh"で検索し、"Romote-SSH: Connect to host..."を選択して接続先を選ぶだけ。
 
 WSLで使う場合すでにRemoteで使っている扱いになるからかSSHできない...?
+
 - これはWindows側のホームを参照してコマンドプロンプトから `ssh` しようとするかららしい。
 - 解決策を調べてみると鍵をWindowsホームに置くとか出るけどほんとにそれでええんか？
 - WSLで動かしてるときはWSLのホームを参照する、みたいな設定できないだろうか。
@@ -103,6 +103,7 @@ https://quarto.org/docs/tools/vscode.html
    ```
 
 2. VSCodeに[Rの拡張機能](https://marketplace.visualstudio.com/items?itemName=REditorSupport.r)を入れる。
+
 3. 環境設定
    1. `settings.json`
       ```json

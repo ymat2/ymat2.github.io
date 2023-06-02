@@ -1,7 +1,6 @@
 ---
 title: "Hugoで生成したサイトをGithub Pagesでホストする"
 date: 2023-01-15T12:31:31+09:00
-draft: true
 ---
 
 - 参考: https://sat8bit.github.io/posts/hugo-with-github-pages/

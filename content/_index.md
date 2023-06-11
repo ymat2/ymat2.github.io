@@ -16,5 +16,3 @@ Links
 Developments
 :	[hugo-theme-mindoc](https://github.com/ymat2/hugo-theme-mindoc) &mdash; A simple hugo theme for documentation
 :	[coffee](https://github.com/ymat2/coffee) &mdash; A joke command writen in C++
-
-## Documents

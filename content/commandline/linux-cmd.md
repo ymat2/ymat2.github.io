@@ -79,6 +79,14 @@ dirA
     L file1.txt(TARGET)
 ```
 
+
+## `echo $PATH` の結果を1行ずつ表示する
+
+```sh
+echo $PATH | tr ":" "\n"
+```
+
+
 ## `awk` で列の集計
 例えば下の `sample.tab` みたいなファイルの2行目を合計したかったら、
 ```sh

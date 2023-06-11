@@ -77,7 +77,7 @@ parser.add_argument("-n", "--number", type=float, default=0.0)
 
 ### あらかじめ引数の選択肢を設定
 ```python
-parser.add_argument("-l", "--letter", choice=["hoge", "fuga", "piyo"])
+parser.add_argument("-l", "--letter", choices=["hoge", "fuga", "piyo"])
 ```
 選択肢以外の引数を指定するとエラーになる。
 

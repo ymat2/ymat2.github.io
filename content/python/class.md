@@ -1,144 +1,163 @@
 ---
-title: "PythonのClassを理解したい"
+title: "オブジェクト指向とclassを理解したい"
 date: 2022-11-02T11:03:16+09:00
 ---
 
-いまだにクラスのありがたさを実感できていない。オブジェクト指向言語であるPythonにおいて、データ（**インスタンス**）と、その処理の仕方（**メソッド**）をまとめて記述したもの（**オブジェクト**）を格納しておく雛形が**クラス**というもの。らしい。
+## これはなに？
+
+いまだにpythonの `class` のありがたさを実感できていない。
+`class` の使い方を、**オブジェクト指向**とは何か、から理解するためのノート。
+
+
+## オブジェクト指向とは
+
+**オブジェクト指向**とはプログラミングやソフトウェア開発における考え方の1つで、データとその処理の仕方をひとまとまりのモノ（オブジェクト）として扱う方法をいう。
+
+例えばRPGなどにおける「勇者」というオブジェクトには、
+「HP」や「MP」といったデータ（**属性**という）と、
+「攻撃する」や「回復する」といった処理（**メソッド**という）がひとまとまりとなっている。
+同様に「魔法使い」や「魔王」などのオブジェクトにも属性とメソッドがあり、
+これらオブジェクトを基準にプログラムを組み立てていく。
+
+
+## Pythonにおけるオブジェクト指向プログラミング
+
+Pythonにおいては、データ（**インスタンス**）と、その処理の仕方（**メソッド**）をまとめて記述したもの（**オブジェクト**）を格納しておく雛形が **`class`** である。
+
+RPGの勇者を例に、シンプルな `class` を定義していく。
+
+この勇者には「`atk`: 攻撃力」と「`hp`: 体力」という属性があり、
+「`powerup`: 攻撃力を上げる」と「`recover`: 回復する」
+という処理があるものとする。
 
 ```python
 # シンプルなclassの例
-class SimpleData:
+class RpgHero:
 
-  a = 0
-  b = 0
+  atk = 50 # 攻撃力
+  hp = 100   # 体力
 
-  def sum(self):
-    return self.a + self.b
-  
-  def set(self, a, b):
-    self.a = a
-    self.b = b
+  def powerup(self, i):
+    self.atk = self.atk + i
 
-# 作成したクラスを使うためにインスタンス化
-data1 = SimpleData()
-data2 = SimpleData()
+  def recover(self, j):
+    self.hp = self.hp + j
 
-# メソッドを呼び出す
-data1.set(3, 4)
-print(data1.sum())  >>> 7
 
-data2.set(2.5, 8.3)
-print(data2.sum())  >>> 10.8
+# 作成したクラスを使うためにインスタンス化:
+yoshihiko = RpgHero()
+
+# 最初の状態をprint:
+print("ATK:", yoshihiko.atk)
+print("HP:", yoshihiko.hp)
+# >>> ATK: 50
+# >>> HP: 100
+
+# メソッドを呼び出す:
+yoshihiko.powerup(10)   # 攻撃力を上げてみる
+yoshihiko.recover(25)   # 体力も回復させてみる
+
+# 再び確認:
+print("ATK:", yoshihiko.atk)
+print("HP:", yoshihiko.hp)
+# >>> ATK: 60
+# >>> HP: 125
 ```
 
 ## コンストラクタとは
-クラスをインスタンス化した時に最初に呼ばれるメソッドを**コンストラクタ**とよぶ。データの初期化をするものだと思えばいい。
+クラスをインスタンス化した時に最初に呼ばれるメソッドを**コンストラクタ**とよぶ。
+データの初期化をするものだと思えばいい。
+class内で `__init__()` で定義する。
 
 ```python
-class SimpleData:
+class RpgHero:
 
   def __init__(self):
-    self.a = 0
-    self.b = 0
+    self.atk = 50   # 攻撃力
+    self.hp = 100   # 体力
 
-  def sum(self):
-    return self.a + self.b
-  
-  def set(self, a, b):
-    self.a = a
-    self.b = b
+  def powerup(self, i):
+    self.atk = self.atk + i
 
-data3 = SimpleData()
-print(data3.sum())  >>> 0
+  def recover(self, j):
+    self.hp = self.hp + j
+
+
+yoshihiko = RpgHero()
+
+print("ATK:", yoshihiko.atk)
+print("HP:", yoshihiko.hp)
+# >>> ATK: 50
+# >>> HP: 100
 ```
 
-~~コンストラクタは複数作ることができ、引数を与えることもできる。~~ どうも嘘松っぽい。1つのクラスが持てるコンストラクタは1つだけ。
+インスタンス化のときに値を渡すことでより柔軟にclassを利用できる:
 
 ```python
-class SimpleData:
+class RpgHero:
 
-  def __init__(self):
-    self.a = 0
-    self.b = 0
-  
-  def __init__(self,a,b):
-    self.a = a
-    self.b = b
+  def __init__(self, atk = 0, hp = 0):  # デフォルト値を持たせておくこともできる
+    self.atk = atk   # 攻撃力
+    self.hp = hp     # 体力
 
-  def sum(self):
-    return self.a + self.b
-  
-  def set(self, a, b):
-    self.a = a
-    self.b = b
+  def powerup(self, i):
+    self.atk = self.atk + i
 
-data4 = SimpleData(4, 5)
-print(data4.sum())  >>> 9
+  def recover(self, j):
+    self.hp = self.hp + j
 
-data5 = SimpleData(3)
-print(data5.sum())  # 引数が足りないと怒られる
 
-data5_1 = SimpleData()
-print(data5_1.sum())  # 引数の数で自動判別もしない
-```
+yoshihiko = RpgHero(atk = 50, hp = 100)
+dai = RpgHero(hp = 110)   # daiはHPだけ与えてみる
 
-渡す引数の数に応じて`__init__()`したければ、デフォルト値を持たせておくのが賢い方法らしい。
+print("ATK:", yoshihiko.atk)
+print("HP:", yoshihiko.hp)
+# >>> ATK: 50
+# >>> HP: 100
 
-```python
-class SimpleData:
-
-  def __init__(self,a=0,b=0):
-    self.a = a
-    self.b = b
-
-  def sum(self):
-    return self.a + self.b
-  
-  def set(self, a, b):
-    self.a = a
-    self.b = b
-
-data4 = SimpleData(4, 5)
-print(data4.sum())  >>> 9
-
-data5 = SimpleData(3)
-print(data5.sum())  >>> 3
-
-data5_1 = SimpleData()
-print(data5_1.sum())  >>> 0
+print("ATK:", dai.atk)
+print("HP:", dai.hp)
+# >>> ATK: 0
+# >>> HP: 110
 ```
 
 
 ## クラスの継承
 一般的な場合の処理を記述したクラスを引き継いで、より特殊な場合のデータと処理を記述することを**クラスの継承**という。
 
+例えば勇者がレベルアップした「マスター」というオブジェクトがあるとする。
+このマスターには、もともと勇者が持っていた属性と処理に加えて、
+「`mp`: 魔法力」という属性と「`enhance`: 魔法力の分だけ攻撃力を上げる」という処理が加わるとする。
+
 継承先のクラス内では、`super()`を使うことで継承元のメソッドを呼び出すことができる。
 
-```python # a,bの2変数に対する一般的なclass
-class SimpleData:
-  
-  def __init__(self,a,b):
-    self.a = a
-    self.b = b
+```python
+class RpgHero:
 
-  def sum(self):
-    return self.a + self.b
-  
-  def set(self, a, b):
-    self.a = a
-    self.b = b
+  def __init__(self):
+    self.atk = 50   # 攻撃力
+    self.hp = 100   # 体力
 
-# 不変項cを付加したより特殊な場合に用いるclass
-class ComplexData(SimpleData):
-  
-  def __init__(self, a=0, b=0):
-    super().__init__(a, b)
-    self.c = 1
-  
-  def sum(self):
-    return super().sum() + self.c
-    # return self.a + self.b + self.c
-  
-data6 = ComplexData(3, 5)
-print(data6.sum())  >>> 9
+  def powerup(self, i):
+    self.atk = self.atk + i
+
+  def recover(self, j):
+    self.hp = self.hp + j
+
+# 「勇者」クラスを継承する「マスター」のクラス
+class RpgMaster(RpgHero):
+
+  def __init__(self, atk=0, hp=0, mp = 0):
+    super().__init__(atk, hp)
+    self.mp = mp
+
+  def enhance(self):
+    super().powerup(self.mp)
+
+
+yoshihiko = RpgMaster(atk = 50, hp = 100, mp = 20)
+yoshihiko.enhance()
+
+print("ATK:", yoshihiko.atk)
+# >>> ATK: 70
 ```

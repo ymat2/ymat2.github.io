@@ -239,7 +239,7 @@ http://freesia.net:4567 でアクセス。
 ### ポート番号なしでアクセス
 `:4567` で動いているのを `:80/wiki` に転送する。
 
-1. Apacheの設定ファイル `/etc/apache2/site-available/gollum-wiki.conf` をつくる。
+1. Apacheの設定ファイル `/etc/apache2/sites-available/gollum-wiki.conf` をつくる。
 
     ```
     ProxyRequests Off

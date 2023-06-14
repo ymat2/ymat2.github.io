@@ -1,5 +1,6 @@
 ---
-title: "Subprocess - pythonからコマンドラインの実行"
+title: "Subprocess"
+subtitle: "pythonからコマンドラインの実行"
 date: 2023-02-14T20:55:18+09:00
 draft: true
 ---

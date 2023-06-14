@@ -1,5 +1,6 @@
 ---
-title: "Pandas - データ解析支援ライブラリ"
+title: "Pandas"
+subtitle: "データ解析支援ライブラリ"
 date: 2022-11-02T11:03:16+09:00
 ---
 
@@ -33,11 +34,11 @@ df.tail(n)	# 末尾n行
 	df[['species']]	# DataFrame with 1 column
 	df['species']	# Series
 	df.species	# Series (not recommended)
-	
+
 	# label-based
 	df.loc[0]
 	df.loc[:,'sepal_width']
-	
+
 	# integer-based
 	df.iloc[0]
 	df.iloc[:,1]
@@ -47,7 +48,7 @@ df.tail(n)	# 末尾n行
 	```python
 	df.sort_values('species',ascending=True)	# 行の並べ替え。デフォルトは降順。
 	df['species'].drop_duplicates()	# カテゴリカルデータの重複を取り除く。
-	df['species'].value_counts()	# 値ごとの数を数える。	
+	df['species'].value_counts()	# 値ごとの数を数える。
 	```
 
 ## データ内容の処理

@@ -1,5 +1,6 @@
 ---
-title: "WSL - Windows Subsystem for Linux"
+title: "WSL"
+subtitle: "Windows Subsystem for Linux"
 date: 2022-11-25T14:56:42+09:00
 ---
 

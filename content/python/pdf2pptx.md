@@ -1,5 +1,6 @@
 ---
-title: "pdf2pptx - PDFからPowerPointスライドへの簡易変換"
+title: "pdf2pptx"
+subtitle: "PDFからPowerPointスライドへの簡易変換"
 date: 2022-11-02T11:03:16+09:00
 ---
 

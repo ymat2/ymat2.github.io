@@ -1,5 +1,6 @@
 ---
-title: "apt - debian Linuxでのパッケージ管理"
+title: "apt"
+subtitle: "debian Linuxでのパッケージ管理"
 date: 2023-01-08T14:34:31+09:00
 ---
 
@@ -76,4 +77,3 @@ date: 2023-01-08T14:34:31+09:00
  apt-cache show package     ->  apt show package
  apt-cache showpkg package  ->  apt show -a package
 ```
-

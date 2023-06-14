@@ -1,5 +1,6 @@
 ---
-title: "GollumでWikiをたてる"
+title: "Gollum"
+subtitle: "Wikiをたてたときの奮闘記"
 date: 2023-05-26T12:22:42+09:00
 ---
 

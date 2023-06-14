@@ -1,9 +1,9 @@
 baseURL = 'http://ymat2.github.io/'
 languageCode = 'ja-jp'
-title = 'A Website for Personal Documentation'
-
+title = 'Yuki Matsuda'
 theme = 'hugo-theme-mindoc'
 copyright = "(ɔ) 2022 Yuki Matsuda"
+uglyURLs = true
 enableEmoji = true
 
 [markup]

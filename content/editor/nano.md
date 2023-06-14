@@ -1,5 +1,6 @@
 ---
-title: "nano - smallでfriendlyなテキストエディタ"
+title: "nano"
+subtitle: "smallでfriendlyなテキストエディタ"
 date: 2022-11-29T18:09:52+09:00
 ---
 

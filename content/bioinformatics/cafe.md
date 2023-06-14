@@ -1,5 +1,6 @@
 ---
-title: "CAFE - Computational Analysis of gene Family evolution"
+title: "CAFE"
+subtitle: "Computational Analysis of gene Family evolution"
 date: 2022-11-02T11:03:16+09:00
 ---
 
@@ -25,12 +26,12 @@ date: 2022-11-02T11:03:16+09:00
 ## 使い方
 ### こんな感じのシェルスクリプトを書く
 ```bash
-#! cafe 
-# version 
-# date 
-load -i data/example.tab -t 10 -l logfile.txt -p 0.05 
-tree (((chimp:6,human:6):81,(mouse:17,rat:17):70):6,dog:93) 
-lambda -s -t (((1,1)1,(2,2)2)2,2) 
+#! cafe
+# version
+# date
+load -i data/example.tab -t 10 -l logfile.txt -p 0.05
+tree (((chimp:6,human:6):81,(mouse:17,rat:17):70):6,dog:93)
+lambda -s -t (((1,1)1,(2,2)2)2,2)
 report resultfile
 ```
 
@@ -93,7 +94,7 @@ tree2 = chronopl(tree,
                  tol = 1e-20,
                  CV = FALSE,
                  eval.max = 500,
-                 iter.max = 500) 
+                 iter.max = 500)
 is.ultrametric(tree2) #ultrametricかどうか確認
 write.tree(tree2, file = "tree_ultrametric.nwk") #ultrametric系統樹の保存
 

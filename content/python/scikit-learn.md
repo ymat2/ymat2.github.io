@@ -1,5 +1,6 @@
 ---
-title: "Scikit-learn - 機械学習支援ライブラリ"
+title: "Scikit-learn"
+subtitle: "機械学習支援ライブラリ"
 date: 2022-11-02T11:03:16+09:00
 draft: true
 ---
@@ -66,17 +67,17 @@ import seaborn as sns
 
 	from sklearn.linear_model import LinearRegression
 	clf = LinearRegression()	# モデル生成
-	
+
 	### 単回帰
 	x, y = iris[['Petal.Length']].values, iris['Petal.Width'].values	# 説明変数、目的変数をnumpyのarrayで用意
 	clf.fit(x, y)	# 最適化（学習）
-	
+
 	print(clf.coef_[0], clf.intercept_)	# 説明変数の係数、切片
-	
+
 	### 重回帰
 	x, y = iris[['Sepal.Length', 'Sepal.Width']].values, iris['Petal.Width'].values
 	clf.fit(x, y)
-	
+
 	print(clf.coef_, clf.intercept_)
 	```
 
@@ -90,11 +91,11 @@ import seaborn as sns
 	```python
 	from sklearn.decomposition import PCA
 	pca = PCA()
-	
+
 	arr = iris[['Sepal.Length', 'Sepal.Width', 'Petal.Length', 'Petal.Width']].values
 	pca.fit(arr)
 	res = pca.transform(arr)
 	```
-	
+
 - K-means
 - t-SNE

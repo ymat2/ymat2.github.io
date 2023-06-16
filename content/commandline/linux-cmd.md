@@ -3,6 +3,7 @@ title: "Linuxコマンド小技集"
 date: 2022-11-02T11:03:16+09:00
 ---
 
+
 ## 基本
 `pwd`
 :	カレントディレクトリの絶対パス
@@ -56,14 +57,18 @@ date: 2022-11-02T11:03:16+09:00
 `time`
 :	`time sleep 30` など、コマンドの実行時間を表示する。
 
+
 ## `grep`, `find`でファイル検索
+
 `find PATH -name str`
 :	`PATH` 配下の"str"という名前のファイルをすべて表示する。ワイルドカード `*` も使える。`Operetion not permitted` する出力は邪魔になるので `2>/dev/null` に流す。
 
 `grep str -rl PATH`
 :	中身にstrが含まれているファイルを再起的に取得。
 
+
 ## `ln`
+
 `ln -s TARGET LINK_NAME`
 :	`TARGET` のシンボリックリンクを `LINK_NAME` に作成。
 
@@ -88,7 +93,9 @@ echo $PATH | tr ":" "\n"
 
 
 ## `awk` で列の集計
+
 例えば下の `sample.tab` みたいなファイルの2行目を合計したかったら、
+
 ```sh
 awk '{s += $2} END {print s}' < sample.tab
 ```
@@ -100,20 +107,27 @@ awk '{s += $2} END {print s}' < sample.tab
 |2|4|6|
 |1|2|1|
 
+
 ## ディレクトリ配下で一定以上の行数であるファイルを表示
+
 ```
 ls ./ | xargs wc | awk '$1 >= 20 { print }'  # 20行以上のファイルのみ表示
 ```
 
+
 ## `pbcopy`
+
 `pbcopy` は、ターミナルの標準出力をクリップボードにコピーするMac固有のコマンド。
-```bash
+
+```sh
 cat hoge.txt | pbcopy  # hoge.txtの中身がクリップボードにコピーされる。
 ```
 
 ### Linuxでも `pbcopy` を使いたい
+
 linuxでは `xsel` を使うことで `pbcopy` を再現できる。([参考](https://qiita.com/yoshikyoto/items/1676b925580717c0a443))
-```bash
+
+```sh
 sudo apt install xsel  # xselをインストール
 cat hoge.txt | xsel --clipboard --input  # hoge.txtの中身を標準出力し、クリップボードにコピー
 ```

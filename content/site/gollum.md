@@ -11,62 +11,76 @@ Linuxサーバーにgollumでwikiを立てたときの奮闘記。
 
 
 ## 開発
+
 ### 開発環境
+
 MacOS Ventura 13.3.1
-```zsh
+
+```sh
 brew --version	# Homebrew 4.0.19
 which -a ruby	# /usr/bin/ruby
 ruby --version	# ruby 2.6.10p210
 ```
 
 ### Gollumのインストール
+
 1. homebrewでrbenvをインストール
-    ```zsh
+
+    ```sh
     brew install rbenv
     ```
 
-2. 最新版(安定版？)のrubyを探してインストール
-    ```zsh
+1. 最新版(安定版？)のrubyを探してインストール
+
+    ```sh
     rbenv install -l
     rbenv install 3.2.2
     rbenv global 3.2.2
     rbenv init
-    eval "$(rbenv init - zsh)"  # ~/.zsh_localにも記載
+    eval "$(rbenv init - zsh)"  # ~/.zshrcにも記載
     ```
-3. Wiki用のリポジトリを作って空コミット
-    ```zsh
+1. Wiki用のリポジトリを作って空コミット
+
+    ```sh
     mkdir mywiki && cd mywiki
     git init
     git commit --allow-empty -m ":coffee: Create Wiki"
     ```
 
-3. `Gemfile` を作成して以下を記載し、コミット
+1. `Gemfile` を作成して以下を記載し、コミット
+
     ```rb
     source 'https://rubygems.org'
     gem 'commonmarker'
     gem 'gollum'
     ```
-    ```zsh
+
+    ```sh
     git add Gemfile
     git commit -m ":sparkles: Create Gemfile"
     ```
 
     ここでFork版のgollumを使うように設定できるらしいが、ひとまずそのまま使ってみる。
 
-4. `bundle` で `Gemfile` を読んでパッケージを依存関係ごとインストール
-    ```zsh
+1. `bundle` で `Gemfile` を読んでパッケージを依存関係ごとインストール
+
+    ```sh
     bundle install  # --localしようとしたがcommonmarkerが入らなかった
     ```
 
-5. サーバーを起動して `localhost:4567` で起動確認
-    ```zsh
+1. サーバーを起動して `localhost:4567` で起動確認
+
+    ```sh
     bundle exec gollum
     ```
 
 
 ## 設定
+
 ### 基本
-大体の設定を記述するファイルは `config.rb`。まず以下のように記載して、`-c` で読み込んで起動。
+
+大体の設定を記述するファイルは `config.rb`。
+まず以下のように記載して、`-c` で読み込んで起動。
 
 ```rb
 require 'gollum/app'
@@ -79,24 +93,31 @@ wiki_options = {
 }
 Precious::App.set(:wiki_options, wiki_options)
 ```
-```zsh
+
+```sh
 bundle exec gollum -c config.rb
 ```
 
 
-- 試しに `localhost:4567` で閲覧して、新しいページを作ってみる。
-    ```md
-    ## Hello Freesia!
-    This is the home of mywiki on `freesia`.
-    ```
+試しに `localhost:4567` で閲覧して、新しいページを作ってみる:
 
-- 一度終了してもう一度起動すると、ちゃんとさっき作ったページが表示されている。
-- このファイルはどこにある？working directoryには見えていないけど `git` が追跡しているっぽい。
+ ```md
+ ## Hello Freesia!
+ This is the home of mywiki on `freesia`.
+ ```
+
+一度終了してもう一度起動すると、ちゃんとさっき作ったページが表示されている。
+
+- このmarkdownはどこにある？working directoryには見えていないけど `git` が追跡しているっぽい。
+
 - 手元に `main` ブランチと別に `master` ブランチが生成されていてそこにファイルがある。
+  (後述するが最初から `master` ブランチで運用した方が事故は少なそう。)
 
 
 ### BASIC認証によるパスワード設定
-`config.rb` に以下の設定を追記。
+
+`config.rb` に以下の設定を追記:
+
 ```rb
 module Precious
   class App < Sinatra::Base
@@ -118,7 +139,7 @@ module Precious
 end
 ```
 
-ユーザー情報を `users.json` に分離して `config.rb` と同じところに置いておく。
+ユーザー情報を `users.json` に分離して `config.rb` と同じところに置いておく:
 
 ```json
 {
@@ -130,28 +151,40 @@ end
 }
 ```
 
-`echo -n "your_password" | sha256sum` したものを"password"に渡す。(c.f. `brew install coreutils`)
+`echo -n "your_password" | sha256sum` したものを"password"に渡す。
+(c.f. `brew install coreutils` )
 
 ログインウィンドウでは、ユーザー名に"user1"、パスワードに"your_password"を指定する。
 
 
 ## 本番環境へのデプロイ (トラブルシューティングしながら)
+
 ### 本番環境
+
 Ubuntu 22.04.2 LTS
 
-```bash
+```sh
 sudo apt update
 sudo apt install autoconf bison build-essential libssl-dev libyaml-dev libreadline-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev coreutils
 ```
-```bash
+
+Webサーバ `Apache` も入れておく:
+
+```sh
+sudo apt install apache2
+```
+
+rubyの環境を整える:
+
+```sh
 brew install rbenv
 rbenv install -l
 rbenv install 3.2.2
 ```
 
-で、rubyインストールをしようと思ったけど、ちゃんと入れた `libssl-dev` で怒られてrubyが入らない。
+で、rubyインストールをしようと思ったけど、ちゃんと入れたはずの `libssl-dev` で怒られてrubyが入らない。
 
-```bash
+```sh
 rbenv install 3.2.2
 # To follow progress, use 'tail -f /tmp/ruby-build.20230528012904.22847.log' or pass --verbose
 # Downloading ruby-3.2.2.tar.gz...
@@ -180,37 +213,39 @@ rbenv install 3.2.2
 
 仕方ないのでhomebrewで入れることに。(後述するが非推奨のやりかた。あとで `rbenv` で入れなおした。)
 
-```bash
+```sh
 brew info ruby
 brew install ruby
 ```
 
 ### リポジトリのクローンとテスト
 
-```bash
+```sh
 git clone mywiki && cd mywiki
 bundle install
 ```
 
 `rugged` のインストールでこける。この[記事](https://qiita.com/___fff_/items/1eff2bc722ba8b55d3b0)を参考に、
 
-```bash
+```sh
 brew reinstall gcc
 brew install cmake
 ```
 
 再度 `bundle install` で依存関係ごとgollumを入れる。
 
-```bash
+```sh
 bundle exec gollum -c config.rb
 ```
 
 
 ### systemd で自動的に開始
-```bash
+
+```sh
 sudo nano /etc/systemd/system/gollum.service
 ```
-```
+
+```ini
 [Unit]
 Description=Gollum wiki server
 After=network.target
@@ -227,7 +262,8 @@ StandardError=file:/var/log/gollum.log
 [Install]
 WantedBy=multi-user.target
 ```
-```bash
+
+```sh
 sudo systemctl start gollum.service
 sudo systemctl enable gollum.service
 ```
@@ -238,6 +274,7 @@ http://freesia.net:4567 でアクセス。
 
 
 ### ポート番号なしでアクセス
+
 `:4567` で動いているのを `:80/wiki` に転送する。
 
 1. Apacheの設定ファイル `/etc/apache2/sites-available/gollum-wiki.conf` をつくる。
@@ -254,16 +291,16 @@ http://freesia.net:4567 でアクセス。
     </Location>
     ```
 
-2. つくった設定ファイルを有効化してApacheを再起動する。
+1. つくった設定ファイルを有効化してApacheを再起動する。
 
-    ```bash
+    ```sh
     sudo a2ensite gollum-wiki.conf
     sudo systemctl restart apache2
     ```
 
-3. apache2が再起動しない。Proxyが機能していない？
+1. apache2が再起動しない。Proxyが機能していない？
 
-    ```bash
+    ```sh
     sudo systemctl restart apache2
     # Job for apache2.service failed because the control process exited with error code.
     # See "systemctl status apache2.service" and "journalctl -xeu apache2.service" for details.
@@ -286,53 +323,58 @@ http://freesia.net:4567 でアクセス。
     # May 29 05:39:49 Freesia apachectl[1821]: The Apache error log may have more information.
     ```
 
-4. `sudo a2enmod proxy` して再度 `sudo systemctl restart apache2`
+1. `sudo a2enmod proxy` して再度 `sudo systemctl restart apache2`
 
-5. Internal Server Error
+1. Internal Server Error
 
-    http://freesia.net/wiki にアクセスするとサーバー内部のエラーとのことで、エラーログを見てみる。
+    http://freesia.net/wiki にアクセスするとサーバー内部のエラーとのことで、エラーログを見てみる:
 
-    ```bash
+    ```sh
     less /var/log/apache2/error.log
     ```
+
+    ```log
+    [Mon May 29 05:43:03.180681 2023] [proxy:warn] [pid 1886:tid 140102133675584] [client 10.33.25.141:62101]
+    AH01144: No protocol handler was valid for the URL /wiki (scheme 'http').
+    If you are using a DSO version of mod_proxy, make sure the proxy submodules are included in the configuration using LoadModule.
     ```
-    [Mon May 29 05:43:03.180681 2023] [proxy:warn] [pid 1886:tid 140102133675584] [client 10.33.25.141:62101] AH01144: No protocol handler was valid for the URL /wiki (scheme 'http'). If you are using a DSO version of mod_proxy, make sure the proxy submodules are included in the configuration using LoadModule.
-    ```
 
-6. `sudo a2enmod proxy_http` して再度 `sudo systemctl restart apache2`
+1. `sudo a2enmod proxy_http` して再度 `sudo systemctl restart apache2`
 
-7. http://freesia.net/wiki でアクセスできることを確認
+1. http://freesia.net/wiki でアクセスできることを確認
 
 
-### `rbenv` を何とか使う
+### `rbenv` で入るrubyを使う
+
 homebrewでrubyを入れると、bundleをフルパス指定しなければいけないうえに、アップデートの度にバージョンが変わって使いづらい。
 
-最新版のrubyが入らないのはおそらく `openssl` の問題のよう。homebrewで入れたopensslには `1.1.1` と `3.1.0` があって、rbenvが参照しているのは前者っぽい。
+最新版のrubyが入らないのはおそらく `openssl` の問題のよう。
+homebrewで入れたopensslには `1.1.1` と `3.1.0` があって、rbenvが参照しているのは前者っぽい。
 
 `rbenv` でインストールするrubyのバージョンを落としてみる:
 
-```bash
+```sh
 rbenv install 3.0.6
 ```
 
 入った。念のためhomebrewのrubyは消してバージョンを反映:
 
-```bash
+```sh
 brew uninstall ruby
 rbenv global 3.0.6
 eval "$(rbenv init - zsh)"  # .bash_localへ
 ```
 
-`rbenv` 版のrubyを使ってwiki再設定
+`rbenv` 版のrubyを使ってwiki再設定:
 
-```bash
+```sh
 cd /path/to/wiki
 bundle install
 ```
 
 いったんgollum-wikiを停止:
 
-```bash
+```sh
 sudo systemctl stop gollum.service
 ```
 
@@ -340,7 +382,7 @@ sudo systemctl stop gollum.service
   - `bundle` だけでは同じく認識してくれなかった。
   - rbenvで入れたbundleへのフルパスを書いて解決。バージョン番号が入っていない点で及第点とするか。
 
-```
+```ini
 [Unit]
 Description=Gollum wiki server
 After=network.target
@@ -360,13 +402,14 @@ WantedBy=multi-user.target
 
 gollum-wikiを再起動:
 
-```bash
+```sh
 sudo systemctl daemon-reload
 sudo systemctl start gollum.service
 ```
 
 
 ### branchを `main` で動くように調整しようとした
+
 - https://zenn.dev/noid11/articles/9112566f0737a2c9f7b7
 - https://github.com/gollum/gollum/issues/1813
 
@@ -388,7 +431,8 @@ Precious::App.set(:wiki_options, wiki_options)
 ```
 
 動かん:
-```bash
+
+```sh
 sudo systemctl status gollum.service
 # × gollum.service - Gollum wiki server
 #      Loaded: loaded (/etc/systemd/system/gollum.service; enabled; vendor preset: enabled)
@@ -404,7 +448,8 @@ sudo systemctl status gollum.service
 ```
 
 コマンドラインオプションで渡してみる:
-```
+
+```ini
 [Unit]
 Description=Gollum wiki server
 After=network.target
@@ -423,7 +468,8 @@ WantedBy=multi-user.target
 ```
 
 効かん:
-```bash
+
+```sh
 sudo systemctl status gollum.service
 # ● gollum.service - Gollum wiki server
 #      Loaded: loaded (/etc/systemd/system/gollum.service; enabled; vendor preset: enabled)
@@ -443,6 +489,7 @@ sudo systemctl status gollum.service
 
 
 ## Misc.
+
 `rbenv` はrubyのバージョン管理、`bundle` はrubyのパッケージ管理をしてくれる。
 
 `Gemfile` はRubyプロジェクトにおける依存関係を管理するファイル。`bundle` が読む。

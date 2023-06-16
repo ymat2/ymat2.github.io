@@ -9,19 +9,24 @@ draft: true
 - https://github.com/kfuku52/csubst
 - [Fukushima and Pollock (2023)](https://www.nature.com/articles/s41559-022-01932-7)
 
-## Installation
-`csubst`を実行するうえでIQ-TREEが必要。IQ-TREEのインストールは[ここ](http://www.iqtree.org/doc/Quickstart#installation)を参照。
 
-```bash
+## Installation
+
+`csubst` を実行するうえでIQ-TREEが必要。
+IQ-TREEのインストールは[ここ](http://www.iqtree.org/doc/Quickstart#installation)を参照。
+
+```sh
 # pipを使ってインストール。必要に応じてPATHを通す。
 python3 -m pip install numpy cython # NumPy and Cython should be available upon csubst installation
 python3 -m pip install git+https://github.com/kfuku52/csubst
 ```
 
+
 ## Quick start
+
 付属のテストデータを使って動かしてみる。
 
-```bash
+```sh
 # テストデータを生成。
 csubst dataset --name PGK
 
@@ -32,9 +37,9 @@ csubst analyze \
   --foreground foreground.txt
 ```
 
-IQ-TREEはversion`2.0.0`より新しいものが求められる。自分でバイナリ版を落として来たりして実行コマンドが`iqtree2`になっている場合、`--iqtree_exe`オプションで指定する。
+IQ-TREEはversion2.0.0より新しいものが求められる。自分でバイナリ版を落として来たりして実行コマンドが `iqtree2` になっている場合、`--iqtree_exe`　オプションで指定する。
 
-```bash
+```sh
 csubst analyze \
   --alignment_file alignment.fa \
   --rooted_tree_file tree.nwk \

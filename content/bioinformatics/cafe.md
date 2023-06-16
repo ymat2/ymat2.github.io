@@ -8,24 +8,37 @@ date: 2022-11-02T11:03:16+09:00
 基本的な動かし方は、入力となるシェルスクリプトを書いてCAFEに渡す、という形になる。
 このシェルスクリプトを書く過程で、OrthoFinderの出力であるOrthogroups.GeneCount.tsvと種の系統樹（Species_Tree/SpeciesTree_rooted.txt）が必要。
 
-**重要**
-:	[CAFE5]({{< ref cafe5.md >}})にアップデートされ、より柔軟な推定が可能になり、動かし方も容易になったため、特に理由がなければCAFE5を推奨する。
+
+<div style="background-color:#fff5f5 ; padding-inline: 1em; padding-block: 0.1em;">
+
+[CAFE5]({{< ref cafe5.md >}})にアップデートされ、より柔軟な推定が可能になり、動かし方も容易になったため、特に理由がなければCAFE5を推奨する。
+
+</div>
 
 ## インストール
+
 1. 作者たちのgithubから[最新版のCAFEをダウンロード](https://github.com/hahnlab/CAFE/releases/latest)して、適当なディレクトリに置く。（例えば`~/bin/`）
-2. 解凍したらCAFEディレクトリまで`cd`して`configure`＆`make`。
-	```bash
-	~/bin/CAFE$ ./configure
-	~/bin/CAFE$ make
-	```
-3. PATHを通して動作確認。
-	```bash
-	~/$ cafe  # ctrl+C
+
+2. 解凍したらCAFEディレクトリまで `cd` して `configure` ＆ `make`。
+
+	```sh
+	cd PATH_TO_CAFE
+    ./configure
+	make
 	```
 
+3. PATHを通して動作確認。
+
+	```sh
+	cafe  # ctrl+C
+	```
+
+
 ## 使い方
+
 ### こんな感じのシェルスクリプトを書く
-```bash
+
+```sh
 #! cafe
 # version
 # date
@@ -37,27 +50,31 @@ report resultfile
 
 `load`
 :	基本的なオプション。
-:	`-i`で種/遺伝子ファミリーごとの遺伝子数のテーブルを指定。
-:	`-t`でスレッド数を指定。使っているコンピュータに合わせる。
-:	`-l`でログファイルの名前を指定。
-:	`-p`で遺伝子数の増減が急速であるとする有意水準を設定する。
-:	`-filter`は全種の共通祖先における遺伝子数が0であると推定される遺伝子ファミリーを除くオプション。**これをつける場合はload行より上にtree行を書く。**
+:	`-i`  種/遺伝子ファミリーごとの遺伝子数のテーブル
+:	`-t`  スレッド数。使っているコンピュータに合わせる。
+:	`-l`  ログファイルの名前
+:	`-p`  遺伝子数の増減が急速であるとする有意水準
+:	`-filter` は全種の共通祖先における遺伝子数が0であると推定される遺伝子ファミリーを除くオプション。**これをつける場合はload行より上にtree行を書く。**
 
 `tree`
-:	rootから各種までの距離が同じである（ultrametricな）系統樹。
+:	rootから各種までの距離が同じである(ultrametricな)系統樹。
 
 `lambda`
 :	単位時間あたりの遺伝子数の増減速度λの設定。
-:	λを指定する場合は`-l`、自動推定する場合は`-s`。
-:	`-t`でλ構造を設定。系統樹上の遺伝子増減速度が同じだと考えられる枝を同じ数字にする。全枝で同じだと仮定する場合すべて1にする。系統樹の枝長の部分を書き換えればいい。
+:	λを指定する場合は `-l`、自動推定する場合は `-s`。
+:	`-t` でλ構造を設定。系統樹上の遺伝子増減速度が同じだと考えられる枝を同じ数字にする。全枝で同じだと仮定する場合すべて1にする。系統樹の枝長の部分を書き換えればいい。
 
 `report`
 :	出力ファイルの名前。
 
 ### インプットとなるテーブル(example.tab)を用意する
+
 OrthoFinderの出力であるOrthogroups.GeneCount.tsvなどを基に、CAFEの入力ファイルとして加工する。基本的には、
+
 - Description列、ID列を作る。
+
 - 全種の遺伝子数が同じである遺伝子ファミリーを除く。
+
 - 1種の遺伝子数が100を超える遺伝子ファミリーを除く。
 
 を満たしていればどう作ってもいい。
@@ -73,14 +90,15 @@ OrthoFinderの出力であるOrthogroups.GeneCount.tsvなどを基に、CAFEの�
 準備中...
 ```
 
-```bash
+```sh
 python3 make_cafe_input.py Orthogroups.GeneCount.tsv Cafe_input.tsv
 ```
 
 ### ultrametricな系統樹を用意する
+
 [TimeTree](http://www.timetree.org/)などから取得すると楽。OrthoFinderの出力系統樹を使う場合、遺伝的距離に基づく系統樹であるため、ultrametricに加工する必要がある。Rのapeなどを使うと便利。
 
-```R
+```r
 library(ape)
 
 tree = read.tree("tree.txt")
@@ -107,20 +125,22 @@ write.tree(tree2, file = "tree_ultrametric.nwk") #ultrametric系統樹の保存
 :	枝長は少数でも構わないが、1以上のできるだけ小さい枝長になるように約分する。（大きすぎるとエラーになるっぽい。）
 
 ### CAFEを実行する
+
 シェルスクリプトが用意できたら、次のコマンドでCAFEを実行する。
 
-```bash
+```sh
 cafe example.sh
 ```
 
 ### 出力ファイルを加工する
+
 CAFEの実行に成功すると、reportで指定した名前の.repファイルが出てくる。このままだと見づらいため、公式のスクリプトを使って加工する。
 
 1. https://github.com/hahnlab/cafe_tutorial に行き、コードをダウンロード→解凍する。（緑色の<kbd>Code▼</kbd>から。）reportファイルのあるディレクトリに置いておくと便利。
 
 2. 次のコマンドでreportファイルを加工する。4つのファイルが出力される。
 
-```bash
+```sh
 python cafe_tutrial/python_scripts/cafetutorial_report_analysis.py -i resultfile.rep -o cafe_summary
 ```
 
@@ -139,7 +159,7 @@ python cafe_tutrial/python_scripts/cafetutorial_report_analysis.py -i resultfile
 :	系統樹の枝長に0が含まれているとダメ。自分は該当するノードを除外した。
 
 `No species ‘anolis_carolinensis’ was found in the tree`
-:	系統樹を読み込む際に内部でtip nameを書き換えているようで、長すぎる種名やアンダースコアが原因と思われるエラー。tip nameを短く書き換える。（`AnoCal`とか）
+:	系統樹を読み込む際に内部でtip nameを書き換えているようで、長すぎる種名やアンダースコアが原因と思われるエラー。tip nameを短く書き換える。（ `AnoCal` とか）
 
 `Lambda values were not set. Please set lambda values with the lambda or lambdamu command.`
 :	λを自動推定する際に、系統樹の枝長がでかい数字だとこうなるっぽい。できるだけ短くなるように約分する。

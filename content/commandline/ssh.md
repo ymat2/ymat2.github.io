@@ -5,18 +5,19 @@ date: 2022-11-02T11:03:16+09:00
 
 リモートのマシンに安全に接続し、管理するためのツール。
 
+
 ## サーバー( `ssh` される側)の設定
 
 `openssh-server` をインストールして起動を確認。
 
-```bash
+```sh
 sudo apt -y install openssh-server
 sudo systemctl status sshd.service  # Active: active (running) となっていれば起動している。
 ```
 
 この状態でいったん同一LAN内の別のマシンから `ssh` してみる。
 
-```bash
+```sh
 ssh ユーザー名@ipアドレス
 #
 #
@@ -26,9 +27,10 @@ ssh ユーザー名@ipアドレス
 
 ### `/etc/ssh/sshd_config` の設定
 
-`openssh-server` をインストールしたことで設定ファイルが `/etc/ssh/` に生成される。これを編集することでどの接続を許可してどれを弾くかを設定する。
+`openssh-server` をインストールしたことで設定ファイルが `/etc/ssh/` に生成される。
+これを編集することでどの接続を許可してどれを弾くかを設定する。
 
-```bash
+```sh
 # ssh公開鍵の種類を指定する。
 HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_ecdsa_key
@@ -47,13 +49,14 @@ PermitEmptyPassword no
 KbdInteractiveAuthentication no
 ```
 
+
 ## クライアント( `ssh` する側)の設定
 
 ### 公開鍵の作成と登録
 
 1. 公開鍵と秘密鍵を作成。
 
-	```bash
+	```sh
 	ssh-keygen -t ed25519
 	# Generating public/private ed25519 key pair.
 	# Enter file in which to save the key:
@@ -68,20 +71,20 @@ KbdInteractiveAuthentication no
 
 	サイトに登録する場合などは公開鍵をコピー&ペースト
 
-	```bash
+	```sh
 	## 公開鍵のコピー
 	cat ~/.ssh/id_ed25519.pub | pbcopy
 	```
 
 	コマンドで送る場合( `PasswordAuthentication yes` である必要がある):
 
-	```bash
+	```sh
 	cat id_ed25519.pub | ssh ユーザー名@ipアドレス "mkdir ~/.ssh; cat>>~/.ssh/authorized_keys"
 	```
 
 1. パーミッションの確認
 
-	```bash
+	```sh
 	ls -al ~/.ssh
 	# total 28
 	# drwxr-xr-x  2 yukimatsu yukimatsu 4096 May 10 16:51 .
@@ -95,19 +98,22 @@ KbdInteractiveAuthentication no
 
 	公開鍵 `.pub` 以外はユーザー本人だけが読み書きできる設定( `-rw-------` )にする。
 
-	```bash
+	```sh
 	chmod 600 ~/.ssh/config
 	```
 
 
 ### `~/.ssh/config` の設定
+
 一般的な接続方法:
-```bash
+
+```sh
 ssh username@example.com	# 毎回打つのは面倒！
 ```
 
 そこで `.ssh/config` に以下のような設定を追記:
-```
+
+```ini
 Host hoge
 	Hostname example.com	# ホスト名(@のうしろ)
 	User username			# ユーザー名
@@ -115,13 +121,15 @@ Host hoge
 ```
 
 こうすると以下の二つは等価:
-```bash
+
+```sh
 ssh username@example.com
 ssh hoge
 ```
 
 rsyncでリモートに接続するときも記述を省略できて便利:
-```bash
+
+```sh
 rsync -auvz src/ username@example.com:dest/
 rsync -auvz src/ hoge:dest/
 ```

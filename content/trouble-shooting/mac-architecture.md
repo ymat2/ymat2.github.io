@@ -3,13 +3,21 @@ title: "M1 macではhomebrewでhisat2が入らない"
 date: 2022-11-02T11:03:16+09:00
 ---
 
+2022-11-02
+
+
+
 ## アーキテクチャの違いが原因でコンパイル周りでつまづく
+
 macのプロセッサがIntelからM1になって以降、CPUアーキテクチャがx86_64からarm64に替わったらしく、おそらくこれが原因でhomebrewの挙動が異なるらしい。
-- x86_64ではデフォルトのインストール先が/usr/local/であるのに対し、arm64では/opt/homebrew/
-- arm64ではhomebrewインストール後に/opt/homebrew/bin/brewにPATHを通す必要がある。
+
+- x86_64ではデフォルトのインストール先が `/usr/local/` であるのに対し、arm64では `/opt/homebrew/`
+
+- arm64ではhomebrewインストール後に `/opt/homebrew/bin/brew` にPATHを通す必要がある。
+
 - x86_64とarm64のどちらかでしかインストールできないツールがあり、hisat2やTrinityはarm64のhomebrewでは入らない。
 
-```bash
+```sh
 g++-12: error: unrecognized command-line option '-msse2'
 make: *** [hisat2-build-s] Error 1
 make: *** Waiting for unfinished jobs....
@@ -20,11 +28,11 @@ make: *** [hisat2-align-s] Error 1
 make: *** wait: No child processes. Stop.
 ```
 
-M1macでも`Rosetta`とよばれるアーキテクチャ変換技術を使うことでx86_64のターミナルを使用できる。
+M1macでも `Rosetta` とよばれるアーキテクチャ変換技術を使うことでx86_64のターミナルを使用できる。
 
 参考にした記事を読む限り状況に応じてIntel(x86_64)のターミナルとARM(arm64)のターミナルを切り替えて使うのがスマートらしい。
-<br>: https://qiita.com/funatsufumiya/items/cec08f1ba3387edc2eed
-<br>: https://zenn.dev/_lambda314/articles/63b851221a7016
+- https://qiita.com/funatsufumiya/items/cec08f1ba3387edc2eed
+- https://zenn.dev/_lambda314/articles/63b851221a7016
 
 ```bash
 uname -m　　#CPUアーキテクチャを確認
@@ -35,16 +43,19 @@ uname -m　　#ターミナルを再起動してCPUアーキテクチャがx86_6
 ```
 
 こうするとhisat2やTrinityがちゃんと入る方のhomebrewをインストールできるようになる。
-```bash
+
+```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
 
 ## せっかくbrewで入れてもライブラリの参照周りでコケて動かない
-- インストール自体は`brew`で入るが、hisat2のコマンドを叩くとライブラリの参照がうまくいっていないのかエラーが出る。
+
+- インストール自体は `brew` で入るが、hisat2のコマンドを叩くとライブラリの参照がうまくいっていないのかエラーが出る。
+
 - 追記：後日iqtreeでも同様のエラーを観測したので、おそらくbiosci系のツールはこの問題にあたる可能性がある。
 
-```bash
+```sh
 dyld[25473]: Symbol not found: (__ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13find_first_ofERKS4_m)
 	Referenced from: '/usr/local/Cellar/hisat2/2.2.1/bin/hisat2-build-s'
 	Expected in: '/usr/lib/libstdc++.6.dylib'
@@ -58,12 +69,16 @@ Finderでlibstdc++.6.0.9.dylibを消すことで解決することがある([1],
 
 
 ## それなら直接落としてきたほうがいい
+
 Hisat2の[ダウンロードページ](http://daehwankimlab.github.io/hisat2/download/)からバイナリ版をダウンロードして、PATHを通すことで解決。
 
-macOS 12.3 Monterey以降のOSでは、完全にPyhton3に移行してしまい[古いPythonは使えなくなっている](https://applech2.com/archives/20220309-apple-removed-python-from-macos-123-monterey.html)のでhisat2のソースコードをpython3で動くように書き換える必要があった。
-<br>: https://www.biostars.org/p/9494176/#9494665
+macOS 12.3 Monterey以降のOSでは、
+完全にPyhton3に移行してしまい[古いPythonは使えなくなっている](https://applech2.com/archives/20220309-apple-removed-python-from-macos-123-monterey.html)
+のでhisat2のソースコードをpython3で動くように書き換える必要があった。
 
-```bash
+https://www.biostars.org/p/9494176/#9494665
+
+```sh
 which python3 #python3のパスを確認 >>>/usr/bin/python3
 ```
 
@@ -71,6 +86,6 @@ which python3 #python3のパスを確認 >>>/usr/bin/python3
 - [ ] ~~`#!/usr/bin/env python` # となっているのを~~
 - [x] ~~`#!/usr/bin/python3` # と書き換える~~
 
-このやり方はよろしくない。pyenvとかvenvで使えるpythonを用意してあげるのがいい？
+このやり方はよろしくない。`pyenv` とか `venv` で使えるpythonを用意してあげるのがいい？
 
 これで晴れてHisat2が使えるようになった。

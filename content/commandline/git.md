@@ -116,6 +116,7 @@ date: 2022-11-02T11:03:16+09:00
 https://docs.github.com/ja/get-started/getting-started-with-git/ignoring-files
 
 - リポジトリのルートディレクトリに `.gitignore` を配置して、git管理から除外するファイルを制御する。
+
 	```sh
 	### 場所を問わず特定のファイル・ディレクトリを除外
 	hoge
@@ -139,11 +140,13 @@ https://docs.github.com/ja/get-started/getting-started-with-git/ignoring-files
 	```
 
 - `~/.config/git/ignore` でグローバルに除外対象を設定。
+
 	```sh
 	.DS_Store
 	```
 
 - すでに追跡しているファイルを除外するにはトラッキングを外す。
+
 	```sh
 	git rm --cached <FILE_NAME>
 	```

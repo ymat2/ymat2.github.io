@@ -8,19 +8,24 @@ draft: true
 
 DNAやタンパク質の配列を最尤法で系統解析するための種々のプログラムを含むパッケージ。
 
+
 ## 遺伝研
-`/usr/local/biotools/p/`にいくつかのバージョンが用意されている。
-```bash
+
+`/usr/local/biotools/p/` にいくつかのバージョンが用意されている。
+
+```sh
 singularity exec /usr/local/biotools/p/paml:%ver codeml
 ```
 
 ## `codeml`
+
 ### コントロールファイル: `codeml.ctl`
+
 `seqfile`
 :	DNAまたはタンパク質の配列
 
 `treefile`
-:	系統樹。tipは`seqfile`と一致している必要がある。
+:	系統樹。tipは `seqfile` と一致している必要がある。
 
 `outfile`
 :	出力ファイル。
@@ -48,7 +53,7 @@ singularity exec /usr/local/biotools/p/paml:%ver codeml
 :	系統樹の各branchにおけるω=dN/dSの設定。
 :	0: 系統樹全体で均一のωを推定。
 :	1: branchごとに異なるωを推定。
-:	2: `treefile`のbranchに`#`, `#1`などの記号を振って各記号のbranchで異なるωを推定。
+:	2: `treefile` のbranchに `#`, `#1` などの記号を振って各記号のbranchで異なるωを推定。
 
 `NSsite`
 :	塩基/アミノ酸サイトごとのdN/dSの設定。

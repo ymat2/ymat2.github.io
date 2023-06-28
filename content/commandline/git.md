@@ -221,7 +221,7 @@ git submodule update --init
 	git reset --soft HEAD^
 
 	### addの取り消し
-	git reset --mixed HEAD
+	git restore --staged file_name
 	```
 
 - すでにリポジトリに登録されたファイルを削除:

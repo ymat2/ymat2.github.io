@@ -17,8 +17,8 @@ Linuxサーバーにgollumでwikiを立てたときの奮闘記。
 MacOS Ventura 13.3.1
 
 ```sh
-brew --version	# Homebrew 4.0.19
-which -a ruby	# /usr/bin/ruby
+brew --version  # Homebrew 4.0.19
+which -a ruby   # /usr/bin/ruby
 ruby --version	# ruby 2.6.10p210
 ```
 

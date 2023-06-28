@@ -60,14 +60,16 @@ date: 2022-11-02T11:03:16+09:00
 
 ## `grep`, `find`でファイル検索
 
-`find PATH -name str`
-:	`PATH` 配下の"str"という名前のファイルをすべて表示する。ワイルドカード `*` も使える。`Operetion not permitted` する出力は邪魔になるので `2>/dev/null` に流す。
+`find PATH -name string`
+:	`PATH` 配下の"string"という名前のファイルをすべて表示する。
+ワイルドカード `*` も使える。
+`Operetion not permitted` する出力は邪魔になるので `2>/dev/null` に流す。
 
-`grep str -rl PATH`
-:	中身にstrが含まれているファイルを再起的に取得。
+`grep string -rl PATH`
+:	中身にstringが含まれているファイルを再起的に取得。
 
 
-## `ln`
+## シンボリックリンク
 
 `ln -s TARGET LINK_NAME`
 :	`TARGET` のシンボリックリンクを `LINK_NAME` に作成。
@@ -75,24 +77,30 @@ date: 2022-11-02T11:03:16+09:00
 `ln -nfs TARGET LINK_NAME`
 :	`TARGET` を移動したときなどにリンクを張りなおす。
 
-相対PATHで書く場合、`TARGET` は作られる `LINK_NAME` から見たPATHで書く。例えばカレントディレクトリ `dirB` の `file1.txt` を一個上のディレクトリ `dirB` に `file2.txt` という名前でリンクする場合、`ln -s ./file1.txt ../file2.txt` と書きたくなるが、正しくは `ln -s ./dirB/file1.txt ../file2.txt` となる。
+相対PATHで書く場合、`TARGET` は作られる `LINK_NAME` から見た相対PATHで書く。
 
+例えばカレントディレクトリ `dirB` の `file1.txt` を、一個上のディレクトリ `dirA` に `file2.txt` という名前でリンクする場合、
+`ln -s ./file1.txt ../file2.txt` と書きたくなるが、正しくは `ln -s ./dirB/file1.txt ../file2.txt` となる。
+
+```sh
+ln -s ./dirB/file1.txt ../file2.txt
+# dirA
+#   L file2.txt(LINK_NAME)  ->  file1.txt
+#   L dirB
+#     L file1.txt(TARGET)
 ```
-dirA
-  L file2.txt(LINK_NAME)  ->  file1.txt
-  L dirB
-    L file1.txt(TARGET)
-```
 
 
-## `echo $PATH` の結果を1行ずつ表示する
+## たまに使う小技メモ
+
+### `echo $PATH` の結果を1行ずつ表示する
 
 ```sh
 echo $PATH | tr ":" "\n"
 ```
 
 
-## `awk` で列の集計
+### `awk` で列の集計
 
 例えば下の `sample.tab` みたいなファイルの2行目を合計したかったら、
 
@@ -108,7 +116,7 @@ awk '{s += $2} END {print s}' < sample.tab
 |1|2|1|
 
 
-## ディレクトリ配下で一定以上の行数であるファイルを表示
+### ディレクトリ配下で一定以上の行数であるファイルを表示
 
 ```
 ls ./ | xargs wc | awk '$1 >= 20 { print }'  # 20行以上のファイルのみ表示

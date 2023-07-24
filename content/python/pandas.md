@@ -70,3 +70,19 @@ df.isnull().sum()		# 列ごとに欠損値の数をカウント
 ```python
 df.dropna(inplace=False)
 ```
+
+## 小技集
+
+### 任意の2列から辞書を作る
+
+```python
+df = pd.DataFrame({"en": ["cat", "dog", "monkey"], "ja" : ["猫", "犬", "サル"]})
+print(df)
+#        en  ja
+# 0     cat   猫
+# 1     dog   犬
+# 2  monkey  サル
+
+en2ja = dict(zip(df["en"], df["ja"]))
+# {'cat': '猫', 'dog': '犬', 'monkey': 'サル'}
+```

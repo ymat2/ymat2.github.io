@@ -37,7 +37,7 @@ csubst analyze \
   --foreground foreground.txt
 ```
 
-IQ-TREEはversion2.0.0より新しいものが求められる。自分でバイナリ版を落として来たりして実行コマンドが `iqtree2` になっている場合、`--iqtree_exe`　オプションで指定する。
+IQ-TREEはversion2.0.0より新しいものが求められる。自分でバイナリ版を落として来たりして実行コマンドが `iqtree2` になっている場合、`--iqtree_exe` オプションで指定する。
 
 ```sh
 csubst analyze \
@@ -46,3 +46,16 @@ csubst analyze \
   --foreground foreground.txt \
   --iqtree_exe iqtree2
 ```
+
+
+## Foreground specification
+
+https://github.com/kfuku52/csubst/wiki/Foreground-specification
+
+`--foregrond` に渡すテキストファイルは正規表現に対応している。
+
+`--fg_exclude_wg yes/no`
+: `--foreground` の引数ファイルで、同じidentifierを振った枝同士での計算をするかどうか
+
+`--fg_stem_only yes/no`
+: `--foreground` の引数ファイルで、同じidentifierを振ったクレードの祖先ブランチのみを対象とするかどうか

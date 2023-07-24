@@ -236,6 +236,40 @@ git submodule update --init
 	git mv file file_renamed
 	```
 
+- `git stash`
+
+  `git merge` や `git pull` の際、コミットするほどでもない手元の変更を一時的に退避するために使う。
+
+	working directoryとstaging areaの変更を退避する:
+
+	```sh
+	git stash -u		# -u: Untrackedなファイルも含める
+	```
+
+	退避した変更を確認:
+
+	```sh
+	git stash list
+	# stash@{0}: WIP on main: d426bc4 Fix a bug
+	```
+
+	`git merge` や `git pull` でリモートの変更を手元に反映した後、
+	退避していた変更を戻す:
+
+	```sh
+	git stash apply stash@{0} --index
+	```
+
+	`--index` オプションなしだと、もともとステージングされていた変更も `add` 前の扱いで戻ってくる。
+
+	退避していた変更を消す:
+
+	```sh
+	git stash drop stash@{0}	# 退避内容を指定して削除
+	git stash pop stash@{0}		# 退避内容を指定してブランチに戻すとともに削除
+	git stash clear						# 退避内容を全て削除
+	```
+
 - リポジトリ名を変更:
 
 	-	リモート側の操作： リポジトリのページ > "Setting" > "Rename" から変更
@@ -243,12 +277,6 @@ git submodule update --init
 	- 手元の操作：ローカルリポジトリの名前と `.git/config` を書き換える
 
 		```sh
-		mv before_repository_name after_repository_name
-		sed -i -e 's/bofore_repository_name/after_repository_name/g' local_repository/.git/config
+		mv repository_name_before repository_name_after
+		sed -i -e 's/repository_name_before/repository_name_after/g' .git/config
 		```
-
-- 誤った `git init` を取り消す:
-
-	```sh
-	rm -rf .git
-	```

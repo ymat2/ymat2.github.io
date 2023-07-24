@@ -2,7 +2,6 @@
 title: "Colors"
 subtitle: "色使いの基本"
 date: 2023-07-01T23:12:14+09:00
-draft: true
 ---
 
 - WEB色見本: https://www.colordic.org/

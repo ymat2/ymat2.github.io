@@ -4,13 +4,111 @@ subtitle: "色使いの基本"
 date: 2023-07-01T23:12:14+09:00
 ---
 
-- WEB色見本: https://www.colordic.org/
-- COLORBREWER: https://colorbrewer2.org/
+
+## 色の基本
+
+色はさまざまな要素から構成される。
+色の構成要素として、<u>色相</u>、<u>明度</u>、<u>彩度</u>の3つが用いられることが多い。
+（HSV色空間）
+
+### 色相
+
+赤、青、黄色といった、「色味」に当たる要素。
+色相を円状に配置したものは色相環と呼ばれる。(下図)
+
+色相環上で近くに位置する色は類似色と呼ばれることがある。
+また、対角に位置する色どうしは**補色**とよばれ、互いを引き立て合う効果がある。
+
+<a href="https://ja.wikipedia.org/wiki/%E8%A3%9C%E8%89%B2">
+<img
+  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/BYR_color_wheel.svg/2560px-BYR_color_wheel.svg.png"
+  height="160"
+  style="margin-left: 24px;"
+/>
+RGB色相環
+<img
+  src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Rgb-colorwheel.svg/2560px-Rgb-colorwheel.svg.png"
+  height="160"
+  style="margin-left: 24px;"
+/>
+RYB色相環
+</a>
+
+
+### 明度
+
+色の明るさを表す指標。
+明度が低いほど黒に近づいて暗くなる。
+
+<table width="80%">
+  <thead>
+    <tr class="header">
+      <th style="text-align: center;">明度</th>
+    </tr>
+  </thead>
+  <tbody height="32px">
+    <tr>
+      <td style="background: linear-gradient(to left, #000d1a, #0066cc);"></td>
+    </tr>
+  </tbody>
+</table>
+
+
+### 彩度
+
+色の鮮やかさを表す指標。
+彩度が低いほどグレーに近くなる。
+
+<table width="80%">
+  <thead>
+    <tr class="header">
+      <th style="text-align: center;">彩度</th>
+    </tr>
+  </thead>
+  <tbody height="32px">
+    <tr>
+      <td style="background: linear-gradient(to left, #cccccc, #0066cc);"></td>
+    </tr>
+  </tbody>
+</table>
+
+彩度や明度の差のことを**コントラスト**とよぶ。
+
+
+### 16進数カラーコード
+
+色の記述方法の一つ。
+16進数で2桁ずつ、赤・緑・青（RGB）の値を指定することで色を表現する。
+
+<table>
+  <thead>
+    <tr class="header">
+      <th style="text-align: left;">#FFFFFF (白)</th>
+      <th style="text-align: left;">#FF0000 (赤)</th>
+      <th style="text-align: left;">#00FF00 (緑)</th>
+      <th style="text-align: left;">#0000FF (青)</th>
+      <th style="text-align: left;">#000000 (黒)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="background-color: #FFFFFF;"></td>
+      <td style="background-color: #FF0000;"></td>
+      <td style="background-color: #00FF00;"></td>
+      <td style="background-color: #0000FF;"></td>
+      <td style="background-color: #000000;"></td>
+    </tr>
+  </tbody>
+</table>
 
 
 ## 配色の基本
 
 - 原色など彩度の高い色は避ける。
+  - <span style="color: #ff0000;">原色の赤</span>よりも
+    <span style="color: #cc2222;">明度や彩度を抑えた赤</span>
+  - 黒も<span style="color: #000000;">純粋な黒</span>（ `#000000` ）ではなく、
+    わずかに灰色がかった黒（例えば `#444444` ）が推奨されている。
 
 - 色の持つ意味から逸脱する使い方をしない。
   (「<span style="color: #4169e1;">危険</span>」、
@@ -25,7 +123,7 @@ date: 2023-07-01T23:12:14+09:00
     など
   )
 
-- 避けるべき背景色と文字色の組み合わせ
+- 相性の悪い背景色と文字色の組み合わせを避ける。
   - コントラストが弱い
     (
       <span style="color: #000;background-color: #0000cd;"> 濃い青に黒 </span>,
@@ -39,10 +137,10 @@ date: 2023-07-01T23:12:14+09:00
 引用元: [伝わるデザイン - 配色](https://tsutawarudesign.com/miyasuku5.html)
 
 
-## どの色の組み合わせを使うか
+## どの色の組み合わせを使うか１
 
 基本に沿っていれば好きな色を使うと良い。
-多数の色を使う場合、色分けされる対象のもつ意味や見えやすさを考慮して、
+多数の色を使う場合、色分けされる対象のもつ意味や色覚多様性を考慮して、
 既に考えられているパレットを使うのが安全。
 
 ### Sequential
@@ -219,6 +317,20 @@ date: 2023-07-01T23:12:14+09:00
   </tbody>
 </table>
 
+
+## どの色の組み合わせを使うか２
+
+私がよく参考にするサイト。
+
+- [WEB色見本](https://www.colordic.org/)
+  - 原色、和色、洋色、モノトーンなど、カテゴリーごとにカラーコード付きで色を閲覧可能
+  - 色ごとの配色パターン一覧、色検索、色の調合など機能が盛りだくさん
+- [COLORBREWER](https://colorbrewer2.org/)
+  - 色分けの数や意味（Sequential/Diverging/Qualitative）ごとにパレットを検索可能
+  - 色覚多様性や印刷に適した組み合わせに絞ることもできる。
+  - Rのggplot2で使えるパレットなのも嬉しい。
+- [Adobe Color](https://color.adobe.com/ja/create/color-wheel)
+  - 色相環上で色を探しつつ、さまざまな配色パターンを閲覧可能
 
 ## 余談: 東京メトロ線カラー
 

@@ -1,6 +1,6 @@
 ---
-title: "clusterProfiler"
-subtitle: "KEGGパスウェイ濃縮解析"
+title: "KEGGパスウェイ"
+subtitle: "clusterProfilerによる濃縮解析"
 date: 2023-06-26T16:36:11+09:00
 draft: true
 ---
@@ -10,7 +10,6 @@ draft: true
 
 KEGG(Kyoto Encyclopedia of Genes and Genomes)は、
 主にモデル生物における遺伝子やタンパク質の分子間ネットワークに関する情報を体系化したデータベース。
-
 
 
 ## KEGG enrichment analysis

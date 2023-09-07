@@ -30,13 +30,13 @@ singularity exec /usr/local/biotools/p/paml:%ver codeml
 `model`, `NSsites`, `fix_omega`, `omega` は解析に応じて変更する。
 
 `seqfile`
-:	DNAまたはタンパク質の配列
+:	DNAまたはタンパク質の配列のファイルパス。
 
 `treefile`
-:	系統樹。tipは `seqfile` と一致している必要がある。
+:	系統樹のファイルパス。tip名は `seqfile` のものと一致している必要がある。
 
 `outfile`
-:	出力ファイル。
+:	出力ファイルのパス。
 
 `noisy`
 :	0,1,2,3,9から指定。大きい数を指定するほど標準出力が増える。
@@ -139,7 +139,7 @@ singularity exec /usr/local/biotools/p/paml:%ver codeml
 
    つづいて、「注目する枝で自然選択が働いていない = 他の枝と同じdN/dSである」という仮説でdN/dSを計算する。
 
-   対立仮説で用いた `codeml.ctl` の `model` を０にして系統樹全体で単一のdM/dSを計算する:
+   対立仮説で用いた `codeml.ctl` の `model` を０にして系統樹全体で単一のdN/dSを計算する:
 
    ```ctl
    NSsites = 0
@@ -151,3 +151,54 @@ singularity exec /usr/local/biotools/p/paml:%ver codeml
 ### Site model
 
 ### Branch-site model
+
+[Yang and Nielsen 2002](https://doi.org/10.1093/oxfordjournals.molbev.a004148)
+
+branchモデルとsiteモデルをあわせたモデル。
+興味のある枝(foreground branch)のあるサイトに働いた自然選択を検出する。
+
+1. **対立仮説**
+
+   「注目する枝で正の自然選択が働いたサイトがある」という仮定でcodemlを実行する。
+
+   `codeml.ctl` は下記の3箇所を変更する:
+
+   ```ctl
+   NSsites = 2
+   model = 2
+   fix_omega = 0
+   ```
+
+   各サイトはforeground branchのωとbackground branchのωによって4種類に分けられ、
+   `outfile` 内に下のような表が得られる。
+
+   |site class|0|1|2a|2b|
+   |:---|---:|---:|---:|---:|
+   |proportion|p<sub>0</sub>|p<sub>1</sub>|(1–p<sub>0</sub>–p<sub>1</sub>)p<sub>0</sub>/(p<sub>0</sub>+p<sub>1</sub>)|(1–p<sub>0</sub>–p<sub>1</sub>)p<sub>1</sub>/(p<sub>0</sub>+p<sub>1</sub>)|
+   |background ω|ω<sub>0</sub>|ω<sub>1</sub>|ω<sub>0</sub>|ω<sub>1</sub>|
+   |foreground ω|ω<sub>0</sub>|ω<sub>1</sub>|ω<sub>2</sub>|ω<sub>2</sub>|
+
+   4種類の `site class` はそれぞれ、
+
+   `0`
+   :  background branchとforeground branchの両方でdN/dS<1 (i.e. purifying selection)であるサイト
+
+   `1`
+   :  background branchとforeground branchの両方でdN/dS=1 (i.e. neutral selection)であるサイト
+
+   `2a`
+   :  background branchではdN/dS<1、foreground branchではdN/dS>1 (i.e. positive selection)であるサイト
+
+   `2b`
+   :  background branchではdN/dS=1、foreground branchではdN/dS>1 (i.e. positive selection)であるサイト
+
+2. **帰無仮説**
+
+   「注目する枝で正の自然選択が働いたサイトがない」=「全ての枝でdN/dS<1である」という仮定のもとcodemlを実行する。
+
+   対立仮説で使用した`codeml.ctl` の下記の2箇所を変更し、dN/dSを固定する（これでなんでdN/dS<1のサイトも出てくるんだろう）:
+
+   ```ctl
+   fix_omega = 1
+   omega = 1
+   ```

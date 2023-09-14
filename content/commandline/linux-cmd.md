@@ -122,6 +122,15 @@ awk '{s += $2} END {print s}' < sample.tab
 ls ./ | xargs wc | awk '$1 >= 20 { print }'  # 20行以上のファイルのみ表示
 ```
 
+### 特定の文字列を含む行を削除
+
+`grep` の反転マッチを使う。
+例えば `sample.txt` から "some text" を含む行を削除する場合:
+
+```sh
+grep -v "some text" sample.txt > sample2.txt
+```
+
 
 ## `pbcopy`
 

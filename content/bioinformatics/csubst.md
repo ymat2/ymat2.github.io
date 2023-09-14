@@ -55,7 +55,7 @@ https://github.com/kfuku52/csubst/wiki/Foreground-specification
 `--foregrond` に渡すテキストファイルは正規表現に対応している。
 
 `--fg_exclude_wg yes/no`
-: `--foreground` の引数ファイルで、同じidentifierを振った枝同士での計算をするかどうか
+: `--foreground` の引数ファイルで同じidentifierを振った枝同士での計算をするかどうか
 
 `--fg_stem_only yes/no`
-: `--foreground` の引数ファイルで、同じidentifierを振ったクレードの祖先ブランチのみを対象とするかどうか
+: `--foreground` の引数ファイルで同じidentifierを振ったクレードの祖先ブランチのみを対象とするかどうか

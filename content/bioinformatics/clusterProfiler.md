@@ -2,7 +2,6 @@
 title: "KEGGパスウェイ"
 subtitle: "clusterProfilerによる濃縮解析"
 date: 2023-06-26T16:36:11+09:00
-draft: true
 ---
 
 - https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html
@@ -27,6 +26,8 @@ library(clusterProfiler)
 search_kegg_organism('hsa', by='kegg_code')
 search_kegg_organism('Homo sapiens', by='scientific_name')
 ```
+
+[KEGG Organismsのページ](https://www.genome.jp/kegg/catalog/org_list.html)から探してもいい。
 
 GOエンリッチメント解析と同様に、興味のある遺伝子/ない遺伝子で区切る解析と、
 なんらかのスコアに基づいてソートした時に上位に濃縮するパスウェイを調べる解析がサポートされている。
@@ -77,6 +78,47 @@ kk2 <- gseKEGG(
   use_internal_data = FALSE,
   seed = FALSE,
   by = "fgsea",
+  scoreType = "pos"  # or neg
 )
 head(kk2)
+```
+
+渡す `geneList` はスコアの降順で並んでいる必要がある。
+`scoreType` はデフォルトでは `"pos"` でスコアが高いほど上位であるとして濃縮を見ているが、
+`"neg"` にすればスコアが低いほど上位であるとすることができる。
+
+
+## `setReadable`
+
+ENTREZ_IDのままだとどの遺伝子か分かりにくい。
+`setReadable` は `org.Hs.eg.db` とかからIDとgene_symbolの対応を取得して変換する。
+
+```R
+library(org.Hs.eg.db)
+kk2 |> setReadable(OrgDb = org.Hs.eg.db, keyType="ENTREZID")
+```
+
+
+## 可視化
+
+- https://yulab-smu.top/biomedical-knowledge-mining-book/enrichplot.html
+- https://yulab-smu.top/biomedical-knowledge-mining-book/clusterprofiler-kegg.html#visualize-enriched-kegg-pathways
+
+```R
+dotplot(kk2, showCategory = 10, title = "Enriched Pathways" , split=".sign")
+# とか
+cnetplot(kk2, showCategory = 5, categorySize="pvalue")
+# とか
+```
+
+パスウェイの図が欲しければ `pathview` とか:
+
+```R
+library("pathview")
+pathview(
+  gene.data = geneList,
+  pathway.id = "hsa04110",
+  species = "hsa",
+  limit = list(gene=max(abs(geneList)), cpd=1)
+)
 ```

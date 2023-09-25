@@ -14,7 +14,7 @@ ETE Toolkitの*ete-evol*はCodeMLやSlrの自動化を手助けするpython製�
 ### `ete4`
 
 ```sh
-pip3 install lap
+# pip3 install lap  # if needed
 pip3 install https://github.com/etetoolkit/ete/archive/ete4.zip
 ```
 

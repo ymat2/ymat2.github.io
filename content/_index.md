@@ -14,7 +14,7 @@ Mail
 Links
 : <a rel="me" href="https://github.com/ymat2/" title="GitHub">GitHub
   <img height=20 width=20 style="vertical-align: text-bottom;" src="https://cdn.simpleicons.org/github/333333"></a>
-:	[Slides](https://ymat2.github.io/slides/)
+:	[Slides](https://ymat2.github.io/slides/) :file_folder:
 
 Developments
 : [randmotion](https://ymat2.github.io/randomotion/)

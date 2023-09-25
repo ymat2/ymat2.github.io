@@ -5,7 +5,9 @@ date: 2022-11-25T08:05:55+09:00
 
 https://busco.ezlab.org/
 
-Universal Single Copy Orthologsが、アセンブルされた配列中にどれだけあるか調べることでゲノムや遺伝子セットの完全性を評価する。どの遺伝子がユニバーサルシングルコピーかは[OrthoDB](http://www.orthodb.org/)に基づいており、分類群ごとに数は異なる。（公式サイトの[リスト](https://busco.ezlab.org/list_of_lineages.html)から参照可能。）
+Universal Single Copy Orthologsが、アセンブルされた配列中にどれだけあるか調べることでゲノムや遺伝子セットの完全性を評価する。
+どの遺伝子がユニバーサルシングルコピーかは[OrthoDB](http://www.orthodb.org/)に基づいており、分類群ごとに数は異なる。
+（公式サイトの[リスト](https://busco.ezlab.org/list_of_lineages.html)から参照可能。）
 
 
 ## インストール

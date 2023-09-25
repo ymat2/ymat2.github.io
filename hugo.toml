@@ -13,3 +13,8 @@ enableEmoji = true
 
 	[markup.highlight]
 		noClasses=false
+
+  [markup.tableOfContents]
+    endLevel = 2
+    ordered = false
+    startLevel = 2

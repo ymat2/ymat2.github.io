@@ -1,11 +1,11 @@
 ---
-title: "Package作成"
+title: "パッケージ作成"
 subtitle: "初めて作ったときの備忘録"
 date: 2023-09-12T18:18:12+09:00
 draft: true
 ---
 
-参考
+参考:
 - https://heavywatal.github.io/python/packaging.html
 - https://docs.python.org/3/tutorial/modules.html
 - https://docs.python.org/3/reference/import.html
@@ -43,7 +43,7 @@ mython/
 
 `mython/mython`:
 
-```pyhton
+```python
 #! /usr/bin/env python3
 
 import argparse
@@ -157,7 +157,7 @@ pip3 install git+https://github.com/ymat2/mython
 # Successfully installed mython-0.1.0
 ```
 
-入った。Pathも通ってる。でも動かしてみると `ModukeNotFound` となる:
+入った。Pathも通ってる。でも動かしてみると `ModuleNotFound` となる:
 
 ```sh
 mython -t world

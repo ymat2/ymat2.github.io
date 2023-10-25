@@ -127,7 +127,7 @@ ls /usr/local/biotools/o/orthofinder*
 ```sh
 #$ -S /bin/bash
 #$ -cwd
-#$ pe def_slot 5
+#$ -pe def_slot 5
 #$ -l medium
 #$ -l s_vmem=64G
 #$ -l mem_req=64G

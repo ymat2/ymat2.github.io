@@ -15,11 +15,17 @@ pythonを使うための環境構築に関するメモ。
 - Pythonの入手元として、公式版とAnaconda経由が存在。目的に応じて選択する。
 - [Pyenvは必要？](https://www.python.jp/install/docs/doyouneedpyenv.html)(特に初学者向けには非推奨)
 
-<div style="background-color:#f9f9ff ; padding-inline: 1em; padding-block: 0.1em;">
+<div style="
+   background-color:#f9f9ff ;
+   border-radius: 8px;
+   padding-inline: 1em;
+   padding-block: 0.1em;
+">
 
-Anaconda
-: データサイエンスや科学技術計算のためのさまざまなツールやライブラリの実行環境。
-  パッケージ管理も仮想環境も全部担う。
+ℹ **Anaconda**
+
+データサイエンスや科学技術計算のためのさまざまなツールやライブラリの実行環境。
+パッケージ管理も仮想環境も全部担う。
 
 </div>
 

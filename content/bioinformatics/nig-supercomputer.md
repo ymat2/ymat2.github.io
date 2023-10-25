@@ -47,7 +47,9 @@ qsub -S /bun/bash -cwd "echo 'hoge' > test.txt"
 
 ## アレイジョブ、パラレルジョブ
 
-CPUコアを複数もちいるジョブ。順次多数実行していくのがアレイジョブ。同時に少数実行するのがパラレルジョブくらいの認識。
+CPUコアを複数もちいるジョブ。
+順次多数実行していくのがアレイジョブ。
+同時に少数実行するのがパラレルジョブくらいの認識。
 
 ### アレイジョブの書き方
 
@@ -80,7 +82,8 @@ mv ${seq_id}.hoge ${seq_id}.fuga
 :	N個のタスクを持つアレイジョブとして投入する。
 
 `-tc M`
-:	一度に実行されるアレイジョブのタスク数の上限を指定。これをやらないとユーザーに割り振られた計算機数をオーバーしてしまうことがある
+:	一度に実行されるアレイジョブのタスク数の上限を指定。
+	これをやらないとユーザーに割り振られた計算機数をオーバーしてしまうことがある
 :	`qquota` でリソースを確認できる。2022/9/28時点で300。
 
 ### メモリ指定
@@ -108,7 +111,8 @@ mv ${seq_id}.hoge ${seq_id}.fuga
 
 https://sc.ddbj.nig.ac.jp/software/Apptainer
 
-バイオインフォマティクスでよく使われる解析ツールがバージョン別に `/usr/local/biotools/` に配置されており、インストール不要で使うことができる。
+バイオインフォマティクスでよく使われる解析ツールがバージョン別に
+`/usr/local/biotools/` に配置されており、インストール不要で使うことができる。
 
 ```sh
 ## どんなツールが使えるか見てみる。たとえばblast。
@@ -151,7 +155,7 @@ singularity exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -h
    - https://github.com/genenetwork/guix-bioinformatics
    - https://guix.gnu.org/en/blog/2018/paper-on-reproducible-bioinformatics-pipelines-with-guix/
 
-3. パッケージのインストール: `guix install nano`
+3. パッケージのインストール: `guix install`
 
 	上記 1. のように設定した場合のデフォルトのインストールパスは `$HOME/.guix-profile/bin/` になる。
 
@@ -166,4 +170,5 @@ singularity exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -h
 python3 -m pip install --user ライブラリ名
 ```
 
-とすることでユーザのホームにライブラリをインストールできる。（が、再現性の観点では `venv` で仮想環境を構築する方がいい、らしい。）
+とすることでユーザのホームにライブラリをインストールできる。
+(が、再現性の観点では `venv` で仮想環境を構築する方がいい、らしい。)

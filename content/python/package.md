@@ -1,8 +1,7 @@
 ---
 title: "パッケージ作成"
-subtitle: "初めて作ったときの備忘録"
+subtitle: "備忘録"
 date: 2023-09-12T18:18:12+09:00
-draft: true
 ---
 
 参考:
@@ -10,20 +9,20 @@ draft: true
 - https://docs.python.org/3/tutorial/modules.html
 - https://docs.python.org/3/reference/import.html
 - https://packaging.python.org/
-- https://chayarokurokuro.hatenablog.com/entry/2021/01/24/081215
-- https://github.com/kfuku52/csubst
+
+特に:
+- https://packaging.python.org/en/latest/tutorials/packaging-projects/
 
 
-`setuptools` に依存する `setup.py` は現在は非推奨らしい。
+`setuptools` に依存する `setup.py` は現在は非推奨 (Legacy) らしい。
 `pyproject.toml` で一元管理する方法が主流で、[Poetry](https://python-poetry.org/) など
 パッケージ作成をラクに行えるツールがあるっぽい。
 
 
-でも使い方いまいちわかんないし、依存ライブラリのない簡単な構造のうちはそんな変わらんだろうと踏んで
-`setup.py` で作ってみる。
-
-
 ## ひとまず `setup.py` で書いてみる
+
+成果物
+: https://github.com/ymat2/mython
 
 ファイル構成:
 
@@ -45,6 +44,10 @@ mython/
 
 ```python
 #! /usr/bin/env python3
+
+"""
+`--to` で与えた文字列に挨拶するだけの機能
+"""
 
 import argparse
 
@@ -102,8 +105,7 @@ mython -t world
 
 ちゃんと動いてる。感動。
 
-
-### Subpackageの追加とGitHubから `pip3` で入れるテスト
+### Subpackageの追加
 
 Subpackageを追加してみる。
 https://docs.python.org/3/tutorial/modules.html を参考に、ちゃんと書かないとうまく動かない。
@@ -127,7 +129,7 @@ mython/
 
 `util/__init__.py`
 : `from mython.util import *` のような形で非明示的に全部読み込むには、
-  どのスクリプトを含めるかをちゃんと書いておかないといけない。
+  どのスクリプトを含めるかを書いておかないといけない。
 : ```python
   __all__ = ["hello", "bye"]
   ```
@@ -137,6 +139,19 @@ mython/
 ```python
 from mython.util import *
 ```
+
+### GitHubから `pip` で入れるテスト
+
+パッケージをGitHubに `push` したのち、
+
+```sh
+python3 -m pip install git+https://github.com/ymat2/mython
+```
+
+で入る。
+以下はちょっと苦戦した時のメモ。
+
+***
 
 で、これを `github` にアップロードして開発で使ってないマシンにインストールしてみる:
 
@@ -177,4 +192,68 @@ Pathの通った `python3` 越しに `pip` を使うとうまくいった。
 python3 -m pip install git+https://github.com/ymat2/mython
 ```
 
-これはパッケージ以前の問題っぽいな。
+<small>これはパッケージ作成以前の問題っぽいな...</small>
+
+[`.venv`]({{< ref install.md >}}) で仮想環境の中に入れたり、
+ローカルコピーで使う分には無問題。
+
+
+## `pyproject.toml` を使って作ってみる
+
+成果物
+: https://github.com/ymat2/bithon
+
+ファイル構成:
+
+```
+bithon/
+├── LICENSE
+├── README.md
+├── pyproject.toml
+├── src/bithon/
+│   ├── __init__.py
+│   └── bithon.py  # setup.pyのときは拡張子なしでもよかったけど、pyproject.tomlではNGらしい?
+└── tests/
+```
+
+### `pyproject.toml` の書き方
+
+`[build-system]` では、どのビルドツールを使ってパッケージを作るかを指定する。
+[書き方はツールごとに決まっている](https://packaging.python.org/en/latest/tutorials/packaging-projects/#creating-pyproject-toml)。
+
+```toml
+## Hatchling の例:
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+```
+
+`[project]` では、パッケージのメタ情報を記載する。
+
+```toml
+[project]
+name = "bithon"
+version = "0.0.1"
+authors = [
+  { name="ymat2", email="yuki.matsuda.r7@dc.tohoku.ac.jp" },
+]
+description = "Personal python package for bioinformatics"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.8"
+dependencies = []
+
+[project.urls]
+Homepage = "https://ymat2.github.io"
+Repository = "https://github.com/ymat2/bithon"
+```
+
+`name`
+: PyPI既存のものと被ってはいけないらしいが、gitから利用する分にはOK?
+
+`version`
+: コードを更新した時は番号を変えないと
+  `pip install --upgrade` で更新されない。
+
+`dependencies`
+: リスト形式で依存パッケージを記載する。

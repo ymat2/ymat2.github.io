@@ -49,7 +49,7 @@ python3 test.py hoge --input koke -o piyo fuga
 # arg4=piyo
 ```
 
-`-h`,`--help`でヘルプを表示できる:
+`-h`, `--help` でヘルプを表示:
 
 ```sh
 python3 test.py -h
@@ -70,6 +70,7 @@ python3 test.py -h
 
 `parser.add_argument("argN")` とすると必須引数扱いになり、指定しないとエラーになる。
 
+
 ## オプション引数
 
 ### デフォルト値と型の指定
@@ -79,6 +80,13 @@ python3 test.py -h
 
 ```python
 parser.add_argument("-n", "--number", type=float, default=0.0)
+```
+
+異なる型を指定するとエラーになる(`int` -> `float` は勝手に変換される):
+
+```sh
+python3 test.py --number hoge
+# test.py: error: argument --number: invalid float value: 'hoge'
 ```
 
 ### あらかじめ引数の選択肢を設定
@@ -107,5 +115,10 @@ python3 test.py --alphabet A G X
 ### オプション引数を必須引数にする
 
 ```python
-parser.add_argument("-n", "--neeed", requied=True)
+parser.add_argument("-n", "--need", requied=True)
 ```
+
+
+## `subparsers`
+
+`git` の `add` や `commit` みたいに2つ目のコマンドを実装する。

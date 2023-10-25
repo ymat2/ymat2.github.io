@@ -1,15 +1,20 @@
 ---
 title: "ETE Toolkit"
+subtitle: "ete-evol"
 date: 2023-09-11T13:50:19+09:00
-draft: true
 ---
 
 http://etetoolkit.org/documentation/ete-evol/
 
-ETE Toolkitの*ete-evol*はCodeMLやSlrの自動化を手助けするpython製コマンドラインツール。
+ETE Toolkitの *ete-evol* は
+[CodeML](http://abacus.gene.ucl.ac.uk/software/paml.html) や
+[Slr](https://doi.org/10.1534/genetics.104.032144) の自動化を手助けするpython製コマンドラインツール。
+`import` して[スクリプトの中で使う]({{< ref evoltree.md >}})こともできる。
 
 
 ## Installation
+
+`codeml` と `slr` がインストールされてPATHが通っている必要がある。
 
 ### `ete4`
 
@@ -51,6 +56,18 @@ ls /usr/local/biotools/e/ete*
 ete3 evol -t tree_file --alg fasta_file -o outdir/ --models models --cpu N
 ```
 
+`-t`
+: 系統樹のパス
+
+`--alg`
+: アライメントのパス
+
+`-o`
+: 出力先。この中にモデルの名前のディレクトリが作られる。
+
+`--cpu`
+: コア数
+
 `--models`
 
 : |Model|Description|type|Citation|
@@ -78,7 +95,7 @@ ete3 evol -t tree_file --alg fasta_file -o outdir/ --models models --cpu N
 |bsD|different-ratios|"|[Yang 2002][Y02], [Bielawski 2004][B04]|
 |b_free|positive-selection|branch|[Yang 2002][Y02]|
 |b_neut|relaxation|"|"|
-|fb|free_ratios|"|"|
+|fb|free-ratios|"|"|
 |fb_anc|free-ratios|"|"|
 
 [Y00]: http://www.genetics.org/content/155/1/431.short
@@ -100,3 +117,44 @@ ete3 evol -t tree_file --alg fasta_file -o outdir/ --models models --cpu N
 : <img src="http://etetoolkit.org/static/img/evol_tree_marked_cplx2.png" width="480">
 
 <small>画像は[ドキュメントページ](http://etetoolkit.org/documentation/ete-evol/)から引用</small>
+
+
+### Testing evolutionary models
+
+対立仮説と帰無仮説のモデルを `--test` に渡すことで仮説検定ができる。
+例えば `M2` vs `M1` でサイトモデルの検定をするには、
+
+```sh
+ete3 evol -t tree_file --alg fasta_file --models M2 M1 --tests M2,M1 -o outdir/
+```
+
+のように書く。
+
+対数尤度やp-valueは標準出力されるので、これらが欲しければリダイレクトして取っておく必要がある？
+( `> output.txt` )
+
+#### モデルの組み合わせ
+
+|対立仮説|帰無仮説|検定すること|引用|
+|:---|:---|:---|:---|
+|M2|M1|特定サイトにおける正の自然選択|[Yang 2000][Y00]|
+|M3|M0|サイト間でdN/dSが異なるか||
+|M8|M7|特定サイトにおける正の自然選択|[Yang 2000][Y00]|
+|M8|M8a|特定サイトにおける選択の緩和||
+|bsA|bsA1|特定の枝の特定のサイトにおける正の自然選択|[Zhang 2005][Z05]|
+|bsA|M1|特定の枝の特定のサイトにおける選択の緩和|[Zhang 2005][Z05]|
+|bsC|M1|特定のクレードの特定のサイトでdN/dSが異なるか|[Yang 2002][Y02]|
+|bsD|M3|特定のクレードの特定のサイトでdN/dSが異なるか|[Yang 2002][Y02], [Bielawski 2004][B04]|
+|b_free|b_neut|特定の枝でdN/dSが1と異なるか|[Yang 2002][Y02]|
+|b_free|M0|特定の枝でdN/dSが他と異なるか|[Yang 2002][Y02]|
+
+`b_free` vs `b_neut` の検定はP値とフォアグラウンド枝の ω=dN/dS の値によって複数の解釈がある。
+(ここについては公式ドキュメントの記載が間違っていそう。)
+
+- `P > 0.05` の場合、Relaxed selection の可能性がある。
+  統計的に主張するには `b_neut` を対立仮説にして帰無仮説 `b_free` を棄却する必要あり？
+
+- `P < 0.05, ω < 1` の場合、フォアグラウンド枝でのより強い純化選択の可能性がある。
+  統計的に主張するには `b_free` vs `M0` で ω の比較が必要？
+
+- `P < 0.05, ω > 1` の場合、正の自然選択を主張できる。

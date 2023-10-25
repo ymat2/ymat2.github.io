@@ -8,10 +8,15 @@ date: 2022-11-02T11:03:16+09:00
 基本的な動かし方は、入力となるシェルスクリプトを書いてCAFEに渡す、という形になる。
 このシェルスクリプトを書く過程で、OrthoFinderの出力であるOrthogroups.GeneCount.tsvと種の系統樹（Species_Tree/SpeciesTree_rooted.txt）が必要。
 
+<div style="
+   background-color:#fff5f5 ;
+   border-radius: 8px;
+   padding-inline: 1em;
+   padding-block: 0.1em;
+">
 
-<div style="background-color:#fff5f5 ; padding-inline: 1em; padding-block: 0.1em;">
-
-[CAFE5]({{< ref cafe5.md >}})にアップデートされ、より柔軟な推定が可能になり、動かし方も容易になったため、特に理由がなければCAFE5を推奨する。
+[CAFE5]({{< ref cafe5.md >}})にアップデートされ、より柔軟な推定が可能になり、
+動かし方も容易になったため、特に理由がなければCAFE5を推奨する。
 
 </div>
 

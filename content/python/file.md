@@ -27,8 +27,9 @@ f.readline()
 for line in f:
 
 ### 行ごとにリストに格納
-f.readlines()
-list(f)
+f.readlines()					# 改行コードあり、最終空行なし
+list(f)								# 改行コードあり、最終空行なし
+f.read().split("\n")	# 改行コードなし、最終空行あり
 
 ### 書く
 f.write(str)

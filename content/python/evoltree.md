@@ -14,7 +14,7 @@ pythonスクリプトの中で動かす。
 
 ## Installation
 
-[ete-evol]({{< ref ete-toolkit.md >}}) を参照。
+[ete-toolkit]({{< ref ete-toolkit.md >}}) を参照。
 
 
 ## 準備

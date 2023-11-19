@@ -15,6 +15,7 @@ ETE Toolkitの *ete-evol* は
 ## Installation
 
 `codeml` と `slr` がインストールされてPATHが通っている必要がある。
+(使わない方は入っていなくても解析はできる。)
 
 ### `ete4`
 
@@ -35,10 +36,10 @@ conda install -c etetoolkit ete3 ete_toolchain
 ete3 build check
 conda activate ete3
 
-## Linuxでcondaを介さないインストール
-sudo apt-get install python-numpy python-qt4 python-lxml python-six
-pip3 install --upgrade ete3
-ete3 upgrade-external-tools
+## condaを介さないインストール
+pip3 install cython bottle brotli numpy scipy PyQt6
+pip3 install ete3
+ete3 upgrade-external-tools   # codeml, slrをここからインストールすることもできる
 ```
 
 ### 遺伝研
@@ -111,10 +112,10 @@ ete3 evol -t tree_file --alg fasta_file -o outdir/ --models models --cpu N
 2種をカンマで繋ぐ。カンマ3つだと共通祖先からの全ての枝を、カンマ2つだと共通祖先の枝のみ。
 
 `--mark Human_EDN,,,Hylobates_EDN,Macaq_EDN,,,Papio_EDN`
-: <img src="http://etetoolkit.org/static/img/evol_tree_marked_cplx1.png" width="480">
+: <img alt="http://etetoolkit.org/static/img/evol_tree_marked_cplx1.png" src="http://etetoolkit.org/static/img/evol_tree_marked_cplx1.png" width="480">
 
 `--mark Macaq_ECP,,Macaq2_ECP,Human_ECP,,Goril_ECP`
-: <img src="http://etetoolkit.org/static/img/evol_tree_marked_cplx2.png" width="480">
+: <img alt="http://etetoolkit.org/static/img/evol_tree_marked_cplx2.png" src="http://etetoolkit.org/static/img/evol_tree_marked_cplx2.png" width="480">
 
 <small>画像は[ドキュメントページ](http://etetoolkit.org/documentation/ete-evol/)から引用</small>
 

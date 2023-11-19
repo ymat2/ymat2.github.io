@@ -134,41 +134,38 @@ singularity exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -h
 ユーザー権限で利用できるパッケージマネージャで、最初から使えるようになっている。
 
 - [GNU Guix Reference Manual](https://guix.gnu.org/manual/en/html_node/index.html) (公式マニュアル)
-
 - [遺伝研での使い方ページ](https://sc.ddbj.nig.ac.jp/software/guix)
 
-1. 前準備:
+前準備:
 
-	`~/.bashrc`に以下を追記。
-
-	```sh
-	export GUIX_DAEMON_SOCKET=guix://at111
-	export GUIX_PROFILE="$HOME/.guix-profile"
-	source "$GUIX_PROFILE/etc/profile"
-	```
-
-2. 利用可能なパッケージの検索: `guix search`
-
-	`less`っぽい画面になるので`q`で終了。
-
-	バイオインフォマティクス関連のパッケージ
-   - https://github.com/genenetwork/guix-bioinformatics
-   - https://guix.gnu.org/en/blog/2018/paper-on-reproducible-bioinformatics-pipelines-with-guix/
-
-3. パッケージのインストール: `guix install`
-
-	上記 1. のように設定した場合のデフォルトのインストールパスは `$HOME/.guix-profile/bin/` になる。
-
-
-## Misc.
-
-### Pythonの外部ライブラリをインストールする場合
-
-遺伝研で外部ライブラリを利用するには、
+`~/.bashrc`に以下を追記:
 
 ```sh
-python3 -m pip install --user ライブラリ名
+export GUIX_DAEMON_SOCKET=guix://at111
+export GUIX_PROFILE="$HOME/.guix-profile"
+source "$GUIX_PROFILE/etc/profile"
 ```
 
-とすることでユーザのホームにライブラリをインストールできる。
-(が、再現性の観点では `venv` で仮想環境を構築する方がいい、らしい。)
+`guix search`, `guix package --search`
+:	利用可能なパッケージの検索。標準出力だと見切れるので `less` に渡す。
+:	(例) `guix search paml | less`
+
+`guix install`, `guix package --install`
+:	パッケージのインストール
+:	上記のように設定した場合のデフォルトのインストールパスは
+  `$HOME/.guix-profile/bin/` になる。
+
+`guix pull`
+:	`guix` 本体を最新版に更新する。
+
+`guix update`, `guix package --update`
+:	インストールしたパッケージを最新版に更新する。
+	正規表現でパッケージを指定可。
+
+`guic remove`, `guix package --remove`
+:	パッケージのアンインストール
+
+バイオインフォマティクス関連のパッケージ:
+
+- https://github.com/genenetwork/guix-bioinformatics
+- https://guix.gnu.org/en/blog/2018/paper-on-reproducible-bioinformatics-pipelines-with-guix/

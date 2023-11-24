@@ -10,6 +10,9 @@ date: 2022-11-02T11:03:16+09:00
 
 ## 基本操作
 
+- [Git 基本操作① — GitとGitHubを使い始める](https://ymat2.github.io/slides/git-circle/git-vol1.html)
+- [Git 基本操作② — `fetch`, `merge`, `pull`](https://ymat2.github.io/slides/git-circle/git-vol2.html)
+
 ### 新しいリポジトリの作成
 
 1. Githubのサイト右上の"+"ボタンから"New repository"を選択し、Create repositoryする。
@@ -50,10 +53,9 @@ date: 2022-11-02T11:03:16+09:00
 
 ### 手元の変更をリモートリポジトリに反映
 
-<div style="border: 2px solid #ccc; padding-inline: 1em; padding-block: 0.1em;">
+<div class="note">
 
-基本
-:	`git add` → `git commit` → `git push`
+**基本**: "`git add` → `git commit` → `git push`"
 
 </div>
 
@@ -87,12 +89,9 @@ date: 2022-11-02T11:03:16+09:00
 
 ### リモートリポジトリの変更を手元に反映
 
-<div style="border: 2px solid #ccc; padding-inline: 1em; padding-block: 0.1em;">
+<div class="note">
 
-基本
-:	`git fetch` → `git merge`
-: または
-:	`git pull`
+**基本**: "`git fetch` → `git merge`" もしくは "`git pull`"
 
 </div>
 

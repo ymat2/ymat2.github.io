@@ -1,24 +1,133 @@
 ---
-title: "KEGGパスウェイ"
-subtitle: "clusterProfilerによる濃縮解析"
+title: "clusterProfiler"
+subtitle: "エンリッチメント解析"
 date: 2023-06-26T16:36:11+09:00
 ---
 
-- https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html
-- https://www.genome.jp/kegg/kegg_ja.html
 
-KEGG(Kyoto Encyclopedia of Genes and Genomes)は、
-主にモデル生物における遺伝子やタンパク質の分子間ネットワークに関する情報を体系化したデータベース。
-
-
-## KEGG enrichment analysis
-
-https://yulab-smu.top/biomedical-knowledge-mining-book/clusterprofiler-kegg.html
+https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html
 
 ```R
 BiocManager::install("clusterProfiler")
 library(clusterProfiler)
 ```
+
+エンリッチメント解析には大きく二つの方法がある:
+
+Over Representation Analysis
+: 何らかの解析をして得られた興味のある遺伝子群にどんな機能が濃縮しているかをみる。
+: 興味のある遺伝子/ない遺伝子が明確に二分できるとき
+
+Gene Set Enrichment Analysis
+: 何らかの解析をした結果、全遺伝子にP値などのスコアがつく場合、
+  そのスコアの順に遺伝子を並べて上位/下位の遺伝子にどんな機能が濃縮しているかをみる。
+: 「`p < 0.05` で切ってもいいけど `p=0.051` の遺伝子は本当に無関係？」みたいな問題に対処
+
+
+## GO enrichment analysis
+
+- [ドキュメントページ](https://yulab-smu.top/biomedical-knowledge-mining-book/clusterprofiler-go.html)
+- [GOとは](https://geneontology.org/)
+
+GO (Gene Ontology) は、ある遺伝子がどんな機能を持っているかを共通の語彙でタグづけしたもの。
+もっとも大きく分けて以下の3つの分類がある:
+
+Biological Process (BP)
+: 遺伝子産物がどんな生物学的機能やパスウェイに属するか。
+
+Cellular Component (CC)
+: 遺伝子産物が細胞内のどこに局在するか。
+
+Molecular Function (MF)
+: 遺伝子産物が分子としてどういう機能をもつか。
+
+GOの情報は別でダウンロードする。例えばヒトなら:
+
+```r
+BiocManager::install("org.Hs.eg.db")
+library(org.Hs.eg.db)
+```
+
+### GO over-representation analysis
+
+```r
+data(geneList, package="DOSE")  # サンプルデータ
+gene = names(geneList)[abs(geneList) > 2]
+
+ego = enrichGO(
+  gene,
+  OrgDb = org.Hs.eg.db,
+  keyType = "ENTREZID",
+  ont = "MF",
+  pvalueCutoff = 0.05,
+  pAdjustMethod = "BH",
+  universe,
+  qvalueCutoff = 0.2,
+  minGSSize = 10,
+  maxGSSize = 500,
+  readable = FALSE,
+  pool = FALSE
+)
+ego_result = ego@result
+View(ego_result)
+```
+
+`ont`
+: `"BP"`, `"CC"`, `"MF"`, `"ALL"` から選ぶ
+
+`pvalueCutoff`, `qvalueCutoff`
+: それぞれ与えた値以下のGOを表示する。
+: ここで設定してもいいけど、ここはとりあえず `1` にしておいて、
+  `ego@result` を格納してから `|> dplyr::filter(qvalue < 0.1)` とかする方がいいのでは。
+
+`universe`
+: バックグラウンドの遺伝子ベクタ
+: 指定しないと `OrgDb` の全遺伝子が使われる。
+
+`minGSSize`, `maxGSSize`
+: いくつ以上/以下の遺伝子が紐づくGOまでを使う。
+
+`readable`
+: TRUEにするとENTREZIDを遺伝子シンボルに変換する。
+
+### GO Gene Set Enrichment Analysis
+
+```r
+data(geneList, package="DOSE")
+# 渡す `geneList` はスコアの降順で並んでいる必要がある。
+
+ego = gseGO(
+  geneList,
+  ont = "BP",
+  OrgDb = org.Hs.eg.db,
+  keyType = "ENTREZID",
+  exponent = 1,
+  minGSSize = 10,
+  maxGSSize = 500,
+  eps = 1e-10,
+  pvalueCutoff = 0.05,
+  pAdjustMethod = "BH",
+  verbose = TRUE,
+  seed = FALSE,
+  by = "fgsea",
+  scoreType = "pos"
+)
+ego_result = ego@result
+View(ego_result)
+```
+
+`scoreType`
+: ドキュメントには載ってないけど、`"pos"` ならソートした上位、
+  `"neg"` なら下位に濃縮するGOをみる。
+
+
+## KEGG enrichment analysis
+
+- [ドキュメントページ](https://yulab-smu.top/biomedical-knowledge-mining-book/clusterprofiler-kegg.html)
+- [KEGGとは](https://www.genome.jp/kegg/kegg_ja.html)
+
+KEGG (Kyoto Encyclopedia of Genes and Genomes) は、
+主にモデル生物における遺伝子やタンパク質の分子間ネットワークに関する情報を体系化したデータベース。
 
 利用可能な生物種を探す:
 
@@ -35,11 +144,8 @@ GOエンリッチメント解析と同様に、興味のある遺伝子/ない�
 
 ### KEGG pathway over-representation analysis
 
-興味のある遺伝子/ない遺伝子で区切って、興味のある遺伝子たちに濃縮するKEGGパスウェイを調べる。
-
-
 ```R
-data(geneList, package="DOSE")
+data(geneList, package="DOSE")  # サンプルデータ
 gene <- names(geneList)[abs(geneList) > 2]
 
 kk <- enrichKEGG(
@@ -54,17 +160,16 @@ kk <- enrichKEGG(
   qvalueCutoff = 0.2,
   use_internal_data = FALSE
 )
-head(kk)
+kk_result = kk@result
+View(kk_result)
 ```
 
 ### KEGG pathway gene set enrichment analysis
 
-遺伝子をなんらかのスコア(P値とかlog2FCとか)で並べて、上位の遺伝子に濃縮するKEGGパスウェイを調べる。
-
 ```R
 data(geneList, package="DOSE")
 
-kk2 <- gseKEGG(
+kk <- gseKEGG(
   geneList,
   organism = "hsa",
   keyType = "kegg",
@@ -78,24 +183,23 @@ kk2 <- gseKEGG(
   use_internal_data = FALSE,
   seed = FALSE,
   by = "fgsea",
-  scoreType = "pos"  # or neg
+  scoreType = "pos"
 )
-head(kk2)
+kk_result = kk@result
+View(kk_result)
 ```
-
-渡す `geneList` はスコアの降順で並んでいる必要がある。
-`scoreType` はデフォルトでは `"pos"` でスコアが高いほど上位であるとして濃縮を見ているが、
-`"neg"` にすればスコアが低いほど上位であるとすることができる。
 
 
 ## `setReadable`
+
+`enrichGO()` 以外の関数には `readable` オプションがない。
 
 ENTREZ_IDのままだとどの遺伝子か分かりにくい。
 `setReadable` は `org.Hs.eg.db` とかからIDとgene_symbolの対応を取得して変換する。
 
 ```R
 library(org.Hs.eg.db)
-kk2 |> setReadable(OrgDb = org.Hs.eg.db, keyType="ENTREZID")
+kk2 = kk |> setReadable(OrgDb = org.Hs.eg.db, keyType="ENTREZID")
 ```
 
 

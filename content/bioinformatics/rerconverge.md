@@ -11,6 +11,7 @@ toc: true
 系統樹さえ描ければいいので、遺伝子のほかにCNS (Conserved Non-coding Sequence)にも応用できる。
 (本ページでは便宜上「遺伝子」として記述する。)
 
+開発者たちのグループは
 [水棲適応](https://academic.oup.com/mbe/article/33/9/2182/2579331) や
 [地中生活](https://doi.org/10.7554/eLife.25884)などの二値的な形質、
 [体サイズや寿命](https://doi.org/10.7554/eLife.51089)などの連続形質に関わる遺伝子を報告している。
@@ -237,6 +238,9 @@ estimatePhangornTreeAll(
 `format`
 : デフォルトはFASTAフォーマット
 
+<div class="warning">
+Ambiguousなアミノ酸残基を表す `B`, `Z`, `J` は読んでくれない。`X` で置換しとくとか？
+</div>
 
 ## 相対進化速度の計算
 

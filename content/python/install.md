@@ -9,21 +9,15 @@ pythonを使うための環境構築に関するメモ。
 
 ## ガイドライン
 
-### Pythonのインストール方針
+### Pythonをインストールする前に検討
 
 - [Google Colab](https://colab.research.google.com/)で事足りない？
 - Pythonの入手元として、公式版とAnaconda経由が存在。目的に応じて選択する。
 - [Pyenvは必要？](https://www.python.jp/install/docs/doyouneedpyenv.html)(特に初学者向けには非推奨)
 
-<div style="
-   background-color:#f9f9ff ;
-   border-radius: 8px;
-   padding-inline: 1em;
-   padding-block: 0.1em;
-">
+<div class="note">
 
-ℹ **Anaconda**
-
+**Anaconda**<br>
 データサイエンスや科学技術計算のためのさまざまなツールやライブラリの実行環境。
 パッケージ管理も仮想環境も全部担う。
 
@@ -46,7 +40,8 @@ PyPIとAnacondaの併用は困難。
 プロジェクトごとに `venv` で仮想環境をつくってその中で
 `pip` を使ってパッケージを管理する。
 
-`pyenv` は使うけど複数バージョンの使い分けは基本しない。LinuxでOS標準のPython環境を汚さない目的で使う。
+`pyenv` は使うけど複数バージョンの使い分けは基本しない。
+LinuxでOS標準のPython環境を汚さない目的で使う。
 -->
 
 ## Pythonのインストール

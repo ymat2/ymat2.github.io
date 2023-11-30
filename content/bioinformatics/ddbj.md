@@ -6,124 +6,268 @@ date: 2022-11-02T11:03:16+09:00
 https://sc.ddbj.nig.ac.jp/
 
 
-## バッチジョブ
+## ログイン
 
-CPU コアを 1 コアだけ使用するプログラムを少数実行する場合に用いる。
+[ユーザーアカウントを発行](https://sc.ddbj.nig.ac.jp/application/)したら、
+[`ssh`]({{< ref ssh.md >}}) 接続の設定をする。
 
-```sh
-## ジョブスクリプトを投げる
-qsub test.sh
+`~/.ssh/config`:
 
-## コマンドライン引数として投げる
-qsub -S /bun/bash -cwd "echo 'hoge' > test.txt"
+```config
+Host ddbj
+	IdentityFile ~/.ssh/id_ed25519
+  Hostname gw.ddbj.nig.ac.jp
+  RequestTTY yes
+  User yukimatsu
 ```
 
-オプションはコマンドライン引数でも、ジョブスクリプト内で `#$` につづけて渡すこともできる。
+`ssh` 接続後はゲートウェイノードにいる。
+`qlogin` してログインノードへ:
+
+```sh
+ssh ddbj
+qlogin
+```
+
+`-l s_vmem=4G`, `-l mem_req=4G` でメモリ量を指定できる。
+デフォルトは4GBで、96GBまで指定可能。
+
+
+## インタラクティブジョブ
+
+手元のターミナルと同じように、linuxコマンドやスクリプトの実行が可能:
+
+```sh
+$ pwd
+/home/yukimatsu
+$ python3
+Python 3.10.12 (main, Jun 11 2023, 05:26:28) [GCC 11.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> print(1+2)
+3
+```
+
+
+## バッチジョブ
+
+簡単なジョブであればインタラクティブジョブでよいが、
+時間のかかるジョブやリソースを食うジョブ、繰り返し行うジョブを実行する場合は
+ジョブスクリプトを書いて計算ノードにやらせる。
+
+ジョブスクリプトはシェルスクリプトまたはPythonスクリプトで書くことができる。
+
+`sample.sh`:
+
+```sh
+#!/bin/bash
+
+#$ -S /bin/bash
+#$ -cwd
+#$ -V
+#$ -l short
+#$ -l d_rt=00:10:00
+#$ -l s_rt=00:10:00
+#$ -l s_vmem=4G
+#$ -l mem_req=4G
+
+echo "HOME: " ${HOME}
+echo "USER: " ${USER}
+```
+
+`sample.py`:
+
+```py
+#!/usr/bin/python3
+
+#$ -S /usr/bin/python3
+#$ -V
+#$ -l d_rt=00:10:00
+#$ -l s_rt=00:10:00
+
+import os
+print("HOME: ", os.environ["HOME"])
+print("USER: ", os.environ["USER"])
+```
+
+`qsub` コマンドでジョブスクリプトを計算ノードに投げる:
+
+```sh
+qsub sample.sh
+qsub sample.py -cwd -l short -l s_vmem=4G -l mem_req=4G
+```
+
+オプションはジョブスクリプト内で `#$` につづけて渡してもいいし、
+`qsub` するときのコマンドライン引数として渡してもいい。
 
 `-cwd`
 :	バッチジョブをカレントディレクトリ上で実行する。デフォルトは `$HOME`
 
 `-V`
-:	`qsub` を実行した際の環境変数を全てバッチジョブ(を実行する計算ノード)に引き継ぐ。
+:	`qsub` を実行した際の環境変数を全て計算ノードに引き継ぐ。
 
 `-l short`
-:	キューの指定。今のところ64GB以上なら `medium` 程度の認識。
+:	計算ノードのキューの指定。
+	`epyc`, `intel`, `gpu`, `short`, `medium` がある。
+	([Grid Engineキューの種類](https://sc.ddbj.nig.ac.jp/general_analysis_division/ga_queue))
 
 `-l d_rt=00:10:00`, `s_rt=00:10:00`
-:	バッチジョブの実行上限時間。デフォルトは `72:00:00` (=3日間)
+:	ジョブの実行上限時間。デフォルトは `72:00:00` (=3日間)
 
 `-l s_vmem=4G`, `-l mem_req=4G`
-:	使用するメモリ量の指定。
+:	使用するメモリ量の指定。単位は `G`, `M`, `K`。
 
-`-N an_example`
-:	ジョブ名の指定。
+`-N example`
+:	ジョブ名の指定。指定しなければはジョブスクリプトのファイル名になる。
 
 `-S /bin/bash`
-:	インタープリタの指定。
+:	インタープリタの指定
 
 `-o`, `-e`
-:	標準出力/標準エラーファイルの出力先。デフォルトはカレントディレクトリ。
+:	標準出力/標準エラーファイルの出力先
+:	デフォルトではカレントディレクトリに
+	`{ジョブ名}.o{ジョブID}`, `{ジョブ名}.e{ジョブID}` で出力される。
 
 
-## アレイジョブ、パラレルジョブ
+## パラレルジョブ
 
-CPUコアを複数もちいるジョブ。
-順次多数実行していくのがアレイジョブ。
-同時に少数実行するのがパラレルジョブくらいの認識。
+https://sc.ddbj.nig.ac.jp/software/grid_engine/parallel_jobs/
 
-### アレイジョブの書き方
+CPUコアを複数同時に使用するジョブ。
+例えば[OrthoFinder]({{< ref orthofinder.md >}})であれば
+`-a N` でNスレッドの並列解析を指定する。
+これを遺伝研上で投げるときは、下のようにする:
+
+```sh
+# 例
+#$ -S /bin/bash
+#$ -pe def_slot 5
+#$ -cwd
+
+orthofinder -f ./ExampleData -a 5
+```
+
+スレッド数の指定にはいくつか方法がある:
+
+`-pe def_slot N`
+:	**同一計算ノード上**に N 個の CPU コアを確保する。
+
+`-pe mpi N`
+:	**複数の計算ノードにわたって**、
+	なるべく多数のノードに散るように N 個の CPU コアを確保する。
+
+`-pe mpi-fillup N`
+:	**複数の計算ノードにわたって**、
+	なるべく少数のノードに N 個の CPU コアを確保する。
+
+<div class="note">
+
+`-l s_vmem=4G`, `-l mem_req=4G` でメモリ量を指定する場合、×N
+だけメモリを要求する。例えば `qsub -pe def_slot 16 -l s_vmem=4G -l mem_req=4G`
+であれば 4×16=64G を使うことになる。
+
+</div>
+
+
+## アレイジョブ
+
+https://sc.ddbj.nig.ac.jp/software/grid_engine/array_jobs
+
+多数のジョブを同時に、あるいは順次に実行していくジョブ。
+
+例えば6個のSRAデータを同時に取得する場合:
 
 ```sh
 #$ -S /bin/bash
 #$ -t 1-6:1
-#$ -tc 3
 #$ -cwd
+
 seq_ids=(SRR030253 SRR030254 SRR030255 SRR030256 SRR030257 SRR030258)
 seq_id=${seq_ids[$SGE_TASK_ID-1]}
 
-mv ${seq_id}.hoge ${seq_id}.fuga
+prefetch ${seq_id}
 ```
-
-### アレイジョブ、パラレルジョブ関連の引数
-
-`-pe def_slot 8`
-:	スレッド数の指定。中で動くプログラムの指定と合わせる。
-
-	```sh
-	# 例
-	#$ -S /bin/bash
-	#$ -pe def_slot 5
-	#$ -cwd
-
-	orthofinder -f ./fasta/ -t 5 -a 5
-	```
 
 `-t 1-N`
 :	N個のタスクを持つアレイジョブとして投入する。
+:	計算機が空いていれば同時に実行される。そうでなくても空き次第順次導入される。
 
 `-tc M`
 :	一度に実行されるアレイジョブのタスク数の上限を指定。
-	これをやらないとユーザーに割り振られた計算機数をオーバーしてしまうことがある
-:	`qquota` でリソースを確認できる。2022/9/28時点で300。
+	これをやらないとユーザーに割り振られた計算機数をオーバーしてしまうことがある。
+:	`qquota` でリソースを確認できる。2023/11/30時点で300。
 
-### メモリ指定
+### ファイルの中身を `seq_ids` に流し込む
 
-- 64GB未満のジョブ：Thinノードで実行可
+10,000遺伝子の並列など、`seq_ids` が長くなるとジョブスクリプトの可読性が落ちる。
+先に `seq_ids` の中身をテキストファイルに書き出して
+それをジョブスクリプトに読み込む場合、以下のようにする:
 
-	```sh
-	qsub -l s_vmem=32G -l mem_req=32G test.sh
-	```
+`array10000.sh`:
 
-- 64GB以上、2000GB未満のジョブ：Mediumノードを指定する。
+```sh
+#$ /bin/bash
+#$ -t 1-10000:1
+#$ -cwd
 
-	```sh
-	qsub -l medium -l s_vmem=128G -l mem_req=128G test.sh
-	```
+seq_ids=()
+while read -r x; do
+    seq_ids+=($x)
+done < $1
+seq_id=${seq_ids[$SGE_TASK_ID-1]}
 
-- パラレルジョブの総メモリはスロット数と`-l`で指定した数字の掛け算になる。
-	```bash
-	# 総メモリ数は4×32GB=128GB
-	qsub -pe def_slot 4 -l medium -l s_vmem=32G -l mem_req=32G test.sh
-	```
+echo ${seq_id}
+```
 
+`genes.txt`:
+
+```txt
+Gene_1
+Gene_2
+⋮
+Gene_10000
+```
+
+`genes.txt` を引数にして `qsub`:
+
+```sh
+qsub array10000.sh genes.txt
+```
+
+`cat genes.txt | while read -r x` で直接読もうとすると想定した挙動をしない。
+
+
+## その他のコマンド
+
+`qstat`
+:	ジョブの投入状況の確認
+:	`r`: 実行中, `qw`: 投入待機中, `t`: 計算ノードへ転送中,
+	`E`: エラー, `d`: 削除中
+
+`qstat -g c`
+:	計算・ログイン含む全ノードの混雑状況をみる。
+
+`qdel jobID`
+:	ジョブの削除
 
 ## Apptainer (Singularity)
 
 https://sc.ddbj.nig.ac.jp/software/Apptainer
 
 バイオインフォマティクスでよく使われる解析ツールがバージョン別に
-`/usr/local/biotools/` に配置されており、インストール不要で使うことができる。
+`/usr/local/biotools/` に各ソフトウェアの頭文字別に配置されており、
+インストール不要で使うことができる。
+
+どんなツールが使えるか見てみる。たとえばblast:
 
 ```sh
-## どんなツールが使えるか見てみる。たとえばblast。
-## biotools/の、各ツールの頭文字ディレクトリを参照。
 ls /usr/local/biotools/b/blast*
 ```
 
-### 使用例
+使用例:
 
 ```sh
-singularity exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -h
+apptainer exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -help
+# singularity exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -help
 ```
 
 
@@ -131,10 +275,17 @@ singularity exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -h
 
 ### `guix`
 
+<div class="warning">
+
+2023/11/30 のOSアップデートと同時にドキュメントがアーカイブされた。
+もうすぐ使われなくなるかもしれない。
+
+</div>
+
 ユーザー権限で利用できるパッケージマネージャで、最初から使えるようになっている。
 
 - [GNU Guix Reference Manual](https://guix.gnu.org/manual/en/html_node/index.html) (公式マニュアル)
-- [遺伝研での使い方ページ](https://sc.ddbj.nig.ac.jp/software/guix)
+- [遺伝研での使い方ページ (アーカイブ)](https://sc.ddbj.nig.ac.jp/oldDocuments/software/guix)
 
 前準備:
 

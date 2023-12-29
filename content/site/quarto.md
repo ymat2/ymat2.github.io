@@ -10,7 +10,7 @@ https://quarto.org/
 マークダウンで書いた記事をHTML、PDF、MS Wordなどへ変換し、
 WEBサイトや書籍として公開するまでを一手に担うフレームワーク。
 
-コードチャンクでR、Pyhton、Juliaを実行でき、
+コードチャンクでR、Python、Juliaを実行でき、
 研究ノートなどにも有用。
 [Jupyter](https://jupyter.org/),
 [RStudio](https://posit.co/products/open-source/rstudio/),

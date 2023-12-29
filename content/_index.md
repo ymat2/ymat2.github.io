@@ -15,11 +15,3 @@ Links
 : <a rel="me" href="https://github.com/ymat2/" title="GitHub">GitHub
   <img height=20 width=20 style="vertical-align: text-bottom;" src="https://cdn.simpleicons.org/github/333333"></a>
 :	[Slides](https://ymat2.github.io/slides/) :file_folder:
-
-Developments
-: [randmotion](https://ymat2.github.io/randomotion/)
-  &mdash; Web application for simulation of the [industrial melanism](https://en.wikipedia.org/wiki/Industrial_melanism)
-:	[hugo-theme-mindoc](https://github.com/ymat2/hugo-theme-mindoc)
-  &mdash; Simple hugo theme for documentation
-:	[coffee](https://github.com/ymat2/coffee)
-  &mdash; Joke command writen in C++

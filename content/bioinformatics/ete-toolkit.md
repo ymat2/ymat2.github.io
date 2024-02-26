@@ -112,13 +112,12 @@ ete3 evol -t tree_file --alg fasta_file -o outdir/ --models models --cpu N
 2種をカンマで繋ぐ。カンマ3つだと共通祖先からの全ての枝を、カンマ2つだと共通祖先の枝のみ。
 
 `--mark Human_EDN,,,Hylobates_EDN,Macaq_EDN,,,Papio_EDN`
-: <img alt="http://etetoolkit.org/static/img/evol_tree_marked_cplx1.png" src="http://etetoolkit.org/static/img/evol_tree_marked_cplx1.png" width="480">
+: <a href="http://etetoolkit.org/documentation/ete-evol/"><img src="/images/ete/evol_tree_marked_cplx1.png" width="480"></a>
 
 `--mark Macaq_ECP,,Macaq2_ECP,Human_ECP,,Goril_ECP`
-: <img alt="http://etetoolkit.org/static/img/evol_tree_marked_cplx2.png" src="http://etetoolkit.org/static/img/evol_tree_marked_cplx2.png" width="480">
+: <a href="http://etetoolkit.org/documentation/ete-evol/"><img src="/images/ete/evol_tree_marked_cplx2.png" width="480"></a>
 
-<small>画像は[ドキュメントページ](http://etetoolkit.org/documentation/ete-evol/)から引用</small>
-
+<small>http://etetoolkit.org/documentation/ete-evol/</small>
 
 ### Testing evolutionary models
 

@@ -223,3 +223,50 @@ kbd {
   background-color: $grey3;
   border-radius: 0.25rem;
 }
+
+/*-- Callouts --*/
+div {
+  .note {
+  	margin: 0.5rem 0;
+    padding-block: 0.5rem;
+    padding-inline: 2rem 1rem;
+    position: relative;
+    background-color: #4575B411;
+  }
+
+  .note::before {
+    content: "i";
+    color: #4575B4;
+    font-family: "Ubuntu mono", monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-style: italic;
+    display: inline-block;
+    position: absolute;
+    left: 0.7rem;
+  }
+
+  .warn {
+  	margin: 0.5rem 0;
+    padding-block: 0.5rem;
+    padding-inline: 2rem 1rem;
+    position: relative;
+    background-color: #D7302711;
+  }
+
+  .warn::before {
+    content: "!";
+    color: #D73027;
+    font-family: "Ubuntu mono", monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-style: italic;
+    display: inline-block;
+    position: absolute;
+    left: 0.7rem;
+  }
+}
+
+.warn > p, .note > p {
+	margin: 0.2rem 0;
+}

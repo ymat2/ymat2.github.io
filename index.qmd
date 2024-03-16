@@ -4,14 +4,10 @@ format:
     title: "About"
 ---
 
-<div style="padding-block: 0.2rem;
-    padding-inline: 1rem;
-    position: relative;
-    background-color: #4575B411;">
+<div class="note">
 
-🚧 Information 🚧
-: ビルドフレームワークの移行 (hugo -> quarto) に伴い、
-  一時的にサイトのコンテンツを非公開にしています。
+ビルドフレームワークの移行 (hugo -> quarto) に伴い、<br>
+一時的にサイトのコンテンツを非公開にしています。
 
 </div>
 
@@ -26,6 +22,7 @@ format:
 
 Contacts
 : yuki.matsuda.m10あっとgmail.com
+: yuki.matsuda.r7あっとdc.tohoku.ac.jp
 
 Links
 : <a rel="me" href="https://github.com/ymat2/" title="GitHub">

@@ -9,7 +9,8 @@ website:
   favicon: static/favicon.png
   bread-crumbs: false
   sidebar:
-    title: Yuki MATSUDA
+    title: <img src="/static/favicon.png" height="28" vertical-align="text-bottom">
+           Yuki MATSUDA
     style: "floating"
     search: true
     collapse-level: 1
@@ -17,6 +18,8 @@ website:
       - text: "HOME"
         file: index.qmd
       - text: "---"
+      - section: "Bioinformatics"
+        contents: bio/*.qmd
   page-footer:
     right: "Copyright 2023, Yuki Matsuda"
 

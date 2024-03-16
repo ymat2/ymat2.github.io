@@ -4,9 +4,42 @@
     "href": "index.html",
     "title": "About",
     "section": "",
-    "text": "🚧 Information 🚧\n\nビルドフレームワークの移行 (hugo -&gt; quarto) に伴い、 一時的にサイトのコンテンツを非公開にしています。\n\n\n\n\n松田 優樹 (MATSUDA Yuki)\n\n東北大学 大学院 生命科学研究科 分子化学生物学専攻 進化ゲノミクス分野 \n\nContacts\n\nyuki.matsuda.m10あっとgmail.com\n\nLinks\n\n  ymat2 \n\n\n  0009-0006-2288-1621",
+    "text": "ビルドフレームワークの移行 (hugo -&gt; quarto) に伴い、 一時的にサイトのコンテンツを非公開にしています。\n\n\n松田 優樹 (MATSUDA Yuki)\n\n東北大学 大学院 生命科学研究科 分子化学生物学専攻 進化ゲノミクス分野 \n\nContacts\n\nyuki.matsuda.m10あっとgmail.com\n\n\nyuki.matsuda.r7あっとdc.tohoku.ac.jp\n\nLinks\n\n  ymat2 \n\n\n  0009-0006-2288-1621",
     "crumbs": [
       "HOME"
+    ]
+  },
+  {
+    "objectID": "bio/paml-tutorial.html",
+    "href": "bio/paml-tutorial.html",
+    "title": "PAML チュートリアル",
+    "section": "",
+    "text": "即席のページです。\nPAML のテストデータを材料に codeml を一通り動かす。\n参考サイト:",
+    "crumbs": [
+      "Bioinformatics",
+      "PAML チュートリアル"
+    ]
+  },
+  {
+    "objectID": "bio/paml-tutorial.html#素の-paml-を動かす",
+    "href": "bio/paml-tutorial.html#素の-paml-を動かす",
+    "title": "PAML チュートリアル",
+    "section": "素の PAML を動かす",
+    "text": "素の PAML を動かす\n\nInstallation\n\n\nSite モデル\n\n\nBranch モデル\n\n\nBranch-Site モデル",
+    "crumbs": [
+      "Bioinformatics",
+      "PAML チュートリアル"
+    ]
+  },
+  {
+    "objectID": "bio/paml-tutorial.html#ete-を使って-paml-を動かす",
+    "href": "bio/paml-tutorial.html#ete-を使って-paml-を動かす",
+    "title": "PAML チュートリアル",
+    "section": "ete を使って PAML を動かす",
+    "text": "ete を使って PAML を動かす\n\nInstallation",
+    "crumbs": [
+      "Bioinformatics",
+      "PAML チュートリアル"
     ]
   }
 ]

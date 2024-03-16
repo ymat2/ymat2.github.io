@@ -1,16 +1,16 @@
 ---
 title: "ゲノムデータ取得"
-subtitle: "NCBIから一括ダウンロード"
+subtitle: "NCBI から一括ダウンロード"
 date: 2022-11-21T08:00:21+09:00
 ---
 
-- https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/
-- https://www.ncbi.nlm.nih.gov/genome/doc/ftpfaq/
+https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/
 
-`rsync`, `wget`, `curl` などが使えるらしい。公式には `datasets` コマンドが推奨されている。
+`rsync`, `wget`, `curl` などが使えるらしい。
+公式には `datasets` コマンドが推奨されている。
 
 
-## data_hubから分類群を指定してダウンロード
+## data_hub から分類群を指定してダウンロード
 
 1. https://www.ncbi.nlm.nih.gov/data-hub/genome/ にアクセス
 
@@ -22,9 +22,9 @@ date: 2022-11-21T08:00:21+09:00
 
 	- Download Tableは検索結果の表
 
-	- Download Packageはfile type(gff, fna, faaなど)を指定してダウンロード
+	- Download Packageはfile type (gff, fna, faaなど) を指定してダウンロード
 
-5. <kbd>Select columns</kbd>からゲノムサイズやGene Contentなども表示させることができる。
+5. <kbd>Select columns</kbd> からゲノムサイズや Gene Content なども表示させることができる。
 
 
 ## コマンドラインで一括ダウンロード
@@ -55,13 +55,12 @@ datasets download genome accession GCF_000001405.40 \
 
 `--include` でファイルを指定。デフォルトは `genomic.fna`。
 他に `gtf`, `gff`, `cds`, `protein`, `rna` など。
-`none` を指定するとdata reportだけ取得する。
+`none` を指定すると data report だけ取得する。
 
 ### `curl` コマンドを使う方法
 
 ```sh
-curl -OJX GET "https://api.ncbi.nlm.nih.gov/datasets/v1/genome/accession/GCF_000002315.6/download?exclude_sequence=True&include_annotation_type=PROT_FASTA&filename=GCF_000002315.6.zip" -H "Accept: application/zip"
-
-# exclude_sequence=True: genomic.fnaを除外
-# include_annotation_type: GENOME_GFF,RNA_FASTA,CDS_FASTA,PROT_FASTAから
+curl -OJ https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_000001405.40/download?include_annotation_type=GENOME_FASTA,GENOME_GFF,RNA_FASTA,CDS_FASTA,PROT_FASTA,SEQUENCE_REPORT
 ```
+
+`unclude_annotation_type=` でほしいファイルを指定する。

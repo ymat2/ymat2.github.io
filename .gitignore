@@ -1,1 +1,4 @@
-/content/local/
+docs/
+.quarto
+_extensions
+/.quarto/

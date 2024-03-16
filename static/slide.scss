@@ -1,0 +1,217 @@
+/*-- scss:defaults --*/
+
+// fonts
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Yu Gothic medium", "Yu Gothic UI",
+"Noto Sans", Helvetica, Arial, sans-serif, system-ui, "Segoe UI", "Hiragino Sans", "Meiryo" !default;
+$presentation-font-size-root: 30px !default;
+$presentation-line-height: 1.4 !default;
+$presentation-h1-font-size: 1.55em !default;
+$presentation-h2-font-size: 1.35em !default;
+$presentation-h3-font-size: 1.25em !default;
+$presentation-h4-font-size: 1.15em !default;
+
+// colors
+$body-bg: #eee !default;
+$code-bg: #eee !default;
+$body-color: #444 !default;
+$code-color: $body-color !default;
+$link-color: #0072B2 !default;
+$selection-bg:  #0072B2cc !default;
+
+// code-block
+$code-block-bg: $code-bg !default;
+$code-block-font-size: 85% !default;
+$border-width: 0 !default;
+$border-radius: 0 !default;
+
+/*-- scss:rules --*/
+h1.title {
+  margin-bottom: 1.75rem !important;
+}
+
+p.subtitle {
+  position: relative;
+  margin-left: 1rem;
+  padding-left: 0 !important;
+  padding-bottom: 1.75rem !important;
+  border-bottom: 1.5px solid #ccc;
+}
+
+p.subtitle:before {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 30%;
+  height: 2px;
+  content: '';
+  background: #444;
+}
+
+h2 {
+  position: relative;
+  padding-bottom: 0.5em !important;
+  margin-bottom: 0.85em !important;
+  border-bottom: 1.5px solid #ccc;
+}
+
+h2:before {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 20%;
+  height: 1px;
+  content: '';
+  background: #444;
+}
+
+h3 {
+  font-weight: normal !important;
+}
+
+small {
+  color: #999 !important;
+  font-size: .75em !important;
+}
+
+code {
+  font-size: 0.875em;
+  padding: 0.1em 0.2em;
+}
+
+pre {
+  padding: 0.3em;
+  width: auto !important;
+}
+
+pre.sourceCode {
+  background-color: #f5f5f9;
+}
+
+pre code {
+  background-color: transparent !important;
+}
+
+.code-with-filename .code-with-filename-file {
+  background-color: #f5f5f5;
+  padding: 0 !important;
+}
+
+.reveal ol, .reveal ul {
+  display: block;
+  padding-inline-start: 0.5em;
+  list-style-type: disc;
+}
+
+.reveal ul ul {
+  list-style-type: circle;
+}
+
+.reveal ul ul ul {
+  list-style-type: square;
+}
+
+.reveal dl {
+  display: block;
+  margin-left: 0em;
+}
+
+.reveal dl dt {
+  font-weight: bold;
+  margin-block-start: 1em;
+}
+
+.reveal dl dd {
+	margin-block: 0.3em;
+	margin-inline: 1em 0;
+	position: relative;
+}
+
+.reveal dl dd::before {
+  content: ":";
+  color: #ccc;
+  position: absolute;
+  left: -0.8em;
+}
+
+.reveal table{
+	margin-left: 0;
+  box-shadow: 1px 1px 5px #808080;
+	font-size: 85%;
+}
+
+.reveal td, th{
+	padding: 10px;
+  border: none !important;
+}
+
+.reveal th {
+	background:#EFEFEF;
+}
+
+ul.task-list {
+  padding-left: 0em;
+}
+
+.reveal small {
+  display: inline-block;
+  color: #777;
+  font-size: .85em;
+  vertical-align: inherit !important;
+}
+
+.reveal kbd {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 0.85rem;
+	padding: 1px 4px;
+	margin: -4px 2px 0 0;
+	box-shadow: 1px 1px 1px #808080;
+	border: solid 1px #ccc;
+	border-radius: 3px;
+}
+
+.reveal div.slides {
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 2px 5px 1px #c0c0c0;
+}
+
+.reveal section {
+  box-sizing: border-box;
+  padding: 1em;
+}
+
+.title {
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.subtitle {
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.reveal .quarto-title-block .quarto-title-authors {
+  display: block;
+  justify-content: left;
+}
+
+.reveal .quarto-title-authors .quarto-title-author .quarto-title-author-name {
+  text-align: left;
+}
+
+html.print-pdf body {
+  background-color: #fff;
+}
+
+html.print-pdf .reveal .slides section {
+  padding: 1em !important;
+}
+
+img {
+  margin: 0 !important;
+}
+
+figcaption {
+  margin-top: 0 !important;
+}

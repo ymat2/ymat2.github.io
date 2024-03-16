@@ -1,0 +1,47 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+  output-dir: docs
+
+website:
+  title: "Yuki MATSUDA"
+  favicon: static/favicon.png
+  bread-crumbs: false
+  sidebar:
+    title: Yuki MATSUDA
+    style: "floating"
+    search: true
+    collapse-level: 1
+    contents:
+      - text: "HOME"
+        file: index.qmd
+      - text: "---"
+  page-footer:
+    right: "Copyright 2023, Yuki Matsuda"
+
+format:
+  html:
+    theme: static/custom.scss
+    fontsize: 16px
+    grid:
+      sidebar-width: 270px
+      body-width: 810px
+      margin-width: 0px
+    toc: false
+    toc-location: body
+    toc-title: "Table Of Contents:"
+    link-external-icon: false
+    link-external-newwindow: true
+    code-copy: false
+    highlight-style: github
+  revealjs:
+    theme: static/slide.scss
+    width: 1080
+    height: 810
+    margin: 0
+    scrollable: true
+    history: false
+    slide-number: c/t
+    code-line-numbers: false
+    auto-stretch: false

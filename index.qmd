@@ -1,0 +1,38 @@
+---
+format:
+  html:
+    title: "About"
+---
+
+<div style="padding-block: 0.2rem;
+    padding-inline: 1rem;
+    position: relative;
+    background-color: #4575B411;">
+
+🚧 Information 🚧
+: ビルドフレームワークの移行 (hugo -> quarto) に伴い、
+  一時的にサイトのコンテンツを非公開にしています。
+
+</div>
+
+松田 優樹 (MATSUDA Yuki)
+: [東北大学](https://www.tohoku.ac.jp/japanese/)
+  [大学院 生命科学研究科](https://www.lifesci.tohoku.ac.jp/)
+  分子化学生物学専攻
+  [進化ゲノミクス分野](https://www.lifesci.tohoku.ac.jp/evolgenomics/)
+<!--: [東京農工大学](https://www.tuat.ac.jp/)
+  [大学院 連合農学研究科](https://www.tuat.ac.jp/uni-grad/)
+  [システム行動生物学研究グループ](https://tsuyoshishimmura.wixsite.com/website-1)-->
+
+Contacts
+: yuki.matsuda.m10あっとgmail.com
+
+Links
+: <a rel="me" href="https://github.com/ymat2/" title="GitHub">
+  <img height=20 width=20 style="vertical-align: text-top;" src="https://cdn.simpleicons.org/github/333333">
+  ymat2
+  </a>
+: <a rel="me" href="https://orcid.org/0009-0006-2288-1621" title="ORCID">
+  <img height=20 width=20 style="vertical-align: text-top;" src="https://cdn.simpleicons.org/orcid/A6CE39">
+  0009-0006-2288-1621
+  </a>

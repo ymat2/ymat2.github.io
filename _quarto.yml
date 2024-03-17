@@ -22,6 +22,7 @@ website:
         contents: bio/*.qmd
   page-footer:
     right: "Copyright 2023, Yuki Matsuda"
+  google-analytics: "G-HLCP5V0Y7N"
 
 format:
   html:

@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -67,7 +101,45 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-HLCP5V0Y7N"></script>
 
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -157,21 +229,309 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>PAML のテストデータを材料に codeml を一通り動かしてみる。</p>
 <div class="warn">
 <p>即席のページです。</p>
 </div>
-<p>PAML のテストデータを材料に codeml を一通り動かす。</p>
-<p>参考サイト:</p>
+<p><u>P</u>hylogenetic <u>A</u>nalysis by <u>M</u>aximum <u>L</u>ikelihood (PAML) は、DNA やタンパク質の配列を最尤法で系統解析するための 種々のプログラムを含むパッケージ。</p>
+<p>今回はその中で、コドンの配列から同義置換に対する非同義置換の速度である <span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> を推定して正の自然選択の検出を行う codeml を使う。</p>
+<section id="テストデータの準備" class="level2">
+<h2 class="anchored" data-anchor-id="テストデータの準備">テストデータの準備</h2>
+<p>PAML の方で用意してある <a href="https://github.com/abacus-gene/paml/tree/master/examples/lysozyme">リゾチームの配列</a> を使う。んだけど、ファイルフォーマットが普段牧野研でよく使う形式と異なるので、 ひとまず↓をコピペして使ってください。</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>lysozymeSmall.fa</strong></pre>
+</div>
+<div class="sourceCode" id="cb1" data-filename="lysozymeSmall.fa"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&gt;Hsa_Human</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>AAGGTCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAGATTGGGAATGGATGGCTAC</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>AGGGGAATCAGCCTAGCAAACTGGATGTGTTTGGCCAAATGGGAGAGTGGTTACAACACA</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>CGAGCTACAAACTACAATGCTGGAGACAGAAGCACTGATTATGGGATATTTCAGATCAAT</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>AGCCGCTACTGGTGTAATGATGGCAAAACCCCAGGAGCAGTTAATGCCTGTCATTTATCC</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>TGCAGTGCTTTGCTGCAAGATAACATCGCTGATGCTGTAGCTTGTGCAAAGAGGGTTGTC</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>CGTGATCCACAAGGCATTAGAGCATGGGTGGCATGGAGAAATCGTTGTCAAAACAGAGAT</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>GTCCGTCAGTATGTTCAAGGTTGTGGAGTG</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>&gt;Hla_gibbon</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>AAGGTCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAGATTGGGAATGGATGGCTAC</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>AGGGGAATCAGCCTAGCAAACTGGATGTGTTTGGCCAAATGGGAGAGTGGTTATAACACA</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>CGAGCTACAAACTACAATCCTGGAGACAGAAGCACTGATTATGGGATATTTCAGATCAAT</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>AGCCGCTACTGGTGTAATGATGGCAAAACCCCAGGAGCAGTTAATGCCTGTCATTTATCC</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>TGCAATGCTTTGCTGCAAGATAACATCGCCGATGCTGTAGCTTGTGCAAAGAGGGTTGTC</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>CGCGATCCACAAGGCATTAGAGCATGGGTGGCATGGAGAAATCGTTGTCAAAACAGAGAT</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>CTCCGTCAGTATATTCAAGGTTGTGGAGTA</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>&gt;Cgu/Can_colobus</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>AAGATCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAAATTGGGACTGGATGGCTAC</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>AAGGGAGTCAGCCTAGCAAACTGGGTGTGTTTGGCCAAATGGGAGAGTGGTTATAACACA</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>GACGCTACAAACTACAATCCTGGAGATGAAAGCACTGATTATGGGATATTTCAGATCAAT</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>AGCCGCTACTGGTGTAATAATGGCAAAACCCCAGGAGCAGTTAATGCCTGTCATATATCC</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>TGCAATGCTTTGCTGCAAAATAACATCGCTGATGCTGTAGCTTGTGCAAAGAGGGTTGTC</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>AGTGATCCACAAGGCATTCGAGCATGGGTGGCATGGAAAAAGCACTGTCAAAACAGAGAT</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>GTCAGTCAGTATGTTGAAGGTTGTGGAGTA</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>&gt;Pne_langur</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>AAGATCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAAATTGGGACTGGATGGCTAC</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>AAGGGAGTCAGCCTAGCAAACTGGGTGTGTTTGGCCAAATGGGAGAGTGGTTATAACACA</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>GAAGCTACAAACTACAATCCTGGAGACGAAAGCACTGATTATGGGATATTTCAGATCAAT</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>AGCCGCTACTGGTGTAATAATGGCAAAACCCCAGGAGCAGTTGATGCCTGTCATATATCC</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>TGCAGTGCTTTGCTGCAAAACAACATCGCTGATGCTGTAGCTTGTGCAAAGAGGGTTGTC</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>AGTGATCCACAAGGCGTTCGAGCATGGGTGGCATGGAGAAATCACTGTCAAAACAAAGAT</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>GTCAGTCAGTACGTTAAAGGTTGTGGAGTG</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>&gt;Mmu_rhesus</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>AAGATCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAGATTGGGACTGGATGGCTAC</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>AGGGGAATCAGCCTAGCAAACTGGGTGTGTTTGGCCAAATGGGAGAGTAATTATAACACA</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>CAAGCTACAAACTACAATCCTGGAGACCAAAGCACTGATTATGGGATATTTCAGATCAAT</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>AGCCACTACTGGTGTAATAATGGCAAAACCCCAGGAGCAGTTAATGCCTGTCATATATCC</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>TGCAATGCTTTGCTGCAAGATAACATCGCTGATGCTGTAACTTGTGCAAAGAGGGTTGTC</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>AGTGATCCACAAGGCATTAGAGCATGGGTGGCATGGAGAAATCACTGTCAAAACAGAGAT</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>GTCAGTCAGTATGTTCAAGGTTGTGGAGTG</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>&gt;Ssc_squirrelM</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>AAGGTCTTCGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAGGCTTGGAATGGATGGCTAC</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>AGGGGAATCAGCCTAGCAAACTGGATGTGTTTGGCCAAATGGGAGAGTGACTATAACACA</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>CGTGCTACAAACTACAATCCTGGAGACCAAAGCACTGATTATGGGATATTTCAGATCAAT</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>AGCCACTATTGGTGTAATAATGGCAGAACCCCAGGAGCAGTTAATGCCTGTCATATATCC</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>TGCAATGCTTTGCTGCAAGATGACATCACTCAAGCTGTGGCCTGTGCAAAGAGGGTTGTC</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>CGTGATCCACAAGGCATTAGAGCATGGGTGGCATGGAAAGCTCATTGTCAAAACAGAGAT</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>GTCAGTCAGTATGTTCAAGGTTGTGGAGTA</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>&gt;Cja_marmoset</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>AAGGTCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAGGTTTGGACTGGATGGCTAC</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>AGGGGAATCAGCCTAGCAAACTGGATGTGTTTGGCCAAATGGGAGAGTGATTATAACACA</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>CGTGCTACAAACTACAATCCTGGAGACCAAAGCACTGATTATGGGATATTTCAGATCAAT</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>AGCCACTATTGGTGTAACAATGGCAGAACCCCAGGAGCAGTTAATGCCTGTCATATATCC</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>TGCAATGCTTTGCTGCAAGATGACATCACTGAAGCTGTGGCCTGTGCAAAGAGGGTTGTC</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>CGCGATCCACAAGGCATTAGGGCATGGGTGGCATGGAAAGCTCATTGTCAAAACAGAGAT</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>GTCAGTCAGTATGTTCAAGGTTGTGGAGTA</span></code></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>lysozymeSmall.fa.treefile</strong></pre>
+</div>
+<div class="sourceCode" id="cb2" data-filename="lysozymeSmall.fa.treefile"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(Hsa_Human:0.0087447996,Hla_gibbon:0.0130303081,(((Cgu/Can_colobus:0.0156654142,Pne_langur:0.0181835564):0.0280807319,Mmu_rhesus:0.0070703774):0.0147707727,(Ssc_squirrelM:0.0140657314,Cja_marmoset:0.0076397044):0.0477319527):0.0256856586);</span></code></pre></div>
+</div>
+<p>系統樹ファイルは IQ-TREE を使って推定したもの。 手元でやってもらってもいいです。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">--version</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># IQ-TREE multicore version 2.0.7 for Linux 64-bit built Jan 21 2022</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Heiko Schmidt, Dominik Schrempf, Michael Woodhams.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> lysozymeSmall.fa <span class="at">-m</span> TEST</span></code></pre></div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="paml-tutorial_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="素の-paml-を動かす" class="level2">
+<h2 class="anchored" data-anchor-id="素の-paml-を動かす">素の PAML を動かす</h2>
 <ul>
 <li><a href="http://abacus.gene.ucl.ac.uk/software/paml.html">PAML website</a></li>
 <li><a href="https://github.com/abacus-gene/paml">PAML github リポジトリ</a></li>
 <li><a href="https://fish-evol.org/dNdS_ji.html">井上潤さんのホームページ</a></li>
 <li><a href="https://doi.org/10.1093/molbev/msad041">PAML Beginner’s Guide</a></li>
 </ul>
-<section id="素の-paml-を動かす" class="level2">
-<h2 class="anchored" data-anchor-id="素の-paml-を動かす">素の PAML を動かす</h2>
-<section id="installation" class="level3">
-<h3 class="anchored" data-anchor-id="installation">Installation</h3>
+<section id="paml-をインストールする" class="level3">
+<h3 class="anchored" data-anchor-id="paml-をインストールする">PAML をインストールする</h3>
+<p>いずれかのパッケージ管理ツールを介するのが楽。</p>
+<p>Homebrew を使う場合 <code>brewsci/bio/</code> リポジトリのため、 M2 チップ以降の Mac には対応していない可能性がある。 遺伝研では <code>apptainer (singularity)</code> を使わなくてもすでに PAML の環境が整っている。 (c.f. <code>which -a codeml</code>)</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Homebrew を使う (Mac, M2 チップ以上だと無理かも)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install brewsci/bio/paml</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">## apt を使う (Ubuntu)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install paml</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">## conda を介したインストール (共通)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> bioconda paml</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">## apptainer のやつを使う (遺伝研)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/p/paml<span class="pp">*</span></span></code></pre></div>
+<p>これらのいずれの方法も使えないときは、 <a href="https://github.com/abacus-gene/paml/releases">ソースコード</a>を ダウンロードして手元でビルドする。 方法は<a href="http://abacus.gene.ucl.ac.uk/software/paml.html#:~:text=UNIX/Linux%20and%20Mac%20OSX">公式サイト</a>に記載がある。</p>
+</section>
+<section id="ctl-ファイルの概要" class="level3">
+<h3 class="anchored" data-anchor-id="ctl-ファイルの概要"><code>.ctl</code> ファイルの概要</h3>
+<p>codeml を動かすとき、ファイルの指定や種々のオプションの指定は、 すべてコントロールファイル (<code>.ctl</code>) に記述する。 見た目はこんな感じ:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>lysozymeSmall.ctl</strong></pre>
+</div>
+<div class="sourceCode" id="cb5" data-filename="lysozymeSmall.ctl"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>      seqfile = lysozymeSmall.fa</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>     treefile = lysozymeSmall.fa.treefile</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>      outfile = your_output_file</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        noisy = 9   * 0,1,2,3,9: how much rubbish on the screen</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      verbose = 1   * 1: detailed output, 0: concise output</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      runmode = 0   * 0: user tree;  1: semi-automatic;  2: automatic</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                    * 3: StepwiseAddition; (4,5):PerturbationNNI</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      seqtype = 1   * 1:codons; 2:AAs; 3:codons--&gt;AAs</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    CodonFreq = 2   * 0:1/61 each, 1:F1X4, 2:F3X4, 3:codon table</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        clock = 0   * 0: no clock, unrooted tree, 1: clock, rooted tree</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        model = 2</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                    * models for codons:</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                        * 0:one, 1:b, 2:2 or more dN/dS ratios for branches</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      NSsites = 0   * dN/dS among sites. 0:no variation, 1:neutral, 2:positive</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        icode = 0   * 0:standard genetic code; 1:mammalian mt; 2-10:see below</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    fix_kappa = 0   * 1: kappa fixed, 0: kappa to be estimated</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        kappa = 2   * initial or fixed kappa</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    fix_omega = 0   * 1: omega or omega_1 fixed, 0: estimate</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        omega = 2   * initial or fixed omega, for codons or codon-transltd AAs</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    fix_alpha = 1   * 0: estimate gamma shape parameter; 1: fix it at alpha</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        alpha = .0  * initial or fixed alpha, 0:infinity (constant rate)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>       Malpha = 0   * different alphas for genes</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        ncatG = 4   * # of categories in the dG or AdG models of rates</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        getSE = 0   * 0: don't want them, 1: want S.E.s of estimates</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a> RateAncestor = 0   * (1/0): rates (alpha&gt;0) or ancestral states (alpha=0)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>       method = 0   * 0: simultaneous; 1: one branch at a time</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  fix_blength = 0  * 0: ignore, -1: random, 1: initial, 2: fixed, 3: proportional</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>* Specifications for duplicating results for the small data set in table 1</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>* of Yang (1998 MBE 15:568-573).</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>* see the tree file lysozyme.trees for specification of node (branch) labels</span></code></pre></div>
+</div>
+<p>どの解析でも共通で変更するのは <code>seqfile</code>, <code>treefile</code>, <code>outfile</code> の3つ。 <code>model</code>, <code>NSsites</code>, <code>fix_omega</code>, <code>omega</code> は解析に応じて変更する。</p>
+<dl>
+<dt><code>seqfile</code></dt>
+<dd>
+DNAまたはタンパク質の配列のファイルパス。
+</dd>
+<dt><code>treefile</code></dt>
+<dd>
+系統樹のファイルパス。tip名は <code>seqfile</code> のものと一致している必要がある。
+</dd>
+<dt><code>outfile</code></dt>
+<dd>
+出力ファイルのパス。
+</dd>
+<dt><code>model</code></dt>
+<dd>
+系統樹の各 branch における <span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> の設定。
+</dd>
+<dd>
+0: 系統樹全体で均一の <span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> を推定。
+</dd>
+<dd>
+1: branch ごとに異なる <span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> を推定。
+</dd>
+<dd>
+2: <code>treefile</code> の branch に <code>#</code>, <code>#1</code> などの記号を振って各記号の branch で異なる <span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> を推定。
+</dd>
+<dt><code>NSsites</code></dt>
+<dd>
+コドン/アミノ酸サイトごとの <span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> の設定。
+</dd>
+<dd>
+0: サイト間で <span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> が同じと仮定。branchモデルの時はこれ。
+</dd>
+<dd>
+1: Neutral
+</dd>
+<dd>
+2: Positive
+</dd>
+<dt><code>fix_omega</code></dt>
+<dd>
+<span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> を固定するかどうか。
+</dd>
+<dd>
+0: 初期値から最尤推定する。
+</dd>
+<dd>
+1: 初期値で固定する。
+</dd>
+<dt><code>omega</code></dt>
+<dd>
+<span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> の初期値。
+</dd>
+</dl>
+</section>
+<section id="おおまかな流れ" class="level3">
+<h3 class="anchored" data-anchor-id="おおまかな流れ">おおまかな流れ</h3>
+<p>検証したいシナリオ (特定の枝で正の自然選択がある、等) を<strong>対立仮説</strong>、 そうでないと仮定するシナリオを<strong>帰無仮説</strong>としてそれぞれ <code>.ctl</code> を書いて codeml を動かす。</p>
+<p>それぞれの仮説のパラメータ数と対数尤度が得られるので、 尤度比検定を用いて帰無仮説を棄却することで対立仮説を採択する。</p>
+<p>よく使われる対立仮説と帰無仮説の組み合わせは以下の表のとおり:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">対立仮説</th>
+<th style="text-align: left;">帰無仮説</th>
+<th style="text-align: left;">検定すること</th>
+<th style="text-align: left;">引用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">M2</td>
+<td style="text-align: left;">M1</td>
+<td style="text-align: left;">特定サイトにおける正の自然選択</td>
+<td style="text-align: left;"><a href="http://www.genetics.org/content/155/1/431.short">Yang 2000</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M3</td>
+<td style="text-align: left;">M0</td>
+<td style="text-align: left;">サイト間でdN/dSが異なるか</td>
+<td style="text-align: left;">〃</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M8</td>
+<td style="text-align: left;">M7</td>
+<td style="text-align: left;">特定サイトにおける正の自然選択</td>
+<td style="text-align: left;"><a href="http://www.genetics.org/content/155/1/431.short">Yang 2000</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M8</td>
+<td style="text-align: left;">M8a</td>
+<td style="text-align: left;">特定サイトにおける選択の緩和</td>
+<td style="text-align: left;">〃</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bsA</td>
+<td style="text-align: left;">bsA1</td>
+<td style="text-align: left;">特定の枝の特定のサイトにおける正の自然選択</td>
+<td style="text-align: left;"><a href="http://mbe.oxfordjournals.org/content/22/12/2472.short">Zhang 2005</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bsA</td>
+<td style="text-align: left;">M1</td>
+<td style="text-align: left;">特定の枝の特定のサイトにおける選択の緩和</td>
+<td style="text-align: left;"><a href="http://mbe.oxfordjournals.org/content/22/12/2472.short">Zhang 2005</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bsC</td>
+<td style="text-align: left;">M1</td>
+<td style="text-align: left;">特定のクレードの特定のサイトでdN/dSが異なるか</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1093/oxfordjournals.molbev.a004148">Yang 2002</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bsD</td>
+<td style="text-align: left;">M3</td>
+<td style="text-align: left;">特定のクレードの特定のサイトでdN/dSが異なるか</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1093/oxfordjournals.molbev.a004148">Yang 2002</a>, <a href="http://link.springer.com/article/10.1007/s00239-004-2597-8">Bielawski 2004</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">b_free</td>
+<td style="text-align: left;">b_neut</td>
+<td style="text-align: left;">特定の枝でdN/dSが1と異なるか</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1093/oxfordjournals.molbev.a004148">Yang 2002</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">b_free</td>
+<td style="text-align: left;">M0</td>
+<td style="text-align: left;">特定の枝でdN/dSが他と異なるか</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1093/oxfordjournals.molbev.a004148">Yang 2002</a></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="site-モデル" class="level3">
 <h3 class="anchored" data-anchor-id="site-モデル">Site モデル</h3>
@@ -185,11 +545,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="ete-を使って-paml-を動かす" class="level2">
 <h2 class="anchored" data-anchor-id="ete-を使って-paml-を動かす"><code>ete</code> を使って PAML を動かす</h2>
-<section id="installation-1" class="level3">
-<h3 class="anchored" data-anchor-id="installation-1">Installation</h3>
+<p>🚧 作成中 🚧</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

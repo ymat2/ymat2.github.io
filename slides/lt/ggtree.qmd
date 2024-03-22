@@ -1,0 +1,440 @@
+---
+title: "Rで系統樹を扱う"
+subtitle: "ggtreeによる系統樹の可視化"
+format: revealjs
+highlight-style: github
+---
+
+
+```{r}
+#| eval: true
+#| echo: false
+library(ape)
+library(ggtree)
+```
+
+
+## Rで系統樹を扱う
+
+進化生物学の研究において、系統樹を扱う機会は多い。
+
+ここでは、Rで系統樹を可視化する際に便利な [`ggtree`](https://bioconductor.org/packages/release/bioc/html/ggtree.html) の使い方を紹介する。
+
+```{r}
+#| eval: true
+#| echo: false
+#| output: true
+#| fig.height: 3.8
+#| fig.width: 10
+
+set.seed(1)
+tr = ape::rtree(n = 10, equiprob = TRUE)
+g1 = ggtree(tr)
+g2 = ggtree(tr, layout="slanted")
+g3 = ggtree(tr, layout="circular")
+g4 = ggtree(tr, layout="fan", open.angle=120)
+g5 = ggtree(tr, layout="equal_angle")
+g6 = ggtree(tr, layout="daylight")
+g7 = ggtree(tr, branch.length='none')
+g8 = ggtree(tr, branch.length='none', layout='circular')
+cowplot::plot_grid(g1, g2, g3, g4, g5, g6, g7, g8, nrow = 2)
+```
+
+
+## 必要なパッケージのインストール
+
+`ape` をCRANから、`ggtree` を `bioconductor` からインストールする。
+
+```r
+install.packages("ape")
+library(ape)
+
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("ggtree")
+library(ggtree)
+```
+
+
+## newickフォーマットとR (ape) におけるオブジェクト
+
+
+
+## R標準の `plot()` でも可視化はできる
+
+```{r}
+#| eval: true
+#| echo: true
+#| output: true
+
+set.seed(1)               # シードを設定
+tr = ape::rtree(n = 10)   # 系統樹を生成
+plot(tr)                  # 可視化
+```
+
+
+## `ggtree` で系統樹を可視化する
+
+基本的な使い方は `ggplot()` と同じで、
+`+` を使って指示を重ねていく。
+
+```r
+set.seed(1)                    # シードを設定
+tr = ape::rtree(n = 10)        # 系統樹を生成
+ggtree::ggtree(tr)             # 枝のみ描画
+# geom_tiplab() +              # tip(先端)のラベルを表示
+# geom_nodelab(aes(label = node), hjust = -0.2, node = "internal")   # 内部ノードを表示
+```
+
+```{r}
+#| eval: true
+#| echo: false
+#| output: true
+#| fig.height: 3
+#| fig.width: 4
+
+set.seed(1)
+tr = ape::rtree(n = 10)
+ggtree::ggtree(tr)
+```
+
+
+## `ggtree` で系統樹を可視化する
+
+基本的な使い方は `ggplot()` と同じで、
+`+` を使って指示を重ねていく。
+
+```r
+set.seed(1)                    # シードを設定
+tr = ape::rtree(n = 10)        # 系統樹を生成
+ggtree::ggtree(tr)             # 枝のみ描画
+  geom_tiplab()                # tip(先端)のラベルを表示
+# geom_nodelab(aes(label = node), hjust = -0.2, node = "internal")   # 内部ノードを表示
+```
+
+```{r}
+#| eval: true
+#| echo: false
+#| output: true
+#| fig.height: 3
+#| fig.width: 4
+
+set.seed(1)
+tr = ape::rtree(n = 10)
+ggtree::ggtree(tr) +
+  geom_tiplab()
+```
+
+
+## `ggtree` で系統樹を可視化する
+
+基本的な使い方は `ggplot()` と同じで、
+`+` を使って指示を重ねていく。
+
+```r
+set.seed(1)                    # シードを設定
+tr = ape::rtree(n = 10)        # 系統樹を生成
+ggtree::ggtree(tr)             # 枝のみ描画
+  geom_tiplab() +              # tip(先端)のラベルを表示
+  geom_nodelab(aes(label = node), hjust = -0.2, node = "internal")   # 内部ノードを表示
+```
+
+```{r}
+#| eval: true
+#| echo: false
+#| output: true
+#| fig.height: 3
+#| fig.width: 4
+
+set.seed(1)
+tr = ape::rtree(n = 10)
+ggtree::ggtree(tr) +
+  geom_tiplab() +
+  geom_nodelab(aes(label = node), hjust = -0.2, node = "internal")
+```
+
+
+## 系統樹の形状も様々に変えることができる
+
+```r
+set.seed(1)                    # シードを設定
+tr = ape::rtree(n = 10)        # 系統樹を生成
+ggtree::ggtree(tr, layout = "rectangular")  # デフォルト
+ggtree::ggtree(tr, layout = "circular")
+ggtree::ggtree(tr, layout = "dendrogram")
+ggtree::ggtree(tr, layout = "slanted")
+ggtree::ggtree(tr, layout = "ellipse")
+ggtree::ggtree(tr, layout = "roundrect")
+ggtree::ggtree(tr, layout = "inward_circular")
+ggtree::ggtree(tr, layout = "radial")
+ggtree::ggtree(tr, layout = "ape")
+ggtree::ggtree(tr, layout = "fan", open.angle = 120)
+ggtree::ggtree(tr, layout = "equal_angle")
+ggtree::ggtree(tr, layout = "daylight")
+ggtree::ggtree(tr, layout = "rectangular", branch.length = 'none')
+ggtree::ggtree(tr, layout = 'circular', branch.length = 'none')
+ggtree::ggtree(tr, layout = "dendrogram", branch.length = 'none')
+```
+
+それぞれの形状は次ページへ
+
+
+## 系統樹の形状も様々に変えることができる
+
+```{r}
+#| eval: true
+#| echo: false
+#| output: true
+#| fig.height: 5
+#| fig.width: 10
+
+set.seed(1)
+tr = ape::rtree(n = 10)
+g0 = ggtree::ggtree(tr, layout = "rectangular")
+g1 = ggtree::ggtree(tr, layout = "circular")
+g2 = ggtree::ggtree(tr, layout = "dendrogram")
+g3 = ggtree::ggtree(tr, layout = "slanted")
+g4 = ggtree::ggtree(tr, layout = "ellipse")
+g5 = ggtree::ggtree(tr, layout = "roundrect")
+g6 = ggtree::ggtree(tr, layout = "inward_circular")
+g7 = ggtree::ggtree(tr, layout = "radial")
+g8 = ggtree::ggtree(tr, layout = "ape")
+g9 = ggtree::ggtree(tr, layout = "fan", open.angle = 120)
+g10 = ggtree::ggtree(tr, layout = "equal_angle")
+g11 = ggtree::ggtree(tr, layout = "daylight")
+g12 = ggtree::ggtree(tr, branch.length = 'none')
+g13 = ggtree::ggtree(tr, branch.length = 'none', layout = 'circular')
+g14 = ggtree::ggtree(tr, layout = "dendrogram", branch.length = 'none')
+
+cowplot::plot_grid(
+  g0, g1, g2, g3, g4,
+  g5, g6, g7, g8, g9,
+  g10, g11, g12, g13, g14,
+  nrow = 3,
+  labels = c(
+    "rectangular", "circular", "dendrogram", "slanted", "ellipse",
+    "roundrect", "inward_circular", "radial", "ape", "fan",
+    "equal_angle", "daylight",
+    "rectangular, bl=none",
+    "circular, bl=none",
+    "dendrogram, bl=none"
+  ),
+  hjust = 0, vjust = 1, label_size = 10
+)
+```
+
+
+## 系統樹のあしらい
+
+線のデザインを変えたり、nodeやtipにしるしを付けたりすることができる。
+
+```r
+set.seed(1)                    # シードを設定
+tr = ape::rtree(n = 7)         # 系統樹を生成
+
+## 線の色、太さ、種類を変える
+ggtree::ggtree(tr, color = "darkorange", size = 2, linetype = "dotted")
+
+## nodeにしるしをつける
+ggtree::ggtree(tr) + geom_nodepoint(color = "#009E73", alpha = 0.5, size = 5)
+
+## tipに印をつける
+ggtree::ggtree(tr) + geom_tippoint(color = "#0072B2", shape = 16, size = 5)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+#| output: true
+#| fig.height: 1.6
+
+set.seed(1)
+tr = ape::rtree(n = 10)
+g1 = ggtree::ggtree(tr)
+g2 = ggtree::ggtree(tr) + geom_nodepoint(color = "#009E73", alpha = 0.5, size = 5)
+g3 = ggtree::ggtree(tr) + geom_tippoint(color = "#0072B2", shape = 17, size = 5)
+cowplot::plot_grid(g1, g2, g3, nrow = 1)
+```
+
+
+## 系統樹のあしらい｜特定のtipやnodeを目立たせる
+
+```r
+set.seed(1)                    # シードを設定
+tr = ape::rtree(n = 10)        # 系統樹を生成
+
+## node18を目立たせる
+ggtree::ggtree(tr) +
+  geom_point2(aes(subset=(node==18)), color = "#009E73", alpha = 0.5, size = 5)
+
+## node4とnode5を目立たせる
+ggtree::ggtree(tr) +
+  geom_point2(aes(subset=(node %in% c(4, 5))), color = "#0072B2", shape = 17, size = 5)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+#| output: true
+#| fig.height: 2.4
+
+set.seed(1)
+tr = ape::rtree(n = 10)
+g1 = ggtree::ggtree(tr) +
+  geom_nodelab(aes(label = node), hjust = -0.2, node = "all")
+g2 = ggtree::ggtree(tr) +
+  geom_point2(aes(subset=(node==18)), color = "#009E73", alpha = 0.5, size = 5)
+g3 = ggtree::ggtree(tr) +
+  geom_point2(aes(subset=(node %in% c(4, 5))), color = "#0072B2", shape = 17, size = 5)
+cowplot::plot_grid(g1, g2, g3, nrow = 1)
+```
+
+
+## 系統樹のあしらい｜特定のクレードを目立たせる
+
+`groupOTU` や `groupClade` を使ってクレードをグルーピングする。
+
+```r
+set.seed(1)                    # シードを設定
+tr = ape::rtree(n = 10)        # 系統樹を生成
+
+## tipで指定
+tr2 = ggtree::groupOTU(tr, .node = c("t6","t9","t10"))
+
+## nodeで指定
+tr3 = ggtree::groupClade(tr, .node = 13)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+#| output: true
+#| fig.height: 2.4
+
+set.seed(1)
+tr = ape::rtree(n = 10)
+tr2 = ggtree::groupOTU(tr, .node = c("t6","t9","t10"))
+tr3 = ggtree::groupClade(tr, .node = 13)
+g1 = ggtree::ggtree(tr) +
+  geom_tiplab() +
+  geom_nodelab(aes(label = node), hjust = -0.2, node = "internal")
+g2 = ggtree::ggtree(tr2, aes(color=group)) +
+  geom_tiplab() +
+  geom_nodelab(aes(label = node), hjust = -0.2, node = "internal") +
+  scale_color_manual(values=c("#444444", "#009E73")) +
+  theme(legend.position = "none")
+g3 = ggtree::ggtree(tr3, aes(color=group)) +
+  geom_tiplab() +
+  geom_nodelab(aes(label = node), hjust = -0.2, node = "internal")+
+  scale_color_manual(values=c("#444444", "#0072B2")) +
+  theme(legend.position = "none")
+cowplot::plot_grid(g1, g2, g3, nrow = 1)
+```
+
+
+## 系統樹のあしらい｜特定のクレードを目立たせる
+
+複数のグルーピングも可能。
+
+```r
+set.seed(1)
+tr = ape::rtree(n = 10) |>
+  ggtree::groupClade(c(17, 18))
+ggtree::ggtree(tr, aes(color = group)) +
+  geom_tiplab() +
+  geom_nodelab(aes(label = node), hjust = -0.2, node = "internal") +
+  scale_color_manual(values=c("#444444", "#009E73", "#0072B2", ))
+```
+
+```{r}
+#| eval: true
+#| echo: false
+#| output: true
+#| fig.height: 2.7
+
+set.seed(1)
+tr = ape::rtree(n = 10) |>
+  ggtree::groupClade(c(17, 18))
+ggtree::ggtree(tr, aes(color = group)) +
+  geom_tiplab() +
+  geom_nodelab(aes(label = node), hjust = -0.2, node = "internal") +
+  scale_color_manual(values=c("#444444", "#009E73", "#E69F00")) +
+  theme(legend.position = "none")
+```
+
+
+## 系統樹のあしらい｜特定のクレードを目立たせる
+
+他にもいくつか方法がある。
+
+::: columns
+:::: {.column width="50%"}
+
+ラベルをつける方法:
+
+```r
+ggtree::ggtree(tr) +
+  geom_tiplab() +
+  geom_nodelab(aes(label = node), hjust = -0.2, node = "internal") +
+  geom_cladelabel(node=17, label="Clade A", color="#009E73", offset=-0.5, align=TRUE) +
+  geom_cladelabel(node=18, label="Clade B", color="#E69F00", offset=-0.5, align=TRUE)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+#| output: true
+#| fig.height: 5
+
+set.seed(1)
+tr = ape::rtree(n = 10)
+ggtree::ggtree(tr) +
+  geom_tiplab() +
+  geom_nodelab(aes(label = node), hjust = -0.2, node = "internal") +
+  geom_cladelabel(node=17, label="Clade A", color="#009E73", offset=-0.5, align=TRUE) +
+  geom_cladelabel(node=18, label="Clade B", color="#E69F00", offset=-0.5, align=TRUE)
+```
+
+::::
+:::: {.column width="50%"}
+
+塗りつぶす方法:
+
+```r
+ggtree::ggtree(tr) +
+  geom_tiplab() +
+  geom_nodelab(aes(label = node), hjust = -0.2, node = "internal") +
+  geom_hilight(node=17, fill="#009E73", alpha=.2, extend=.2) +
+  geom_hilight(node=18, fill="#E69F00", alpha=.2, extend=.2)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+#| output: true
+#| fig.height: 5
+
+set.seed(1)
+tr = ape::rtree(n = 10)
+ggtree::ggtree(tr) +
+  geom_tiplab() +
+  geom_nodelab(aes(label = node), hjust = -0.2, node = "internal") +
+  geom_hilight(node=17, fill="#009E73", alpha=.2, extend=.2) +
+  geom_hilight(node=18, fill="#E69F00", alpha=.2, extend=.2)
+```
+
+::::
+:::
+
+
+## References
+
+- [`ape` マニュアル](https://cran.r-project.org/web/packages/ape/ape.pdf)
+
+- [`ggtree` マニュアル](https://bioconductor.org/packages/release/bioc/manuals/ggtree/man/ggtree.pdf)
+
+- Qiita: [Rで系統樹を扱う(ape, ggtree)](https://qiita.com/denden_noro/items/e5eb28ce44854a29a0ce)
+
+- [https://guangchuangyu.github.io/ggtree-book/chapter-ggtree.html#introduction-1](https://guangchuangyu.github.io/ggtree-book/chapter-ggtree.html#introduction-1)
+
+- [Visualizing and Annotating Phylogenetic Trees with R+ggtree](https://bioconnector.github.io/workshops/r-ggtree.html)

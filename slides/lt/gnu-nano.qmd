@@ -1,0 +1,139 @@
+---
+title: "GNU nanoエディタを便利に使う"
+subtitle: "2023-05-09 牧野研 技術輪読会"
+format: revealjs
+highlight-style: breeze
+---
+
+## smallでfriendlyなテキストエディタ `nano`
+
+GNU`nano`はMacにもLinuxにも元から入っているテキストエディタ。ただしmacOS 12.3 Monterey以降、Macで`nano`を打って起動するのは`pico`なので、新しいのを`homebrew`で入れる。
+
+- 公式ドキュメント: [nano-editor.org/dist/latest/nano.html](https://www.nano-editor.org/dist/latest/nano.html)
+- こちらもよろしくお願いします: [ymat2.github.io/commandline/nano/](https://ymat2.github.io/commandline/nano/)
+
+<br>
+
+新しいバージョンを入れて使うのもよい:
+
+```bash
+## Macならhomebrewでインストール
+brew install nano
+
+## Linux(Ubuntu)ならaptでインストール
+sudo apt install nano
+```
+
+
+## 基本的な使い方
+
+ファイル名を指定して開く。ファイルが存在しない場合は新しく作られる。
+
+```bash
+nano sample.md
+```
+
+<kbd>Control</kbd><kbd>X</kbd>
+:   編集画面から出る。内容を変更している場合は上書きするかどうか聞かれる。
+
+<kbd>Control</kbd><kbd>O</kbd>
+:   編集内容を反映。上書き保存のイメージ。
+
+<kbd>Control</kbd><kbd>K</kbd>
+:   選択範囲を切り取る。範囲を選択していない場合カーソルのある行が切り取られる。
+
+<kbd>Control</kbd><kbd>U</kbd>
+:   切り取った内容をカーソル位置に張り付ける。
+
+## `nano`を便利に使う1: Configuration
+
+`~/.bash_profile`みたいに、`nano`も設定をファイルに書いておくことができる。
+
+読み込まれる順番は、以下の通り。
+
+1. `/etc/nanorc`    <small># システムのデフォルト</small>
+2. `~/.nanorc`    <small># これが一番楽</small>
+3. `~/.config/nano/nanorc`    <small># 遺伝研のnanoは古すぎてこれは読んでくれない</small>
+
+<br>
+
+ホームに`.nanorc`を作ってみる:
+
+```bash
+cd  # homeディレクトリに移動
+nano .nanorc  # .nanorcをnanoで編集
+```
+
+## `nano`を便利に使う1: Configuration
+
+`set <option>`という書き方で設定をどんどん追加していく。
+
+よく使う & 便利そうな設定を抜粋:
+
+```{.bash filename=".nanorc"}
+set tabsize 4     # Tabでインデントするときの幅をspace4個分に。
+set autoindent    # 改行時にインデントを揃える
+set smooth        # スクロールがスムーズに
+set linenumbers   # 行番号を表示する
+set mouse         # カーソル移動や範囲選択でマウスを使えるように
+```
+
+その他のオプションは[公式ドキュメント](https://www.nano-editor.org/dist/latest/nano.html#Settings)を参照。
+
+## `nano`を便利に使う2: シンタクスハイライト
+
+シンタクスハイライトとは
+:   関数、文字列、予約語とかに色をつけてコードを見やすくするあれ。
+: ![](image/nano_highlight.png){width="450"}
+
+(`/etc/nanorc`の設定にもよるが、)Macのデフォルトの`nano`はハイライトされていない...
+
+それも`.nanorc`で設定できます!!
+
+## `nano`を便利に使う2: シンタクスハイライト
+
+1. ハイライト定義ファイルが置かれている場所を探す。
+    - Mac(homebrew): `/usr/local/share/nano/` / `/usr/local/Cellar/nano/%v/share/nano/`
+    - Linux: `/usr/share/nano/`
+
+2. `.nanorc`に以下を追記:
+
+    ```{.bash filename=".nanorc"}
+    include "/usr/share/nano/*.nanorc"
+    ```
+
+3. 適当なスクリプトを`nano`で開いて、ハイライトされているか見てみる。
+
+
+## みなさんのおすすめエディタも教えてください!!
+
+- 私は`nano`の設定こうしています！
+- `vim`の方がはるかに高機能だというのを教えてあげよう
+- 何言ってんの、時代は`vscode`でしょ
+    - <small>個人的にvscodeを食わず嫌いしているのでぜひ誰かにやってほしい...</small>
+- etc.
+
+<br><hr>
+
+#### 技術輪読会のネタについて
+
+皆さんの意向をお聞きした上で、希望者が多ければ`git`を学ぶ回をやりたい。
+
+
+## 補遺: 遺伝研で`nano`を使うとき
+
+遺伝研のデフォルトの`nano`は、version 2.3.1とかなり古い。(2023-05-09)
+
+- キーバインドが結構違う。(<kbd>Control</kbd><kbd>X</kbd>とか基本的なやつは同じ。)
+- `~/.config/nano/nanorc`を読んでくれない。
+- `.nanorc`のワイルドカード`*`が効かない。
+
+デフォルトの`nano`を使う場合、
+:   設定ファイルは`~/.nanorc`
+:   キーバインドは自分で設定したり、[野生のやつ](https://github.com/davidhcefx/Modern-Nano-Keybindings)を借りたり。
+:   シンタックスハイライトは1つ1つ直接指定: `include "usr/share/nano/python.nanorc"`
+
+おすすめは新しい`nano`を入れること
+:   [guix](https://sc.ddbj.nig.ac.jp/software/guix)ならversion 5.6.1が入る。(これもそこそこ古いけど。)
+:   `*.nanorc`もついてくる。(`~/.guix-profile/share/nano/*.nanorc`)
+:   [公式](https://www.nano-editor.org/download.php)から最新版(version 7.2)を落としてきてもいいかも。

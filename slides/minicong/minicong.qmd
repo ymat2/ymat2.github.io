@@ -1,0 +1,197 @@
+---
+title: "Minimal hands-on for Comparative Genomics"
+subtitle: "ダイジェスト版 バイオインフォマティクス"
+format: revealjs
+highlight-style: breeze
+---
+
+## 生物多様性の源は?
+現在の生物の多様性・複雑性は、単一の共通祖先に端を発する**進化**の歴史の中で形成されてきた。
+
+![](https://upload.wikimedia.org/wikipedia/commons/c/cf/Kingdom_of_animals.png){height="360"}
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Phylogenetic_tree.svg/900px-Phylogenetic_tree.svg.png){height="360"}
+<small>https://en.wikipedia.org/wiki/</small>
+
+
+## 生物の「進化」とはなにか
+生物の性質が、世代を経るにつれて変化すること。
+
+  <small>↓  ちょっとアバウトすぎる</small>
+
+親から子へと受け継がれる情報が変化し、その変化がやがて集団中に広まっていくこと。
+
+  <small>↓  もう少し学術的にいうと</small>
+
+親から子へ**遺伝**する情報に**変異**が生じ、集団中における**頻度**が変化すること。
+
+<br>
+
+キリンの例: (こんなに単純ではないだろうけど)
+
+1. とある遺伝子に変異が生じた結果、首の長い個体が現れた。
+2. 首の長い個体は高いところの葉っぱも食べることができて生存に有利。
+3. 首の長い個体ばっか生き残った結果、キリンの首が長くなった。
+
+<br>
+
+**決して高いところの葉を食べようとして首を長くしたわけではない。**
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Giraffe_Mikumi_National_Park.jpg/440px-Giraffe_Mikumi_National_Park.jpg){.absolute right="40" bottom="90" height="200"}
+
+
+## 遺伝情報？ 遺伝子？
+遺伝情報(親から子へ伝わる情報)の実体
+: DNAの配列 = DNAを構成する4種類の塩基(A, T, G, C)の並び
+
+遺伝子
+: DNAのうち、タンパク質(体を形作る素材)をつくる領域
+
+![](https://labster-image-manager.s3.amazonaws.com/v2/NAP/2496ca78-fcf8-4143-b537-b6bd3509601c/NAP_DNALocation.en.x1024.png){height="320"}
+<small>https://theory.labster.com/</small>
+
+
+## バイオインフォマティクスとは
+生物の持つ膨大な情報(主に遺伝情報)を、コンピュータの力を借りて扱う学問。
+
+- ある生物の遺伝情報(A, T, G, Cの並び)はどうなっているのか
+- ある種と別の種の遺伝情報はどこが同じで、どこが違うのか
+- 遺伝情報はどう変わってきたのか、どう変わりつつあるのか
+
+<br><hr><br>
+
+本日は野良データ + Python + Linuxで、バイオインフォマティクスの一部を体感。
+
+![](https://upload.wikimedia.org/wikipedia/commons/c/cf/Ensembl_logo.png){height="120"}
+![](https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png){height="120"}
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/300px-Tux.svg.png){height="120"}
+
+
+## 本日のお品書き
+野良データを使って、バイオインフォマティクスの解析の一部を体験してもらう。
+
+ペットとしてお馴染みのイヌ( *Canis lupus familiaris* )と、オーストラリアに生息するイヌの近縁種であるディンゴ( *Canis lupus dingo* )のゲノムを、**重複遺伝子**の観点から比較する。
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Shiba_Inu.jpg/400px-Shiba_Inu.jpg){.absolute right="60" width=240}
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Canis_lupus_dingo_-_cleland_wildlife_park.JPG/500px-Canis_lupus_dingo_-_cleland_wildlife_park.JPG){.absolute bottom="75" right="60" width=240}
+
+<br>
+
+**- CONTENTS -**
+
+- **重複遺伝子**とは?
+- 種の環境適応と重複遺伝子
+- 重複遺伝子を調べるゲノミクス手法
+- Let's try on your computer!
+
+<br>
+
+Github: [https://github.com/ymat2/minicong](https://github.com/ymat2/minicong)
+
+
+## 重複遺伝子とは
+もともと1つだった遺伝子が、さまざまな要因（組換えのミス、トランスポゾンの転移、etc.）で2つ以上になること。
+
+![](image/gene_duplication.png){width=1000}
+
+
+## 重複遺伝子は環境への適応に関与する
+
+![](image/duplication_adaptation.png){width=900}
+
+
+## アミラーゼ遺伝子の数
+- アミラーゼはでんぷんを分解する消化酵素。いろんなものを食べるヒトは5つのアミラーゼ遺伝子をもつ。: `AMY1A`, `AMY1B`, `AMY1C`, `AMY2A`, `AMY2B`
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Salivary_alpha-amylase_1SMD.png/440px-Salivary_alpha-amylase_1SMD.png){height=180}
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/2xfr_b_amylase.png/440px-2xfr_b_amylase.png){height=180}
+<small>左: αアミラーゼ　右: βアミラーゼ</small>
+
+<br>
+
+- これまでの話と絡めると、多様な食事を摂る環境ではアミラーゼ遺伝子の重複が有利に働いたと言える。
+
+- **では、長く人間のペットとして生きてきたイヌと、野生に暮らすディンゴでは、どちらの方がアミラーゼ遺伝子を多く持つだろう？**
+
+
+## 重複遺伝子を調べるためのゲノミクス手法
+
+重複遺伝子どうしはもともとは1つの遺伝子（=同じ配列）なので、互いに似た配列を持つ。そこで、
+
+[BLAST (Basic Local Alignment Search Tool)](https://blast.ncbi.nlm.nih.gov/Blast.cgi)
+: DNAの塩基配列あるいはタンパク質のアミノ酸配列のアライメントを行うためのアルゴリズム
+: ある閾値以上のスコアで類似する配列を発見することができる。
+
+![](image/blast.png){height=240}
+
+
+## 実際にやってみよう: 前準備
+
+1. homebrewのインストール:
+
+    ```bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+    sudo apt update
+    sudo apt install install build-essential curl file git
+
+    echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"' >> ~/.bash_profile
+    source ~/.bash_profile
+    ```
+
+1. blastのインストール:
+
+    ```bash
+    brew update
+    brew install blast
+    ```
+
+1. 今回使うリポジトリを取ってくる:
+
+    ```bash
+    git clone https://github.com/ymat2/minicong.git
+    ```
+
+
+## 実際にやってみよう:
+
+1. `minicong`に移動
+
+    ```bash
+    cd minicong
+    ```
+
+2. イヌとディンゴの配列を取得
+
+    ```bash
+    sh src/get_sequence.sh
+    ```
+
+3. `blastp`を実行 (1行ずつやってみてもいいよ)
+
+    ```bash
+    sh src/run_blastp.sh
+    ```
+
+4. 結果を確認してみる。
+
+    ```bash
+    ls result
+    less result/Canis_lupus_dingo.ASM325472v1.blastp
+    ```
+
+## アミラーゼ遺伝子の数は イヌ > ディンゴ
+ヒトと共に生活し始めたことで雑食性に変化したこととの関与が示唆されている。
+
+![](image/amylase_copy_number.png){height="420"}
+
+See also > [イヌの多様化における遺伝的背景（かずさDNA研究所）](https://www.kazusa.or.jp/dna/worlds_dna_research/%E3%82%A4%E3%83%8C%E3%81%AE%E5%A4%9A%E6%A7%98%E5%8C%96%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E9%81%BA%E4%BC%9D%E7%9A%84%E8%83%8C%E6%99%AF%EF%BC%88nl74%EF%BC%89/)
+
+
+## バイオインフォマティクスは生物学における強力な研究手法
+
+ゲノムを読む技術の発達に伴い、日々多くの種のゲノムが解読されている。バイオインフォマティクスは、蓄積されつつある大規模な情報を扱い多様な生命現象を解き明かす強力なツールである。
+
+![](https://www.lifesci.tohoku.ac.jp/evolgenomics/wp-content/themes/makino/images/s1.jpg){fig-align="center" width="900"}
+
+SEE MORE >
+: [東北大学 生命科学研究科 進化ゲノミクス分野](https://www.lifesci.tohoku.ac.jp/evolgenomics/)

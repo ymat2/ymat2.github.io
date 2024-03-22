@@ -1,0 +1,637 @@
+---
+title: "Git 基本操作② — `fetch`, `merge`, `pull`"
+subtitle: "2023-06-13 牧野研 技術輪読会 `git`編"
+format: revealjs
+highlight-style: github
+---
+
+
+## 今日やること
+
+1. 前回の復習
+
+1. `git status` と `git log` に慣れる
+
+1. リモートリポジトリの変更を手元に反映させる
+
+1. あえて競合を起こしてそれを解決してみる（時間があれば）
+
+参考
+: [過去の牧野研での `git` 講習資料](https://heavywatal.github.io/lectures/git2019makino.html)
+: [`git` 公式リファレンス](https://git-scm.com/docs)
+: [kaito256さん: Github演習](https://github.com/kaityo256/github)
+
+
+## 前回やったこと
+
+1. `git` <img height="24" style="margin:0;" src="https://cdn.simpleicons.org/git"> をインストールする。
+
+1. Github <img height="24" style="margin:0;" src="https://cdn.simpleicons.org/github"> に個人アカウントをつくる。
+
+1. Gitの初期設定をする: `~/.gitconfig`
+
+1. SSHの設定をする: `~/.ssh/`
+
+
+## 前回の復習: 手元のプロジェクトをGitで管理する
+
+1. 適当なディレクトリを作ってテキストファイル `README.md` を新規作成する:
+
+    ```sh
+    mkdir new_project && cd new_project
+    echo Hello, world! > README.md
+    ```
+
+1. ローカルリポジトリをつくる:
+
+    ```sh
+    git init
+    ```
+
+1. ローカルリポジトリに `README.md` をコミットする。
+
+    最初は `git status` や `git log` で頻繁に確認すると安心。
+
+    ```sh
+    git status
+    git add README.md  # README.mdをindexに登録
+    git status
+    git commit -m "Create README.md" # コミットメッセージを添えてコミット
+    git status
+    git log
+    ```
+
+
+## 前回の復習: 手元のプロジェクトをGithubで管理する
+
+1. GitHubアカウントページの右上の “+” から “New repository” を選択する。
+
+1. 適当なリポジトリ名（基本は手元と同じ）をつけて “Create repository” を押す。
+
+1. 手順が表示されるので基本的にそれに従う:
+
+    ```sh
+    git remote add origin https://github.com/USER_NAME/new_project.git  # リモートリポジトリを紐づける
+    git remote -v               # ちゃんと紐づいたか確認
+    # git branch -M main        # ブランチの名前をmainに
+    git push -u origin main     # リモートにpush
+    git status
+    ```
+
+    <small> "Private" リポジトリの場合、SSHで紐付けしないと下り( `fetch`, `pull` )でもパスワードを聞かれる。</small>
+
+1. リポジトリのページを更新して `README.md` が見えるか確認する。
+
+
+## 前回の復習: 既存のリポジトリを手元に落としてくる
+
+1. GitHub上の適当なリポジトリをひとつ選ぶ。<br>
+   (e.g., [https://github.com/ymat2/practice_git](https://github.com/ymat2/practice-git))
+
+2. 右の方の <kbd style="background-color:#008000; color:#fff;"><>Code▼</kbd> ボタンを押す。
+
+3. SSHではなくHTTPSを選択し、URLをコピー。
+
+4. `git clone https://github.com/ymat2/practice-git.git`
+
+5. 中身を眺めてみる:
+
+     ```sh
+     cd practice-git
+     ls -al
+     git log
+     ```
+
+<hr>
+
+`clone` はどんな時に使う?
+: 他人の作ったソフトウェアをインストールして使うとき
+: 新しいPCで最初に作業を始めるとき
+: etc.
+
+
+## 準備運動:　`git status` と `git log` に慣れる
+
+まずは何もしていない状態で `git status` & `git log`
+
+```sh
+git status
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# nothing to commit, working tree clean
+
+git log --oneline --graph   # 1コミット1行で, グラフィカルに
+# * 36d0617 (HEAD -> main, origin/main) Create README.md
+```
+
+`origin`
+:   リモートリポジトリのこと。
+:   `origin/main` はリモートリポジトリのmainブランチ。
+
+`HEAD`
+:   いま見ているブランチ/commitを指す目印。
+:   基本的には「手元の最新のcommit」を表す。
+
+
+## 準備運動:　`git status` と `git log` に慣れる
+
+`README.md` をさらに編集してみる:
+
+```md
+# Hello, world!
+This is a practice of `git`.
+```
+
+<br>
+
+`git status` すると:
+
+```sh
+git status
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git restore <file>..." to discard changes in working directory)
+# 	modified:   README.md
+#
+# no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+
+## 準備運動:　`git status` と `git log` に慣れる
+
+`README.md` をindexに加える:
+
+```sh
+git add README.md
+```
+
+<br>
+
+ここでも `git status` :
+
+```sh
+git status
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#   (use "git restore --staged <file>..." to unstage)
+# 	modified:   README.md
+```
+
+↑ 「間違えて `add` しちゃった」って時は `git restore --staged README.md` すればいい。
+
+
+## 準備運動:　`git status` と `git log` に慣れる
+
+`README.md` の変更をコミットする:
+
+```sh
+git commit -m "Update README.md"
+# [main 0f1a686] Update README.md
+#  1 file changed, 2 insertions(+), 1 deletion(-)
+```
+
+<br>
+
+ここで `git status` & `git log`:
+```sh
+git status
+# On branch main
+# Your branch is ahead of 'origin/main' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+# nothing to commit, working tree clean
+
+git log --oneline --graph
+# * 0f1a686 (HEAD -> main) Update README.md     <- HEAD(ローカル)はここに移動
+# * 36d0617 (origin/main) Create README.md      <- origin(リモート)はまだここ
+```
+
+
+## 準備運動:　`git status` と `git log` に慣れる
+
+最後に `git push`:
+
+```sh
+git push
+```
+
+<br>
+
+`git log` で確認:
+
+```sh
+git log --oneline --graph
+# * 0f1a686 (HEAD -> main, origin/main) Update README.md        <- originも追いついた
+# * 36d0617 Create README.md
+```
+
+<br>
+
+「あれ、いまどういう状態だっけ？」
+
+↓
+
+**常に `git status`, `git log` を確認する癖をつける。**
+
+
+## 休憩 & 質問タイム
+
+**今日やること**
+
+1. ~~前回の復習~~
+
+1. ~~`git status` と `git log` に慣れる~~
+
+1. リモートリポジトリの変更を手元に反映させる
+
+1. あえて競合を起こしてそれを解決してみる（時間があれば）
+
+
+## リモートリポジトリの変更を手元に反映させる
+
+複数人で同じリポジトリを使う場合や、
+個人で複数のマシンを使って開発する場合など、
+別のひと/マシンが `push` した変更を手元に取り寄せるという操作が必要になる。
+
+`git fetch` + `git merge` や `git pull` といったコマンドで、
+リモートリポジトリの変更を手元に反映させる。
+
+![](image/push_and_pull.png){width="900"}
+
+
+## リモートリポジトリの変更を手元に反映させる
+
+`git fetch`
+: リモートリポジトリの変更をローカルリポジトリに取り込む。
+: この時点では `.git/` 内だけが変更されているため、手元のファイルはそのまま。
+
+`git merge`
+: ローカルリポジトリの内容を、手元のファイルに反映する。
+
+![](image/fetch_and_merge.png){width="720"}
+
+`git pull` は `git fetch` と `git merge` を一気にやるコマンド。
+
+
+## 実際にやってみる
+
+1. リモートでの変更を再現するために、Githubページ上で `README.md` を編集する。
+
+     1. `README.md` をクリック -> 右上のペンマーク 🖊 から編集画面に入る。
+
+     2. "This line is edited online." など適当に編集して、右上の <kbd style="background-color:#008000; color:#fff;">Commit changes</kbd> を押す。
+
+     3. 表示されるウィンドウはとりあえずそのままで <kbd style="background-color:#008000; color:#fff;">Commit changes</kbd>
+
+     4. 変更されていることを確認する。
+
+<br>
+
+2. その変更を `fetch` でローカルリポジトリに取り寄せる:
+
+    ```sh
+    git fetch
+
+    git log --oneline --graph --all    # コミット全部
+    # * 47d354f (origin/main) Update README.md      <- origin(リモート)の変更が.git/に反映された
+    # * 0f1a686 (HEAD -> main) Update README.md     <- HEAD(ローカル)はまだここ
+    # * 36d0617 Create README.md
+    ```
+
+
+## 実際にやってみる
+
+3. `merge` で手元のファイルに反映する:
+
+    ```sh
+    git merge
+    # Fast-forward
+    #  README.md | 2 ++
+    #  1 file changed, 2 insertions(+)
+
+    git log --oneline --graph
+    # * 47d354f (HEAD -> main, origin/main) Update README.md    <- HEADがoriginに追いついた
+    # * 0f1a686 Update README.md
+    # * 36d0617 Create README.md
+    ```
+
+<br>
+
+🔰 練習: もう一度リモートで編集して `git pull` で一気に反映する。
+
+
+## `HEAD` を `origin` に追いつかせるマージ
+
+手元のファイルに変更がない場合、`fetch` してきた `origin` に追いつくだけでいい。
+このようなマージを**fast-forward(早送り) マージ**という。
+
+![](image/ff_merge.png){width="900"}
+
+<small>(このあとFast-Forwardじゃないマージも出てきます。)</small>
+
+
+## ここから先は時間があれば進む
+
+
+## Fast-Forwardじゃないマージ
+
+手元のファイルも変更していた場合、`fetch` してきた `origin` に追いつくのではなく、
+分岐した両者を再び1つにするマージが必要。
+
+このようなマージを**non-fast forward マージ**という。
+
+![](image/non_ff_merge.png){width="900"}
+
+
+## 手元でもファイルを変更していたらどうなるの??
+
+「別のファイルの変更」や「同じファイルの別の箇所の変更」である場合、non-fast forward マージで両方の変更を取り入れる。
+
+:::: {.columns}
+
+::: {.column width="50%"}
+手元の変更:
+
+```{.md code-line-numbers="true"}
+## 第1章
+私はネコである。
+
+## 第2章
+あなたもネコである。
+```
+
+↓
+
+```{.md code-line-numbers="2"}
+## 第1章
+私はイヌである。
+
+## 第2章
+あなたもネコである。
+```
+
+:::
+
+::: {.column width="50%"}
+リモートの変更:
+
+```{.md code-line-numbers="true"}
+## 第1章
+私はネコである。
+
+## 第2章
+あなたもネコである。
+```
+
+↓
+
+```{.md code-line-numbers="5"}
+## 第1章
+私はネコである。
+
+## 第2章
+あなたもイヌである。
+```
+
+:::
+
+::::
+
+<div style="text-align:center;">
+↓
+
+`git fetch` + `git merge`
+
+↓
+</div>
+
+```{.md code-line-numbers="true"}
+## 第1章
+私はイヌである。
+
+## 第2章
+あなたもイヌである。
+```
+
+
+## 手元でもファイルを変更していたらどうなるの??
+
+「同じファイルの同じ箇所の変更」である場合、`conflict` が発生する。
+
+:::: {.columns}
+
+::: {.column width="50%"}
+手元の変更:
+
+```{.md code-line-numbers="true"}
+## 第1章
+私はネコである。
+
+## 第2章
+あなたもネコである。
+```
+
+↓
+
+```{.md code-line-numbers="2"}
+## 第1章
+私はイヌである。
+
+## 第2章
+あなたもネコである。
+```
+
+:::
+
+::: {.column width="50%"}
+リモートの変更:
+
+```{.md code-line-numbers="true"}
+## 第1章
+私はネコである。
+
+## 第2章
+あなたもネコである。
+```
+
+↓
+
+```{.md code-line-numbers="2"}
+## 第1章
+私はサルである。
+
+## 第2章
+あなたもネコである。
+```
+
+:::
+
+::::
+
+<div style="text-align:center;">
+↓
+
+`git fetch` + `git merge`
+
+↓
+</div>
+
+```sh
+git merge
+# Auto-merging README.md
+# CONFLICT (content): Merge conflict in README.md
+# Automatic merge failed; fix conflicts and then commit the result.
+```
+
+
+## conflictを解消する
+
+`conflict` が生じたファイル( `README.md` )を開いてみるとこんな風になっている。
+
+```md
+## 第1章
+<<<<<<< HEAD
+私はイヌである。
+=======
+私はサルである。
+>>>>>>> refs/remotes/origin/main
+
+## 第2章
+あなたもネコである。
+```
+
+<br>
+
+`=======` を挟んで、
+
+- `<<<<<<< HEAD` は手元での変更
+
+- `>>>>>>> refs/remotes/origin/main` はリモートからの変更
+
+を示している。
+
+
+## conflictを解消する
+
+ファイルを編集して `conflict` を解消する。例えば:
+
+```md
+## 第1章
+私はイヌであるし、サルでもある。
+
+## 第2章
+あなたもネコである。
+```
+
+<br>
+
+この変更をコミットしてリモートにも反映する:
+
+```sh
+git add README.md
+git commit -m "Solve a conflict"
+git push
+```
+
+
+## とにかく使ってみる
+
+🔰 練習1: 先ほどつくった `README.md` を編集して複数行の内容にする。できたらコミットしてプッシュ。
+
+<br>
+
+🔰 練習2: 手元とリモートで異なる行を編集する。`git fetch` してから `git merge` してみる。
+
+- 手元: 編集したらコミット
+- リモート: 編集したら<kbd style="background-color:#008000; color:#fff;">Commit changes</kbd>
+
+<br>
+
+🔰 練習3: 手元とリモートで同じ行に異なる編集をする。
+
+- まずは手元ではコミットせずに `git fetch` してから `git merge` してみる。どんなメッセージが出る？
+
+
+## 余談: Fast-forward onlyの設定
+
+`git merge` でリモートとローカルの両方の変更を取り込んだ場合、"merge commit"が自動的につくられる。
+
+```sh
+git log --oneline --graph
+# *   03899a3 Merge remote-tracking branch 'refs/remotes/origin/main'
+# |\                                                    ↑ マージコミット
+# | * 798b869 Edit line.5
+# * | 16117cc Edit line.2
+# |/
+# * 335b76a Some commit
+```
+
+
+## 余談: Fast-forward onlyの設定
+
+`git pull` をした時は、「どういう方法でマージするか」を設定していないと自動的なmergeも起こらない。
+
+```sh
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint:
+hint:   git config pull.rebase false  # merge (the default strategy)
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint:
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+fatal: Need to specify how to reconcile divergent branches.
+```
+
+<br>
+
+そこで、「fast-forwardでのmergeのみを試みる。」という設定をしておく。
+
+
+## 余談: Fast-forward onlyの設定
+
+方法1
+:   `--ff-only` オプション付きで `git pull` する。
+
+    ```sh
+    git pull --ff-only
+    ```
+
+方法2
+:   `~/.gitconfig` に `--ff-only` の設定をする。
+
+    ```sh
+    git config --global pull.ff only
+    ```
+    もしくは
+    ```{.ini filename="~/.gitconfig"}
+    [pull]
+        ff = only
+    ```
+
+
+## 余談2: その他の `git` 便利機能
+
+<span style="font-weight: normal;">「あのファイルとこのファイル、どこが変わったんだっけ」</span>
+: `git diff`
+
+<span style="font-weight: normal;">「間違えて〇〇しちゃった、取り消したい」</span>
+: `git reset`
+
+<span style="font-weight: normal;">「ソースコードは管理したいけど、データや画像は外に出したくないな」</span>
+: `.gitignore`
+
+<br>
+
+see more
+:   [`git` 公式リファレンス](https://git-scm.com/docs)

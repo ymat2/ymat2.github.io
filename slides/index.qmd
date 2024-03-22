@@ -1,0 +1,17 @@
+---
+format:
+  html:
+    title: "Slides"
+---
+
+
+## LTs
+
+- [Rで系統樹を扱う &mdash; ggtreeによる系統樹の可視化](/slides/lt/ggtree.qmd)
+- [WEBサイト作成のための基礎知識 &mdash; HTML, CSS, JavaScript, 静的サイトジェネレータ](/slides/lt/html-css.qmd)
+- [2023-05-09 牧野研 技術輪読会 &mdash; GNU nanoエディタを便利に使う](/slides/lt/gnu-nano.qmd)
+
+## Git
+
+- [Git 基本操作① &mdash; GitとGitHubを使い始める](/slides/git-circle/git-vol1.qmd)
+- [Git 基本操作② &mdash; `fetch`, `merge`, `pull`](/slides/git-circle/git-vol2.qmd)

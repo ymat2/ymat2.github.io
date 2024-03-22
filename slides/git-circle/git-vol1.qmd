@@ -1,0 +1,256 @@
+---
+title: "Git 基本操作① — GitとGitHubを使い始める"
+subtitle: "2023-06-06 牧野研 技術輪読会 `git`編"
+format: revealjs
+highlight-style: github
+---
+
+
+## 今日やること
+
+1. Git<img height="20" src="https://cdn.simpleicons.org/git" style="margin: 0"> と
+   GitHub<img height="20" src="https://cdn.simpleicons.org/github" style="margin: 0">
+   とは何か、なぜ必要かを知る
+2. Git と GitHub を使い始める
+3. Git の基本操作をやってみる
+
+参考
+: [過去の牧野研での `git` 講習資料](https://heavywatal.github.io/lectures/git2019makino.html)
+: [`git` 公式リファレンス](https://git-scm.com/docs)
+: [kaito256さん: Github演習](https://github.com/kaityo256/github)
+
+
+## こんなことありませんか？
+
+
+論文を書いて、先生に見せて、修正して、、、
+
+どれが最新だっけ？
+
+```sh
+~$ ls thesis/
+卒論.docx
+卒論_ver2.docx
+卒論_TM_review.docx
+卒論_TM_review.docxのコピー
+卒論_最新.docx
+卒論_最新_TM_review.docx
+20220301_卒論_最終版.docx
+卒論_提出版.docx
+卒論_提出版_こっち.docx
+```
+
+
+## こんなことありませんか？
+
+OneDrive, Google Drive等を活用したバックアップは大切。でも、、、
+
+:::: {.columns}
+::: {.column width="60%"}
+![](image/onedrive.png){width="600"}
+:::
+::: {.column width="40%"}
+`enrichment.R` にバグを発見！！
+
+何日か前までは大丈夫だったはずだけどどこまで戻ればいいんだ？？
+:::
+::::
+
+<hr>
+
+- 常に最新版のファイルだけ取っておいて、
+- いつでも過去のバージョンに戻れる、
+- しかもどのマシンにも共有できる、
+
+という状態が好ましい。
+
+
+## だから私は Git/GitHub
+
+[Git](https://git-scm.com/) <img height="22" src="https://cdn.simpleicons.org/git" style="margin: 0">
+:   分散型バージョン管理システム
+:   あるファイルを、誰が、いつ、どこを修正したかの履歴を
+    自分のタイミングで保存
+:   手元には最新のファイルのみが残り、いつでも過去のバージョンに戻れる
+
+[GitHub](https://github.com/) <img height="22" src="https://cdn.simpleicons.org/github" style="margin: 0">
+:   Gitで管理しているファイルのホスティングサービス
+:   Gitを使う上で便利な機能が盛りだくさん
+:   まさにHubとして、複数人や複数マシンで同じファイルを共有できる
+:   類似サービスにはGitLab<img height="20" src="https://cdn.simpleicons.org/gitlab" style="margin: 0"> など
+
+
+## Install `git`
+
+version 2 以降の `git` が入っているかどうか確認:
+
+```sh
+git --version
+# git version 2.42.1
+```
+
+<br>
+
+入っていなければ:
+
+- Mac:
+  `brew install git`
+
+- Linux (Ubuntu):
+  `sudo apt update && sudo apt install git`
+
+- Windows:
+  [WSL2](https://ymat2.github.io/commandline/wsl.html)を設定する。
+  あとはLinuxとおなじ。
+
+
+## 初期設定
+
+-   [GitHub<img height=20 style="margin: 0;" src="https://cdn.simpleicons.org/github">](https://github.com)
+    に個人アカウントを作る。
+    - ユーザー名 (他のユーザーと被らないもの)
+    - メールアドレス
+    - パスワード
+
+-   Git<img height=20 style="margin: 0;" src="https://cdn.simpleicons.org/git">
+    の初期設定をターミナルから行う:
+
+    ```sh
+    git --version        # 2.0以上であることを確認
+    git config --global user.name "Yuki Matsuda"
+    git config --global user.email "your-email@dc.tohoku.ac.jp"
+    git config --global push.default simple
+    cat ~/.gitconfig     # 反映されているか確認
+    # [user]
+    #   name = Yuki Matsuda
+    #   email = your-email@dc.tohoku.ac.jp
+    # [push]
+    #   default = simple
+    ```
+
+
+## SSH (任意)
+
+-   GitHubとの通信に2つの方式がある。
+    - HTTPS: 設定不要で高速だが、操作によってパスワード入力が必要
+    - SSH: 一旦ちゃんと設定すればパスワードなしで快適
+
+-   ダウンロード操作(clone/fetch/pull)は高速なHTTPSで、<br>
+    アップロード操作(push)はパスワード無しのSSHで、というのが楽ちん。
+
+-   [SSH公開鍵を作って](https://ymat2.github.io/commandline/ssh/)
+    ローカルマシンと[GitHubに登録](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)する。
+
+-   設定ファイル `~/.gitconfig` に `pushinsteadof` の設定を追加:
+
+    ```ini
+    [url "git@github.com:"]
+      pushinsteadof = https://github.com/
+    ```
+
+-   Macの場合、keyhcainを使ってPassword入力をスキップする:
+
+    ```sh
+    git config --global credential.helper osxkeychain
+    ```
+
+-   Windowsの場合、SSH鍵作成の際にPassword入力をスキップするのがよい？
+
+
+## 休憩 & 質問タイム ☕
+
+- [x] Git <img height="20" src="https://cdn.simpleicons.org/git" style="margin: 0">と
+   GitHub <img height="20" src="https://cdn.simpleicons.org/github" style="margin: 0">
+   とは何か、なぜ必要かを知る
+- [x] Git と GitHub を使い始める
+- [ ] Git の基本操作をやってみる
+
+
+## 手元のプロジェクトをGitで管理する
+
+1. 適当なディレクトリを作ってテキストファイル `README.md` を新規作成する:
+
+    ```sh
+    mkdir new_project && cd new_project
+    echo Hello, world! > README.md
+    ```
+
+1. ローカルリポジトリをつくる:
+
+    ```sh
+    git init
+    ```
+
+1. ローカルリポジトリに `README.md` をコミットする。
+
+    最初は `git status` や `git log` で頻繁に確認すると安心。
+
+    ```sh
+    git status
+    git add README.md  # README.mdをindexに登録
+    git status
+    git commit -m "Create README.md" # コミットメッセージを添えてコミット
+    git status
+    git log
+    ```
+
+
+## 手元のプロジェクトをGithubでも管理する
+
+1. GitHubアカウントページの右上の “+” から “New repository” を選択する。
+
+1. 適当なリポジトリ名（基本は手元と同じ）をつけて “Create repository” を押す。
+
+1. 手順が表示されるので基本的にそれに従う:
+
+    ```sh
+    git remote add origin https://github.com/USER_NAME/new_project.git  # リモートリポジトリを紐づける
+    git remote -v               # ちゃんと紐づいたか確認
+    # git branch -M main        # ブランチの名前をmainに
+    git push -u origin main     # リモートにpush
+    git status
+    ```
+
+    <small> "Private" リポジトリの場合、SSHで紐付けしないと下り( `fetch`, `pull` )でもパスワードを聞かれる。</small>
+
+1. リポジトリのページを更新して `README.md` が見えるか確認する。
+
+
+## すでにあるリポジトリを手元に落としてくる
+
+1. GitHub上の適当なリポジトリをひとつ選ぶ。
+   (e.g., [https://github.com/ymat2/practice_git](https://github.com/ymat2/practice-git))
+
+2. 右の方の <kbd style="background-color:#008000; color:#fff;"><>Code▼</kbd> ボタンを押す。
+
+3. SSHではなくHTTPSを選択し、URLをコピー。
+
+4. `git clone https://github.com/ymat2/practice-git.git`
+
+5. 中身を眺めてみる:
+
+     ```sh
+     cd practice-git
+     ls -al
+     git log
+     ```
+
+<hr>
+
+`clone` はどんな時に使う?
+: 他人の作ったソフトウェアをインストールして使うとき
+: 新しいPCで最初に作業を始めるとき
+: etc.
+
+
+## 前半、おわり
+
+- [x] Git <img height="20" src="https://cdn.simpleicons.org/git" style="margin: 0">と
+   GitHub <img height="20" src="https://cdn.simpleicons.org/github" style="margin: 0">
+   とは何か、なぜ必要かを知る
+- [x] Git と GitHub を使い始める
+- [x] Git の基本操作をやってみる
+
+<br>
+
+[**後半スライドへ**](git-vol2.html)

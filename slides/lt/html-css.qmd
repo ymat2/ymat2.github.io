@@ -1,0 +1,257 @@
+---
+title: "WEBサイト作成のための基礎知識"
+subtitle: "HTML, CSS, JavaScript, 静的サイトジェネレータ"
+format: revealjs
+highlight-style: github
+---
+
+
+## お品書き
+
+1. HTML
+  : WEBブラウザで「なにを」見せるか
+
+1. CSS
+  : WEBブラウザで「どう」見せるか
+
+1. JavaScript
+  : 静的サイトにも動きをつける
+
+1. 静的サイトジェネレータ
+  : 牧野研の人たちがよく使うWEBサイト作成技術
+
+
+## HTMLは文書の中身と構造を決める
+
+HTML(Hyper Text Markup Language)
+: WEBサイトを記述するマークアップ言語
+: 文書の**中身**と**構造**(見出し、段落、列挙など)を規定する。
+: `<タグ>テキスト</タグ>` という形で記述する。
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```html
+<html>
+  <body>
+    <h2>コーヒーとは</h2>
+    <p>世界一美味しい飲み物である。</p>
+    <h3>世界三大コーヒー</h3>
+    <ul>
+      <li>キリマンジャロ</li>
+      <li>ブルーマウンテン</li>
+      <li>コナ</li>
+    </ul>
+  </body>
+</html>
+```
+:::
+
+::: {.column width="50%"}
+
+<html>
+  <body>
+    <h2>コーヒーとは</h2>
+    <p>世界一美味しい飲み物である。</p>
+    <h3>世界三大コーヒー</h3>
+    <ul>
+      <li>キリマンジャロ</li>
+      <li>ブルーマウンテン</li>
+      <li>コナ</li>
+    </ul>
+  </body>
+</html>
+
+:::
+
+::::
+
+
+## CSSは文書の見た目を決める
+
+CSS(Cascading Style Sheets)
+: フォント、サイズ、色、レイアウトなど、Webサイトの見た目を規定する。
+: `セレクタ { プロパティ: 値}`という形で記述する。<br>
+  例えば`h2`の色を赤くしたければ: `h2 { color: #ff0000}`
+: 外部ファイル(`.css`)を読み込んだり、HTMLに直接書いたり。
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```css
+h2 {
+  color: #ff0000  /*文字色を赤く*/
+}
+
+h3 {
+  font-size: 0.5em  /*文字サイズを半分に*/
+}
+
+ul{
+  margin-left: 20px  /*左側に余白をとる*/
+}
+```
+:::
+
+::: {.column width="50%"}
+
+<html>
+  <body>
+    <h2 style="color: #ff0000">コーヒーとは</h2>
+    <p>世界一美味しい飲み物である。</p>
+    <h3 style="font-size: 0.5em">世界三大コーヒー</h3>
+    <ul style="margin-left: 60px">
+      <li>キリマンジャロ</li>
+      <li>ブルーマウンテン</li>
+      <li>コナ</li>
+    </ul>
+  </body>
+</html>
+
+:::
+
+::::
+
+
+## JavaScriptはHTMLに動きをつける
+
+JavaScript
+: プログラミング言語のひとつ
+: WEBサイトをよりレスポンシブルにできる。
+: [ゲーム](https://ymat2.github.io/randomotion/)や
+[シミュレータ](https://heavywatal.github.io/driftr.js/)を作ったり、
+スライドっぽく見せたり([reveal.js](https://revealjs.com/))。
+: [Java](https://www.java.com/ja/)はまったく別の言語
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="66%"}
+```js
+// 文字色をランダムに変更
+function changeBackgroundColor() {
+  var colors = ["#e69f00", "#56b4e9", "#009e73",
+                "#f0e442", "#0072b2", "#d55e00"];
+  var randomColor = colors[
+    Math.floor(Math.random() * colors.length)
+  ];
+  var targetElement = document.querySelector("h3.sample");
+  targetElement.style.backgroundColor = randomColor;
+}
+```
+:::
+
+::: {.column width="33%"}
+
+<html>
+<body>
+  <h3 class="sample">JavaScriptサンプル</h3>
+  <button onclick="changeBackgroundColor()">文字色を変更</button>
+
+  <script>
+    function changeBackgroundColor() {
+      var colors = ["#e69f00", "#56b4e9", "#009e73", "#f0e442", "#0072b2", "#d55e00"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      var targetElement = document.querySelector("h3.sample");
+      targetElement.style.color = randomColor;
+    }
+  </script>
+</body>
+</html>
+
+:::
+
+::::
+
+
+## HTML + CSS (+ JavaScript) でウェブサイトが作られる
+
+🔰  適当なウェブサイトを開いて、「右クリック → "検証"」や「余白で右クリック → "ページのソースを表示"」から
+そのページのHTMLやCSSを見てみる。
+
+🔰  生のHTMLを書いてブラウザで見てみる。
+
+1. 骨格↓を`index.html` というファイルにコピペして編集する。
+
+    ```html
+    <html>
+      <body>
+        <h1>ここにタイトル</h1>
+        <h2>以下のタグを使ってみる</h2>
+        <p>段落</p>
+        <p>強調もできる。たとえば<em>斜体</em>や<strong>太字</strong>。</p>
+        <ul>
+          <li>これはリスト</li>
+          <li>これもリスト</li>
+        </ul>
+      </body>
+    </html>
+    ```
+
+2. ダブルクリックや `open` コマンドで開いて閲覧する。
+
+
+## でもHTMLを直接書くことは少ない
+
+軽量マークアップ言語であるMarkdown(`.md`, `.Rmd`, `.qmd`)を書いて、
+それをHTMLに変換する。
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```md
+## コーヒーとは
+
+世界一美味しい飲み物である。
+
+### 世界三大コーヒー
+
+- キリマンジャロ
+- ブルーマウンテン
+- コナ
+
+```
+:::
+
+::: {.column width="50%"}
+
+<html>
+  <body>
+    <h2>コーヒーとは</h2>
+    <p>世界一美味しい飲み物である。</p>
+    <h3>世界三大コーヒー</h3>
+    <ul>
+      <li>キリマンジャロ</li>
+      <li>ブルーマウンテン</li>
+      <li>コナ</li>
+    </ul>
+  </body>
+</html>
+
+:::
+
+::::
+
+
+## `.md` → `.html` を便利にする静的サイトジェネレータ
+
+[HUGO](https://gohugo.io/)
+: 高速な静的サイト生成フレームワーク
+: いい感じの見た目にする[テーマ](https://themes.gohugo.io/)が豊富
+
+![](https://d33wubrfki0l68.cloudfront.net/c38c7334cc3f23585738e40334284fddcaf03d5e/2e17c/images/hugo-logo-wide.svg){height="72"}
+
+
+[quarto](https://quarto.org/)
+: 文書作成・公開のためのフレームワーク
+: コマンドライン以外にも、Jupyter notebooks、Rstudio、VScodeで使える。
+: WEBサイト以外にも、スライド作りにも便利
+
+![](https://quarto.org/quarto.png){height="64"}

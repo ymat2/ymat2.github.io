@@ -1,12 +1,1220 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "About",
+    "objectID": "slides/minicong/minicong.html#生物多様性の源は",
+    "href": "slides/minicong/minicong.html#生物多様性の源は",
+    "title": "Minimal hands-on for Comparative Genomics",
+    "section": "生物多様性の源は?",
+    "text": "生物多様性の源は?\n現在の生物の多様性・複雑性は、単一の共通祖先に端を発する進化の歴史の中で形成されてきた。\n  https://en.wikipedia.org/wiki/"
+  },
+  {
+    "objectID": "slides/minicong/minicong.html#生物の進化とはなにか",
+    "href": "slides/minicong/minicong.html#生物の進化とはなにか",
+    "title": "Minimal hands-on for Comparative Genomics",
+    "section": "生物の「進化」とはなにか",
+    "text": "生物の「進化」とはなにか\n生物の性質が、世代を経るにつれて変化すること。\n↓ ちょっとアバウトすぎる\n親から子へと受け継がれる情報が変化し、その変化がやがて集団中に広まっていくこと。\n↓ もう少し学術的にいうと\n親から子へ遺伝する情報に変異が生じ、集団中における頻度が変化すること。\n\nキリンの例: (こんなに単純ではないだろうけど)\n\nとある遺伝子に変異が生じた結果、首の長い個体が現れた。\n首の長い個体は高いところの葉っぱも食べることができて生存に有利。\n首の長い個体ばっか生き残った結果、キリンの首が長くなった。\n\n\n決して高いところの葉を食べようとして首を長くしたわけではない。"
+  },
+  {
+    "objectID": "slides/minicong/minicong.html#遺伝情報-遺伝子",
+    "href": "slides/minicong/minicong.html#遺伝情報-遺伝子",
+    "title": "Minimal hands-on for Comparative Genomics",
+    "section": "遺伝情報？ 遺伝子？",
+    "text": "遺伝情報？ 遺伝子？\n\n遺伝情報(親から子へ伝わる情報)の実体\n\nDNAの配列 = DNAを構成する4種類の塩基(A, T, G, C)の並び\n\n遺伝子\n\nDNAのうち、タンパク質(体を形作る素材)をつくる領域\n\n\n https://theory.labster.com/"
+  },
+  {
+    "objectID": "slides/minicong/minicong.html#バイオインフォマティクスとは",
+    "href": "slides/minicong/minicong.html#バイオインフォマティクスとは",
+    "title": "Minimal hands-on for Comparative Genomics",
+    "section": "バイオインフォマティクスとは",
+    "text": "バイオインフォマティクスとは\n生物の持つ膨大な情報(主に遺伝情報)を、コンピュータの力を借りて扱う学問。\n\nある生物の遺伝情報(A, T, G, Cの並び)はどうなっているのか\nある種と別の種の遺伝情報はどこが同じで、どこが違うのか\n遺伝情報はどう変わってきたのか、どう変わりつつあるのか\n\n\n\n\n本日は野良データ + Python + Linuxで、バイオインフォマティクスの一部を体感。"
+  },
+  {
+    "objectID": "slides/minicong/minicong.html#本日のお品書き",
+    "href": "slides/minicong/minicong.html#本日のお品書き",
+    "title": "Minimal hands-on for Comparative Genomics",
+    "section": "本日のお品書き",
+    "text": "本日のお品書き\n野良データを使って、バイオインフォマティクスの解析の一部を体験してもらう。\nペットとしてお馴染みのイヌ( Canis lupus familiaris )と、オーストラリアに生息するイヌの近縁種であるディンゴ( Canis lupus dingo )のゲノムを、重複遺伝子の観点から比較する。\n \n\n- CONTENTS -\n\n重複遺伝子とは?\n種の環境適応と重複遺伝子\n重複遺伝子を調べるゲノミクス手法\nLet’s try on your computer!\n\n\nGithub: https://github.com/ymat2/minicong"
+  },
+  {
+    "objectID": "slides/minicong/minicong.html#重複遺伝子とは",
+    "href": "slides/minicong/minicong.html#重複遺伝子とは",
+    "title": "Minimal hands-on for Comparative Genomics",
+    "section": "重複遺伝子とは",
+    "text": "重複遺伝子とは\nもともと1つだった遺伝子が、さまざまな要因（組換えのミス、トランスポゾンの転移、etc.）で2つ以上になること。"
+  },
+  {
+    "objectID": "slides/minicong/minicong.html#重複遺伝子は環境への適応に関与する",
+    "href": "slides/minicong/minicong.html#重複遺伝子は環境への適応に関与する",
+    "title": "Minimal hands-on for Comparative Genomics",
+    "section": "重複遺伝子は環境への適応に関与する",
+    "text": "重複遺伝子は環境への適応に関与する"
+  },
+  {
+    "objectID": "slides/minicong/minicong.html#アミラーゼ遺伝子の数",
+    "href": "slides/minicong/minicong.html#アミラーゼ遺伝子の数",
+    "title": "Minimal hands-on for Comparative Genomics",
+    "section": "アミラーゼ遺伝子の数",
+    "text": "アミラーゼ遺伝子の数\n\nアミラーゼはでんぷんを分解する消化酵素。いろんなものを食べるヒトは5つのアミラーゼ遺伝子をもつ。: AMY1A, AMY1B, AMY1C, AMY2A, AMY2B\n\n  左: αアミラーゼ　右: βアミラーゼ\n\n\nこれまでの話と絡めると、多様な食事を摂る環境ではアミラーゼ遺伝子の重複が有利に働いたと言える。\nでは、長く人間のペットとして生きてきたイヌと、野生に暮らすディンゴでは、どちらの方がアミラーゼ遺伝子を多く持つだろう？"
+  },
+  {
+    "objectID": "slides/minicong/minicong.html#重複遺伝子を調べるためのゲノミクス手法",
+    "href": "slides/minicong/minicong.html#重複遺伝子を調べるためのゲノミクス手法",
+    "title": "Minimal hands-on for Comparative Genomics",
+    "section": "重複遺伝子を調べるためのゲノミクス手法",
+    "text": "重複遺伝子を調べるためのゲノミクス手法\n重複遺伝子どうしはもともとは1つの遺伝子（=同じ配列）なので、互いに似た配列を持つ。そこで、\n\nBLAST (Basic Local Alignment Search Tool)\n\nDNAの塩基配列あるいはタンパク質のアミノ酸配列のアライメントを行うためのアルゴリズム\n\n\nある閾値以上のスコアで類似する配列を発見することができる。"
+  },
+  {
+    "objectID": "slides/minicong/minicong.html#実際にやってみよう-前準備",
+    "href": "slides/minicong/minicong.html#実際にやってみよう-前準備",
+    "title": "Minimal hands-on for Comparative Genomics",
+    "section": "実際にやってみよう: 前準備",
+    "text": "実際にやってみよう: 前準備\n\nhomebrewのインストール:\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)\"\n\nsudo apt update\nsudo apt install install build-essential curl file git\n\necho 'export PATH=\"/home/linuxbrew/.linuxbrew/bin:$PATH\"' &gt;&gt; ~/.bash_profile\nsource ~/.bash_profile\nblastのインストール:\nbrew update\nbrew install blast\n今回使うリポジトリを取ってくる:\ngit clone https://github.com/ymat2/minicong.git"
+  },
+  {
+    "objectID": "slides/minicong/minicong.html#実際にやってみよう",
+    "href": "slides/minicong/minicong.html#実際にやってみよう",
+    "title": "Minimal hands-on for Comparative Genomics",
+    "section": "実際にやってみよう:",
+    "text": "実際にやってみよう:\n\nminicongに移動\ncd minicong\nイヌとディンゴの配列を取得\nsh src/get_sequence.sh\nblastpを実行 (1行ずつやってみてもいいよ)\nsh src/run_blastp.sh\n結果を確認してみる。\nls result\nless result/Canis_lupus_dingo.ASM325472v1.blastp"
+  },
+  {
+    "objectID": "slides/minicong/minicong.html#アミラーゼ遺伝子の数は-イヌ-ディンゴ",
+    "href": "slides/minicong/minicong.html#アミラーゼ遺伝子の数は-イヌ-ディンゴ",
+    "title": "Minimal hands-on for Comparative Genomics",
+    "section": "アミラーゼ遺伝子の数は イヌ > ディンゴ",
+    "text": "アミラーゼ遺伝子の数は イヌ &gt; ディンゴ\nヒトと共に生活し始めたことで雑食性に変化したこととの関与が示唆されている。\n\nSee also &gt; イヌの多様化における遺伝的背景（かずさDNA研究所）"
+  },
+  {
+    "objectID": "slides/minicong/minicong.html#バイオインフォマティクスは生物学における強力な研究手法",
+    "href": "slides/minicong/minicong.html#バイオインフォマティクスは生物学における強力な研究手法",
+    "title": "Minimal hands-on for Comparative Genomics",
+    "section": "バイオインフォマティクスは生物学における強力な研究手法",
+    "text": "バイオインフォマティクスは生物学における強力な研究手法\nゲノムを読む技術の発達に伴い、日々多くの種のゲノムが解読されている。バイオインフォマティクスは、蓄積されつつある大規模な情報を扱い多様な生命現象を解き明かす強力なツールである。\n\n\n\n\n\n\nSEE MORE &gt;\n\n東北大学 生命科学研究科 進化ゲノミクス分野"
+  },
+  {
+    "objectID": "slides/lt/gnu-nano.html#smallでfriendlyなテキストエディタ-nano",
+    "href": "slides/lt/gnu-nano.html#smallでfriendlyなテキストエディタ-nano",
+    "title": "GNU nanoエディタを便利に使う",
+    "section": "smallでfriendlyなテキストエディタ nano",
+    "text": "smallでfriendlyなテキストエディタ nano\nGNUnanoはMacにもLinuxにも元から入っているテキストエディタ。ただしmacOS 12.3 Monterey以降、Macでnanoを打って起動するのはpicoなので、新しいのをhomebrewで入れる。\n\n公式ドキュメント: nano-editor.org/dist/latest/nano.html\nこちらもよろしくお願いします: ymat2.github.io/commandline/nano/\n\n\n新しいバージョンを入れて使うのもよい:\n## Macならhomebrewでインストール\nbrew install nano\n\n## Linux(Ubuntu)ならaptでインストール\nsudo apt install nano"
+  },
+  {
+    "objectID": "slides/lt/gnu-nano.html#基本的な使い方",
+    "href": "slides/lt/gnu-nano.html#基本的な使い方",
+    "title": "GNU nanoエディタを便利に使う",
+    "section": "基本的な使い方",
+    "text": "基本的な使い方\nファイル名を指定して開く。ファイルが存在しない場合は新しく作られる。\nnano sample.md\n\nControlX\n\n編集画面から出る。内容を変更している場合は上書きするかどうか聞かれる。\n\nControlO\n\n編集内容を反映。上書き保存のイメージ。\n\nControlK\n\n選択範囲を切り取る。範囲を選択していない場合カーソルのある行が切り取られる。\n\nControlU\n\n切り取った内容をカーソル位置に張り付ける。"
+  },
+  {
+    "objectID": "slides/lt/gnu-nano.html#nanoを便利に使う1-configuration",
+    "href": "slides/lt/gnu-nano.html#nanoを便利に使う1-configuration",
+    "title": "GNU nanoエディタを便利に使う",
+    "section": "nanoを便利に使う1: Configuration",
+    "text": "nanoを便利に使う1: Configuration\n~/.bash_profileみたいに、nanoも設定をファイルに書いておくことができる。\n読み込まれる順番は、以下の通り。\n\n/etc/nanorc # システムのデフォルト\n~/.nanorc # これが一番楽\n~/.config/nano/nanorc # 遺伝研のnanoは古すぎてこれは読んでくれない\n\n\nホームに.nanorcを作ってみる:\ncd  # homeディレクトリに移動\nnano .nanorc  # .nanorcをnanoで編集"
+  },
+  {
+    "objectID": "slides/lt/gnu-nano.html#nanoを便利に使う1-configuration-1",
+    "href": "slides/lt/gnu-nano.html#nanoを便利に使う1-configuration-1",
+    "title": "GNU nanoエディタを便利に使う",
+    "section": "nanoを便利に使う1: Configuration",
+    "text": "nanoを便利に使う1: Configuration\nset &lt;option&gt;という書き方で設定をどんどん追加していく。\nよく使う & 便利そうな設定を抜粋:\n\n\n.nanorc\n\nset tabsize 4     # Tabでインデントするときの幅をspace4個分に。\nset autoindent    # 改行時にインデントを揃える\nset smooth        # スクロールがスムーズに\nset linenumbers   # 行番号を表示する\nset mouse         # カーソル移動や範囲選択でマウスを使えるように\n\nその他のオプションは公式ドキュメントを参照。"
+  },
+  {
+    "objectID": "slides/lt/gnu-nano.html#nanoを便利に使う2-シンタクスハイライト",
+    "href": "slides/lt/gnu-nano.html#nanoを便利に使う2-シンタクスハイライト",
+    "title": "GNU nanoエディタを便利に使う",
+    "section": "nanoを便利に使う2: シンタクスハイライト",
+    "text": "nanoを便利に使う2: シンタクスハイライト\n\nシンタクスハイライトとは\n\n関数、文字列、予約語とかに色をつけてコードを見やすくするあれ。\n\n\n\n\n\n(/etc/nanorcの設定にもよるが、)Macのデフォルトのnanoはハイライトされていない…\nそれも.nanorcで設定できます!!"
+  },
+  {
+    "objectID": "slides/lt/gnu-nano.html#nanoを便利に使う2-シンタクスハイライト-1",
+    "href": "slides/lt/gnu-nano.html#nanoを便利に使う2-シンタクスハイライト-1",
+    "title": "GNU nanoエディタを便利に使う",
+    "section": "nanoを便利に使う2: シンタクスハイライト",
+    "text": "nanoを便利に使う2: シンタクスハイライト\n\nハイライト定義ファイルが置かれている場所を探す。\n\nMac(homebrew): /usr/local/share/nano/ / /usr/local/Cellar/nano/%v/share/nano/\nLinux: /usr/share/nano/\n\n.nanorcに以下を追記:\n\n\n.nanorc\n\ninclude \"/usr/share/nano/*.nanorc\"\n\n適当なスクリプトをnanoで開いて、ハイライトされているか見てみる。"
+  },
+  {
+    "objectID": "slides/lt/gnu-nano.html#みなさんのおすすめエディタも教えてください",
+    "href": "slides/lt/gnu-nano.html#みなさんのおすすめエディタも教えてください",
+    "title": "GNU nanoエディタを便利に使う",
+    "section": "みなさんのおすすめエディタも教えてください!!",
+    "text": "みなさんのおすすめエディタも教えてください!!\n\n私はnanoの設定こうしています！\nvimの方がはるかに高機能だというのを教えてあげよう\n何言ってんの、時代はvscodeでしょ\n\n個人的にvscodeを食わず嫌いしているのでぜひ誰かにやってほしい…\n\netc.\n\n\n\n技術輪読会のネタについて\n皆さんの意向をお聞きした上で、希望者が多ければgitを学ぶ回をやりたい。"
+  },
+  {
+    "objectID": "slides/lt/gnu-nano.html#補遺-遺伝研でnanoを使うとき",
+    "href": "slides/lt/gnu-nano.html#補遺-遺伝研でnanoを使うとき",
+    "title": "GNU nanoエディタを便利に使う",
+    "section": "補遺: 遺伝研でnanoを使うとき",
+    "text": "補遺: 遺伝研でnanoを使うとき\n遺伝研のデフォルトのnanoは、version 2.3.1とかなり古い。(2023-05-09)\n\nキーバインドが結構違う。(ControlXとか基本的なやつは同じ。)\n~/.config/nano/nanorcを読んでくれない。\n.nanorcのワイルドカード*が効かない。\n\n\nデフォルトのnanoを使う場合、\n\n設定ファイルは~/.nanorc\n\n\nキーバインドは自分で設定したり、野生のやつを借りたり。\n\n\nシンタックスハイライトは1つ1つ直接指定: include \"usr/share/nano/python.nanorc\"\n\nおすすめは新しいnanoを入れること\n\nguixならversion 5.6.1が入る。(これもそこそこ古いけど。)\n\n\n*.nanorcもついてくる。(~/.guix-profile/share/nano/*.nanorc)\n\n\n公式から最新版(version 7.2)を落としてきてもいいかも。"
+  },
+  {
+    "objectID": "slides/index.html",
+    "href": "slides/index.html",
+    "title": "Slides",
     "section": "",
-    "text": "ビルドフレームワークの移行 (hugo -&gt; quarto) に伴い、 一時的にサイトのコンテンツを非公開にしています。\n\n\n松田 優樹 (MATSUDA Yuki)\n\n東北大学 大学院 生命科学研究科 分子化学生物学専攻 進化ゲノミクス分野 \n\nContacts\n\nyuki.matsuda.m10あっとgmail.com\n\n\nyuki.matsuda.r7あっとdc.tohoku.ac.jp\n\nLinks\n\n  ymat2 \n\n\n  0009-0006-2288-1621",
+    "text": "Rで系統樹を扱う — ggtreeによる系統樹の可視化\nWEBサイト作成のための基礎知識 — HTML, CSS, JavaScript, 静的サイトジェネレータ\n2023-05-09 牧野研 技術輪読会 — GNU nanoエディタを便利に使う",
     "crumbs": [
-      "HOME"
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "slides/index.html#lts",
+    "href": "slides/index.html#lts",
+    "title": "Slides",
+    "section": "",
+    "text": "Rで系統樹を扱う — ggtreeによる系統樹の可視化\nWEBサイト作成のための基礎知識 — HTML, CSS, JavaScript, 静的サイトジェネレータ\n2023-05-09 牧野研 技術輪読会 — GNU nanoエディタを便利に使う",
+    "crumbs": [
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "slides/index.html#git",
+    "href": "slides/index.html#git",
+    "title": "Slides",
+    "section": "Git",
+    "text": "Git\n\nGit 基本操作① — GitとGitHubを使い始める\nGit 基本操作② — fetch, merge, pull",
+    "crumbs": [
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "slides/git-circle/git-vol1.html#今日やること",
+    "href": "slides/git-circle/git-vol1.html#今日やること",
+    "title": "Git 基本操作① — GitとGitHubを使い始める",
+    "section": "今日やること",
+    "text": "今日やること\n\nGit と GitHub とは何か、なぜ必要かを知る\nGit と GitHub を使い始める\nGit の基本操作をやってみる\n\n\n参考\n\n過去の牧野研での git 講習資料\n\n\ngit 公式リファレンス\n\n\nkaito256さん: Github演習"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol1.html#こんなことありませんか",
+    "href": "slides/git-circle/git-vol1.html#こんなことありませんか",
+    "title": "Git 基本操作① — GitとGitHubを使い始める",
+    "section": "こんなことありませんか？",
+    "text": "こんなことありませんか？\n論文を書いて、先生に見せて、修正して、、、\nどれが最新だっけ？\n~$ ls thesis/\n卒論.docx\n卒論_ver2.docx\n卒論_TM_review.docx\n卒論_TM_review.docxのコピー\n卒論_最新.docx\n卒論_最新_TM_review.docx\n20220301_卒論_最終版.docx\n卒論_提出版.docx\n卒論_提出版_こっち.docx"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol1.html#こんなことありませんか-1",
+    "href": "slides/git-circle/git-vol1.html#こんなことありませんか-1",
+    "title": "Git 基本操作① — GitとGitHubを使い始める",
+    "section": "こんなことありませんか？",
+    "text": "こんなことありませんか？\nOneDrive, Google Drive等を活用したバックアップは大切。でも、、、\n\n\n\n\nenrichment.R にバグを発見！！\n何日か前までは大丈夫だったはずだけどどこまで戻ればいいんだ？？\n\n\n\n\n常に最新版のファイルだけ取っておいて、\nいつでも過去のバージョンに戻れる、\nしかもどのマシンにも共有できる、\n\nという状態が好ましい。"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol1.html#だから私は-gitgithub",
+    "href": "slides/git-circle/git-vol1.html#だから私は-gitgithub",
+    "title": "Git 基本操作① — GitとGitHubを使い始める",
+    "section": "だから私は Git/GitHub",
+    "text": "だから私は Git/GitHub\n\nGit \n\n分散型バージョン管理システム\n\n\nあるファイルを、誰が、いつ、どこを修正したかの履歴を 自分のタイミングで保存\n\n\n手元には最新のファイルのみが残り、いつでも過去のバージョンに戻れる\n\nGitHub \n\nGitで管理しているファイルのホスティングサービス\n\n\nGitを使う上で便利な機能が盛りだくさん\n\n\nまさにHubとして、複数人や複数マシンで同じファイルを共有できる\n\n\n類似サービスにはGitLab など"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol1.html#install-git",
+    "href": "slides/git-circle/git-vol1.html#install-git",
+    "title": "Git 基本操作① — GitとGitHubを使い始める",
+    "section": "Install git",
+    "text": "Install git\nversion 2 以降の git が入っているかどうか確認:\ngit --version\n# git version 2.42.1\n\n入っていなければ:\n\nMac: brew install git\nLinux (Ubuntu): sudo apt update && sudo apt install git\nWindows: WSL2を設定する。 あとはLinuxとおなじ。"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol1.html#初期設定",
+    "href": "slides/git-circle/git-vol1.html#初期設定",
+    "title": "Git 基本操作① — GitとGitHubを使い始める",
+    "section": "初期設定",
+    "text": "初期設定\n\nGitHub に個人アカウントを作る。\n\nユーザー名 (他のユーザーと被らないもの)\nメールアドレス\nパスワード\n\nGit の初期設定をターミナルから行う:\ngit --version        # 2.0以上であることを確認\ngit config --global user.name \"Yuki Matsuda\"\ngit config --global user.email \"your-email@dc.tohoku.ac.jp\"\ngit config --global push.default simple\ncat ~/.gitconfig     # 反映されているか確認\n# [user]\n#   name = Yuki Matsuda\n#   email = your-email@dc.tohoku.ac.jp\n# [push]\n#   default = simple"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol1.html#ssh-任意",
+    "href": "slides/git-circle/git-vol1.html#ssh-任意",
+    "title": "Git 基本操作① — GitとGitHubを使い始める",
+    "section": "SSH (任意)",
+    "text": "SSH (任意)\n\nGitHubとの通信に2つの方式がある。\n\nHTTPS: 設定不要で高速だが、操作によってパスワード入力が必要\nSSH: 一旦ちゃんと設定すればパスワードなしで快適\n\nダウンロード操作(clone/fetch/pull)は高速なHTTPSで、 アップロード操作(push)はパスワード無しのSSHで、というのが楽ちん。\nSSH公開鍵を作って ローカルマシンとGitHubに登録する。\n設定ファイル ~/.gitconfig に pushinsteadof の設定を追加:\n[url \"git@github.com:\"]\n  pushinsteadof = https://github.com/\nMacの場合、keyhcainを使ってPassword入力をスキップする:\ngit config --global credential.helper osxkeychain\nWindowsの場合、SSH鍵作成の際にPassword入力をスキップするのがよい？"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol1.html#休憩-質問タイム",
+    "href": "slides/git-circle/git-vol1.html#休憩-質問タイム",
+    "title": "Git 基本操作① — GitとGitHubを使い始める",
+    "section": "休憩 & 質問タイム ☕",
+    "text": "休憩 & 質問タイム ☕\n\nGit と GitHub  とは何か、なぜ必要かを知る\nGit と GitHub を使い始める\nGit の基本操作をやってみる"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol1.html#手元のプロジェクトをgitで管理する",
+    "href": "slides/git-circle/git-vol1.html#手元のプロジェクトをgitで管理する",
+    "title": "Git 基本操作① — GitとGitHubを使い始める",
+    "section": "手元のプロジェクトをGitで管理する",
+    "text": "手元のプロジェクトをGitで管理する\n\n適当なディレクトリを作ってテキストファイル README.md を新規作成する:\nmkdir new_project && cd new_project\necho Hello, world! &gt; README.md\nローカルリポジトリをつくる:\ngit init\nローカルリポジトリに README.md をコミットする。\n最初は git status や git log で頻繁に確認すると安心。\ngit status\ngit add README.md  # README.mdをindexに登録\ngit status\ngit commit -m \"Create README.md\" # コミットメッセージを添えてコミット\ngit status\ngit log"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol1.html#手元のプロジェクトをgithubでも管理する",
+    "href": "slides/git-circle/git-vol1.html#手元のプロジェクトをgithubでも管理する",
+    "title": "Git 基本操作① — GitとGitHubを使い始める",
+    "section": "手元のプロジェクトをGithubでも管理する",
+    "text": "手元のプロジェクトをGithubでも管理する\n\nGitHubアカウントページの右上の “+” から “New repository” を選択する。\n適当なリポジトリ名（基本は手元と同じ）をつけて “Create repository” を押す。\n手順が表示されるので基本的にそれに従う:\ngit remote add origin https://github.com/USER_NAME/new_project.git  # リモートリポジトリを紐づける\ngit remote -v               # ちゃんと紐づいたか確認\n# git branch -M main        # ブランチの名前をmainに\ngit push -u origin main     # リモートにpush\ngit status\n “Private” リポジトリの場合、SSHで紐付けしないと下り( fetch, pull )でもパスワードを聞かれる。\nリポジトリのページを更新して README.md が見えるか確認する。"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol1.html#すでにあるリポジトリを手元に落としてくる",
+    "href": "slides/git-circle/git-vol1.html#すでにあるリポジトリを手元に落としてくる",
+    "title": "Git 基本操作① — GitとGitHubを使い始める",
+    "section": "すでにあるリポジトリを手元に落としてくる",
+    "text": "すでにあるリポジトリを手元に落としてくる\n\nGitHub上の適当なリポジトリをひとつ選ぶ。 (e.g., https://github.com/ymat2/practice_git)\n右の方の &lt;&gt;Code▼ ボタンを押す。\nSSHではなくHTTPSを選択し、URLをコピー。\ngit clone https://github.com/ymat2/practice-git.git\n中身を眺めてみる:\ncd practice-git\nls -al\ngit log\n\n\n\nclone はどんな時に使う?\n\n他人の作ったソフトウェアをインストールして使うとき\n\n\n新しいPCで最初に作業を始めるとき\n\n\netc."
+  },
+  {
+    "objectID": "slides/git-circle/git-vol1.html#前半おわり",
+    "href": "slides/git-circle/git-vol1.html#前半おわり",
+    "title": "Git 基本操作① — GitとGitHubを使い始める",
+    "section": "前半、おわり",
+    "text": "前半、おわり\n\nGit と GitHub  とは何か、なぜ必要かを知る\nGit と GitHub を使い始める\nGit の基本操作をやってみる\n\n\n後半スライドへ"
+  },
+  {
+    "objectID": "site/pallet.html",
+    "href": "site/pallet.html",
+    "title": "配色の基本",
+    "section": "",
+    "text": "色はさまざまな要素から構成される。 色の構成要素として、色相、明度、彩度の3つが用いられることが多い。 （HSV色空間）\n\n\n赤、青、黄色といった、「色味」に当たる要素。 色相を円状に配置したものは色相環と呼ばれる。 (下図; https://ja.wikipedia.org/wiki/補色より)\n色相環上で近くに位置する色は類似色と呼ばれることがある。 また、対角に位置する色どうしは補色とよばれ、互いを引き立て合う効果がある。\n  RGB色相環    RYB色相環 \n\n\n\n色の明るさを表す指標。 明度が低いほど黒に近づいて暗くなる。\n\n\n\n\n高 &lt; 明度 &gt; 低\n\n\n\n\n\n\n\n\n\n\n\n\n\n色の鮮やかさを表す指標。 彩度が低いほどグレーに近くなる。\n\n\n\n\n高 &lt; 彩度 &gt; 低\n\n\n\n\n\n\n\n\n\n\n彩度や明度の差のことをコントラストとよぶ。\n\n\n\n色の記述方法の一つ。 16進数で2桁ずつ、赤・緑・青 (RGB) の値を指定することで色を表現する。\n\n\n\n\n#FFFFFF (白)\n\n\n#FF0000 (赤)\n\n\n#00FF00 (緑)\n\n\n#0000FF (青)\n\n\n#000000 (黒)",
+    "crumbs": [
+      "Web Development",
+      "配色の基本"
+    ]
+  },
+  {
+    "objectID": "site/pallet.html#色の基本",
+    "href": "site/pallet.html#色の基本",
+    "title": "配色の基本",
+    "section": "",
+    "text": "色はさまざまな要素から構成される。 色の構成要素として、色相、明度、彩度の3つが用いられることが多い。 （HSV色空間）\n\n\n赤、青、黄色といった、「色味」に当たる要素。 色相を円状に配置したものは色相環と呼ばれる。 (下図; https://ja.wikipedia.org/wiki/補色より)\n色相環上で近くに位置する色は類似色と呼ばれることがある。 また、対角に位置する色どうしは補色とよばれ、互いを引き立て合う効果がある。\n  RGB色相環    RYB色相環 \n\n\n\n色の明るさを表す指標。 明度が低いほど黒に近づいて暗くなる。\n\n\n\n\n高 &lt; 明度 &gt; 低\n\n\n\n\n\n\n\n\n\n\n\n\n\n色の鮮やかさを表す指標。 彩度が低いほどグレーに近くなる。\n\n\n\n\n高 &lt; 彩度 &gt; 低\n\n\n\n\n\n\n\n\n\n\n彩度や明度の差のことをコントラストとよぶ。\n\n\n\n色の記述方法の一つ。 16進数で2桁ずつ、赤・緑・青 (RGB) の値を指定することで色を表現する。\n\n\n\n\n#FFFFFF (白)\n\n\n#FF0000 (赤)\n\n\n#00FF00 (緑)\n\n\n#0000FF (青)\n\n\n#000000 (黒)",
+    "crumbs": [
+      "Web Development",
+      "配色の基本"
+    ]
+  },
+  {
+    "objectID": "site/pallet.html#配色の基本",
+    "href": "site/pallet.html#配色の基本",
+    "title": "配色の基本",
+    "section": "配色の基本",
+    "text": "配色の基本\n\n原色など彩度の高い色は避ける。\n\n原色の赤よりも 明度や彩度を抑えた赤\n黒も純粋な黒 (#000000) ではなく、 わずかに灰色がかった黒 (例えば #444444) が推奨されている。\n\n色の持つ意味から逸脱する使い方をしない。 (「危険」、 「暗い」など)\n使用する色の数は4色程度に抑える。 ( 白背景+ 基本文字■+ メイン■+ 強調■ など )\n相性の悪い背景色と文字色の組み合わせを避ける。\n\nコントラストが弱い (  濃い青に黒 ,  薄い緑に白  など )\n彩度が高い文字色に同程度の明度の背景色 ( 灰色に赤  など)\n\n\n引用元: 伝わるデザイン - 配色",
+    "crumbs": [
+      "Web Development",
+      "配色の基本"
+    ]
+  },
+  {
+    "objectID": "site/pallet.html#どの色の組み合わせを使うか１",
+    "href": "site/pallet.html#どの色の組み合わせを使うか１",
+    "title": "配色の基本",
+    "section": "どの色の組み合わせを使うか１",
+    "text": "どの色の組み合わせを使うか１\n基本に沿っていれば好きな色を使うと良い。 多数の色を使う場合、色分けされる対象のもつ意味や色覚多様性を考慮して、 既に考えられているパレットを使うのが安全。\n\nSequential\n連続値データの色分けに適している。\n\nviridis:\n\n\n\n\n#FDE725\n\n\n#7AD151\n\n\n#22A844\n\n\n#2A788E\n\n\n#414487\n\n\n#440154\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nplasma:\n\n\n\n\n#0D0887\n\n\n#6A00A8\n\n\n#B12A90\n\n\n#E16462\n\n\n#FCA634\n\n\n#F0F921\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDiverging\n連続値データの色分けに適している。 特に、気温など0を基点に正負両側に値を取るデータに適する。\n\nBrBG:\n\n\n\n\n#8C510A\n\n\n#D8B365\n\n\n#F6E8C3\n\n\n#F5F5F5\n\n\n#C7EAE5\n\n\n#5AB4AC\n\n\n#01665E\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRdYlBu:\n\n\n\n\n#D73027\n\n\n#FC8D59\n\n\n#FEE090\n\n\n#FFFFBF\n\n\n#E0F3F8\n\n\n#91BFDB\n\n\n#4575B4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nQualitative\nカテゴリカルなデータの色分けに適している。\n\nOkabe_Ito:\n\n\n\n\n#000000\n\n\n#E69F00\n\n\n#56B4E9\n\n\n#009E73\n\n\n#F0E442\n\n\n#0072B2\n\n\n#D55E00\n\n\n#CC79A7\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTol_bright:\n\n\n\n\n#EE6677\n\n\n#228833\n\n\n#4477AA\n\n\n#CCBB44\n\n\n#66CCEE\n\n\n#AA3377\n\n\n#BBBBBB",
+    "crumbs": [
+      "Web Development",
+      "配色の基本"
+    ]
+  },
+  {
+    "objectID": "site/pallet.html#どの色の組み合わせを使うか２",
+    "href": "site/pallet.html#どの色の組み合わせを使うか２",
+    "title": "配色の基本",
+    "section": "どの色の組み合わせを使うか２",
+    "text": "どの色の組み合わせを使うか２\n私がよく参考にするサイト。\n\nWEB色見本\n\n原色、和色、洋色、モノトーンなど、カテゴリーごとにカラーコード付きで色を閲覧可能\n色ごとの配色パターン一覧、色検索、色の調合など機能が盛りだくさん\n\nCOLORBREWER\n\n色分けの数や意味 (Sequential/Diverging/Qualitative) ごとにパレットを検索可能\n色覚多様性や印刷に適した組み合わせに絞ることもできる。\nR の ggplot2 で使えるパレットなのも嬉しい。\n\nAdobe Color\n\n色相環上で色を探しつつ、さまざまな配色パターンを閲覧可能",
+    "crumbs": [
+      "Web Development",
+      "配色の基本"
+    ]
+  },
+  {
+    "objectID": "site/pallet.html#余談-東京メトロ線カラー",
+    "href": "site/pallet.html#余談-東京メトロ線カラー",
+    "title": "配色の基本",
+    "section": "余談: 東京メトロ線カラー",
+    "text": "余談: 東京メトロ線カラー\n東京メトロ線のカラーコード。 2015年頃にカラーユニバーサルデザインに変更された。 わずかな違いでも人によって見えやすさが大きく異なることがわかる好例。\n変更前:\n\n\n\n\n#FF9500\n\n\n#F62E36\n\n\n#B5B5AC\n\n\n#009BBF\n\n\n#00BB85\n\n\n#C1A470\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n銀座線\n\n\n丸の内線\n\n\n日比谷線\n\n\n東西線\n\n\n千代田線\n\n\n有楽町線\n\n\n\n\n\n\n\n\n\n#8F76D6\n\n\n#00AC9B\n\n\n#9C5E31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n半蔵門線\n\n\n南北線\n\n\n副都心線\n\n\n\n\n変更後:\n\n\n\n\n#F39700\n\n\n#E60012\n\n\n#9CAEB7\n\n\n#00A7DB\n\n\n#009944\n\n\n#D7C447\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n銀座線\n\n\n丸の内線\n\n\n日比谷線\n\n\n東西線\n\n\n千代田線\n\n\n有楽町線\n\n\n\n\n\n\n\n\n\n\n#9B7CB6\n\n\n#00ADA9\n\n\n#BB641D\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n半蔵門線\n\n\n南北線\n\n\n副都心線",
+    "crumbs": [
+      "Web Development",
+      "配色の基本"
+    ]
+  },
+  {
+    "objectID": "site/gollum.html",
+    "href": "site/gollum.html",
+    "title": "Gollum",
+    "section": "",
+    "text": "Linux サーバーに gollum で wiki を立てたときの奮闘記。",
+    "crumbs": [
+      "Web Development",
+      "Gollum"
+    ]
+  },
+  {
+    "objectID": "site/gollum.html#開発",
+    "href": "site/gollum.html#開発",
+    "title": "Gollum",
+    "section": "開発",
+    "text": "開発\n\n開発環境\nMacOS Ventura 13.3.1\nbrew --version  # Homebrew 4.0.19\nwhich -a ruby   # /usr/bin/ruby\nruby --version  # ruby 2.6.10p210\n\n\nGollumのインストール\n\nhomebrewでrbenvをインストール\nbrew install rbenv\n最新版(安定版？)のrubyを探してインストール\nrbenv install -l\nrbenv install 3.2.2\nrbenv global 3.2.2\nrbenv init\neval \"$(rbenv init - zsh)\"  # ~/.zshrcにも記載\nWiki用のリポジトリを作って空コミット\nmkdir mywiki && cd mywiki\ngit init\ngit commit --allow-empty -m \":coffee: Create Wiki\"\nGemfile を作成して以下を記載し、コミット\nsource 'https://rubygems.org'\ngem 'commonmarker'\ngem 'gollum'\ngit add Gemfile\ngit commit -m \":sparkles: Create Gemfile\"\nここでFork版のgollumを使うように設定できるらしいが、ひとまずそのまま使ってみる。\nbundle で Gemfile を読んでパッケージを依存関係ごとインストール\nbundle install  # --localしようとしたがcommonmarkerが入らなかった\nサーバーを起動して localhost:4567 で起動確認\nbundle exec gollum",
+    "crumbs": [
+      "Web Development",
+      "Gollum"
+    ]
+  },
+  {
+    "objectID": "site/gollum.html#設定",
+    "href": "site/gollum.html#設定",
+    "title": "Gollum",
+    "section": "設定",
+    "text": "設定\n\n基本\n大体の設定を記述するファイルは config.rb。 まず以下のように記載して、-c で読み込んで起動。\n\n\nconfig.rb\n\nrequire 'gollum/app'\n\nwiki_options = {\n  page_file_dir: 'source',\n  css: true,\n  mathjax: false,\n  emoji: true\n}\nPrecious::App.set(:wiki_options, wiki_options)\n\nbundle exec gollum -c config.rb\n試しに localhost:4567 で閲覧して、新しいページを作ってみる:\n## Hello Freesia!\nThis is the home of mywiki on `freesia`.\n一度終了してもう一度起動すると、ちゃんとさっき作ったページが表示されている。\n\nこのmarkdownはどこにある？working directoryには見えていないけど git が追跡しているっぽい。\n手元に main ブランチと別に master ブランチが生成されていてそこにファイルがある。 (後述するが最初から master ブランチで運用した方が事故は少なそう。)\n\n\n\nBASIC認証によるパスワード設定\nconfig.rb に以下の設定を追記:\n\n\nconfig.rb\n\nmodule Precious\n  class App &lt; Sinatra::Base\n    use Rack::Auth::Basic, 'Private Wiki' do |username, password|\n      users = File.open(File.expand_path('users.json', __dir__)) do |file|\n        JSON.parse(file.read, symbolize_names: true)\n      end\n      name = username.to_sym\n      digested = Digest::SHA256.hexdigest(password)\n      if users.key?(name) && digested == users[name][:password]\n        Precious::App.set(:author, users[name])\n      end\n    end\n\n    before do\n      session['gollum.author'] = settings.author\n    end\n  end\nend\n\nユーザー情報を users.json に分離して config.rb と同じところに置いておく:\n\n\nusers.json\n\n{\n  \"user1\": {\n    \"name\": \"First User\",\n    \"email\": \"user1@example.com\",\n    \"password\": \"0b14d501a594442a01c6859541bcb3e8164d183d32937b851835442f69d5c94e\"\n    }\n}\n\necho -n \"your_password\" | sha256sum したものを”password”に渡す。 (c.f. brew install coreutils )\nログインウィンドウでは、ユーザー名に”user1”、パスワードに”your_password”を指定する。",
+    "crumbs": [
+      "Web Development",
+      "Gollum"
+    ]
+  },
+  {
+    "objectID": "site/gollum.html#本番環境へのデプロイ-トラブルシューティングしながら",
+    "href": "site/gollum.html#本番環境へのデプロイ-トラブルシューティングしながら",
+    "title": "Gollum",
+    "section": "本番環境へのデプロイ (トラブルシューティングしながら)",
+    "text": "本番環境へのデプロイ (トラブルシューティングしながら)\n\n本番環境\nUbuntu 22.04.2 LTS\nsudo apt update\nsudo apt install autoconf bison build-essential libssl-dev libyaml-dev libreadline-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev coreutils\nWebサーバ Apache も入れておく:\nsudo apt install apache2\nrubyの環境を整える:\nbrew install rbenv\nrbenv install -l\nrbenv install 3.2.2\nで、rubyインストールをしようと思ったけど、 ちゃんと入れたはずの libssl-dev で怒られてrubyが入らない。\nrbenv install 3.2.2\n# To follow progress, use 'tail -f /tmp/ruby-build.20230528012904.22847.log' or pass --verbose\n# Downloading ruby-3.2.2.tar.gz...\n# -&gt; https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.2.tar.gz\n# Installing ruby-3.2.2...\n# ruby-build: using readline from homebrew\n# ruby-build: using libyaml from homebrew\n#\n# BUILD FAILED (Ubuntu 22.04 using ruby-build 20230512)\n#\n# Inspect or clean up the working tree at /tmp/ruby-build.20230528012904.22847.wqiJdk\n# Results logged to /tmp/ruby-build.20230528012904.22847.log\n#\n# Last 10 log lines:\n# ERROR: Ruby install aborted due to missing extensions\n# Try running `apt-get install -y libssl-dev` to fetch missing dependencies.\n#\n# Configure options used:\n#   --prefix=/home/ymat2/.rbenv/versions/3.2.2\n#   --enable-shared\n#   --with-readline-dir=/home/linuxbrew/.linuxbrew/opt/readline\n#   --with-libyaml-dir=/home/linuxbrew/.linuxbrew/opt/libyaml\n#   LDFLAGS=-L/home/ymat2/.rbenv/versions/3.2.2/lib\n#   CPPFLAGS=-I/home/ymat2/.rbenv/versions/3.2.2/include\n仕方ないのでhomebrewで入れることに。 (後述するが非推奨のやりかた。あとで rbenv で入れなおした。)\nbrew info ruby\nbrew install ruby\n\n\nリポジトリのクローンとテスト\ngit clone mywiki && cd mywiki\nbundle install\nrugged のインストールでこける。 この記事を参考に、\nbrew reinstall gcc\nbrew install cmake\n再度 bundle install で依存関係ごとgollumを入れる。\nbundle exec gollum -c config.rb\n\n\nsystemd で自動的に開始\nsudo nano /etc/systemd/system/gollum.service\n[Unit]\nDescription=Gollum wiki server\nAfter=network.target\n\n[Service]\nType=simple\nUser=MYNAME\nWorkingDirectory=/path/to/your/labwiki\nExecStart=/home/linuxbrew/.linuxbrew/lib/ruby/gems/3.2.0/bin/bundle exec gollum -c config.rb -b /wiki --allow-uploads dir\nRestart=on-abort\nStandardOutput=file:/var/log/gollum.log\nStandardError=file:/var/log/gollum.log\n\n[Install]\nWantedBy=multi-user.target\nsudo systemctl start gollum.service\nsudo systemctl enable gollum.service\nhomebrew で入れた ruby を使ったせいか、bundle はフルパスを指定しないと動かない。\nhttp://freesia.net:4567 でアクセス。\n\n\nポート番号なしでアクセス\n:4567 で動いているのを :80/wiki に転送する。\n\nApacheの設定ファイル /etc/apache2/sites-available/gollum-wiki.conf をつくる。\n\n\n/etc/apache2/sites-available/gollum-wiki.conf\n\nProxyRequests Off\n&lt;Proxy *&gt;\n  Order deny,allow\n  Allow from all\n&lt;/Proxy&gt;\n&lt;Location /wiki&gt;\n  ProxyPass http://localhost:4567/wiki\n  ProxyPassReverse http://localhost:4567/wiki\n&lt;/Location&gt;\n\nつくった設定ファイルを有効化してApacheを再起動する。\nsudo a2ensite gollum-wiki.conf\nsudo systemctl restart apache2\napache2が再起動しない。Proxyが機能していない？\nsudo systemctl restart apache2\n# Job for apache2.service failed because the control process exited with error code.\n# See \"systemctl status apache2.service\" and \"journalctl -xeu apache2.service\" for details.\n\nsystemctl status apache2.service\n# × apache2.service - The Apache HTTP Server\n#     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)\n#     Active: failed (Result: exit-code) since Mon 2023-05-29 05:39:49 EDT; 8s ago\n#       Docs: https://httpd.apache.org/docs/2.4/\n#     Process: 1821 ExecStart=/usr/sbin/apachectl start (code=exited, status=1/FAILURE)\n#         CPU: 14ms\n\n# May 29 05:39:49 Freesia systemd[1]: Starting The Apache HTTP Server...\n# May 29 05:39:49 Freesia systemd[1]: apache2.service: Control process exited, code=exited, status=1/FAILURE\n# May 29 05:39:49 Freesia systemd[1]: apache2.service: Failed with result 'exit-code'.\n# May 29 05:39:49 Freesia systemd[1]: Failed to start The Apache HTTP Server.\n# May 29 05:39:49 Freesia apachectl[1824]: AH00526: Syntax error on line 1 of /etc/apache2/sites-enabled/gollum-wiki.conf:\n# May 29 05:39:49 Freesia apachectl[1824]: Invalid command 'ProxyRequests', perhaps misspelled or defined by a module not included in the server configuration\n# May 29 05:39:49 Freesia apachectl[1821]: Action 'start' failed.\n# May 29 05:39:49 Freesia apachectl[1821]: The Apache error log may have more information.\nsudo a2enmod proxy して再度 sudo systemctl restart apache2\nInternal Server Error\nhttp://freesia.net/wiki にアクセスするとサーバー内部のエラーとのことで、エラーログを見てみる:\nless /var/log/apache2/error.log\n[Mon May 29 05:43:03.180681 2023] [proxy:warn] [pid 1886:tid 140102133675584] [client 10.33.25.141:62101]\nAH01144: No protocol handler was valid for the URL /wiki (scheme 'http').\nIf you are using a DSO version of mod_proxy, make sure the proxy submodules are included in the configuration using LoadModule.\nsudo a2enmod proxy_http して再度 sudo systemctl restart apache2\nhttp://freesia.net/wiki でアクセスできることを確認\n\n\n\nrbenv で入るrubyを使う\nhomebrew で ruby を入れると、bundle をフルパス指定しなければいけないうえに、 アップデートの度にバージョンが変わって使いづらい。\n最新版の ruby が入らないのはおそらく openssl の問題のよう。 homebrew で入れた openssl には 1.1.1 と 3.1.0 があって、rbenv が参照しているのは前者っぽい。\nrbenv でインストールする ruby のバージョンを落としてみる:\nrbenv install 3.0.6\n入った。念のため homebrew の ruby は消してバージョンを反映:\nbrew uninstall ruby\nrbenv global 3.0.6\neval \"$(rbenv init - zsh)\"  # .bash_localへ\nrbenv 版の ruby を使って wiki 再設定:\ncd /path/to/wiki\nbundle install\nいったん gollum-wiki を停止:\nsudo systemctl stop gollum.service\n設定ファイル /etc/systemd/system/gollum.service を書き換える。\n\nbundle だけでは同じく認識してくれなかった。\nrbenv で入れた bundle へのフルパスを書いて解決。 バージョン番号が入っていない点で及第点とするか。\n\n[Unit]\nDescription=Gollum wiki server\nAfter=network.target\n\n[Service]\nType=simple\nUser=ymat2\nWorkingDirectory=/home/ymat2/Desktop/project/mywiki\nExecStart=/home/ymat2/.rbenv/shims/bundle exec gollum -c config.rb -b /wiki --allow-uploads dir\nRestart=on-abort\nStandardOutput=file:/var/log/gollum.log\nStandardError=file:/var/log/gollum.log\n\n[Install]\nWantedBy=multi-user.target\ngollum-wiki を再起動:\nsudo systemctl daemon-reload\nsudo systemctl start gollum.service\n\n\nbranch を main で動くように調整しようとした\n\nhttps://zenn.dev/noid11/articles/9112566f0737a2c9f7b7\nhttps://github.com/gollum/gollum/issues/1813\n\ngollum はデフォルトでは master ブランチで動くようになっている。 なので main ブランチで動かしつつファイルをアップロードしたりするとわざわざ master ブランチが作られる。 これを main で動くように設定を変更する。\nrequire 'gollum/app'\n\nwiki_options = {\n  page_file_dir: 'source',\n  ref: main,\n  css: true,\n  mathjax: false,\n  emoji: true\n}\nPrecious::App.set(:wiki_options, wiki_options)\n動かん:\nsudo systemctl status gollum.service\n# × gollum.service - Gollum wiki server\n#      Loaded: loaded (/etc/systemd/system/gollum.service; enabled; vendor preset: enabled)\n#      Active: failed (Result: exit-code) since Wed 2023-05-31 02:34:19 EDT; 313ms ago\n#     Process: 28556 ExecStart=/home/ymat2/.rbenv/shims/bundle exec gollum -c config.rb -b /wiki --allow-uploads dir (code=exited, status=1/FAILURE)\n#    Main PID: 28556 (code=exited, status=1/FAILURE)\n#         CPU: 1.628s\n#\n# May 31 02:34:18 Freesia systemd[1]: Started Gollum wiki server.\n# May 31 02:34:19 Freesia systemd[1]: gollum.service: Main process exited, code=exited, status=1/FAILURE\n# May 31 02:34:19 Freesia systemd[1]: gollum.service: Failed with result 'exit-code'.\n# May 31 02:34:19 Freesia systemd[1]: gollum.service: Consumed 1.628s CPU time.\nコマンドラインオプションで渡してみる:\n[Unit]\nDescription=Gollum wiki server\nAfter=network.target\n\n[Service]\nType=simple\nUser=MYNAME\nWorkingDirectory=/path/to/your/labwiki\nExecStart=/home/linuxbrew/.linuxbrew/lib/ruby/gems/3.2.0/bin/bundle exec gollum -c config.rb -b /wiki --allow-uploads dir --ref main ./\nRestart=on-abort\nStandardOutput=file:/var/log/gollum.log\nStandardError=file:/var/log/gollum.log\n\n[Install]\nWantedBy=multi-user.target\n効かん:\nsudo systemctl status gollum.service\n# ● gollum.service - Gollum wiki server\n#      Loaded: loaded (/etc/systemd/system/gollum.service; enabled; vendor preset: enabled)\n#      Active: active (running) since Wed 2023-05-31 02:35:01 EDT; 19s ago\n#    Main PID: 28590 (ruby)\n#       Tasks: 1 (limit: 4284)\n#      Memory: 79.5M\n#         CPU: 1.640s\n#      CGroup: /system.slice/gollum.service\n#              └─28590 ruby -x /home/ymat2/.rbenv/versions/3.0.6/bin/gollum -c config.rb -b /wiki --allow-uploads dir\n#\n# May 31 02:35:01 Freesia systemd[1]: Started Gollum wiki server.\n# May 31 02:35:14 Freesia systemd[1]: gollum.service: Current command vanished from the unit file, execution of the command list won't be resumed.\nあきらめてブランチの名前を master に変更した。",
+    "crumbs": [
+      "Web Development",
+      "Gollum"
+    ]
+  },
+  {
+    "objectID": "site/gollum.html#misc.",
+    "href": "site/gollum.html#misc.",
+    "title": "Gollum",
+    "section": "Misc.",
+    "text": "Misc.\nrbenv は ruby のバージョン管理、bundle は ruby のパッケージ管理をしてくれる。\nGemfile は Ruby プロジェクトにおける依存関係を管理するファイル。 bundle が読む。",
+    "crumbs": [
+      "Web Development",
+      "Gollum"
+    ]
+  },
+  {
+    "objectID": "python/package.html",
+    "href": "python/package.html",
+    "title": "Python パッケージ作成",
+    "section": "",
+    "text": "参考:\n特に:\nsetuptools に依存する setup.py を使う方法は現在は非推奨 (Legacy) らしい。 pyproject.toml で一元管理する方法が主流で、Poetry など パッケージ作成をラクに行えるツールがあるっぽい。",
+    "crumbs": [
+      "Python",
+      "Python パッケージ作成"
+    ]
+  },
+  {
+    "objectID": "python/package.html#ひとまず-setup.py-で書いてみる",
+    "href": "python/package.html#ひとまず-setup.py-で書いてみる",
+    "title": "Python パッケージ作成",
+    "section": "ひとまず setup.py で書いてみる",
+    "text": "ひとまず setup.py で書いてみる\n\n成果物\n\nhttps://github.com/ymat2/mython\n\n\nファイル構成:\nmython/\n├── LICENSE\n├── README.md\n├── setup.py\n├── mython/\n│   ├── __init__.py\n│   └── mython\n└── tests/\n__init__.py はひとまず空にしておいて、 mython/mython と setup.py をそれぞれ書く。\n\n\nmython/mython\n\n#! /usr/bin/env python3\n\n\"\"\"\n`--to` で与えた文字列に挨拶するだけの機能\n\"\"\"\n\nimport argparse\n\ndef main():\n  parser = argparse.ArgumentParser()\n  parser.add_argument(\"-t\", \"--to\")\n  args = parser.parse_args()\n\n  say_hello(args.to)\n\n\ndef say_hello(str):\n  print(\"Hello,\", str, \"!\")\n\n\nif __name__ == \"__main__\":\n  main()\n\n\n\nsetup.py\n\nfrom setuptools import setup\n\nsetup(\n  name = \"mython\",\n  version = \"0.1.0\",\n  python_requires = \"&gt;=3.6\",\n  scripts = [\"mython/mython\",]\n)\n\nこれで最低限の雛形ができたはずなので、 ディレクトリを移動して pip でインストール:\npip3 install -e ~/work/mython/\n# Defaulting to user installation because normal site-packages is not writeable\n# Obtaining file:///home/yukimatsu/work/mython\n#   Preparing metadata (setup.py) ... done\n# Installing collected packages: mython\n#   Running setup.py develop for mython\n# Successfully installed mython-0.1.0\npip3 list で確認するとちゃんと入ってる。\nいざ動かしてみる:\nmython -t world\n# Hello, world !\nちゃんと動いてる。感動。\n\nSubpackage の追加\nSubpackage を追加してみる。 https://docs.python.org/3/tutorial/modules.html を参考に。\nファイル構成を変更:\nmython/\n├── LICENSE\n├── README.md\n├── setup.py\n├── mython/\n│   ├── __init__.py\n│   ├── mython\n│   └── util/\n│       ├── __init__.py\n│       ├── bye.py\n│       └── hello.py\n└── tests/\n\nutil/__init__.py\n\nfrom mython.util import * のような形で非明示的に全部読み込むには、 どのスクリプトを含めるかを書いておかないといけない。\n\n\n  __all__ = [\"hello\", \"bye\"]\n\n\nmython/mython に追記:\nfrom mython.util import *\n\n\nGitHub から pip で入れるテスト\nパッケージを GitHub に push したのち、\npython3 -m pip install git+https://github.com/ymat2/mython\nで入る。\n\n以下はちょっと苦戦した時のメモ:\npip3 install git+https://github.com/ymat2/mython\n# Defaulting to user installation because normal site-packages is not writeable\n# Collecting git+https://github.com/ymat2/mython\n#   Cloning https://github.com/ymat2/mython to /private/var/folders/fv/v04jv6qj0s706gpx_1xmtb6h0000gn/T/pip-req-build-wybszzlv\n#   Running command git clone --filter=blob:none --quiet https://github.com/ymat2/mython /private/var/folders/fv/v04jv6qj0s706gpx_1xmtb6h0000gn/T/pip-req-build-wybszzlv\n#   Resolved https://github.com/ymat2/mython to commit 768582b5d3b1beeb907c7069ad9e1262ceff8e8a\n#   Preparing metadata (setup.py) ... done\n# Building wheels for collected packages: mython\n#   Building wheel for mython (setup.py) ... done\n#   Created wheel for mython: filename=mython-0.1.0-py3-none-any.whl size=2184 sha256=e027f1c56c0875027c675bae7ed8e6e930d5eda94ba56a3c89c8ab7a44d5c9cd\n#   Stored in directory: /private/var/folders/fv/v04jv6qj0s706gpx_1xmtb6h0000gn/T/pip-ephem-wheel-cache-h9514znu/wheels/ff/f8/78/b8c23ba02469077c837d9d6e6265973e5322a7fae67b897fdf\n# Successfully built mython\n# Installing collected packages: mython\n# Successfully installed mython-0.1.0\n入った。PATH も通ってる。でも動かしてみると ModuleNotFound となる:\nmython -t world\n# Traceback (most recent call last):\n#   File \"/Users/yukimatsuda/Library/Python/3.9/bin/mython\", line 4, in &lt;module&gt;\n#     from mython.util import *\n# ModuleNotFoundError: No module named 'mython'\n\nwhich mython\n# /Users/yukimatsuda/Library/Python/3.9/bin/mython\nどうも Python または pip のバージョン齟齬の問題だったよう。 PATH の通った python3 越しに pip を使うとうまくいった。\npython3 -m pip install git+https://github.com/ymat2/mython\n.venv で仮想環境の中に入れたり、 ローカルコピーで使う分には無問題。",
+    "crumbs": [
+      "Python",
+      "Python パッケージ作成"
+    ]
+  },
+  {
+    "objectID": "python/package.html#pyproject.toml-を使って作ってみる",
+    "href": "python/package.html#pyproject.toml-を使って作ってみる",
+    "title": "Python パッケージ作成",
+    "section": "pyproject.toml を使って作ってみる",
+    "text": "pyproject.toml を使って作ってみる\n\n成果物\n\nhttps://github.com/ymat2/bithon\n\n\nファイル構成:\nbithon/\n├── LICENSE\n├── README.md\n├── pyproject.toml\n├── src/bithon/\n│   ├── __init__.py\n│   └── bithon.py  # setup.pyのときは拡張子なしでもよかったけど、pyproject.tomlではNGらしい?\n└── tests/\n\npyproject.toml の書き方\n[build-system] では、どのビルドツールを使ってパッケージを作るかを指定する。 書き方はツールごとに決まっている。\n例えば Hatchling の場合:\n\n\npyproject.toml\n\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project] では、パッケージのメタ情報を記載する:\n\n\npyproject.toml\n\n[project]\nname = \"bithon\"\nversion = \"0.0.1\"\nauthors = [\n  { name=\"ymat2\", email=\"yuki.matsuda.r7@dc.tohoku.ac.jp\" },\n]\ndescription = \"Personal python package for bioinformatics\"\nreadme = \"README.md\"\nlicense = {file = \"LICENSE\"}\nrequires-python = \"&gt;=3.8\"\ndependencies = []\n\n[project.urls]\nHomepage = \"https://ymat2.github.io\"\nRepository = \"https://github.com/ymat2/bithon\"\n\n\nname\n\nPyPI 既存のものと被ってはいけないらしいが、git から利用する分には OK？\n\nversion\n\nコードを更新した時は番号を変えないと pip install --upgrade で更新されない。\n\ndependencies\n\nリスト形式で依存パッケージを記載する。",
+    "crumbs": [
+      "Python",
+      "Python パッケージ作成"
+    ]
+  },
+  {
+    "objectID": "python/evoltree.html",
+    "href": "python/evoltree.html",
+    "title": "EvolTree — Python で dN/dS 解析",
+    "section": "",
+    "text": "EvolTree は、ETE toolkit の ete-evol を python スクリプトの中で動かすための拡張クラス。",
+    "crumbs": [
+      "Python",
+      "EvolTree"
+    ]
+  },
+  {
+    "objectID": "python/evoltree.html#installation",
+    "href": "python/evoltree.html#installation",
+    "title": "EvolTree — Python で dN/dS 解析",
+    "section": "Installation",
+    "text": "Installation\nete-toolkit を参照。",
+    "crumbs": [
+      "Python",
+      "EvolTree"
+    ]
+  },
+  {
+    "objectID": "python/evoltree.html#準備",
+    "href": "python/evoltree.html#準備",
+    "title": "EvolTree — Python で dN/dS 解析",
+    "section": "準備",
+    "text": "準備\n系統樹とアライメントを読み込む:\nfrom ete3 import EvolTree\n\ntree = EvolTree(\n  \"((Hylobates_lar,(Gorilla_gorilla,Pan_troglodytes)),Papio_cynocephalus);\",\n  binpath = path_to_codeml\n)\ntree.link_to_alignment(\"\"\"\n  &gt;Hylobates_lar\n  ATGGCCAGGTACAGATGCTGCCGCAGCCAGAGCCGGAGCAGATGTTACCG\n  CCAGAGCCGGAGCAGATGTTACCGCCAGAGGCAAAGCCAGAGTCGGAGCA\n  GATGTTACCGCCAGAGCCAGAGCCGGAGCAGATGTTACCGCCAGAGACAA\n  AGAAGTCGGAGACGAAGGAGGCGGAGCTGCCAGACACGGAGGAGAGCCAT\n  GAGGTGT---CGCCGCAGGTACAGGCTGAGACGTAGAAGCTGTTACCACA\n  TTGTATCT\n  &gt;Papio_cynocephalus\n  ATGGCCAGGTACAGATGCTGCCGCAGCCAGAGCCGAAGCAGATGCTATCG\n  CCAGAGCCGGAGCAGATGTAACCGCCAGAGACAGAGCCAAAGCCGGAGAA\n  GCTGCTATCGCCAGAGCCAAAGCCGGAGCAGATGTTACCGCCAGAGACAG\n  AGAAGTCGTAGACGAAGGAGGCGACGCTGCCAGACACGGAGGAGAGCCAT\n  GAGGTGCTTCCGCCGCAGGTACAGGCTGAGGCGTAGGAGGCCCTATCACA\n  TCGTGTCT\n  &gt;Gorilla_gorilla\n  ATGGCCAGGTACAGATGCTGTCGCAGCCAGAGCCGCAGCAGATGTTACCG\n  GCAGAGCCGGAGCAGGTGTTACCGGCAGAGACAAAGCCAGAGCCGGAGCA\n  GATGCTACCGGCAGAGCCAAAGCCGGAGCAGGTGTTACCGGCAGAGACAA\n  AGAAGTCGCAGACGTAGGCGGAGGAGCTGCCAGACACGGAGGAGAGCCAT\n  GAGGTGCTGCCGCCGCAGGTACAGACTGAGACGTAGAAGACCCTATCATA\n  TTGTATCT\n  &gt;Pan_troglodytes\n  ATGGCCAGGTACAGATGCTGTCGCAGCCAGAGCCGGAGCAGATGTTACCG\n  GCAGAGACGGAGCAGGTGTTACCGGCAAAGGCAAAGCCAAAGTCGGAGCA\n  GATGTTACCGGCAGAGCCAGAGACGGAGCAGGTGTTACCGGCAAAGACAA\n  AGAAGTCGCAGACGAAGGCGACGGAGCTGCCAGACACGGAGGAGAGCCAT\n  GAGGTGCTGCCGCCGCAGGTACAGACTGAGACGTAAAAGATGTTACCATA\n  TTGTATCT\n\"\"\")\ntree.workdir = \"/path_to/my_working_directory/\"\nbinpath は何も指定しないと ete3 と同じ PATH を探しにいって怒られる。 (codeml に PATH を通していても。)",
+    "crumbs": [
+      "Python",
+      "EvolTree"
+    ]
+  },
+  {
+    "objectID": "python/evoltree.html#共通",
+    "href": "python/evoltree.html#共通",
+    "title": "EvolTree — Python で dN/dS 解析",
+    "section": "共通",
+    "text": "共通\n\ntree.mark_tree(node_ids, marks)\n\nbranch モデルや branch-site モデルに使う系統樹のマーキングをする。\n\n\nnode_ids、marks には、同じ長さのリストを渡す。\n\n\n(例) tree.mark_tree([2,3], marks=[\"#1\", \"#2\"])\n\ntree.run_model(model_name)\n\nbinpath で指定した codeml でモデルを推定する。\n\n\nモデルの種類については ete-evol を参照。\n\ntree.get_evol_model(model_name)\n\n推定したモデルのパラメータなどが入った Model オブジェクトを返す。\n\ntree.get_most_likely(altn, null)\n\n対立仮説 vs 帰無仮説での尤度比検定のP値を返す。",
+    "crumbs": [
+      "Python",
+      "EvolTree"
+    ]
+  },
+  {
+    "objectID": "python/evoltree.html#site-モデル",
+    "href": "python/evoltree.html#site-モデル",
+    "title": "EvolTree — Python で dN/dS 解析",
+    "section": "Site モデル",
+    "text": "Site モデル\nM2 vs M1 で正の自然選択が働いたサイトを検出:\ntree.run_model(\"M1\")    # 帰無仮説\ntree.run_model(\"M2\")    # 対立仮説\n\nm2 = tree.get_evol_model(\"M2\")\npval = tree.get_most_likely(\"M2\", \"M1\")\n\nif pval &lt; 0.05:\n  for site in range(len(m2.sites[\"BEB\"][\"aa\"])):\n    if m2.sites[\"BEB\"][\"p2\"][site] &gt; 0.95:\n      print(\"Positively selected site %s at position: %s, with probability: %s\" % (model2.sites['BEB']['aa'][site], site+1, model2.sites['BEB']['p2'][site]))\nelse:\n  print(\"Model M1 is not rejected.\")\nmodel.sites[\"BEB\"] には BEB法 (Bayes empirical Bayes法) により求められたサイトごとのパラメータが入っている。\nmodel.sites[\"BEB\"][\"p2\"] はそのサイトが \\(\\omega &gt; 1\\) で正の選択下にある事後確率であり、 一般的にはこの事後確率が0.95や0.99を超えていた場合に正の選択が働いたサイトとする。",
+    "crumbs": [
+      "Python",
+      "EvolTree"
+    ]
+  },
+  {
+    "objectID": "python/evoltree.html#branch-モデル",
+    "href": "python/evoltree.html#branch-モデル",
+    "title": "EvolTree — Python で dN/dS 解析",
+    "section": "Branch モデル",
+    "text": "Branch モデル\ntree.mark_tree() が node_id でしか動かないのが少し不便。 tip 名でうまく指定できるように関数を書く:\ndef get_node_ids(tree, names: list[str]) -&gt; list[int]:\n  node_ids = [ leaf.node_id for leaf in tree if leaf.name in names ]\n  return node_ids\n\n\ndef get_mrca_node_ids(tree, names: list[str]) -&gt; list[int]:\n  node_ids = [ get_node(tree, name) for name in names ]\n  anc = tree.get_common_ancestor(node_ids)\n  return [anc.node_id]\nGorilla_gorilla と Pan_troglodytes の共通祖先の枝を指定:\nnode_ids = get_mrca_node_ids(tree, [\"Gorilla_gorilla\", \"Pan_troglodytes\"])\ntree.mark_tree(node_ids, marks=['#1']*len(node_ids))\nprint(tree.write())\n# ((Hylobates_lar,(Gorilla_gorilla,Pan_troglodytes) #1),Papio_cynocephalus);\nb_free vs M0 で特定の枝で \\(\\omega\\) が異なるかを検定:\ntree.run_model(\"b_free\")\ntree.run_model(\"M0\")\n\nb_free = tree.get_evol_model(\"b_free\")\npval = tree.get_most_likely(\"b_free\", \"M0\")\n\ndef get_omega(tree, model):\n  \"\"\"\n  b_freeからωを取得するのもちょっとメンドいので関数書いちゃう\n  \"\"\"\n  mark2omega = {}\n  result = tree.get_evol_model(model)\n  for attr in result.branches.values():\n    mark = attr.get('mark')\n    omega = attr.get('w')\n    mark2omega[mark] = omega\n  return mark2omega\n\nif pval &lt; 0.05:\n  wfgb = get_omega(tree, \"b_free\")[\" #1\"]\n  wbgb = get_omega(tree, \"b_free\")[\" #0\"]\n  print(\"Foreground branches evolving at omega value of %s significantly diferent from %s.' % (wfrg, wbkg)\")\nelse:\n  print(\"Model b_neut is not rejected.\")\n正の選択かどうか調べたければ b_free vs b_neut をやって wfgb &gt; 1 かどうかみる。",
+    "crumbs": [
+      "Python",
+      "EvolTree"
+    ]
+  },
+  {
+    "objectID": "python/evoltree.html#branch-site-モデル",
+    "href": "python/evoltree.html#branch-site-モデル",
+    "title": "EvolTree — Python で dN/dS 解析",
+    "section": "Branch-site モデル",
+    "text": "Branch-site モデル\nBranch モデルの時と同じ枝で、 bsA vs bsA1 で正の選択が働いたサイトを検出:\ntree.run_model('bsA')\ntree.run_model('bsA1')\n\npval = tree.get_most_likely('bsA', 'bsA1')\nbsA = tree.get_evol_model('bsA')\n\nif pval &lt; 0.05:\n  for site in range(len(bsA.sites[\"BEB\"][\"aa\"])):\n    if bsA.sites[\"BEB\"][\"p2\"][site] &gt; 0.95:\n      print(\"Positively selected site %s at position: %s, with probability: %s\" % (bsA.sites['BEB']['aa'][site], site+1, bsA.sites['BEB']['p2'][site]))\nelse:\n  print(\"Model bsA1 is not rejected.\")",
+    "crumbs": [
+      "Python",
+      "EvolTree"
+    ]
+  },
+  {
+    "objectID": "python/argparse.html",
+    "href": "python/argparse.html",
+    "title": "ArgumentParser — コマンドライン引数の実装",
+    "section": "",
+    "text": "https://docs.python.org/ja/3/library/argparse.html\nhttps://qiita.com/kzkadc/items/e4fc7bc9c003de1eb6d0\nPyhton プログラム実行時にコマンドライン引数を受け取る処理を簡単に実装できる標準ライブラリ。\nsys とかでも似たことは実現できるけど 使い勝手と可読性は argparse の方が圧倒的にいい。",
+    "crumbs": [
+      "Python",
+      "ArgumentParser"
+    ]
+  },
+  {
+    "objectID": "python/argparse.html#基本的な使い方",
+    "href": "python/argparse.html#基本的な使い方",
+    "title": "ArgumentParser — コマンドライン引数の実装",
+    "section": "基本的な使い方",
+    "text": "基本的な使い方\nimport argparse\n\nparser = argparse.ArgumentParser()\n\nparser.add_argument(\"--input\")          # オプション引数\nparser.add_argument(\"-o\", \"--output\")   # ハイフン1つの省略形も追加できる\nparser.add_argument(\"arg1\")             # ポジション引数\nparser.add_argument(\"arg2\", help=\"２つ目のポジション引数\")  # --helpしたときの説明を書いておける\n\nargs = parser.parse_args()\n\nprint(\"arg1=\"+args.arg1)\nprint(\"arg2=\"+args.arg2)\nprint(\"arg3=\"+args.input)\nprint(\"arg4=\"+args.output)\n実行する:\npython3 test.py hoge fuga --input koke -o piyo\n# arg1=hoge\n# arg2=fuga\n# arg3=koke\n# arg4=piyo\n\n# ポジション引数は順番通りならどこでもいい\npython3 test.py hoge --input koke -o piyo fuga\n# arg1=hoge\n# arg2=fuga\n# arg3=koke\n# arg4=piyo\n-h, --help でヘルプを表示:\npython3 test.py -h\n# usage: test.py [-h] [--input INPUT] [-o OUTPUT] arg1 arg2\n#\n# positional arguments:\n#   arg1\n#   arg2                  ２つ目のポジション引数\n#\n# optional arguments:\n#   -h, --help            show this help message and exit\n#   --input INPUT\n#   -o OUTPUT, --output OUTPUT",
+    "crumbs": [
+      "Python",
+      "ArgumentParser"
+    ]
+  },
+  {
+    "objectID": "python/argparse.html#ポジション引数",
+    "href": "python/argparse.html#ポジション引数",
+    "title": "ArgumentParser — コマンドライン引数の実装",
+    "section": "ポジション引数",
+    "text": "ポジション引数\nparser.add_argument(\"argN\") とすると必須引数扱いになり、指定しないとエラーになる。",
+    "crumbs": [
+      "Python",
+      "ArgumentParser"
+    ]
+  },
+  {
+    "objectID": "python/argparse.html#オプション引数",
+    "href": "python/argparse.html#オプション引数",
+    "title": "ArgumentParser — コマンドライン引数の実装",
+    "section": "オプション引数",
+    "text": "オプション引数\n\nデフォルト値と型の指定\nオプション引数は指定しないと None が入る。 これ以外にデフォルト値を設定したり、データ型を指定することができる。\nparser.add_argument(\"-n\", \"--number\", type=float, default=0.0)\n異なる型を指定するとエラーになる(int -&gt; float は勝手に変換される):\npython3 test.py --number hoge\n# test.py: error: argument --number: invalid float value: 'hoge'\n\n\nあらかじめ引数の選択肢を設定\nparser.add_argument(\"-l\", \"--letter\", choices=[\"hoge\", \"fuga\", \"piyo\"])\n選択肢以外の引数を指定するとエラーになる。\n\n\n複数個の引数を受け取る\nparser.add_argument(\"-a\", \"--alphabet\", nargs=\"*\")\nargs = parser.parse_args()\nprint(args.alphabet)\n受け取った引数はリストになって利用できる:\npython3 test.py --alphabet A G X\n# ['A', 'G', 'X']\n\n\nオプション引数を必須引数にする\nparser.add_argument(\"-n\", \"--need\", requied=True)",
+    "crumbs": [
+      "Python",
+      "ArgumentParser"
+    ]
+  },
+  {
+    "objectID": "cli/wsl.html",
+    "href": "cli/wsl.html",
+    "title": "WSL — Windows Subsystem for Linux",
+    "section": "",
+    "text": "https://learn.microsoft.com/ja-jp/windows/wsl/\n乱暴に言ってしまうと Windows で Linux を扱う仮想環境のこと",
+    "crumbs": [
+      "Command Line Tools",
+      "WSL"
+    ]
+  },
+  {
+    "objectID": "cli/wsl.html#wslとは",
+    "href": "cli/wsl.html#wslとは",
+    "title": "WSL — Windows Subsystem for Linux",
+    "section": "",
+    "text": "https://learn.microsoft.com/ja-jp/windows/wsl/\n乱暴に言ってしまうと Windows で Linux を扱う仮想環境のこと",
+    "crumbs": [
+      "Command Line Tools",
+      "WSL"
+    ]
+  },
+  {
+    "objectID": "cli/wsl.html#wslのインストール-windows11の場合",
+    "href": "cli/wsl.html#wslのインストール-windows11の場合",
+    "title": "WSL — Windows Subsystem for Linux",
+    "section": "WSLのインストール: Windows11の場合",
+    "text": "WSLのインストール: Windows11の場合\n参考: https://chigusa-web.com/blog/wsl2-win11/\n\nwslのインストール\n\nWinX → Aでターミナルを管理者として起動。\nwsl --install\n\n\n\n再起動と設定\n\nマシンを再起動する。\n再起動後、インストール処理を経て Ubuntu が起動する。\nEnter new UNIX usernaem: と表示されたらユーザーネームを設定 (NG例: 松田 (日本語), y matsuda (スペース), y.matsuda (ピリオド))\nEnter new UNIX password: と表示されたらパスワードを設定。 sudo とかするときに要求される。\nRetype new UNIX password: と表示されたらパスワードを再入力",
+    "crumbs": [
+      "Command Line Tools",
+      "WSL"
+    ]
+  },
+  {
+    "objectID": "cli/wsl.html#wslのインストール-windows10の場合",
+    "href": "cli/wsl.html#wslのインストール-windows10の場合",
+    "title": "WSL — Windows Subsystem for Linux",
+    "section": "WSLのインストール: Windows10の場合",
+    "text": "WSLのインストール: Windows10の場合\n参考: https://lab.sonicmoov.com/development/windows-bash/\n\nWindows subsystem for Linux(WSL)を有効化する\n\nWinS → 「コントロールパネル」を検索 → 「開く」\n「プログラム」を開く。\nWindowsの機能の有効化または無効化」をクリック。\n「Windows Subsystem for Linux」にチェック → 「OK」\n「今すぐ再起動(N)」\n\n\n\nUbuntuのインストール\n\nWinS → 「Microsoft Store」を検索 → 「開く」\n「Ubuntu」を検索してクリック。\n「入手」\n\n\n\nUbuntuの起動と設定\n\nWinS → 「Ubuntu」を検索 → 「開く」\nEnter new UNIX usernaem: と表示されたらユーザーネームを設定 (NG: 松田 (日本語), y matsuda (スペース), y.matsuda (ピリオド))\nEnter new UNIX password: と表示されたらパスワードを設定。 sudo とかするときに要求される。\nRetype new UNIX password: と表示されたらパスワードを再入力",
+    "crumbs": [
+      "Command Line Tools",
+      "WSL"
+    ]
+  },
+  {
+    "objectID": "cli/wsl.html#ubuntuの更新アップグレード",
+    "href": "cli/wsl.html#ubuntuの更新アップグレード",
+    "title": "WSL — Windows Subsystem for Linux",
+    "section": "Ubuntuの更新・アップグレード",
+    "text": "Ubuntuの更新・アップグレード\n# 最新のパッケージ情報を取得\nsudo apt update\n\n# パッケージを最新に更新\nsudo apt upgrade",
+    "crumbs": [
+      "Command Line Tools",
+      "WSL"
+    ]
+  },
+  {
+    "objectID": "cli/wsl.html#余談-windows標準のターミナル",
+    "href": "cli/wsl.html#余談-windows標準のターミナル",
+    "title": "WSL — Windows Subsystem for Linux",
+    "section": "余談: Windows標準のターミナル",
+    "text": "余談: Windows標準のターミナル\n\nコマンドプロンプト\n古のMicrosoft製CUI。\n\n\nPowerShell\nコマンドプロンプトの後継（Windows7以降）。 コマンドプロンプトで使えたコマンドも基本的に使える。\n\n\nWindows Terminal\nコマンドプロンプト、PowerShell、bash (WSL 経由) など複数のコマンドラインシェルのホストアプリケーション。\n\nWinX → I/A(管理者として実行)\nCtrl,で設定画面に。 デフォルトのプロファイルや外観をいじれる。",
+    "crumbs": [
+      "Command Line Tools",
+      "WSL"
+    ]
+  },
+  {
+    "objectID": "cli/vi.html",
+    "href": "cli/vi.html",
+    "title": "Vi/Vim",
+    "section": "",
+    "text": "https://www.vim.org/\nvi (ヴィーアイ) は UNIX に標準搭載されているテキストエディタ。 Vim (ヴィム) は vi の発展版で、近年の UNIX 系 OS で vi を打って起動するのは Vim であることが多い。",
+    "crumbs": [
+      "Command Line Tools",
+      "Vi/Vim"
+    ]
+  },
+  {
+    "objectID": "cli/vi.html#最低限覚えておくこと",
+    "href": "cli/vi.html#最低限覚えておくこと",
+    "title": "Vi/Vim",
+    "section": "最低限覚えておくこと",
+    "text": "最低限覚えておくこと\n\n起動時はノーマルモード (編集はできない) 。\nカーソル移動は (矢印キーも使えるけど) 基本 h: 左, j: 下, k: 上, l: 右 でおこなう。\n編集は i でインサートモード --INSERT-- に入って行う。 インサートモードではカーソル移動はなるべくしない。\nインサートモードから抜けるには esc や controlC\n:w で変更を保存、:q で終了\n:wq や ZZ で保存して終了\n:q! で保存せずに強制終了",
+    "crumbs": [
+      "Command Line Tools",
+      "Vi/Vim"
+    ]
+  },
+  {
+    "objectID": "cli/vi.html#設定",
+    "href": "cli/vi.html#設定",
+    "title": "Vi/Vim",
+    "section": "設定",
+    "text": "設定\nノーマルモードで :set &lt;option&gt; もしくは ~/.vimrc\nc.f. https://github.com/ymat2/dotfiles/blob/main/.vimrc",
+    "crumbs": [
+      "Command Line Tools",
+      "Vi/Vim"
+    ]
+  },
+  {
+    "objectID": "cli/vi.html#vimtutor",
+    "href": "cli/vi.html#vimtutor",
+    "title": "Vi/Vim",
+    "section": "vimtutor",
+    "text": "vimtutor\nvim の操作を習得するための練習問題付き教材。 vimtutor で起動する。\n\nカーソル移動\n\nh, j, k, l (左、下、上、右)\n\n\n▲, ◀︎, ▶︎, ▼\n\n起動と終了\n\nesc でノーマルモードへ\n\n\n:q! で保存せずに終了\n\n\n:w で変更を保存、:q で終了\n\n\n:wq で保存して終了\n\nテキストの削除\n\nx でカーソルの右側の文字を削除\n\nテキストの挿入\n\n編集箇所まで移動 (インサートモードでも移動できるけどしないつもりで)\n\n\nI でインサートモードへ\n\n\n編集したら esc や controlC でノーマルモードへ\n\nテキストの追加\n\n編集行まで移動 (行の上ならどの位置でもOK)\n\n\nA でインサートモードへ。カーソルは末尾に移る。\n\n\n編集したらノーマルモードへ\n\n削除コマンド (オペレータ)\n\n削除したい箇所の”先頭”にカーソルを移動\n\n\ndw で空白を含む単語の末尾まで\n\n\nde で空白を含まない単語の末尾まで\n\n\nd$ でカーソル位置から行末まで\n\nモーション + カウント\n\nw, e は単体でカーソル移動コマンドとして機能する。\n\n\n数字と組み合わせて使用できる。\n\n\n2w で2単語先の語頭へ\n\n\n3e で3単語先の終端へ\n\n\n0 で行頭へ\n\nオペレータ + カウント + モーション\n\nd2w でカーソル位置から2単語削除\n\n行の削除\n\n削除する行にカーソルを移動 (位置はどこでもOK)\n\n\ndd で行を削除\n\n\n2dd で2行削除\n\n操作のやり直し\n\nu で直前の操作を取り消し\n\n\nU で行全体の操作を取り消し\n\n行の貼り付け\n\ndd で行をカット\n\n\n貼り付けたい位置のひとつ上の行へカーソルを移動\n\n\np で貼り付け\n\n置換 (使う場面ある？後述する s///g で十分な気もする。)\n\n置換する文字の先頭にカーソルを移動\n\n\nr置換先の文字 で置換\n\n変更\n\nce でカーソル位置から単語の終わりまでを削除\n\n\n同時にインサートモードに移るので、編集して esc\n\nファイル内の移動\n\ncontrolG で行番号を取得\n\n\nG でファイルの最下行へ\n\n\ngg でファイルの先頭へ\n\n\n行番号 G で指定した行へ\n\n検索\n\n/ + 検索したい単語 で下方向、? + 検索したい単語で上方向に検索\n\n\nn で次のヒット、N で前のヒットへカーソルを移動\n\n対応する括弧を検索\n\n% でカーソル位置の括弧と対応する括弧へ移動\n\n置換\n\n:s/old/new/g でカーソル行の”old”を”new”に置換\n\n\n:#,#s/old/new/g で置換開始行と終了行を指定\n\n\n:%s/old/new/g でファイル全体にわたって置換\n\n\n:%s/old/new/gc でファイル全体にわたって1つ1つ確認をとりながら置換\n\n外部コマンドの実行\n\n:! に続けてコマンドを実行できる。(e.x. :!pwd)\n\n\nEnterで終了\n\n範囲選択\n\nv でヴィジュアルモードに移行\n\n\nカーソルキーを移動して範囲選択\n\n\nshiftv は行選択モード、controlv は矩形選択モード\n\nファイル、標準出力の取り込み\n\n:r ファイル名 でファイルの内容をカーソル位置に挿入\n\n\n:r :!pwd などで、コマンドの標準出力を取り込むこともできる。\n\nオープンコマンド\n\no でカーソル位置の下に行を挿入してインサートモードへ\n\n\nO でカーソル位置の上に行を挿入してインサートモードへ\n\n置換モード\n\nR で置換モードへ\n\n\n文字を打つと元々あった文字は置き換えられる。\n\n\nesc や controlC で脱出\n\nコピー\n\nv でヴィジュアルモードに移行して範囲選択 → y でコピー\n\n\np でペースト\n\n\nyw で1単語コピー\n\n\nyy で行まるごとコピー",
+    "crumbs": [
+      "Command Line Tools",
+      "Vi/Vim"
+    ]
+  },
+  {
+    "objectID": "cli/rsync.html",
+    "href": "cli/rsync.html",
+    "title": "rsync",
+    "section": "",
+    "text": "https://rsync.samba.org/\nファイルやディレクトリの同期/バックアップを行うツール。 2つのディレクトリの差分を検出して差分のみ反映するといった使い方が可能。",
+    "crumbs": [
+      "Command Line Tools",
+      "rsync"
+    ]
+  },
+  {
+    "objectID": "cli/rsync.html#基本",
+    "href": "cli/rsync.html#基本",
+    "title": "rsync",
+    "section": "基本",
+    "text": "基本\n### Local\nrsync -option src/ dest/\n\n### Access via remote shell:\n# Push:\nrsync -option src/ user@host:dest/\n# Pull:\nrsync -option user@host:dest/ src/\n/ の有無で挙動が異なる。\n\nsrc/ dest/\n\nsrc 配下のファイルが dest/ にコピーされる。\n\nsrc dset/\n\nsrc ごと dest/ にコピーされる。\n\n\ndest/src/files",
+    "crumbs": [
+      "Command Line Tools",
+      "rsync"
+    ]
+  },
+  {
+    "objectID": "cli/rsync.html#option",
+    "href": "cli/rsync.html#option",
+    "title": "rsync",
+    "section": "Option",
+    "text": "Option\n\n-a, --archive\n\n?\n\n-u, --update\n\ndest 側で更新されているファイルをスキップする。\n\n-v, --verbose\n\nメッセージを冗長に表示させる。\n\n-z, --compress\n\n送受信中にファイルを圧縮する。",
+    "crumbs": [
+      "Command Line Tools",
+      "rsync"
+    ]
+  },
+  {
+    "objectID": "cli/git.html",
+    "href": "cli/git.html",
+    "title": "Git/GitHub",
+    "section": "",
+    "text": "https://git-scm.com/\nhttps://github.co.jp/",
+    "crumbs": [
+      "Command Line Tools",
+      "Git/GitHub"
+    ]
+  },
+  {
+    "objectID": "cli/git.html#基本操作",
+    "href": "cli/git.html#基本操作",
+    "title": "Git/GitHub",
+    "section": "基本操作",
+    "text": "基本操作\n\nGit 基本操作① — Git と GitHubを使い始める\nGit 基本操作② — fetch, merge, pull\n\n\n新しいリポジトリの作成\n\nGitHub のサイト右上の “+” ボタンから “New repository” を選択し、“Create repository” する。\n手元の PC にローカルリポジトリをつくる:\nmkdir new_repository\ncd new_repository\ngit init\nファイルを add して commit してもいいし、空の commit をしてもいい:\n## ファイルをつくってadd&commit\necho \"Hello, Github\" &gt; README.md\ngit add README.md\n\n## コミットメッセージを添える\ngit commit -m \"Initial commit\"\n\n## 空のコミットでもいい\ngit commit --allow-empty -m \":coffee: Create repository\"\nリモートリポジトリを紐づけて push:\ngit remote -v        # 何も表示されない\n\n## HTTP の場合\ngit remote add origin https://github.com/*username*/*new_repository*.git\n## SSH の場合\ngit remote add origin git@github.com:*username*/*new_repository*.git\n\ngit remote -v        # リモートリポジトリが表示されることを確認\ngit branch -M main\ngit push -u origin main\nPrivate リポジトリの場合、 SSH で紐付けしないと下り (fetch, pull) のときもパスワードを要求される。\n\n\n\n手元の変更をリモートリポジトリに反映\n\n基本: “git add → git commit → git push”\n\n\n手元でファイルをいじって変更を確認:\necho \"Hello, Github\" &gt; README.md\ngit status   # README.mdが`Changes not staged for commit:`に表示される。\n変更したファイルをインデックスに登録:\ngit add README.md\ngit status     # README.mdが`Changes to be committed:`に表示される。\n変更をコミット:\ngit commit -m \"modified hoge.txt\"\ngit status   # `nothing to commit, working tree clean`となる。\ngit log      # コミットが表示される。\nリモートリポジトリへ push:\ngit push\n\n\n\nリモートリポジトリの変更を手元に反映\n\n基本: “git fetch → git merge” もしくは “git pull”\n\n\nリモートブランチの状態を手元のファイルまで一気に反映:\ngit pull\nリモートブランチの変更を一度ローカルのアップストリームブランチに反映させてから手元のファイルに反映:\ngit fetch\ngit log --all\ngit merge",
+    "crumbs": [
+      "Command Line Tools",
+      "Git/GitHub"
+    ]
+  },
+  {
+    "objectID": "cli/git.html#gitignore",
+    "href": "cli/git.html#gitignore",
+    "title": "Git/GitHub",
+    "section": ".gitignore",
+    "text": ".gitignore\nhttps://docs.github.com/ja/get-started/getting-started-with-git/ignoring-files\nリポジトリのルートディレクトリに .gitignore を配置して、 Git の管理から除外するファイルを制御する:\n## 場所を問わず特定のファイル・ディレクトリを除外\nhoge\n\n## .gitignoreが置かれたリポジトリの特定のファイル・ディレクトリを除外\n/hoge\n\n## 場所を問わず特定のディレクトリの除外\ndir/\n\n## .gitignoreが置かれたリポジトリの特定のディレクトリを除外\n/dir/\n\n## 特定のファイル・ディレクトリのみ追跡\n*\n!hoge\n\n## ワイルドカードによる指定\n/*.py\n/*.Rproj\n~/.config/git/ignore でグローバルに除外対象を設定:\n.DS_Store\nすでに追跡しているファイルを除外するにはトラッキングを外す:\ngit rm --cached &lt;FILE_NAME&gt;",
+    "crumbs": [
+      "Command Line Tools",
+      "Git/GitHub"
+    ]
+  },
+  {
+    "objectID": "cli/git.html#ssh-接続",
+    "href": "cli/git.html#ssh-接続",
+    "title": "Git/GitHub",
+    "section": "SSH 接続",
+    "text": "SSH 接続\nhttps://docs.github.com/ja/authentication/connecting-to-github-with-ssh/about-ssh\n手順:\n\nSSHキーを生成する。\ngithubに公開キーを登録する。\nssh -T git@github.com で接続確認。\n\n\nssh -T の際に permission denied となる場合\nhttps://docs.github.com/ja/authentication/troubleshooting-ssh/using-ssh-over-the-https-port\nssh-keygen の際にファイル名を変更していると認証がうまくいかない。 ~/.ssh/config に以下を追記して解決。\n\n\n~/.ssh/config\n\nHost github github.com\n  HostName github.com\n  User git\n  IdentityFile ~/.ssh/id_rsa_git    # github用の秘密鍵",
+    "crumbs": [
+      "Command Line Tools",
+      "Git/GitHub"
+    ]
+  },
+  {
+    "objectID": "cli/git.html#git-submodule",
+    "href": "cli/git.html#git-submodule",
+    "title": "Git/GitHub",
+    "section": "git submodule",
+    "text": "git submodule\n外部のリポジトリを自分のリポジトリのサブディレクトリとして取り込む仕組み。\ngit submodule add https://github.com/&lt;username&gt;/&lt;repository&gt;.git &lt;directory&gt;\n\nsubmoduleを最新版に更新する\ngit submodule foreach git pull\ngit add &lt;submodule&gt;\ngit commit -m \"updated submodule\"\n# git push\n\n\nサブモジュールを含むリポジトリをcloneするとき\n普通に clone してくるとサブモジュールの中身は空になっている。 clone する際に、\ngit clone --recurse-sebmodules &lt;repository&gt;\nとしてサブモジュールの中身ごと落としてくるか、親リポジトリをクローンしたあと、\ngit submodule update --init\nしてサブモジュールの中身を取得する。",
+    "crumbs": [
+      "Command Line Tools",
+      "Git/GitHub"
+    ]
+  },
+  {
+    "objectID": "cli/git.html#そのほかのコマンド",
+    "href": "cli/git.html#そのほかのコマンド",
+    "title": "Git/GitHub",
+    "section": "そのほかのコマンド",
+    "text": "そのほかのコマンド\n\n直前の操作を修正:\n## 直前のミスコミットを修正\ngit commit --amend -m \"hogehoge\"\n\n## commitの取り消し\ngit reset --soft HEAD^\n\n## addの取り消し\ngit restore --staged file_name\nすでにリポジトリに登録されたファイルを削除:\ngit rm --cached *file*\nファイル名を変更:\ngit mv file file_renamed\ngit stash\ngit merge や git pull の際、コミットするほどでもない手元の変更を一時的に退避するために使う。\nworking directory と staging area の変更を退避する:\ngit stash -u        # -u: Untrackedなファイルも含める\n退避した変更を確認:\ngit stash list\n# stash@{0}: WIP on main: d426bc4 Fix a bug\ngit merge や git pull でリモートの変更を手元に反映した後、 退避していた変更を戻す:\ngit stash apply stash@{0} --index\n--index オプションなしだと、もともとステージングされていた変更も add 前の扱いで戻ってくる。\n退避していた変更を消す:\ngit stash drop stash@{0}    # 退避内容を指定して削除\ngit stash pop stash@{0}     # 退避内容を指定してブランチに戻すとともに削除\ngit stash clear                     # 退避内容を全て削除\nリポジトリ名を変更:\n\nリモート側の操作： リポジトリのページ &gt; “Setting” &gt; “Rename” から変更\n手元の操作：ローカルリポジトリの名前と .git/config を書き換える\nmv repository_name_before repository_name_after\nsed -i -e 's/repository_name_before/repository_name_after/g' .git/config",
+    "crumbs": [
+      "Command Line Tools",
+      "Git/GitHub"
+    ]
+  },
+  {
+    "objectID": "bio/rerconverge.html",
+    "href": "bio/rerconverge.html",
+    "title": "RERconverge",
+    "section": "",
+    "text": "相同な配列の進化速度の相対的な加速度合いを計算して、表現型との相関を調べる R パッケージ。 系統樹さえ描ければいいので、遺伝子のほかに CNS (Conserved Non-coding Sequence) にも応用できる。 (本ページでは便宜上「遺伝子」として記述する。)\n開発者たちのグループは 水棲適応 や 地中生活などの二値的な形質、 体サイズや寿命などの連続形質に関わる遺伝子を報告している。",
+    "crumbs": [
+      "Bioinformatics",
+      "RERconverge"
+    ]
+  },
+  {
+    "objectID": "bio/rerconverge.html#インストール",
+    "href": "bio/rerconverge.html#インストール",
+    "title": "RERconverge",
+    "section": "インストール",
+    "text": "インストール\nhttps://github.com/nclark-lab/RERconverge/wiki/Install\nバイナリ版のインストールが推奨されている。 Mac で使う場合はまずバイナリ版インストールを試してみる。 バイナリ版インストールで問題があったり、Windows や Linux で使う場合はソースコード版を試す。 (それでもダメなら一応 Docker イメージもあるっぽい。)\n\nMac\n\nバイナリ版のインストール\n\ndevtools が必要:\ninstall.packages(\"devtools\")\nlibrary(devtools)\ngithub からパッケージをインストール。 これを実行すると、RERconverge 本体のインストールは失敗するけど、 他の依存パッケージは入ってくるらしい:\ndevtools::install_github(\"nclark-lab/RERconverge\")\nちなみに依存パッケージは以下。これらを個別にインストールすれば 2. は不要？:\ndevtools\nRColorBrewer\ngplots\nphytools\ngeiger\nknitr\nRcppArmadillo\nweights\nphangorn\nリリースページから 最新版のバイナリ版パッケージをダウンロードしてターミナルでインストールコマンドを実行:\nR CMD INSTALL Mac_Big_Sur_R_4.0.0.RERconverge_0.1.0.tgz\n※ ファイル名の通り最新版 (2023-11-18時点) が BigSur の R 4.0.0 用なので、 そうじゃない Mac&R でちゃんと動くかは不明。\nちゃんと入ったかテスト:\nlibrary(RERconverge)\n\n\n\nソースコード版のインストール\n\n新しい gfortran (gcc) を入れておく:\nxcode-select --install  # if needed\nbrew install gcc\nMakevars でコンパイラの設定をする:\n素の Mac に RERconverge を入れようとすると、おそらく gfortran 関連で警告やエラーが出る。 Makevars を書いて homebrew で入れた gfortran を使うように設定する。\nまず ~/.R/Makevars をつくる (すでにあれば不要):\nmkdir ~/.R\ntouch ~/.R/Makevars\ngfortran の PATH とライブラリの場所を確認:\nwhich gfortran\n# /usr/local/bin/gfortran\nls -al /usr/local/lib/gcc/current\n# 略\nMakevars に以下を記述:\nFC=/usr/local/bin/gfortran\nF77=/usr/local/bin/gfortran\nFLIBS=-L/usr/local/lib/gcc/current\ndevtools のインストール:\ninstall.packages(\"devtools\")\nGithub からパッケージをインストール。 コンパイラ周りをちゃんと設定しておけば入るはず:\ndevtools::install_github(\"nclark-lab/RERconverge\")\n\n\nMakevars は Rcpp で使う C++ などのコンパイラの設定をするためのファイル。 公式ドキュメントや、 メタルさんのサイト、 津田さんのサイト も参照\n\n\n\n\nWindows\n\nRtools を入れておく。\n依存パッケージのインストール:\ndevtools\nRColorBrewer\ngplots\nphytools\ngeiger\nknitr\nRcppArmadillo\nweights\nphangorn\nRERconverge のインストール:\ndevtools::install_github(\"nclark-lab/RERconverge\")",
+    "crumbs": [
+      "Bioinformatics",
+      "RERconverge"
+    ]
+  },
+  {
+    "objectID": "bio/rerconverge.html#概要",
+    "href": "bio/rerconverge.html#概要",
+    "title": "RERconverge",
+    "section": "概要",
+    "text": "概要\nhttps://github.com/nclark-lab/RERconverge/blob/master/vignettes/ にチュートリアルあり\nRERconverge は主に以下の機能を実装している:\n\n遺伝子系統樹の推定\n相対進化速度の計算\n相対進化速度と表現型の相関解析\nエンリッチメント解析\n\n遺伝子系統樹の推定やエンリッチメント解析は、RERconverge 以外の方法でもできる。 そのほか、途中途中で解析に必要なファイルは別個に用意しても良い。",
+    "crumbs": [
+      "Bioinformatics",
+      "RERconverge"
+    ]
+  },
+  {
+    "objectID": "bio/rerconverge.html#遺伝子系統樹の推定",
+    "href": "bio/rerconverge.html#遺伝子系統樹の推定",
+    "title": "RERconverge",
+    "section": "遺伝子系統樹の推定",
+    "text": "遺伝子系統樹の推定\nRERconverge は遺伝子ごとに推定した系統樹を使い、 ある遺伝子のある枝の枝長が全遺伝子の平均的な枝長に対して長いか短いかを基に相対進化速度を推定する。\n\nNewick フォーマット\n全遺伝子のトポロジーが同じ\nnode ラベルなし、tip ラベルは全遺伝子で共通\n\nである必要がある。\n別の系統樹推定ソフトウェアでやる場合は、トポロジー指定機能とかを使う。 最終的には、下のように遺伝子名と Newick がタブ区切りになった1つのファイルを作れば OK:\nGene_A (human:0.01,(chimp:0.0012,(gorilla:0.0078, orangutan:0.0037):0.0003):0.0053);\nGene_B (human:0.0094,(chimp:0.0038,(gorilla:0.001, orangutan:0.0038):0.00032):0.0005);\nGene_C (human:0.0032,(chimp:0.0054,(gorilla:0.07, orangutan:0.0012):0.0023):0.0023);\n︙\nRERconverge にも、遺伝子系統樹推定のための関数が実装されている。 必要なのは各遺伝子のアライメントファイルと種の系統樹。\nestimatePhangornTreeAll(\n  alnfiles = NULL,\n  alndir = NULL,\n  pattern = NULL,\n  treefile,\n  output.file = NULL,\n  submodel = \"LG\",\n  type = \"AA\",\n  format = \"fasta\",\n  k = 4,\n  ...\n)\n\nalnfiles/alndir (どちらかで指定)\n\nアライメントファイルの PATH のベクター、またはアライメントファイルのあるディレクトリ\n\npattern\n\n正規表現でファイルを指定できる\n\n\ne.g. \"*.pep.fa\"\n\ntreefile\n\n「この系統樹のトポロジーを使う」とする master tree の PATH\n\n\n種の系統樹を使うのが無難か\n\noutput.file\n\n出力先\n\n\n上で説明した遺伝子名と Newick のタブ区切りテキストができる\n\nsubmodel\n\n系統樹推定に使う置換モデル。phangorn::pml() に渡される。 デフォルトは LG モデル。\n\n\nsee ?phangorn::pml()\n\ntype\n\nアミノ酸なら AA, 塩基なら DNA\n\nformat\n\nデフォルトは FASTA フォーマット\n\n\n\nAmbiguousなアミノ酸残基を表す B, Z, J は読んでくれない。X で置換しとくとか？",
+    "crumbs": [
+      "Bioinformatics",
+      "RERconverge"
+    ]
+  },
+  {
+    "objectID": "bio/rerconverge.html#相対進化速度の計算",
+    "href": "bio/rerconverge.html#相対進化速度の計算",
+    "title": "RERconverge",
+    "section": "相対進化速度の計算",
+    "text": "相対進化速度の計算\n系統樹ファイルの読み込み:\ntreesObj = RERconverge::readTrees(\n  file,\n  max.read = NA,\n  masterTree = NULL,\n  minTreesAll = 20,\n  reestimateBranches = F,\n  minSpecs = NULL\n)\n\nfile\n\nestimatePhangornTreeAll とかでつくった系統樹ファイル\n\nmax.read\n\n読み込む遺伝子の数を制限。全遺伝子やるなら指定しなくていい。\n\nmasterTree\n\n相対進化速度の計算の基準となる master tree。\n\n\nこの関数自体も master tree を推定するので、基本的には指定しないで OK。\n\nminTreeAll\n\nmasterTree の推定に使う遺伝子の最低数。\n\nminSpec\n\nある遺伝子をもっている種の数がこれより少ない遺伝子を除く。\n\n\n相対進化速度の計算:\nRERmat = getAllResiduals(\n  treesObj,\n  cutoff = NULL,\n  transform = \"sqrt\",\n  weighted = T,\n  useSpecies = NULL,\n  min.sp = 10,\n  scale = T,\n  doOnly = NULL,\n  maxT = NULL,\n  scaleForPproj = F,\n  mean.trim = 0.05,\n  plot = T\n)\n\ntreeObj\n\nreadTree で読み込んだ系統樹オブジェクト\n\ntransform\n\n平方根 (“sqrt”) または対数 (“log”) で枝長を変換する。“none” だとそのまま使う。\n\nweighted/scale\n\n平均の枝長が長いほど相対進化速度の分散が大きいというバイアスを補正するアプローチ\n\n\nc.f. Partha et al. 2019\n\nmin.sp\n\nある遺伝子をもっている種数の最低数",
+    "crumbs": [
+      "Bioinformatics",
+      "RERconverge"
+    ]
+  },
+  {
+    "objectID": "bio/rerconverge.html#相対進化速度と表現型の相関解析",
+    "href": "bio/rerconverge.html#相対進化速度と表現型の相関解析",
+    "title": "RERconverge",
+    "section": "相対進化速度と表現型の相関解析",
+    "text": "相対進化速度と表現型の相関解析\n\n二値的形質との相関解析\n水棲/陸生、地中生/地上生、飛ぶ/飛ばないみたいなバイナリな形質を対象にした解析\nフォアグラウンドの種を指定する:\ntree = foreground2Tree(\n  foreground,\n  treesObj,\n  plotTree = T,\n  clade = c(\"ancestral\", \"terminal\", \"all\"),\n  weighted = F,\n  transition = \"unidirectional\",\n  useSpecies = NULL\n)\n\nforeground\n\n全種のうち、フォアグラウンド (興味のある表現型をもつ側) の種のベクタ\n\ntreesObj\n\nRERconverge::readTrees で読み込んだ系統樹\n\nclade\n\n3種類の方法がある。\n\n\nancestral は共通祖先の枝1本のみをフォアグラウンドにする。 形質が獲得されたと想定される枝。\n\n\nterminal は各種に向かう末端の枝のみをフォアグラウンドにする。\n\n\nall は共通祖先から各種までの枝すべてをフォアグラウンドにする。 形質が獲得されてからずーっとかかっている選択を検出するイメージ。\n\nweighted\n\nclade = \"all\"/\"terminal\" のときに、例えば共通祖先から末端まで3回の分岐がある種と 1回も分岐していない種がいたら、前者の各枝の重み付けを1/3する。\n\ntransition = c(\"bidirectional\", \"unidirectional\")\n\nいちど形質が獲得されてからの喪失を想定するかどうか\n\n\n表現型のベクタを作成:\ncarP = tree2Paths(tree, treesObj, binarize = NULL, useSpecies = NULL, categorical = F)\n\ntree\n\nforeground2Tree() で作ったフォアグラウンド情報の系統樹\n\ntreesObj\n\nRERconverge::readTrees() で読み込んだ系統樹\n\n\n表現型との相関解析:\nres = correlateWithBinaryPhenotype(\n  RERmat,\n  charP,\n  min.sp = 10,\n  min.pos = 2,\n  weighted = \"auto\"\n)\n\nRERmat\n\ngetAllResiduals() で計算した相対進化速度のマトリクス\n\nchaP\n\ntree2Paths() でつくった表現型ベクタ\n\nmin.sp\n\nある遺伝子をもっている種数の最低数\n\nmin.pos\n\nある遺伝子をもっているフォアグラウンド種の最低数\n\n\ncorrelateWithBinaryPhenotype() は、各遺伝子を行、 以下の統計量を列とするデータフレームを返す。\n\nRho\n\n関係の正負 (フォアグラウンドで加速/保存) を示す Pearson correlation\n\nN\n\n相対進化速度が算出された枝の数\n\nP\n\n相関解析のP値\n\np.adj\n\n多重補正後のP値。BH法を使っている。\n\n\n\n\n連続形質との相関解析\n体サイズ、寿命など連続的な数値データの形質を対象にした解析\n表現型の名前付きベクタをつくる。データフレームとかを用意しておくと楽。例えば:\ndf = data.frame(\n  species = c(\"spA\", \"spB\", \"spC\"),\n  body_mass = c(\"10\", \"20\", \"30\")\n ) |&gt;\n tibble::column_to_rownames(\"species\")\ntip.vals = df$body_mass\nnames(tip.vals) = rownames(df)\nで、\ncharP = char2Paths(\n  tip.vals,\n  treesObj,\n  altMasterTree = NULL,\n  metric = \"diff\",\n  se.filter = -1,\n  ...\n)\n\ntip.vals\n\n一個前で作った表現型ベクタ\n\ntreeObj\n\nRERconverge::readTrees() で読み込んだ系統樹\n\nmetric\n\ninternal_branch の表現型をどうするか\n\n\ndiff は枝の前後の祖先形質の差、mean は平均値、last は末端側の値をつかう。\n\n\n表現型との相関解析:\nres = correlateWithContinuousPhenotype(\n  RERmat,\n  charP,\n  min.sp = 10,\n  winsorizeRER = 3,\n  winsorizetrait = 3\n)\nRERmat, charP, min.sp は binary の時と同じ\n\nwinsorizeRER/winsorizetrait\n\n相対進化速度/表現型の値の top/worst の N 種ずつを、N+1 番目の値に変換する。\n\n\n相関解析が極端な外れ値の影響を受けることを避けるためのオプション\n\n\n返ってくるのは binary と同じデータフレーム",
+    "crumbs": [
+      "Bioinformatics",
+      "RERconverge"
+    ]
+  },
+  {
+    "objectID": "bio/rerconverge.html#エンリッチメント解析",
+    "href": "bio/rerconverge.html#エンリッチメント解析",
+    "title": "RERconverge",
+    "section": "エンリッチメント解析",
+    "text": "エンリッチメント解析\nウィルコクソンの順位和検定を使ったエンリッチメント解析の機能が実装されている。 もちろん topGO や clusterProfiler を使ってもいい。\n.gmt ファイルをダウンロードする:\nhttps://www.gsea-msigdb.org/gsea/login.jsp\n.gmt ファイルを読み込む:\nannots=read.gmt(\"gmtfile.gmt\")\nannotlist=list(annots)\nnames(annotlist)=\"MSigDBpathways\"\n相関解析の結果を加速度合い/保存度合いの順に並べる:\nstats = RERconverge::getStat(res)\nres は correlateWithBinaryPhenotype() や correlateWithContinuousPhenotype() の結果。 sign(Rho) × -log(P) をやってスコア順に並べる。\nエンリッチメント解析:\nenrichment = fastwilcoxGMTall(stats, annotlist, outputGeneVals=T, num.g=10)\n\nstats\n\nRERconverge::getStat() で並べた遺伝子\n\nannotlist\n\nread.gmt() で読み込んだパスウェイのリスト",
+    "crumbs": [
+      "Bioinformatics",
+      "RERconverge"
+    ]
+  },
+  {
+    "objectID": "bio/orthofinder.html",
+    "href": "bio/orthofinder.html",
+    "title": "OrthoFinder",
+    "section": "",
+    "text": "公式: https://davidemms.github.io/\nGitHub リポジトリ: https://github.com/davidemms/OrthoFinder\n論文: Emms and Kelly 2015",
+    "crumbs": [
+      "Bioinformatics",
+      "OrthoFinder"
+    ]
+  },
+  {
+    "objectID": "bio/orthofinder.html#usage",
+    "href": "bio/orthofinder.html#usage",
+    "title": "OrthoFinder",
+    "section": "Usage",
+    "text": "Usage\n解析したい種の遺伝子の配列 (Fasta ファイル) を 1つのディレクトリ (ex. fasta_dir/) に用意して-fに渡すだけ。\northofinder -f fasta_dir",
+    "crumbs": [
+      "Bioinformatics",
+      "OrthoFinder"
+    ]
+  },
+  {
+    "objectID": "bio/orthofinder.html#出力",
+    "href": "bio/orthofinder.html#出力",
+    "title": "OrthoFinder",
+    "section": "出力",
+    "text": "出力\n出力は -f に渡したディレクトリ中に Result_*date* ディレクトリが作られてその中に入る。 以下は ver2.5.2 の例。\nPhylogenetic_Hierarchical_Orthogroups/\n\nSingle_Copy_Orthologue_Sequences/\n\nOG ごとのシングルコピーオーソログの配列\n\nOrthogroup_Sequences/\n\n全部の OG ごとの配列\n\n\nComparative_Genomics_Statistics/\n\n\nDuplications_per_Orthogroup.tsv\n\nOGごとの重複（*）の数\n\n\n\nOrthologuesStats_Totals.tsv\n\n1種対1種のオーソログの数\n\n\n\nOrthologuesStats_{one-to-many/many2one/many2many}.tsv\n\n1種対多種, 多種対1種, 多種対多種のオーソログの数\n\n\n\nStatistics_PerSpecies.tsv\n\n種ごとのオーソログの数に関する要約統計\n\n\n\nDuplications_per_Species_Tree_Node.tsv\n\n種ごとの重複の数\n\n\n\nOrthogroups_SpeciesOverlaps.tsv\n\nOrthologuesStats_Totals と同じ？\n\n\n\nStatistics_Overall.tsv\n\n全体の要約統計\n\n\n\nPhylogenetically_Misplaced_Genes\n\nSpecies_Tree/\n\n種の系統樹 (.txt)\n\n\nGene_Duplication_Events/\n\n\nDuplication.tsv\n\nOG ごとにどのノードでどの遺伝子とどの遺伝子が重複したかが書かれてる\n\n\n\nSpeciesTree_Gene_Duplications_0.5_Support.txt\n\n種の系統樹と若干違う？\n\n\n\nOrthogroups/\n\n\nOrthogroups.GeneCount.tsv\n\nOG × 種ごとの遺伝子数\n\n\n\nOrthogroups.tsv/.txt\n\nOG × 種ごとの遺伝子名\n\n\n\nOrthogroups_SingleCopyOrthologues.txt\n\nシングルコピー OG 名\n\n\n\nOrthogroups_UnassignedGenes.tsv\n\n1種しかいない OG 名\n\n\n\n\nPutative_Xenologs\n\n水平伝播したと推定される遺伝子 (あれば)\n\nWorkingDirectory/\n\nBlast などの中間ファイルが圧縮されて入っている。\n\n\nSpeciesIDs.txt は再解析 (後述) をする際に必要\n\nGene_Trees/\n\nOG ごとの遺伝子系統樹 (.txt) が入ってる。\n\n\nOrthologues/\n\n\nOrthologues_*種名*\n\n1種対1種のオーソログが書かれてる。\n\n\n\nResolved_Gene_Trees\n\nOG ごとの種分化を考慮した系統樹。4遺伝子以上の OG についてしか書かれていない。\n\n\n\n\nUnassigned gene と Species-specific Orthogroup\n両方とも系統特異的な遺伝子であると考えられ、 Unassigned gene はそのうちシングルトンであるもの (自身の中にもパラログが存在しない)、 Species-specific Orthogroup はそのうち重複遺伝子であるもの。 系統特異的な重複とは異なる。",
+    "crumbs": [
+      "Bioinformatics",
+      "OrthoFinder"
+    ]
+  },
+  {
+    "objectID": "bio/orthofinder.html#種の追加除外",
+    "href": "bio/orthofinder.html#種の追加除外",
+    "title": "OrthoFinder",
+    "section": "種の追加/除外",
+    "text": "種の追加/除外\n\n種の追加を行う場合\n追加したい種の Fasta ファイルが入ったディレクトリを用意して、-f で指定:\northofinder -b /Result_*/WorkingDirectory -f new_fasta_directory\n結果は /WorkingDirectory/OrthoFinder/Result_*Date*/ に出力される。\n\n\n種を除外する場合\n/Result_*/WorkingDirectory/ にある SpeciesIDs.txt を編集し、 除外する種を # でコメントアウトする。その上で、\northofinder -b /Result_*/WorkingDirectory\nを実行する。 -f で追加ディレクトリを指定しつつ追加と除外を同時に行うことも可能。",
+    "crumbs": [
+      "Bioinformatics",
+      "OrthoFinder"
+    ]
+  },
+  {
+    "objectID": "bio/orthofinder.html#遺伝研",
+    "href": "bio/orthofinder.html#遺伝研",
+    "title": "OrthoFinder",
+    "section": "遺伝研",
+    "text": "遺伝研\nbiotools にある:\nls /usr/local/biotools/o/orthofinder*\n\n並列化\n種数にもよるが全種×全種で blast する都合上かなりメモリを食うので、 medium に並列で投げることをおすすめする。 下記は5スロットで投げる例。\n#$ -S /bin/bash\n#$ -cwd\n#$ -pe def_slot 5\n#$ -l medium\n#$ -l s_vmem=64G\n#$ -l mem_req=64G\n\nmodule load singularity\nsingularity exec /usr/local/biotools/o/orthofinder:%ver orthofinder -f dir -t 5 -a 5",
+    "crumbs": [
+      "Bioinformatics",
+      "OrthoFinder"
+    ]
+  },
+  {
+    "objectID": "bio/ete-toolkit.html",
+    "href": "bio/ete-toolkit.html",
+    "title": "ETE Toolkit — ete-evol による配列解析",
+    "section": "",
+    "text": "ETE Toolkit は系統樹データを扱うための Python フレームワーク。\nその中の ete-evol は CODEML や SLR の実行を手助けする python 製コマンドラインツール。\nパッケージとして import してスクリプトの中で使うこともできる。",
+    "crumbs": [
+      "Bioinformatics",
+      "ETE Toolkit"
+    ]
+  },
+  {
+    "objectID": "bio/ete-toolkit.html#installation",
+    "href": "bio/ete-toolkit.html#installation",
+    "title": "ETE Toolkit — ete-evol による配列解析",
+    "section": "Installation",
+    "text": "Installation\ncodeml と slr がインストールされて PATH が通っている必要がある。 (使わない方は入っていなくても解析はできる。)\n\nete4\n# pip3 install lap  # if needed\npip3 install https://github.com/etetoolkit/ete/archive/ete4.zip\n\n\nete3\nete-evol は外部ツールに依存するため、 conda を使ってインストールすることが推奨されている:\nconda create -n ete3 python=3\nconda activate ete3\nconda install -c etetoolkit ete3 ete_toolchain\nete3 build check\nconda activate ete3\ncondaを介さないインストール:\npip3 install cython bottle brotli numpy scipy PyQt5\npip3 install ete3\nete3 upgrade-external-tools   # codeml, slrをここからインストールすることもできる\n\n\n遺伝研\nls /usr/local/biotools/e/ete*\n2023/09/11時点で ete2 と ete3 が利用可能。 でもちゃんと動かなそう？ (バージョンによるかも。)",
+    "crumbs": [
+      "Bioinformatics",
+      "ETE Toolkit"
+    ]
+  },
+  {
+    "objectID": "bio/ete-toolkit.html#基本的な使い方",
+    "href": "bio/ete-toolkit.html#基本的な使い方",
+    "title": "ETE Toolkit — ete-evol による配列解析",
+    "section": "基本的な使い方",
+    "text": "基本的な使い方\nete3 evol -t tree_file --alg fasta_file -o outdir/ --models models --cpu N\n\n-t\n\n系統樹のパス\n\n--alg\n\nアライメントのパス\n\n-o\n\n出力先。この中にモデルの名前のディレクトリが作られる。\n\n--cpu\n\nコア数\n\n--models\n\n\n\n\nModel\nDescription\ntype\nCitation\n\n\n\n\nM0\nnegative-selection\nnull\nYang 2000\n\n\nM1\nrelaxation\nsite\n〃\n\n\nM2\npositive-selection\n〃\n〃\n\n\nM3\ndiscrete\n〃\n〃\n\n\nM4\nfrequencies\n〃\n〃\n\n\nM5\ngamma\n〃\n〃\n\n\nM6\n2 gamma\n〃\n〃\n\n\nM7\nrelaxation\n〃\n〃\n\n\nM8\npositive-selection\n〃\n〃\n\n\nM8a\nrelaxation\n〃\n〃\n\n\nM9\nbeta and gamma\n〃\n〃\n\n\nM10\nbeta and gamma + 1\n〃\n〃\n\n\nM11\nbeta and normal &gt; 1\n〃\n〃\n\n\nM12\n0 and 2 normal &gt; 2\n〃\n〃\n\n\nM13\n3 normal &gt; 0\n〃\n〃\n\n\nSLR\npositive/negative selection\n〃\nMassingham 2005\n\n\nbsA\npositive-selection\nbranch-site\nZhang 2005\n\n\nbsA1\nrelaxation\n〃\n〃\n\n\nbsB\npositive-selection\n〃\nYang 2002\n\n\nbsC\ndifferent-ratios\n〃\n〃\n\n\nbsD\ndifferent-ratios\n〃\nYang 2002, Bielawski 2004\n\n\nb_free\npositive-selection\nbranch\nYang 2002\n\n\nb_neut\nrelaxation\n〃\n〃\n\n\nfb\nfree-ratios\n〃\n〃\n\n\nfb_anc\nfree-ratios\n〃\n〃\n\n\n\n\n\n\nMarking trees\n--mark で指定する。スペースで繋ぐことで複数の指定もできる。 2種をカンマで繋ぐ。カンマ3つだと共通祖先からの全ての枝を、カンマ2つだと共通祖先の枝のみ。\n\n--mark Human_EDN,,,Hylobates_EDN,Macaq_EDN,,,Papio_EDN\n\n\n\n--mark Macaq_ECP,,Macaq2_ECP,Human_ECP,,Goril_ECP\n\n\n\n\n画像引用元: http://etetoolkit.org/documentation/ete-evol/\n\n\nTesting evolutionary models\n対立仮説と帰無仮説のモデルを --test に渡すことで仮説検定ができる。 例えば M2 vs M1 でサイトモデルの検定をするには、\nete3 evol -t tree_file --alg fasta_file --models M2 M1 --tests M2,M1 -o outdir/\nのように書く。\n対数尤度や p-value は標準出力されるので、 これらが欲しければリダイレクトして取っておく必要がある？ ( &gt; output.txt )\n\nモデルの組み合わせ\n\n\n\n対立仮説\n帰無仮説\n検定すること\n引用\n\n\n\n\nM2\nM1\n特定サイトにおける正の自然選択\nYang 2000\n\n\nM3\nM0\nサイト間でdN/dSが異なるか\n〃\n\n\nM8\nM7\n特定サイトにおける正の自然選択\nYang 2000\n\n\nM8\nM8a\n特定サイトにおける選択の緩和\n〃\n\n\nbsA\nbsA1\n特定の枝の特定のサイトにおける正の自然選択\nZhang 2005\n\n\nbsA\nM1\n特定の枝の特定のサイトにおける選択の緩和\nZhang 2005\n\n\nbsC\nM1\n特定のクレードの特定のサイトでdN/dSが異なるか\nYang 2002\n\n\nbsD\nM3\n特定のクレードの特定のサイトでdN/dSが異なるか\nYang 2002, Bielawski 2004\n\n\nb_free\nb_neut\n特定の枝でdN/dSが1と異なるか\nYang 2002\n\n\nb_free\nM0\n特定の枝でdN/dSが他と異なるか\nYang 2002\n\n\n\nb_free vs b_neut の検定はP値とフォアグラウンド枝の \\(\\omega = d_\\text{N} / d_\\text{S}\\) の値によって複数の解釈がある。 (ここについては公式ドキュメントの記載が間違っている気もする。。。)\n\nP &gt; 0.05 の場合、Relaxed selection の可能性がある。 統計的に主張するには b_neut を対立仮説にして帰無仮説 b_free を棄却する必要あり？\nP &lt; 0.05, ω &lt; 1 の場合、フォアグラウンド枝でのより強い純化選択の可能性がある。 統計的に主張するには b_free vs M0 で \\(\\omega\\) の比較が必要？\nP &lt; 0.05, ω &gt; 1 の場合、正の自然選択を主張できる。",
+    "crumbs": [
+      "Bioinformatics",
+      "ETE Toolkit"
+    ]
+  },
+  {
+    "objectID": "bio/clusterProfiler.html",
+    "href": "bio/clusterProfiler.html",
+    "title": "clusterProfiler — R でエンリッチメント解析",
+    "section": "",
+    "text": "https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html\nエンリッチメント解析には大きく二つの方法がある:",
+    "crumbs": [
+      "Bioinformatics",
+      "clusterProfiler"
+    ]
+  },
+  {
+    "objectID": "bio/clusterProfiler.html#go-enrichment-analysis",
+    "href": "bio/clusterProfiler.html#go-enrichment-analysis",
+    "title": "clusterProfiler — R でエンリッチメント解析",
+    "section": "GO enrichment analysis",
+    "text": "GO enrichment analysis\n\nドキュメントページ\nGO とは\n\nGO (Gene Ontology) は、ある遺伝子がどんな機能を持っているかを共通の語彙でタグづけしたもの。 もっとも大きく分けて以下の3つの分類がある:\n\nBiological Process (BP)\n\n遺伝子産物がどんな生物学的機能やパスウェイに属するか\n\nCellular Component (CC)\n\n遺伝子産物が細胞内のどこに局在するか\n\nMolecular Function (MF)\n\n遺伝子産物が分子としてどういう機能をもつか\n\n\nGO の情報は別途ダウンロードする。例えばヒトなら:\nBiocManager::install(\"org.Hs.eg.db\")\nlibrary(org.Hs.eg.db)\n\nGO over-representation analysis\ndata(geneList, package=\"DOSE\")  # サンプルデータ\ngene = names(geneList)[abs(geneList) &gt; 2]\n\nego = enrichGO(\n  gene,\n  OrgDb = org.Hs.eg.db,\n  keyType = \"ENTREZID\",\n  ont = \"MF\",\n  pvalueCutoff = 0.05,\n  pAdjustMethod = \"BH\",\n  universe,\n  qvalueCutoff = 0.2,\n  minGSSize = 10,\n  maxGSSize = 500,\n  readable = FALSE,\n  pool = FALSE\n)\nego_result = ego@result\nView(ego_result)\n\nont\n\n\"BP\", \"CC\", \"MF\", \"ALL\" から選ぶ\n\npvalueCutoff, qvalueCutoff\n\nそれぞれ与えたP値、Q値以下の GO を表示する。\n\n\nここで設定してもいいけど、ここはとりあえず 1 にしておいて、 ego@result を格納してから |&gt; dplyr::filter(qvalue &lt; 0.1) とかする方が柔軟では。\n\nuniverse\n\nバックグラウンドの遺伝子ベクタ\n\n\n指定しないときは OrgDb の全遺伝子が使われる。\n\nminGSSize, maxGSSize\n\nいくつ以上/以下の遺伝子が紐づく GO までを使う。\n\nreadable\n\nTRUE にすると ENTREZID を遺伝子シンボルに変換する。\n\n\n\n\nGO Gene Set Enrichment Analysis\ndata(geneList, package=\"DOSE\")\n# 渡す `geneList` はスコアの降順で並んでいる必要がある。\n\nego = gseGO(\n  geneList,\n  ont = \"BP\",\n  OrgDb = org.Hs.eg.db,\n  keyType = \"ENTREZID\",\n  exponent = 1,\n  minGSSize = 10,\n  maxGSSize = 500,\n  eps = 1e-10,\n  pvalueCutoff = 0.05,\n  pAdjustMethod = \"BH\",\n  verbose = TRUE,\n  seed = FALSE,\n  by = \"fgsea\",\n  scoreType = \"pos\"\n)\nego_result = ego@result\nView(ego_result)\n\nscoreType\n\n\"pos\" ならソートした上位、\"neg\" なら下位に濃縮する GO をみる。 (ドキュメントには載ってない？)",
+    "crumbs": [
+      "Bioinformatics",
+      "clusterProfiler"
+    ]
+  },
+  {
+    "objectID": "bio/clusterProfiler.html#kegg-enrichment-analysis",
+    "href": "bio/clusterProfiler.html#kegg-enrichment-analysis",
+    "title": "clusterProfiler — R でエンリッチメント解析",
+    "section": "KEGG enrichment analysis",
+    "text": "KEGG enrichment analysis\n\nドキュメントページ\nKEGG とは\n\nKEGG (Kyoto Encyclopedia of Genes and Genomes) は、 主にモデル生物における遺伝子やタンパク質の分子間ネットワークに関する情報を体系化したデータベース。\n利用可能な生物種を探す:\nsearch_kegg_organism('hsa', by='kegg_code')\nsearch_kegg_organism('Homo sapiens', by='scientific_name')\nKEGG Organisms のページから探してもいい。\nGO エンリッチメント解析と同様に、興味のある遺伝子/ない遺伝子で区切る解析と、 なんらかのスコアに基づいてソートした時に上位に濃縮するパスウェイを調べる解析がサポートされている。\n\nKEGG pathway over-representation analysis\ndata(geneList, package=\"DOSE\")  # サンプルデータ\ngene &lt;- names(geneList)[abs(geneList) &gt; 2]\n\nkk &lt;- enrichKEGG(\n  gene,\n  organism = \"hsa\",\n  keyType = \"kegg\",\n  pvalueCutoff = 0.05,\n  pAdjustMethod = \"BH\",\n  universe = geneList,\n  minGSSize = 10,\n  maxGSSize = 500,\n  qvalueCutoff = 0.2,\n  use_internal_data = FALSE\n)\nkk_result = kk@result\nView(kk_result)\n\n\nKEGG pathway gene set enrichment analysis\ndata(geneList, package=\"DOSE\")\n\nkk &lt;- gseKEGG(\n  geneList,\n  organism = \"hsa\",\n  keyType = \"kegg\",\n  exponent = 1,\n  minGSSize = 10,\n  maxGSSize = 500,\n  eps = 1e-10,\n  pvalueCutoff = 0.05,\n  pAdjustMethod = \"BH\",\n  verbose = FALSE,\n  use_internal_data = FALSE,\n  seed = FALSE,\n  by = \"fgsea\",\n  scoreType = \"pos\"\n)\nkk_result = kk@result\nView(kk_result)",
+    "crumbs": [
+      "Bioinformatics",
+      "clusterProfiler"
+    ]
+  },
+  {
+    "objectID": "bio/clusterProfiler.html#setreadable",
+    "href": "bio/clusterProfiler.html#setreadable",
+    "title": "clusterProfiler — R でエンリッチメント解析",
+    "section": "setReadable",
+    "text": "setReadable\nenrichGO() 以外の関数には readable オプションがない。\nENTREZID のままだとどの遺伝子か分かりにくい。 setReadable は org.Hs.eg.db とかから ID と gene_symbol の対応を取得して変換する。\nlibrary(org.Hs.eg.db)\nkk2 = kk |&gt; setReadable(OrgDb = org.Hs.eg.db, keyType=\"ENTREZID\")",
+    "crumbs": [
+      "Bioinformatics",
+      "clusterProfiler"
+    ]
+  },
+  {
+    "objectID": "bio/clusterProfiler.html#可視化",
+    "href": "bio/clusterProfiler.html#可視化",
+    "title": "clusterProfiler — R でエンリッチメント解析",
+    "section": "可視化",
+    "text": "可視化\n\nhttps://yulab-smu.top/biomedical-knowledge-mining-book/enrichplot.html\nhttps://yulab-smu.top/biomedical-knowledge-mining-book/clusterprofiler-kegg.html#visualize-enriched-kegg-pathways\n\ndotplot(kk2, showCategory = 10, title = \"Enriched Pathways\" , split=\".sign\")\n# とか\ncnetplot(kk2, showCategory = 5, categorySize=\"pvalue\")\n# とか\nパスウェイの図が欲しければ pathview とか:\nlibrary(\"pathview\")\npathview(\n  gene.data = geneList,\n  pathway.id = \"hsa04110\",\n  species = \"hsa\",\n  limit = list(gene=max(abs(geneList)), cpd=1)\n)",
+    "crumbs": [
+      "Bioinformatics",
+      "clusterProfiler"
+    ]
+  },
+  {
+    "objectID": "bio/cafe.html",
+    "href": "bio/cafe.html",
+    "title": "CAFE — 遺伝子ファミリーの進化解析",
+    "section": "",
+    "text": "CAFE5 にアップデートされ、より柔軟な推定が可能になり、 動かし方も容易になったため、特に理由がなければ CAFE5 を推奨する。\nComputational Analysis of gene Family Evolution\n遺伝子ファミリーサイズの進化（系統樹上のどのノードで、いくつ遺伝子が増減したか）を、 MCMC 法で推定するプログラム。\n基本的な動かし方は、入力となるシェルスクリプトを書いて CAFE に渡す、という形になる。 このシェルスクリプトを書く過程で、 OrthoFinder の出力である Orthogroups.GeneCount.tsv と 種の系統樹 (Species_Tree/SpeciesTree_rooted.txt) が必要。",
+    "crumbs": [
+      "Bioinformatics",
+      "CAFE"
+    ]
+  },
+  {
+    "objectID": "bio/cafe.html#インストール",
+    "href": "bio/cafe.html#インストール",
+    "title": "CAFE — 遺伝子ファミリーの進化解析",
+    "section": "インストール",
+    "text": "インストール\n\n作者たちの github から最新版の CAFE をダウンロードして、 適当なディレクトリに置く。(例えば ~/bin/)\n解凍したら CAFE ディレクトリまで cd して configure & make:\ncd PATH_TO_CAFE\n./configure\nmake\nPATH を通して動作確認:\ncafe  # ctrl+C",
+    "crumbs": [
+      "Bioinformatics",
+      "CAFE"
+    ]
+  },
+  {
+    "objectID": "bio/cafe.html#使い方",
+    "href": "bio/cafe.html#使い方",
+    "title": "CAFE — 遺伝子ファミリーの進化解析",
+    "section": "使い方",
+    "text": "使い方\n\nこんな感じのシェルスクリプトを書く\n\n\nexample.sh\n\n#! cafe\n# version\n# date\nload -i data/example.tab -t 10 -l logfile.txt -p 0.05\ntree (((chimp:6,human:6):81,(mouse:17,rat:17):70):6,dog:93)\nlambda -s -t (((1,1)1,(2,2)2)2,2)\nreport resultfile\n\n\nload\n\n基本的なオプション。\n\n\n-i 種/遺伝子ファミリーごとの遺伝子数のテーブル\n\n\n-t スレッド数。使っているコンピュータに合わせる。\n\n\n-l ログファイルの名前\n\n\n-p 遺伝子数の増減が急速であるとする有意水準\n\n\n-filter は全種の共通祖先における遺伝子数が0であると推定される遺伝子ファミリーを除くオプション。 これをつける場合は load 行より上に tree 行を書く。\n\ntree\n\nroot から各種までの距離が同じである (ultrametric) 系統樹。\n\nlambda\n\n単位時間あたりの遺伝子数の増減速度 \\(\\lambda\\) の設定\n\n\n\\(\\lambda\\) を指定する場合は -l、自動推定する場合は -s\n\n\n-t で \\(\\lambda\\) 構造を設定。 系統樹上の遺伝子増減速度が同じだと考えられる枝を同じ数字にする。 全枝で同じだと仮定する場合すべて1にする。 系統樹の枝長の部分を書き換えればいい。\n\nreport\n\n出力ファイルの名前\n\n\n\n\nインプットとなるテーブル (example.tab) を用意する\nOrthoFinder の出力である Orthogroups.GeneCount.tsv などを基に、 CAFE の入力ファイルとして加工する。基本的には、\n\nDescription 列、ID 列を作る。\n全種の遺伝子数が同じである遺伝子ファミリーを除く。\n1種の遺伝子数が100を超える遺伝子ファミリーを除く。\n\nを満たしていればどう作ってもいい。 例えば:\n\n\n\nDescription\nID\nChicken\nLizard\nMouse\n\n\n\n\nOG00001\nOG00001\n12\n14\n21\n\n\nOG00002\nOG00002\n9\n13\n5\n\n\nOG00003\nOG00003\n7\n0\n4\n\n\n\n\n\nultrametric な系統樹を用意する\nTimeTree などから取得すると楽。 OrthoFinder の出力系統樹を使う場合、遺伝的距離に基づく系統樹であるため、 ultrametric に加工する必要がある。\nR の ape などを使うと便利:\n## spAとspBが3.6~4.6億年前に分岐したという情報から全体の分岐年代を推定する。\n\nlibrary(ape)\n\ntree = read.tree(\"tree.txt\")\nmrca = getMRCA(tree, tip=c('spA', 'spB')) #分岐年代推定に使うノードの指定\ntree2 = chronopl(\n  tree,\n  100000,\n  age.min = 36,  # 推定分岐年代の最小値(MYA)\n  age.max = 46,  # 推定分岐年代の最大値(MYA)\n  node = mrca,   # getMRCAで指定したノード\n  S = 1,\n  tol = 1e-20,\n  CV = FALSE,\n  eval.max = 500,\n  iter.max = 500\n  )\nis.ultrametric(tree2)  # ultrametricかどうか確認\nwrite.tree(tree2, file = \"tree_ultrametric.nwk\")  # ultrametric系統樹の保存\n\n注意点\n\ntip は遺伝子数のテーブルの列名に合わせる。\n\n\nbootstrap などの余計な要素は消しておく。\n\n\n枝長は少数でも構わないが、1以上のできるだけ小さい枝長になるように約分する。 (大きすぎるとエラーになるっぽい。)\n\n\n\n\nCAFEを実行する\nシェルスクリプトが用意できたら、次のコマンドで CAFE を実行する。\ncafe example.sh\n\n\n出力ファイルを加工する\nCAFE の実行に成功すると、report で指定した名前の .rep ファイルが出てくる。 このままだと見づらいため、公式のスクリプトを使って加工する。\n\nhttps://github.com/hahnlab/cafe_tutorial に行き、コードをダウンロードして解凍する。 (Code▼ から。) report ファイルのあるディレクトリに置いておくと便利。\n次のコマンドで report ファイルを加工する。4つのファイルが出力される。\n\npython cafe_tutrial/python_scripts/cafetutorial_report_analysis.py -i resultfile.rep -o cafe_summary\n\n-i\n\nCAFE の出力ファイル。\n\n-o\n\n加工して生成されるファイル (4つ) の prefix。\n\n\n\ncafe_summary_fams.txt\ncafe_summary_anc.txt\ncafe_summary_pub.txt\ncafe_summary_node.txt",
+    "crumbs": [
+      "Bioinformatics",
+      "CAFE"
+    ]
+  },
+  {
+    "objectID": "bio/cafe.html#トラブルシューティング",
+    "href": "bio/cafe.html#トラブルシューティング",
+    "title": "CAFE — 遺伝子ファミリーの進化解析",
+    "section": "トラブルシューティング",
+    "text": "トラブルシューティング\n\nFailed to load tree from provided string (branch length missing)\n\n系統樹の枝長に0が含まれているとダメ。自分は該当するノードを除外した。\n\nNo species ‘anolis_carolinensis’ was found in the tree\n\n系統樹を読み込む際に内部で tip name を書き換えているようで、 長すぎる種名やアンダースコアが原因と思われるエラー。 tip name を短く書き換える。 (Anolis_carolinensis -&gt; AnoCar とか)\n\nLambda values were not set. Please set lambda values with the lambda or lambdamu command.\n\n\\(\\lambda\\) を自動推定する際に、系統樹の枝長がでかい数字だとこうなるっぽい。 できるだけ短くなるように約分する？",
+    "crumbs": [
+      "Bioinformatics",
+      "CAFE"
+    ]
+  },
+  {
+    "objectID": "bio/cafe5.html",
+    "href": "bio/cafe5.html",
+    "title": "CAFE5 — 遺伝子ファミリーの進化解析",
+    "section": "",
+    "text": "CAFE のメジャーアップデート版。\nドキュメントが丁寧に書いてあるので助かる。",
+    "crumbs": [
+      "Bioinformatics",
+      "CAFE5"
+    ]
+  },
+  {
+    "objectID": "bio/cafe5.html#新しい機能",
+    "href": "bio/cafe5.html#新しい機能",
+    "title": "CAFE5 — 遺伝子ファミリーの進化解析",
+    "section": "新しい機能",
+    "text": "新しい機能\n\n各遺伝子ファミリーが異なる速度で進化することを仮定したパラメータ推定を行う。\nシェルスクリプトを書く必要がなくなった。\nエラーモデルの最適化やサマリーテーブルの出力が内部で行われるようになった。 (Pythonスクリプトが不要になった。)",
+    "crumbs": [
+      "Bioinformatics",
+      "CAFE5"
+    ]
+  },
+  {
+    "objectID": "bio/cafe5.html#インストール",
+    "href": "bio/cafe5.html#インストール",
+    "title": "CAFE5 — 遺伝子ファミリーの進化解析",
+    "section": "インストール",
+    "text": "インストール\n\nDownload\n\nhttps://github.com/hahnlab/CAFE5/releases から\nまたは、git clone https://github.com/hahnlab/CAFE5.git\n\n\n\nCompile\ncd CAFE5\n./configure\nmake\n実行ファイルは CAFE5/bin/ にあるので、ここに $PATH を通す。\n\n\nOSX の場合\nsrc/matrix_cache.cpp:2:10: fatal error: 'omp.h' file not found などコンパイラが見つからない系のエラーが出る場合があるらしい。 gcc を入れてシンボリックリンクを張る:\nbrew install gcc\nfind / -name omp.h\nln -sv path/to/omp.h /usr/local/include/\n改めて、\nmake\n\n\n遺伝研\napptainer にあるものを使うのが楽:\nls /usr/local/biotools/c/cafe:5*",
+    "crumbs": [
+      "Bioinformatics",
+      "CAFE5"
+    ]
+  },
+  {
+    "objectID": "bio/cafe5.html#quick-start",
+    "href": "bio/cafe5.html#quick-start",
+    "title": "CAFE5 — 遺伝子ファミリーの進化解析",
+    "section": "Quick Start",
+    "text": "Quick Start\n基本的に必要なファイルは以前の CAFE と同じ。\n\n種ごと、遺伝子ファミリーごとの遺伝子数のテーブル(タブ区切り)。 OrthoFinder とか OrthoMCL とかでつくる。\n例：gene_families.txt\n\n\n\nDescription\nID\nChicken\nLizard\nMouse\n\n\n\n\nOG00001\nOG00001\n12\n14\n21\n\n\nOG00002\nOG00002\n9\n13\n5\n\n\nOG00003\nOG00003\n7\n0\n4\n\n\n\nNewick 形式の系統樹。binary, rooted, ultrametric である必要がある。 (cf. Rパッケージ ape::is.binary(), ape::is.rooted(), ape::is.ultrametric())\n\n\nspecies_tree.txt\n\n(Mouse:319.00000000,(Lizard:281.10000000,Chicken:281.10000000):37.90000000);\n\nCAFE5 を実行。 想定するシナリオにより、いくつかの実行方法がある:\n\n遺伝子ファミリー間で進化速度が一定であるという仮定の下で、遺伝子ファミリーの進化速度を推定:\ncafe5 -i gene_families.txt -t species_tree.txt\n遺伝子ファミリーごとの進化速度が異なるという仮定の下で、遺伝子ファミリーの進化速度を推定:\ncafe5 -i gene_families.txt -t species_tree.txt -k 3\n特定の系統で遺伝子ファミリーの進化速度が異なることを仮定する場合、 以前のバージョンと同じように \\(\\lambda\\) 構造を規定した Newick ファイルを用意する:\n\n\nlambda_structure.txt\n\n(Mouse:1,(Lizard:1,Chicken:2):1);  # Chickenの系統で進化速度が異なることを仮定。\n\ncafe5 -i gene_families.txt -t species_tree.txt -y lambda_structure.txt",
+    "crumbs": [
+      "Bioinformatics",
+      "CAFE5"
+    ]
+  },
+  {
+    "objectID": "bio/cafe5.html#出力ファイル",
+    "href": "bio/cafe5.html#出力ファイル",
+    "title": "CAFE5 — 遺伝子ファミリーの進化解析",
+    "section": "出力ファイル",
+    "text": "出力ファイル\n-o で出力先を指定。 指定しなくても実行ディレクトリに result/ ディレクトリが作られてその中に格納される。\n\nmodel_asr.tre\n\n各遺伝子ファミリーごとに再構成された系統樹が書かれている。\n\n\nノード名 + _ に続く形でそのノードでの推定遺伝子数が書かれており、 有意な増減があったノードには * がふってある。\n\nmodel_family_results.txt\n\n遺伝子ファミリー、P値、変化が有意であるかどうか (y/n) がタブ区切りで記述されている。\n\nmodel_clade_results.txt\n\n各ノードごとに遺伝子数が増加/減少したファミリーの数が書いてある。\n\nmodel_branch_probabilities.txt\n\n各ノード、各遺伝子ファミリーにおける事後確率のタブ区切りリスト\n\n\nガンマモデルの場合、有意な変化があったファミリーについてのみ書かれている。\n\nmodel_family_likelihoods.txt\n\nBase モデルでは各ファミリーごとの尤度\n\n\nGamma モデルではそれに加えて事後確率がタブ区切りで書かれている。\n\nmodel_result.txt\n\n選択されたモデルの名前、そのモデルの最終的な尤度、 遺伝子数の進化速度にあたる \\(\\lambda\\) などが書かれている。\n\nmodel_change.txt\n\n各遺伝子ファミリーについて、各ノードにおける親ノードからの遺伝子数の変化量が書いてある。\n\nmodel_count.txt\n\n各遺伝子ファミリーについて、各ノードにおける推定遺伝子数\n\n\n\nRapidly evolving gene famillies について\nCAFE は確率的誕生-死亡モデルの下で、 ある \\(\\lambda\\) 値 (単位時間当たりの遺伝子の増減) にしたがって インプットした系統樹上で遺伝子の増減をシミュレートする。\nその結果各遺伝子ファミリーの実際の遺伝子数が得られる確率がp値として得られる。 このp値が事前に定めた有意水準 (例えば0.05) を下回ったものが rapidly expanded/contracted gene families として得られる。",
+    "crumbs": [
+      "Bioinformatics",
+      "CAFE5"
+    ]
+  },
+  {
+    "objectID": "bio/cafe5.html#並列化",
+    "href": "bio/cafe5.html#並列化",
+    "title": "CAFE5 — 遺伝子ファミリーの進化解析",
+    "section": "並列化",
+    "text": "並列化\n--cores オプションで指定:\ncafe5 -i gene_families.txt -t species_tree.txt --cores 5",
+    "crumbs": [
+      "Bioinformatics",
+      "CAFE5"
+    ]
+  },
+  {
+    "objectID": "bio/cafe5.html#トラブルシューティング",
+    "href": "bio/cafe5.html#トラブルシューティング",
+    "title": "CAFE5 — 遺伝子ファミリーの進化解析",
+    "section": "トラブルシューティング",
+    "text": "トラブルシューティング\nCAFE4 のトラブルシューティングも参照。\n\n既知の問題\nOG0000001    1    2    94    1    3    2    1\nみたいに遺伝子数にとびぬけた値があると、計算が途中で止まる。 (CAFE4 のときは inf/-inf で押し通していた。)\n標準エラーでどの遺伝子ファミリーが原因か教えてくれるので、そのファミリーを除いて再解析する。",
+    "crumbs": [
+      "Bioinformatics",
+      "CAFE5"
+    ]
+  },
+  {
+    "objectID": "bio/ddbj.html",
+    "href": "bio/ddbj.html",
+    "title": "遺伝研スパコン",
+    "section": "",
+    "text": "https://sc.ddbj.nig.ac.jp/",
+    "crumbs": [
+      "Bioinformatics",
+      "遺伝研スパコン"
+    ]
+  },
+  {
+    "objectID": "bio/ddbj.html#ログイン",
+    "href": "bio/ddbj.html#ログイン",
+    "title": "遺伝研スパコン",
+    "section": "ログイン",
+    "text": "ログイン\nユーザーアカウントを発行したら、 ssh 接続の設定をする。\n\n\n~/.ssh/config\n\nHost ddbj\n    IdentityFile ~/.ssh/id_ed25519\n  Hostname gw.ddbj.nig.ac.jp\n  RequestTTY yes\n  User yukimatsu\n\nssh 接続後はゲートウェイノードにいる。 ここで作業をしてはいけない。 qlogin してログインノードへ移動:\nssh ddbj\nqlogin\n-l s_vmem=4G, -l mem_req=4G でログインノードのメモリ量を指定できる。 デフォルトは4GBで、96GBまで指定可能。\nqlogin -l s_vmem=16G -l mem_req=16G  # 16GB でログイン",
+    "crumbs": [
+      "Bioinformatics",
+      "遺伝研スパコン"
+    ]
+  },
+  {
+    "objectID": "bio/ddbj.html#インタラクティブジョブ",
+    "href": "bio/ddbj.html#インタラクティブジョブ",
+    "title": "遺伝研スパコン",
+    "section": "インタラクティブジョブ",
+    "text": "インタラクティブジョブ\n手元のターミナルと同じように、linux コマンドやスクリプトの実行が可能:\n$ pwd\n/home/yukimatsu\n$ python3\nPython 3.10.12 (main, Jun 11 2023, 05:26:28) [GCC 11.4.0] on linux\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n&gt;&gt;&gt; print(1+2)\n3",
+    "crumbs": [
+      "Bioinformatics",
+      "遺伝研スパコン"
+    ]
+  },
+  {
+    "objectID": "bio/ddbj.html#バッチジョブ",
+    "href": "bio/ddbj.html#バッチジョブ",
+    "title": "遺伝研スパコン",
+    "section": "バッチジョブ",
+    "text": "バッチジョブ\n簡単なジョブであればインタラクティブジョブでよいが、 時間のかかるジョブやリソースを食うジョブ、繰り返し行うジョブを実行する場合は ジョブスクリプトを書いて計算ノードにやらせる。\nジョブスクリプトはシェルスクリプトまたは Python スクリプトで書くことができる。\n\n\nsample.sh\n\n#!/bin/bash\n\n#$ -S /bin/bash\n#$ -cwd\n#$ -V\n#$ -l short\n#$ -l d_rt=00:10:00\n#$ -l s_rt=00:10:00\n#$ -l s_vmem=4G\n#$ -l mem_req=4G\n\necho \"HOME: \" ${HOME}\necho \"USER: \" ${USER}\n\n\n\nsample.py\n\n#!/usr/bin/python3\n\n#$ -S /usr/bin/python3\n#$ -V\n#$ -l d_rt=00:10:00\n#$ -l s_rt=00:10:00\n\nimport os\nprint(\"HOME: \", os.environ[\"HOME\"])\nprint(\"USER: \", os.environ[\"USER\"])\n\nqsub コマンドでジョブスクリプトを計算ノードに投げる:\nqsub sample.sh\nqsub sample.py -cwd -l short -l s_vmem=4G -l mem_req=4G\nオプションはジョブスクリプト内で #$ につづけて渡してもいいし、 qsub するときのコマンドライン引数として渡してもいい。\n\n-cwd\n\nバッチジョブをカレントディレクトリ上で実行する。デフォルトは $HOME\n\n-V\n\nqsub を実行した際の環境変数を全て計算ノードに引き継ぐ。\n\n-l short\n\n計算ノードのキューの指定。 epyc, intel, gpu, short, medium がある。 (Grid Engineキューの種類)\n\n-l d_rt=00:10:00, s_rt=00:10:00\n\nジョブの実行上限時間。デフォルトは 72:00:00 (=3日間)\n\n-l s_vmem=4G, -l mem_req=4G\n\n使用するメモリ量の指定。単位は G, M, K。\n\n-N example\n\nジョブ名の指定。指定しなければはジョブスクリプトのファイル名になる。\n\n-S /bin/bash\n\nインタープリタの指定\n\n-o, -e\n\n標準出力/標準エラーファイルの出力先\n\n\nデフォルトではカレントディレクトリに {ジョブ名}.o{ジョブID}, {ジョブ名}.e{ジョブID} で出力される。",
+    "crumbs": [
+      "Bioinformatics",
+      "遺伝研スパコン"
+    ]
+  },
+  {
+    "objectID": "bio/ddbj.html#パラレルジョブ",
+    "href": "bio/ddbj.html#パラレルジョブ",
+    "title": "遺伝研スパコン",
+    "section": "パラレルジョブ",
+    "text": "パラレルジョブ\nhttps://sc.ddbj.nig.ac.jp/software/grid_engine/parallel_jobs/\nCPU コアを複数同時に使用するジョブ。 例えば OrthoFinder であれば -a N で N スレッドの並列解析を指定する。 これを遺伝研上で投げるときは、下のようにする:\n# 例\n#$ -S /bin/bash\n#$ -pe def_slot 5\n#$ -cwd\n\northofinder -f ExampleData -a 5\nスレッド数の指定にはいくつか方法がある:\n\n-pe def_slot N\n\n同一計算ノード上に N 個の CPU コアを確保する。\n\n-pe mpi N\n\n複数の計算ノードにわたって、 なるべく多数のノードに散るように N 個の CPU コアを確保する。\n\n-pe mpi-fillup N\n\n複数の計算ノードにわたって、 なるべく少数のノードに N 個の CPU コアを確保する。\n\n\n\n-l s_vmem=4G, -l mem_req=4G でメモリ量を指定する場合、×スレッド数 だけメモリを要求する。例えば qsub -pe def_slot 16 -l s_vmem=4G -l mem_req=4G であれば 4×16=64G を使うことになる。",
+    "crumbs": [
+      "Bioinformatics",
+      "遺伝研スパコン"
+    ]
+  },
+  {
+    "objectID": "bio/ddbj.html#アレイジョブ",
+    "href": "bio/ddbj.html#アレイジョブ",
+    "title": "遺伝研スパコン",
+    "section": "アレイジョブ",
+    "text": "アレイジョブ\nhttps://sc.ddbj.nig.ac.jp/software/grid_engine/array_jobs\n多数のジョブを同時に、あるいは順次に実行していくジョブ。\n例えば6個の SRA データを同時に取得する場合:\n#$ -S /bin/bash\n#$ -t 1-6:1\n#$ -cwd\n\nseq_ids=(SRR030253 SRR030254 SRR030255 SRR030256 SRR030257 SRR030258)\nseq_id=${seq_ids[$SGE_TASK_ID-1]}\n\nprefetch ${seq_id}\n\n-t 1-N\n\nN個のタスクを持つアレイジョブとして投入する。\n\n\n計算機が空いていれば同時に実行される。そうでなくても空き次第順次導入される。\n\n-tc M\n\n一度に実行されるアレイジョブのタスク数の上限を指定。 これをやらないとユーザーに割り振られた計算機数をオーバーしてしまうことがある。\n\n\nqquota でリソースを確認できる。2023/11/30時点で300。\n\n\n\nファイルの中身を seq_ids に流し込む\n10,000遺伝子の並列など、seq_ids が長くなるとジョブスクリプトの可読性が落ちる。 先に seq_ids の中身をテキストファイルに書き出して それをジョブスクリプトに読み込む場合、以下のようにする:\n\n\narray10000.sh\n\n#$ /bin/bash\n#$ -t 1-10000:1\n#$ -cwd\n\nseq_ids=()\nwhile read -r x; do\n    seq_ids+=($x)\ndone &lt; $1\nseq_id=${seq_ids[$SGE_TASK_ID-1]}\n\necho ${seq_id}\n\n\n\ngenes.txt\n\nGene_1\nGene_2\nGene_3\n⋮\nGene_10000\n\ngenes.txt を引数にして qsub:\nqsub array10000.sh genes.txt\ncat genes.txt | while read -r x で直接読もうとすると想定した挙動をしない。",
+    "crumbs": [
+      "Bioinformatics",
+      "遺伝研スパコン"
+    ]
+  },
+  {
+    "objectID": "bio/ddbj.html#その他のコマンド",
+    "href": "bio/ddbj.html#その他のコマンド",
+    "title": "遺伝研スパコン",
+    "section": "その他のコマンド",
+    "text": "その他のコマンド\n\nqstat\n\nジョブの投入状況の確認\n\n\nr: 実行中, qw: 投入待機中, t: 計算ノードへ転送中, E: エラー, d: 削除中\n\nqstat -g c\n\n計算・ログイン含む全ノードの混雑状況をみる。\n\nqdel jobID\n\nジョブの削除",
+    "crumbs": [
+      "Bioinformatics",
+      "遺伝研スパコン"
+    ]
+  },
+  {
+    "objectID": "bio/ddbj.html#apptainer-singularity",
+    "href": "bio/ddbj.html#apptainer-singularity",
+    "title": "遺伝研スパコン",
+    "section": "Apptainer (Singularity)",
+    "text": "Apptainer (Singularity)\nhttps://sc.ddbj.nig.ac.jp/software/Apptainer\nバイオインフォマティクスでよく使われる解析ツールは各ソフトウェアの頭文字ごとに /usr/local/biotools/ に配置されており、 インストール不要で使うことができる。\n服すバージョン用意されている場合もある。 どんなツールが使えるか見てみる。たとえば blast:\nls /usr/local/biotools/b/blast*\n使用例:\napptainer exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -help\n# singularity exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -help",
+    "crumbs": [
+      "Bioinformatics",
+      "遺伝研スパコン"
+    ]
+  },
+  {
+    "objectID": "bio/ddbj.html#パッケージ管理",
+    "href": "bio/ddbj.html#パッケージ管理",
+    "title": "遺伝研スパコン",
+    "section": "パッケージ管理",
+    "text": "パッケージ管理\n\nguix\n\n2023/11/30 の OS アップデートと同時にドキュメントがアーカイブされた。 もうすぐ使われなくなるかもしれない。\n\nユーザー権限で利用できるパッケージマネージャで、最初から使えるようになっている。\n\nGNU Guix Reference Manual (公式マニュアル)\n遺伝研での使い方ページ (アーカイブ)\n\n前準備:\n~/.bashrc に以下を追記:\nexport GUIX_DAEMON_SOCKET=guix://at111\nexport GUIX_PROFILE=\"$HOME/.guix-profile\"\nsource \"$GUIX_PROFILE/etc/profile\"\n\nguix search, guix package --search\n\n利用可能なパッケージの検索。標準出力だと見切れるので less に渡す。\n\n\n(例) guix search paml | less\n\nguix install, guix package --install\n\nパッケージのインストール\n\n\n上記のように設定した場合のデフォルトのインストールパスは $HOME/.guix-profile/bin/ になる。\n\nguix pull\n\nguix 本体を最新版に更新する。\n\nguix update, guix package --update\n\nインストールしたパッケージを最新版に更新する。 正規表現でパッケージを指定可。\n\nguic remove, guix package --remove\n\nパッケージのアンインストール\n\n\nバイオインフォマティクス関連のパッケージ:\n\nhttps://github.com/genenetwork/guix-bioinformatics\nhttps://guix.gnu.org/en/blog/2018/paper-on-reproducible-bioinformatics-pipelines-with-guix/",
+    "crumbs": [
+      "Bioinformatics",
+      "遺伝研スパコン"
+    ]
+  },
+  {
+    "objectID": "bio/ncbi_download.html",
+    "href": "bio/ncbi_download.html",
+    "title": "ゲノムデータ取得 — NCBI から一括ダウンロード",
+    "section": "",
+    "text": "https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/\nrsync, wget, curl などが使えるらしい。 公式には datasets コマンドが推奨されている。",
+    "crumbs": [
+      "Bioinformatics",
+      "ゲノムデータ取得"
+    ]
+  },
+  {
+    "objectID": "bio/ncbi_download.html#data_hub-から分類群を指定してダウンロード-gui",
+    "href": "bio/ncbi_download.html#data_hub-から分類群を指定してダウンロード-gui",
+    "title": "ゲノムデータ取得 — NCBI から一括ダウンロード",
+    "section": "data_hub から分類群を指定してダウンロード (GUI)",
+    "text": "data_hub から分類群を指定してダウンロード (GUI)\n\nhttps://www.ncbi.nlm.nih.gov/data-hub/genome/ にアクセス\nSelected taxa で分類群を指定 (例えば “Aves”, “Primates” など)\nFilters でフィルタリング\nAssembly を選択して Download\n\nDownload Table は検索結果の表\nDownload Package は file type (gff, fna, faa など) を指定してダウンロード\n\nSelect columns からゲノムサイズや Gene Content なども表示させることができる。",
+    "crumbs": [
+      "Bioinformatics",
+      "ゲノムデータ取得"
+    ]
+  },
+  {
+    "objectID": "bio/ncbi_download.html#コマンドラインで一括ダウンロード",
+    "href": "bio/ncbi_download.html#コマンドラインで一括ダウンロード",
+    "title": "ゲノムデータ取得 — NCBI から一括ダウンロード",
+    "section": "コマンドラインで一括ダウンロード",
+    "text": "コマンドラインで一括ダウンロード\n\ndatasets コマンドを使う方法\nhttps://www.ncbi.nlm.nih.gov/datasets/docs/v2/how-tos/genomes/download-genome/\ndatasets コマンドをインストールする:\n## Linux\ncurl -o datasets 'https://ftp.ncbi.nlm.nih.gov/pub/datasets/command-line/v2/linux-amd64/datasets'\nchmod +x datasets   # 実行権限を付与\n\n## Mac\ncurl -o datasets 'https://ftp.ncbi.nlm.nih.gov/pub/datasets/command-line/v2/mac/datasets'\nchmod +x datasets\naccession を指定してダウンロード:\ndatasets download genome accession GCF_000001405.40 \\\n    --filename human_GRCh38_dataset.zip \\\n    --include genome\n--include でファイルを指定。デフォルトは genomic.fna。 他に gtf, gff, cds, protein, rna など。 none を指定すると data report だけ取得する。\n\n\ncurl コマンドを使う方法\ncurl -OJ https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_000001405.40/download?include_annotation_type=GENOME_FASTA,GENOME_GFF,RNA_FASTA,CDS_FASTA,PROT_FASTA,SEQUENCE_REPORT\nunclude_annotation_type= でほしいファイルを指定する。",
+    "crumbs": [
+      "Bioinformatics",
+      "ゲノムデータ取得"
     ]
   },
   {
@@ -52,5 +1260,853 @@
       "Bioinformatics",
       "PAML チュートリアル"
     ]
+  },
+  {
+    "objectID": "cli/apt.html",
+    "href": "cli/apt.html",
+    "title": "apt — Debian 系 Linux パッケージマネージャ",
+    "section": "",
+    "text": "https://tracker.debian.org/pkg/apt\nhttps://www.debian.org/doc/manuals/debian-faq/pkgtools.ja.html#apt-get",
+    "crumbs": [
+      "Command Line Tools",
+      "apt"
+    ]
+  },
+  {
+    "objectID": "cli/apt.html#usage",
+    "href": "cli/apt.html#usage",
+    "title": "apt — Debian 系 Linux パッケージマネージャ",
+    "section": "Usage",
+    "text": "Usage\n\nパッケージ一覧を更新:\nsudo apt update\nインストール済みのソフトウェアを更新:\nsudo apt upgrade\n必要に応じて依存パッケージをインストールすることがある。 (古い apt-get だと新規インストールは起こらない。)\nパッケージのダウンロード:\nsudo apt install パッケージ名\nパッケージの削除:\nsudo apt remove パッケージ名\nsudo apt purge パッケージ名       # 設定ファイルを含め完全削除\n更新に伴い、必要なくなった依存パッケージを削除:\nsudo apt autoremove\nパッケージの検索:\napt search 検索キーワード\nパッケージの表示:\napt list --upgradable       # 更新可能なパッケージ一覧を表示\napt list --installed        # インストール済みのパッケージ一覧を表示\nパッケージの詳細を表示:\napt show パッケージ名\nおまけ:\napt moo\n         (__)\n         (oo)\n   /------\\/\n  / |    ||\n *  /\\---/\\\n    ~~   ~~\n...\"Have you mooed today?\"...",
+    "crumbs": [
+      "Command Line Tools",
+      "apt"
+    ]
+  },
+  {
+    "objectID": "cli/apt.html#apt-get-apt-cache",
+    "href": "cli/apt.html#apt-get-apt-cache",
+    "title": "apt — Debian 系 Linux パッケージマネージャ",
+    "section": "apt-get, apt-cache",
+    "text": "apt-get, apt-cache\napt はパッケージの管理を担う apt-get と検索を担う apt-cache の統合を図るコマンド。 それぞれのコマンドの対応は以下のようになっている。\napt-get update             -&gt;  apt update\napt-get upgrade            -&gt;  apt upgrade\napt-get dist-upgrade       -&gt;  apt full-upgrade\napt-get install package    -&gt;  apt install package\napt-get remove package     -&gt;  apt remove package\napt-get autoremove         -&gt;  apt autoremove\napt-cache search string    -&gt;  apt search string\napt-cache policy package   -&gt;  apt list -a package\napt-cache show package     -&gt;  apt show package\napt-cache showpkg package  -&gt;  apt show -a package",
+    "crumbs": [
+      "Command Line Tools",
+      "apt"
+    ]
+  },
+  {
+    "objectID": "cli/nano.html",
+    "href": "cli/nano.html",
+    "title": "nano — small で friendly なテキストエディタ",
+    "section": "",
+    "text": "公式: https://www.nano-editor.org/\nマニュアル: https://www.nano-editor.org/dist/latest/nano.html",
+    "crumbs": [
+      "Command Line Tools",
+      "nano"
+    ]
+  },
+  {
+    "objectID": "cli/nano.html#install",
+    "href": "cli/nano.html#install",
+    "title": "nano — small で friendly なテキストエディタ",
+    "section": "Install",
+    "text": "Install\nもともと入っているものを使うか、brew や apt でインストールする。\nwhich -a nano\n\nbrew install nano  ## mac\nsudo apt install nano  ## ubuntu\nmacOS 12.3 Monterey 以降、 Macの nano の正体は pico なので、 いろいろ設定して使いたい場合は brew でインストールする。",
+    "crumbs": [
+      "Command Line Tools",
+      "nano"
+    ]
+  },
+  {
+    "objectID": "cli/nano.html#usage",
+    "href": "cli/nano.html#usage",
+    "title": "nano — small で friendly なテキストエディタ",
+    "section": "Usage",
+    "text": "Usage\n## 新規作成\nnano\n\n## 既存のファイルを編集\nnano hoge.txt\n\nKeyboard shortcuts\nデフォルトで編集画面の下部に書いてある。 表は編集画面でのショートカット。 nano のバージョンによって異なるものもあるっぽい。\n\n\n\n\n\n\n\n\nKey\nコマンド\n操作\n\n\n\n\ncontrolG\nHelp\nヘルプ画面へ\n\n\ncontrolX\nExit\n編集画面を抜ける\n\n\ncontrolO\nWrite Out\nファイル名を指定して書き込み\n\n\ncontrolR\nRead File\nファイル名を指定して読み込み\n\n\ncontrolW\nWhere Is\nファイル内検索\n\n\ncontrol \nReplace\nファイル内置換\n\n\ncontrolK\nCut\n選択範囲を切り取り\n\n\ncontrolU\nPaste\nカーソル位置に文字列を貼り付け\n\n\ncontrolT\nExecute\nコマンドラインの操作を実行して出力を貼り付け\n\n\ncontrolJ\nJustify\n均等割付\n\n\ncontrolC\nLocation\nカーソル位置の表示\n\n\ncontrol/\nGo To Line\n行数を指定してジャンプ\n\n\ncontrol]\nComplete\nファイル中にあるほかの単語を探して補完\n\n\nMetaU\nUndo\nひとつ前の状態に戻す\n\n\nMetaE\nRedo\n同じ操作をおこなう\n\n\nMetaA\nSet Marl\n選択範囲の開始点をセット\n\n\nMeta6\nCopy\n選択範囲をコピー\n\n\n\nMeta キーは Windows なら alt、Macなら esc",
+    "crumbs": [
+      "Command Line Tools",
+      "nano"
+    ]
+  },
+  {
+    "objectID": "cli/nano.html#configuration",
+    "href": "cli/nano.html#configuration",
+    "title": "nano — small で friendly なテキストエディタ",
+    "section": "Configuration",
+    "text": "Configuration\n基本的な設定はコマンドラインオプションで指定することもできるが、 一時的な設定でなければ config ファイルに書いてしまった方が楽。\n読み込まれる順番は、まず /etc/nanorc 、次に ~/.nanorc または ~/.config/nano/nanorc。\nLinux では /etc/nanorc や /usr/share/doc/nano/examples/samples.nanorc に、 Mac に brew で入れた場合は /usr/local/Cellar/nano/%v/share/doc/nano/sample.nanorc にドキュメントとコマンドがコメントアウトされて書いてあるので、 これを ~/.nanorc または ~/.config/nano/nanorc にコピーして編集する。(%v は nano のバージョン)\n自分で書いてしまってもいい。たとえば:\n\n\nnanorc\n\nset autoindent    # 改行時にインデントを揃える\nset nowrap        # 横に長い行を勝手に改行しない\nset smooth        # スクロールがスムーズに（あんまり実感したことはない）\nset tabsize 4       # タブサイズ（スペースの数）の設定\nset mouse           # マウスを使えるようにする\n\n\nset mouse の挙動について\n\n設定しなくても一応使える。 普通に文章を選択して CtrlC したり CtrlV したり。 ただカーソルは動かせないっぽい。\n\n\nset mouse すると完全に nano の中の挙動になる。 カーソルも動く。 ダブルクリックで範囲選択開始( Set Mark )、次のクリックで範囲決定。 もう一度クリックすると解除( Unset Mark )。\n\n\n\nSyntax highlight\nデフォルトの見た目は非常に寂しい。\nLinuxでは /usr/share/nano/ 、Mac(brew)では /usr/local/share/nano/ や /usr/local/Cellar/nano/%v/share/nano/ にハイライト定義ファイルが置いてあるので、 これらの設定を ~/.nanorc に加える。\nまたは野生の定義ファイルを使う手もある。(c.f. https://github.com/scopatz/nanorc)\n\n\nnanorc\n\ninclude \"/usr/share/nano/*.nanorc\"\n\n\n\nKey Bind\nキーボードショートカットは変更可能。 例えば CtrlZ を Undo に割り当てたい場合、以下のように書く。\n\n\nnanorc\n\nbind ^Z undo    main",
+    "crumbs": [
+      "Command Line Tools",
+      "nano"
+    ]
+  },
+  {
+    "objectID": "cli/ssh.html",
+    "href": "cli/ssh.html",
+    "title": "SSH — Secure Shell",
+    "section": "",
+    "text": "リモートのマシンに安全に接続し、管理するためのツール。",
+    "crumbs": [
+      "Command Line Tools",
+      "SSH"
+    ]
+  },
+  {
+    "objectID": "cli/ssh.html#クライアント-ssh-する側-の設定",
+    "href": "cli/ssh.html#クライアント-ssh-する側-の設定",
+    "title": "SSH — Secure Shell",
+    "section": "クライアント ( ssh する側) の設定",
+    "text": "クライアント ( ssh する側) の設定\n\n公開鍵の作成と登録\n公開鍵と秘密鍵を作成:\nssh-keygen -t ed25519\n# Generating public/private ed25519 key pair.\n# Enter file in which to save the key:\n# Enter passphrase (empty for no passphrase):\n# Enter same passphrase again:\n\n-t (rsa/ecdsa/ed25519/etc.)\n\n作成する鍵の種類の指定。\n\n\ned25519 の他に dsa, ecdsa, ecdsa-sk, ed25519-sk, rsa など\n\n-f filename\n\n鍵のファイル名の指定。デフォルトは ~/.ssh/id_鍵タイプ\n\n\n公開鍵をサーバーに登録する。方法はそれぞれ:\n\nサイトに登録する場合などは公開鍵をコピー&ペースト\n## 公開鍵のコピー\ncat ~/.ssh/id_ed25519.pub | pbcopy\nコマンドで送る場合( PasswordAuthentication yes である必要がある):\ncat id_ed25519.pub | ssh ユーザー名@ipアドレス \"mkdir ~/.ssh; cat&gt;&gt;~/.ssh/authorized_keys\"\n\nパーミッションの確認:\nls -al ~/.ssh\n# total 28\n# drwxr-xr-x  2 yukimatsu yukimatsu 4096 May 10 16:51 .\n# drwxr-x--- 16 yukimatsu yukimatsu 4096 May 29 16:06 ..\n# -rw-------  1 yukimatsu yukimatsu  342 May 10 16:51 config\n# -rw-------  1 yukimatsu yukimatsu  411 Apr 25 17:30 id_ed25519\n# -rw-r--r--  1 yukimatsu yukimatsu   96 Apr 25 17:30 id_ed25519.pub\n# -rw-------  1 yukimatsu yukimatsu 2320 May  1 12:45 known_hosts\n# -rw-------  1 yukimatsu yukimatsu 1484 May  1 12:40 known_hosts.old\n公開鍵 .pub 以外はユーザー本人だけが読み書きできる設定( -rw------- )にする:\nchmod 600 ~/.ssh/config\n\n\n~/.ssh/config の設定\n一般的な接続方法:\nssh username@example.com    # 毎回打つのは面倒！\nそこで .ssh/config に以下のような設定を追記:\n\n\n~/.ssh/config\n\nHost hoge\n    Hostname example.com                 # ホスト名(@のうしろ)\n    User username                        # ユーザー名\n    IdentityFile ~/.ssh/id_ed25519_hoge  # 秘密鍵へのPATH\n\nこうすると以下の二つは等価:\nssh username@example.com\nssh hoge\nrsync でリモートに接続するときも記述を省略できて便利:\nrsync -auvz src/ username@example.com:dest/\nrsync -auvz src/ hoge:dest/",
+    "crumbs": [
+      "Command Line Tools",
+      "SSH"
+    ]
+  },
+  {
+    "objectID": "cli/ssh.html#サーバー-ssh-される側-の設定",
+    "href": "cli/ssh.html#サーバー-ssh-される側-の設定",
+    "title": "SSH — Secure Shell",
+    "section": "サーバー (ssh される側) の設定",
+    "text": "サーバー (ssh される側) の設定\nopenssh-server をインストールして起動を確認。\nsudo apt -y install openssh-server\nsudo systemctl status sshd.service  # Active: active (running) となっていれば起動している。\nこの状態でいったん同一 LAN 内の別のマシンから ssh してみる。\nssh ユーザー名@ipアドレス\n#\n#\n# Are you sure you want to continue(yes/no/[fingerprint])? yes\n# ユーザー名@ipアドレス's password:\n\n/etc/ssh/sshd_config の設定\nopenssh-server をインストールしたことで設定ファイルが /etc/ssh/ に生成される。 これを編集することでどの接続を許可してどれを弾くかを設定する。\n\n\n/etc/ssh/sshd_config\n\n# ssh公開鍵の種類を指定する。\nHostKey /etc/ssh/ssh_host_rsa_key\nHostKey /etc/ssh/ssh_host_ecdsa_key\nHostKey /etc/ssh/ssh_host_ed25519_key\n# ルートユーザーとしてのログインを禁止する。\nPermitRootLogin prohibit-password\n# SSHサーバーへの認証の最大試行回数を制限する。\nMaxAuthTries 5\n# 公開鍵による接続を許可する。\nPubkeyAuthentication yes\n# パスワードによる接続を許可する。公開鍵の登録を終えたら`no`に変える。\nPasswordAuthentication yes\n# 空のパスワードでの接続を無効にする。\nPermitEmptyPassword no\n# キーボードインタラクティブ認証を無効にする。公開鍵で接続する場合は無効にしたほうが良い。\nKbdInteractiveAuthentication no",
+    "crumbs": [
+      "Command Line Tools",
+      "SSH"
+    ]
+  },
+  {
+    "objectID": "cli/vscode.html",
+    "href": "cli/vscode.html",
+    "title": "Visual Studio Code",
+    "section": "",
+    "text": "https://code.visualstudio.com/",
+    "crumbs": [
+      "Command Line Tools",
+      "Visual Studio Code"
+    ]
+  },
+  {
+    "objectID": "cli/vscode.html#wsl",
+    "href": "cli/vscode.html#wsl",
+    "title": "Visual Studio Code",
+    "section": "WSL",
+    "text": "WSL\nhttps://learn.microsoft.com/ja-jp/windows/wsl/tutorials/wsl-vscode\n\nVSCode本体と拡張機能のインストール\nhttps://code.visualstudio.com/download\n\nVSCode を (WSLではなく) Windows にインストールする。\nインストール中に “追加タスクの選択” が求められたときは、“PATH への追加” オプションをオンにする。\nRemote Development 拡張機能をインストールする。\n\nRemote Development 拡張機能なしで WSL にアクセスすることは非推奨とされている。\n\n\nLinuxディストリビューションの更新と必要なパッケージのインストール\nsudo apt update\nsudo apt install wget ca-certificates\n\n\nプロジェクトを開く\nWSL から code . 、 もしくは VSCode から ControlShiftP でコマンドパレットを開いて “WSL: Connect to WSL” を選択。\nなお、WSL から VSCode を立ち上げた場合、 ログインシェルの設定( ~/.bash_profile, ~/.zprofile )は読まれない。\n\n\n環境設定\nVSCode 本体は Windows のものなのでユーザー設定も Windows 側。 WSL で使う場合これを WSL 用の設定が上書きする。\n\n拡張機能は .vscode/extensions/\n環境設定は /AppData/Roaming/Code/User/settings.json\nキーボードショートカットは /AppData/Roaming/Code/User/keybindings.json\n\nWSL で VSCode を使う場合、ユーザーホームに .vscode-server/ が作られてこの中で設定をいじったりする。\n\n拡張機能は .vscode-server/extensions/\n環境設定は .vscode-server/data/Machine/settings.json",
+    "crumbs": [
+      "Command Line Tools",
+      "Visual Studio Code"
+    ]
+  },
+  {
+    "objectID": "cli/vscode.html#mac",
+    "href": "cli/vscode.html#mac",
+    "title": "Visual Studio Code",
+    "section": "Mac",
+    "text": "Mac\n\nVSCode のインストール\nhttps://code.visualstudio.com/download\n\nMac 版の VSCode をダウンロードして解凍\nVisual Studio Code.app を /Applications フォルダに移動\n\n\n\nterminal から VSCode を起動する設定\ncode の実行ファイルは /Applications/Visual Studio Code.app/Contents/Resources/app/bin/code にある。 ここに $PATH を通せばいい。\n\n公式のやり方\n\nVSCode を起動してコマンドパレットを開き( CommandShiftP )、 “shell” と検索して出てくる “Shell Command: Install ‘cpde’ command in PATH” をクリック。\n\n\nこれで上記の実行ファイル PATH が /usr/local/bin/ にシンボリックリンクされる。\n\nもしくは\n\n.zshrc とかに上記の PATH を通す。\n\n\n\n\n環境設定\nMac の VSCode の環境設定ファイルは /Library/application Support/Code/User/settings.json にある。",
+    "crumbs": [
+      "Command Line Tools",
+      "Visual Studio Code"
+    ]
+  },
+  {
+    "objectID": "cli/vscode.html#ssh",
+    "href": "cli/vscode.html#ssh",
+    "title": "Visual Studio Code",
+    "section": "SSH",
+    "text": "SSH\nhttps://code.visualstudio.com/docs/remote/ssh-tutorial\nマシン自体に SSH の設定をしてあれば、 拡張機能をインストールするだけで SSH ホストのファイルにアクセスできる。 コマンドパレットを開いて “ssh” で検索し、“Romote-SSH: Connect to host…” を選択して接続先を選ぶだけ。\nWSL で使う場合すでに Remote で使っている扱いになるからか SSH できない…?\n\nこれは Windows 側のホームを参照してコマンドプロンプトから ssh しようとするかららしい。\n解決策を調べてみると鍵を Windows ホームに置くとか出るけどほんとにそれでええんか？\nWSL で動かしてるときは WSL のホームを参照する、みたいな設定できないだろうか。\n\nこれは偉大な先人たちが試しているけどどうも settings.json の設定では無理らしい。\nwindows 側に .bat おいて wsl の ssh 使わせれば行けるらしいがそこまでするのは気が引ける。\n\nということで WSL のホームにある ~/.ssh/ を Windows 側のホームにコピーしてしのぐ。",
+    "crumbs": [
+      "Command Line Tools",
+      "Visual Studio Code"
+    ]
+  },
+  {
+    "objectID": "cli/vscode.html#quarto",
+    "href": "cli/vscode.html#quarto",
+    "title": "Visual Studio Code",
+    "section": "Quarto",
+    "text": "Quarto\nhttps://quarto.org/docs/tools/vscode.html\n\n準備\n\nVSCode に Quarto の拡張機能をインストールする。\nQuarto CLI をマシンにインストールする。\n## Macならhomebrewで\nbrew install --cask quarto\n\n## WSLは.debを落としてくるのが正攻法？\nsudo curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb\n# sudo apt-get install gdebi-core  # if needed\nsudo gdebi quarto-linux-amd64.deb\n\n\n\nRender\n右上の Render ボタンから。 もしくは Control/CommandShiftK。",
+    "crumbs": [
+      "Command Line Tools",
+      "Visual Studio Code"
+    ]
+  },
+  {
+    "objectID": "cli/vscode.html#r",
+    "href": "cli/vscode.html#r",
+    "title": "Visual Studio Code",
+    "section": "R",
+    "text": "R\n\nRに languageserver を入れる。\ninstall.packages(\"languageserver\")\nVSCode に R の拡張機能を入れる。\n環境設定ファイルに追記:\n\n\nsettings.json\n\n{\n  \"r.sessionWatcher\": true\n}\n\n\n\nkeybindings.json\n\n# ctrl+enterでコマンドをターミナルに送るための設定\n[\n  {\n    \"key\": \"ctrl+enter\",\n    \"command\": \"workbench.action.terminal.runSelectedText\",\n    \"when\": \"editorTextFocus\"\n  }\n]\n\nコマンドパレットを開いて “R: Create R terminal”",
+    "crumbs": [
+      "Command Line Tools",
+      "Visual Studio Code"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "About",
+    "section": "",
+    "text": "ビルドフレームワークの移行 (hugo -&gt; quarto) に伴い、 一時的にサイトのコンテンツを非公開にしています。\n\n\n松田 優樹 (MATSUDA Yuki)\n\n東北大学 大学院 生命科学研究科 分子化学生物学専攻 進化ゲノミクス分野 \n\nContacts\n\nyuki.matsuda.m10あっとgmail.com\n\n\nyuki.matsuda.r7あっとdc.tohoku.ac.jp\n\nLinks\n\n  ymat2 \n\n\n  0009-0006-2288-1621",
+    "crumbs": [
+      "HOME"
+    ]
+  },
+  {
+    "objectID": "python/class.html",
+    "href": "python/class.html",
+    "title": "オブジェクト指向とクラス",
+    "section": "",
+    "text": "これはなに？ class の使い方を、オブジェクト指向とは何か、から理解するためのノート。\nhttps://docs.python.org/3/tutorial/classes.html",
+    "crumbs": [
+      "Python",
+      "オブジェクト指向とクラス"
+    ]
+  },
+  {
+    "objectID": "python/class.html#オブジェクト指向とは",
+    "href": "python/class.html#オブジェクト指向とは",
+    "title": "オブジェクト指向とクラス",
+    "section": "オブジェクト指向とは",
+    "text": "オブジェクト指向とは\nオブジェクト指向とはプログラミングやソフトウェア開発における考え方の1つで、 データとその処理の仕方をひとまとまりのモノ (オブジェクト) として扱う方法をいう。\n例えば RPG などにおける「勇者」というオブジェクトには、 「HP」や「MP」といったデータ (属性という) と、 「攻撃する」や「回復する」といった処理 (メソッドという) がひとまとまりとなっている。 同様に「魔法使い」や「魔王」などのオブジェクトにも属性とメソッドがあり、 これらオブジェクトを基準にプログラムを組み立てていく。",
+    "crumbs": [
+      "Python",
+      "オブジェクト指向とクラス"
+    ]
+  },
+  {
+    "objectID": "python/class.html#python-におけるオブジェクト指向プログラミング",
+    "href": "python/class.html#python-におけるオブジェクト指向プログラミング",
+    "title": "オブジェクト指向とクラス",
+    "section": "Python におけるオブジェクト指向プログラミング",
+    "text": "Python におけるオブジェクト指向プログラミング\nPython においては、データ (インスタンス) と、 その処理の仕方 (メソッド) をまとめて記述したもの (オブジェクト) を格納しておく雛形が class である。\nRPG の勇者を例に、シンプルな class を定義していく。\nこの勇者には「atk: 攻撃力」と「hp: 体力」という属性があり、 「powerup: 攻撃力を上げる」と「recover: 回復する」 という処理があるものとする。\n# シンプルな class の例\nclass RpgHero:\n\n  atk = 50 # 攻撃力\n  hp = 100   # 体力\n\n  def powerup(self, i):\n    self.atk = self.atk + i\n\n  def recover(self, j):\n    self.hp = self.hp + j\n\n\n# 作成したクラスを使うためにインスタンス化:\nyoshihiko = RpgHero()\n\n# 最初の状態をprint:\nprint(\"ATK:\", yoshihiko.atk)\nprint(\"HP:\", yoshihiko.hp)\n# &gt;&gt;&gt; ATK: 50\n# &gt;&gt;&gt; HP: 100\n\n# メソッドを呼び出す:\nyoshihiko.powerup(10)   # 攻撃力を上げてみる\nyoshihiko.recover(25)   # 体力も回復させてみる\n\n# 再び確認:\nprint(\"ATK:\", yoshihiko.atk)\nprint(\"HP:\", yoshihiko.hp)\n# &gt;&gt;&gt; ATK: 60\n# &gt;&gt;&gt; HP: 125\nclass RpgHero でクラスを定義し、 atk = 50, hp = 100 で属性を与えている。\nclass で def により関数を定義し (メソッド)、 属性に対する処理を記述する。",
+    "crumbs": [
+      "Python",
+      "オブジェクト指向とクラス"
+    ]
+  },
+  {
+    "objectID": "python/class.html#コンストラクタとは",
+    "href": "python/class.html#コンストラクタとは",
+    "title": "オブジェクト指向とクラス",
+    "section": "コンストラクタとは",
+    "text": "コンストラクタとは\nクラスをインスタンス化した時に最初に呼ばれるメソッドをコンストラクタとよぶ。 データの初期化をするものだと思えばいい。 class 内で __init__() で定義する。\nclass RpgHero:\n\n  def __init__(self):\n    self.atk = 50   # 攻撃力\n    self.hp = 100   # 体力\n\n  def powerup(self, i):\n    self.atk = self.atk + i\n\n  def recover(self, j):\n    self.hp = self.hp + j\n\n\nyoshihiko = RpgHero()\n\nprint(\"ATK:\", yoshihiko.atk)\nprint(\"HP:\", yoshihiko.hp)\n# &gt;&gt;&gt; ATK: 50\n# &gt;&gt;&gt; HP: 100\nインスタンス化のときに値を渡すことでより柔軟に class を利用できる:\nclass RpgHero:\n\n  def __init__(self, atk = 0, hp = 0):  # デフォルト値を持たせておくこともできる\n    self.atk = atk   # 攻撃力\n    self.hp = hp     # 体力\n\n  def powerup(self, i):\n    self.atk = self.atk + i\n\n  def recover(self, j):\n    self.hp = self.hp + j\n\n\nyoshihiko = RpgHero(atk = 50, hp = 100)\ndai = RpgHero(hp = 110)   # daiはHPだけ与えてみる\n\nprint(\"ATK:\", yoshihiko.atk)\nprint(\"HP:\", yoshihiko.hp)\n# &gt;&gt;&gt; ATK: 50\n# &gt;&gt;&gt; HP: 100\n\nprint(\"ATK:\", dai.atk)\nprint(\"HP:\", dai.hp)\n# &gt;&gt;&gt; ATK: 0\n# &gt;&gt;&gt; HP: 110",
+    "crumbs": [
+      "Python",
+      "オブジェクト指向とクラス"
+    ]
+  },
+  {
+    "objectID": "python/class.html#クラスの継承",
+    "href": "python/class.html#クラスの継承",
+    "title": "オブジェクト指向とクラス",
+    "section": "クラスの継承",
+    "text": "クラスの継承\n一般的な場合の処理を記述したクラスを引き継いで、より特殊な場合のデータと処理を記述することをクラスの継承という。\n例えば勇者がレベルアップした「マスター」というオブジェクトがあるとする。 このマスターには、もともと勇者が持っていた属性と処理に加えて、 「mp: 魔法力」という属性と「enhance: 魔法力の分だけ攻撃力を上げる」という処理が加わるとする。\n継承先のクラス内では、super()を使うことで継承元のメソッドを呼び出すことができる。\nclass RpgHero:\n\n  def __init__(self):\n    self.atk = 50   # 攻撃力\n    self.hp = 100   # 体力\n\n  def powerup(self, i):\n    self.atk = self.atk + i\n\n  def recover(self, j):\n    self.hp = self.hp + j\n\n# 「勇者」クラスを継承する「マスター」のクラス\nclass RpgMaster(RpgHero):\n\n  def __init__(self, atk=0, hp=0, mp = 0):\n    super().__init__(atk, hp)\n    self.mp = mp\n\n  def enhance(self):\n    super().powerup(self.mp)\n\n\nyoshihiko = RpgMaster(atk = 50, hp = 100, mp = 20)\nyoshihiko.enhance()\n\nprint(\"ATK:\", yoshihiko.atk)\n# &gt;&gt;&gt; ATK: 70",
+    "crumbs": [
+      "Python",
+      "オブジェクト指向とクラス"
+    ]
+  },
+  {
+    "objectID": "python/install.html",
+    "href": "python/install.html",
+    "title": "Python 環境構築",
+    "section": "",
+    "text": "Pythonを使うための環境構築に関するメモ。 基本的にはPython 環境構築ガイドの写経。",
+    "crumbs": [
+      "Python",
+      "Python 環境構築"
+    ]
+  },
+  {
+    "objectID": "python/install.html#ガイドライン",
+    "href": "python/install.html#ガイドライン",
+    "title": "Python 環境構築",
+    "section": "ガイドライン",
+    "text": "ガイドライン\n\nPythonをインストールする前に検討\n\nGoogle Colab で事足りない？\nPython の入手元として、公式版と Anaconda 経由が存在。目的に応じて選択する。\nPyenv は必要？(特に初学者向けには非推奨)\n\n\nAnaconda はデータサイエンスや科学技術計算のためのさまざまなツールやライブラリの実行環境。 パッケージ管理も仮想環境も全部担う。\n\n\n\nPython と Anaconda\nPython パッケージをどう利用するか。\n\npip を使って The Python Package Index(PyPI) から取得する。\nconda を使って Anaconda から取得する。\n\nPyPI と Anaconda の併用は困難。 特に同じパッケージを pip と conda の両方で入れるのは避けたほうがいいらしい。 プログラミング入門の場合は PyPI、データサイエンス・科学技術計算には Anaconda。",
+    "crumbs": [
+      "Python",
+      "Python 環境構築"
+    ]
+  },
+  {
+    "objectID": "python/install.html#python-のインストール",
+    "href": "python/install.html#python-のインストール",
+    "title": "Python 環境構築",
+    "section": "Python のインストール",
+    "text": "Python のインストール\n\nMacOS\nMacOS 用のインストーラか、 Homebrew を使う。\n# Homebrew による python インストール\n# Homebrew 自体のインストールは割愛\n\nberw install python3\n\n# 複数バージョンのインストール\nbrew install python@3.7  # バージョンを指定してインストール\nln -s /usr/local/opt/python@3.7/bin/python3.7 /usr/local/bin/python3.7  # /usr/local/bin/ にシンボリックリンク\n\n\nUbuntu\nsudo apt update\nsudo apt install build-essential libbz2-dev libdb-dev \\\n  libreadline-dev libffi-dev libgdbm-dev liblzma-dev \\\n  libncursesw5-dev libsqlite3-dev libssl-dev \\\n  zlib1g-dev uuid-dev tk-dev\nダウンロードページからソースコードをダウンロードして解凍、ビルド:\ntar xJf Python-3.x.y.tar.xz\ncd Python-3.x.y\n./configure\nmake\nsudo make install\nデフォルトでは usr/local/bin にインストールされる。\n\nUbuntuの pip\nsudo apt install python3-pip\nOS標準のPython環境のパッケージ管理は pip ではなく apt を介して行うのが安全。 apt との衝突を避けるためか、Ubuntu標準の pip は sudo なしで実行すると --user つきで実行された扱いになってパッケージは ~/.local/ にインストールされる。\n\n\n\npyenv によるインストール\npyenv は複数バージョンの Python を切り替えながら利用するためのツール。 Python x.y.z のマイナーバージョンまで切り替えて使えるが、そこまで必要か？という説もある。\n\n必要に応じてビルド環境の用意\npyenv のインストール:\ngit clone https://github.com/pyenv/pyenv.git ~/.pyenv\n# or\nbrew install pyenv\n環境設定:\n~/.bash_profile など\nexport PYENV_ROOT=\"$HOME/.pyenv\"\nexport PATH=\"$PYENV_ROOT/bin:$PATH\"\neval \"$(pyenv init -)\"\nバージョンを探してインストール:\npyenv install --list\npyenv install 3.11.3\nバージョンを切り替える:\npyenv global 3.11.3  # システム全体で切り替え\npyenv local 3.11.3   # 実行したディレクトリのみで切り替え",
+    "crumbs": [
+      "Python",
+      "Python 環境構築"
+    ]
+  },
+  {
+    "objectID": "python/install.html#pyenv",
+    "href": "python/install.html#pyenv",
+    "title": "Python 環境構築",
+    "section": "Pyenv",
+    "text": "Pyenv\nhttps://github.com/pyenv/pyenv\nPython のバージョン管理ツール。 python3.x.y, python2.x.y などのバージョンごとのインストール、管理のほか、 conda 環境も Pyenv 越しに用意することができる。\n\nよく使うコマンド\n\npyenv --version\n\npyenv 自体のバージョンを確認\n\npyenv version\n\nいま指定されている Python のバージョンを表示する。\n\npyenv versions\n\n利用可能な Python のバージョン一覧を表示する。(c.f. $PYENV_ROOT/versions/*)\n\n\nいま指定されているバージョンには * がついている。\n\npyenv install -l/--list\n\nインストール可能なすべてのバージョンを表示する。\n\n\ngrep で絞ったり。(e.g. pyenv install -l | grep \"miniconda\")\n\npyenv install &lt;version&gt;\n\n指定したバージョンをインストールする。\n\npyenv rehash\n\n新規インストール時に必要な処理らしい。shims をなんとかする。ドキュメントなし。\n\npyenv uninstall &lt;version&gt;\n\n指定したバージョンをアンインストールする。\n\npyenv global &lt;version&gt;\n\nグローバルな python のバージョンを指定する。\n\n\npyenv global 3.7.0 2.7.15 のように python2 と python3 をそれぞれ指定することもできる。\n\npyenv local &lt;version&gt;\n\nローカルなプロジェクトで使う python のバージョンを指定する。\n\n\n解除する時は pyenv local --unset",
+    "crumbs": [
+      "Python",
+      "Python 環境構築"
+    ]
+  },
+  {
+    "objectID": "python/install.html#pip",
+    "href": "python/install.html#pip",
+    "title": "Python 環境構築",
+    "section": "pip",
+    "text": "pip\nPyPI(The Python Package Index) に公開されている Python パッケージを管理するコマンド。\npython3 -m pip など、バージョンや現在使っている環境を明示した使い方が 推奨されている。\n\nよく使うコマンド\n\npip3 install &lt;package&gt;\n\nパッケージのインストール\n\npip3 uninstall &lt;package&gt;\n\nパッケージのアンインストール\n\npip3 list\n\nインストール済みパッケージの表示\n\n\noutdated なパッケージをまとめて更新:\npip3 list -o | tail -n +3 | awk '{ print $1 }' | xargs pip3 install -U",
+    "crumbs": [
+      "Python",
+      "Python 環境構築"
+    ]
+  },
+  {
+    "objectID": "python/install.html#venv",
+    "href": "python/install.html#venv",
+    "title": "Python 環境構築",
+    "section": "venv",
+    "text": "venv\nプロジェクトごとに専用の Python 実行環境を作成する。\n\nプロジェクトを作成する:\nmkdir proj\ncd proj\n仮想環境を作成する:\npython3 -m venv .venv\n仮想環境へ切り替える:\nsource .venv/bin/activate\n# or\n. .venv/bin/activate\n(.venv) $\nターミナル先頭に (.venv) と表示され、仮想環境での実行状態になる。\n(.venv) $ deactivate  # 仮想環境の終了\nパッケージのインストール:\n仮想環境中でインストールしたパッケージはその環境内でのみ使用できる。 requirements.txt を使った環境のコピーも可能。\npython3 -m pip install pandas\npython3 -m pip freeze &gt; requirements.txt     # パッケージ一覧を書き出し\npython3 -m pip install -r requirements.txt   # まとめてインストール\n仮想環境でのパッケージのインストール先は .venv/lib/python3.11/site-packages/ になる。 バイナリ実行ファイルは .venv/bin/ にあり、python3, pip もここに PATH が通る。",
+    "crumbs": [
+      "Python",
+      "Python 環境構築"
+    ]
+  },
+  {
+    "objectID": "python/python-tips.html",
+    "href": "python/python-tips.html",
+    "title": "Python 小技メモ",
+    "section": "",
+    "text": "Python コードで以下のように main() という関数を定義してその中に処理を書き、最後に実行する書き方。 回りくどく見えるがいくつかメリットがある。\n\n処理全体の流れを把握しやすい。\n関数の定義を後ろに書ける。\n意図しない変数の衝突を回避する。\n\ndef main():\n    # 何らかの処理\n\nif __name__ == \"__main__\":\n    main()\n\n\nif __name__ == \"__main__\": の記述は、 このスクリプト自体が Python スクリプトとして実行された場合 (python3 hoge.py という形で実行された場合) に以降の処理を実行することを意味している。\n例えば、モジュールとしてほかのスクリプトから読み込まれた場合は 勝手に実行されると困るのでそれを防いでいる。",
+    "crumbs": [
+      "Python",
+      "Python 小技メモ"
+    ]
+  },
+  {
+    "objectID": "python/python-tips.html#main-関数",
+    "href": "python/python-tips.html#main-関数",
+    "title": "Python 小技メモ",
+    "section": "",
+    "text": "Python コードで以下のように main() という関数を定義してその中に処理を書き、最後に実行する書き方。 回りくどく見えるがいくつかメリットがある。\n\n処理全体の流れを把握しやすい。\n関数の定義を後ろに書ける。\n意図しない変数の衝突を回避する。\n\ndef main():\n    # 何らかの処理\n\nif __name__ == \"__main__\":\n    main()\n\n\nif __name__ == \"__main__\": の記述は、 このスクリプト自体が Python スクリプトとして実行された場合 (python3 hoge.py という形で実行された場合) に以降の処理を実行することを意味している。\n例えば、モジュールとしてほかのスクリプトから読み込まれた場合は 勝手に実行されると困るのでそれを防いでいる。",
+    "crumbs": [
+      "Python",
+      "Python 小技メモ"
+    ]
+  },
+  {
+    "objectID": "python/python-tips.html#不定個の引数をとる関数の定義",
+    "href": "python/python-tips.html#不定個の引数をとる関数の定義",
+    "title": "Python 小技メモ",
+    "section": "不定個の引数をとる関数の定義",
+    "text": "不定個の引数をとる関数の定義\n引数に * や ** をつける。 1つだとタプル、2つだと辞書に格納される。 慣例的に *args, **kwargs が使われている。\ndef sum_some_numbers(*args):\n  return sum(args)\n\nprint(sum_some_numbers(1,2,3,4))\n# 10\ndef en2ja(**kwargs):\n  for k,v in kwargs.items():\n    print(k, \"means\", v)\n\nen2ja(cat=\"neko\", dog=\"inu\", mouse=\"nezumi\")\n# cat means neko\n# dog means inu\n# mouse means nezumi",
+    "crumbs": [
+      "Python",
+      "Python 小技メモ"
+    ]
+  },
+  {
+    "objectID": "python/python-tips.html#いつも忘れるlistのソート",
+    "href": "python/python-tips.html#いつも忘れるlistのソート",
+    "title": "Python 小技メモ",
+    "section": "いつも忘れるlistのソート",
+    "text": "いつも忘れるlistのソート\n\nsort() はメソッド、破壊的\nsorted() は関数、非破壊的\n\nsort() は元のリストそのものを並び替える:\n&gt;&gt;&gt; l = [3, 4, 1, 5, 2]\n&gt;&gt;&gt; l.sort(reversed = False)\n&gt;&gt;&gt; l\n[1, 2, 3, 4, 5]\nsorted() は元のリストはそのままで、要素を並び替えた新しいリストを返す:\n&gt;&gt;&gt; l = [3, 4, 1, 5, 2]\n&gt;&gt;&gt; ll = sorted(l, reverse = False)\n&gt;&gt;&gt; ll\n[1, 2, 3, 4, 5]\n&gt;&gt;&gt; l\n[3, 4, 1, 5, 2]\n\n文字数や絶対値でソート\n&gt;&gt;&gt; l = [\"ccc\", \"c\", \"cc\"]\n&gt;&gt;&gt; l.sort(key = len)\n&gt;&gt;&gt; l\n['c', 'cc', 'ccc']\n\n&gt;&gt;&gt; l = [3, -4, 1, 5, -2]\n&gt;&gt;&gt; sorted(l)\n[-4, -2, 1, 3, 5]\n&gt;&gt;&gt; sorted(l, key =　abs)\n[1, -2, 3, -4, 5]",
+    "crumbs": [
+      "Python",
+      "Python 小技メモ"
+    ]
+  },
+  {
+    "objectID": "python/python-tips.html#辞書型-keyerror-への対処",
+    "href": "python/python-tips.html#辞書型-keyerror-への対処",
+    "title": "Python 小技メモ",
+    "section": "辞書型 — KeyError への対処",
+    "text": "辞書型 — KeyError への対処\n通常、辞書型で存在しないキーを検索するとエラーが返ってくる:\n&gt;&gt;&gt; dict = {\"one\":1, \"two\":2, \"three\":3}\n&gt;&gt;&gt; print(dict[\"four\"])\nKeyError: 'four'\n辞書型を使っていると、存在しないキーを指定した時も柔軟にやってほしいと思うことがよくある。 そこで get() メソッド:\n&gt;&gt;&gt; dict = {\"one\":1, \"two\":2, \"three\":3}\n&gt;&gt;&gt; print(dict.get(\"four\"))\nNone\ndict.get(key) で存在しないキーを引数にすると None が返ってくる。 さらに偉いのは、返ってくる値を第二引数に指定できる。\n&gt;&gt;&gt; dict = {\"one\":1, \"two\":2, \"three\":3}\n&gt;&gt;&gt; print(dict.get(\"four\", \"No such a key\"))\nNo such a key",
+    "crumbs": [
+      "Python",
+      "Python 小技メモ"
+    ]
+  },
+  {
+    "objectID": "python/python-tips.html#pdf2pptx-pdf-から-powerpoint-スライドへの簡易変換",
+    "href": "python/python-tips.html#pdf2pptx-pdf-から-powerpoint-スライドへの簡易変換",
+    "title": "Python 小技メモ",
+    "section": "pdf2pptx — PDF から PowerPoint スライドへの簡易変換",
+    "text": "pdf2pptx — PDF から PowerPoint スライドへの簡易変換\nPDF をページごとにパワーポイントのスライドに貼り付けて使いたい、という単純な操作が、 既存の方法だとページごとにスクショして貼る、という原始的な方法くらいしかなかった。\npdf2pptx は pdf2pptx input という単純なコマンドで PDF の各ページを PNG イメージとしてパワポに貼り付ける。\npython3 -m pip install pdf2pptx\npdf2pptx --help\npdf2pptx hoge.pdf\n\n-o, --output\n\n出力ファイルの指定。デフォルトは入力ファイルの拡張子 .pptx 。\n\n-r, --resolution\n\n1inch あたりのドット数で解像度を指定。 デフォルトは300だが150とかでも十分可読でファイルサイズも抑えられる。\n\n-q, --quiet\n\nログの非表示\n\n--from\n\nPDF の何ページ目からパワポに変換するか。\n\n--count\n\nPDF の何ページ分パワポに変換するか。",
+    "crumbs": [
+      "Python",
+      "Python 小技メモ"
+    ]
+  },
+  {
+    "objectID": "site/hugo.html",
+    "href": "site/hugo.html",
+    "title": "HUGO — Go 製静的サイトジェネレータ",
+    "section": "",
+    "text": "https://gohugo.io/about/\nマークダウンで書いたファイルから HTML を生成し、静的ウェブサイトを構築するフレームワーク。 本サイトも以前は HUGO でビルドしていた。 (現在は Quarto に移行)",
+    "crumbs": [
+      "Web Development",
+      "HUGO"
+    ]
+  },
+  {
+    "objectID": "site/hugo.html#インストール",
+    "href": "site/hugo.html#インストール",
+    "title": "HUGO — Go 製静的サイトジェネレータ",
+    "section": "インストール",
+    "text": "インストール\nMac なら homebrew、Ubuntu なら apt で一発:\n## homebrew\nbrew install hugo\n\n## apt\nsudo apt install hugo",
+    "crumbs": [
+      "Web Development",
+      "HUGO"
+    ]
+  },
+  {
+    "objectID": "site/hugo.html#quick-start",
+    "href": "site/hugo.html#quick-start",
+    "title": "HUGO — Go 製静的サイトジェネレータ",
+    "section": "Quick Start",
+    "text": "Quick Start\n\nサイトの骨組みを作る。\nmkdir path_to_site\ncd path_to_site\nhugo new site .\n生成される content/ ディレクトリの中に記事を書いていく。\nhugo new content/about.md\n\n\nabout.md\n\n---\ntitle: \"デモページ\"\ndate: 2022-11-03T22:09:12+09:00\n---\n\nこれは**テストページ**です。\n\nサーバーを走らせて http://localhost:1313/about にアクセス。\nhugo server -D -w .",
+    "crumbs": [
+      "Web Development",
+      "HUGO"
+    ]
+  },
+  {
+    "objectID": "site/hugo.html#commands",
+    "href": "site/hugo.html#commands",
+    "title": "HUGO — Go 製静的サイトジェネレータ",
+    "section": "Commands",
+    "text": "Commands\n\nhugo new site\nウェブサイトの骨組みを作る。\n\nconfig.toml\n\n設定ファイル\n\n\nversion 0.110.0 以降、config.toml に代わって hugo.toml というファイル名が推奨されている。\n\ncontent/\n\nこの中にマークダウンでページを書いていく。\n\npublic/\n\n後述の hugo コマンドを走らせたときに html ファイルがこの中に生成される。\n\nstatic/\n\n画像、css、javascript などの置き場。\n\nthemes/\n\nサイトの見た目を決めるテーマを入れる。 https://themes.gohugo.io/ から好きなテーマを選んで git clone する。\n\n\n自分で作ってもいい。(c.f. https://github.com/ymat2/hugo-theme-mindoc)\n\n\n\n\nhugo new\n新しいページを作る。 archetype/ や theme/、layout/ 内の default.md からヘッダーが生成される。\n---\ntitle: \"{{ replace .Name \"-\" \" \" | title }}\"\ndate: {{ .Date }}\ndraft: true\n---\n\n\nhugo server\nサイトをビルドしてサーバーを起動する。 http://localhost:1313 で閲覧できる。\n\n-D\n\ndraft: true のファイルも含めて公開\n\n-w\n\nファイルの変更をすぐに反映する。\n\n-p 1234\n\nポート番号の指定。デフォルトは1313。\n\n\n\n\nhugo\npublic/ に html を生成する。 Github Pages でホストする場合、この中身を公開する。",
+    "crumbs": [
+      "Web Development",
+      "HUGO"
+    ]
+  },
+  {
+    "objectID": "site/hugo.html#github-actions-による自動デプロイ",
+    "href": "site/hugo.html#github-actions-による自動デプロイ",
+    "title": "HUGO — Go 製静的サイトジェネレータ",
+    "section": "Github Actions による自動デプロイ",
+    "text": "Github Actions による自動デプロイ\n\n参考: https://sat8bit.github.io/posts/hugo-with-github-pages/\nHugo 公式: https://gohugo.io/hosting-and-deployment/hosting-on-github/\nGithub Pages: &gt;https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages&gt;\n\n\nGithub で ユーザ名.github.io という名のリポジトリを作成\nローカルにサイトを構築して git init:\nhugo new site &lt;username&gt;.github.io && cd &lt;username&gt;.github.io\ngit init\ngit commit -m \"Create site\"\ngit remote add origin https://github.com/&lt;username&gt;/&lt;username&gt;.github.io.git\ngit branch -M main\ngit push -u origin main\ncontents/ にページを作成:\nhugo new contents/index.md\necho \"hello, world!\" &gt; contents/index.md\nActions の設定\ngit push をトリガーに、自動でビルドコマンドを走らせて gh-pages ブランチにページを生成するように Actions を設定する。\n.github/workflows/gh-pages.yml に以下のように記述する。\n\n\n.github/workflows/gh-pages.yml\n\nname: GitHub Pages\n\non:\n    push:\n        branches:\n            - main  # Set a branch name to trigger deployment\n    pull_request:\n\njobs:\n    deploy:\n        runs-on: ubuntu-22.04\n        steps:\n            - uses: actions/checkout@v3\n                with:\n                    submodules: true  # Fetch Hugo themes (true OR recursive)\n                    fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod\n\n            - name: Setup Hugo\n                uses: peaceiris/actions-hugo@v2\n                with:\n                    hugo-version: 'latest'\n\n            - name: Build\n                run: hugo\n\n            - name: Deploy\n                uses: peaceiris/actions-gh-pages@v3\n                # If you're changing the branch from main,\n                # also change the `main` in `refs/heads/main`\n                # below accordingly.\n                if: ${{ github.ref == 'refs/heads/main' }}\n                with:\n                    github_token: ${{ secrets.GITHUB_TOKEN }}\n                    publish_dir: ./public",
+    "crumbs": [
+      "Web Development",
+      "HUGO"
+    ]
+  },
+  {
+    "objectID": "site/quarto.html",
+    "href": "site/quarto.html",
+    "title": "Quarto — 書類・スライド作成からウェブサイト構築まで",
+    "section": "",
+    "text": "https://quarto.org/\nマークダウンで書いた記事を HTML、PDF、MS Word などへ変換し、 ウェブサイトや書籍として公開するまでを一手に担うフレームワーク。\nコードチャンクで R、Python、Julia を実行でき、 研究ノートなどにも有用。 Jupyter, RStudio, VSCode などのエディタと連携してより快適に利用できる。\n類似フレームワークの HUGO と比べてもはるかに高機能でラクに使えるが、 その分細かいところをいじろうとするとむしろ面倒くさかったり、 単純にマークダウンの変換が遅かったりするので、その辺りは HUGO に軍配があがる。\nドキュメントがこれでもかというほど 丁寧に書かれているので、基本的にここを見ればなんでもできる。\nここでは、「細かいことは後回しにしてひとまずメモやスライドをウェブサイトとして公開できる形にする」 までの方法を紹介する。",
+    "crumbs": [
+      "Web Development",
+      "Quarto"
+    ]
+  },
+  {
+    "objectID": "site/quarto.html#インストール",
+    "href": "site/quarto.html#インストール",
+    "title": "Quarto — 書類・スライド作成からウェブサイト構築まで",
+    "section": "インストール",
+    "text": "インストール\nhttps://quarto.org/docs/get-started/\n上のページから Quarto CLI をダウンロードする。 RStudio でつかうときは既に同梱されているので不要。\nコマンドラインからやってももちろん OK:\n## Macならhomebrewで\nbrew install --cask quarto\n\n## WSL/Linuxは.debを落としてくるのが正攻法？\nsudo curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb\n# sudo apt-get install gdebi-core  # if needed\nsudo gdebi quarto-linux-amd64.deb\nJupyter, RStudio, VSCode など好きなエディタで作業する。 VSCode で使う時はQuarto拡張機能を入れておく。",
+    "crumbs": [
+      "Web Development",
+      "Quarto"
+    ]
+  },
+  {
+    "objectID": "site/quarto.html#まずは骨格をつくる",
+    "href": "site/quarto.html#まずは骨格をつくる",
+    "title": "Quarto — 書類・スライド作成からウェブサイト構築まで",
+    "section": "まずは骨格をつくる",
+    "text": "まずは骨格をつくる\nhttps://quarto.org/docs/websites/\n_quarto.yml という名前の config ファイルでほとんどを管理する。 WEBサイト用のディレクトリを作って _quarto.yml を用意:\nmkdir my-website\ncd my-website\ntouch _quarto.yml\nエディタによってはQuartoのプロジェクトを作るボタンでこの辺の骨組みを自動で作ってくれる。\n_quarto.yml はとりあえず以下のように記述:\n\n\n_quarto.yml\n\nproject:\n  type: website\n\nwebsite:\n  title: \"My Website\"\n\nformat:\n  html:\n    theme: cosmo\n\n続いて index.qmd というファイルを作ってマークダウンで内容を書いてみる:\ntouch index.qmd\n\n\nindex.qmd\n\n---\ntitle: \"This is my website\"\nformat: html\n---\n\nHello, world.\n\nMy *name* is **Yuki** ***Matsuda***.\n\nI like\n\n- Sushi\n- Ra-men\n- Coffee\n\n--- で囲まれた部分にはタイトル、著者、フォーマットなどのメタデータを記述する。 より詳しくはドキュメントを参照。\nここまでできたら作ったファイルを HTML に変換して閲覧してみる:\nquarto preview\n# もしくは\nquarto render\n# もしくは\n# 各エディタの \"Preview\" や \"Render\" のボタン\n\nquarto preview\n\nlocalhost が立ち上がるので、ブラウザで閲覧\n\nquarto render\n\n(デフォルトでは) _site/ というディレクトリが作られてその中に index.html ができる。 ダブルクリックして見てみる。",
+    "crumbs": [
+      "Web Development",
+      "Quarto"
+    ]
+  },
+  {
+    "objectID": "site/quarto.html#適当にカスタムしてみる",
+    "href": "site/quarto.html#適当にカスタムしてみる",
+    "title": "Quarto — 書類・スライド作成からウェブサイト構築まで",
+    "section": "適当にカスタムしてみる",
+    "text": "適当にカスタムしてみる\n_quarto.yml や 各 .qmd のヘッダーでいろいろカスタムできる。 例えば:\n\n\n_quarto.yml\n\nproject:\n  type: website\n  output-dir: docs  # HTMLの出力先を指定\n\nwebsite:\n  title: \"My Website\"\n\nformat:\n  html:\n    theme: darkly   # ダークテーマにしてみる\n\n\noutput-dir\n\n例えば GitHub Pages を使うなら docs という名前が便利だったりする。\n\n\nrender 時になくても勝手に作られる。\n\ntheme\n\nサイトの見た目がいくつか選べる。詳しくはここから。\n\n\nCSS や SCSS を書いて自分でカスタマイズすることもできる。 例えば: https://github.com/ymat2/slides/blob/main/static/",
+    "crumbs": [
+      "Web Development",
+      "Quarto"
+    ]
+  },
+  {
+    "objectID": "site/quarto.html#サブディレクトリを作ってサイドバーに反映させる",
+    "href": "site/quarto.html#サブディレクトリを作ってサイドバーに反映させる",
+    "title": "Quarto — 書類・スライド作成からウェブサイト構築まで",
+    "section": "サブディレクトリを作ってサイドバーに反映させる",
+    "text": "サブディレクトリを作ってサイドバーに反映させる\nhttps://quarto.org/docs/websites/website-navigation.html\nページが増えてくると、セクションごとにディレクトリを分けておきたい。 それぞれのページにサイドバーのドロップダウンからアクセスする、みたいなことも簡単にできる。\nまずはディレクトリを分けていくつかページを作る。例えば:\nmy-website/\n├── _quarto.yml\n├── index.qmd\n├── dir1/\n│   ├── page1.qmd\n│   └── page2.qmd\n└── dir2/\n    ├── page3.qmd\n    └── page4.qmd\n次に、_quarto.yml に sidebar の設定をする:\n\n\n_quarto.yml\n\nproject:\n  type: website\n  output-dir: docs  # HTMLの出力先を指定\n\nwebsite:\n  title: \"My Website\"\n  sidebar:\n    contents: auto  # 細かく指定もできるけどとりあえず任せる\n\nformat:\n  html:\n    theme: cosmo\n\n改めて quarto render して docs/index.html を見てみると、 ページの横にサイドバーが表示されて各ページにアクセスできる。",
+    "crumbs": [
+      "Web Development",
+      "Quarto"
+    ]
+  },
+  {
+    "objectID": "site/quarto.html#スライドも作ってみる",
+    "href": "site/quarto.html#スライドも作ってみる",
+    "title": "Quarto — 書類・スライド作成からウェブサイト構築まで",
+    "section": "スライドも作ってみる",
+    "text": "スライドも作ってみる\nhttps://quarto.org/docs/presentations/revealjs/\nquartoでは、revealjs という JavaScript のフレームワークを使って HTML をスライドっぽく表示する。\n_quarto.yml にスライド用の設定を追記:\n\n\n_quarto.yml\n\nproject:\n  type: website\n  output-dir: docs  # HTMLの出力先を指定\n\nwebsite:\n  title: \"My Website\"\n  sidebar:\n    contents: auto  # 細かく指定もできるけどとりあえず任せる\n\nformat:\n  html:\n    theme: cosmo\n  revealjs:\n    theme: default\n    scrollable: true\n    history: false\n\n\ntheme\n\nHTML 同様にいくつかテーマが用意されている。\n\n\nもちろん自分で CSS を書いてカスタム可能\n\nscrollable\n\n縦に長いスライドをスクロールして閲覧できるように。\n\nhistory\n\nデフォルトの true だとブラウザバックでスライド単位の移動になって不快。\n\n\nスライド用のディレクトリを作ってファイルを作ってみる:\nmy-website/\n├── _quarto.yml\n├── index.qmd\n├── dir1/\n│   ├── page1.qmd\n│   └── page2.qmd\n├── dir2/\n│   ├── page3.qmd\n│   └── page4.qmd\n└── slides/\n    └── sample-slide.qmd\nsample-slide.qmd:\n\n\nsample-slide.qmd\n\n---\ntitle: \"サンプルスライド\"\nformat: revealjs\n---\n\n## ここにタイトル\n\nスライドでは、`##` で書く `&lt;h2&gt;` タグごとに1ページになる。\n\n## これは次のスライド\n\n基本的な\n\n- マークダウンの\n- **記法**は\n- 同じ。\n\n詳しくは[デモスライド](https://quarto.org/docs/presentations/revealjs/demo/#/title-slide)や\nその[ソースコード](https://github.com/quarto-dev/quarto-web/blob/main/docs/presentations/revealjs/demo/index.qmd)を\n見てみる。\n\nもう一度 quarto render してスライドを見てみる。",
+    "crumbs": [
+      "Web Development",
+      "Quarto"
+    ]
+  },
+  {
+    "objectID": "site/quarto.html#公開する",
+    "href": "site/quarto.html#公開する",
+    "title": "Quarto — 書類・スライド作成からウェブサイト構築まで",
+    "section": "公開する",
+    "text": "公開する\nhttps://quarto.org/docs/publishing/\nデプロイ先に合わせる。 手元で閲覧する分には index.html を開けばよい。\n例えば GitHub Pages にホストさせる場合、 my-website をリポジトリとして push して docs の中身を公開する設定をすればよい。",
+    "crumbs": [
+      "Web Development",
+      "Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#今日やること",
+    "href": "slides/git-circle/git-vol2.html#今日やること",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "今日やること",
+    "text": "今日やること\n\n前回の復習\ngit status と git log に慣れる\nリモートリポジトリの変更を手元に反映させる\nあえて競合を起こしてそれを解決してみる（時間があれば）\n\n\n参考\n\n過去の牧野研での git 講習資料\n\n\ngit 公式リファレンス\n\n\nkaito256さん: Github演習"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#前回やったこと",
+    "href": "slides/git-circle/git-vol2.html#前回やったこと",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "前回やったこと",
+    "text": "前回やったこと\n\ngit  をインストールする。\nGithub  に個人アカウントをつくる。\nGitの初期設定をする: ~/.gitconfig\nSSHの設定をする: ~/.ssh/"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#前回の復習-手元のプロジェクトをgitで管理する",
+    "href": "slides/git-circle/git-vol2.html#前回の復習-手元のプロジェクトをgitで管理する",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "前回の復習: 手元のプロジェクトをGitで管理する",
+    "text": "前回の復習: 手元のプロジェクトをGitで管理する\n\n適当なディレクトリを作ってテキストファイル README.md を新規作成する:\nmkdir new_project && cd new_project\necho Hello, world! &gt; README.md\nローカルリポジトリをつくる:\ngit init\nローカルリポジトリに README.md をコミットする。\n最初は git status や git log で頻繁に確認すると安心。\ngit status\ngit add README.md  # README.mdをindexに登録\ngit status\ngit commit -m \"Create README.md\" # コミットメッセージを添えてコミット\ngit status\ngit log"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#前回の復習-手元のプロジェクトをgithubで管理する",
+    "href": "slides/git-circle/git-vol2.html#前回の復習-手元のプロジェクトをgithubで管理する",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "前回の復習: 手元のプロジェクトをGithubで管理する",
+    "text": "前回の復習: 手元のプロジェクトをGithubで管理する\n\nGitHubアカウントページの右上の “+” から “New repository” を選択する。\n適当なリポジトリ名（基本は手元と同じ）をつけて “Create repository” を押す。\n手順が表示されるので基本的にそれに従う:\ngit remote add origin https://github.com/USER_NAME/new_project.git  # リモートリポジトリを紐づける\ngit remote -v               # ちゃんと紐づいたか確認\n# git branch -M main        # ブランチの名前をmainに\ngit push -u origin main     # リモートにpush\ngit status\n “Private” リポジトリの場合、SSHで紐付けしないと下り( fetch, pull )でもパスワードを聞かれる。\nリポジトリのページを更新して README.md が見えるか確認する。"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#前回の復習-既存のリポジトリを手元に落としてくる",
+    "href": "slides/git-circle/git-vol2.html#前回の復習-既存のリポジトリを手元に落としてくる",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "前回の復習: 既存のリポジトリを手元に落としてくる",
+    "text": "前回の復習: 既存のリポジトリを手元に落としてくる\n\nGitHub上の適当なリポジトリをひとつ選ぶ。 (e.g., https://github.com/ymat2/practice_git)\n右の方の &lt;&gt;Code▼ ボタンを押す。\nSSHではなくHTTPSを選択し、URLをコピー。\ngit clone https://github.com/ymat2/practice-git.git\n中身を眺めてみる:\ncd practice-git\nls -al\ngit log\n\n\n\nclone はどんな時に使う?\n\n他人の作ったソフトウェアをインストールして使うとき\n\n\n新しいPCで最初に作業を始めるとき\n\n\netc."
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#準備運動-git-status-と-git-log-に慣れる",
+    "href": "slides/git-circle/git-vol2.html#準備運動-git-status-と-git-log-に慣れる",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "準備運動:　git status と git log に慣れる",
+    "text": "準備運動:　git status と git log に慣れる\nまずは何もしていない状態で git status & git log\ngit status\n# On branch main\n# Your branch is up to date with 'origin/main'.\n#\n# nothing to commit, working tree clean\n\ngit log --oneline --graph   # 1コミット1行で, グラフィカルに\n# * 36d0617 (HEAD -&gt; main, origin/main) Create README.md\n\norigin\n\nリモートリポジトリのこと。\n\n\norigin/main はリモートリポジトリのmainブランチ。\n\nHEAD\n\nいま見ているブランチ/commitを指す目印。\n\n\n基本的には「手元の最新のcommit」を表す。"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#準備運動-git-status-と-git-log-に慣れる-1",
+    "href": "slides/git-circle/git-vol2.html#準備運動-git-status-と-git-log-に慣れる-1",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "準備運動:　git status と git log に慣れる",
+    "text": "準備運動:　git status と git log に慣れる\nREADME.md をさらに編集してみる:\n# Hello, world!\nThis is a practice of `git`.\n\ngit status すると:\ngit status\n# On branch main\n# Your branch is up to date with 'origin/main'.\n#\n# Changes not staged for commit:\n#   (use \"git add &lt;file&gt;...\" to update what will be committed)\n#   (use \"git restore &lt;file&gt;...\" to discard changes in working directory)\n#   modified:   README.md\n#\n# no changes added to commit (use \"git add\" and/or \"git commit -a\")"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#準備運動-git-status-と-git-log-に慣れる-2",
+    "href": "slides/git-circle/git-vol2.html#準備運動-git-status-と-git-log-に慣れる-2",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "準備運動:　git status と git log に慣れる",
+    "text": "準備運動:　git status と git log に慣れる\nREADME.md をindexに加える:\ngit add README.md\n\nここでも git status :\ngit status\n# On branch main\n# Your branch is up to date with 'origin/main'.\n#\n# Changes to be committed:\n#   (use \"git restore --staged &lt;file&gt;...\" to unstage)\n#   modified:   README.md\n↑ 「間違えて add しちゃった」って時は git restore --staged README.md すればいい。"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#準備運動-git-status-と-git-log-に慣れる-3",
+    "href": "slides/git-circle/git-vol2.html#準備運動-git-status-と-git-log-に慣れる-3",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "準備運動:　git status と git log に慣れる",
+    "text": "準備運動:　git status と git log に慣れる\nREADME.md の変更をコミットする:\ngit commit -m \"Update README.md\"\n# [main 0f1a686] Update README.md\n#  1 file changed, 2 insertions(+), 1 deletion(-)\n\nここで git status & git log:\ngit status\n# On branch main\n# Your branch is ahead of 'origin/main' by 1 commit.\n#   (use \"git push\" to publish your local commits)\n#\n# nothing to commit, working tree clean\n\ngit log --oneline --graph\n# * 0f1a686 (HEAD -&gt; main) Update README.md     &lt;- HEAD(ローカル)はここに移動\n# * 36d0617 (origin/main) Create README.md      &lt;- origin(リモート)はまだここ"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#準備運動-git-status-と-git-log-に慣れる-4",
+    "href": "slides/git-circle/git-vol2.html#準備運動-git-status-と-git-log-に慣れる-4",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "準備運動:　git status と git log に慣れる",
+    "text": "準備運動:　git status と git log に慣れる\n最後に git push:\ngit push\n\ngit log で確認:\ngit log --oneline --graph\n# * 0f1a686 (HEAD -&gt; main, origin/main) Update README.md        &lt;- originも追いついた\n# * 36d0617 Create README.md\n\n「あれ、いまどういう状態だっけ？」\n↓\n常に git status, git log を確認する癖をつける。"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#休憩-質問タイム",
+    "href": "slides/git-circle/git-vol2.html#休憩-質問タイム",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "休憩 & 質問タイム",
+    "text": "休憩 & 質問タイム\n今日やること\n\n前回の復習\ngit status と git log に慣れる\nリモートリポジトリの変更を手元に反映させる\nあえて競合を起こしてそれを解決してみる（時間があれば）"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#リモートリポジトリの変更を手元に反映させる",
+    "href": "slides/git-circle/git-vol2.html#リモートリポジトリの変更を手元に反映させる",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "リモートリポジトリの変更を手元に反映させる",
+    "text": "リモートリポジトリの変更を手元に反映させる\n複数人で同じリポジトリを使う場合や、 個人で複数のマシンを使って開発する場合など、 別のひと/マシンが push した変更を手元に取り寄せるという操作が必要になる。\ngit fetch + git merge や git pull といったコマンドで、 リモートリポジトリの変更を手元に反映させる。"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#リモートリポジトリの変更を手元に反映させる-1",
+    "href": "slides/git-circle/git-vol2.html#リモートリポジトリの変更を手元に反映させる-1",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "リモートリポジトリの変更を手元に反映させる",
+    "text": "リモートリポジトリの変更を手元に反映させる\n\ngit fetch\n\nリモートリポジトリの変更をローカルリポジトリに取り込む。\n\n\nこの時点では .git/ 内だけが変更されているため、手元のファイルはそのまま。\n\ngit merge\n\nローカルリポジトリの内容を、手元のファイルに反映する。\n\n\n\ngit pull は git fetch と git merge を一気にやるコマンド。"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#実際にやってみる",
+    "href": "slides/git-circle/git-vol2.html#実際にやってみる",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "実際にやってみる",
+    "text": "実際にやってみる\n\nリモートでの変更を再現するために、Githubページ上で README.md を編集する。\n\nREADME.md をクリック -&gt; 右上のペンマーク 🖊 から編集画面に入る。\n“This line is edited online.” など適当に編集して、右上の Commit changes を押す。\n表示されるウィンドウはとりあえずそのままで Commit changes\n変更されていることを確認する。\n\n\n\n\nその変更を fetch でローカルリポジトリに取り寄せる:\ngit fetch\n\ngit log --oneline --graph --all    # コミット全部\n# * 47d354f (origin/main) Update README.md      &lt;- origin(リモート)の変更が.git/に反映された\n# * 0f1a686 (HEAD -&gt; main) Update README.md     &lt;- HEAD(ローカル)はまだここ\n# * 36d0617 Create README.md"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#実際にやってみる-1",
+    "href": "slides/git-circle/git-vol2.html#実際にやってみる-1",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "実際にやってみる",
+    "text": "実際にやってみる\n\nmerge で手元のファイルに反映する:\ngit merge\n# Fast-forward\n#  README.md | 2 ++\n#  1 file changed, 2 insertions(+)\n\ngit log --oneline --graph\n# * 47d354f (HEAD -&gt; main, origin/main) Update README.md    &lt;- HEADがoriginに追いついた\n# * 0f1a686 Update README.md\n# * 36d0617 Create README.md\n\n\n🔰 練習: もう一度リモートで編集して git pull で一気に反映する。"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#head-を-origin-に追いつかせるマージ",
+    "href": "slides/git-circle/git-vol2.html#head-を-origin-に追いつかせるマージ",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "HEAD を origin に追いつかせるマージ",
+    "text": "HEAD を origin に追いつかせるマージ\n手元のファイルに変更がない場合、fetch してきた origin に追いつくだけでいい。 このようなマージをfast-forward(早送り) マージという。\n\n(このあとFast-Forwardじゃないマージも出てきます。)"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#ここから先は時間があれば進む",
+    "href": "slides/git-circle/git-vol2.html#ここから先は時間があれば進む",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "ここから先は時間があれば進む",
+    "text": "ここから先は時間があれば進む"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#fast-forwardじゃないマージ",
+    "href": "slides/git-circle/git-vol2.html#fast-forwardじゃないマージ",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "Fast-Forwardじゃないマージ",
+    "text": "Fast-Forwardじゃないマージ\n手元のファイルも変更していた場合、fetch してきた origin に追いつくのではなく、 分岐した両者を再び1つにするマージが必要。\nこのようなマージをnon-fast forward マージという。"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#手元でもファイルを変更していたらどうなるの",
+    "href": "slides/git-circle/git-vol2.html#手元でもファイルを変更していたらどうなるの",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "手元でもファイルを変更していたらどうなるの??",
+    "text": "手元でもファイルを変更していたらどうなるの??\n「別のファイルの変更」や「同じファイルの別の箇所の変更」である場合、non-fast forward マージで両方の変更を取り入れる。\n\n\n手元の変更:\n## 第1章\n私はネコである。\n\n## 第2章\nあなたもネコである。\n↓\n## 第1章\n私はイヌである。\n\n## 第2章\nあなたもネコである。\n\nリモートの変更:\n## 第1章\n私はネコである。\n\n## 第2章\nあなたもネコである。\n↓\n## 第1章\n私はネコである。\n\n## 第2章\nあなたもイヌである。\n\n\n\n↓\ngit fetch + git merge\n↓\n\n## 第1章\n私はイヌである。\n\n## 第2章\nあなたもイヌである。"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#手元でもファイルを変更していたらどうなるの-1",
+    "href": "slides/git-circle/git-vol2.html#手元でもファイルを変更していたらどうなるの-1",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "手元でもファイルを変更していたらどうなるの??",
+    "text": "手元でもファイルを変更していたらどうなるの??\n「同じファイルの同じ箇所の変更」である場合、conflict が発生する。\n\n\n手元の変更:\n## 第1章\n私はネコである。\n\n## 第2章\nあなたもネコである。\n↓\n## 第1章\n私はイヌである。\n\n## 第2章\nあなたもネコである。\n\nリモートの変更:\n## 第1章\n私はネコである。\n\n## 第2章\nあなたもネコである。\n↓\n## 第1章\n私はサルである。\n\n## 第2章\nあなたもネコである。\n\n\n\n↓\ngit fetch + git merge\n↓\n\ngit merge\n# Auto-merging README.md\n# CONFLICT (content): Merge conflict in README.md\n# Automatic merge failed; fix conflicts and then commit the result."
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#conflictを解消する",
+    "href": "slides/git-circle/git-vol2.html#conflictを解消する",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "conflictを解消する",
+    "text": "conflictを解消する\nconflict が生じたファイル( README.md )を開いてみるとこんな風になっている。\n## 第1章\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\n私はイヌである。\n=======\n私はサルである。\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; refs/remotes/origin/main\n\n## 第2章\nあなたもネコである。\n\n======= を挟んで、\n\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD は手元での変更\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; refs/remotes/origin/main はリモートからの変更\n\nを示している。"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#conflictを解消する-1",
+    "href": "slides/git-circle/git-vol2.html#conflictを解消する-1",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "conflictを解消する",
+    "text": "conflictを解消する\nファイルを編集して conflict を解消する。例えば:\n## 第1章\n私はイヌであるし、サルでもある。\n\n## 第2章\nあなたもネコである。\n\nこの変更をコミットしてリモートにも反映する:\ngit add README.md\ngit commit -m \"Solve a conflict\"\ngit push"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#とにかく使ってみる",
+    "href": "slides/git-circle/git-vol2.html#とにかく使ってみる",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "とにかく使ってみる",
+    "text": "とにかく使ってみる\n🔰 練習1: 先ほどつくった README.md を編集して複数行の内容にする。できたらコミットしてプッシュ。\n\n🔰 練習2: 手元とリモートで異なる行を編集する。git fetch してから git merge してみる。\n\n手元: 編集したらコミット\nリモート: 編集したらCommit changes\n\n\n🔰 練習3: 手元とリモートで同じ行に異なる編集をする。\n\nまずは手元ではコミットせずに git fetch してから git merge してみる。どんなメッセージが出る？"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#余談-fast-forward-onlyの設定",
+    "href": "slides/git-circle/git-vol2.html#余談-fast-forward-onlyの設定",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "余談: Fast-forward onlyの設定",
+    "text": "余談: Fast-forward onlyの設定\ngit merge でリモートとローカルの両方の変更を取り込んだ場合、“merge commit”が自動的につくられる。\ngit log --oneline --graph\n# *   03899a3 Merge remote-tracking branch 'refs/remotes/origin/main'\n# |\\                                                    ↑ マージコミット\n# | * 798b869 Edit line.5\n# * | 16117cc Edit line.2\n# |/\n# * 335b76a Some commit"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#余談-fast-forward-onlyの設定-1",
+    "href": "slides/git-circle/git-vol2.html#余談-fast-forward-onlyの設定-1",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "余談: Fast-forward onlyの設定",
+    "text": "余談: Fast-forward onlyの設定\ngit pull をした時は、「どういう方法でマージするか」を設定していないと自動的なmergeも起こらない。\nhint: You have divergent branches and need to specify how to reconcile them.\nhint: You can do so by running one of the following commands sometime before\nhint: your next pull:\nhint:\nhint:   git config pull.rebase false  # merge (the default strategy)\nhint:   git config pull.rebase true   # rebase\nhint:   git config pull.ff only       # fast-forward only\nhint:\nhint: You can replace \"git config\" with \"git config --global\" to set a default\nhint: preference for all repositories. You can also pass --rebase, --no-rebase,\nhint: or --ff-only on the command line to override the configured default per\nhint: invocation.\nfatal: Need to specify how to reconcile divergent branches.\n\nそこで、「fast-forwardでのmergeのみを試みる。」という設定をしておく。"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#余談-fast-forward-onlyの設定-2",
+    "href": "slides/git-circle/git-vol2.html#余談-fast-forward-onlyの設定-2",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "余談: Fast-forward onlyの設定",
+    "text": "余談: Fast-forward onlyの設定\n\n方法1\n\n--ff-only オプション付きで git pull する。\ngit pull --ff-only\n\n方法2\n\n~/.gitconfig に --ff-only の設定をする。\ngit config --global pull.ff only\nもしくは\n\n\n~/.gitconfig\n\n[pull]\n    ff = only"
+  },
+  {
+    "objectID": "slides/git-circle/git-vol2.html#余談2-その他の-git-便利機能",
+    "href": "slides/git-circle/git-vol2.html#余談2-その他の-git-便利機能",
+    "title": "Git 基本操作② — fetch, merge, pull",
+    "section": "余談2: その他の git 便利機能",
+    "text": "余談2: その他の git 便利機能\n\n「あのファイルとこのファイル、どこが変わったんだっけ」\n\ngit diff\n\n「間違えて〇〇しちゃった、取り消したい」\n\ngit reset\n\n「ソースコードは管理したいけど、データや画像は外に出したくないな」\n\n.gitignore\n\n\n\n\nsee more\n\ngit 公式リファレンス"
+  },
+  {
+    "objectID": "slides/lt/ggtree.html#rで系統樹を扱う",
+    "href": "slides/lt/ggtree.html#rで系統樹を扱う",
+    "title": "Rで系統樹を扱う",
+    "section": "Rで系統樹を扱う",
+    "text": "Rで系統樹を扱う\n進化生物学の研究において、系統樹を扱う機会は多い。\nここでは、Rで系統樹を可視化する際に便利な ggtree の使い方を紹介する。"
+  },
+  {
+    "objectID": "slides/lt/ggtree.html#必要なパッケージのインストール",
+    "href": "slides/lt/ggtree.html#必要なパッケージのインストール",
+    "title": "Rで系統樹を扱う",
+    "section": "必要なパッケージのインストール",
+    "text": "必要なパッケージのインストール\nape をCRANから、ggtree を bioconductor からインストールする。\ninstall.packages(\"ape\")\nlibrary(ape)\n\nif (!require(\"BiocManager\", quietly = TRUE))\n  install.packages(\"BiocManager\")\nBiocManager::install(\"ggtree\")\nlibrary(ggtree)"
+  },
+  {
+    "objectID": "slides/lt/ggtree.html#newickフォーマットとr-ape-におけるオブジェクト",
+    "href": "slides/lt/ggtree.html#newickフォーマットとr-ape-におけるオブジェクト",
+    "title": "Rで系統樹を扱う",
+    "section": "newickフォーマットとR (ape) におけるオブジェクト",
+    "text": "newickフォーマットとR (ape) におけるオブジェクト"
+  },
+  {
+    "objectID": "slides/lt/ggtree.html#r標準の-plot-でも可視化はできる",
+    "href": "slides/lt/ggtree.html#r標準の-plot-でも可視化はできる",
+    "title": "Rで系統樹を扱う",
+    "section": "R標準の plot() でも可視化はできる",
+    "text": "R標準の plot() でも可視化はできる\n\nset.seed(1)               # シードを設定\ntr = ape::rtree(n = 10)   # 系統樹を生成\nplot(tr)                  # 可視化"
+  },
+  {
+    "objectID": "slides/lt/ggtree.html#ggtree-で系統樹を可視化する",
+    "href": "slides/lt/ggtree.html#ggtree-で系統樹を可視化する",
+    "title": "Rで系統樹を扱う",
+    "section": "ggtree で系統樹を可視化する",
+    "text": "ggtree で系統樹を可視化する\n基本的な使い方は ggplot() と同じで、 + を使って指示を重ねていく。\nset.seed(1)                    # シードを設定\ntr = ape::rtree(n = 10)        # 系統樹を生成\nggtree::ggtree(tr)             # 枝のみ描画\n# geom_tiplab() +              # tip(先端)のラベルを表示\n# geom_nodelab(aes(label = node), hjust = -0.2, node = \"internal\")   # 内部ノードを表示"
+  },
+  {
+    "objectID": "slides/lt/ggtree.html#ggtree-で系統樹を可視化する-1",
+    "href": "slides/lt/ggtree.html#ggtree-で系統樹を可視化する-1",
+    "title": "Rで系統樹を扱う",
+    "section": "ggtree で系統樹を可視化する",
+    "text": "ggtree で系統樹を可視化する\n基本的な使い方は ggplot() と同じで、 + を使って指示を重ねていく。\nset.seed(1)                    # シードを設定\ntr = ape::rtree(n = 10)        # 系統樹を生成\nggtree::ggtree(tr)             # 枝のみ描画\n  geom_tiplab()                # tip(先端)のラベルを表示\n# geom_nodelab(aes(label = node), hjust = -0.2, node = \"internal\")   # 内部ノードを表示"
+  },
+  {
+    "objectID": "slides/lt/ggtree.html#ggtree-で系統樹を可視化する-2",
+    "href": "slides/lt/ggtree.html#ggtree-で系統樹を可視化する-2",
+    "title": "Rで系統樹を扱う",
+    "section": "ggtree で系統樹を可視化する",
+    "text": "ggtree で系統樹を可視化する\n基本的な使い方は ggplot() と同じで、 + を使って指示を重ねていく。\nset.seed(1)                    # シードを設定\ntr = ape::rtree(n = 10)        # 系統樹を生成\nggtree::ggtree(tr)             # 枝のみ描画\n  geom_tiplab() +              # tip(先端)のラベルを表示\n  geom_nodelab(aes(label = node), hjust = -0.2, node = \"internal\")   # 内部ノードを表示"
+  },
+  {
+    "objectID": "slides/lt/ggtree.html#系統樹の形状も様々に変えることができる",
+    "href": "slides/lt/ggtree.html#系統樹の形状も様々に変えることができる",
+    "title": "Rで系統樹を扱う",
+    "section": "系統樹の形状も様々に変えることができる",
+    "text": "系統樹の形状も様々に変えることができる\nset.seed(1)                    # シードを設定\ntr = ape::rtree(n = 10)        # 系統樹を生成\nggtree::ggtree(tr, layout = \"rectangular\")  # デフォルト\nggtree::ggtree(tr, layout = \"circular\")\nggtree::ggtree(tr, layout = \"dendrogram\")\nggtree::ggtree(tr, layout = \"slanted\")\nggtree::ggtree(tr, layout = \"ellipse\")\nggtree::ggtree(tr, layout = \"roundrect\")\nggtree::ggtree(tr, layout = \"inward_circular\")\nggtree::ggtree(tr, layout = \"radial\")\nggtree::ggtree(tr, layout = \"ape\")\nggtree::ggtree(tr, layout = \"fan\", open.angle = 120)\nggtree::ggtree(tr, layout = \"equal_angle\")\nggtree::ggtree(tr, layout = \"daylight\")\nggtree::ggtree(tr, layout = \"rectangular\", branch.length = 'none')\nggtree::ggtree(tr, layout = 'circular', branch.length = 'none')\nggtree::ggtree(tr, layout = \"dendrogram\", branch.length = 'none')\nそれぞれの形状は次ページへ"
+  },
+  {
+    "objectID": "slides/lt/ggtree.html#系統樹の形状も様々に変えることができる-1",
+    "href": "slides/lt/ggtree.html#系統樹の形状も様々に変えることができる-1",
+    "title": "Rで系統樹を扱う",
+    "section": "系統樹の形状も様々に変えることができる",
+    "text": "系統樹の形状も様々に変えることができる"
+  },
+  {
+    "objectID": "slides/lt/ggtree.html#系統樹のあしらい",
+    "href": "slides/lt/ggtree.html#系統樹のあしらい",
+    "title": "Rで系統樹を扱う",
+    "section": "系統樹のあしらい",
+    "text": "系統樹のあしらい\n線のデザインを変えたり、nodeやtipにしるしを付けたりすることができる。\nset.seed(1)                    # シードを設定\ntr = ape::rtree(n = 7)         # 系統樹を生成\n\n## 線の色、太さ、種類を変える\nggtree::ggtree(tr, color = \"darkorange\", size = 2, linetype = \"dotted\")\n\n## nodeにしるしをつける\nggtree::ggtree(tr) + geom_nodepoint(color = \"#009E73\", alpha = 0.5, size = 5)\n\n## tipに印をつける\nggtree::ggtree(tr) + geom_tippoint(color = \"#0072B2\", shape = 16, size = 5)"
+  },
+  {
+    "objectID": "slides/lt/ggtree.html#系統樹のあしらい特定のtipやnodeを目立たせる",
+    "href": "slides/lt/ggtree.html#系統樹のあしらい特定のtipやnodeを目立たせる",
+    "title": "Rで系統樹を扱う",
+    "section": "系統樹のあしらい｜特定のtipやnodeを目立たせる",
+    "text": "系統樹のあしらい｜特定のtipやnodeを目立たせる\nset.seed(1)                    # シードを設定\ntr = ape::rtree(n = 10)        # 系統樹を生成\n\n## node18を目立たせる\nggtree::ggtree(tr) +\n  geom_point2(aes(subset=(node==18)), color = \"#009E73\", alpha = 0.5, size = 5)\n\n## node4とnode5を目立たせる\nggtree::ggtree(tr) +\n  geom_point2(aes(subset=(node %in% c(4, 5))), color = \"#0072B2\", shape = 17, size = 5)"
+  },
+  {
+    "objectID": "slides/lt/ggtree.html#系統樹のあしらい特定のクレードを目立たせる",
+    "href": "slides/lt/ggtree.html#系統樹のあしらい特定のクレードを目立たせる",
+    "title": "Rで系統樹を扱う",
+    "section": "系統樹のあしらい｜特定のクレードを目立たせる",
+    "text": "系統樹のあしらい｜特定のクレードを目立たせる\ngroupOTU や groupClade を使ってクレードをグルーピングする。\nset.seed(1)                    # シードを設定\ntr = ape::rtree(n = 10)        # 系統樹を生成\n\n## tipで指定\ntr2 = ggtree::groupOTU(tr, .node = c(\"t6\",\"t9\",\"t10\"))\n\n## nodeで指定\ntr3 = ggtree::groupClade(tr, .node = 13)"
+  },
+  {
+    "objectID": "slides/lt/ggtree.html#系統樹のあしらい特定のクレードを目立たせる-1",
+    "href": "slides/lt/ggtree.html#系統樹のあしらい特定のクレードを目立たせる-1",
+    "title": "Rで系統樹を扱う",
+    "section": "系統樹のあしらい｜特定のクレードを目立たせる",
+    "text": "系統樹のあしらい｜特定のクレードを目立たせる\n複数のグルーピングも可能。\nset.seed(1)\ntr = ape::rtree(n = 10) |&gt;\n  ggtree::groupClade(c(17, 18))\nggtree::ggtree(tr, aes(color = group)) +\n  geom_tiplab() +\n  geom_nodelab(aes(label = node), hjust = -0.2, node = \"internal\") +\n  scale_color_manual(values=c(\"#444444\", \"#009E73\", \"#0072B2\", ))"
+  },
+  {
+    "objectID": "slides/lt/ggtree.html#系統樹のあしらい特定のクレードを目立たせる-2",
+    "href": "slides/lt/ggtree.html#系統樹のあしらい特定のクレードを目立たせる-2",
+    "title": "Rで系統樹を扱う",
+    "section": "系統樹のあしらい｜特定のクレードを目立たせる",
+    "text": "系統樹のあしらい｜特定のクレードを目立たせる\n他にもいくつか方法がある。\n\n\nラベルをつける方法:\nggtree::ggtree(tr) +\n  geom_tiplab() +\n  geom_nodelab(aes(label = node), hjust = -0.2, node = \"internal\") +\n  geom_cladelabel(node=17, label=\"Clade A\", color=\"#009E73\", offset=-0.5, align=TRUE) +\n  geom_cladelabel(node=18, label=\"Clade B\", color=\"#E69F00\", offset=-0.5, align=TRUE)\n\n\n\n\n\n\n\n\n\n\n塗りつぶす方法:\nggtree::ggtree(tr) +\n  geom_tiplab() +\n  geom_nodelab(aes(label = node), hjust = -0.2, node = \"internal\") +\n  geom_hilight(node=17, fill=\"#009E73\", alpha=.2, extend=.2) +\n  geom_hilight(node=18, fill=\"#E69F00\", alpha=.2, extend=.2)"
+  },
+  {
+    "objectID": "slides/lt/ggtree.html#references",
+    "href": "slides/lt/ggtree.html#references",
+    "title": "Rで系統樹を扱う",
+    "section": "References",
+    "text": "References\n\nape マニュアル\nggtree マニュアル\nQiita: Rで系統樹を扱う(ape, ggtree)\nhttps://guangchuangyu.github.io/ggtree-book/chapter-ggtree.html#introduction-1\nVisualizing and Annotating Phylogenetic Trees with R+ggtree"
+  },
+  {
+    "objectID": "slides/lt/html-css.html#お品書き",
+    "href": "slides/lt/html-css.html#お品書き",
+    "title": "WEBサイト作成のための基礎知識",
+    "section": "お品書き",
+    "text": "お品書き\n\n\nHTML\n\nWEBブラウザで「なにを」見せるか\n\n\n\nCSS\n\nWEBブラウザで「どう」見せるか\n\n\n\nJavaScript\n\n静的サイトにも動きをつける\n\n\n\n静的サイトジェネレータ\n\n牧野研の人たちがよく使うWEBサイト作成技術"
+  },
+  {
+    "objectID": "slides/lt/html-css.html#htmlは文書の中身と構造を決める",
+    "href": "slides/lt/html-css.html#htmlは文書の中身と構造を決める",
+    "title": "WEBサイト作成のための基礎知識",
+    "section": "HTMLは文書の中身と構造を決める",
+    "text": "HTMLは文書の中身と構造を決める\n\nHTML(Hyper Text Markup Language)\n\nWEBサイトを記述するマークアップ言語\n\n\n文書の中身と構造(見出し、段落、列挙など)を規定する。\n\n\n&lt;タグ&gt;テキスト&lt;/タグ&gt; という形で記述する。\n\n\n\n\n\n&lt;html&gt;\n  &lt;body&gt;\n    &lt;h2&gt;コーヒーとは&lt;/h2&gt;\n    &lt;p&gt;世界一美味しい飲み物である。&lt;/p&gt;\n    &lt;h3&gt;世界三大コーヒー&lt;/h3&gt;\n    &lt;ul&gt;\n      &lt;li&gt;キリマンジャロ&lt;/li&gt;\n      &lt;li&gt;ブルーマウンテン&lt;/li&gt;\n      &lt;li&gt;コナ&lt;/li&gt;\n    &lt;/ul&gt;\n  &lt;/body&gt;\n&lt;/html&gt;\n\n\n\n\nコーヒーとは\n\n\n世界一美味しい飲み物である。\n\n\n世界三大コーヒー\n\n\n\nキリマンジャロ\n\n\nブルーマウンテン\n\n\nコナ"
+  },
+  {
+    "objectID": "slides/lt/html-css.html#cssは文書の見た目を決める",
+    "href": "slides/lt/html-css.html#cssは文書の見た目を決める",
+    "title": "WEBサイト作成のための基礎知識",
+    "section": "CSSは文書の見た目を決める",
+    "text": "CSSは文書の見た目を決める\n\nCSS(Cascading Style Sheets)\n\nフォント、サイズ、色、レイアウトなど、Webサイトの見た目を規定する。\n\n\nセレクタ { プロパティ: 値}という形で記述する。 例えばh2の色を赤くしたければ: h2 { color: #ff0000}\n\n\n外部ファイル(.css)を読み込んだり、HTMLに直接書いたり。\n\n\n\n\n\nh2 {\n  color: #ff0000  /*文字色を赤く*/\n}\n\nh3 {\n  font-size: 0.5em  /*文字サイズを半分に*/\n}\n\nul{\n  margin-left: 20px  /*左側に余白をとる*/\n}\n\n\n\n\nコーヒーとは\n\n\n世界一美味しい飲み物である。\n\n\n世界三大コーヒー\n\n\n\nキリマンジャロ\n\n\nブルーマウンテン\n\n\nコナ"
+  },
+  {
+    "objectID": "slides/lt/html-css.html#javascriptはhtmlに動きをつける",
+    "href": "slides/lt/html-css.html#javascriptはhtmlに動きをつける",
+    "title": "WEBサイト作成のための基礎知識",
+    "section": "JavaScriptはHTMLに動きをつける",
+    "text": "JavaScriptはHTMLに動きをつける\n\nJavaScript\n\nプログラミング言語のひとつ\n\n\nWEBサイトをよりレスポンシブルにできる。\n\n\nゲームや シミュレータを作ったり、 スライドっぽく見せたり(reveal.js)。\n\n\nJavaはまったく別の言語\n\n\n\n\n\n// 文字色をランダムに変更\nfunction changeBackgroundColor() {\n  var colors = [\"#e69f00\", \"#56b4e9\", \"#009e73\",\n                \"#f0e442\", \"#0072b2\", \"#d55e00\"];\n  var randomColor = colors[\n    Math.floor(Math.random() * colors.length)\n  ];\n  var targetElement = document.querySelector(\"h3.sample\");\n  targetElement.style.backgroundColor = randomColor;\n}\n\n\n\n\nJavaScriptサンプル\n\n\n文字色を変更"
+  },
+  {
+    "objectID": "slides/lt/html-css.html#html-css-javascript-でウェブサイトが作られる",
+    "href": "slides/lt/html-css.html#html-css-javascript-でウェブサイトが作られる",
+    "title": "WEBサイト作成のための基礎知識",
+    "section": "HTML + CSS (+ JavaScript) でウェブサイトが作られる",
+    "text": "HTML + CSS (+ JavaScript) でウェブサイトが作られる\n🔰 適当なウェブサイトを開いて、「右クリック → “検証”」や「余白で右クリック → “ページのソースを表示”」から そのページのHTMLやCSSを見てみる。\n🔰 生のHTMLを書いてブラウザで見てみる。\n\n骨格↓をindex.html というファイルにコピペして編集する。\n&lt;html&gt;\n  &lt;body&gt;\n    &lt;h1&gt;ここにタイトル&lt;/h1&gt;\n    &lt;h2&gt;以下のタグを使ってみる&lt;/h2&gt;\n    &lt;p&gt;段落&lt;/p&gt;\n    &lt;p&gt;強調もできる。たとえば&lt;em&gt;斜体&lt;/em&gt;や&lt;strong&gt;太字&lt;/strong&gt;。&lt;/p&gt;\n    &lt;ul&gt;\n      &lt;li&gt;これはリスト&lt;/li&gt;\n      &lt;li&gt;これもリスト&lt;/li&gt;\n    &lt;/ul&gt;\n  &lt;/body&gt;\n&lt;/html&gt;\nダブルクリックや open コマンドで開いて閲覧する。"
+  },
+  {
+    "objectID": "slides/lt/html-css.html#でもhtmlを直接書くことは少ない",
+    "href": "slides/lt/html-css.html#でもhtmlを直接書くことは少ない",
+    "title": "WEBサイト作成のための基礎知識",
+    "section": "でもHTMLを直接書くことは少ない",
+    "text": "でもHTMLを直接書くことは少ない\n軽量マークアップ言語であるMarkdown(.md, .Rmd, .qmd)を書いて、 それをHTMLに変換する。\n\n\n\n## コーヒーとは\n\n世界一美味しい飲み物である。\n\n### 世界三大コーヒー\n\n- キリマンジャロ\n- ブルーマウンテン\n- コナ\n\n\n\n\nコーヒーとは\n\n\n世界一美味しい飲み物である。\n\n\n世界三大コーヒー\n\n\n\nキリマンジャロ\n\n\nブルーマウンテン\n\n\nコナ"
+  },
+  {
+    "objectID": "slides/lt/html-css.html#md-.html-を便利にする静的サイトジェネレータ",
+    "href": "slides/lt/html-css.html#md-.html-を便利にする静的サイトジェネレータ",
+    "title": "WEBサイト作成のための基礎知識",
+    "section": ".md → .html を便利にする静的サイトジェネレータ",
+    "text": ".md → .html を便利にする静的サイトジェネレータ\n\nHUGO\n\n高速な静的サイト生成フレームワーク\n\n\nいい感じの見た目にするテーマが豊富\n\n\n\n\nquarto\n\n文書作成・公開のためのフレームワーク\n\n\nコマンドライン以外にも、Jupyter notebooks、Rstudio、VScodeで使える。\n\n\nWEBサイト以外にも、スライド作りにも便利"
   }
 ]

@@ -1,0 +1,23 @@
+<header id="title-block-header">
+$if(title)$
+$if(subtitle)$
+<h1 class="title">$title$ &mdash; $subtitle$</h1>
+$else$
+<h1 class="title">$title$</h1>
+$endif$
+$endif$
+
+$for(author)$
+<p class="author">$author$</p>
+$endfor$
+
+$if(date)$
+<p class="date">$date$</p>
+$endif$
+$if(abstract)$
+<div class="abstract">
+<div class="abstract-title">$abstract-title$</div>
+$abstract$
+</div>
+$endif$
+</header>

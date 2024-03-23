@@ -18,8 +18,20 @@ website:
       - text: "HOME"
         file: index.qmd
       - text: "---"
+      - text: "Slides"
+        file: slides/index.qmd
+      - text: "---"
       - section: "Bioinformatics"
         contents: bio/*.qmd
+      - text: "---"
+      - section: "Command Line Tools"
+        contents: cli/*.qmd
+      - text: "---"
+      - section: "Python"
+        contents: python/*.qmd
+      - text: "---"
+      - section: "Web Development"
+        contents: site/*.qmd
   page-footer:
     right: "Copyright 2023, Yuki Matsuda"
   google-analytics: "G-HLCP5V0Y7N"
@@ -39,6 +51,8 @@ format:
     link-external-newwindow: true
     code-copy: false
     highlight-style: github
+    template-partials:
+      - static/title-block.html
   revealjs:
     theme: static/slide.scss
     width: 1080

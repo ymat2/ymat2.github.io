@@ -10,7 +10,7 @@ $black: #444 !default;
 $grey1: #f1f1f1 !default;
 $grey2: #f4f4f4 !default;
 $grey3: #ccc !default;
-$color-link: #3066a0 !default;
+$color-link: #006fb7 !default;
 
 $callout-color-note: #0072B2cc;
 $callout-color-tip: #009E73cc;
@@ -50,7 +50,7 @@ $h5-font-size: 1.2rem;
 //
 // Code blocks, Inline code
 //
-$code-block-bg: #f5f5f9;
+$code-block-bg: #f2f5f9;
 $code-bg: $grey1;
 $code-color: $black;
 
@@ -186,6 +186,11 @@ kbd {
   font-size: 1rem !important;
 	font-weight: bold;
 	line-height: 2;
+}
+
+.sidebar-navigation .sidebar-section .sidebar-item:hover {
+  /* For subitems */
+	background-color: #e4e4e4;
 }
 
 .sidebar-item-text {

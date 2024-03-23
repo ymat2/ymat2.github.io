@@ -4,13 +4,6 @@ format:
     title: "About"
 ---
 
-<div class="note">
-
-ビルドフレームワークの移行 (hugo -> quarto) に伴い、<br>
-一時的にサイトのコンテンツを非公開にしています。
-
-</div>
-
 松田 優樹 (MATSUDA Yuki)
 : [東北大学](https://www.tohoku.ac.jp/japanese/)
   [大学院 生命科学研究科](https://www.lifesci.tohoku.ac.jp/)

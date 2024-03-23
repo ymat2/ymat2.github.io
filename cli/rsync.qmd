@@ -1,0 +1,48 @@
+---
+format:
+  html:
+    title: "rsync"
+---
+
+<https://rsync.samba.org/>
+
+ファイルやディレクトリの同期/バックアップを行うツール。
+2つのディレクトリの差分を検出して差分のみ反映するといった使い方が可能。
+
+
+## 基本
+
+```sh
+### Local
+rsync -option src/ dest/
+
+### Access via remote shell:
+# Push:
+rsync -option src/ user@host:dest/
+# Pull:
+rsync -option user@host:dest/ src/
+```
+
+`/` の有無で挙動が異なる。
+
+`src/ dest/`
+:	`src` 配下のファイルが `dest/` にコピーされる。
+
+`src dset/`
+:	`src` ごと `dest/` にコピーされる。
+: `dest/src/files`
+
+
+## Option
+
+`-a`, `--archive`
+:	?
+
+`-u`, `--update`
+:	`dest` 側で更新されているファイルをスキップする。
+
+`-v`, `--verbose`
+:	メッセージを冗長に表示させる。
+
+`-z`, `--compress`
+:	送受信中にファイルを圧縮する。

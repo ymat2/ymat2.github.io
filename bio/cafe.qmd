@@ -1,0 +1,186 @@
+---
+format:
+  html:
+    title: "CAFE"
+    subtitle: "遺伝子ファミリーの進化解析"
+---
+
+<div class="warn">
+
+[CAFE5](./cafe5.qmd) にアップデートされ、より柔軟な推定が可能になり、
+動かし方も容易になったため、特に理由がなければ CAFE5 を推奨する。
+
+</div>
+
+<u>C</u>omputational <u>A</u>nalysis of gene <u>F</u>amily <u>E</u>volution
+
+遺伝子ファミリーサイズの進化（系統樹上のどのノードで、いくつ遺伝子が増減したか）を、
+MCMC 法で推定するプログラム。
+
+基本的な動かし方は、入力となるシェルスクリプトを書いて CAFE に渡す、という形になる。
+このシェルスクリプトを書く過程で、
+[OrthoFinder](./orthofinder.qmd) の出力である `Orthogroups.GeneCount.tsv` と
+種の系統樹 (`Species_Tree`/`SpeciesTree_rooted.txt`) が必要。
+
+
+## インストール
+
+1. 作者たちの github から[最新版の CAFE をダウンロード](https://github.com/hahnlab/CAFE/releases/latest)して、
+   適当なディレクトリに置く。(例えば `~/bin/`)
+
+2. 解凍したら CAFE ディレクトリまで `cd` して `configure` & `make`:
+
+	```sh
+	cd PATH_TO_CAFE
+    ./configure
+	make
+	```
+
+3. PATH を通して動作確認:
+
+	```sh
+    cafe  # ctrl+C
+	```
+
+
+## 使い方
+
+### こんな感じのシェルスクリプトを書く
+
+```{.sh filename="example.sh"}
+#! cafe
+# version
+# date
+load -i data/example.tab -t 10 -l logfile.txt -p 0.05
+tree (((chimp:6,human:6):81,(mouse:17,rat:17):70):6,dog:93)
+lambda -s -t (((1,1)1,(2,2)2)2,2)
+report resultfile
+```
+
+`load`
+: 基本的なオプション。
+: `-i`  種/遺伝子ファミリーごとの遺伝子数のテーブル
+: `-t`  スレッド数。使っているコンピュータに合わせる。
+: `-l`  ログファイルの名前
+: `-p`  遺伝子数の増減が急速であるとする有意水準
+: `-filter` は全種の共通祖先における遺伝子数が0であると推定される遺伝子ファミリーを除くオプション。
+  **これをつける場合は load 行より上に tree 行を書く。**
+
+`tree`
+: root から各種までの距離が同じである (ultrametric) 系統樹。
+
+`lambda`
+: 単位時間あたりの遺伝子数の増減速度 $\lambda$ の設定
+: $\lambda$ を指定する場合は `-l`、自動推定する場合は `-s`
+: `-t` で $\lambda$ 構造を設定。
+  系統樹上の遺伝子増減速度が同じだと考えられる枝を同じ数字にする。
+  全枝で同じだと仮定する場合すべて1にする。
+  系統樹の枝長の部分を書き換えればいい。
+
+`report`
+: 出力ファイルの名前
+
+### インプットとなるテーブル (example.tab) を用意する
+
+`OrthoFinder` の出力である `Orthogroups.GeneCount.tsv` などを基に、
+CAFE の入力ファイルとして加工する。基本的には、
+
+- `Description` 列、`ID` 列を作る。
+- 全種の遺伝子数が同じである遺伝子ファミリーを除く。
+- 1種の遺伝子数が100を超える遺伝子ファミリーを除く。
+
+を満たしていればどう作ってもいい。
+例えば:
+
+|Description|ID|Chicken|Lizard|Mouse|
+|:---|:---|---:|---:|---:|
+|OG00001|OG00001|12|14|21|
+|OG00002|OG00002|9|13|5|
+|OG00003|OG00003|7|0|4|
+
+### ultrametric な系統樹を用意する
+
+[TimeTree](http://www.timetree.org/) などから取得すると楽。
+`OrthoFinder` の出力系統樹を使う場合、遺伝的距離に基づく系統樹であるため、
+ultrametric に加工する必要がある。
+
+R の ape などを使うと便利:
+
+```r
+## spAとspBが3.6~4.6億年前に分岐したという情報から全体の分岐年代を推定する。
+
+library(ape)
+
+tree = read.tree("tree.txt")
+mrca = getMRCA(tree, tip=c('spA', 'spB')) #分岐年代推定に使うノードの指定
+tree2 = chronopl(
+  tree,
+  100000,
+  age.min = 36,  # 推定分岐年代の最小値(MYA)
+  age.max = 46,  # 推定分岐年代の最大値(MYA)
+  node = mrca,   # getMRCAで指定したノード
+  S = 1,
+  tol = 1e-20,
+  CV = FALSE,
+  eval.max = 500,
+  iter.max = 500
+  )
+is.ultrametric(tree2)  # ultrametricかどうか確認
+write.tree(tree2, file = "tree_ultrametric.nwk")  # ultrametric系統樹の保存
+```
+
+**注意点**
+: tip は遺伝子数のテーブルの列名に合わせる。
+: bootstrap などの余計な要素は消しておく。
+: 枝長は少数でも構わないが、1以上のできるだけ小さい枝長になるように約分する。
+  (大きすぎるとエラーになるっぽい。)
+
+### CAFEを実行する
+
+シェルスクリプトが用意できたら、次のコマンドで CAFE を実行する。
+
+```sh
+cafe example.sh
+```
+
+### 出力ファイルを加工する
+
+CAFE の実行に成功すると、report で指定した名前の `.rep` ファイルが出てくる。
+このままだと見づらいため、公式のスクリプトを使って加工する。
+
+1. <https://github.com/hahnlab/cafe_tutorial> に行き、コードをダウンロードして解凍する。
+   (<kbd style="background-color:#008000; color:#fff;">Code▼</kbd> から。)
+   report ファイルのあるディレクトリに置いておくと便利。
+
+2. 次のコマンドで report ファイルを加工する。4つのファイルが出力される。
+
+```sh
+python cafe_tutrial/python_scripts/cafetutorial_report_analysis.py -i resultfile.rep -o cafe_summary
+```
+
+`-i`
+: CAFE の出力ファイル。
+
+`-o`
+: 加工して生成されるファイル (4つ) の prefix。
+
+  - `cafe_summary_fams.txt`
+  - `cafe_summary_anc.txt`
+  - `cafe_summary_pub.txt`
+  - `cafe_summary_node.txt`
+
+
+## トラブルシューティング
+
+`Failed to load tree from provided string (branch length missing)`
+: 系統樹の枝長に0が含まれているとダメ。自分は該当するノードを除外した。
+
+`No species ‘anolis_carolinensis’ was found in the tree`
+: 系統樹を読み込む際に内部で tip name を書き換えているようで、
+  長すぎる種名やアンダースコアが原因と思われるエラー。
+  tip name を短く書き換える。
+  (`Anolis_carolinensis` -> `AnoCar` とか)
+
+`Lambda values were not set. Please set lambda values with the lambda or lambdamu command.`
+: $\lambda$ を自動推定する際に、系統樹の枝長がでかい数字だとこうなるっぽい。
+  できるだけ短くなるように約分する？

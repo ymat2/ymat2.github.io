@@ -1,0 +1,148 @@
+---
+format:
+  html:
+    title: "OrthoFinder"
+---
+
+- 公式: <https://davidemms.github.io/>
+- GitHub リポジトリ: <https://github.com/davidemms/OrthoFinder>
+- 論文: [Emms and Kelly 2015](https://doi.org/10.1186/s13059-015-0721-2)
+
+## Usage
+
+解析したい種の遺伝子の配列 (Fasta ファイル) を
+1つのディレクトリ (ex. `fasta_dir/`) に用意して`-f`に渡すだけ。
+
+```sh
+orthofinder -f fasta_dir
+```
+
+
+## 出力
+
+出力は `-f` に渡したディレクトリ中に `Result_*date*` ディレクトリが作られてその中に入る。
+以下は `ver2.5.2` の例。
+
+`Phylogenetic_Hierarchical_Orthogroups/`
+
+`Single_Copy_Orthologue_Sequences/`
+: OG ごとのシングルコピーオーソログの配列
+
+`Orthogroup_Sequences/`
+: 全部の OG ごとの配列
+
+**`Comparative_Genomics_Statistics/`**
+
+- **`Duplications_per_Orthogroup.tsv`**<br>
+  : OGごとの重複（*）の数
+- **`OrthologuesStats_Totals.tsv`**<br>
+  : 1種対1種のオーソログの数
+- **`OrthologuesStats_{one-to-many/many2one/many2many}.tsv`**<br>
+  : 1種対多種, 多種対1種, 多種対多種のオーソログの数
+- **`Statistics_PerSpecies.tsv`**<br>
+  : 種ごとのオーソログの数に関する要約統計
+- **`Duplications_per_Species_Tree_Node.tsv`**<br>
+  : 種ごとの重複の数
+- **`Orthogroups_SpeciesOverlaps.tsv`**<br>
+  : OrthologuesStats_Totals と同じ？
+- **`Statistics_Overall.tsv`**<br>
+  : 全体の要約統計
+
+**`Phylogenetically_Misplaced_Genes`**
+
+`Species_Tree/`
+: 種の系統樹 (.txt)
+
+**`Gene_Duplication_Events/`**
+
+-	**`Duplication.tsv`**<br>
+  : OG ごとにどのノードでどの遺伝子とどの遺伝子が重複したかが書かれてる
+-	**`SpeciesTree_Gene_Duplications_0.5_Support.txt`**<br>
+  : 種の系統樹と若干違う？
+
+**`Orthogroups/`**
+
+- **`Orthogroups.GeneCount.tsv`**<br>
+  : OG × 種ごとの遺伝子数
+- **`Orthogroups.tsv/.txt`**<br>
+  : OG × 種ごとの遺伝子名
+- **`Orthogroups_SingleCopyOrthologues.txt`**<br>
+  : シングルコピー OG 名
+- **`Orthogroups_UnassignedGenes.tsv`**<br>
+  : 1種しかいない OG 名
+
+`Putative_Xenologs`
+: 水平伝播したと推定される遺伝子 (あれば)
+
+`WorkingDirectory/`
+: Blast などの中間ファイルが圧縮されて入っている。
+: **`SpeciesIDs.txt`** は再解析 (後述) をする際に必要
+
+**`Gene_Trees/`**
+: OG ごとの遺伝子系統樹 (.txt) が入ってる。
+
+**`Orthologues/`**
+
+- **`Orthologues_*種名*`**<br>
+  : 1種対1種のオーソログが書かれてる。
+- **`Resolved_Gene_Trees`**<br>
+  : OG ごとの種分化を考慮した系統樹。4遺伝子以上の OG についてしか書かれていない。
+
+### Unassigned gene と Species-specific Orthogroup
+
+両方とも系統特異的な遺伝子であると考えられ、
+Unassigned gene はそのうちシングルトンであるもの (自身の中にもパラログが存在しない)、
+Species-specific Orthogroup はそのうち重複遺伝子であるもの。
+系統特異的な重複とは異なる。
+
+
+## 種の追加/除外
+
+### 種の追加を行う場合
+
+追加したい種の Fasta ファイルが入ったディレクトリを用意して、`-f` で指定:
+
+```sh
+orthofinder -b /Result_*/WorkingDirectory -f new_fasta_directory
+```
+
+結果は `/WorkingDirectory/OrthoFinder/Result_*Date*/` に出力される。
+
+### 種を除外する場合
+
+`/Result_*/WorkingDirectory/` にある `SpeciesIDs.txt` を編集し、
+除外する種を `#` でコメントアウトする。その上で、
+
+```sh
+orthofinder -b /Result_*/WorkingDirectory
+```
+
+を実行する。
+`-f` で追加ディレクトリを指定しつつ追加と除外を同時に行うことも可能。
+
+
+## 遺伝研
+
+`biotools` にある:
+
+```sh
+ls /usr/local/biotools/o/orthofinder*
+```
+
+### 並列化
+
+種数にもよるが全種×全種で `blast` する都合上かなりメモリを食うので、
+`medium` に並列で投げることをおすすめする。
+下記は5スロットで投げる例。
+
+```sh
+#$ -S /bin/bash
+#$ -cwd
+#$ -pe def_slot 5
+#$ -l medium
+#$ -l s_vmem=64G
+#$ -l mem_req=64G
+
+module load singularity
+singularity exec /usr/local/biotools/o/orthofinder:%ver orthofinder -f dir -t 5 -a 5
+```

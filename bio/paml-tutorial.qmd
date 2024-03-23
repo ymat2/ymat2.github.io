@@ -322,9 +322,7 @@ $d_\text{N} / d_\text{S}$
 :::: {.columns}
 ::: {.column width="50%"}
 
-```{txt}
-#| code-overflow: wrap
-
+```{.txt .code-overflow-wrap}
 (Hsa_Human:0.0087447996,Hla_gibbon:0.0130303081,(((Cgu/Can_colobus:0.0156654142,Pne_langur:0.0181835564)#1:0.0280807319,Mmu_rhesus:0.0070703774):0.0147707727,(Ssc_squirrelM:0.0140657314,Cja_marmoset:0.0076397044):0.0477319527):0.0256856586);
 ```
 
@@ -380,9 +378,7 @@ codeml b_free.ctl
 ```sh
 tail branch_alt
 ```
-```{txt}
-#| code-overflow: wrap
-
+```{.txt .code-overflow-wrap}
 dS tree:
 (Hsa_Human: 0.011030, Hla_gibbon: 0.016794, (((Cgu/Can_colobus: 0.018929, Pne_langur: 0.022497): 0.009367, Mmu_rhesus: 0.008406): 0.018929, (Ssc_squirrelM: 0.017701, Cja_marmoset: 0.010258): 0.052331): 0.030198);
 dN tree:
@@ -433,9 +429,7 @@ codeml b_neut.ctl
 同様に出力ファイル `branch_null` を見てみる。
 各枝の $\omega$ の値は:
 
-```{txt}
-#| code-overflow: wrap
-
+```{.txt .code-overflow-wrap}
 w ratios as labels for TreeView:
 (Hsa_Human #0.685577 , Hla_gibbon #0.685577 , (((Cgu/Can_colobus #0.685577 , Pne_langur #0.685577 ) #1 , Mmu_rhesus #0.685577 ) #0.685577 , (Ssc_squirrelM #0.685577 , Cja_marmoset #0.685577 ) #0.685577 ) #0.685577 );
 ```

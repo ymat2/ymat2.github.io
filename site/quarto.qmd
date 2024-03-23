@@ -1,0 +1,292 @@
+---
+format:
+  html:
+    title: "Quarto"
+    subtitle: "書類・スライド作成からウェブサイト構築まで"
+    toc: true
+---
+
+***
+
+<https://quarto.org/>
+
+マークダウンで書いた記事を HTML、PDF、MS Word などへ変換し、
+ウェブサイトや書籍として公開するまでを一手に担うフレームワーク。
+
+コードチャンクで R、Python、Julia を実行でき、
+研究ノートなどにも有用。
+[Jupyter](https://jupyter.org/),
+[RStudio](https://posit.co/products/open-source/rstudio/),
+[VSCode](/cli/vscode.qmd) などのエディタと連携してより快適に利用できる。
+
+類似フレームワークの [HUGO](./hugo.qmd) と比べてもはるかに高機能でラクに使えるが、
+その分細かいところをいじろうとするとむしろ面倒くさかったり、
+単純にマークダウンの変換が遅かったりするので、その辺りは HUGO に軍配があがる。
+
+[ドキュメント](https://quarto.org/docs/guide/)がこれでもかというほど
+丁寧に書かれているので、基本的にここを見ればなんでもできる。
+
+ここでは、「細かいことは後回しにしてひとまずメモやスライドをウェブサイトとして公開できる形にする」
+までの方法を紹介する。
+
+
+## インストール
+
+<https://quarto.org/docs/get-started/>
+
+上のページから Quarto CLI をダウンロードする。
+RStudio でつかうときは既に同梱されているので不要。
+
+コマンドラインからやってももちろん OK:
+
+```sh
+## Macならhomebrewで
+brew install --cask quarto
+
+## WSL/Linuxは.debを落としてくるのが正攻法？
+sudo curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb
+# sudo apt-get install gdebi-core  # if needed
+sudo gdebi quarto-linux-amd64.deb
+```
+
+[Jupyter](https://jupyter.org/),
+[RStudio](https://posit.co/products/open-source/rstudio/),
+[VSCode](/cli/vscode.qmd) など好きなエディタで作業する。
+VSCode で使う時は[Quarto拡張機能](https://marketplace.visualstudio.com/items?itemName=quarto.quarto)を入れておく。
+
+
+## まずは骨格をつくる
+
+<https://quarto.org/docs/websites/>
+
+`_quarto.yml` という名前の config ファイルでほとんどを管理する。
+WEBサイト用のディレクトリを作って `_quarto.yml` を用意:
+
+```sh
+mkdir my-website
+cd my-website
+touch _quarto.yml
+```
+
+エディタによってはQuartoのプロジェクトを作るボタンでこの辺の骨組みを自動で作ってくれる。
+
+`_quarto.yml` はとりあえず以下のように記述:
+
+```{.yaml filename="_quarto.yml"}
+project:
+  type: website
+
+website:
+  title: "My Website"
+
+format:
+  html:
+    theme: cosmo
+```
+
+続いて `index.qmd` というファイルを作ってマークダウンで内容を書いてみる:
+
+```sh
+touch index.qmd
+```
+
+```{.md filename="index.qmd"}
+---
+title: "This is my website"
+format: html
+---
+
+Hello, world.
+
+My *name* is **Yuki** ***Matsuda***.
+
+I like
+
+- Sushi
+- Ra-men
+- Coffee
+```
+
+`---` で囲まれた部分にはタイトル、著者、フォーマットなどのメタデータを記述する。
+より詳しくは[ドキュメント](https://quarto.org/docs/output-formats/html-basics.html)を参照。
+
+ここまでできたら作ったファイルを HTML に変換して閲覧してみる:
+
+```sh
+quarto preview
+# もしくは
+quarto render
+# もしくは
+# 各エディタの "Preview" や "Render" のボタン
+```
+
+`quarto preview`
+: localhost が立ち上がるので、ブラウザで閲覧
+
+`quarto render`
+: (デフォルトでは) `_site/` というディレクトリが作られてその中に `index.html` ができる。
+  ダブルクリックして見てみる。
+
+
+## 適当にカスタムしてみる
+
+`_quarto.yml` や 各 `.qmd` のヘッダーでいろいろカスタムできる。
+例えば:
+
+```{.yaml filename="_quarto.yml"}
+project:
+  type: website
+  output-dir: docs  # HTMLの出力先を指定
+
+website:
+  title: "My Website"
+
+format:
+  html:
+    theme: darkly   # ダークテーマにしてみる
+```
+
+`output-dir`
+: 例えば GitHub Pages を使うなら `docs` という名前が便利だったりする。
+: `render` 時になくても勝手に作られる。
+
+`theme`
+: サイトの見た目がいくつか選べる。詳しくは[ここから](https://quarto.org/docs/output-formats/html-themes.html)。
+: CSS や SCSS を書いて自分でカスタマイズすることもできる。
+  例えば: <https://github.com/ymat2/slides/blob/main/static/>
+
+
+## サブディレクトリを作ってサイドバーに反映させる
+
+<https://quarto.org/docs/websites/website-navigation.html>
+
+ページが増えてくると、セクションごとにディレクトリを分けておきたい。
+それぞれのページにサイドバーのドロップダウンからアクセスする、みたいなことも簡単にできる。
+
+まずはディレクトリを分けていくつかページを作る。例えば:
+
+```txt
+my-website/
+├── _quarto.yml
+├── index.qmd
+├── dir1/
+│   ├── page1.qmd
+│   └── page2.qmd
+└── dir2/
+    ├── page3.qmd
+    └── page4.qmd
+```
+
+次に、`_quarto.yml` に `sidebar` の設定をする:
+
+```{.yaml filename="_quarto.yml"}
+project:
+  type: website
+  output-dir: docs  # HTMLの出力先を指定
+
+website:
+  title: "My Website"
+  sidebar:
+    contents: auto  # 細かく指定もできるけどとりあえず任せる
+
+format:
+  html:
+    theme: cosmo
+```
+
+改めて `quarto render` して `docs/index.html` を見てみると、
+ページの横にサイドバーが表示されて各ページにアクセスできる。
+
+
+## スライドも作ってみる
+
+<https://quarto.org/docs/presentations/revealjs/>
+
+quartoでは、[`revealjs`](https://revealjs.com/) という
+JavaScript のフレームワークを使って HTML をスライドっぽく表示する。
+
+`_quarto.yml` にスライド用の設定を追記:
+
+```{.yaml filename="_quarto.yml"}
+project:
+  type: website
+  output-dir: docs  # HTMLの出力先を指定
+
+website:
+  title: "My Website"
+  sidebar:
+    contents: auto  # 細かく指定もできるけどとりあえず任せる
+
+format:
+  html:
+    theme: cosmo
+  revealjs:
+    theme: default
+    scrollable: true
+    history: false
+```
+
+`theme`
+: HTML 同様にいくつか[テーマが用意](https://quarto.org/docs/presentations/revealjs/#themes)されている。
+: もちろん自分で CSS を書いてカスタム可能
+
+`scrollable`
+: 縦に長いスライドをスクロールして閲覧できるように。
+
+`history`
+: デフォルトの `true` だとブラウザバックでスライド単位の移動になって不快。
+
+スライド用のディレクトリを作ってファイルを作ってみる:
+
+```txt
+my-website/
+├── _quarto.yml
+├── index.qmd
+├── dir1/
+│   ├── page1.qmd
+│   └── page2.qmd
+├── dir2/
+│   ├── page3.qmd
+│   └── page4.qmd
+└── slides/
+    └── sample-slide.qmd
+```
+
+`sample-slide.qmd`:
+
+``` {.md filename="sample-slide.qmd"}
+---
+title: "サンプルスライド"
+format: revealjs
+---
+
+## ここにタイトル
+
+スライドでは、`##` で書く `<h2>` タグごとに1ページになる。
+
+## これは次のスライド
+
+基本的な
+
+- マークダウンの
+- **記法**は
+- 同じ。
+
+詳しくは[デモスライド](https://quarto.org/docs/presentations/revealjs/demo/#/title-slide)や
+その[ソースコード](https://github.com/quarto-dev/quarto-web/blob/main/docs/presentations/revealjs/demo/index.qmd)を
+見てみる。
+```
+
+もう一度 `quarto render` してスライドを見てみる。
+
+
+## 公開する
+
+<https://quarto.org/docs/publishing/>
+
+デプロイ先に合わせる。
+手元で閲覧する分には `index.html` を開けばよい。
+
+例えば [GitHub Pages](https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages)
+にホストさせる場合、
+`my-website` をリポジトリとして `push` して `docs` の中身を公開する設定をすればよい。

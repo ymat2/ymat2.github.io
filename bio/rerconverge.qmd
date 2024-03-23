@@ -1,0 +1,505 @@
+---
+format:
+  html:
+    title: "RERconverge"
+    toc: true
+---
+
+***
+
+- <https://github.com/nclark-lab/RERconverge>
+- [Kowalczyk et al. 2019](https://doi.org/10.1093/bioinformatics/btz468)
+
+相同な配列の進化速度の相対的な加速度合いを計算して、表現型との相関を調べる R パッケージ。
+系統樹さえ描ければいいので、遺伝子のほかに CNS (Conserved Non-coding Sequence) にも応用できる。
+(本ページでは便宜上「遺伝子」として記述する。)
+
+開発者たちのグループは
+[水棲適応](https://academic.oup.com/mbe/article/33/9/2182/2579331) や
+[地中生活](https://doi.org/10.7554/eLife.25884)などの二値的な形質、
+[体サイズや寿命](https://doi.org/10.7554/eLife.51089)などの連続形質に関わる遺伝子を報告している。
+
+
+## インストール
+
+<https://github.com/nclark-lab/RERconverge/wiki/Install>
+
+バイナリ版のインストールが推奨されている。
+Mac で使う場合はまずバイナリ版インストールを試してみる。
+バイナリ版インストールで問題があったり、Windows や Linux で使う場合はソースコード版を試す。
+(それでもダメなら一応 Docker イメージもあるっぽい。)
+
+### Mac
+
+#### バイナリ版のインストール
+
+1. `devtools` が必要:
+
+   ```r
+   install.packages("devtools")
+   library(devtools)
+   ```
+
+1. github からパッケージをインストール。
+   これを実行すると、RERconverge 本体のインストールは失敗するけど、
+   他の依存パッケージは入ってくるらしい:
+
+   ```r
+   devtools::install_github("nclark-lab/RERconverge")
+   ```
+
+   ちなみに依存パッケージは以下。これらを個別にインストールすれば 2. は不要？:
+
+   ```r
+   devtools
+   RColorBrewer
+   gplots
+   phytools
+   geiger
+   knitr
+   RcppArmadillo
+   weights
+   phangorn
+   ```
+
+1. [リリースページ](https://github.com/nclark-lab/RERconverge/releases)から
+   最新版のバイナリ版パッケージをダウンロードしてターミナルでインストールコマンドを実行:
+
+   ```sh
+   R CMD INSTALL Mac_Big_Sur_R_4.0.0.RERconverge_0.1.0.tgz
+   ```
+
+   <small>※ ファイル名の通り最新版 (2023-11-18時点) が BigSur の `R 4.0.0` 用なので、
+   そうじゃない Mac&R でちゃんと動くかは不明。</small>
+
+1. ちゃんと入ったかテスト:
+
+   ```r
+   library(RERconverge)
+   ```
+
+#### ソースコード版のインストール
+
+1. 新しい `gfortran` (`gcc`) を入れておく:
+
+   ```sh
+   xcode-select --install  # if needed
+   brew install gcc
+   ```
+
+1. `Makevars` でコンパイラの設定をする:
+
+   素の Mac に RERconverge を入れようとすると、おそらく `gfortran` 関連で警告やエラーが出る。
+   `Makevars` を書いて homebrew で入れた `gfortran` を使うように設定する。
+
+   まず `~/.R/Makevars` をつくる (すでにあれば不要):
+
+   ```sh
+   mkdir ~/.R
+   touch ~/.R/Makevars
+   ```
+
+   `gfortran` の PATH とライブラリの場所を確認:
+
+   ```sh
+   which gfortran
+   # /usr/local/bin/gfortran
+   ls -al /usr/local/lib/gcc/current
+   # 略
+   ```
+
+   `Makevars` に以下を記述:
+
+   ```makefile
+   FC=/usr/local/bin/gfortran
+   F77=/usr/local/bin/gfortran
+   FLIBS=-L/usr/local/lib/gcc/current
+   ```
+
+1. `devtools` のインストール:
+
+   ```r
+   install.packages("devtools")
+   ```
+
+1. Github からパッケージをインストール。
+   コンパイラ周りをちゃんと設定しておけば入るはず:
+
+   ```r
+   devtools::install_github("nclark-lab/RERconverge")
+   ```
+
+<div class="note">
+
+`Makevars` は Rcpp で使う C++ などのコンパイラの設定をするためのファイル。
+[公式ドキュメント](https://cran.r-project.org/doc/manuals/r-devel/R-exts.html#Using-Makevars)や、
+[メタルさんのサイト](https://heavywatal.github.io/rstats/config.html)、
+[津田さんのサイト](https://teuder.github.io/rcpp4everyone_ja/020_install.html)
+も参照
+
+</div>
+
+### Windows
+
+1. [Rtools](https://cran.r-project.org/bin/windows/Rtools/) を入れておく。
+
+1. 依存パッケージのインストール:
+
+   ```r
+   devtools
+   RColorBrewer
+   gplots
+   phytools
+   geiger
+   knitr
+   RcppArmadillo
+   weights
+   phangorn
+   ```
+
+1. RERconverge のインストール:
+
+   ```r
+   devtools::install_github("nclark-lab/RERconverge")
+   ```
+
+
+## 概要
+
+<https://github.com/nclark-lab/RERconverge/blob/master/vignettes/>
+にチュートリアルあり
+
+RERconverge は主に以下の機能を実装している:
+
+- <a href="#遺伝子系統樹の推定">遺伝子系統樹の推定</a>
+- <a href="#相対進化速度の計算">相対進化速度の計算</a>
+- <a href="#相対進化速度と表現型の相関解析">相対進化速度と表現型の相関解析</a>
+- <a href="#エンリッチメント解析">エンリッチメント解析</a>
+
+遺伝子系統樹の推定やエンリッチメント解析は、RERconverge 以外の方法でもできる。
+そのほか、途中途中で解析に必要なファイルは別個に用意しても良い。
+
+
+## 遺伝子系統樹の推定
+
+RERconverge は遺伝子ごとに推定した系統樹を使い、
+ある遺伝子のある枝の枝長が全遺伝子の平均的な枝長に対して長いか短いかを基に相対進化速度を推定する。
+
+- Newick フォーマット
+- 全遺伝子のトポロジーが同じ
+- node ラベルなし、tip ラベルは全遺伝子で共通
+
+である必要がある。
+
+別の系統樹推定ソフトウェアでやる場合は、トポロジー指定機能とかを使う。
+最終的には、下のように遺伝子名と Newick がタブ区切りになった1つのファイルを作れば OK:
+
+```txt
+Gene_A (human:0.01,(chimp:0.0012,(gorilla:0.0078, orangutan:0.0037):0.0003):0.0053);
+Gene_B (human:0.0094,(chimp:0.0038,(gorilla:0.001, orangutan:0.0038):0.00032):0.0005);
+Gene_C (human:0.0032,(chimp:0.0054,(gorilla:0.07, orangutan:0.0012):0.0023):0.0023);
+︙
+```
+
+RERconverge にも、遺伝子系統樹推定のための関数が実装されている。
+必要なのは各遺伝子のアライメントファイルと種の系統樹。
+
+```r
+estimatePhangornTreeAll(
+  alnfiles = NULL,
+  alndir = NULL,
+  pattern = NULL,
+  treefile,
+  output.file = NULL,
+  submodel = "LG",
+  type = "AA",
+  format = "fasta",
+  k = 4,
+  ...
+)
+```
+
+`alnfiles`/`alndir` (どちらかで指定)
+: アライメントファイルの PATH のベクター、またはアライメントファイルのあるディレクトリ
+
+`pattern`
+: 正規表現でファイルを指定できる
+: e.g. `"*.pep.fa"`
+
+`treefile`
+: 「この系統樹のトポロジーを使う」とする master tree の PATH
+: 種の系統樹を使うのが無難か
+
+`output.file`
+: 出力先
+: 上で説明した遺伝子名と Newick のタブ区切りテキストができる
+
+`submodel`
+: 系統樹推定に使う置換モデル。`phangorn::pml()` に渡される。
+  デフォルトは [LG モデル](https://doi.org/10.1093/molbev/msn067)。
+: see `?phangorn::pml()`
+
+`type`
+: アミノ酸なら `AA`, 塩基なら `DNA`
+
+`format`
+: デフォルトは FASTA フォーマット
+
+<div class="warn">
+Ambiguousなアミノ酸残基を表す `B`, `Z`, `J` は読んでくれない。`X` で置換しとくとか？
+</div>
+
+## 相対進化速度の計算
+
+系統樹ファイルの読み込み:
+
+```r
+treesObj = RERconverge::readTrees(
+  file,
+  max.read = NA,
+  masterTree = NULL,
+  minTreesAll = 20,
+  reestimateBranches = F,
+  minSpecs = NULL
+)
+```
+
+`file`
+: `estimatePhangornTreeAll` とかでつくった系統樹ファイル
+
+`max.read`
+: 読み込む遺伝子の数を制限。全遺伝子やるなら指定しなくていい。
+
+`masterTree`
+: 相対進化速度の計算の基準となる master tree。
+: この関数自体も master tree を推定するので、基本的には指定しないで OK。
+
+`minTreeAll`
+: masterTree の推定に使う遺伝子の最低数。
+
+`minSpec`
+: ある遺伝子をもっている種の数がこれより少ない遺伝子を除く。
+
+相対進化速度の計算:
+
+```r
+RERmat = getAllResiduals(
+  treesObj,
+  cutoff = NULL,
+  transform = "sqrt",
+  weighted = T,
+  useSpecies = NULL,
+  min.sp = 10,
+  scale = T,
+  doOnly = NULL,
+  maxT = NULL,
+  scaleForPproj = F,
+  mean.trim = 0.05,
+  plot = T
+)
+```
+
+`treeObj`
+: `readTree` で読み込んだ系統樹オブジェクト
+
+`transform`
+: 平方根 ("sqrt") または対数 ("log") で枝長を変換する。"none" だとそのまま使う。
+
+`weighted`/`scale`
+: 平均の枝長が長いほど相対進化速度の分散が大きいというバイアスを補正するアプローチ
+: c.f. [Partha et al. 2019](https://doi.org/10.1093/molbev/msz107)
+
+`min.sp`
+: ある遺伝子をもっている種数の最低数
+
+
+## 相対進化速度と表現型の相関解析
+
+### 二値的形質との相関解析
+
+水棲/陸生、地中生/地上生、飛ぶ/飛ばないみたいなバイナリな形質を対象にした解析
+
+フォアグラウンドの種を指定する:
+
+```r
+tree = foreground2Tree(
+  foreground,
+  treesObj,
+  plotTree = T,
+  clade = c("ancestral", "terminal", "all"),
+  weighted = F,
+  transition = "unidirectional",
+  useSpecies = NULL
+)
+```
+
+`foreground`
+: 全種のうち、フォアグラウンド (興味のある表現型をもつ側) の種のベクタ
+
+`treesObj`
+: `RERconverge::readTrees` で読み込んだ系統樹
+
+`clade`
+: 3種類の方法がある。
+: `ancestral` は共通祖先の枝1本のみをフォアグラウンドにする。
+  形質が獲得されたと想定される枝。
+: `terminal` は各種に向かう末端の枝のみをフォアグラウンドにする。
+: `all` は共通祖先から各種までの枝すべてをフォアグラウンドにする。
+  形質が獲得されてからずーっとかかっている選択を検出するイメージ。
+
+`weighted`
+: `clade = "all"/"terminal"` のときに、例えば共通祖先から末端まで3回の分岐がある種と
+  1回も分岐していない種がいたら、前者の各枝の重み付けを1/3する。
+
+`transition = c("bidirectional", "unidirectional")`
+: いちど形質が獲得されてからの喪失を想定するかどうか
+
+表現型のベクタを作成:
+
+```r
+carP = tree2Paths(tree, treesObj, binarize = NULL, useSpecies = NULL, categorical = F)
+```
+
+`tree`
+: `foreground2Tree()` で作ったフォアグラウンド情報の系統樹
+
+`treesObj`
+: `RERconverge::readTrees()` で読み込んだ系統樹
+
+表現型との相関解析:
+
+```r
+res = correlateWithBinaryPhenotype(
+  RERmat,
+  charP,
+  min.sp = 10,
+  min.pos = 2,
+  weighted = "auto"
+)
+```
+
+`RERmat`
+: `getAllResiduals()` で計算した相対進化速度のマトリクス
+
+`chaP`
+: `tree2Paths()` でつくった表現型ベクタ
+
+`min.sp`
+: ある遺伝子をもっている種数の最低数
+
+`min.pos`
+: ある遺伝子をもっているフォアグラウンド種の最低数
+
+`correlateWithBinaryPhenotype()` は、各遺伝子を行、
+以下の統計量を列とするデータフレームを返す。
+
+`Rho`
+: 関係の正負 (フォアグラウンドで加速/保存) を示す Pearson correlation
+
+`N`
+: 相対進化速度が算出された枝の数
+
+`P`
+: 相関解析のP値
+
+`p.adj`
+: 多重補正後のP値。BH法を使っている。
+
+### 連続形質との相関解析
+
+体サイズ、寿命など連続的な数値データの形質を対象にした解析
+
+表現型の名前付きベクタをつくる。データフレームとかを用意しておくと楽。例えば:
+
+```r
+df = data.frame(
+  species = c("spA", "spB", "spC"),
+  body_mass = c("10", "20", "30")
+ ) |>
+ tibble::column_to_rownames("species")
+tip.vals = df$body_mass
+names(tip.vals) = rownames(df)
+```
+
+で、
+
+```r
+charP = char2Paths(
+  tip.vals,
+  treesObj,
+  altMasterTree = NULL,
+  metric = "diff",
+  se.filter = -1,
+  ...
+)
+```
+
+`tip.vals`
+: 一個前で作った表現型ベクタ
+
+`treeObj`
+: `RERconverge::readTrees()` で読み込んだ系統樹
+
+`metric`
+: internal_branch の表現型をどうするか
+: `diff` は枝の前後の祖先形質の差、`mean` は平均値、`last` は末端側の値をつかう。
+
+表現型との相関解析:
+
+```r
+res = correlateWithContinuousPhenotype(
+  RERmat,
+  charP,
+  min.sp = 10,
+  winsorizeRER = 3,
+  winsorizetrait = 3
+)
+```
+
+`RERmat`, `charP`, `min.sp` は binary の時と同じ
+
+`winsorizeRER`/`winsorizetrait`
+: 相対進化速度/表現型の値の top/worst の N 種ずつを、N+1 番目の値に変換する。
+: 相関解析が極端な外れ値の影響を受けることを避けるためのオプション
+
+返ってくるのは binary と同じデータフレーム
+
+
+## エンリッチメント解析
+
+ウィルコクソンの順位和検定を使ったエンリッチメント解析の機能が実装されている。
+もちろん topGO や [clusterProfiler](./clusterProfiler.qmd) を使ってもいい。
+
+`.gmt` ファイルをダウンロードする:
+
+<https://www.gsea-msigdb.org/gsea/login.jsp>
+
+`.gmt` ファイルを読み込む:
+
+```r
+annots=read.gmt("gmtfile.gmt")
+annotlist=list(annots)
+names(annotlist)="MSigDBpathways"
+```
+
+相関解析の結果を加速度合い/保存度合いの順に並べる:
+
+```r
+stats = RERconverge::getStat(res)
+```
+
+`res` は `correlateWithBinaryPhenotype()` や
+`correlateWithContinuousPhenotype()` の結果。
+`sign(Rho) × -log(P)` をやってスコア順に並べる。
+
+エンリッチメント解析:
+
+```r
+enrichment = fastwilcoxGMTall(stats, annotlist, outputGeneVals=T, num.g=10)
+```
+
+`stats`
+: `RERconverge::getStat()` で並べた遺伝子
+
+`annotlist`
+: `read.gmt()` で読み込んだパスウェイのリスト

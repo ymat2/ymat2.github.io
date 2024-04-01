@@ -5,17 +5,12 @@ format:
 ---
 
 松田 優樹 (MATSUDA Yuki)
-: [東北大学](https://www.tohoku.ac.jp/japanese/)
-  [大学院 生命科学研究科](https://www.lifesci.tohoku.ac.jp/)
-  分子化学生物学専攻
-  [進化ゲノミクス分野](https://www.lifesci.tohoku.ac.jp/evolgenomics/)
-<!--: [東京農工大学](https://www.tuat.ac.jp/)
+: [東京農工大学](https://www.tuat.ac.jp/)
   [大学院 連合農学研究科](https://www.tuat.ac.jp/uni-grad/)
-  [システム行動生物学研究グループ](https://tsuyoshishimmura.wixsite.com/website-1)-->
+  [システム行動生物学研究グループ](https://tsuyoshishimmura.wixsite.com/website-1)
 
 Contacts
 : yuki.matsuda.m10あっとgmail.com
-: yuki.matsuda.r7あっとdc.tohoku.ac.jp
 
 Links
 : <a rel="me" href="https://github.com/ymat2/" title="GitHub">

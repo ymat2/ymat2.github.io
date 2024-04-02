@@ -1,0 +1,298 @@
+---
+title: "遺伝研スパコンで集団ゲノミクス解析"
+subtitle: "新村グループ&emsp;プロトコル共有 & Fst 解析ハンズオン"
+author: "2024-04-03&emsp;松田 優樹"
+format: revealjs
+highlight-style: github
+---
+
+
+## 全体の流れ
+
+1. 遺伝研ジョブスクリプトについて
+
+2. プロトコルをざっくり説明:
+
+   - `g1_quality_control.sh`
+   - `g2_read_mapping.sh`
+   - `g3_snp_calling.sh`
+   - `g4_merge.sh`
+   - `g5_ld_prune.sh`
+   - `g6_pca.sh`
+   - `g7_fst.sh`
+
+   <small>プロトコル: 農工大ラボ/行動グループ/実験プロトコール/全ゲノム解析/</small>
+
+3. $F_\text{st}$ 解析ハンズオン
+
+
+## 遺伝研ジョブスクリプトの概要
+
+- <https://sc.ddbj.nig.ac.jp/software/grid_engine/>
+- [遺伝研スパコンの使い方](/bio/ddbj.qmd)
+
+大量のデータを扱い、
+大規模なメモリ・計算能力を要する解析は手持ちの PC では困難
+
+&emsp; ![](./image/arrow.svg){height="32"}
+
+複数の高性能な計算機 (スパコン) に適切にリソースを割り振って、
+効率的に解析を進める。
+
+&emsp; ![](./image/arrow.svg){height="32"}
+
+「なんの解析を、どういうリソースでやるか」を書いてコンピュータに渡す。
+(**ジョブスクリプト**)
+
+<hr>
+
+書き方はいろいろ。
+今日は[遺伝研スパコン](https://sc.ddbj.nig.ac.jp/)の場合。
+
+
+## 遺伝研スパコンの基本的な使い方
+
+1. [アカウントを発行](https://sc.ddbj.nig.ac.jp/general_analysis_division/ga_application)
+
+1. ゲートウェイノード (共通) へ ssh 接続<br>
+   <span style="color:#D73027;">***!***</span>
+   <small>全ユーザが共有する場所なので、ここで作業をしない。</small>
+
+1. ログインノード (個別) へ移動
+
+1. ジョブスクリプト (`.sh`) を書いてジョブを投入 (`qsub`)
+
+<br>
+
+![](./image/ddbj_usage.svg)
+
+
+## ジョブスクリプトの書き方
+
+- 言語は [Bash](https://www.gnu.org/software/bash/) (`.sh`)
+  <small>(Python でも書ける。)</small>
+- ジョブスケジューラは
+  [Altair Grid Engine(AGE)](https://sc.ddbj.nig.ac.jp/software/grid_engine)
+
+まず Bash の記法について説明した後、
+AGE 特有の書き方について説明します。
+
+:::: {.columns}
+::: {.column width="50%"}
+
+Bash
+: 変数
+: 配列
+: For ループ
+: パイプ `|`、リダイレクト `>`
+: エイリアス
+
+:::
+::: {.column width="50%"}
+
+AGE
+: 引数 (`#$`)
+: Apptainer (旧 Singularity)
+: アレイジョブ (並列ジョブ)
+
+:::
+::::
+
+
+## Bash: 変数、配列、For ループ
+
+```{.sh filename="sample.sh"}
+#! /bin/Bash
+
+myfile=sample.vcf           # 変数 myfile に sample.vcf を代入
+echo ${myfile}              # echo コマンドで変数の中身を表示
+
+samples=(uwa hiku WL RIR)   # 4品種を格納する配列 samples
+echo ${samples[2]}          # 何番目かで指定。Bash では0始まり
+
+for x in ${samples[@]}; do  # 配列の中身を1つずつループ
+  touch ${x}.vcf            # touch コマンドでファイルを新規作成
+done
+```
+
+遺伝研スパコン上で実行してみる:
+
+```sh
+bash sample.sh
+```
+
+
+## Bash: リダイレクト `>`
+
+リダイレクト `>`
+: あるコマンドの実行結果を、リダイレクト先のファイルに書き込む。
+: 1個 `>` だと上書き、2個 `>>` だと追加
+
+例:
+
+```sh
+ls                    # カレントディレクトリのファイルを眺める
+ls > ls-result.txt    # ls の結果をファイルに保存
+less ls-result.txt    # ファイルの中身を見てみる
+
+pwd                   # カレントディレクトリの PATH を表示
+pwd >> ls-result.txt  # ped の結果をファイルに追加
+cat ls-result.txt     # ファイルの中身を見てみる
+```
+
+
+## Bash: パイプ `|`
+
+パイプ演算子 `|`
+: あるコマンドの実行結果を、次のコマンドの引数にする。
+
+例:
+
+```sh
+## コマンド毎に中間ファイルを作るのは冗長
+$ ls > ls-result.txt         # コマンドの実行結果をファイルに保存して、
+$ grep "hiku" ls-result.txt  # そのファイルを引数に指定して...
+hiku.vcf
+
+## パイプで直接流し込む
+ls | grep "hiku"
+hiku.vcf
+```
+
+
+## Bash: エイリアス `alias`
+
+エイリアス `alias`
+: 長いコマンドの繰り返しを避けるために、
+  ショートカットコマンドを定義する。
+
+例:
+
+```sh
+ls -a -l             # 隠しファイルを含むすべてのファイルの情報を表示
+                     # 毎回打つのはめんどくさい。。。
+
+alias ls="ls -a -l"  # エイリアスを設定
+ls                   # 同じ結果に
+```
+
+
+## AGE: 引数
+
+```{.sh filename="sample.sh"}
+#!/bin/bash
+
+#$ -S /bin/bash      # インタープリタの指定
+#$ -cwd              # ジョブを実行する場所をカレントディレクトリに
+#$ -V                # ジョブ実行時の環境変数をすべてジョブに受け継ぐ
+#$ -l short          # ノードの指定
+#$ -l d_rt=00:10:00  # 実行上限時間の指定
+#$ -l s_rt=00:10:00  # 同じ
+#$ -l s_vmem=4G      # メモリ量の指定
+#$ -l mem_req=4G     # 同じ
+#$ -o stdout.txt     # 標準出力のファイル名
+#$ -e stderr.txt     # エラー出力のファイル名
+
+echo Hello
+```
+
+## AGE: Apptainer (旧 Singularity)
+
+Apptainer
+: よく使われるバイオインフォマティクスの解析環境が用意されている。
+: インストール不要で使える。
+
+<br>
+
+使い方:
+
+1. `/usr/local/biotools/a-z/` から使いたいツールのバージョンを探す。
+2. `apptainer exec` + バージョンまでのPATH + コマンド
+
+`samtools` の場合:
+
+```sh
+ls /usr/local/biotools/s/samtools*
+apptainer exec /usr/local/biotools/s/samtools:1.8--2 samtools --help
+```
+
+
+## AGE: アレイジョブ
+
+アレイジョブ
+: 複数のノードを使って、大量のジョブを同時に捌く。
+: ![](./image/for_and_array.svg){height="480"}
+
+
+## アレイジョブスクリプトの書き方
+
+
+```{.sh filename="test-array.sh"}
+#!/bin/bash
+
+#$ -S /bin/Bash
+#$ -cwd
+#$ -t 1-4 1
+
+samples=(uwa hiku WL RIR)
+sample=${samples[$SGE_TASK_ID-1]}
+
+echo ${sample} is my favorite breed. >> ${sample}.vcf
+```
+
+`-t 1-4 1`
+: ジョブの数を指定。
+
+`$SGE_TASK_ID`
+: そのジョブが何個目か、を示す変数。これを使って配列の要素を指定。
+
+
+## プロトコルをざっくり説明:
+
+- `g1_quality_control.sh`
+- `g2_read_mapping.sh`
+- `g3_snp_calling.sh`
+- `g4_merge.sh`
+- `g5_ld_prune.sh`
+- `g6_pca.sh`
+- `g7_fst.sh`
+
+<small>プロトコル置き場: 農工大ラボ/行動グループ/実験プロトコール/全ゲノム解析/</small>
+
+
+## $F_\text{st}$ 解析ハンズオン: `vcf-query`
+
+```sh
+vcf-query -l file.vcf.gz
+```
+
+`-l`
+: VCF ファイルのサンプルを表示
+
+`grep` でほしいサンプルのみ抽出
+: 例: `grep -E 'SM|YKD' > shamo.txt` でシャモを抽出
+
+
+## $F_\text{st}$ 解析ハンズオン: `vcftools`
+
+```sh
+vcftools --gzvcf file.vcf.gz --weir-fst-pop pop1.txt --weir-fst-pop pop2.txt \
+  --fst-window-size 10000 --fst-window-step 5000 --out outfile
+```
+
+`--gzvcf`
+: 圧縮済み VCF ファイル
+
+`--weir-fst-pop`
+: $F_\text{ST}$ を計算したい2集団のサンプルをリストしたテキストファイル
+
+`--fst-window-size`, `--fst-window-step`
+: 塩基数で指定
+
+![](./image/window-size-and-step.svg){
+  .absolute top="520" right="30" height="110"
+  }
+
+`--out`
+: 出力ファイルの名前
+  (`.log` と `.windowed.weir.fst` の2ファイル)

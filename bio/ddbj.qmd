@@ -39,6 +39,8 @@ qlogin -l s_vmem=16G -l mem_req=16G  # 16GB でログイン
 
 ## インタラクティブジョブ
 
+<https://sc.ddbj.nig.ac.jp/software/grid_engine/interactive_jobs>
+
 手元のターミナルと同じように、linux コマンドやスクリプトの実行が可能:
 
 ```sh
@@ -53,6 +55,8 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 
 ## バッチジョブ
+
+<https://sc.ddbj.nig.ac.jp/software/grid_engine/batch_jobs>
 
 簡単なジョブであればインタラクティブジョブでよいが、
 時間のかかるジョブやリソースを食うジョブ、繰り返し行うジョブを実行する場合は

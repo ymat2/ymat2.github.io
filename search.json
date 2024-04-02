@@ -2028,7 +2028,7 @@
     "href": "slides/index.html",
     "title": "Slides",
     "section": "",
-    "text": "Rで系統樹を扱う — ggtreeによる系統樹の可視化\nWEBサイト作成のための基礎知識 — HTML, CSS, JavaScript, 静的サイトジェネレータ\n2023-05-09 牧野研 技術輪読会 — GNU nanoエディタを便利に使う",
+    "text": "2024-04-03 新村グループ プロトコル共有 — 遺伝研スパコンで集団ゲノミクス解析\nRで系統樹を扱う — ggtreeによる系統樹の可視化\nWEBサイト作成のための基礎知識 — HTML, CSS, JavaScript, 静的サイトジェネレータ\n2023-05-09 牧野研 技術輪読会 — GNU nanoエディタを便利に使う",
     "crumbs": [
       "Slides"
     ]
@@ -2038,7 +2038,7 @@
     "href": "slides/index.html#lts",
     "title": "Slides",
     "section": "",
-    "text": "Rで系統樹を扱う — ggtreeによる系統樹の可視化\nWEBサイト作成のための基礎知識 — HTML, CSS, JavaScript, 静的サイトジェネレータ\n2023-05-09 牧野研 技術輪読会 — GNU nanoエディタを便利に使う",
+    "text": "2024-04-03 新村グループ プロトコル共有 — 遺伝研スパコンで集団ゲノミクス解析\nRで系統樹を扱う — ggtreeによる系統樹の可視化\nWEBサイト作成のための基礎知識 — HTML, CSS, JavaScript, 静的サイトジェネレータ\n2023-05-09 牧野研 技術輪読会 — GNU nanoエディタを便利に使う",
     "crumbs": [
       "Slides"
     ]
@@ -2145,18 +2145,18 @@
     "text": "Bash: 変数、配列、For ループ\n\n\nsample.sh\n\n#! /bin/Bash\n\nmyfile=sample.vcf           # 変数 myfile に sample.vcf を代入\necho ${myfile}              # echo コマンドで変数の中身を表示\n\nsamples=(uwa hiku WL RIR)   # 4品種を格納する配列 samples\necho ${samples[2]}          # 何番目かで指定。Bash では0始まり\n\nfor x in ${samples[@]}; do  # 配列の中身を1つずつループ\n  touch ${x}.vcf            # touch コマンドでファイルを新規作成\ndone\n\n遺伝研スパコン上で実行してみる:\nbash sample.sh"
   },
   {
-    "objectID": "slides/lt/tuat2024pipeline.html#bash-パイプ",
-    "href": "slides/lt/tuat2024pipeline.html#bash-パイプ",
-    "title": "遺伝研スパコンで集団ゲノミクス解析",
-    "section": "Bash: パイプ |",
-    "text": "Bash: パイプ |\n\nパイプ演算子 |\n\nあるコマンドの実行結果を、次のコマンドの引数にする。"
-  },
-  {
     "objectID": "slides/lt/tuat2024pipeline.html#bash-リダイレクト",
     "href": "slides/lt/tuat2024pipeline.html#bash-リダイレクト",
     "title": "遺伝研スパコンで集団ゲノミクス解析",
     "section": "Bash: リダイレクト >",
-    "text": "Bash: リダイレクト &gt;\n\nリダイレクト &gt;\n\nあるコマンドの実行結果を、リダイレクト先のファイルに書き込む。\n\n\n1個 &gt; だと上書き、2個 &gt;&gt; だと追加\n\n\n例:\nls                    # カレントディレクトリのファイルを眺める\nls &gt; ls-result.txt    # ls の結果をファイルに保存\nless ls-result.txt    # ファイルの中身を見てみる\n\npwd                   # カレントディレクトリの PATH を表示\npwd &gt;&gt; ls-result.txt  # ped の結果をファイルに追加\nless ls-result.txt    # ファイルの中身を見てみる"
+    "text": "Bash: リダイレクト &gt;\n\nリダイレクト &gt;\n\nあるコマンドの実行結果を、リダイレクト先のファイルに書き込む。\n\n\n1個 &gt; だと上書き、2個 &gt;&gt; だと追加\n\n\n例:\nls                    # カレントディレクトリのファイルを眺める\nls &gt; ls-result.txt    # ls の結果をファイルに保存\nless ls-result.txt    # ファイルの中身を見てみる\n\npwd                   # カレントディレクトリの PATH を表示\npwd &gt;&gt; ls-result.txt  # ped の結果をファイルに追加\ncat ls-result.txt     # ファイルの中身を見てみる"
+  },
+  {
+    "objectID": "slides/lt/tuat2024pipeline.html#bash-パイプ",
+    "href": "slides/lt/tuat2024pipeline.html#bash-パイプ",
+    "title": "遺伝研スパコンで集団ゲノミクス解析",
+    "section": "Bash: パイプ |",
+    "text": "Bash: パイプ |\n\nパイプ演算子 |\n\nあるコマンドの実行結果を、次のコマンドの引数にする。\n\n\n例:\n## コマンド毎に中間ファイルを作るのは冗長\n$ ls &gt; ls-result.txt         # コマンドの実行結果をファイルに保存して、\n$ grep \"hiku\" ls-result.txt  # そのファイルを引数に指定して...\nhiku.vcf\n\n## パイプで直接流し込む\nls | grep \"hiku\"\nhiku.vcf"
   },
   {
     "objectID": "slides/lt/tuat2024pipeline.html#bash-エイリアス-alias",
@@ -2201,10 +2201,17 @@
     "text": "プロトコルをざっくり説明:\n\ng1_quality_control.sh\ng2_read_mapping.sh\ng3_snp_calling.sh\ng4_merge.sh\ng5_ld_prune.sh\ng6_pca.sh\ng7_fst.sh\n\nプロトコル置き場: 農工大ラボ/行動グループ/実験プロトコール/全ゲノム解析/"
   },
   {
-    "objectID": "slides/lt/tuat2024pipeline.html#f_textst-解析ハンズオン",
-    "href": "slides/lt/tuat2024pipeline.html#f_textst-解析ハンズオン",
+    "objectID": "slides/lt/tuat2024pipeline.html#f_textst-解析ハンズオン-vcf-query",
+    "href": "slides/lt/tuat2024pipeline.html#f_textst-解析ハンズオン-vcf-query",
     "title": "遺伝研スパコンで集団ゲノミクス解析",
-    "section": "\\(F_\\text{st}\\) 解析ハンズオン",
-    "text": "\\(F_\\text{st}\\) 解析ハンズオン"
+    "section": "\\(F_\\text{st}\\) 解析ハンズオン: vcf-query",
+    "text": "\\(F_\\text{st}\\) 解析ハンズオン: vcf-query\nvcf-query -l file.vcf.gz\n\n-l\n\nVCF ファイルのサンプルを表示\n\ngrep でほしいサンプルのみ抽出\n\n例: grep -E 'SM|YKD' &gt; shamo.txt でシャモを抽出"
+  },
+  {
+    "objectID": "slides/lt/tuat2024pipeline.html#f_textst-解析ハンズオン-vcftools",
+    "href": "slides/lt/tuat2024pipeline.html#f_textst-解析ハンズオン-vcftools",
+    "title": "遺伝研スパコンで集団ゲノミクス解析",
+    "section": "\\(F_\\text{st}\\) 解析ハンズオン: vcftools",
+    "text": "\\(F_\\text{st}\\) 解析ハンズオン: vcftools\nvcftools --gzvcf file.vcf.gz --weir-fst-pop pop1.txt --weir-fst-pop pop2.txt \\\n  --fst-window-size 10000 --fst-window-step 5000 --out outfile\n\n--gzvcf\n\n圧縮済み VCF ファイル\n\n--weir-fst-pop\n\n\\(F_\\text{ST}\\) を計算したい2集団のサンプルをリストしたテキストファイル\n\n--fst-window-size, --fst-window-step\n\n塩基数で指定\n\n\n\n\n--out\n\n出力ファイルの名前 (.log と .windowed.weir.fst の2ファイル)"
   }
 ]

@@ -521,15 +521,6 @@ Apptainer (旧 Singularity)
 <p>遺伝研スパコン上で実行してみる:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sample.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="bash-パイプ" class="slide level2">
-<h2>Bash: パイプ <code>|</code></h2>
-<dl>
-<dt>パイプ演算子 <code>|</code></dt>
-<dd>
-あるコマンドの実行結果を、次のコマンドの引数にする。
-</dd>
-</dl>
-</section>
 <section id="bash-リダイレクト" class="slide level2">
 <h2>Bash: リダイレクト <code>&gt;</code></h2>
 <dl>
@@ -548,7 +539,25 @@ Apptainer (旧 Singularity)
 <span id="cb3-4"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span>                   <span class="co"># カレントディレクトリの PATH を表示</span></span>
 <span id="cb3-6"><a aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span> <span class="op">&gt;&gt;</span> ls-result.txt  <span class="co"># ped の結果をファイルに追加</span></span>
-<span id="cb3-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> ls-result.txt    <span class="co"># ファイルの中身を見てみる</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ls-result.txt     <span class="co"># ファイルの中身を見てみる</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="bash-パイプ" class="slide level2">
+<h2>Bash: パイプ <code>|</code></h2>
+<dl>
+<dt>パイプ演算子 <code>|</code></dt>
+<dd>
+あるコマンドの実行結果を、次のコマンドの引数にする。
+</dd>
+</dl>
+<p>例:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">## コマンド毎に中間ファイルを作るのは冗長</span></span>
+<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="op">&gt;</span> ls-result.txt         <span class="co"># コマンドの実行結果をファイルに保存して、</span></span>
+<span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="st">"hiku"</span> ls-result.txt  <span class="co"># そのファイルを引数に指定して...</span></span>
+<span id="cb4-4"><a aria-hidden="true" tabindex="-1"></a><span class="ex">hiku.vcf</span></span>
+<span id="cb4-5"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a aria-hidden="true" tabindex="-1"></a><span class="co">## パイプで直接流し込む</span></span>
+<span id="cb4-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"hiku"</span></span>
+<span id="cb4-8"><a aria-hidden="true" tabindex="-1"></a><span class="ex">hiku.vcf</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="bash-エイリアス-alias" class="slide level2">
 <h2>Bash: エイリアス <code>alias</code></h2>
@@ -559,11 +568,11 @@ Apptainer (旧 Singularity)
 </dd>
 </dl>
 <p>例:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span> <span class="at">-l</span>             <span class="co"># 隠しファイルを含むすべてのファイルの情報を表示</span></span>
-<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>                     <span class="co"># 毎回打つのはめんどくさい。。。</span></span>
-<span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> ls=<span class="st">"ls -a -l"</span>  <span class="co"># エイリアスを設定</span></span>
-<span id="cb4-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>                   <span class="co"># 同じ結果に</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span> <span class="at">-l</span>             <span class="co"># 隠しファイルを含むすべてのファイルの情報を表示</span></span>
+<span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>                     <span class="co"># 毎回打つのはめんどくさい。。。</span></span>
+<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> ls=<span class="st">"ls -a -l"</span>  <span class="co"># エイリアスを設定</span></span>
+<span id="cb5-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>                   <span class="co"># 同じ結果に</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="age-引数" class="slide level2">
 <h2>AGE: 引数</h2>
@@ -571,20 +580,20 @@ Apptainer (旧 Singularity)
 <div class="code-with-filename-file">
 <pre><strong>sample.sh</strong></pre>
 </div>
-<div class="sourceCode" id="cb5" data-filename="sample.sh"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/bash      # インタープリタの指定</span></span>
-<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd              # ジョブを実行する場所をカレントディレクトリに</span></span>
-<span id="cb5-5"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -V                # ジョブ実行時の環境変数をすべてジョブに受け継ぐ</span></span>
-<span id="cb5-6"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l short          # ノードの指定</span></span>
-<span id="cb5-7"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l d_rt=00:10:00  # 実行上限時間の指定</span></span>
-<span id="cb5-8"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_rt=00:10:00  # 同じ</span></span>
-<span id="cb5-9"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_vmem=4G      # メモリ量の指定</span></span>
-<span id="cb5-10"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l mem_req=4G     # 同じ</span></span>
-<span id="cb5-11"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -o stdout.txt     # 標準出力のファイル名</span></span>
-<span id="cb5-12"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -e stderr.txt     # エラー出力のファイル名</span></span>
-<span id="cb5-13"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> Hello</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6" data-filename="sample.sh"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/bash      # インタープリタの指定</span></span>
+<span id="cb6-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd              # ジョブを実行する場所をカレントディレクトリに</span></span>
+<span id="cb6-5"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -V                # ジョブ実行時の環境変数をすべてジョブに受け継ぐ</span></span>
+<span id="cb6-6"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l short          # ノードの指定</span></span>
+<span id="cb6-7"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l d_rt=00:10:00  # 実行上限時間の指定</span></span>
+<span id="cb6-8"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_rt=00:10:00  # 同じ</span></span>
+<span id="cb6-9"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_vmem=4G      # メモリ量の指定</span></span>
+<span id="cb6-10"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l mem_req=4G     # 同じ</span></span>
+<span id="cb6-11"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -o stdout.txt     # 標準出力のファイル名</span></span>
+<span id="cb6-12"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -e stderr.txt     # エラー出力のファイル名</span></span>
+<span id="cb6-13"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> Hello</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="age-apptainer-旧-singularity" class="slide level2 scrollable">
@@ -605,8 +614,8 @@ Apptainer (旧 Singularity)
 <li><code>apptainer exec</code> + バージョンまでのPATH + コマンド</li>
 </ol>
 <p><code>samtools</code> の場合:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/s/samtools<span class="pp">*</span></span>
-<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec /usr/local/biotools/s/samtools:1.8--2 samtools <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/s/samtools<span class="pp">*</span></span>
+<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec /usr/local/biotools/s/samtools:1.8--2 samtools <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="age-アレイジョブ" class="slide level2">
 <h2>AGE: アレイジョブ</h2>
@@ -626,16 +635,16 @@ Apptainer (旧 Singularity)
 <div class="code-with-filename-file">
 <pre><strong>test-array.sh</strong></pre>
 </div>
-<div class="sourceCode" id="cb7" data-filename="test-array.sh"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/Bash</span></span>
-<span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd</span></span>
-<span id="cb7-5"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -t 1-4 1</span></span>
-<span id="cb7-6"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a aria-hidden="true" tabindex="-1"></a><span class="va">samples</span><span class="op">=</span><span class="va">(</span>uwa hiku WL RIR<span class="va">)</span></span>
-<span id="cb7-8"><a aria-hidden="true" tabindex="-1"></a><span class="va">sample</span><span class="op">=</span><span class="va">${samples</span><span class="op">[</span><span class="va">$SGE_TASK_ID</span>-1<span class="op">]</span><span class="va">}</span></span>
-<span id="cb7-9"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">${sample}</span> is my favorite breed. <span class="op">&gt;&gt;</span> <span class="va">${sample}</span>.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8" data-filename="test-array.sh"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/Bash</span></span>
+<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd</span></span>
+<span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -t 1-4 1</span></span>
+<span id="cb8-6"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a aria-hidden="true" tabindex="-1"></a><span class="va">samples</span><span class="op">=</span><span class="va">(</span>uwa hiku WL RIR<span class="va">)</span></span>
+<span id="cb8-8"><a aria-hidden="true" tabindex="-1"></a><span class="va">sample</span><span class="op">=</span><span class="va">${samples</span><span class="op">[</span><span class="va">$SGE_TASK_ID</span>-1<span class="op">]</span><span class="va">}</span></span>
+<span id="cb8-9"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">${sample}</span> is my favorite breed. <span class="op">&gt;&gt;</span> <span class="va">${sample}</span>.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <dl>
 <dt><code>-t 1-4 1</code></dt>
@@ -661,8 +670,45 @@ Apptainer (旧 Singularity)
 </ul>
 <p><small>プロトコル置き場: 農工大ラボ/行動グループ/実験プロトコール/全ゲノム解析/</small></p>
 </section>
-<section id="f_textst-解析ハンズオン" class="slide level2">
-<h2><span class="math inline">\(F_\text{st}\)</span> 解析ハンズオン</h2>
+<section id="f_textst-解析ハンズオン-vcf-query" class="slide level2">
+<h2><span class="math inline">\(F_\text{st}\)</span> 解析ハンズオン: <code>vcf-query</code></h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">vcf-query</span> <span class="at">-l</span> file.vcf.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl>
+<dt><code>-l</code></dt>
+<dd>
+VCF ファイルのサンプルを表示
+</dd>
+<dt><code>grep</code> でほしいサンプルのみ抽出</dt>
+<dd>
+例: <code>grep -E 'SM|YKD' &gt; shamo.txt</code> でシャモを抽出
+</dd>
+</dl>
+</section>
+<section id="f_textst-解析ハンズオン-vcftools" class="slide level2">
+<h2><span class="math inline">\(F_\text{st}\)</span> 解析ハンズオン: <code>vcftools</code></h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">vcftools</span> <span class="at">--gzvcf</span> file.vcf.gz <span class="at">--weir-fst-pop</span> pop1.txt <span class="at">--weir-fst-pop</span> pop2.txt <span class="dt">\</span></span>
+<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">--fst-window-size</span> 10000 <span class="at">--fst-window-step</span> 5000 <span class="at">--out</span> outfile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl>
+<dt><code>--gzvcf</code></dt>
+<dd>
+圧縮済み VCF ファイル
+</dd>
+<dt><code>--weir-fst-pop</code></dt>
+<dd>
+<span class="math inline">\(F_\text{ST}\)</span> を計算したい2集団のサンプルをリストしたテキストファイル
+</dd>
+<dt><code>--fst-window-size</code>, <code>--fst-window-step</code></dt>
+<dd>
+塩基数で指定
+</dd>
+</dl>
+<p><img data-src="./image/window-size-and-step.svg" class="absolute" style="top: 520px; right: 30px; height: 110px; "></p>
+<dl>
+<dt><code>--out</code></dt>
+<dd>
+出力ファイルの名前 (<code>.log</code> と <code>.windowed.weir.fst</code> の2ファイル)
+</dd>
+</dl>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">

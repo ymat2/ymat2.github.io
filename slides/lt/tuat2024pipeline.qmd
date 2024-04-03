@@ -93,7 +93,7 @@ Bash
 AGE
 : 引数 (`#$`)
 : Apptainer (旧 Singularity)
-: アレイジョブ (並列ジョブ)
+: アレイジョブ
 
 :::
 ::::
@@ -185,7 +185,7 @@ ls                   # 同じ結果に
 #$ -S /bin/bash      # インタープリタの指定
 #$ -cwd              # ジョブを実行する場所をカレントディレクトリに
 #$ -V                # ジョブ実行時の環境変数をすべてジョブに受け継ぐ
-#$ -l short          # ノードの指定
+#$ -l short          # 計算機の種類の指定 (short, intel, gpu, epyc, medium)
 #$ -l d_rt=00:10:00  # 実行上限時間の指定
 #$ -l s_rt=00:10:00  # 同じ
 #$ -l s_vmem=4G      # メモリ量の指定
@@ -226,13 +226,17 @@ apptainer exec /usr/local/biotools/s/samtools:1.8--2 samtools --help
 
 ## アレイジョブスクリプトの書き方
 
+<https://sc.ddbj.nig.ac.jp/software/grid_engine/array_jobs>
+
+同じ解析を4サンプルに対して同時に実行する例:
 
 ```{.sh filename="test-array.sh"}
 #!/bin/bash
 
 #$ -S /bin/Bash
 #$ -cwd
-#$ -t 1-4 1
+#$ -t 1-4
+#$ -tc 4
 
 samples=(uwa hiku WL RIR)
 sample=${samples[$SGE_TASK_ID-1]}
@@ -240,11 +244,19 @@ sample=${samples[$SGE_TASK_ID-1]}
 echo ${sample} is my favorite breed. >> ${sample}.vcf
 ```
 
-`-t 1-4 1`
-: ジョブの数を指定。
+
+## アレイジョブ関連の引数
+
+`-t 1-4`
+: `$SEG_TASK_ID` を指定。1,2,3,4 を指定している。
+: `3-11:2` (3から11まで1つ飛ばしで) みたいな指定も可能
 
 `$SGE_TASK_ID`
-: そのジョブが何個目か、を示す変数。これを使って配列の要素を指定。
+: そのジョブが何個目か、を示す変数。これを使って配列の要素を指定する。
+
+`-tc`
+: 同時に実行されるジョブ数の上限を指定
+: `qquota` コマンドで1ユーザが使えるノードの数を確認できる。
 
 
 ## プロトコルをざっくり説明:
@@ -269,8 +281,9 @@ vcf-query -l file.vcf.gz
 `-l`
 : VCF ファイルのサンプルを表示
 
-`grep` でほしいサンプルのみ抽出
-: 例: `grep -E 'SM|YKD' > shamo.txt` でシャモを抽出
+`grep` にパイプしてほしいサンプルのみ抽出
+: `| grep -E 'SM|YKD' > shamo.txt` でシャモを抽出
+: `| grep -v -E 'SM|YKD' > non-shamo.txt` でシャモ以外を抽出
 
 
 ## $F_\text{st}$ 解析ハンズオン: `vcftools`

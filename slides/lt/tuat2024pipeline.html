@@ -494,7 +494,7 @@ For ループ
 Apptainer (旧 Singularity)
 </dd>
 <dd>
-アレイジョブ (並列ジョブ)
+アレイジョブ
 </dd>
 </dl>
 </div>
@@ -585,7 +585,7 @@ Apptainer (旧 Singularity)
 <span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/bash      # インタープリタの指定</span></span>
 <span id="cb6-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd              # ジョブを実行する場所をカレントディレクトリに</span></span>
 <span id="cb6-5"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -V                # ジョブ実行時の環境変数をすべてジョブに受け継ぐ</span></span>
-<span id="cb6-6"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l short          # ノードの指定</span></span>
+<span id="cb6-6"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l short          # 計算機の種類の指定 (short, intel, gpu, epyc, medium)</span></span>
 <span id="cb6-7"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l d_rt=00:10:00  # 実行上限時間の指定</span></span>
 <span id="cb6-8"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_rt=00:10:00  # 同じ</span></span>
 <span id="cb6-9"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_vmem=4G      # メモリ量の指定</span></span>
@@ -631,6 +631,8 @@ Apptainer (旧 Singularity)
 </section>
 <section id="アレイジョブスクリプトの書き方" class="slide level2">
 <h2>アレイジョブスクリプトの書き方</h2>
+<p><a href="https://sc.ddbj.nig.ac.jp/software/grid_engine/array_jobs" class="uri">https://sc.ddbj.nig.ac.jp/software/grid_engine/array_jobs</a></p>
+<p>同じ解析を4サンプルに対して同時に実行する例:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>test-array.sh</strong></pre>
@@ -639,21 +641,35 @@ Apptainer (旧 Singularity)
 <span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/Bash</span></span>
 <span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd</span></span>
-<span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -t 1-4 1</span></span>
-<span id="cb8-6"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a aria-hidden="true" tabindex="-1"></a><span class="va">samples</span><span class="op">=</span><span class="va">(</span>uwa hiku WL RIR<span class="va">)</span></span>
-<span id="cb8-8"><a aria-hidden="true" tabindex="-1"></a><span class="va">sample</span><span class="op">=</span><span class="va">${samples</span><span class="op">[</span><span class="va">$SGE_TASK_ID</span>-1<span class="op">]</span><span class="va">}</span></span>
-<span id="cb8-9"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">${sample}</span> is my favorite breed. <span class="op">&gt;&gt;</span> <span class="va">${sample}</span>.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -t 1-4</span></span>
+<span id="cb8-6"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -tc 4</span></span>
+<span id="cb8-7"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a aria-hidden="true" tabindex="-1"></a><span class="va">samples</span><span class="op">=</span><span class="va">(</span>uwa hiku WL RIR<span class="va">)</span></span>
+<span id="cb8-9"><a aria-hidden="true" tabindex="-1"></a><span class="va">sample</span><span class="op">=</span><span class="va">${samples</span><span class="op">[</span><span class="va">$SGE_TASK_ID</span>-1<span class="op">]</span><span class="va">}</span></span>
+<span id="cb8-10"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">${sample}</span> is my favorite breed. <span class="op">&gt;&gt;</span> <span class="va">${sample}</span>.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="アレイジョブ関連の引数" class="slide level2">
+<h2>アレイジョブ関連の引数</h2>
 <dl>
-<dt><code>-t 1-4 1</code></dt>
+<dt><code>-t 1-4</code></dt>
 <dd>
-ジョブの数を指定。
+<code>$SEG_TASK_ID</code> を指定。1,2,3,4 を指定している。
+</dd>
+<dd>
+<code>3-11:2</code> (3から11まで1つ飛ばしで) みたいな指定も可能
 </dd>
 <dt><code>$SGE_TASK_ID</code></dt>
 <dd>
-そのジョブが何個目か、を示す変数。これを使って配列の要素を指定。
+そのジョブが何個目か、を示す変数。これを使って配列の要素を指定する。
+</dd>
+<dt><code>-tc</code></dt>
+<dd>
+同時に実行されるジョブ数の上限を指定
+</dd>
+<dd>
+<code>qquota</code> コマンドで1ユーザが使えるノードの数を確認できる。
 </dd>
 </dl>
 </section>
@@ -678,9 +694,12 @@ Apptainer (旧 Singularity)
 <dd>
 VCF ファイルのサンプルを表示
 </dd>
-<dt><code>grep</code> でほしいサンプルのみ抽出</dt>
+<dt><code>grep</code> にパイプしてほしいサンプルのみ抽出</dt>
 <dd>
-例: <code>grep -E 'SM|YKD' &gt; shamo.txt</code> でシャモを抽出
+<code>| grep -E 'SM|YKD' &gt; shamo.txt</code> でシャモを抽出
+</dd>
+<dd>
+<code>| grep -v -E 'SM|YKD' &gt; non-shamo.txt</code> でシャモ以外を抽出
 </dd>
 </dl>
 </section>

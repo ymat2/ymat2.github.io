@@ -2135,7 +2135,7 @@
     "href": "slides/lt/tuat2024pipeline.html#ジョブスクリプトの書き方",
     "title": "遺伝研スパコンで集団ゲノミクス解析",
     "section": "ジョブスクリプトの書き方",
-    "text": "ジョブスクリプトの書き方\n\n言語は Bash (.sh) (Python でも書ける。)\nジョブスケジューラは Altair Grid Engine(AGE)\n\nまず Bash の記法について説明した後、 AGE 特有の書き方について説明します。\n\n\n\nBash\n\n変数\n\n\n配列\n\n\nFor ループ\n\n\nパイプ |、リダイレクト &gt;\n\n\nエイリアス\n\n\n\n\nAGE\n\n引数 (#$)\n\n\nApptainer (旧 Singularity)\n\n\nアレイジョブ (並列ジョブ)"
+    "text": "ジョブスクリプトの書き方\n\n言語は Bash (.sh) (Python でも書ける。)\nジョブスケジューラは Altair Grid Engine(AGE)\n\nまず Bash の記法について説明した後、 AGE 特有の書き方について説明します。\n\n\n\nBash\n\n変数\n\n\n配列\n\n\nFor ループ\n\n\nパイプ |、リダイレクト &gt;\n\n\nエイリアス\n\n\n\n\nAGE\n\n引数 (#$)\n\n\nApptainer (旧 Singularity)\n\n\nアレイジョブ"
   },
   {
     "objectID": "slides/lt/tuat2024pipeline.html#bash-変数配列for-ループ",
@@ -2170,7 +2170,7 @@
     "href": "slides/lt/tuat2024pipeline.html#age-引数",
     "title": "遺伝研スパコンで集団ゲノミクス解析",
     "section": "AGE: 引数",
-    "text": "AGE: 引数\n\n\nsample.sh\n\n#!/bin/bash\n\n#$ -S /bin/bash      # インタープリタの指定\n#$ -cwd              # ジョブを実行する場所をカレントディレクトリに\n#$ -V                # ジョブ実行時の環境変数をすべてジョブに受け継ぐ\n#$ -l short          # ノードの指定\n#$ -l d_rt=00:10:00  # 実行上限時間の指定\n#$ -l s_rt=00:10:00  # 同じ\n#$ -l s_vmem=4G      # メモリ量の指定\n#$ -l mem_req=4G     # 同じ\n#$ -o stdout.txt     # 標準出力のファイル名\n#$ -e stderr.txt     # エラー出力のファイル名\n\necho Hello"
+    "text": "AGE: 引数\n\n\nsample.sh\n\n#!/bin/bash\n\n#$ -S /bin/bash      # インタープリタの指定\n#$ -cwd              # ジョブを実行する場所をカレントディレクトリに\n#$ -V                # ジョブ実行時の環境変数をすべてジョブに受け継ぐ\n#$ -l short          # 計算機の種類の指定 (short, intel, gpu, epyc, medium)\n#$ -l d_rt=00:10:00  # 実行上限時間の指定\n#$ -l s_rt=00:10:00  # 同じ\n#$ -l s_vmem=4G      # メモリ量の指定\n#$ -l mem_req=4G     # 同じ\n#$ -o stdout.txt     # 標準出力のファイル名\n#$ -e stderr.txt     # エラー出力のファイル名\n\necho Hello"
   },
   {
     "objectID": "slides/lt/tuat2024pipeline.html#age-apptainer-旧-singularity",
@@ -2191,7 +2191,14 @@
     "href": "slides/lt/tuat2024pipeline.html#アレイジョブスクリプトの書き方",
     "title": "遺伝研スパコンで集団ゲノミクス解析",
     "section": "アレイジョブスクリプトの書き方",
-    "text": "アレイジョブスクリプトの書き方\n\n\ntest-array.sh\n\n#!/bin/bash\n\n#$ -S /bin/Bash\n#$ -cwd\n#$ -t 1-4 1\n\nsamples=(uwa hiku WL RIR)\nsample=${samples[$SGE_TASK_ID-1]}\n\necho ${sample} is my favorite breed. &gt;&gt; ${sample}.vcf\n\n\n-t 1-4 1\n\nジョブの数を指定。\n\n$SGE_TASK_ID\n\nそのジョブが何個目か、を示す変数。これを使って配列の要素を指定。"
+    "text": "アレイジョブスクリプトの書き方\nhttps://sc.ddbj.nig.ac.jp/software/grid_engine/array_jobs\n同じ解析を4サンプルに対して同時に実行する例:\n\n\ntest-array.sh\n\n#!/bin/bash\n\n#$ -S /bin/Bash\n#$ -cwd\n#$ -t 1-4\n#$ -tc 4\n\nsamples=(uwa hiku WL RIR)\nsample=${samples[$SGE_TASK_ID-1]}\n\necho ${sample} is my favorite breed. &gt;&gt; ${sample}.vcf"
+  },
+  {
+    "objectID": "slides/lt/tuat2024pipeline.html#アレイジョブ関連の引数",
+    "href": "slides/lt/tuat2024pipeline.html#アレイジョブ関連の引数",
+    "title": "遺伝研スパコンで集団ゲノミクス解析",
+    "section": "アレイジョブ関連の引数",
+    "text": "アレイジョブ関連の引数\n\n-t 1-4\n\n$SEG_TASK_ID を指定。1,2,3,4 を指定している。\n\n\n3-11:2 (3から11まで1つ飛ばしで) みたいな指定も可能\n\n$SGE_TASK_ID\n\nそのジョブが何個目か、を示す変数。これを使って配列の要素を指定する。\n\n-tc\n\n同時に実行されるジョブ数の上限を指定\n\n\nqquota コマンドで1ユーザが使えるノードの数を確認できる。"
   },
   {
     "objectID": "slides/lt/tuat2024pipeline.html#プロトコルをざっくり説明",
@@ -2205,7 +2212,7 @@
     "href": "slides/lt/tuat2024pipeline.html#f_textst-解析ハンズオン-vcf-query",
     "title": "遺伝研スパコンで集団ゲノミクス解析",
     "section": "\\(F_\\text{st}\\) 解析ハンズオン: vcf-query",
-    "text": "\\(F_\\text{st}\\) 解析ハンズオン: vcf-query\nvcf-query -l file.vcf.gz\n\n-l\n\nVCF ファイルのサンプルを表示\n\ngrep でほしいサンプルのみ抽出\n\n例: grep -E 'SM|YKD' &gt; shamo.txt でシャモを抽出"
+    "text": "\\(F_\\text{st}\\) 解析ハンズオン: vcf-query\nvcf-query -l file.vcf.gz\n\n-l\n\nVCF ファイルのサンプルを表示\n\ngrep にパイプしてほしいサンプルのみ抽出\n\n| grep -E 'SM|YKD' &gt; shamo.txt でシャモを抽出\n\n\n| grep -v -E 'SM|YKD' &gt; non-shamo.txt でシャモ以外を抽出"
   },
   {
     "objectID": "slides/lt/tuat2024pipeline.html#f_textst-解析ハンズオン-vcftools",

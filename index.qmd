@@ -11,6 +11,7 @@ format:
 
 Contacts
 : yuki.matsuda.m10あっとgmail.com
+: s249780wあっとst.go.tuat.ac.jp
 
 Links
 : <a rel="me" href="https://github.com/ymat2/" title="GitHub">

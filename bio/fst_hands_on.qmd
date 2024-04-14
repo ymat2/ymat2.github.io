@@ -1,0 +1,434 @@
+---
+format:
+  html:
+    title: "$F_\\text{st}$ 解析ハンズオン"
+    subtitle: "候補遺伝子・SNPの抽出"
+    toc: true
+    toc-depth: 3
+---
+
+
+## 概要
+
+<div class="warn">
+
+研究室内ハンズオンの HTML 版。
+未公開データを使ったもののため、一部結果を非表示にしてあります。
+
+</div>
+
+### 目標
+
+他サンプルをマージした VCF ファイルからスタートして、
+$F_\text{st}$ のマンハッタンプロットとハプロタイプのヒートマップを描く。
+
+### 事前準備
+
+1. [遺伝研スパコンのアカウントを作成](https://sc.ddbj.nig.ac.jp/guides/start_of_use)し、
+   [ログイン](https://sc.ddbj.nig.ac.jp/guides/introduction/)できる状態にする。
+
+2. 手元の PC に [R の解析環境を用意](https://www.r-project.org/)する。
+
+3. NCBI から `bGalGal1.mat.broiler.GRCg7b` の Sequence Report をダウンロードする:
+
+   1. <https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_016699485.2/> へ
+
+   2. Chromosomes までスクロールして
+      <kbd style="color:#fff; background-color:rgb(0, 113, 188);">Download</kbd>
+      から取得
+
+
+### 材料
+
+日本鶏1品種1サンプルの VCF ファイル
+: ファイルの名前は `varsites.snponly.vcf.gz`
+: 変異がある座位のみをコール。INDEL を除いた SNP のみの VCF。
+
+自分のディレクトリにインデックス (`.csi`) と一緒にコピーする:
+
+### 使うソフトウェア
+
+- [VCFtools](https://vcftools.github.io/index.html)
+- [BCFtools](https://samtools.github.io/bcftools/bcftools.html)
+- [bedtools](https://bedtools.readthedocs.io/en/latest/)
+
+いずれも遺伝研ではデフォルトで使える。
+他のバージョンのものが良ければ `apptainer` 越しに使う。
+
+```sh
+vcftools --version
+# VCFtools (0.1.16)
+bcftools --version
+# bcftools 1.13
+bedtools --version
+# bedtools v2.30.0
+
+## or use via apptainer, e.g.
+apptainer exec /usr/local/biotools/v/vcftools:0.1.16--h9a82719_5 vcftools --version
+# VCFtools (0.1.16)
+```
+
+## $F_\text{st}$ を計算してマンハッタンプロットを描く
+
+軍鶏 vs 他品種で分化しているゲノム領域を特定する。
+[VCFtools](https://vcftools.github.io/index.html) を使う。
+
+<div class="note">
+
+遺伝研での作業なので、以降の操作はシェルスクリプト (`.sh`) を書いて `qsub` してもよい。
+今回は便宜上、通常のコマンドラインで実行する形で説明する。
+
+</div>
+
+毎回 VCF を指定するのは面倒なので変数に代入して `${vcf}` で使う:
+
+```sh
+vcf=YOUR_DIR/varsites.snponly.vcf.gz
+```
+
+### 2集団のサンプル名を抽出する
+
+`bcftools query` と `grep` を組み合わせて軍鶏とそれ以外のサンプル名を
+それぞれテキストファイルに格納する:
+
+<small>(軍鶏はサンプル名に `SM` を含む。これと八木戸 `YKD` を抽出。)</small>
+
+```sh
+bcftools query -l ${vcf} | grep -E 'SM|YKD' > shamo.txt
+bcftools query -l ${vcf} | grep -v -E 'SM|YKD' > non-shamo.txt
+```
+
+### $F_\text{st}$ を計算する
+
+2集団と `window-size`、`window-step` を指定して $F_\text{st}$ を計算する:
+
+```sh
+vcftools --gzvcf ${vcf} --weir-fst-pop shamo.txt --weir-fst-pop non-shamo.txt \
+  --fst-window-size 10000 --fst-window-step 5000 --out shamo_vs_other
+```
+
+`--out` で指定した Prefix で `.windowed.weir.fst` と `.log` の2ファイルができる。
+
+### マンハッタンプロットを描く
+
+ここからローカルでの作業に移る。
+`shamo_vs_other.windowed.weir.fst` を手元にダウンロードする。
+これと事前準備3で取得した `sequence_report.tsv` を使う。
+
+```{.r filename="draw_manhattan_plot.R"}
+## パッケージのダウンロード
+install.packages("conflicted")
+install.packages("tidyverse")
+install.packages("qqman")
+
+## パッケージの読み込み
+library(conflicted)  # おまじない
+library(tidyverse)   # データの操作用
+library(qqman)       # マンハッタンプロット用
+
+## sequence_report.tsv を読み込む:
+acc2chr= readr::read_tsv("sequence_report.tsv") |>
+  dplyr::rename(CHROM = `RefSeq seq accession`, chr = `Chromosome name`) |>  # 列名の変更
+  dplyr::select(CHROM, chr)                                                  # 染色体のaccessionと番号のみ抽出
+
+## shamo_vs_other.windowed.weir.fst を読み込む
+fst = readr::read_tsv("shamo_vs_other.windowed.weir.fst") |>
+  tibble::rownames_to_column(var = "SNP") |>
+  dplyr::left_join(acc2chr, by = "CHROM") |>
+  dplyr::mutate(chr = readr::parse_integer(chr, na = c("W", "Z", "Un", "MT"))) |>
+  dplyr::filter(!is.na(chr))
+
+## マンハッタンプロットの描画
+qqman::manhattan(
+  fst,
+  chr = "chr",
+  bp = "BIN_START",
+  p = "WEIGHTED_FST",  # or "MEAN_FST"
+  snp = "SNP",
+  col = c("#1f78b4", "#a6cee3"),
+  logp = FALSE,
+  xlab = "Chromosome",
+  ylab = "Fst"
+)
+```
+
+`qqman::manhattan()` はデフォルトでは [PLINK](https://www.cog-genomics.org/plink/) の出力ファイルである
+BP列、CHR列、P列、SNP列をもつデータフレームを想定する。
+これ以外のデータでマンハッタンプロットの描画をするときは、引数に列名などを指定していく。
+
+`chr`
+: 横軸の染色体番号
+
+`bp`
+: 各染色体上の SNP の座位
+
+`p`
+: 縦軸の統計量。
+  デフォルトの想定は GWAS 等の P-value なので `p` になっている。
+
+`snp`
+: 各 SNP の名前。典型的なのは `rs123456` とか。
+
+`col`
+: 染色体の色。今回は
+  `#1f78b4` <span style="color:#1f78b4;">■</span> と
+  `#a6cee3` <span style="color:#a6cee3;">■</span> を使ってみる。
+
+`logp`
+: 縦軸 `p` を対数変換するかどうか。
+  今回は $F_\text{st}$ の生の値を使うので `FALSE`。
+
+`xlab`, `ylab`
+: 横軸、縦軸のラベル
+
+
+## $F_\text{st}$ の高い領域に含まれる遺伝子をリストする
+
+### `bedtools` による重なり抽出
+
+マンハッタンプロットをみて、いい感じに閾値を決める。
+今回 $F_\text{st} > 0.3$ でやってみる。
+
+ここでまた遺伝研に戻り、`bedtools` を使って
+$F_\text{st}$ の高い領域とオーバーラップする遺伝子をリストする。
+
+AWK コマンドで $F_\text{st} > 0.3$ の行を抽出:
+
+```sh
+awk -F'\t' '$5 > 0.3' shamo_vs_other.windowed.weir.fst > shamo_vs_other.03.fst
+```
+
+<div class="note">
+
+`.fst` ファイルの5列目 (`$5`) が `WEIGHTED_FST` なので、これが 0.3 より大きい行を抽出する。
+この作業自体はエクセルでやっても R でやってもいい。
+
+</div>
+
+NCBI から `bGalGal1.mat.broiler.GRCg7b` の GTF をダウンロードする:
+
+   1. <https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_016699485.2/> へ
+   2. <kbd style="color:#fff; background-color:rgb(0, 113, 188);">Download</kbd>
+      から  Annotation features (GTF) のみ選択してダウンロード
+   3. 手元に取得した `genomic.gtf` を遺伝研に送る
+
+このまま使ってもいいけど、9列目の Attribute の情報が多すぎる。
+今回は遺伝子ID (`gene_id`) さえあればいいので、ここだけ残したシンプルな GFF に変えておく:
+
+```{.py filename="clean_gtf.py"}
+import argparse
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--infile")
+    parser.add_argument("-o", "--outfile")
+    args = parser.parse_args()
+
+    gtf = clean_gtf(args.infile)
+    with open(args.outfile, "w") as f:
+        for l in gtf:
+            f.write("\t".join(l)+"\n")
+
+
+def clean_gtf(gtf):
+    new_lines = []
+    with open(gtf) as f:
+        for l in f:
+            if l[0] == "#":
+                new_lines.append([l.rstrip("\n")])
+            else:
+                l = l.rstrip("\n").split("\t")
+                l[-1] = extract_gene_from_gtf(l[-1])
+                new_lines.append(l)
+    return new_lines
+
+
+def extract_gene_from_gtf(desc):
+    descs = desc.split("; ")
+    descs = {i.split(" ")[0]: i.split(" ")[1].strip('"') for i in descs if " " in i}
+    gene = descs.get("gene_id", "NA")
+    return gene
+
+
+if __name__ == "__main__":
+    main()
+```
+
+```sh
+python3 clean_gtf.py -i genomic.gtf -o simple.gtf
+```
+
+`bedtools intersect` コマンドで、`.fst` と `.gtf`
+のオーバーラップする領域を抽出する:
+
+```sh
+bedtools intersect -a shamo_vs_other.03.fst -b simple.gtf -wo > shamo_vs_other.03.annot.fst
+```
+
+### 再びマンハッタンプロットの描画
+
+`shamo_vs_other.03.annot.fst` を再び手元にダウンロードして R で可視化:
+
+```{.r filename="draw_manhattan_plot.R の続き"}
+cols= c("CHROM", "BIN_START", "BIN_END", "N_VARIANTS", "WEIGHTED_FST", "MEAN_FST")
+fst2gene = readr::read_tsv("./shamo_vs_other.03.annot.fst", col_names = cols) |>
+  dplyr::rename("gene_id" = X15) |>
+  dplyr::distinct(BIN_START, gene_id) |>
+  group_by(BIN_START) |>
+  summarize(gene_id = paste(gene_id, collapse = ", "))
+
+
+fst = fst |> left_join(fst2gene, by = "BIN_START")
+
+qqman::manhattan(
+  fst,
+  chr = "chr",
+  bp = "BIN_START",
+  p = "WEIGHTED_FST",  # or "MEAN_FST"
+  snp = "gene_id",
+  col = c("#1f78b4", "#a6cee3"),
+  logp = FALSE,
+  xlab = "Chromosome",
+  ylab = "Fst",
+  annotatePval = 0.3,
+  annotateTop = FALSE
+)
+```
+
+`annotatePval`
+: 縦軸がこの値以上の点の `snp` を表示する。
+: 今回は $F_\text{st} > 0.3$ でやっているので `0.3` を指定
+
+`annotateTop`
+: `TRUE` だと各染色体の Top のみを表示する。
+: いったん `FALSE` で全部表示してみて、重なりすぎてて見にくければ `TRUE`
+
+
+### 解釈
+
+こうして絞り込んだ遺伝子リストから、
+さらにジェノタイピングやハプロタイプ解析に回す遺伝子を探していく。
+
+今回、2番染色体のピークに座上する *ISPD* は、
+軍鶏を対象とした先行研究
+([Luo et al. 2020](https://doi.org/10.1093/g3journal/jkad267),
+[Bendesly et al. 2024](https://doi.org/10.1093/g3journal/jkad267))
+でも得られており、有力な候補と言える。
+
+この後は、*ISPD* の周辺領域を抽出してハプロタイプ解析を行っていく。
+
+
+## VCF から候補遺伝子の周辺領域を抽出
+
+前半の $F_\text{st}$ 解析で候補遺伝子で抽出した *ISPD*
+の周辺領域を SNP 単位で解析していく。
+
+### *ISPD* 領域
+
+NCBI で [*ISPD* のページ](https://www.ncbi.nlm.nih.gov/gene/420591)を見ると、
+2番染色体 (`NC_052533.1`) の 28184591..28296806 にあるらしい。
+
+この前後 5000 bp を VCF から抽出する:
+
+```sh
+vcf=YOUR_DIR/varsites.snponly.vcf.gz
+
+vcftools --gzvcf ${vcf} \
+  --chr NC_052533.1 --from-bp 28184591-5000 --to-bp 28296806+5000 \
+  --recode --out ISPD
+```
+
+`--chr` で染色体accession、`--from-bp`/`--to-bp` で座位を指定して
+VCF の特定領域を抽出する。
+`--out` で指定した Prefix で、`ISPD.recode.vcf` が生成される。
+
+
+## ハプロタイプ解析
+
+抽出した *ISPD* 周辺領域の VCF を手元にダウンロードして、
+R で読み込む。
+全領域を可視化するとプロットが横に潰れるので、$F_\text{st}$ が特に高い領域に絞っておく:
+
+```{.r filename="draw_haplotype_plot.R"}
+library(conflicted)
+library(tidyverse)
+
+ispd_vcf = readr::read_tsv("ISPD.recode.vcf", comment = "##") |>  # もしくは ISPD.snpEff.vcf
+  dplyr::filter(POS >= 28200001 & POS <= 28215000) |>
+  tidyr::pivot_longer(
+    dplyr::starts_with("bam/"),
+    names_to = "sample",
+    values_to = "genotype"
+  ) |>
+  dplyr::mutate(
+    POS = as.character(POS),
+    sample = stringr::str_split(sample, "/", simplify = TRUE)[,2],
+    genotype = stringr::str_replace(genotype, ":.+", ""),
+    FORMAT = "GT",
+    category = dplyr::if_else(stringr::str_detect(sample, "SM|YKD"), 1, 0),
+    sample = forcats::fct_reorder(sample, category)
+  )
+```
+
+### $\Delta$ Allele frequency の計算と可視化
+
+軍鶏とその他品種のアリル頻度の差を計算する。
+ここは <u>VCF の形式によって方法が異なる</u>。
+今回は `bcftools mpileup | bcftools call --ploidy 2` でバリアントコールした形式を想定している。
+
+この場合、あるアリルの遺伝子型が2本とも Reference と同じ (`REF/REF`) であれば `0/0`、
+ヘテロで SNP を持つ場合 (`REF/ALT`) `0/1`、ホモで持つ場合 (`ALT/ALT`) `1/1` となる。
+
+`ALT` 遺伝子型のアリル頻度を、`0/0` = 0, `0/1` = 0.5, `1/1` = 1 としてその平均をとって計算する:
+
+```{.r filename="draw_haplotype_plot.R の続き"}
+ispd_af = ispd_vcf |>
+  dplyr::select(POS, sample, genotype, category) |>
+  dplyr::mutate(
+    AF = dplyr::case_when(
+      genotype == "1/1" ~ 0,
+      genotype == "0/1" ~ 0.5,
+      .default = 1),
+    category = dplyr::if_else(category == 1, "Shamo_AF", "Other_AF")
+  ) |>
+  dplyr::group_by(POS, category) |>
+  dplyr::summarise(mean_AF = mean(AF)) |>
+  tidyr::pivot_wider(names_from = category, values_from = mean_AF) |>
+  dplyr::mutate(diff_AF = abs(Shamo_AF - Other_AF))
+```
+
+これを `ggplot::geom_col()` で可視化する:
+
+```{.r filename="draw_haplotype_plot.R の続き"}
+ggplot2::ggplot(ispd_af) +
+  aes(x = POS, y = diff_AF) +                      # 横軸に座位、縦軸にアリル頻度の差
+  geom_col(fill =  "#999999") +                    # バープロットの描画
+  labs(x = "POS", y = "delta allele frequency") +  # x軸, y軸のタイトル
+  theme_classic() +                                # シンプルなテーマで
+  theme(
+    axis.text.x = element_blank(),                 # x軸のラベルはなくす
+    axis.ticks.x = element_blank()                 # x軸の ticks もなくす
+  )
+```
+
+### ハプロタイプのヒートマップ描画
+
+続いて、各品種の遺伝子型をヒートマップ形式で可視化する。
+
+```{.r filename="draw_haplotype_plot.R の続き"}
+ggplot2::ggplot(ispd_vcf) +
+  aes(x = POS, y = sample) +                    # 横軸に座位、縦軸にサンプル
+  geom_tile(aes(fill = genotype)) +             # タイルプロット。色分けはgenotypeで。
+  scale_fill_viridis_d(option = "cividis") +    # 色分けの色の指定
+  labs(x = "POS", y = "", fill = "Genotype") +  # x軸, y軸, 色分けのタイトル
+  theme_bw() +
+  theme(
+    axis.text.x = element_blank(),              # x軸のラベルはなくす
+    axis.ticks.x = element_blank(),             # x軸のticksもなくす
+  )
+```
+
+このようにしてアリル頻度の集団間差が特に大きい SNP を絞り込んでいく。
+[snpEff](./snpEff.qmd) などを組み合わせれば、
+その中でアミノ酸変異を伴うもの、といった絞り込みも可能。

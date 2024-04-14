@@ -1,0 +1,211 @@
+---
+format:
+  html:
+    title: "snpEff"
+    subtitle: "変異のアノテーション"
+---
+
+- <https://pcingola.github.io/SnpEff/>
+- <https://github.com/pcingola/SnpEff>
+
+参考になる日本語のサイト:
+
+- [mac でインフォマティクス::SnpEffとSnpSift](https://kazumaxneo.hatenablog.com/entry/2021/05/13/120000)
+- [Qiita::snpEff を動かす](https://qiita.com/shibanosuke/items/7fd695ffa9a04448f1db)
+
+SnpEff
+: SNP のアノテーションと VEP (Variant Effect Prediction) のためのツール
+
+SnpSift
+: アノテーションに加えて、フィルタリングなどの操作ができる。
+
+
+## Installation
+
+遺伝研で環境構築。
+Anaconda を使っていれば `conda` で入れてしまうのが楽っぽい:
+
+```sh
+conda install bioconda::snpeff
+```
+
+`/usr/local/biotools/` にもあるのでそれでもいいかも。
+(ただ最新版は動かなかった。)
+
+### バイナリ版をインストールする場合 (個人的に推奨):
+
+```sh
+cd ~/bin
+wget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip
+unzip snpEff_latest_core.zip
+```
+
+`PATH` を通す:
+
+```{.sh filename="~/.bash_profile"}
+PATH=${HOME}/bin/snpEff/scripts:$PATH
+export PATH
+```
+
+読み込み & 動作確認:
+
+```sh
+. ~/.bash_profile
+snpEff -h
+```
+
+
+## Basic Usage
+
+ニワトリ (Gallus gallus) の場合:
+
+### データベースを探してダウンロード
+
+```sh
+snpEff databases | grep Gallus
+# GRCg6a.99  Gallus_gallus [https://snpeff.blob.core.windows.net/databases/v5_2/snpEff_v5_2_GRCg6a.99.zip, https://snpeff.blob.core.windows.net/databases/v5_0/snpEff_v5_0_GRCg6a.99.zip, https://snpeff.blob.core.windows.net/databases/v5_1/snpEff_v5_1_GRCg6a.99.zip]
+# Galgal4.75  Gallus_gallus [https://snpeff.blob.core.windows.net/databases/v5_2/snpEff_v5_2_Galgal4.75.zip, https://snpeff.blob.core.windows.net/databases/v5_0/snpEff_v5_0_Galgal4.75.zip, https://snpeff.blob.core.windows.net/databases/v5_1/snpEff_v5_1_Galgal4.75.zip]
+
+snpEff download -v GRCg6a.99  # ない
+snpEff download -v Galgal4.75
+```
+
+### VCF にアノテーション
+
+```sh
+snpEff Galgal4.75 [VCF] > [OUTFILE]
+```
+
+
+## [ANN field](https://pcingola.github.io/SnpEff/snpeff/inputoutput/)
+
+アノテーションは、出力 VCF の `INFO` フィールドに `ANN=` の形で書かれる。
+以前は `EFF` フィールドというのが使われていたらしく、こっちが良ければ `-formatEff` を付ける。
+
+```txt
+ANN field : ANN=Allele|Annotation|Putative_impact|Gene Name|Gene ID|Feature type|Feature ID|Transcript biotype|Rank/total|HGVS.c|HGVS.p|cDNA_position/cDNA_length|CDS_position/CDS_length|Protein_position/Protein_length|Distance to feature|Errors, Warnings or Information messages
+Example   : ANN=T|missense_variant|MODERATE|CCT8L2|ENSG00000198445|transcript|ENST00000359963|protein_coding|1/1|c.1406G>A|p.Gly469Glu|1666/2034|1406/1674|469/557||
+Example   : ANN=T|downstream_gene_variant|MODIFIER|FABP5P11|ENSG00000240122|transcript|ENST00000430910|processed_pseudogene||n.*397G>A|||||3944|
+```
+
+
+## [Output summary](https://pcingola.github.io/SnpEff/snpeff/outputsummary/)
+
+デフォルトでは `snpEff` を実行したディレクトリに
+`snpEff_summary.html` と `snpEff_genes.txt` の2種類の
+要約統計ファイルが出力される。
+
+`-stats` で出力先パスの指定が可能。
+`-noStats` で要約統計ファイルを出力しない。
+`-csvStats` で HTML ではなく CSV として出力。
+
+
+## [Custom Annotation](https://pcingola.github.io/SnpEff/snpeff/build_db/)
+
+<https://pcingola.github.io/SnpEff/snpeff/build_db/>
+
+使いたいデータベースがなかったり、あってもうまくダウンロードできない場合、
+手元にゲノム配列とアノテーションファイルがあればデータベースを自作できる。
+アノテーションファイルは (GTF/GFF/GenBank file/RefSeq table) のいずれかでできる。
+今回 GFF/GTF を使う。
+
+<div class="note">
+
+後述するが少なくとも GRCg7b については GFF ではなく GTF がおすすめ。
+
+</div>
+
+全ゲノム配列 (`.fa`) とアノテーション (`.gff`) をダウンロード:
+
+```sh
+datasets download genome accession GCF_016699485.2 --include gff3,genome
+```
+
+`datasets` コマンドについては[ゲノムデータ取得 &mdash; datasets コマンドを使う方法](./ncbi_download.qmd#datasets-コマンドを使う方法)を参照。
+
+`snpEff/snpEff.config` に追記:
+
+```{.conf filename="snpEff.config"}
+#---
+# Custom Annotation
+#---
+
+# Chicken genome, bGalGal1.mat.broiler.GRCg7b
+GRCg7b.genome : Gallus_gallus_domestics
+```
+
+Standard codon tables じゃない場合、それも config に書く必要がある。
+(MT とかバクテリアとか)
+
+`snpEff/data/` に `.fa` と `.gff` を格納する:
+
+```sh
+# mkdir ~/bin/snpEff/data/  # data/ は download を先にやっていればあるはず
+cd ~/bin/snpEff/data/
+mkdir GRCg7b && cd GRCg7b
+
+cp ~/ref/grcg7b/GCF_016699485.2.fa sequences.fa
+cp ~/ref/grcg7b/GCF_016699485.2.gff genes.gff
+```
+
+全ゲノム配列の方は `snpEff/data/genomes/GRCg7b.fa` でもいいらしい。
+
+ここまでできたら `snpEff build` コマンドでデータベースを作る。
+`snpEff build` は、デフォルトでは CDS とタンパク質の配列を探してチェックをしようとする。
+
+それを避けて確認なしでデータベースを作る場合:
+
+```sh
+snpEff build -gff3 -v GRCg7b -noCheckCds -noCheckProtein
+```
+
+確認を実行する場合:
+
+```sh
+# 配列をget
+datasets download genome accession GCF_016699485.2 --include protein,cds
+unzip ncbi_dataset.zip
+
+# 名前を変えて移動
+mv ncbi_dataset/data/GCF_016699485.2/cds_from_genomic.fna data/GRCg7b/cds.fa
+mv ncbi_dataset/data/GCF_016699485.2/protein.faa data/GRCg7b/protein.fa
+
+# build
+snpEff build -gff3 -v GRCg7b
+```
+
+今回使った CDS ファイルは、ヘッダーの違いで受け付けてもらえなかったので
+`-noCheckCds` でタンパク質配列のみ確認した:
+
+```sh
+Protein check:  GRCg7b  OK: 68163       Not found: 69043        Errors: 521     Error percentage: 0.7585463863490769%
+```
+
+
+### GTF の方を使って再ビルド
+
+GFF を使ってビルドしたデータベースによるアノテーションでは、
+`NO_START_CODON` となっている遺伝子が散見された。
+GTF の方には開始コドンの情報があるが、GFF 側にはそれがなさそうなのが原因？
+そこで、GTF を使って再度データベースをビルドしてみる。
+
+```sh
+cp ~/ref/grcg7b/GCF_016699485.2.gtf ~/bin/snpEff/data/GRCg7b/genes.gtf
+snpEff build -gtf22 -v GRCg7b -noCheckCds
+```
+
+今回使っている GTF は `gtf-version 2.2` というもので、
+これを使うときは `-gtf22` とする。
+gff2 の方の GFT は `-gff2` で使えるが、`obsolete` らしい。
+
+`Not found` が少なくていいかもしれない:
+
+```sh
+Protein check:  GRCg7b  OK: 68138       Not found: 373  Errors: 546     Error percentage: 0.7949449653485529%
+```
+
+アノテーション:
+
+```sh
+snpEff GRCg7b [VCF] > [OUTFILE]
+```

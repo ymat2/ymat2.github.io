@@ -18,7 +18,7 @@ website:
       - text: "HOME"
         file: index.qmd
       - text: "---"
-      - text: "Slides"
+      - text: "スライド"
         file: slides/index.qmd
       - text: "---"
       - section: "Bioinformatics"

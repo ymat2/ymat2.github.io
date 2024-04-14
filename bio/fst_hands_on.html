@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.550">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Yuki MATSUDA - \(F_\text{st}\) 解析ハンズオン</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../static/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-HLCP5V0Y7N"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"><span class="math inline">\(F_\text{st}\)</span> 解析ハンズオン — 候補遺伝子・SNPの抽出</h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../"><img src="../static/favicon.png" height="28" vertical-align="text-bottom"> Yuki MATSUDA</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HOME</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">スライド</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Bioinformatics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bio/cafe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CAFE</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bio/cafe5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CAFE5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bio/clusterProfiler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">clusterProfiler</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bio/ddbj.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">遺伝研スパコン</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bio/ete-toolkit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ETE Toolkit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bio/fst_hands_on.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="math inline">\(F_\text{st}\)</span> 解析ハンズオン</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bio/ncbi_download.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ゲノムデータ取得</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bio/orthofinder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OrthoFinder</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bio/paml-tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PAML チュートリアル</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bio/rerconverge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RERconverge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bio/snpEff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">snpEff</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Command Line Tools</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cli/apt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">apt</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cli/git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git/GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cli/nano.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">nano</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cli/rsync.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">rsync</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cli/ssh.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SSH</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cli/vi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vi/Vim</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cli/vscode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visual Studio Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cli/wsl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WSL</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/argparse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ArgumentParser</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">オブジェクト指向とクラス</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/evoltree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolTree</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python 環境構築</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python パッケージ作成</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/python-tips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python 小技メモ</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">Web Development</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../site/gollum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gollum</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../site/hugo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HUGO</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../site/pallet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">配色の基本</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../site/quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quarto</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header">
+<h1 class="title d-none d-lg-block display-7"><span class="math inline">\(F_\text{st}\)</span> 解析ハンズオン — 候補遺伝子・SNPの抽出</h1>
+
+
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table Of Contents:</h2>
+   
+  <ul>
+  <li><a href="#概要" id="toc-概要">概要</a>
+  <ul>
+  <li><a href="#目標" id="toc-目標">目標</a></li>
+  <li><a href="#事前準備" id="toc-事前準備">事前準備</a></li>
+  <li><a href="#材料" id="toc-材料">材料</a></li>
+  <li><a href="#使うソフトウェア" id="toc-使うソフトウェア">使うソフトウェア</a></li>
+  </ul></li>
+  <li><a href="#f_textst-を計算してマンハッタンプロットを描く" id="toc-f_textst-を計算してマンハッタンプロットを描く"><span class="math inline">\(F_\text{st}\)</span> を計算してマンハッタンプロットを描く</a>
+  <ul>
+  <li><a href="#集団のサンプル名を抽出する" id="toc-集団のサンプル名を抽出する">2集団のサンプル名を抽出する</a></li>
+  <li><a href="#f_textst-を計算する" id="toc-f_textst-を計算する"><span class="math inline">\(F_\text{st}\)</span> を計算する</a></li>
+  <li><a href="#マンハッタンプロットを描く" id="toc-マンハッタンプロットを描く">マンハッタンプロットを描く</a></li>
+  </ul></li>
+  <li><a href="#f_textst-の高い領域に含まれる遺伝子をリストする" id="toc-f_textst-の高い領域に含まれる遺伝子をリストする"><span class="math inline">\(F_\text{st}\)</span> の高い領域に含まれる遺伝子をリストする</a>
+  <ul>
+  <li><a href="#bedtools-による重なり抽出" id="toc-bedtools-による重なり抽出"><code>bedtools</code> による重なり抽出</a></li>
+  <li><a href="#再びマンハッタンプロットの描画" id="toc-再びマンハッタンプロットの描画">再びマンハッタンプロットの描画</a></li>
+  <li><a href="#解釈" id="toc-解釈">解釈</a></li>
+  </ul></li>
+  <li><a href="#vcf-から候補遺伝子の周辺領域を抽出" id="toc-vcf-から候補遺伝子の周辺領域を抽出">VCF から候補遺伝子の周辺領域を抽出</a>
+  <ul>
+  <li><a href="#ispd-領域" id="toc-ispd-領域"><em>ISPD</em> 領域</a></li>
+  </ul></li>
+  <li><a href="#ハプロタイプ解析" id="toc-ハプロタイプ解析">ハプロタイプ解析</a>
+  <ul>
+  <li><a href="#delta-allele-frequency-の計算と可視化" id="toc-delta-allele-frequency-の計算と可視化"><span class="math inline">\(\Delta\)</span> Allele frequency の計算と可視化</a></li>
+  <li><a href="#ハプロタイプのヒートマップ描画" id="toc-ハプロタイプのヒートマップ描画">ハプロタイプのヒートマップ描画</a></li>
+  </ul></li>
+  </ul>
+</nav>
+<section id="概要" class="level2">
+<h2 class="anchored" data-anchor-id="概要">概要</h2>
+<div class="warn">
+<p>研究室内ハンズオンの HTML 版。 未公開データを使ったもののため、一部結果を非表示にしてあります。</p>
+</div>
+<section id="目標" class="level3">
+<h3 class="anchored" data-anchor-id="目標">目標</h3>
+<p>他サンプルをマージした VCF ファイルからスタートして、 <span class="math inline">\(F_\text{st}\)</span> のマンハッタンプロットとハプロタイプのヒートマップを描く。</p>
+</section>
+<section id="事前準備" class="level3">
+<h3 class="anchored" data-anchor-id="事前準備">事前準備</h3>
+<ol type="1">
+<li><p><a href="https://sc.ddbj.nig.ac.jp/guides/start_of_use">遺伝研スパコンのアカウントを作成</a>し、 <a href="https://sc.ddbj.nig.ac.jp/guides/introduction/">ログイン</a>できる状態にする。</p></li>
+<li><p>手元の PC に <a href="https://www.r-project.org/">R の解析環境を用意</a>する。</p></li>
+<li><p>NCBI から <code>bGalGal1.mat.broiler.GRCg7b</code> の Sequence Report をダウンロードする:</p>
+<ol type="1">
+<li><p><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_016699485.2/" class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_016699485.2/</a> へ</p></li>
+<li><p>Chromosomes までスクロールして <kbd style="color:#fff; background-color:rgb(0, 113, 188);">Download</kbd> から取得</p></li>
+</ol></li>
+</ol>
+</section>
+<section id="材料" class="level3">
+<h3 class="anchored" data-anchor-id="材料">材料</h3>
+<dl>
+<dt>日本鶏1品種1サンプルの VCF ファイル</dt>
+<dd>
+ファイルの名前は <code>varsites.snponly.vcf.gz</code>
+</dd>
+<dd>
+変異がある座位のみをコール。INDEL を除いた SNP のみの VCF。
+</dd>
+</dl>
+<p>自分のディレクトリにインデックス (<code>.csi</code>) と一緒にコピーする:</p>
+</section>
+<section id="使うソフトウェア" class="level3">
+<h3 class="anchored" data-anchor-id="使うソフトウェア">使うソフトウェア</h3>
+<ul>
+<li><a href="https://vcftools.github.io/index.html">VCFtools</a></li>
+<li><a href="https://samtools.github.io/bcftools/bcftools.html">BCFtools</a></li>
+<li><a href="https://bedtools.readthedocs.io/en/latest/">bedtools</a></li>
+</ul>
+<p>いずれも遺伝研ではデフォルトで使える。 他のバージョンのものが良ければ <code>apptainer</code> 越しに使う。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vcftools</span> <span class="at">--version</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># VCFtools (0.1.16)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> <span class="at">--version</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># bcftools 1.13</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bedtools</span> <span class="at">--version</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># bedtools v2.30.0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">## or use via apptainer, e.g.</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec /usr/local/biotools/v/vcftools:0.1.16--h9a82719_5 vcftools <span class="at">--version</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># VCFtools (0.1.16)</span></span></code></pre></div>
+</section>
+</section>
+<section id="f_textst-を計算してマンハッタンプロットを描く" class="level2">
+<h2 class="anchored" data-anchor-id="f_textst-を計算してマンハッタンプロットを描く"><span class="math inline">\(F_\text{st}\)</span> を計算してマンハッタンプロットを描く</h2>
+<p>軍鶏 vs 他品種で分化しているゲノム領域を特定する。 <a href="https://vcftools.github.io/index.html">VCFtools</a> を使う。</p>
+<div class="note">
+<p>遺伝研での作業なので、以降の操作はシェルスクリプト (<code>.sh</code>) を書いて <code>qsub</code> してもよい。 今回は便宜上、通常のコマンドラインで実行する形で説明する。</p>
+</div>
+<p>毎回 VCF を指定するのは面倒なので変数に代入して <code>${vcf}</code> で使う:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">vcf</span><span class="op">=</span>YOUR_DIR/varsites.snponly.vcf.gz</span></code></pre></div>
+<section id="集団のサンプル名を抽出する" class="level3">
+<h3 class="anchored" data-anchor-id="集団のサンプル名を抽出する">2集団のサンプル名を抽出する</h3>
+<p><code>bcftools query</code> と <code>grep</code> を組み合わせて軍鶏とそれ以外のサンプル名を それぞれテキストファイルに格納する:</p>
+<p><small>(軍鶏はサンプル名に <code>SM</code> を含む。これと八木戸 <code>YKD</code> を抽出。)</small></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> query <span class="at">-l</span> <span class="va">${vcf}</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-E</span> <span class="st">'SM|YKD'</span> <span class="op">&gt;</span> shamo.txt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> query <span class="at">-l</span> <span class="va">${vcf}</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-v</span> <span class="at">-E</span> <span class="st">'SM|YKD'</span> <span class="op">&gt;</span> non-shamo.txt</span></code></pre></div>
+</section>
+<section id="f_textst-を計算する" class="level3">
+<h3 class="anchored" data-anchor-id="f_textst-を計算する"><span class="math inline">\(F_\text{st}\)</span> を計算する</h3>
+<p>2集団と <code>window-size</code>、<code>window-step</code> を指定して <span class="math inline">\(F_\text{st}\)</span> を計算する:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vcftools</span> <span class="at">--gzvcf</span> <span class="va">${vcf}</span> <span class="at">--weir-fst-pop</span> shamo.txt <span class="at">--weir-fst-pop</span> non-shamo.txt <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--fst-window-size</span> 10000 <span class="at">--fst-window-step</span> 5000 <span class="at">--out</span> shamo_vs_other</span></code></pre></div>
+<p><code>--out</code> で指定した Prefix で <code>.windowed.weir.fst</code> と <code>.log</code> の2ファイルができる。</p>
+</section>
+<section id="マンハッタンプロットを描く" class="level3">
+<h3 class="anchored" data-anchor-id="マンハッタンプロットを描く">マンハッタンプロットを描く</h3>
+<p>ここからローカルでの作業に移る。 <code>shamo_vs_other.windowed.weir.fst</code> を手元にダウンロードする。 これと事前準備3で取得した <code>sequence_report.tsv</code> を使う。</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>draw_manhattan_plot.R</strong></pre>
+</div>
+<div class="sourceCode" id="cb5" data-filename="draw_manhattan_plot.R"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## パッケージのダウンロード</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"conflicted"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"qqman"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="do">## パッケージの読み込み</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(conflicted)  <span class="co"># おまじない</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)   <span class="co"># データの操作用</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qqman)       <span class="co"># マンハッタンプロット用</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="do">## sequence_report.tsv を読み込む:</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>acc2chr<span class="ot">=</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">"sequence_report.tsv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">CHROM =</span> <span class="st">`</span><span class="at">RefSeq seq accession</span><span class="st">`</span>, <span class="at">chr =</span> <span class="st">`</span><span class="at">Chromosome name</span><span class="st">`</span>) <span class="sc">|&gt;</span>  <span class="co"># 列名の変更</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(CHROM, chr)                                                  <span class="co"># 染色体のaccessionと番号のみ抽出</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="do">## shamo_vs_other.windowed.weir.fst を読み込む</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>fst <span class="ot">=</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">"shamo_vs_other.windowed.weir.fst"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">"SNP"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(acc2chr, <span class="at">by =</span> <span class="st">"CHROM"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">chr =</span> readr<span class="sc">::</span><span class="fu">parse_integer</span>(chr, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"W"</span>, <span class="st">"Z"</span>, <span class="st">"Un"</span>, <span class="st">"MT"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(chr))</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="do">## マンハッタンプロットの描画</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>qqman<span class="sc">::</span><span class="fu">manhattan</span>(</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  fst,</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">chr =</span> <span class="st">"chr"</span>,</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">bp =</span> <span class="st">"BIN_START"</span>,</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> <span class="st">"WEIGHTED_FST"</span>,  <span class="co"># or "MEAN_FST"</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">snp =</span> <span class="st">"SNP"</span>,</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#1f78b4"</span>, <span class="st">"#a6cee3"</span>),</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">logp =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Chromosome"</span>,</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Fst"</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<p><code>qqman::manhattan()</code> はデフォルトでは <a href="https://www.cog-genomics.org/plink/">PLINK</a> の出力ファイルである BP列、CHR列、P列、SNP列をもつデータフレームを想定する。 これ以外のデータでマンハッタンプロットの描画をするときは、引数に列名などを指定していく。</p>
+<dl>
+<dt><code>chr</code></dt>
+<dd>
+横軸の染色体番号
+</dd>
+<dt><code>bp</code></dt>
+<dd>
+各染色体上の SNP の座位
+</dd>
+<dt><code>p</code></dt>
+<dd>
+縦軸の統計量。 デフォルトの想定は GWAS 等の P-value なので <code>p</code> になっている。
+</dd>
+<dt><code>snp</code></dt>
+<dd>
+各 SNP の名前。典型的なのは <code>rs123456</code> とか。
+</dd>
+<dt><code>col</code></dt>
+<dd>
+染色体の色。今回は <code>#1f78b4</code> <span style="color:#1f78b4;">■</span> と <code>#a6cee3</code> <span style="color:#a6cee3;">■</span> を使ってみる。
+</dd>
+<dt><code>logp</code></dt>
+<dd>
+縦軸 <code>p</code> を対数変換するかどうか。 今回は <span class="math inline">\(F_\text{st}\)</span> の生の値を使うので <code>FALSE</code>。
+</dd>
+<dt><code>xlab</code>, <code>ylab</code></dt>
+<dd>
+横軸、縦軸のラベル
+</dd>
+</dl>
+</section>
+</section>
+<section id="f_textst-の高い領域に含まれる遺伝子をリストする" class="level2">
+<h2 class="anchored" data-anchor-id="f_textst-の高い領域に含まれる遺伝子をリストする"><span class="math inline">\(F_\text{st}\)</span> の高い領域に含まれる遺伝子をリストする</h2>
+<section id="bedtools-による重なり抽出" class="level3">
+<h3 class="anchored" data-anchor-id="bedtools-による重なり抽出"><code>bedtools</code> による重なり抽出</h3>
+<p>マンハッタンプロットをみて、いい感じに閾値を決める。 今回 <span class="math inline">\(F_\text{st} &gt; 0.3\)</span> でやってみる。</p>
+<p>ここでまた遺伝研に戻り、<code>bedtools</code> を使って <span class="math inline">\(F_\text{st}\)</span> の高い領域とオーバーラップする遺伝子をリストする。</p>
+<p>AWK コマンドで <span class="math inline">\(F_\text{st} &gt; 0.3\)</span> の行を抽出:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="at">-F</span><span class="st">'\t'</span> <span class="st">'$5 &gt; 0.3'</span> shamo_vs_other.windowed.weir.fst <span class="op">&gt;</span> shamo_vs_other.03.fst</span></code></pre></div>
+<div class="note">
+<p><code>.fst</code> ファイルの5列目 (<code>$5</code>) が <code>WEIGHTED_FST</code> なので、これが 0.3 より大きい行を抽出する。 この作業自体はエクセルでやっても R でやってもいい。</p>
+</div>
+<p>NCBI から <code>bGalGal1.mat.broiler.GRCg7b</code> の GTF をダウンロードする:</p>
+<ol type="1">
+<li><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_016699485.2/" class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_016699485.2/</a> へ</li>
+<li><kbd style="color:#fff; background-color:rgb(0, 113, 188);">Download</kbd> から Annotation features (GTF) のみ選択してダウンロード</li>
+<li>手元に取得した <code>genomic.gtf</code> を遺伝研に送る</li>
+</ol>
+<p>このまま使ってもいいけど、9列目の Attribute の情報が多すぎる。 今回は遺伝子ID (<code>gene_id</code>) さえあればいいので、ここだけ残したシンプルな GFF に変えておく:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>clean_gtf.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb7" data-filename="clean_gtf.py"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    parser <span class="op">=</span> argparse.ArgumentParser()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    parser.add_argument(<span class="st">"-i"</span>, <span class="st">"--infile"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    parser.add_argument(<span class="st">"-o"</span>, <span class="st">"--outfile"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    args <span class="op">=</span> parser.parse_args()</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    gtf <span class="op">=</span> clean_gtf(args.infile)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(args.outfile, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> l <span class="kw">in</span> gtf:</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>            f.write(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span>.join(l)<span class="op">+</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_gtf(gtf):</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    new_lines <span class="op">=</span> []</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(gtf) <span class="im">as</span> f:</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> l <span class="kw">in</span> f:</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> l[<span class="dv">0</span>] <span class="op">==</span> <span class="st">"#"</span>:</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                new_lines.append([l.rstrip(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)])</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                l <span class="op">=</span> l.rstrip(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>).split(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                l[<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> extract_gene_from_gtf(l[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>                new_lines.append(l)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_lines</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_gene_from_gtf(desc):</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    descs <span class="op">=</span> desc.split(<span class="st">"; "</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    descs <span class="op">=</span> {i.split(<span class="st">" "</span>)[<span class="dv">0</span>]: i.split(<span class="st">" "</span>)[<span class="dv">1</span>].strip(<span class="st">'"'</span>) <span class="cf">for</span> i <span class="kw">in</span> descs <span class="cf">if</span> <span class="st">" "</span> <span class="kw">in</span> i}</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    gene <span class="op">=</span> descs.get(<span class="st">"gene_id"</span>, <span class="st">"NA"</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> gene</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    main()</span></code></pre></div>
+</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> clean_gtf.py <span class="at">-i</span> genomic.gtf <span class="at">-o</span> simple.gtf</span></code></pre></div>
+<p><code>bedtools intersect</code> コマンドで、<code>.fst</code> と <code>.gtf</code> のオーバーラップする領域を抽出する:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bedtools</span> intersect <span class="at">-a</span> shamo_vs_other.03.fst <span class="at">-b</span> simple.gtf <span class="at">-wo</span> <span class="op">&gt;</span> shamo_vs_other.03.annot.fst</span></code></pre></div>
+</section>
+<section id="再びマンハッタンプロットの描画" class="level3">
+<h3 class="anchored" data-anchor-id="再びマンハッタンプロットの描画">再びマンハッタンプロットの描画</h3>
+<p><code>shamo_vs_other.03.annot.fst</code> を再び手元にダウンロードして R で可視化:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>draw_manhattan_plot.R の続き</strong></pre>
+</div>
+<div class="sourceCode" id="cb10" data-filename="draw_manhattan_plot.R の続き"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cols<span class="ot">=</span> <span class="fu">c</span>(<span class="st">"CHROM"</span>, <span class="st">"BIN_START"</span>, <span class="st">"BIN_END"</span>, <span class="st">"N_VARIANTS"</span>, <span class="st">"WEIGHTED_FST"</span>, <span class="st">"MEAN_FST"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fst2gene <span class="ot">=</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">"./shamo_vs_other.03.annot.fst"</span>, <span class="at">col_names =</span> cols) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="st">"gene_id"</span> <span class="ot">=</span> X15) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(BIN_START, gene_id) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(BIN_START) <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">gene_id =</span> <span class="fu">paste</span>(gene_id, <span class="at">collapse =</span> <span class="st">", "</span>))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>fst <span class="ot">=</span> fst <span class="sc">|&gt;</span> <span class="fu">left_join</span>(fst2gene, <span class="at">by =</span> <span class="st">"BIN_START"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>qqman<span class="sc">::</span><span class="fu">manhattan</span>(</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  fst,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">chr =</span> <span class="st">"chr"</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">bp =</span> <span class="st">"BIN_START"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> <span class="st">"WEIGHTED_FST"</span>,  <span class="co"># or "MEAN_FST"</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">snp =</span> <span class="st">"gene_id"</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#1f78b4"</span>, <span class="st">"#a6cee3"</span>),</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">logp =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Chromosome"</span>,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Fst"</span>,</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">annotatePval =</span> <span class="fl">0.3</span>,</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">annotateTop =</span> <span class="cn">FALSE</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<dl>
+<dt><code>annotatePval</code></dt>
+<dd>
+縦軸がこの値以上の点の <code>snp</code> を表示する。
+</dd>
+<dd>
+今回は <span class="math inline">\(F_\text{st} &gt; 0.3\)</span> でやっているので <code>0.3</code> を指定
+</dd>
+<dt><code>annotateTop</code></dt>
+<dd>
+<code>TRUE</code> だと各染色体の Top のみを表示する。
+</dd>
+<dd>
+いったん <code>FALSE</code> で全部表示してみて、重なりすぎてて見にくければ <code>TRUE</code>
+</dd>
+</dl>
+</section>
+<section id="解釈" class="level3">
+<h3 class="anchored" data-anchor-id="解釈">解釈</h3>
+<p>こうして絞り込んだ遺伝子リストから、 さらにジェノタイピングやハプロタイプ解析に回す遺伝子を探していく。</p>
+<p>今回、2番染色体のピークに座上する <em>ISPD</em> は、 軍鶏を対象とした先行研究 (<a href="https://doi.org/10.1093/g3journal/jkad267">Luo et al.&nbsp;2020</a>, <a href="https://doi.org/10.1093/g3journal/jkad267">Bendesly et al.&nbsp;2024</a>) でも得られており、有力な候補と言える。</p>
+<p>この後は、<em>ISPD</em> の周辺領域を抽出してハプロタイプ解析を行っていく。</p>
+</section>
+</section>
+<section id="vcf-から候補遺伝子の周辺領域を抽出" class="level2">
+<h2 class="anchored" data-anchor-id="vcf-から候補遺伝子の周辺領域を抽出">VCF から候補遺伝子の周辺領域を抽出</h2>
+<p>前半の <span class="math inline">\(F_\text{st}\)</span> 解析で候補遺伝子で抽出した <em>ISPD</em> の周辺領域を SNP 単位で解析していく。</p>
+<section id="ispd-領域" class="level3">
+<h3 class="anchored" data-anchor-id="ispd-領域"><em>ISPD</em> 領域</h3>
+<p>NCBI で <a href="https://www.ncbi.nlm.nih.gov/gene/420591"><em>ISPD</em> のページ</a>を見ると、 2番染色体 (<code>NC_052533.1</code>) の 28184591..28296806 にあるらしい。</p>
+<p>この前後 5000 bp を VCF から抽出する:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="va">vcf</span><span class="op">=</span>YOUR_DIR/varsites.snponly.vcf.gz</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">vcftools</span> <span class="at">--gzvcf</span> <span class="va">${vcf}</span> <span class="dt">\</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--chr</span> NC_052533.1 <span class="at">--from-bp</span> 28184591-5000 <span class="at">--to-bp</span> 28296806+5000 <span class="dt">\</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--recode</span> <span class="at">--out</span> ISPD</span></code></pre></div>
+<p><code>--chr</code> で染色体accession、<code>--from-bp</code>/<code>--to-bp</code> で座位を指定して VCF の特定領域を抽出する。 <code>--out</code> で指定した Prefix で、<code>ISPD.recode.vcf</code> が生成される。</p>
+</section>
+</section>
+<section id="ハプロタイプ解析" class="level2">
+<h2 class="anchored" data-anchor-id="ハプロタイプ解析">ハプロタイプ解析</h2>
+<p>抽出した <em>ISPD</em> 周辺領域の VCF を手元にダウンロードして、 R で読み込む。 全領域を可視化するとプロットが横に潰れるので、<span class="math inline">\(F_\text{st}\)</span> が特に高い領域に絞っておく:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>draw_haplotype_plot.R</strong></pre>
+</div>
+<div class="sourceCode" id="cb12" data-filename="draw_haplotype_plot.R"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(conflicted)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>ispd_vcf <span class="ot">=</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">"ISPD.recode.vcf"</span>, <span class="at">comment =</span> <span class="st">"##"</span>) <span class="sc">|&gt;</span>  <span class="co"># もしくは ISPD.snpEff.vcf</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(POS <span class="sc">&gt;=</span> <span class="dv">28200001</span> <span class="sc">&amp;</span> POS <span class="sc">&lt;=</span> <span class="dv">28215000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">starts_with</span>(<span class="st">"bam/"</span>),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"sample"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"genotype"</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">POS =</span> <span class="fu">as.character</span>(POS),</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample =</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(sample, <span class="st">"/"</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[,<span class="dv">2</span>],</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">genotype =</span> stringr<span class="sc">::</span><span class="fu">str_replace</span>(genotype, <span class="st">":.+"</span>, <span class="st">""</span>),</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">FORMAT =</span> <span class="st">"GT"</span>,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">category =</span> dplyr<span class="sc">::</span><span class="fu">if_else</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(sample, <span class="st">"SM|YKD"</span>), <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(sample, category)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+</div>
+<section id="delta-allele-frequency-の計算と可視化" class="level3">
+<h3 class="anchored" data-anchor-id="delta-allele-frequency-の計算と可視化"><span class="math inline">\(\Delta\)</span> Allele frequency の計算と可視化</h3>
+<p>軍鶏とその他品種のアリル頻度の差を計算する。 ここは <u>VCF の形式によって方法が異なる</u>。 今回は <code>bcftools mpileup | bcftools call --ploidy 2</code> でバリアントコールした形式を想定している。</p>
+<p>この場合、あるアリルの遺伝子型が2本とも Reference と同じ (<code>REF/REF</code>) であれば <code>0/0</code>、 ヘテロで SNP を持つ場合 (<code>REF/ALT</code>) <code>0/1</code>、ホモで持つ場合 (<code>ALT/ALT</code>) <code>1/1</code> となる。</p>
+<p><code>ALT</code> 遺伝子型のアリル頻度を、<code>0/0</code> = 0, <code>0/1</code> = 0.5, <code>1/1</code> = 1 としてその平均をとって計算する:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>draw_haplotype_plot.R の続き</strong></pre>
+</div>
+<div class="sourceCode" id="cb13" data-filename="draw_haplotype_plot.R の続き"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ispd_af <span class="ot">=</span> ispd_vcf <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(POS, sample, genotype, category) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">AF =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      genotype <span class="sc">==</span> <span class="st">"1/1"</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      genotype <span class="sc">==</span> <span class="st">"0/1"</span> <span class="sc">~</span> <span class="fl">0.5</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="dv">1</span>),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">category =</span> dplyr<span class="sc">::</span><span class="fu">if_else</span>(category <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"Shamo_AF"</span>, <span class="st">"Other_AF"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(POS, category) <span class="sc">|&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">mean_AF =</span> <span class="fu">mean</span>(AF)) <span class="sc">|&gt;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> category, <span class="at">values_from =</span> mean_AF) <span class="sc">|&gt;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">diff_AF =</span> <span class="fu">abs</span>(Shamo_AF <span class="sc">-</span> Other_AF))</span></code></pre></div>
+</div>
+<p>これを <code>ggplot::geom_col()</code> で可視化する:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>draw_haplotype_plot.R の続き</strong></pre>
+</div>
+<div class="sourceCode" id="cb14" data-filename="draw_haplotype_plot.R の続き"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(ispd_af) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> POS, <span class="at">y =</span> diff_AF) <span class="sc">+</span>                      <span class="co"># 横軸に座位、縦軸にアリル頻度の差</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span>  <span class="st">"#999999"</span>) <span class="sc">+</span>                    <span class="co"># バープロットの描画</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"POS"</span>, <span class="at">y =</span> <span class="st">"delta allele frequency"</span>) <span class="sc">+</span>  <span class="co"># x軸, y軸のタイトル</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span>                                <span class="co"># シンプルなテーマで</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),                 <span class="co"># x軸のラベルはなくす</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>()                 <span class="co"># x軸の ticks もなくす</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+</div>
+</section>
+<section id="ハプロタイプのヒートマップ描画" class="level3">
+<h3 class="anchored" data-anchor-id="ハプロタイプのヒートマップ描画">ハプロタイプのヒートマップ描画</h3>
+<p>続いて、各品種の遺伝子型をヒートマップ形式で可視化する。</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>draw_haplotype_plot.R の続き</strong></pre>
+</div>
+<div class="sourceCode" id="cb15" data-filename="draw_haplotype_plot.R の続き"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(ispd_vcf) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> POS, <span class="at">y =</span> sample) <span class="sc">+</span>                    <span class="co"># 横軸に座位、縦軸にサンプル</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> genotype)) <span class="sc">+</span>             <span class="co"># タイルプロット。色分けはgenotypeで。</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">option =</span> <span class="st">"cividis"</span>) <span class="sc">+</span>    <span class="co"># 色分けの色の指定</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"POS"</span>, <span class="at">y =</span> <span class="st">""</span>, <span class="at">fill =</span> <span class="st">"Genotype"</span>) <span class="sc">+</span>  <span class="co"># x軸, y軸, 色分けのタイトル</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),              <span class="co"># x軸のラベルはなくす</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(),             <span class="co"># x軸のticksもなくす</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+</div>
+<p>このようにしてアリル頻度の集団間差が特に大きい SNP を絞り込んでいく。 <a href="../bio/snpEff.html">snpEff</a> などを組み合わせれば、 その中でアミノ酸変異を伴うもの、といった絞り込みも可能。</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ymat2\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Copyright 2023, Yuki Matsuda</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -939,80 +939,201 @@
     ]
   },
   {
-    "objectID": "bio/paml-tutorial.html",
-    "href": "bio/paml-tutorial.html",
-    "title": "PAML チュートリアル",
+    "objectID": "bio/rerconverge.html",
+    "href": "bio/rerconverge.html",
+    "title": "RERconverge",
     "section": "",
-    "text": "突貫で書いた即席のページです。\nPAML のテストデータを材料に codeml を一通り動かしてみる。\nPhylogenetic Analysis by Maximum Likelihood (PAML) は、DNA やタンパク質の配列を最尤法で系統解析するための 種々のプログラムを含むパッケージ。\n今回はその中で、コドンの配列から同義置換に対する非同義置換の速度である \\(\\omega = d_\\text{N} / d_\\text{S}\\) を推定して正の自然選択の検出を行う codeml を使う。",
+    "text": "相同な配列の進化速度の相対的な加速度合いを計算して、表現型との相関を調べる R パッケージ。 系統樹さえ描ければいいので、遺伝子のほかに CNS (Conserved Non-coding Sequence) にも応用できる。 (本ページでは便宜上「遺伝子」として記述する。)\n開発者たちのグループは 水棲適応 や 地中生活などの二値的な形質、 体サイズや寿命などの連続形質に関わる遺伝子を報告している。",
     "crumbs": [
       "Bioinformatics",
-      "PAML チュートリアル"
+      "RERconverge"
     ]
   },
   {
-    "objectID": "bio/paml-tutorial.html#テストデータの準備",
-    "href": "bio/paml-tutorial.html#テストデータの準備",
-    "title": "PAML チュートリアル",
-    "section": "テストデータの準備",
-    "text": "テストデータの準備\nPAML の方で用意してある リゾチームの配列 を使う。んだけど、ファイルフォーマットが普段牧野研でよく使う形式と異なるので、 ひとまず↓をコピペして使ってください。\n\n\nlysozymeSmall.fa\n\n&gt;Hsa_Human\nAAGGTCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAGATTGGGAATGGATGGCTAC\nAGGGGAATCAGCCTAGCAAACTGGATGTGTTTGGCCAAATGGGAGAGTGGTTACAACACA\nCGAGCTACAAACTACAATGCTGGAGACAGAAGCACTGATTATGGGATATTTCAGATCAAT\nAGCCGCTACTGGTGTAATGATGGCAAAACCCCAGGAGCAGTTAATGCCTGTCATTTATCC\nTGCAGTGCTTTGCTGCAAGATAACATCGCTGATGCTGTAGCTTGTGCAAAGAGGGTTGTC\nCGTGATCCACAAGGCATTAGAGCATGGGTGGCATGGAGAAATCGTTGTCAAAACAGAGAT\nGTCCGTCAGTATGTTCAAGGTTGTGGAGTG\n\n&gt;Hla_gibbon\nAAGGTCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAGATTGGGAATGGATGGCTAC\nAGGGGAATCAGCCTAGCAAACTGGATGTGTTTGGCCAAATGGGAGAGTGGTTATAACACA\nCGAGCTACAAACTACAATCCTGGAGACAGAAGCACTGATTATGGGATATTTCAGATCAAT\nAGCCGCTACTGGTGTAATGATGGCAAAACCCCAGGAGCAGTTAATGCCTGTCATTTATCC\nTGCAATGCTTTGCTGCAAGATAACATCGCCGATGCTGTAGCTTGTGCAAAGAGGGTTGTC\nCGCGATCCACAAGGCATTAGAGCATGGGTGGCATGGAGAAATCGTTGTCAAAACAGAGAT\nCTCCGTCAGTATATTCAAGGTTGTGGAGTA\n\n&gt;Cgu/Can_colobus\nAAGATCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAAATTGGGACTGGATGGCTAC\nAAGGGAGTCAGCCTAGCAAACTGGGTGTGTTTGGCCAAATGGGAGAGTGGTTATAACACA\nGACGCTACAAACTACAATCCTGGAGATGAAAGCACTGATTATGGGATATTTCAGATCAAT\nAGCCGCTACTGGTGTAATAATGGCAAAACCCCAGGAGCAGTTAATGCCTGTCATATATCC\nTGCAATGCTTTGCTGCAAAATAACATCGCTGATGCTGTAGCTTGTGCAAAGAGGGTTGTC\nAGTGATCCACAAGGCATTCGAGCATGGGTGGCATGGAAAAAGCACTGTCAAAACAGAGAT\nGTCAGTCAGTATGTTGAAGGTTGTGGAGTA\n\n&gt;Pne_langur\nAAGATCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAAATTGGGACTGGATGGCTAC\nAAGGGAGTCAGCCTAGCAAACTGGGTGTGTTTGGCCAAATGGGAGAGTGGTTATAACACA\nGAAGCTACAAACTACAATCCTGGAGACGAAAGCACTGATTATGGGATATTTCAGATCAAT\nAGCCGCTACTGGTGTAATAATGGCAAAACCCCAGGAGCAGTTGATGCCTGTCATATATCC\nTGCAGTGCTTTGCTGCAAAACAACATCGCTGATGCTGTAGCTTGTGCAAAGAGGGTTGTC\nAGTGATCCACAAGGCGTTCGAGCATGGGTGGCATGGAGAAATCACTGTCAAAACAAAGAT\nGTCAGTCAGTACGTTAAAGGTTGTGGAGTG\n\n&gt;Mmu_rhesus\nAAGATCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAGATTGGGACTGGATGGCTAC\nAGGGGAATCAGCCTAGCAAACTGGGTGTGTTTGGCCAAATGGGAGAGTAATTATAACACA\nCAAGCTACAAACTACAATCCTGGAGACCAAAGCACTGATTATGGGATATTTCAGATCAAT\nAGCCACTACTGGTGTAATAATGGCAAAACCCCAGGAGCAGTTAATGCCTGTCATATATCC\nTGCAATGCTTTGCTGCAAGATAACATCGCTGATGCTGTAACTTGTGCAAAGAGGGTTGTC\nAGTGATCCACAAGGCATTAGAGCATGGGTGGCATGGAGAAATCACTGTCAAAACAGAGAT\nGTCAGTCAGTATGTTCAAGGTTGTGGAGTG\n\n&gt;Ssc_squirrelM\nAAGGTCTTCGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAGGCTTGGAATGGATGGCTAC\nAGGGGAATCAGCCTAGCAAACTGGATGTGTTTGGCCAAATGGGAGAGTGACTATAACACA\nCGTGCTACAAACTACAATCCTGGAGACCAAAGCACTGATTATGGGATATTTCAGATCAAT\nAGCCACTATTGGTGTAATAATGGCAGAACCCCAGGAGCAGTTAATGCCTGTCATATATCC\nTGCAATGCTTTGCTGCAAGATGACATCACTCAAGCTGTGGCCTGTGCAAAGAGGGTTGTC\nCGTGATCCACAAGGCATTAGAGCATGGGTGGCATGGAAAGCTCATTGTCAAAACAGAGAT\nGTCAGTCAGTATGTTCAAGGTTGTGGAGTA\n\n&gt;Cja_marmoset\nAAGGTCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAGGTTTGGACTGGATGGCTAC\nAGGGGAATCAGCCTAGCAAACTGGATGTGTTTGGCCAAATGGGAGAGTGATTATAACACA\nCGTGCTACAAACTACAATCCTGGAGACCAAAGCACTGATTATGGGATATTTCAGATCAAT\nAGCCACTATTGGTGTAACAATGGCAGAACCCCAGGAGCAGTTAATGCCTGTCATATATCC\nTGCAATGCTTTGCTGCAAGATGACATCACTGAAGCTGTGGCCTGTGCAAAGAGGGTTGTC\nCGCGATCCACAAGGCATTAGGGCATGGGTGGCATGGAAAGCTCATTGTCAAAACAGAGAT\nGTCAGTCAGTATGTTCAAGGTTGTGGAGTA\n\n\n\nlysozymeSmall.fa.treefile\n\n(Hsa_Human:0.0087447996,Hla_gibbon:0.0130303081,(((Cgu/Can_colobus:0.0156654142,Pne_langur:0.0181835564):0.0280807319,Mmu_rhesus:0.0070703774):0.0147707727,(Ssc_squirrelM:0.0140657314,Cja_marmoset:0.0076397044):0.0477319527):0.0256856586);\n\n系統樹ファイルは IQ-TREE を使って推定したもの。 手元でやってもらってもいいです。\niqtree2 --version\n# IQ-TREE multicore version 2.0.7 for Linux 64-bit built Jan 21 2022\n# Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor,\n# Heiko Schmidt, Dominik Schrempf, Michael Woodhams.\n\niqtree2 -s lysozymeSmall.fa -m TEST\n\n\n\n\n\n\n\n\n\n\n\n\n\n生物学的な背景\n葉を常食とする旧世界ザル (左図) で、 反芻動物に似た前胃での発酵をともなう消化を獲得\n前胃に分泌されるリゾチームが進化\nMessier and Stewart 1997",
+    "objectID": "bio/rerconverge.html#インストール",
+    "href": "bio/rerconverge.html#インストール",
+    "title": "RERconverge",
+    "section": "インストール",
+    "text": "インストール\nhttps://github.com/nclark-lab/RERconverge/wiki/Install\nバイナリ版のインストールが推奨されている。 Mac で使う場合はまずバイナリ版インストールを試してみる。 バイナリ版インストールで問題があったり、Windows や Linux で使う場合はソースコード版を試す。 (それでもダメなら一応 Docker イメージもあるっぽい。)\n\nMac\n\nバイナリ版のインストール\n\ndevtools が必要:\ninstall.packages(\"devtools\")\nlibrary(devtools)\ngithub からパッケージをインストール。 これを実行すると、RERconverge 本体のインストールは失敗するけど、 他の依存パッケージは入ってくるらしい:\ndevtools::install_github(\"nclark-lab/RERconverge\")\nちなみに依存パッケージは以下。これらを個別にインストールすれば 2. は不要？:\ndevtools\nRColorBrewer\ngplots\nphytools\ngeiger\nknitr\nRcppArmadillo\nweights\nphangorn\nリリースページから 最新版のバイナリ版パッケージをダウンロードしてターミナルでインストールコマンドを実行:\nR CMD INSTALL Mac_Big_Sur_R_4.0.0.RERconverge_0.1.0.tgz\n※ ファイル名の通り最新版 (2023-11-18時点) が BigSur の R 4.0.0 用なので、 そうじゃない Mac&R でちゃんと動くかは不明。\nちゃんと入ったかテスト:\nlibrary(RERconverge)\n\n\n\nソースコード版のインストール\n\n新しい gfortran (gcc) を入れておく:\nxcode-select --install  # if needed\nbrew install gcc\nMakevars でコンパイラの設定をする:\n素の Mac に RERconverge を入れようとすると、おそらく gfortran 関連で警告やエラーが出る。 Makevars を書いて homebrew で入れた gfortran を使うように設定する。\nまず ~/.R/Makevars をつくる (すでにあれば不要):\nmkdir ~/.R\ntouch ~/.R/Makevars\ngfortran の PATH とライブラリの場所を確認:\nwhich gfortran\n# /usr/local/bin/gfortran\nls -al /usr/local/lib/gcc/current\n# 略\nMakevars に以下を記述:\nFC=/usr/local/bin/gfortran\nF77=/usr/local/bin/gfortran\nFLIBS=-L/usr/local/lib/gcc/current\ndevtools のインストール:\ninstall.packages(\"devtools\")\nGithub からパッケージをインストール。 コンパイラ周りをちゃんと設定しておけば入るはず:\ndevtools::install_github(\"nclark-lab/RERconverge\")\n\n\nMakevars は Rcpp で使う C++ などのコンパイラの設定をするためのファイル。 公式ドキュメントや、 メタルさんのサイト、 津田さんのサイト も参照\n\n\n\n\nWindows\n\nRtools を入れておく。\n依存パッケージのインストール:\ndevtools\nRColorBrewer\ngplots\nphytools\ngeiger\nknitr\nRcppArmadillo\nweights\nphangorn\nRERconverge のインストール:\ndevtools::install_github(\"nclark-lab/RERconverge\")",
     "crumbs": [
       "Bioinformatics",
-      "PAML チュートリアル"
+      "RERconverge"
     ]
   },
   {
-    "objectID": "bio/paml-tutorial.html#素の-paml-を動かす",
-    "href": "bio/paml-tutorial.html#素の-paml-を動かす",
-    "title": "PAML チュートリアル",
-    "section": "素の PAML を動かす",
-    "text": "素の PAML を動かす\n\nPAML website\nPAML github リポジトリ\n井上潤さんのホームページ\nPAML Beginner’s Guide\n\n\nPAML をインストールする\nいずれかのパッケージ管理ツールを介するのが楽。\nHomebrew を使う場合 brewsci/bio/ リポジトリのため、 M2 チップ以降の Mac には対応していない可能性がある。 遺伝研では apptainer (singularity) を使わなくてもすでに PAML の環境が整っている。 (c.f. which -a codeml)\n## Homebrew を使う (Mac, M2 チップ以上だと無理かも)\nbrew install brewsci/bio/paml\n\n## apt を使う (Ubuntu)\nsudo apt install paml\n\n## conda を介したインストール (共通)\nconda install -c bioconda paml\n\n## apptainer のやつを使う (遺伝研)\nls /usr/local/biotools/p/paml*\nこれらのいずれの方法も使えないときは、 ソースコードを ダウンロードして手元でビルドする。 方法は公式サイトに記載がある。\n\n\n.ctl ファイルの概要\ncodeml を動かすとき、ファイルの指定や種々のオプションの指定は、 すべてコントロールファイル (.ctl) に記述する。 見た目はこんな感じ:\n\n\nlysozymeSmall.ctl\n\n      seqfile = lysozymeSmall.fa\n     treefile = lysozymeSmall.fa.treefile\n      outfile = your_output_file\n\n        noisy = 9   * 0,1,2,3,9: how much rubbish on the screen\n      verbose = 1   * 1: detailed output, 0: concise output\n      runmode = 0   * 0: user tree;  1: semi-automatic;  2: automatic\n                    * 3: StepwiseAddition; (4,5):PerturbationNNI\n\n      seqtype = 1   * 1:codons; 2:AAs; 3:codons--&gt;AAs\n    CodonFreq = 2   * 0:1/61 each, 1:F1X4, 2:F3X4, 3:codon table\n        clock = 0   * 0: no clock, unrooted tree, 1: clock, rooted tree\n        model = 2\n                    * models for codons:\n                        * 0:one, 1:b, 2:2 or more dN/dS ratios for branches\n\n      NSsites = 0   * dN/dS among sites. 0:no variation, 1:neutral, 2:positive\n        icode = 0   * 0:standard genetic code; 1:mammalian mt; 2-10:see below\n\n    fix_kappa = 0   * 1: kappa fixed, 0: kappa to be estimated\n        kappa = 2   * initial or fixed kappa\n    fix_omega = 0   * 1: omega or omega_1 fixed, 0: estimate\n        omega = 2   * initial or fixed omega, for codons or codon-transltd AAs\n\n    fix_alpha = 1   * 0: estimate gamma shape parameter; 1: fix it at alpha\n        alpha = .0  * initial or fixed alpha, 0:infinity (constant rate)\n       Malpha = 0   * different alphas for genes\n        ncatG = 4   * # of categories in the dG or AdG models of rates\n\n        getSE = 0   * 0: don't want them, 1: want S.E.s of estimates\n RateAncestor = 0   * (1/0): rates (alpha&gt;0) or ancestral states (alpha=0)\n       method = 0   * 0: simultaneous; 1: one branch at a time\n  fix_blength = 0  * 0: ignore, -1: random, 1: initial, 2: fixed, 3: proportional\n\n\n* Specifications for duplicating results for the small data set in table 1\n* of Yang (1998 MBE 15:568-573).\n* see the tree file lysozyme.trees for specification of node (branch) labels\n\nどの解析でも共通で変更するのは seqfile, treefile, outfile の3つ。 model, NSsites, fix_omega, omega は解析に応じて変更する。\n\nseqfile\n\nDNAまたはタンパク質の配列のファイルパス。\n\ntreefile\n\n系統樹のファイルパス。tip名は seqfile のものと一致している必要がある。\n\noutfile\n\n出力ファイルのパス。\n\nmodel\n\n系統樹の各 branch における \\(\\omega = d_\\text{N} / d_\\text{S}\\) の設定。\n\n\n0: 系統樹全体で均一の \\(\\omega = d_\\text{N} / d_\\text{S}\\) を推定。\n\n\n1: branch ごとに異なる \\(\\omega = d_\\text{N} / d_\\text{S}\\) を推定。\n\n\n2: treefile の branch に #, #1 などの記号を振って各記号の branch で異なる \\(\\omega = d_\\text{N} / d_\\text{S}\\) を推定。\n\nNSsites\n\nコドン/アミノ酸サイトごとの \\(\\omega = d_\\text{N} / d_\\text{S}\\) の設定。\n\n\n0: サイト間で \\(\\omega = d_\\text{N} / d_\\text{S}\\) が同じと仮定。branchモデルの時はこれ。\n\n\n1: Neutral\n\n\n2: Positive\n\nfix_omega\n\n\\(\\omega = d_\\text{N} / d_\\text{S}\\) を固定するかどうか。\n\n\n0: 初期値から最尤推定する。\n\n\n1: 初期値で固定する。\n\nomega\n\n\\(\\omega = d_\\text{N} / d_\\text{S}\\) の初期値。\n\n\n\n\nおおまかな流れ\n検証したいシナリオ (特定の枝で正の自然選択がある、等) を対立仮説、 そうでないと仮定するシナリオを帰無仮説としてそれぞれ .ctl を書いて codeml を動かす。\nそれぞれの仮説のパラメータ数と対数尤度が得られるので、 尤度比検定を用いて帰無仮説を棄却することで対立仮説を採択する。\nよく使われる対立仮説と帰無仮説の組み合わせは以下の表のとおり:\n\n\n\n対立仮説\n帰無仮説\n検定すること\n引用\n\n\n\n\nM2\nM1\n特定サイトにおける正の自然選択\nYang 2000\n\n\nM3\nM0\nサイト間で \\(d_\\text{N} / d_\\text{S}\\) が異なるか\n〃\n\n\nM8\nM7\n特定サイトにおける正の自然選択\nYang 2000\n\n\nM8\nM8a\n特定サイトにおける選択の緩和\n〃\n\n\nbsA\nbsA1\n特定の枝の特定のサイトにおける正の自然選択\nZhang 2005\n\n\nbsA\nM1\n特定の枝の特定のサイトにおける選択の緩和\nZhang 2005\n\n\nbsC\nM1\n特定のクレードの特定のサイトで \\(d_\\text{N} / d_\\text{S}\\) が異なるか\nYang 2002\n\n\nbsD\nM3\n特定のクレードの特定のサイトで \\(d_\\text{N} / d_\\text{S}\\) が異なるか\nYang 2002, Bielawski 2004\n\n\nb_free\nb_neut\n特定の枝で \\(d_\\text{N} / d_\\text{S}\\) が1と異なるか\nYang 2002\n\n\nb_free\nM0\n特定の枝で \\(d_\\text{N} / d_\\text{S}\\) が他と異なるか\nYang 2002\n\n\n\n\n\nSite モデル\n🚧 工事中 🚧\n\n\nBranch モデル\n旧世界ザルの共通祖先の枝を対象に、 正の自然選択 (\\(d_\\text{N} / d_\\text{S} &gt; 0\\)) を検出する。\nまず対立仮説として、注目する枝で \\(d_\\text{N} / d_\\text{S}\\) が異なると仮定して codeml を動かす。\n系統樹 (lysozymeSmall.fa.treefile) をエディタで編集して、 注目する枝 (i.e. \\(d_\\text{N} / d_\\text{S} &gt; 0\\) を想定する枝) に #1 を振る:\n\n\n(Hsa_Human:0.0087447996,Hla_gibbon:0.0130303081,(((Cgu/Can_colobus:0.0156654142,Pne_langur:0.0181835564)#1:0.0280807319,Mmu_rhesus:0.0070703774):0.0147707727,(Ssc_squirrelM:0.0140657314,Cja_marmoset:0.0076397044):0.0477319527):0.0256856586);\n\n\n\n\n\n\n\n\n\n\n\n\n#1 を振った枝とその他の枝で \\(d_\\text{N} / d_\\text{S}\\) が異なる、 というシナリオの .ctl を書く:\n\n\nb_free.ctl\n\n   outfile = branch_alt  * 何でもいいけど branch モデルの対立仮説と分かるように\n     model = 2           * 記号の有無で異なる ω を推定\n   NSsites = 0           * サイト間では ω は一定\n fix_omega = 0           * ω の値を配列から推定\n     omega = 1           * 推定は ω=1 からスタート\n\n* 他のパラメータは変更なし\n\nこの .ctl を指定して codeml を実行:\ncodeml b_free.ctl\n指定した出力ファイル branch_alt を見てみる。 まずは最後の方に書かれている各枝の \\(\\omega\\) の値:\ntail branch_alt\ndS tree:\n(Hsa_Human: 0.011030, Hla_gibbon: 0.016794, (((Cgu/Can_colobus: 0.018929, Pne_langur: 0.022497): 0.009367, Mmu_rhesus: 0.008406): 0.018929, (Ssc_squirrelM: 0.017701, Cja_marmoset: 0.010258): 0.052331): 0.030198);\ndN tree:\n(Hsa_Human: 0.007565, Hla_gibbon: 0.011517, (((Cgu/Can_colobus: 0.012981, Pne_langur: 0.015429): 0.032838, Mmu_rhesus: 0.005765): 0.012982, (Ssc_squirrelM: 0.012140, Cja_marmoset: 0.007035): 0.035889): 0.020710);\n\nw ratios as labels for TreeView:\n(Hsa_Human #0.68581 , Hla_gibbon #0.68581 , (((Cgu/Can_colobus #0.68581 , Pne_langur #0.68581 ) #3.50573 , Mmu_rhesus #0.68581 ) #0.68581 , (Ssc_squirrelM #0.68581 , Cja_marmoset #0.68581 ) #0.68581 ) #0.68581 );\n\n\nTime used:  0:01\n期待通り、#1 を振った枝とそれ以外の枝で異なる \\(\\omega\\) が計算されている。 (旧世界ザルの共通祖先で \\(\\omega = 3.50573\\), そのほかの枝で \\(\\omega = 0.68581\\))\nもう一か所は、パラメータ数と対数尤度が記述された行:\ngrep \"lnL\" branch_alt\nlnL(ntime: 11  np: 14):   -904.636553      +0.000000\nパラメータ数が14、対数尤度が -904.636553 であることを示している。\n\n次に、帰無仮説として指定した枝の \\(\\omega\\) を1で固定したモデルの 当てはまりを計算する。\n.ctl の以下のパラメータを変更する:\n\n\nb_neut.ctl\n\n   outfile = branch_null  * 何でもいいけど branch モデルの帰無仮説と分かるように\n fix_omega = 1            * ω の値を固定\n     omega = 1            * ω=1\n\n* 他のパラメータは変更なし\n\nこの .ctl を指定して codeml を実行:\ncodeml b_neut.ctl\n同様に出力ファイル branch_null を見てみる。 各枝の \\(\\omega\\) の値は:\nw ratios as labels for TreeView:\n(Hsa_Human #0.685577 , Hla_gibbon #0.685577 , (((Cgu/Can_colobus #0.685577 , Pne_langur #0.685577 ) #1 , Mmu_rhesus #0.685577 ) #0.685577 , (Ssc_squirrelM #0.685577 , Cja_marmoset #0.685577 ) #0.685577 ) #0.685577 );\nパラメータ数と対数尤度は:\n$ grep \"lnL\" branch_null\nlnL(ntime: 11  np: 13):   -905.484183      +0.000000\nまとめると次のようになった:\n\n\n\n仮説\n注目する枝の \\(\\omega\\)\nパラメータ数\n対数尤度\n\n\n\n\n対立仮説\n3.50573\n14\n-904.636553\n\n\n帰無仮説\n1\n13\n-905.484183\n\n\n\n\n最後に尤度比検定を行って、 「注目する枝の \\(\\omega\\) が他の枝より高いようだけど、 これは選択の緩和 (\\(\\omega=1\\)) じゃなくて 正の自然選択　(\\(\\omega&gt;1\\)) だ。」 ということを統計的に主張できるかどうか確かめる。\n尤度比検定の方法はいくつかあるけど、R とか Python 使うのがいいんじゃないだろうか。 (エクセルとかでもできるらしい。)\nPython の尤度比検定の関数を使って検定する:\n\n\nlrp.py\n\nfrom scipy.stats import chi2\n\nalt_lnL = -904.636553   # 対立仮説の対数尤度\nnull_lnL = -905.484183  # 帰無の対数尤度\nlr_stat = 2 * (alt_lnL - null_lnL)\n\nalt_np = 14    # 対立仮説のパラメータ数\nnull_np = 13   # 帰無仮説のパラメータ数\ndf = alt_np - null_np\n\np_val = chi2.sf(lr_stat, df)\nprint(p_val)\n\n$ python3 lrt.py\n0.19290903422911437\n結果、尤度比検定の p-value は 0.1929 &gt; 0.05 となった。 これを解釈すると、帰無仮説を棄却することができない = 正の自然選択とは主張できないとなる。\n\n\nBranch-Site モデル\nSite モデルや Branch モデルは枝全体やサイト全体で \\(\\omega\\) を平均するため、 時に検出力が弱くなる。\nつまり、ある枝で特定のサイトに正の自然選択が本当に働いていたとしても、 他のサイトや枝の \\(\\omega\\) が小さければそれに引っ張られて \\(\\omega &gt; 1\\) を検出できない。\nそこで、Branch-Site モデルは特定の枝の特定のサイトに働いた自然選択を検出する。\n使う系統樹は Branch モデルと同じ。\nまず対立仮説として、#1 を振った枝で \\(\\omega &gt; 1\\) のサイトがある、 というシナリオの .ctl を書く:\n\n\nbsA.ctl\n\n   outfile = bs_alt   * 何でもいいけど branch-site モデルの対立仮説と分かるように\n     model = 2        * 記号の有無で異なる ω を推定\n   NSsites = 2        * ω &gt; 1 のサイトを仮定\n fix_omega = 0        * ω の値を配列から推定\n     omega = 1        * 推定は ω=1 からスタート\n\n* 他のパラメータは変更なし\n\nこの .ctl を指定して codeml を実行:\ncodeml bsA.ctl\n出力ファイル bs_alt を見てみる。 以下のような記述があるはず:\nMLEs of dN/dS (w) for site classes (K=4)\n\nsite class             0        1       2a       2b\nproportion       0.29433  0.35964  0.15574  0.19029\nbackground w     0.00000  1.00000  0.00000  1.00000\nforeground w     0.00000  1.00000  5.78754  5.78754\n各サイトクラスは次のように解釈する:\n\nsite class 0\n\n#1 を振った枝もそれ以外も \\(\\omega &lt; 1\\) であるサイト\n\n\n今回は全サイトのうち約29%がこれにあたり、\\(\\omega = 0\\) の強い純化選択をうけている。\n\nsite class 1\n\n#1 を振った枝もそれ以外も \\(\\omega = 1\\) であるサイト\n\n\n今回は全サイトのうち約36%がこれにあたる。\n\nsite class 2a\n\n#1 を振った枝で \\(\\omega &gt; 1\\)、 それ以外で \\(\\omega &lt; 1\\) であるサイト\n\n\n今回は全サイトのうち約16%がこれにあたり、#1 の枝では \\(\\omega = 5.78754\\) の強い正の自然選択が働いている。\n\nsite class 2b\n\n#1 を振った枝で \\(\\omega &gt; 1\\)、 それ以外で \\(\\omega = 1\\) であるサイト\n\n\n今回は全サイトのうち約19%がこれにあたる。\n\n\n次は Branch モデルと同じく、パラメータ数と対数尤度が記述された行:\n$ grep \"lnL\" bs_alt\nlnL(ntime: 11  np: 16):   -901.562791      +0.000000\nさらに、Branch-Site モデルではどのサイトが正の自然選択を受けているかを示す記述がある:\nBayes Empirical Bayes (BEB) analysis (Yang, Wong & Nielsen 2005. Mol. Biol. Evol. 22:1107-1118)\nPositive sites for foreground lineages Prob(w&gt;1):\n    14 R 0.795\n    21 R 0.798\n    23 I 0.799\n    37 G 0.585\n    41 R 0.713\n    50 R 0.707\n    62 R 0.583\n    87 D 0.796\n   126 Q 0.699\nBEB法 (Bayes empirical Bayes法) により求められた、 そのサイトがω&gt;1で正の選択下にある事後確率を示す。 この事後確率が0.95や0.99を超えていた場合に正の自然選択が働いたサイトとする論文をよく見る。\n今回はそういうサイトはなさそう。\n\n次に、帰無仮説として指定した枝のサイトの \\(\\omega\\) を1で固定したモデルの 当てはまりを計算する。\n.ctl のパラメータを変更する:\n\n\nbsA1.ctl\n\n   outfile = bs_null  * 何でもいいけど branch-site モデルの帰無仮説と分かるように\n fix_omega = 1        * ω の値を固定\n     omega = 1        * ω=1\n\n* 他のパラメータは変更なし\n\nこの .ctl を指定して codeml を実行:\ncodeml bsA1.ctl\n同様に出力ファイル bs_null を見てみる。 サイトクラスを見ると #1 の枝の \\(\\omega\\) が1になっている:\nMLEs of dN/dS (w) for site classes (K=4)\n\nsite class             0        1       2a       2b\nproportion       0.26177  0.32442  0.18479  0.22902\nbackground w     0.00000  1.00000  0.00000  1.00000\nforeground w     0.00000  1.00000  1.00000  1.00000\nパラメータ数と対数尤度は:\n$ grep \"lnL\" bs_null\nlnL(ntime: 11  np: 15):   -902.301501      +0.000000\n\n最後に、同じく尤度比検定を行って、対立仮説が採択されるか確かめる:\n\n\nlrp.py\n\nfrom scipy.stats import chi2\n\nalt_lnL = -901.562791   # 対立仮説の対数尤度\nnull_lnL = -902.301501  # 帰無の対数尤度\nlr_stat = 2 * (alt_lnL - null_lnL)\n\nalt_np = 16    # 対立仮説のパラメータ数\nnull_np = 15   # 帰無仮説のパラメータ数\ndf = alt_np - null_np\n\np_val = chi2.sf(lr_stat, df)\nprint(p_val)\n\n$ python3 lrt.py\n0.22417862391381319\n結果、尤度比検定の p-value は 0.2242 &gt; 0.05 となった。 Branch-Site モデルでも、 帰無仮説を棄却することができない = 正の自然選択とは主張できない となった。",
+    "objectID": "bio/rerconverge.html#概要",
+    "href": "bio/rerconverge.html#概要",
+    "title": "RERconverge",
+    "section": "概要",
+    "text": "概要\nhttps://github.com/nclark-lab/RERconverge/blob/master/vignettes/ にチュートリアルあり\nRERconverge は主に以下の機能を実装している:\n\n遺伝子系統樹の推定\n相対進化速度の計算\n相対進化速度と表現型の相関解析\nエンリッチメント解析\n\n遺伝子系統樹の推定やエンリッチメント解析は、RERconverge 以外の方法でもできる。 そのほか、途中途中で解析に必要なファイルは別個に用意しても良い。",
     "crumbs": [
       "Bioinformatics",
-      "PAML チュートリアル"
+      "RERconverge"
     ]
   },
   {
-    "objectID": "bio/paml-tutorial.html#ete-を使って-paml-を動かす",
-    "href": "bio/paml-tutorial.html#ete-を使って-paml-を動かす",
-    "title": "PAML チュートリアル",
-    "section": "ete を使って PAML を動かす",
-    "text": "ete を使って PAML を動かす\n🚧 工事中 🚧",
+    "objectID": "bio/rerconverge.html#遺伝子系統樹の推定",
+    "href": "bio/rerconverge.html#遺伝子系統樹の推定",
+    "title": "RERconverge",
+    "section": "遺伝子系統樹の推定",
+    "text": "遺伝子系統樹の推定\nRERconverge は遺伝子ごとに推定した系統樹を使い、 ある遺伝子のある枝の枝長が全遺伝子の平均的な枝長に対して長いか短いかを基に相対進化速度を推定する。\n\nNewick フォーマット\n全遺伝子のトポロジーが同じ\nnode ラベルなし、tip ラベルは全遺伝子で共通\n\nである必要がある。\n別の系統樹推定ソフトウェアでやる場合は、トポロジー指定機能とかを使う。 最終的には、下のように遺伝子名と Newick がタブ区切りになった1つのファイルを作れば OK:\nGene_A (human:0.01,(chimp:0.0012,(gorilla:0.0078, orangutan:0.0037):0.0003):0.0053);\nGene_B (human:0.0094,(chimp:0.0038,(gorilla:0.001, orangutan:0.0038):0.00032):0.0005);\nGene_C (human:0.0032,(chimp:0.0054,(gorilla:0.07, orangutan:0.0012):0.0023):0.0023);\n︙\nRERconverge にも、遺伝子系統樹推定のための関数が実装されている。 必要なのは各遺伝子のアライメントファイルと種の系統樹。\nestimatePhangornTreeAll(\n  alnfiles = NULL,\n  alndir = NULL,\n  pattern = NULL,\n  treefile,\n  output.file = NULL,\n  submodel = \"LG\",\n  type = \"AA\",\n  format = \"fasta\",\n  k = 4,\n  ...\n)\n\nalnfiles/alndir (どちらかで指定)\n\nアライメントファイルの PATH のベクター、またはアライメントファイルのあるディレクトリ\n\npattern\n\n正規表現でファイルを指定できる\n\n\ne.g. \"*.pep.fa\"\n\ntreefile\n\n「この系統樹のトポロジーを使う」とする master tree の PATH\n\n\n種の系統樹を使うのが無難か\n\noutput.file\n\n出力先\n\n\n上で説明した遺伝子名と Newick のタブ区切りテキストができる\n\nsubmodel\n\n系統樹推定に使う置換モデル。phangorn::pml() に渡される。 デフォルトは LG モデル。\n\n\nsee ?phangorn::pml()\n\ntype\n\nアミノ酸なら AA, 塩基なら DNA\n\nformat\n\nデフォルトは FASTA フォーマット\n\n\n\nAmbiguousなアミノ酸残基を表す B, Z, J は読んでくれない。X で置換しとくとか？",
     "crumbs": [
       "Bioinformatics",
-      "PAML チュートリアル"
+      "RERconverge"
     ]
   },
   {
-    "objectID": "bio/ncbi_download.html",
-    "href": "bio/ncbi_download.html",
-    "title": "ゲノムデータ取得 — NCBI から一括ダウンロード",
+    "objectID": "bio/rerconverge.html#相対進化速度の計算",
+    "href": "bio/rerconverge.html#相対進化速度の計算",
+    "title": "RERconverge",
+    "section": "相対進化速度の計算",
+    "text": "相対進化速度の計算\n系統樹ファイルの読み込み:\ntreesObj = RERconverge::readTrees(\n  file,\n  max.read = NA,\n  masterTree = NULL,\n  minTreesAll = 20,\n  reestimateBranches = F,\n  minSpecs = NULL\n)\n\nfile\n\nestimatePhangornTreeAll とかでつくった系統樹ファイル\n\nmax.read\n\n読み込む遺伝子の数を制限。全遺伝子やるなら指定しなくていい。\n\nmasterTree\n\n相対進化速度の計算の基準となる master tree。\n\n\nこの関数自体も master tree を推定するので、基本的には指定しないで OK。\n\nminTreeAll\n\nmasterTree の推定に使う遺伝子の最低数。\n\nminSpec\n\nある遺伝子をもっている種の数がこれより少ない遺伝子を除く。\n\n\n相対進化速度の計算:\nRERmat = getAllResiduals(\n  treesObj,\n  cutoff = NULL,\n  transform = \"sqrt\",\n  weighted = T,\n  useSpecies = NULL,\n  min.sp = 10,\n  scale = T,\n  doOnly = NULL,\n  maxT = NULL,\n  scaleForPproj = F,\n  mean.trim = 0.05,\n  plot = T\n)\n\ntreeObj\n\nreadTree で読み込んだ系統樹オブジェクト\n\ntransform\n\n平方根 (“sqrt”) または対数 (“log”) で枝長を変換する。“none” だとそのまま使う。\n\nweighted/scale\n\n平均の枝長が長いほど相対進化速度の分散が大きいというバイアスを補正するアプローチ\n\n\nc.f. Partha et al. 2019\n\nmin.sp\n\nある遺伝子をもっている種数の最低数",
+    "crumbs": [
+      "Bioinformatics",
+      "RERconverge"
+    ]
+  },
+  {
+    "objectID": "bio/rerconverge.html#相対進化速度と表現型の相関解析",
+    "href": "bio/rerconverge.html#相対進化速度と表現型の相関解析",
+    "title": "RERconverge",
+    "section": "相対進化速度と表現型の相関解析",
+    "text": "相対進化速度と表現型の相関解析\n\n二値的形質との相関解析\n水棲/陸生、地中生/地上生、飛ぶ/飛ばないみたいなバイナリな形質を対象にした解析\nフォアグラウンドの種を指定する:\ntree = foreground2Tree(\n  foreground,\n  treesObj,\n  plotTree = T,\n  clade = c(\"ancestral\", \"terminal\", \"all\"),\n  weighted = F,\n  transition = \"unidirectional\",\n  useSpecies = NULL\n)\n\nforeground\n\n全種のうち、フォアグラウンド (興味のある表現型をもつ側) の種のベクタ\n\ntreesObj\n\nRERconverge::readTrees で読み込んだ系統樹\n\nclade\n\n3種類の方法がある。\n\n\nancestral は共通祖先の枝1本のみをフォアグラウンドにする。 形質が獲得されたと想定される枝。\n\n\nterminal は各種に向かう末端の枝のみをフォアグラウンドにする。\n\n\nall は共通祖先から各種までの枝すべてをフォアグラウンドにする。 形質が獲得されてからずーっとかかっている選択を検出するイメージ。\n\nweighted\n\nclade = \"all\"/\"terminal\" のときに、例えば共通祖先から末端まで3回の分岐がある種と 1回も分岐していない種がいたら、前者の各枝の重み付けを1/3する。\n\ntransition = c(\"bidirectional\", \"unidirectional\")\n\nいちど形質が獲得されてからの喪失を想定するかどうか\n\n\n表現型のベクタを作成:\ncarP = tree2Paths(tree, treesObj, binarize = NULL, useSpecies = NULL, categorical = F)\n\ntree\n\nforeground2Tree() で作ったフォアグラウンド情報の系統樹\n\ntreesObj\n\nRERconverge::readTrees() で読み込んだ系統樹\n\n\n表現型との相関解析:\nres = correlateWithBinaryPhenotype(\n  RERmat,\n  charP,\n  min.sp = 10,\n  min.pos = 2,\n  weighted = \"auto\"\n)\n\nRERmat\n\ngetAllResiduals() で計算した相対進化速度のマトリクス\n\nchaP\n\ntree2Paths() でつくった表現型ベクタ\n\nmin.sp\n\nある遺伝子をもっている種数の最低数\n\nmin.pos\n\nある遺伝子をもっているフォアグラウンド種の最低数\n\n\ncorrelateWithBinaryPhenotype() は、各遺伝子を行、 以下の統計量を列とするデータフレームを返す。\n\nRho\n\n関係の正負 (フォアグラウンドで加速/保存) を示す Pearson correlation\n\nN\n\n相対進化速度が算出された枝の数\n\nP\n\n相関解析のP値\n\np.adj\n\n多重補正後のP値。BH法を使っている。\n\n\n\n\n連続形質との相関解析\n体サイズ、寿命など連続的な数値データの形質を対象にした解析\n表現型の名前付きベクタをつくる。データフレームとかを用意しておくと楽。例えば:\ndf = data.frame(\n  species = c(\"spA\", \"spB\", \"spC\"),\n  body_mass = c(\"10\", \"20\", \"30\")\n ) |&gt;\n tibble::column_to_rownames(\"species\")\ntip.vals = df$body_mass\nnames(tip.vals) = rownames(df)\nで、\ncharP = char2Paths(\n  tip.vals,\n  treesObj,\n  altMasterTree = NULL,\n  metric = \"diff\",\n  se.filter = -1,\n  ...\n)\n\ntip.vals\n\n一個前で作った表現型ベクタ\n\ntreeObj\n\nRERconverge::readTrees() で読み込んだ系統樹\n\nmetric\n\ninternal_branch の表現型をどうするか\n\n\ndiff は枝の前後の祖先形質の差、mean は平均値、last は末端側の値をつかう。\n\n\n表現型との相関解析:\nres = correlateWithContinuousPhenotype(\n  RERmat,\n  charP,\n  min.sp = 10,\n  winsorizeRER = 3,\n  winsorizetrait = 3\n)\nRERmat, charP, min.sp は binary の時と同じ\n\nwinsorizeRER/winsorizetrait\n\n相対進化速度/表現型の値の top/worst の N 種ずつを、N+1 番目の値に変換する。\n\n\n相関解析が極端な外れ値の影響を受けることを避けるためのオプション\n\n\n返ってくるのは binary と同じデータフレーム",
+    "crumbs": [
+      "Bioinformatics",
+      "RERconverge"
+    ]
+  },
+  {
+    "objectID": "bio/rerconverge.html#エンリッチメント解析",
+    "href": "bio/rerconverge.html#エンリッチメント解析",
+    "title": "RERconverge",
+    "section": "エンリッチメント解析",
+    "text": "エンリッチメント解析\nウィルコクソンの順位和検定を使ったエンリッチメント解析の機能が実装されている。 もちろん topGO や clusterProfiler を使ってもいい。\n.gmt ファイルをダウンロードする:\nhttps://www.gsea-msigdb.org/gsea/login.jsp\n.gmt ファイルを読み込む:\nannots=read.gmt(\"gmtfile.gmt\")\nannotlist=list(annots)\nnames(annotlist)=\"MSigDBpathways\"\n相関解析の結果を加速度合い/保存度合いの順に並べる:\nstats = RERconverge::getStat(res)\nres は correlateWithBinaryPhenotype() や correlateWithContinuousPhenotype() の結果。 sign(Rho) × -log(P) をやってスコア順に並べる。\nエンリッチメント解析:\nenrichment = fastwilcoxGMTall(stats, annotlist, outputGeneVals=T, num.g=10)\n\nstats\n\nRERconverge::getStat() で並べた遺伝子\n\nannotlist\n\nread.gmt() で読み込んだパスウェイのリスト",
+    "crumbs": [
+      "Bioinformatics",
+      "RERconverge"
+    ]
+  },
+  {
+    "objectID": "bio/orthofinder.html",
+    "href": "bio/orthofinder.html",
+    "title": "OrthoFinder",
     "section": "",
-    "text": "https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/\nrsync, wget, curl などが使えるらしい。 公式には datasets コマンドが推奨されている。",
+    "text": "公式: https://davidemms.github.io/\nGitHub リポジトリ: https://github.com/davidemms/OrthoFinder\n論文: Emms and Kelly 2015",
     "crumbs": [
       "Bioinformatics",
-      "ゲノムデータ取得"
+      "OrthoFinder"
     ]
   },
   {
-    "objectID": "bio/ncbi_download.html#data_hub-から分類群を指定してダウンロード-gui",
-    "href": "bio/ncbi_download.html#data_hub-から分類群を指定してダウンロード-gui",
-    "title": "ゲノムデータ取得 — NCBI から一括ダウンロード",
-    "section": "data_hub から分類群を指定してダウンロード (GUI)",
-    "text": "data_hub から分類群を指定してダウンロード (GUI)\n\nhttps://www.ncbi.nlm.nih.gov/data-hub/genome/ にアクセス\nSelected taxa で分類群を指定 (例えば “Aves”, “Primates” など)\nFilters でフィルタリング\nAssembly を選択して Download\n\nDownload Table は検索結果の表\nDownload Package は file type (gff, fna, faa など) を指定してダウンロード\n\nSelect columns からゲノムサイズや Gene Content なども表示させることができる。",
+    "objectID": "bio/orthofinder.html#usage",
+    "href": "bio/orthofinder.html#usage",
+    "title": "OrthoFinder",
+    "section": "Usage",
+    "text": "Usage\n解析したい種の遺伝子の配列 (Fasta ファイル) を 1つのディレクトリ (ex. fasta_dir/) に用意して-fに渡すだけ。\northofinder -f fasta_dir",
     "crumbs": [
       "Bioinformatics",
-      "ゲノムデータ取得"
+      "OrthoFinder"
     ]
   },
   {
-    "objectID": "bio/ncbi_download.html#コマンドラインで一括ダウンロード",
-    "href": "bio/ncbi_download.html#コマンドラインで一括ダウンロード",
-    "title": "ゲノムデータ取得 — NCBI から一括ダウンロード",
-    "section": "コマンドラインで一括ダウンロード",
-    "text": "コマンドラインで一括ダウンロード\n\ndatasets コマンドを使う方法\nhttps://www.ncbi.nlm.nih.gov/datasets/docs/v2/how-tos/genomes/download-genome/\ndatasets コマンドをインストールする:\n## Linux\ncurl -o datasets 'https://ftp.ncbi.nlm.nih.gov/pub/datasets/command-line/v2/linux-amd64/datasets'\nchmod +x datasets   # 実行権限を付与\n\n## Mac\ncurl -o datasets 'https://ftp.ncbi.nlm.nih.gov/pub/datasets/command-line/v2/mac/datasets'\nchmod +x datasets\naccession を指定してダウンロード:\ndatasets download genome accession GCF_000001405.40 \\\n    --filename human_GRCh38_dataset.zip \\\n    --include genome\n--include でファイルを指定。デフォルトは genomic.fna。 他に gtf, gff, cds, protein, rna など。 none を指定すると data report だけ取得する。\n\n\ncurl コマンドを使う方法\ncurl -OJ https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_000001405.40/download?include_annotation_type=GENOME_FASTA,GENOME_GFF,RNA_FASTA,CDS_FASTA,PROT_FASTA,SEQUENCE_REPORT\nunclude_annotation_type= でほしいファイルを指定する。",
+    "objectID": "bio/orthofinder.html#出力",
+    "href": "bio/orthofinder.html#出力",
+    "title": "OrthoFinder",
+    "section": "出力",
+    "text": "出力\n出力は -f に渡したディレクトリ中に Result_*date* ディレクトリが作られてその中に入る。 以下は ver2.5.2 の例。\nPhylogenetic_Hierarchical_Orthogroups/\n\nSingle_Copy_Orthologue_Sequences/\n\nOG ごとのシングルコピーオーソログの配列\n\nOrthogroup_Sequences/\n\n全部の OG ごとの配列\n\n\nComparative_Genomics_Statistics/\n\n\nDuplications_per_Orthogroup.tsv\n\nOGごとの重複（*）の数\n\n\n\nOrthologuesStats_Totals.tsv\n\n1種対1種のオーソログの数\n\n\n\nOrthologuesStats_{one-to-many/many2one/many2many}.tsv\n\n1種対多種, 多種対1種, 多種対多種のオーソログの数\n\n\n\nStatistics_PerSpecies.tsv\n\n種ごとのオーソログの数に関する要約統計\n\n\n\nDuplications_per_Species_Tree_Node.tsv\n\n種ごとの重複の数\n\n\n\nOrthogroups_SpeciesOverlaps.tsv\n\nOrthologuesStats_Totals と同じ？\n\n\n\nStatistics_Overall.tsv\n\n全体の要約統計\n\n\n\nPhylogenetically_Misplaced_Genes\n\nSpecies_Tree/\n\n種の系統樹 (.txt)\n\n\nGene_Duplication_Events/\n\n\nDuplication.tsv\n\nOG ごとにどのノードでどの遺伝子とどの遺伝子が重複したかが書かれてる\n\n\n\nSpeciesTree_Gene_Duplications_0.5_Support.txt\n\n種の系統樹と若干違う？\n\n\n\nOrthogroups/\n\n\nOrthogroups.GeneCount.tsv\n\nOG × 種ごとの遺伝子数\n\n\n\nOrthogroups.tsv/.txt\n\nOG × 種ごとの遺伝子名\n\n\n\nOrthogroups_SingleCopyOrthologues.txt\n\nシングルコピー OG 名\n\n\n\nOrthogroups_UnassignedGenes.tsv\n\n1種しかいない OG 名\n\n\n\n\nPutative_Xenologs\n\n水平伝播したと推定される遺伝子 (あれば)\n\nWorkingDirectory/\n\nBlast などの中間ファイルが圧縮されて入っている。\n\n\nSpeciesIDs.txt は再解析 (後述) をする際に必要\n\nGene_Trees/\n\nOG ごとの遺伝子系統樹 (.txt) が入ってる。\n\n\nOrthologues/\n\n\nOrthologues_*種名*\n\n1種対1種のオーソログが書かれてる。\n\n\n\nResolved_Gene_Trees\n\nOG ごとの種分化を考慮した系統樹。4遺伝子以上の OG についてしか書かれていない。\n\n\n\n\nUnassigned gene と Species-specific Orthogroup\n両方とも系統特異的な遺伝子であると考えられ、 Unassigned gene はそのうちシングルトンであるもの (自身の中にもパラログが存在しない)、 Species-specific Orthogroup はそのうち重複遺伝子であるもの。 系統特異的な重複とは異なる。",
     "crumbs": [
       "Bioinformatics",
-      "ゲノムデータ取得"
+      "OrthoFinder"
+    ]
+  },
+  {
+    "objectID": "bio/orthofinder.html#種の追加除外",
+    "href": "bio/orthofinder.html#種の追加除外",
+    "title": "OrthoFinder",
+    "section": "種の追加/除外",
+    "text": "種の追加/除外\n\n種の追加を行う場合\n追加したい種の Fasta ファイルが入ったディレクトリを用意して、-f で指定:\northofinder -b /Result_*/WorkingDirectory -f new_fasta_directory\n結果は /WorkingDirectory/OrthoFinder/Result_*Date*/ に出力される。\n\n\n種を除外する場合\n/Result_*/WorkingDirectory/ にある SpeciesIDs.txt を編集し、 除外する種を # でコメントアウトする。その上で、\northofinder -b /Result_*/WorkingDirectory\nを実行する。 -f で追加ディレクトリを指定しつつ追加と除外を同時に行うことも可能。",
+    "crumbs": [
+      "Bioinformatics",
+      "OrthoFinder"
+    ]
+  },
+  {
+    "objectID": "bio/orthofinder.html#遺伝研",
+    "href": "bio/orthofinder.html#遺伝研",
+    "title": "OrthoFinder",
+    "section": "遺伝研",
+    "text": "遺伝研\nbiotools にある:\nls /usr/local/biotools/o/orthofinder*\n\n並列化\n種数にもよるが全種×全種で blast する都合上かなりメモリを食うので、 medium に並列で投げることをおすすめする。 下記は5スロットで投げる例。\n#$ -S /bin/bash\n#$ -cwd\n#$ -pe def_slot 5\n#$ -l medium\n#$ -l s_vmem=64G\n#$ -l mem_req=64G\n\nmodule load singularity\nsingularity exec /usr/local/biotools/o/orthofinder:%ver orthofinder -f dir -t 5 -a 5",
+    "crumbs": [
+      "Bioinformatics",
+      "OrthoFinder"
+    ]
+  },
+  {
+    "objectID": "bio/fst_hands_on.html",
+    "href": "bio/fst_hands_on.html",
+    "title": "\\(F_\\text{st}\\) 解析ハンズオン — 候補遺伝子・SNPの抽出",
+    "section": "",
+    "text": "研究室内ハンズオンの HTML 版。 未公開データを使ったもののため、一部結果を非表示にしてあります。\n\n\n\n他サンプルをマージした VCF ファイルからスタートして、 \\(F_\\text{st}\\) のマンハッタンプロットとハプロタイプのヒートマップを描く。\n\n\n\n\n遺伝研スパコンのアカウントを作成し、 ログインできる状態にする。\n手元の PC に R の解析環境を用意する。\nNCBI から bGalGal1.mat.broiler.GRCg7b の Sequence Report をダウンロードする:\n\nhttps://www.ncbi.nlm.nih.gov/datasets/genome/GCF_016699485.2/ へ\nChromosomes までスクロールして Download から取得\n\n\n\n\n\n\n日本鶏1品種1サンプルの VCF ファイル\n\nファイルの名前は varsites.snponly.vcf.gz\n\n\n変異がある座位のみをコール。INDEL を除いた SNP のみの VCF。\n\n\n自分のディレクトリにインデックス (.csi) と一緒にコピーする:\n\n\n\n\nVCFtools\nBCFtools\nbedtools\n\nいずれも遺伝研ではデフォルトで使える。 他のバージョンのものが良ければ apptainer 越しに使う。\nvcftools --version\n# VCFtools (0.1.16)\nbcftools --version\n# bcftools 1.13\nbedtools --version\n# bedtools v2.30.0\n\n## or use via apptainer, e.g.\napptainer exec /usr/local/biotools/v/vcftools:0.1.16--h9a82719_5 vcftools --version\n# VCFtools (0.1.16)",
+    "crumbs": [
+      "Bioinformatics",
+      "$F_\\text{st}$ 解析ハンズオン"
+    ]
+  },
+  {
+    "objectID": "bio/fst_hands_on.html#概要",
+    "href": "bio/fst_hands_on.html#概要",
+    "title": "\\(F_\\text{st}\\) 解析ハンズオン — 候補遺伝子・SNPの抽出",
+    "section": "",
+    "text": "研究室内ハンズオンの HTML 版。 未公開データを使ったもののため、一部結果を非表示にしてあります。\n\n\n\n他サンプルをマージした VCF ファイルからスタートして、 \\(F_\\text{st}\\) のマンハッタンプロットとハプロタイプのヒートマップを描く。\n\n\n\n\n遺伝研スパコンのアカウントを作成し、 ログインできる状態にする。\n手元の PC に R の解析環境を用意する。\nNCBI から bGalGal1.mat.broiler.GRCg7b の Sequence Report をダウンロードする:\n\nhttps://www.ncbi.nlm.nih.gov/datasets/genome/GCF_016699485.2/ へ\nChromosomes までスクロールして Download から取得\n\n\n\n\n\n\n日本鶏1品種1サンプルの VCF ファイル\n\nファイルの名前は varsites.snponly.vcf.gz\n\n\n変異がある座位のみをコール。INDEL を除いた SNP のみの VCF。\n\n\n自分のディレクトリにインデックス (.csi) と一緒にコピーする:\n\n\n\n\nVCFtools\nBCFtools\nbedtools\n\nいずれも遺伝研ではデフォルトで使える。 他のバージョンのものが良ければ apptainer 越しに使う。\nvcftools --version\n# VCFtools (0.1.16)\nbcftools --version\n# bcftools 1.13\nbedtools --version\n# bedtools v2.30.0\n\n## or use via apptainer, e.g.\napptainer exec /usr/local/biotools/v/vcftools:0.1.16--h9a82719_5 vcftools --version\n# VCFtools (0.1.16)",
+    "crumbs": [
+      "Bioinformatics",
+      "$F_\\text{st}$ 解析ハンズオン"
+    ]
+  },
+  {
+    "objectID": "bio/fst_hands_on.html#f_textst-を計算してマンハッタンプロットを描く",
+    "href": "bio/fst_hands_on.html#f_textst-を計算してマンハッタンプロットを描く",
+    "title": "\\(F_\\text{st}\\) 解析ハンズオン — 候補遺伝子・SNPの抽出",
+    "section": "\\(F_\\text{st}\\) を計算してマンハッタンプロットを描く",
+    "text": "\\(F_\\text{st}\\) を計算してマンハッタンプロットを描く\n軍鶏 vs 他品種で分化しているゲノム領域を特定する。 VCFtools を使う。\n\n遺伝研での作業なので、以降の操作はシェルスクリプト (.sh) を書いて qsub してもよい。 今回は便宜上、通常のコマンドラインで実行する形で説明する。\n\n毎回 VCF を指定するのは面倒なので変数に代入して ${vcf} で使う:\nvcf=YOUR_DIR/varsites.snponly.vcf.gz\n\n2集団のサンプル名を抽出する\nbcftools query と grep を組み合わせて軍鶏とそれ以外のサンプル名を それぞれテキストファイルに格納する:\n(軍鶏はサンプル名に SM を含む。これと八木戸 YKD を抽出。)\nbcftools query -l ${vcf} | grep -E 'SM|YKD' &gt; shamo.txt\nbcftools query -l ${vcf} | grep -v -E 'SM|YKD' &gt; non-shamo.txt\n\n\n\\(F_\\text{st}\\) を計算する\n2集団と window-size、window-step を指定して \\(F_\\text{st}\\) を計算する:\nvcftools --gzvcf ${vcf} --weir-fst-pop shamo.txt --weir-fst-pop non-shamo.txt \\\n  --fst-window-size 10000 --fst-window-step 5000 --out shamo_vs_other\n--out で指定した Prefix で .windowed.weir.fst と .log の2ファイルができる。\n\n\nマンハッタンプロットを描く\nここからローカルでの作業に移る。 shamo_vs_other.windowed.weir.fst を手元にダウンロードする。 これと事前準備3で取得した sequence_report.tsv を使う。\n\n\ndraw_manhattan_plot.R\n\n## パッケージのダウンロード\ninstall.packages(\"conflicted\")\ninstall.packages(\"tidyverse\")\ninstall.packages(\"qqman\")\n\n## パッケージの読み込み\nlibrary(conflicted)  # おまじない\nlibrary(tidyverse)   # データの操作用\nlibrary(qqman)       # マンハッタンプロット用\n\n## sequence_report.tsv を読み込む:\nacc2chr= readr::read_tsv(\"sequence_report.tsv\") |&gt;\n  dplyr::rename(CHROM = `RefSeq seq accession`, chr = `Chromosome name`) |&gt;  # 列名の変更\n  dplyr::select(CHROM, chr)                                                  # 染色体のaccessionと番号のみ抽出\n\n## shamo_vs_other.windowed.weir.fst を読み込む\nfst = readr::read_tsv(\"shamo_vs_other.windowed.weir.fst\") |&gt;\n  tibble::rownames_to_column(var = \"SNP\") |&gt;\n  dplyr::left_join(acc2chr, by = \"CHROM\") |&gt;\n  dplyr::mutate(chr = readr::parse_integer(chr, na = c(\"W\", \"Z\", \"Un\", \"MT\"))) |&gt;\n  dplyr::filter(!is.na(chr))\n\n## マンハッタンプロットの描画\nqqman::manhattan(\n  fst,\n  chr = \"chr\",\n  bp = \"BIN_START\",\n  p = \"WEIGHTED_FST\",  # or \"MEAN_FST\"\n  snp = \"SNP\",\n  col = c(\"#1f78b4\", \"#a6cee3\"),\n  logp = FALSE,\n  xlab = \"Chromosome\",\n  ylab = \"Fst\"\n)\n\nqqman::manhattan() はデフォルトでは PLINK の出力ファイルである BP列、CHR列、P列、SNP列をもつデータフレームを想定する。 これ以外のデータでマンハッタンプロットの描画をするときは、引数に列名などを指定していく。\n\nchr\n\n横軸の染色体番号\n\nbp\n\n各染色体上の SNP の座位\n\np\n\n縦軸の統計量。 デフォルトの想定は GWAS 等の P-value なので p になっている。\n\nsnp\n\n各 SNP の名前。典型的なのは rs123456 とか。\n\ncol\n\n染色体の色。今回は #1f78b4 ■ と #a6cee3 ■ を使ってみる。\n\nlogp\n\n縦軸 p を対数変換するかどうか。 今回は \\(F_\\text{st}\\) の生の値を使うので FALSE。\n\nxlab, ylab\n\n横軸、縦軸のラベル",
+    "crumbs": [
+      "Bioinformatics",
+      "$F_\\text{st}$ 解析ハンズオン"
+    ]
+  },
+  {
+    "objectID": "bio/fst_hands_on.html#f_textst-の高い領域に含まれる遺伝子をリストする",
+    "href": "bio/fst_hands_on.html#f_textst-の高い領域に含まれる遺伝子をリストする",
+    "title": "\\(F_\\text{st}\\) 解析ハンズオン — 候補遺伝子・SNPの抽出",
+    "section": "\\(F_\\text{st}\\) の高い領域に含まれる遺伝子をリストする",
+    "text": "\\(F_\\text{st}\\) の高い領域に含まれる遺伝子をリストする\n\nbedtools による重なり抽出\nマンハッタンプロットをみて、いい感じに閾値を決める。 今回 \\(F_\\text{st} &gt; 0.3\\) でやってみる。\nここでまた遺伝研に戻り、bedtools を使って \\(F_\\text{st}\\) の高い領域とオーバーラップする遺伝子をリストする。\nAWK コマンドで \\(F_\\text{st} &gt; 0.3\\) の行を抽出:\nawk -F'\\t' '$5 &gt; 0.3' shamo_vs_other.windowed.weir.fst &gt; shamo_vs_other.03.fst\n\n.fst ファイルの5列目 ($5) が WEIGHTED_FST なので、これが 0.3 より大きい行を抽出する。 この作業自体はエクセルでやっても R でやってもいい。\n\nNCBI から bGalGal1.mat.broiler.GRCg7b の GTF をダウンロードする:\n\nhttps://www.ncbi.nlm.nih.gov/datasets/genome/GCF_016699485.2/ へ\nDownload から Annotation features (GTF) のみ選択してダウンロード\n手元に取得した genomic.gtf を遺伝研に送る\n\nこのまま使ってもいいけど、9列目の Attribute の情報が多すぎる。 今回は遺伝子ID (gene_id) さえあればいいので、ここだけ残したシンプルな GFF に変えておく:\n\n\nclean_gtf.py\n\nimport argparse\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"-i\", \"--infile\")\n    parser.add_argument(\"-o\", \"--outfile\")\n    args = parser.parse_args()\n\n    gtf = clean_gtf(args.infile)\n    with open(args.outfile, \"w\") as f:\n        for l in gtf:\n            f.write(\"\\t\".join(l)+\"\\n\")\n\n\ndef clean_gtf(gtf):\n    new_lines = []\n    with open(gtf) as f:\n        for l in f:\n            if l[0] == \"#\":\n                new_lines.append([l.rstrip(\"\\n\")])\n            else:\n                l = l.rstrip(\"\\n\").split(\"\\t\")\n                l[-1] = extract_gene_from_gtf(l[-1])\n                new_lines.append(l)\n    return new_lines\n\n\ndef extract_gene_from_gtf(desc):\n    descs = desc.split(\"; \")\n    descs = {i.split(\" \")[0]: i.split(\" \")[1].strip('\"') for i in descs if \" \" in i}\n    gene = descs.get(\"gene_id\", \"NA\")\n    return gene\n\n\nif __name__ == \"__main__\":\n    main()\n\npython3 clean_gtf.py -i genomic.gtf -o simple.gtf\nbedtools intersect コマンドで、.fst と .gtf のオーバーラップする領域を抽出する:\nbedtools intersect -a shamo_vs_other.03.fst -b simple.gtf -wo &gt; shamo_vs_other.03.annot.fst\n\n\n再びマンハッタンプロットの描画\nshamo_vs_other.03.annot.fst を再び手元にダウンロードして R で可視化:\n\n\ndraw_manhattan_plot.R の続き\n\ncols= c(\"CHROM\", \"BIN_START\", \"BIN_END\", \"N_VARIANTS\", \"WEIGHTED_FST\", \"MEAN_FST\")\nfst2gene = readr::read_tsv(\"./shamo_vs_other.03.annot.fst\", col_names = cols) |&gt;\n  dplyr::rename(\"gene_id\" = X15) |&gt;\n  dplyr::distinct(BIN_START, gene_id) |&gt;\n  group_by(BIN_START) |&gt;\n  summarize(gene_id = paste(gene_id, collapse = \", \"))\n\n\nfst = fst |&gt; left_join(fst2gene, by = \"BIN_START\")\n\nqqman::manhattan(\n  fst,\n  chr = \"chr\",\n  bp = \"BIN_START\",\n  p = \"WEIGHTED_FST\",  # or \"MEAN_FST\"\n  snp = \"gene_id\",\n  col = c(\"#1f78b4\", \"#a6cee3\"),\n  logp = FALSE,\n  xlab = \"Chromosome\",\n  ylab = \"Fst\",\n  annotatePval = 0.3,\n  annotateTop = FALSE\n)\n\n\nannotatePval\n\n縦軸がこの値以上の点の snp を表示する。\n\n\n今回は \\(F_\\text{st} &gt; 0.3\\) でやっているので 0.3 を指定\n\nannotateTop\n\nTRUE だと各染色体の Top のみを表示する。\n\n\nいったん FALSE で全部表示してみて、重なりすぎてて見にくければ TRUE\n\n\n\n\n解釈\nこうして絞り込んだ遺伝子リストから、 さらにジェノタイピングやハプロタイプ解析に回す遺伝子を探していく。\n今回、2番染色体のピークに座上する ISPD は、 軍鶏を対象とした先行研究 (Luo et al. 2020, Bendesly et al. 2024) でも得られており、有力な候補と言える。\nこの後は、ISPD の周辺領域を抽出してハプロタイプ解析を行っていく。",
+    "crumbs": [
+      "Bioinformatics",
+      "$F_\\text{st}$ 解析ハンズオン"
+    ]
+  },
+  {
+    "objectID": "bio/fst_hands_on.html#vcf-から候補遺伝子の周辺領域を抽出",
+    "href": "bio/fst_hands_on.html#vcf-から候補遺伝子の周辺領域を抽出",
+    "title": "\\(F_\\text{st}\\) 解析ハンズオン — 候補遺伝子・SNPの抽出",
+    "section": "VCF から候補遺伝子の周辺領域を抽出",
+    "text": "VCF から候補遺伝子の周辺領域を抽出\n前半の \\(F_\\text{st}\\) 解析で候補遺伝子で抽出した ISPD の周辺領域を SNP 単位で解析していく。\n\nISPD 領域\nNCBI で ISPD のページを見ると、 2番染色体 (NC_052533.1) の 28184591..28296806 にあるらしい。\nこの前後 5000 bp を VCF から抽出する:\nvcf=YOUR_DIR/varsites.snponly.vcf.gz\n\nvcftools --gzvcf ${vcf} \\\n  --chr NC_052533.1 --from-bp 28184591-5000 --to-bp 28296806+5000 \\\n  --recode --out ISPD\n--chr で染色体accession、--from-bp/--to-bp で座位を指定して VCF の特定領域を抽出する。 --out で指定した Prefix で、ISPD.recode.vcf が生成される。",
+    "crumbs": [
+      "Bioinformatics",
+      "$F_\\text{st}$ 解析ハンズオン"
+    ]
+  },
+  {
+    "objectID": "bio/fst_hands_on.html#ハプロタイプ解析",
+    "href": "bio/fst_hands_on.html#ハプロタイプ解析",
+    "title": "\\(F_\\text{st}\\) 解析ハンズオン — 候補遺伝子・SNPの抽出",
+    "section": "ハプロタイプ解析",
+    "text": "ハプロタイプ解析\n抽出した ISPD 周辺領域の VCF を手元にダウンロードして、 R で読み込む。 全領域を可視化するとプロットが横に潰れるので、\\(F_\\text{st}\\) が特に高い領域に絞っておく:\n\n\ndraw_haplotype_plot.R\n\nlibrary(conflicted)\nlibrary(tidyverse)\n\nispd_vcf = readr::read_tsv(\"ISPD.recode.vcf\", comment = \"##\") |&gt;  # もしくは ISPD.snpEff.vcf\n  dplyr::filter(POS &gt;= 28200001 & POS &lt;= 28215000) |&gt;\n  tidyr::pivot_longer(\n    dplyr::starts_with(\"bam/\"),\n    names_to = \"sample\",\n    values_to = \"genotype\"\n  ) |&gt;\n  dplyr::mutate(\n    POS = as.character(POS),\n    sample = stringr::str_split(sample, \"/\", simplify = TRUE)[,2],\n    genotype = stringr::str_replace(genotype, \":.+\", \"\"),\n    FORMAT = \"GT\",\n    category = dplyr::if_else(stringr::str_detect(sample, \"SM|YKD\"), 1, 0),\n    sample = forcats::fct_reorder(sample, category)\n  )\n\n\n\\(\\Delta\\) Allele frequency の計算と可視化\n軍鶏とその他品種のアリル頻度の差を計算する。 ここは VCF の形式によって方法が異なる。 今回は bcftools mpileup | bcftools call --ploidy 2 でバリアントコールした形式を想定している。\nこの場合、あるアリルの遺伝子型が2本とも Reference と同じ (REF/REF) であれば 0/0、 ヘテロで SNP を持つ場合 (REF/ALT) 0/1、ホモで持つ場合 (ALT/ALT) 1/1 となる。\nALT 遺伝子型のアリル頻度を、0/0 = 0, 0/1 = 0.5, 1/1 = 1 としてその平均をとって計算する:\n\n\ndraw_haplotype_plot.R の続き\n\nispd_af = ispd_vcf |&gt;\n  dplyr::select(POS, sample, genotype, category) |&gt;\n  dplyr::mutate(\n    AF = dplyr::case_when(\n      genotype == \"1/1\" ~ 0,\n      genotype == \"0/1\" ~ 0.5,\n      .default = 1),\n    category = dplyr::if_else(category == 1, \"Shamo_AF\", \"Other_AF\")\n  ) |&gt;\n  dplyr::group_by(POS, category) |&gt;\n  dplyr::summarise(mean_AF = mean(AF)) |&gt;\n  tidyr::pivot_wider(names_from = category, values_from = mean_AF) |&gt;\n  dplyr::mutate(diff_AF = abs(Shamo_AF - Other_AF))\n\nこれを ggplot::geom_col() で可視化する:\n\n\ndraw_haplotype_plot.R の続き\n\nggplot2::ggplot(ispd_af) +\n  aes(x = POS, y = diff_AF) +                      # 横軸に座位、縦軸にアリル頻度の差\n  geom_col(fill =  \"#999999\") +                    # バープロットの描画\n  labs(x = \"POS\", y = \"delta allele frequency\") +  # x軸, y軸のタイトル\n  theme_classic() +                                # シンプルなテーマで\n  theme(\n    axis.text.x = element_blank(),                 # x軸のラベルはなくす\n    axis.ticks.x = element_blank()                 # x軸の ticks もなくす\n  )\n\n\n\nハプロタイプのヒートマップ描画\n続いて、各品種の遺伝子型をヒートマップ形式で可視化する。\n\n\ndraw_haplotype_plot.R の続き\n\nggplot2::ggplot(ispd_vcf) +\n  aes(x = POS, y = sample) +                    # 横軸に座位、縦軸にサンプル\n  geom_tile(aes(fill = genotype)) +             # タイルプロット。色分けはgenotypeで。\n  scale_fill_viridis_d(option = \"cividis\") +    # 色分けの色の指定\n  labs(x = \"POS\", y = \"\", fill = \"Genotype\") +  # x軸, y軸, 色分けのタイトル\n  theme_bw() +\n  theme(\n    axis.text.x = element_blank(),              # x軸のラベルはなくす\n    axis.ticks.x = element_blank(),             # x軸のticksもなくす\n  )\n\nこのようにしてアリル頻度の集団間差が特に大きい SNP を絞り込んでいく。 snpEff などを組み合わせれば、 その中でアミノ酸変異を伴うもの、といった絞り込みも可能。",
+    "crumbs": [
+      "Bioinformatics",
+      "$F_\\text{st}$ 解析ハンズオン"
     ]
   },
   {
@@ -1324,135 +1445,146 @@
     ]
   },
   {
-    "objectID": "bio/orthofinder.html",
-    "href": "bio/orthofinder.html",
-    "title": "OrthoFinder",
+    "objectID": "bio/ncbi_download.html",
+    "href": "bio/ncbi_download.html",
+    "title": "ゲノムデータ取得 — NCBI から一括ダウンロード",
     "section": "",
-    "text": "公式: https://davidemms.github.io/\nGitHub リポジトリ: https://github.com/davidemms/OrthoFinder\n論文: Emms and Kelly 2015",
+    "text": "https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/\nrsync, wget, curl などが使えるらしい。 公式には datasets コマンドが推奨されている。",
     "crumbs": [
       "Bioinformatics",
-      "OrthoFinder"
+      "ゲノムデータ取得"
     ]
   },
   {
-    "objectID": "bio/orthofinder.html#usage",
-    "href": "bio/orthofinder.html#usage",
-    "title": "OrthoFinder",
-    "section": "Usage",
-    "text": "Usage\n解析したい種の遺伝子の配列 (Fasta ファイル) を 1つのディレクトリ (ex. fasta_dir/) に用意して-fに渡すだけ。\northofinder -f fasta_dir",
+    "objectID": "bio/ncbi_download.html#data_hub-から分類群を指定してダウンロード-gui",
+    "href": "bio/ncbi_download.html#data_hub-から分類群を指定してダウンロード-gui",
+    "title": "ゲノムデータ取得 — NCBI から一括ダウンロード",
+    "section": "data_hub から分類群を指定してダウンロード (GUI)",
+    "text": "data_hub から分類群を指定してダウンロード (GUI)\n\nhttps://www.ncbi.nlm.nih.gov/data-hub/genome/ にアクセス\nSelected taxa で分類群を指定 (例えば “Aves”, “Primates” など)\nFilters でフィルタリング\nAssembly を選択して Download\n\nDownload Table は検索結果の表\nDownload Package は file type (gff, fna, faa など) を指定してダウンロード\n\nSelect columns からゲノムサイズや Gene Content なども表示させることができる。",
     "crumbs": [
       "Bioinformatics",
-      "OrthoFinder"
+      "ゲノムデータ取得"
     ]
   },
   {
-    "objectID": "bio/orthofinder.html#出力",
-    "href": "bio/orthofinder.html#出力",
-    "title": "OrthoFinder",
-    "section": "出力",
-    "text": "出力\n出力は -f に渡したディレクトリ中に Result_*date* ディレクトリが作られてその中に入る。 以下は ver2.5.2 の例。\nPhylogenetic_Hierarchical_Orthogroups/\n\nSingle_Copy_Orthologue_Sequences/\n\nOG ごとのシングルコピーオーソログの配列\n\nOrthogroup_Sequences/\n\n全部の OG ごとの配列\n\n\nComparative_Genomics_Statistics/\n\n\nDuplications_per_Orthogroup.tsv\n\nOGごとの重複（*）の数\n\n\n\nOrthologuesStats_Totals.tsv\n\n1種対1種のオーソログの数\n\n\n\nOrthologuesStats_{one-to-many/many2one/many2many}.tsv\n\n1種対多種, 多種対1種, 多種対多種のオーソログの数\n\n\n\nStatistics_PerSpecies.tsv\n\n種ごとのオーソログの数に関する要約統計\n\n\n\nDuplications_per_Species_Tree_Node.tsv\n\n種ごとの重複の数\n\n\n\nOrthogroups_SpeciesOverlaps.tsv\n\nOrthologuesStats_Totals と同じ？\n\n\n\nStatistics_Overall.tsv\n\n全体の要約統計\n\n\n\nPhylogenetically_Misplaced_Genes\n\nSpecies_Tree/\n\n種の系統樹 (.txt)\n\n\nGene_Duplication_Events/\n\n\nDuplication.tsv\n\nOG ごとにどのノードでどの遺伝子とどの遺伝子が重複したかが書かれてる\n\n\n\nSpeciesTree_Gene_Duplications_0.5_Support.txt\n\n種の系統樹と若干違う？\n\n\n\nOrthogroups/\n\n\nOrthogroups.GeneCount.tsv\n\nOG × 種ごとの遺伝子数\n\n\n\nOrthogroups.tsv/.txt\n\nOG × 種ごとの遺伝子名\n\n\n\nOrthogroups_SingleCopyOrthologues.txt\n\nシングルコピー OG 名\n\n\n\nOrthogroups_UnassignedGenes.tsv\n\n1種しかいない OG 名\n\n\n\n\nPutative_Xenologs\n\n水平伝播したと推定される遺伝子 (あれば)\n\nWorkingDirectory/\n\nBlast などの中間ファイルが圧縮されて入っている。\n\n\nSpeciesIDs.txt は再解析 (後述) をする際に必要\n\nGene_Trees/\n\nOG ごとの遺伝子系統樹 (.txt) が入ってる。\n\n\nOrthologues/\n\n\nOrthologues_*種名*\n\n1種対1種のオーソログが書かれてる。\n\n\n\nResolved_Gene_Trees\n\nOG ごとの種分化を考慮した系統樹。4遺伝子以上の OG についてしか書かれていない。\n\n\n\n\nUnassigned gene と Species-specific Orthogroup\n両方とも系統特異的な遺伝子であると考えられ、 Unassigned gene はそのうちシングルトンであるもの (自身の中にもパラログが存在しない)、 Species-specific Orthogroup はそのうち重複遺伝子であるもの。 系統特異的な重複とは異なる。",
+    "objectID": "bio/ncbi_download.html#コマンドラインで一括ダウンロード",
+    "href": "bio/ncbi_download.html#コマンドラインで一括ダウンロード",
+    "title": "ゲノムデータ取得 — NCBI から一括ダウンロード",
+    "section": "コマンドラインで一括ダウンロード",
+    "text": "コマンドラインで一括ダウンロード\n\ndatasets コマンドを使う方法\nhttps://www.ncbi.nlm.nih.gov/datasets/docs/v2/how-tos/genomes/download-genome/\ndatasets コマンドをインストールする:\n## Linux\ncurl -o datasets 'https://ftp.ncbi.nlm.nih.gov/pub/datasets/command-line/v2/linux-amd64/datasets'\nchmod +x datasets   # 実行権限を付与\n\n## Mac\ncurl -o datasets 'https://ftp.ncbi.nlm.nih.gov/pub/datasets/command-line/v2/mac/datasets'\nchmod +x datasets\naccession を指定してダウンロード:\ndatasets download genome accession GCF_000001405.40 \\\n    --filename human_GRCh38_dataset.zip \\\n    --include genome\n--include でファイルを指定。デフォルトは genomic.fna。 他に gtf, gff, cds, protein, rna など。 none を指定すると data report だけ取得する。\n\n\ncurl コマンドを使う方法\ncurl -OJ https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_000001405.40/download?include_annotation_type=GENOME_FASTA,GENOME_GFF,RNA_FASTA,CDS_FASTA,PROT_FASTA,SEQUENCE_REPORT\nunclude_annotation_type= でほしいファイルを指定する。",
     "crumbs": [
       "Bioinformatics",
-      "OrthoFinder"
+      "ゲノムデータ取得"
     ]
   },
   {
-    "objectID": "bio/orthofinder.html#種の追加除外",
-    "href": "bio/orthofinder.html#種の追加除外",
-    "title": "OrthoFinder",
-    "section": "種の追加/除外",
-    "text": "種の追加/除外\n\n種の追加を行う場合\n追加したい種の Fasta ファイルが入ったディレクトリを用意して、-f で指定:\northofinder -b /Result_*/WorkingDirectory -f new_fasta_directory\n結果は /WorkingDirectory/OrthoFinder/Result_*Date*/ に出力される。\n\n\n種を除外する場合\n/Result_*/WorkingDirectory/ にある SpeciesIDs.txt を編集し、 除外する種を # でコメントアウトする。その上で、\northofinder -b /Result_*/WorkingDirectory\nを実行する。 -f で追加ディレクトリを指定しつつ追加と除外を同時に行うことも可能。",
-    "crumbs": [
-      "Bioinformatics",
-      "OrthoFinder"
-    ]
-  },
-  {
-    "objectID": "bio/orthofinder.html#遺伝研",
-    "href": "bio/orthofinder.html#遺伝研",
-    "title": "OrthoFinder",
-    "section": "遺伝研",
-    "text": "遺伝研\nbiotools にある:\nls /usr/local/biotools/o/orthofinder*\n\n並列化\n種数にもよるが全種×全種で blast する都合上かなりメモリを食うので、 medium に並列で投げることをおすすめする。 下記は5スロットで投げる例。\n#$ -S /bin/bash\n#$ -cwd\n#$ -pe def_slot 5\n#$ -l medium\n#$ -l s_vmem=64G\n#$ -l mem_req=64G\n\nmodule load singularity\nsingularity exec /usr/local/biotools/o/orthofinder:%ver orthofinder -f dir -t 5 -a 5",
-    "crumbs": [
-      "Bioinformatics",
-      "OrthoFinder"
-    ]
-  },
-  {
-    "objectID": "bio/rerconverge.html",
-    "href": "bio/rerconverge.html",
-    "title": "RERconverge",
+    "objectID": "bio/paml-tutorial.html",
+    "href": "bio/paml-tutorial.html",
+    "title": "PAML チュートリアル",
     "section": "",
-    "text": "相同な配列の進化速度の相対的な加速度合いを計算して、表現型との相関を調べる R パッケージ。 系統樹さえ描ければいいので、遺伝子のほかに CNS (Conserved Non-coding Sequence) にも応用できる。 (本ページでは便宜上「遺伝子」として記述する。)\n開発者たちのグループは 水棲適応 や 地中生活などの二値的な形質、 体サイズや寿命などの連続形質に関わる遺伝子を報告している。",
+    "text": "突貫で書いた即席のページです。\nPAML のテストデータを材料に codeml を一通り動かしてみる。\nPhylogenetic Analysis by Maximum Likelihood (PAML) は、DNA やタンパク質の配列を最尤法で系統解析するための 種々のプログラムを含むパッケージ。\n今回はその中で、コドンの配列から同義置換に対する非同義置換の速度である \\(\\omega = d_\\text{N} / d_\\text{S}\\) を推定して正の自然選択の検出を行う codeml を使う。",
     "crumbs": [
       "Bioinformatics",
-      "RERconverge"
+      "PAML チュートリアル"
     ]
   },
   {
-    "objectID": "bio/rerconverge.html#インストール",
-    "href": "bio/rerconverge.html#インストール",
-    "title": "RERconverge",
-    "section": "インストール",
-    "text": "インストール\nhttps://github.com/nclark-lab/RERconverge/wiki/Install\nバイナリ版のインストールが推奨されている。 Mac で使う場合はまずバイナリ版インストールを試してみる。 バイナリ版インストールで問題があったり、Windows や Linux で使う場合はソースコード版を試す。 (それでもダメなら一応 Docker イメージもあるっぽい。)\n\nMac\n\nバイナリ版のインストール\n\ndevtools が必要:\ninstall.packages(\"devtools\")\nlibrary(devtools)\ngithub からパッケージをインストール。 これを実行すると、RERconverge 本体のインストールは失敗するけど、 他の依存パッケージは入ってくるらしい:\ndevtools::install_github(\"nclark-lab/RERconverge\")\nちなみに依存パッケージは以下。これらを個別にインストールすれば 2. は不要？:\ndevtools\nRColorBrewer\ngplots\nphytools\ngeiger\nknitr\nRcppArmadillo\nweights\nphangorn\nリリースページから 最新版のバイナリ版パッケージをダウンロードしてターミナルでインストールコマンドを実行:\nR CMD INSTALL Mac_Big_Sur_R_4.0.0.RERconverge_0.1.0.tgz\n※ ファイル名の通り最新版 (2023-11-18時点) が BigSur の R 4.0.0 用なので、 そうじゃない Mac&R でちゃんと動くかは不明。\nちゃんと入ったかテスト:\nlibrary(RERconverge)\n\n\n\nソースコード版のインストール\n\n新しい gfortran (gcc) を入れておく:\nxcode-select --install  # if needed\nbrew install gcc\nMakevars でコンパイラの設定をする:\n素の Mac に RERconverge を入れようとすると、おそらく gfortran 関連で警告やエラーが出る。 Makevars を書いて homebrew で入れた gfortran を使うように設定する。\nまず ~/.R/Makevars をつくる (すでにあれば不要):\nmkdir ~/.R\ntouch ~/.R/Makevars\ngfortran の PATH とライブラリの場所を確認:\nwhich gfortran\n# /usr/local/bin/gfortran\nls -al /usr/local/lib/gcc/current\n# 略\nMakevars に以下を記述:\nFC=/usr/local/bin/gfortran\nF77=/usr/local/bin/gfortran\nFLIBS=-L/usr/local/lib/gcc/current\ndevtools のインストール:\ninstall.packages(\"devtools\")\nGithub からパッケージをインストール。 コンパイラ周りをちゃんと設定しておけば入るはず:\ndevtools::install_github(\"nclark-lab/RERconverge\")\n\n\nMakevars は Rcpp で使う C++ などのコンパイラの設定をするためのファイル。 公式ドキュメントや、 メタルさんのサイト、 津田さんのサイト も参照\n\n\n\n\nWindows\n\nRtools を入れておく。\n依存パッケージのインストール:\ndevtools\nRColorBrewer\ngplots\nphytools\ngeiger\nknitr\nRcppArmadillo\nweights\nphangorn\nRERconverge のインストール:\ndevtools::install_github(\"nclark-lab/RERconverge\")",
+    "objectID": "bio/paml-tutorial.html#テストデータの準備",
+    "href": "bio/paml-tutorial.html#テストデータの準備",
+    "title": "PAML チュートリアル",
+    "section": "テストデータの準備",
+    "text": "テストデータの準備\nPAML の方で用意してある リゾチームの配列 を使う。んだけど、ファイルフォーマットが普段牧野研でよく使う形式と異なるので、 ひとまず↓をコピペして使ってください。\n\n\nlysozymeSmall.fa\n\n&gt;Hsa_Human\nAAGGTCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAGATTGGGAATGGATGGCTAC\nAGGGGAATCAGCCTAGCAAACTGGATGTGTTTGGCCAAATGGGAGAGTGGTTACAACACA\nCGAGCTACAAACTACAATGCTGGAGACAGAAGCACTGATTATGGGATATTTCAGATCAAT\nAGCCGCTACTGGTGTAATGATGGCAAAACCCCAGGAGCAGTTAATGCCTGTCATTTATCC\nTGCAGTGCTTTGCTGCAAGATAACATCGCTGATGCTGTAGCTTGTGCAAAGAGGGTTGTC\nCGTGATCCACAAGGCATTAGAGCATGGGTGGCATGGAGAAATCGTTGTCAAAACAGAGAT\nGTCCGTCAGTATGTTCAAGGTTGTGGAGTG\n\n&gt;Hla_gibbon\nAAGGTCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAGATTGGGAATGGATGGCTAC\nAGGGGAATCAGCCTAGCAAACTGGATGTGTTTGGCCAAATGGGAGAGTGGTTATAACACA\nCGAGCTACAAACTACAATCCTGGAGACAGAAGCACTGATTATGGGATATTTCAGATCAAT\nAGCCGCTACTGGTGTAATGATGGCAAAACCCCAGGAGCAGTTAATGCCTGTCATTTATCC\nTGCAATGCTTTGCTGCAAGATAACATCGCCGATGCTGTAGCTTGTGCAAAGAGGGTTGTC\nCGCGATCCACAAGGCATTAGAGCATGGGTGGCATGGAGAAATCGTTGTCAAAACAGAGAT\nCTCCGTCAGTATATTCAAGGTTGTGGAGTA\n\n&gt;Cgu/Can_colobus\nAAGATCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAAATTGGGACTGGATGGCTAC\nAAGGGAGTCAGCCTAGCAAACTGGGTGTGTTTGGCCAAATGGGAGAGTGGTTATAACACA\nGACGCTACAAACTACAATCCTGGAGATGAAAGCACTGATTATGGGATATTTCAGATCAAT\nAGCCGCTACTGGTGTAATAATGGCAAAACCCCAGGAGCAGTTAATGCCTGTCATATATCC\nTGCAATGCTTTGCTGCAAAATAACATCGCTGATGCTGTAGCTTGTGCAAAGAGGGTTGTC\nAGTGATCCACAAGGCATTCGAGCATGGGTGGCATGGAAAAAGCACTGTCAAAACAGAGAT\nGTCAGTCAGTATGTTGAAGGTTGTGGAGTA\n\n&gt;Pne_langur\nAAGATCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAAATTGGGACTGGATGGCTAC\nAAGGGAGTCAGCCTAGCAAACTGGGTGTGTTTGGCCAAATGGGAGAGTGGTTATAACACA\nGAAGCTACAAACTACAATCCTGGAGACGAAAGCACTGATTATGGGATATTTCAGATCAAT\nAGCCGCTACTGGTGTAATAATGGCAAAACCCCAGGAGCAGTTGATGCCTGTCATATATCC\nTGCAGTGCTTTGCTGCAAAACAACATCGCTGATGCTGTAGCTTGTGCAAAGAGGGTTGTC\nAGTGATCCACAAGGCGTTCGAGCATGGGTGGCATGGAGAAATCACTGTCAAAACAAAGAT\nGTCAGTCAGTACGTTAAAGGTTGTGGAGTG\n\n&gt;Mmu_rhesus\nAAGATCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAGATTGGGACTGGATGGCTAC\nAGGGGAATCAGCCTAGCAAACTGGGTGTGTTTGGCCAAATGGGAGAGTAATTATAACACA\nCAAGCTACAAACTACAATCCTGGAGACCAAAGCACTGATTATGGGATATTTCAGATCAAT\nAGCCACTACTGGTGTAATAATGGCAAAACCCCAGGAGCAGTTAATGCCTGTCATATATCC\nTGCAATGCTTTGCTGCAAGATAACATCGCTGATGCTGTAACTTGTGCAAAGAGGGTTGTC\nAGTGATCCACAAGGCATTAGAGCATGGGTGGCATGGAGAAATCACTGTCAAAACAGAGAT\nGTCAGTCAGTATGTTCAAGGTTGTGGAGTG\n\n&gt;Ssc_squirrelM\nAAGGTCTTCGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAGGCTTGGAATGGATGGCTAC\nAGGGGAATCAGCCTAGCAAACTGGATGTGTTTGGCCAAATGGGAGAGTGACTATAACACA\nCGTGCTACAAACTACAATCCTGGAGACCAAAGCACTGATTATGGGATATTTCAGATCAAT\nAGCCACTATTGGTGTAATAATGGCAGAACCCCAGGAGCAGTTAATGCCTGTCATATATCC\nTGCAATGCTTTGCTGCAAGATGACATCACTCAAGCTGTGGCCTGTGCAAAGAGGGTTGTC\nCGTGATCCACAAGGCATTAGAGCATGGGTGGCATGGAAAGCTCATTGTCAAAACAGAGAT\nGTCAGTCAGTATGTTCAAGGTTGTGGAGTA\n\n&gt;Cja_marmoset\nAAGGTCTTTGAAAGGTGTGAGTTGGCCAGAACTCTGAAAAGGTTTGGACTGGATGGCTAC\nAGGGGAATCAGCCTAGCAAACTGGATGTGTTTGGCCAAATGGGAGAGTGATTATAACACA\nCGTGCTACAAACTACAATCCTGGAGACCAAAGCACTGATTATGGGATATTTCAGATCAAT\nAGCCACTATTGGTGTAACAATGGCAGAACCCCAGGAGCAGTTAATGCCTGTCATATATCC\nTGCAATGCTTTGCTGCAAGATGACATCACTGAAGCTGTGGCCTGTGCAAAGAGGGTTGTC\nCGCGATCCACAAGGCATTAGGGCATGGGTGGCATGGAAAGCTCATTGTCAAAACAGAGAT\nGTCAGTCAGTATGTTCAAGGTTGTGGAGTA\n\n\n\nlysozymeSmall.fa.treefile\n\n(Hsa_Human:0.0087447996,Hla_gibbon:0.0130303081,(((Cgu/Can_colobus:0.0156654142,Pne_langur:0.0181835564):0.0280807319,Mmu_rhesus:0.0070703774):0.0147707727,(Ssc_squirrelM:0.0140657314,Cja_marmoset:0.0076397044):0.0477319527):0.0256856586);\n\n系統樹ファイルは IQ-TREE を使って推定したもの。 手元でやってもらってもいいです。\niqtree2 --version\n# IQ-TREE multicore version 2.0.7 for Linux 64-bit built Jan 21 2022\n# Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor,\n# Heiko Schmidt, Dominik Schrempf, Michael Woodhams.\n\niqtree2 -s lysozymeSmall.fa -m TEST\n\n\n\n\n\n\n\n\n\n\n\n\n\n生物学的な背景\n葉を常食とする旧世界ザル (左図) で、 反芻動物に似た前胃での発酵をともなう消化を獲得\n前胃に分泌されるリゾチームが進化\nMessier and Stewart 1997",
     "crumbs": [
       "Bioinformatics",
-      "RERconverge"
+      "PAML チュートリアル"
     ]
   },
   {
-    "objectID": "bio/rerconverge.html#概要",
-    "href": "bio/rerconverge.html#概要",
-    "title": "RERconverge",
-    "section": "概要",
-    "text": "概要\nhttps://github.com/nclark-lab/RERconverge/blob/master/vignettes/ にチュートリアルあり\nRERconverge は主に以下の機能を実装している:\n\n遺伝子系統樹の推定\n相対進化速度の計算\n相対進化速度と表現型の相関解析\nエンリッチメント解析\n\n遺伝子系統樹の推定やエンリッチメント解析は、RERconverge 以外の方法でもできる。 そのほか、途中途中で解析に必要なファイルは別個に用意しても良い。",
+    "objectID": "bio/paml-tutorial.html#素の-paml-を動かす",
+    "href": "bio/paml-tutorial.html#素の-paml-を動かす",
+    "title": "PAML チュートリアル",
+    "section": "素の PAML を動かす",
+    "text": "素の PAML を動かす\n\nPAML website\nPAML github リポジトリ\n井上潤さんのホームページ\nPAML Beginner’s Guide\n\n\nPAML をインストールする\nいずれかのパッケージ管理ツールを介するのが楽。\nHomebrew を使う場合 brewsci/bio/ リポジトリのため、 M2 チップ以降の Mac には対応していない可能性がある。 遺伝研では apptainer (singularity) を使わなくてもすでに PAML の環境が整っている。 (c.f. which -a codeml)\n## Homebrew を使う (Mac, M2 チップ以上だと無理かも)\nbrew install brewsci/bio/paml\n\n## apt を使う (Ubuntu)\nsudo apt install paml\n\n## conda を介したインストール (共通)\nconda install -c bioconda paml\n\n## apptainer のやつを使う (遺伝研)\nls /usr/local/biotools/p/paml*\nこれらのいずれの方法も使えないときは、 ソースコードを ダウンロードして手元でビルドする。 方法は公式サイトに記載がある。\n\n\n.ctl ファイルの概要\ncodeml を動かすとき、ファイルの指定や種々のオプションの指定は、 すべてコントロールファイル (.ctl) に記述する。 見た目はこんな感じ:\n\n\nlysozymeSmall.ctl\n\n      seqfile = lysozymeSmall.fa\n     treefile = lysozymeSmall.fa.treefile\n      outfile = your_output_file\n\n        noisy = 9   * 0,1,2,3,9: how much rubbish on the screen\n      verbose = 1   * 1: detailed output, 0: concise output\n      runmode = 0   * 0: user tree;  1: semi-automatic;  2: automatic\n                    * 3: StepwiseAddition; (4,5):PerturbationNNI\n\n      seqtype = 1   * 1:codons; 2:AAs; 3:codons--&gt;AAs\n    CodonFreq = 2   * 0:1/61 each, 1:F1X4, 2:F3X4, 3:codon table\n        clock = 0   * 0: no clock, unrooted tree, 1: clock, rooted tree\n        model = 2\n                    * models for codons:\n                        * 0:one, 1:b, 2:2 or more dN/dS ratios for branches\n\n      NSsites = 0   * dN/dS among sites. 0:no variation, 1:neutral, 2:positive\n        icode = 0   * 0:standard genetic code; 1:mammalian mt; 2-10:see below\n\n    fix_kappa = 0   * 1: kappa fixed, 0: kappa to be estimated\n        kappa = 2   * initial or fixed kappa\n    fix_omega = 0   * 1: omega or omega_1 fixed, 0: estimate\n        omega = 2   * initial or fixed omega, for codons or codon-transltd AAs\n\n    fix_alpha = 1   * 0: estimate gamma shape parameter; 1: fix it at alpha\n        alpha = .0  * initial or fixed alpha, 0:infinity (constant rate)\n       Malpha = 0   * different alphas for genes\n        ncatG = 4   * # of categories in the dG or AdG models of rates\n\n        getSE = 0   * 0: don't want them, 1: want S.E.s of estimates\n RateAncestor = 0   * (1/0): rates (alpha&gt;0) or ancestral states (alpha=0)\n       method = 0   * 0: simultaneous; 1: one branch at a time\n  fix_blength = 0  * 0: ignore, -1: random, 1: initial, 2: fixed, 3: proportional\n\n\n* Specifications for duplicating results for the small data set in table 1\n* of Yang (1998 MBE 15:568-573).\n* see the tree file lysozyme.trees for specification of node (branch) labels\n\nどの解析でも共通で変更するのは seqfile, treefile, outfile の3つ。 model, NSsites, fix_omega, omega は解析に応じて変更する。\n\nseqfile\n\nDNAまたはタンパク質の配列のファイルパス。\n\ntreefile\n\n系統樹のファイルパス。tip名は seqfile のものと一致している必要がある。\n\noutfile\n\n出力ファイルのパス。\n\nmodel\n\n系統樹の各 branch における \\(\\omega = d_\\text{N} / d_\\text{S}\\) の設定。\n\n\n0: 系統樹全体で均一の \\(\\omega = d_\\text{N} / d_\\text{S}\\) を推定。\n\n\n1: branch ごとに異なる \\(\\omega = d_\\text{N} / d_\\text{S}\\) を推定。\n\n\n2: treefile の branch に #, #1 などの記号を振って各記号の branch で異なる \\(\\omega = d_\\text{N} / d_\\text{S}\\) を推定。\n\nNSsites\n\nコドン/アミノ酸サイトごとの \\(\\omega = d_\\text{N} / d_\\text{S}\\) の設定。\n\n\n0: サイト間で \\(\\omega = d_\\text{N} / d_\\text{S}\\) が同じと仮定。branchモデルの時はこれ。\n\n\n1: Neutral\n\n\n2: Positive\n\nfix_omega\n\n\\(\\omega = d_\\text{N} / d_\\text{S}\\) を固定するかどうか。\n\n\n0: 初期値から最尤推定する。\n\n\n1: 初期値で固定する。\n\nomega\n\n\\(\\omega = d_\\text{N} / d_\\text{S}\\) の初期値。\n\n\n\n\nおおまかな流れ\n検証したいシナリオ (特定の枝で正の自然選択がある、等) を対立仮説、 そうでないと仮定するシナリオを帰無仮説としてそれぞれ .ctl を書いて codeml を動かす。\nそれぞれの仮説のパラメータ数と対数尤度が得られるので、 尤度比検定を用いて帰無仮説を棄却することで対立仮説を採択する。\nよく使われる対立仮説と帰無仮説の組み合わせは以下の表のとおり:\n\n\n\n対立仮説\n帰無仮説\n検定すること\n引用\n\n\n\n\nM2\nM1\n特定サイトにおける正の自然選択\nYang 2000\n\n\nM3\nM0\nサイト間で \\(d_\\text{N} / d_\\text{S}\\) が異なるか\n〃\n\n\nM8\nM7\n特定サイトにおける正の自然選択\nYang 2000\n\n\nM8\nM8a\n特定サイトにおける選択の緩和\n〃\n\n\nbsA\nbsA1\n特定の枝の特定のサイトにおける正の自然選択\nZhang 2005\n\n\nbsA\nM1\n特定の枝の特定のサイトにおける選択の緩和\nZhang 2005\n\n\nbsC\nM1\n特定のクレードの特定のサイトで \\(d_\\text{N} / d_\\text{S}\\) が異なるか\nYang 2002\n\n\nbsD\nM3\n特定のクレードの特定のサイトで \\(d_\\text{N} / d_\\text{S}\\) が異なるか\nYang 2002, Bielawski 2004\n\n\nb_free\nb_neut\n特定の枝で \\(d_\\text{N} / d_\\text{S}\\) が1と異なるか\nYang 2002\n\n\nb_free\nM0\n特定の枝で \\(d_\\text{N} / d_\\text{S}\\) が他と異なるか\nYang 2002\n\n\n\n\n\nSite モデル\n🚧 工事中 🚧\n\n\nBranch モデル\n旧世界ザルの共通祖先の枝を対象に、 正の自然選択 (\\(d_\\text{N} / d_\\text{S} &gt; 0\\)) を検出する。\nまず対立仮説として、注目する枝で \\(d_\\text{N} / d_\\text{S}\\) が異なると仮定して codeml を動かす。\n系統樹 (lysozymeSmall.fa.treefile) をエディタで編集して、 注目する枝 (i.e. \\(d_\\text{N} / d_\\text{S} &gt; 0\\) を想定する枝) に #1 を振る:\n\n\n(Hsa_Human:0.0087447996,Hla_gibbon:0.0130303081,(((Cgu/Can_colobus:0.0156654142,Pne_langur:0.0181835564)#1:0.0280807319,Mmu_rhesus:0.0070703774):0.0147707727,(Ssc_squirrelM:0.0140657314,Cja_marmoset:0.0076397044):0.0477319527):0.0256856586);\n\n\n\n\n\n\n\n\n\n\n\n\n#1 を振った枝とその他の枝で \\(d_\\text{N} / d_\\text{S}\\) が異なる、 というシナリオの .ctl を書く:\n\n\nb_free.ctl\n\n   outfile = branch_alt  * 何でもいいけど branch モデルの対立仮説と分かるように\n     model = 2           * 記号の有無で異なる ω を推定\n   NSsites = 0           * サイト間では ω は一定\n fix_omega = 0           * ω の値を配列から推定\n     omega = 1           * 推定は ω=1 からスタート\n\n* 他のパラメータは変更なし\n\nこの .ctl を指定して codeml を実行:\ncodeml b_free.ctl\n指定した出力ファイル branch_alt を見てみる。 まずは最後の方に書かれている各枝の \\(\\omega\\) の値:\ntail branch_alt\ndS tree:\n(Hsa_Human: 0.011030, Hla_gibbon: 0.016794, (((Cgu/Can_colobus: 0.018929, Pne_langur: 0.022497): 0.009367, Mmu_rhesus: 0.008406): 0.018929, (Ssc_squirrelM: 0.017701, Cja_marmoset: 0.010258): 0.052331): 0.030198);\ndN tree:\n(Hsa_Human: 0.007565, Hla_gibbon: 0.011517, (((Cgu/Can_colobus: 0.012981, Pne_langur: 0.015429): 0.032838, Mmu_rhesus: 0.005765): 0.012982, (Ssc_squirrelM: 0.012140, Cja_marmoset: 0.007035): 0.035889): 0.020710);\n\nw ratios as labels for TreeView:\n(Hsa_Human #0.68581 , Hla_gibbon #0.68581 , (((Cgu/Can_colobus #0.68581 , Pne_langur #0.68581 ) #3.50573 , Mmu_rhesus #0.68581 ) #0.68581 , (Ssc_squirrelM #0.68581 , Cja_marmoset #0.68581 ) #0.68581 ) #0.68581 );\n\n\nTime used:  0:01\n期待通り、#1 を振った枝とそれ以外の枝で異なる \\(\\omega\\) が計算されている。 (旧世界ザルの共通祖先で \\(\\omega = 3.50573\\), そのほかの枝で \\(\\omega = 0.68581\\))\nもう一か所は、パラメータ数と対数尤度が記述された行:\ngrep \"lnL\" branch_alt\nlnL(ntime: 11  np: 14):   -904.636553      +0.000000\nパラメータ数が14、対数尤度が -904.636553 であることを示している。\n\n次に、帰無仮説として指定した枝の \\(\\omega\\) を1で固定したモデルの 当てはまりを計算する。\n.ctl の以下のパラメータを変更する:\n\n\nb_neut.ctl\n\n   outfile = branch_null  * 何でもいいけど branch モデルの帰無仮説と分かるように\n fix_omega = 1            * ω の値を固定\n     omega = 1            * ω=1\n\n* 他のパラメータは変更なし\n\nこの .ctl を指定して codeml を実行:\ncodeml b_neut.ctl\n同様に出力ファイル branch_null を見てみる。 各枝の \\(\\omega\\) の値は:\nw ratios as labels for TreeView:\n(Hsa_Human #0.685577 , Hla_gibbon #0.685577 , (((Cgu/Can_colobus #0.685577 , Pne_langur #0.685577 ) #1 , Mmu_rhesus #0.685577 ) #0.685577 , (Ssc_squirrelM #0.685577 , Cja_marmoset #0.685577 ) #0.685577 ) #0.685577 );\nパラメータ数と対数尤度は:\n$ grep \"lnL\" branch_null\nlnL(ntime: 11  np: 13):   -905.484183      +0.000000\nまとめると次のようになった:\n\n\n\n仮説\n注目する枝の \\(\\omega\\)\nパラメータ数\n対数尤度\n\n\n\n\n対立仮説\n3.50573\n14\n-904.636553\n\n\n帰無仮説\n1\n13\n-905.484183\n\n\n\n\n最後に尤度比検定を行って、 「注目する枝の \\(\\omega\\) が他の枝より高いようだけど、 これは選択の緩和 (\\(\\omega=1\\)) じゃなくて 正の自然選択　(\\(\\omega&gt;1\\)) だ。」 ということを統計的に主張できるかどうか確かめる。\n尤度比検定の方法はいくつかあるけど、R とか Python 使うのがいいんじゃないだろうか。 (エクセルとかでもできるらしい。)\nPython の尤度比検定の関数を使って検定する:\n\n\nlrp.py\n\nfrom scipy.stats import chi2\n\nalt_lnL = -904.636553   # 対立仮説の対数尤度\nnull_lnL = -905.484183  # 帰無の対数尤度\nlr_stat = 2 * (alt_lnL - null_lnL)\n\nalt_np = 14    # 対立仮説のパラメータ数\nnull_np = 13   # 帰無仮説のパラメータ数\ndf = alt_np - null_np\n\np_val = chi2.sf(lr_stat, df)\nprint(p_val)\n\n$ python3 lrt.py\n0.19290903422911437\n結果、尤度比検定の p-value は 0.1929 &gt; 0.05 となった。 これを解釈すると、帰無仮説を棄却することができない = 正の自然選択とは主張できないとなる。\n\n\nBranch-Site モデル\nSite モデルや Branch モデルは枝全体やサイト全体で \\(\\omega\\) を平均するため、 時に検出力が弱くなる。\nつまり、ある枝で特定のサイトに正の自然選択が本当に働いていたとしても、 他のサイトや枝の \\(\\omega\\) が小さければそれに引っ張られて \\(\\omega &gt; 1\\) を検出できない。\nそこで、Branch-Site モデルは特定の枝の特定のサイトに働いた自然選択を検出する。\n使う系統樹は Branch モデルと同じ。\nまず対立仮説として、#1 を振った枝で \\(\\omega &gt; 1\\) のサイトがある、 というシナリオの .ctl を書く:\n\n\nbsA.ctl\n\n   outfile = bs_alt   * 何でもいいけど branch-site モデルの対立仮説と分かるように\n     model = 2        * 記号の有無で異なる ω を推定\n   NSsites = 2        * ω &gt; 1 のサイトを仮定\n fix_omega = 0        * ω の値を配列から推定\n     omega = 1        * 推定は ω=1 からスタート\n\n* 他のパラメータは変更なし\n\nこの .ctl を指定して codeml を実行:\ncodeml bsA.ctl\n出力ファイル bs_alt を見てみる。 以下のような記述があるはず:\nMLEs of dN/dS (w) for site classes (K=4)\n\nsite class             0        1       2a       2b\nproportion       0.29433  0.35964  0.15574  0.19029\nbackground w     0.00000  1.00000  0.00000  1.00000\nforeground w     0.00000  1.00000  5.78754  5.78754\n各サイトクラスは次のように解釈する:\n\nsite class 0\n\n#1 を振った枝もそれ以外も \\(\\omega &lt; 1\\) であるサイト\n\n\n今回は全サイトのうち約29%がこれにあたり、\\(\\omega = 0\\) の強い純化選択をうけている。\n\nsite class 1\n\n#1 を振った枝もそれ以外も \\(\\omega = 1\\) であるサイト\n\n\n今回は全サイトのうち約36%がこれにあたる。\n\nsite class 2a\n\n#1 を振った枝で \\(\\omega &gt; 1\\)、 それ以外で \\(\\omega &lt; 1\\) であるサイト\n\n\n今回は全サイトのうち約16%がこれにあたり、#1 の枝では \\(\\omega = 5.78754\\) の強い正の自然選択が働いている。\n\nsite class 2b\n\n#1 を振った枝で \\(\\omega &gt; 1\\)、 それ以外で \\(\\omega = 1\\) であるサイト\n\n\n今回は全サイトのうち約19%がこれにあたる。\n\n\n次は Branch モデルと同じく、パラメータ数と対数尤度が記述された行:\n$ grep \"lnL\" bs_alt\nlnL(ntime: 11  np: 16):   -901.562791      +0.000000\nさらに、Branch-Site モデルではどのサイトが正の自然選択を受けているかを示す記述がある:\nBayes Empirical Bayes (BEB) analysis (Yang, Wong & Nielsen 2005. Mol. Biol. Evol. 22:1107-1118)\nPositive sites for foreground lineages Prob(w&gt;1):\n    14 R 0.795\n    21 R 0.798\n    23 I 0.799\n    37 G 0.585\n    41 R 0.713\n    50 R 0.707\n    62 R 0.583\n    87 D 0.796\n   126 Q 0.699\nBEB法 (Bayes empirical Bayes法) により求められた、 そのサイトがω&gt;1で正の選択下にある事後確率を示す。 この事後確率が0.95や0.99を超えていた場合に正の自然選択が働いたサイトとする論文をよく見る。\n今回はそういうサイトはなさそう。\n\n次に、帰無仮説として指定した枝のサイトの \\(\\omega\\) を1で固定したモデルの 当てはまりを計算する。\n.ctl のパラメータを変更する:\n\n\nbsA1.ctl\n\n   outfile = bs_null  * 何でもいいけど branch-site モデルの帰無仮説と分かるように\n fix_omega = 1        * ω の値を固定\n     omega = 1        * ω=1\n\n* 他のパラメータは変更なし\n\nこの .ctl を指定して codeml を実行:\ncodeml bsA1.ctl\n同様に出力ファイル bs_null を見てみる。 サイトクラスを見ると #1 の枝の \\(\\omega\\) が1になっている:\nMLEs of dN/dS (w) for site classes (K=4)\n\nsite class             0        1       2a       2b\nproportion       0.26177  0.32442  0.18479  0.22902\nbackground w     0.00000  1.00000  0.00000  1.00000\nforeground w     0.00000  1.00000  1.00000  1.00000\nパラメータ数と対数尤度は:\n$ grep \"lnL\" bs_null\nlnL(ntime: 11  np: 15):   -902.301501      +0.000000\n\n最後に、同じく尤度比検定を行って、対立仮説が採択されるか確かめる:\n\n\nlrp.py\n\nfrom scipy.stats import chi2\n\nalt_lnL = -901.562791   # 対立仮説の対数尤度\nnull_lnL = -902.301501  # 帰無の対数尤度\nlr_stat = 2 * (alt_lnL - null_lnL)\n\nalt_np = 16    # 対立仮説のパラメータ数\nnull_np = 15   # 帰無仮説のパラメータ数\ndf = alt_np - null_np\n\np_val = chi2.sf(lr_stat, df)\nprint(p_val)\n\n$ python3 lrt.py\n0.22417862391381319\n結果、尤度比検定の p-value は 0.2242 &gt; 0.05 となった。 Branch-Site モデルでも、 帰無仮説を棄却することができない = 正の自然選択とは主張できない となった。",
     "crumbs": [
       "Bioinformatics",
-      "RERconverge"
+      "PAML チュートリアル"
     ]
   },
   {
-    "objectID": "bio/rerconverge.html#遺伝子系統樹の推定",
-    "href": "bio/rerconverge.html#遺伝子系統樹の推定",
-    "title": "RERconverge",
-    "section": "遺伝子系統樹の推定",
-    "text": "遺伝子系統樹の推定\nRERconverge は遺伝子ごとに推定した系統樹を使い、 ある遺伝子のある枝の枝長が全遺伝子の平均的な枝長に対して長いか短いかを基に相対進化速度を推定する。\n\nNewick フォーマット\n全遺伝子のトポロジーが同じ\nnode ラベルなし、tip ラベルは全遺伝子で共通\n\nである必要がある。\n別の系統樹推定ソフトウェアでやる場合は、トポロジー指定機能とかを使う。 最終的には、下のように遺伝子名と Newick がタブ区切りになった1つのファイルを作れば OK:\nGene_A (human:0.01,(chimp:0.0012,(gorilla:0.0078, orangutan:0.0037):0.0003):0.0053);\nGene_B (human:0.0094,(chimp:0.0038,(gorilla:0.001, orangutan:0.0038):0.00032):0.0005);\nGene_C (human:0.0032,(chimp:0.0054,(gorilla:0.07, orangutan:0.0012):0.0023):0.0023);\n︙\nRERconverge にも、遺伝子系統樹推定のための関数が実装されている。 必要なのは各遺伝子のアライメントファイルと種の系統樹。\nestimatePhangornTreeAll(\n  alnfiles = NULL,\n  alndir = NULL,\n  pattern = NULL,\n  treefile,\n  output.file = NULL,\n  submodel = \"LG\",\n  type = \"AA\",\n  format = \"fasta\",\n  k = 4,\n  ...\n)\n\nalnfiles/alndir (どちらかで指定)\n\nアライメントファイルの PATH のベクター、またはアライメントファイルのあるディレクトリ\n\npattern\n\n正規表現でファイルを指定できる\n\n\ne.g. \"*.pep.fa\"\n\ntreefile\n\n「この系統樹のトポロジーを使う」とする master tree の PATH\n\n\n種の系統樹を使うのが無難か\n\noutput.file\n\n出力先\n\n\n上で説明した遺伝子名と Newick のタブ区切りテキストができる\n\nsubmodel\n\n系統樹推定に使う置換モデル。phangorn::pml() に渡される。 デフォルトは LG モデル。\n\n\nsee ?phangorn::pml()\n\ntype\n\nアミノ酸なら AA, 塩基なら DNA\n\nformat\n\nデフォルトは FASTA フォーマット\n\n\n\nAmbiguousなアミノ酸残基を表す B, Z, J は読んでくれない。X で置換しとくとか？",
+    "objectID": "bio/paml-tutorial.html#ete-を使って-paml-を動かす",
+    "href": "bio/paml-tutorial.html#ete-を使って-paml-を動かす",
+    "title": "PAML チュートリアル",
+    "section": "ete を使って PAML を動かす",
+    "text": "ete を使って PAML を動かす\n🚧 工事中 🚧",
     "crumbs": [
       "Bioinformatics",
-      "RERconverge"
+      "PAML チュートリアル"
     ]
   },
   {
-    "objectID": "bio/rerconverge.html#相対進化速度の計算",
-    "href": "bio/rerconverge.html#相対進化速度の計算",
-    "title": "RERconverge",
-    "section": "相対進化速度の計算",
-    "text": "相対進化速度の計算\n系統樹ファイルの読み込み:\ntreesObj = RERconverge::readTrees(\n  file,\n  max.read = NA,\n  masterTree = NULL,\n  minTreesAll = 20,\n  reestimateBranches = F,\n  minSpecs = NULL\n)\n\nfile\n\nestimatePhangornTreeAll とかでつくった系統樹ファイル\n\nmax.read\n\n読み込む遺伝子の数を制限。全遺伝子やるなら指定しなくていい。\n\nmasterTree\n\n相対進化速度の計算の基準となる master tree。\n\n\nこの関数自体も master tree を推定するので、基本的には指定しないで OK。\n\nminTreeAll\n\nmasterTree の推定に使う遺伝子の最低数。\n\nminSpec\n\nある遺伝子をもっている種の数がこれより少ない遺伝子を除く。\n\n\n相対進化速度の計算:\nRERmat = getAllResiduals(\n  treesObj,\n  cutoff = NULL,\n  transform = \"sqrt\",\n  weighted = T,\n  useSpecies = NULL,\n  min.sp = 10,\n  scale = T,\n  doOnly = NULL,\n  maxT = NULL,\n  scaleForPproj = F,\n  mean.trim = 0.05,\n  plot = T\n)\n\ntreeObj\n\nreadTree で読み込んだ系統樹オブジェクト\n\ntransform\n\n平方根 (“sqrt”) または対数 (“log”) で枝長を変換する。“none” だとそのまま使う。\n\nweighted/scale\n\n平均の枝長が長いほど相対進化速度の分散が大きいというバイアスを補正するアプローチ\n\n\nc.f. Partha et al. 2019\n\nmin.sp\n\nある遺伝子をもっている種数の最低数",
+    "objectID": "bio/snpEff.html",
+    "href": "bio/snpEff.html",
+    "title": "snpEff — 変異のアノテーション",
+    "section": "",
+    "text": "https://pcingola.github.io/SnpEff/\nhttps://github.com/pcingola/SnpEff\n参考になる日本語のサイト:",
     "crumbs": [
       "Bioinformatics",
-      "RERconverge"
+      "snpEff"
     ]
   },
   {
-    "objectID": "bio/rerconverge.html#相対進化速度と表現型の相関解析",
-    "href": "bio/rerconverge.html#相対進化速度と表現型の相関解析",
-    "title": "RERconverge",
-    "section": "相対進化速度と表現型の相関解析",
-    "text": "相対進化速度と表現型の相関解析\n\n二値的形質との相関解析\n水棲/陸生、地中生/地上生、飛ぶ/飛ばないみたいなバイナリな形質を対象にした解析\nフォアグラウンドの種を指定する:\ntree = foreground2Tree(\n  foreground,\n  treesObj,\n  plotTree = T,\n  clade = c(\"ancestral\", \"terminal\", \"all\"),\n  weighted = F,\n  transition = \"unidirectional\",\n  useSpecies = NULL\n)\n\nforeground\n\n全種のうち、フォアグラウンド (興味のある表現型をもつ側) の種のベクタ\n\ntreesObj\n\nRERconverge::readTrees で読み込んだ系統樹\n\nclade\n\n3種類の方法がある。\n\n\nancestral は共通祖先の枝1本のみをフォアグラウンドにする。 形質が獲得されたと想定される枝。\n\n\nterminal は各種に向かう末端の枝のみをフォアグラウンドにする。\n\n\nall は共通祖先から各種までの枝すべてをフォアグラウンドにする。 形質が獲得されてからずーっとかかっている選択を検出するイメージ。\n\nweighted\n\nclade = \"all\"/\"terminal\" のときに、例えば共通祖先から末端まで3回の分岐がある種と 1回も分岐していない種がいたら、前者の各枝の重み付けを1/3する。\n\ntransition = c(\"bidirectional\", \"unidirectional\")\n\nいちど形質が獲得されてからの喪失を想定するかどうか\n\n\n表現型のベクタを作成:\ncarP = tree2Paths(tree, treesObj, binarize = NULL, useSpecies = NULL, categorical = F)\n\ntree\n\nforeground2Tree() で作ったフォアグラウンド情報の系統樹\n\ntreesObj\n\nRERconverge::readTrees() で読み込んだ系統樹\n\n\n表現型との相関解析:\nres = correlateWithBinaryPhenotype(\n  RERmat,\n  charP,\n  min.sp = 10,\n  min.pos = 2,\n  weighted = \"auto\"\n)\n\nRERmat\n\ngetAllResiduals() で計算した相対進化速度のマトリクス\n\nchaP\n\ntree2Paths() でつくった表現型ベクタ\n\nmin.sp\n\nある遺伝子をもっている種数の最低数\n\nmin.pos\n\nある遺伝子をもっているフォアグラウンド種の最低数\n\n\ncorrelateWithBinaryPhenotype() は、各遺伝子を行、 以下の統計量を列とするデータフレームを返す。\n\nRho\n\n関係の正負 (フォアグラウンドで加速/保存) を示す Pearson correlation\n\nN\n\n相対進化速度が算出された枝の数\n\nP\n\n相関解析のP値\n\np.adj\n\n多重補正後のP値。BH法を使っている。\n\n\n\n\n連続形質との相関解析\n体サイズ、寿命など連続的な数値データの形質を対象にした解析\n表現型の名前付きベクタをつくる。データフレームとかを用意しておくと楽。例えば:\ndf = data.frame(\n  species = c(\"spA\", \"spB\", \"spC\"),\n  body_mass = c(\"10\", \"20\", \"30\")\n ) |&gt;\n tibble::column_to_rownames(\"species\")\ntip.vals = df$body_mass\nnames(tip.vals) = rownames(df)\nで、\ncharP = char2Paths(\n  tip.vals,\n  treesObj,\n  altMasterTree = NULL,\n  metric = \"diff\",\n  se.filter = -1,\n  ...\n)\n\ntip.vals\n\n一個前で作った表現型ベクタ\n\ntreeObj\n\nRERconverge::readTrees() で読み込んだ系統樹\n\nmetric\n\ninternal_branch の表現型をどうするか\n\n\ndiff は枝の前後の祖先形質の差、mean は平均値、last は末端側の値をつかう。\n\n\n表現型との相関解析:\nres = correlateWithContinuousPhenotype(\n  RERmat,\n  charP,\n  min.sp = 10,\n  winsorizeRER = 3,\n  winsorizetrait = 3\n)\nRERmat, charP, min.sp は binary の時と同じ\n\nwinsorizeRER/winsorizetrait\n\n相対進化速度/表現型の値の top/worst の N 種ずつを、N+1 番目の値に変換する。\n\n\n相関解析が極端な外れ値の影響を受けることを避けるためのオプション\n\n\n返ってくるのは binary と同じデータフレーム",
+    "objectID": "bio/snpEff.html#installation",
+    "href": "bio/snpEff.html#installation",
+    "title": "snpEff — 変異のアノテーション",
+    "section": "Installation",
+    "text": "Installation\n遺伝研で環境構築。 Anaconda を使っていれば conda で入れてしまうのが楽っぽい:\nconda install bioconda::snpeff\n/usr/local/biotools/ にもあるのでそれでもいいかも。 (ただ最新版は動かなかった。)\n\nバイナリ版をインストールする場合 (個人的に推奨):\ncd ~/bin\nwget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip\nunzip snpEff_latest_core.zip\nPATH を通す:\n\n\n~/.bash_profile\n\nPATH=${HOME}/bin/snpEff/scripts:$PATH\nexport PATH\n\n読み込み & 動作確認:\n. ~/.bash_profile\nsnpEff -h",
     "crumbs": [
       "Bioinformatics",
-      "RERconverge"
+      "snpEff"
     ]
   },
   {
-    "objectID": "bio/rerconverge.html#エンリッチメント解析",
-    "href": "bio/rerconverge.html#エンリッチメント解析",
-    "title": "RERconverge",
-    "section": "エンリッチメント解析",
-    "text": "エンリッチメント解析\nウィルコクソンの順位和検定を使ったエンリッチメント解析の機能が実装されている。 もちろん topGO や clusterProfiler を使ってもいい。\n.gmt ファイルをダウンロードする:\nhttps://www.gsea-msigdb.org/gsea/login.jsp\n.gmt ファイルを読み込む:\nannots=read.gmt(\"gmtfile.gmt\")\nannotlist=list(annots)\nnames(annotlist)=\"MSigDBpathways\"\n相関解析の結果を加速度合い/保存度合いの順に並べる:\nstats = RERconverge::getStat(res)\nres は correlateWithBinaryPhenotype() や correlateWithContinuousPhenotype() の結果。 sign(Rho) × -log(P) をやってスコア順に並べる。\nエンリッチメント解析:\nenrichment = fastwilcoxGMTall(stats, annotlist, outputGeneVals=T, num.g=10)\n\nstats\n\nRERconverge::getStat() で並べた遺伝子\n\nannotlist\n\nread.gmt() で読み込んだパスウェイのリスト",
+    "objectID": "bio/snpEff.html#basic-usage",
+    "href": "bio/snpEff.html#basic-usage",
+    "title": "snpEff — 変異のアノテーション",
+    "section": "Basic Usage",
+    "text": "Basic Usage\nニワトリ (Gallus gallus) の場合:\n\nデータベースを探してダウンロード\nsnpEff databases | grep Gallus\n# GRCg6a.99  Gallus_gallus [https://snpeff.blob.core.windows.net/databases/v5_2/snpEff_v5_2_GRCg6a.99.zip, https://snpeff.blob.core.windows.net/databases/v5_0/snpEff_v5_0_GRCg6a.99.zip, https://snpeff.blob.core.windows.net/databases/v5_1/snpEff_v5_1_GRCg6a.99.zip]\n# Galgal4.75  Gallus_gallus [https://snpeff.blob.core.windows.net/databases/v5_2/snpEff_v5_2_Galgal4.75.zip, https://snpeff.blob.core.windows.net/databases/v5_0/snpEff_v5_0_Galgal4.75.zip, https://snpeff.blob.core.windows.net/databases/v5_1/snpEff_v5_1_Galgal4.75.zip]\n\nsnpEff download -v GRCg6a.99  # ない\nsnpEff download -v Galgal4.75\n\n\nVCF にアノテーション\nsnpEff Galgal4.75 [VCF] &gt; [OUTFILE]",
     "crumbs": [
       "Bioinformatics",
-      "RERconverge"
+      "snpEff"
+    ]
+  },
+  {
+    "objectID": "bio/snpEff.html#ann-field",
+    "href": "bio/snpEff.html#ann-field",
+    "title": "snpEff — 変異のアノテーション",
+    "section": "ANN field",
+    "text": "ANN field\nアノテーションは、出力 VCF の INFO フィールドに ANN= の形で書かれる。 以前は EFF フィールドというのが使われていたらしく、こっちが良ければ -formatEff を付ける。\nANN field : ANN=Allele|Annotation|Putative_impact|Gene Name|Gene ID|Feature type|Feature ID|Transcript biotype|Rank/total|HGVS.c|HGVS.p|cDNA_position/cDNA_length|CDS_position/CDS_length|Protein_position/Protein_length|Distance to feature|Errors, Warnings or Information messages\nExample   : ANN=T|missense_variant|MODERATE|CCT8L2|ENSG00000198445|transcript|ENST00000359963|protein_coding|1/1|c.1406G&gt;A|p.Gly469Glu|1666/2034|1406/1674|469/557||\nExample   : ANN=T|downstream_gene_variant|MODIFIER|FABP5P11|ENSG00000240122|transcript|ENST00000430910|processed_pseudogene||n.*397G&gt;A|||||3944|",
+    "crumbs": [
+      "Bioinformatics",
+      "snpEff"
+    ]
+  },
+  {
+    "objectID": "bio/snpEff.html#output-summary",
+    "href": "bio/snpEff.html#output-summary",
+    "title": "snpEff — 変異のアノテーション",
+    "section": "Output summary",
+    "text": "Output summary\nデフォルトでは snpEff を実行したディレクトリに snpEff_summary.html と snpEff_genes.txt の2種類の 要約統計ファイルが出力される。\n-stats で出力先パスの指定が可能。 -noStats で要約統計ファイルを出力しない。 -csvStats で HTML ではなく CSV として出力。",
+    "crumbs": [
+      "Bioinformatics",
+      "snpEff"
+    ]
+  },
+  {
+    "objectID": "bio/snpEff.html#custom-annotation",
+    "href": "bio/snpEff.html#custom-annotation",
+    "title": "snpEff — 変異のアノテーション",
+    "section": "Custom Annotation",
+    "text": "Custom Annotation\nhttps://pcingola.github.io/SnpEff/snpeff/build_db/\n使いたいデータベースがなかったり、あってもうまくダウンロードできない場合、 手元にゲノム配列とアノテーションファイルがあればデータベースを自作できる。 アノテーションファイルは (GTF/GFF/GenBank file/RefSeq table) のいずれかでできる。 今回 GFF/GTF を使う。\n\n後述するが少なくとも GRCg7b については GFF ではなく GTF がおすすめ。\n\n全ゲノム配列 (.fa) とアノテーション (.gff) をダウンロード:\ndatasets download genome accession GCF_016699485.2 --include gff3,genome\ndatasets コマンドについてはゲノムデータ取得 — datasets コマンドを使う方法を参照。\nsnpEff/snpEff.config に追記:\n\n\nsnpEff.config\n\n#---\n# Custom Annotation\n#---\n\n# Chicken genome, bGalGal1.mat.broiler.GRCg7b\nGRCg7b.genome : Gallus_gallus_domestics\n\nStandard codon tables じゃない場合、それも config に書く必要がある。 (MT とかバクテリアとか)\nsnpEff/data/ に .fa と .gff を格納する:\n# mkdir ~/bin/snpEff/data/  # data/ は download を先にやっていればあるはず\ncd ~/bin/snpEff/data/\nmkdir GRCg7b && cd GRCg7b\n\ncp ~/ref/grcg7b/GCF_016699485.2.fa sequences.fa\ncp ~/ref/grcg7b/GCF_016699485.2.gff genes.gff\n全ゲノム配列の方は snpEff/data/genomes/GRCg7b.fa でもいいらしい。\nここまでできたら snpEff build コマンドでデータベースを作る。 snpEff build は、デフォルトでは CDS とタンパク質の配列を探してチェックをしようとする。\nそれを避けて確認なしでデータベースを作る場合:\nsnpEff build -gff3 -v GRCg7b -noCheckCds -noCheckProtein\n確認を実行する場合:\n# 配列をget\ndatasets download genome accession GCF_016699485.2 --include protein,cds\nunzip ncbi_dataset.zip\n\n# 名前を変えて移動\nmv ncbi_dataset/data/GCF_016699485.2/cds_from_genomic.fna data/GRCg7b/cds.fa\nmv ncbi_dataset/data/GCF_016699485.2/protein.faa data/GRCg7b/protein.fa\n\n# build\nsnpEff build -gff3 -v GRCg7b\n今回使った CDS ファイルは、ヘッダーの違いで受け付けてもらえなかったので -noCheckCds でタンパク質配列のみ確認した:\nProtein check:  GRCg7b  OK: 68163       Not found: 69043        Errors: 521     Error percentage: 0.7585463863490769%\n\nGTF の方を使って再ビルド\nGFF を使ってビルドしたデータベースによるアノテーションでは、 NO_START_CODON となっている遺伝子が散見された。 GTF の方には開始コドンの情報があるが、GFF 側にはそれがなさそうなのが原因？ そこで、GTF を使って再度データベースをビルドしてみる。\ncp ~/ref/grcg7b/GCF_016699485.2.gtf ~/bin/snpEff/data/GRCg7b/genes.gtf\nsnpEff build -gtf22 -v GRCg7b -noCheckCds\n今回使っている GTF は gtf-version 2.2 というもので、 これを使うときは -gtf22 とする。 gff2 の方の GFT は -gff2 で使えるが、obsolete らしい。\nNot found が少なくていいかもしれない:\nProtein check:  GRCg7b  OK: 68138       Not found: 373  Errors: 546     Error percentage: 0.7949449653485529%\nアノテーション:\nsnpEff GRCg7b [VCF] &gt; [OUTFILE]",
+    "crumbs": [
+      "Bioinformatics",
+      "snpEff"
     ]
   },
   {
@@ -2030,7 +2162,7 @@
     "section": "",
     "text": "2024-04-03 新村グループ プロトコル共有 — 遺伝研スパコンで集団ゲノミクス解析\nRで系統樹を扱う — ggtreeによる系統樹の可視化\nWEBサイト作成のための基礎知識 — HTML, CSS, JavaScript, 静的サイトジェネレータ\n2023-05-09 牧野研 技術輪読会 — GNU nanoエディタを便利に使う",
     "crumbs": [
-      "Slides"
+      "スライド"
     ]
   },
   {
@@ -2040,7 +2172,7 @@
     "section": "",
     "text": "2024-04-03 新村グループ プロトコル共有 — 遺伝研スパコンで集団ゲノミクス解析\nRで系統樹を扱う — ggtreeによる系統樹の可視化\nWEBサイト作成のための基礎知識 — HTML, CSS, JavaScript, 静的サイトジェネレータ\n2023-05-09 牧野研 技術輪読会 — GNU nanoエディタを便利に使う",
     "crumbs": [
-      "Slides"
+      "スライド"
     ]
   },
   {
@@ -2050,7 +2182,7 @@
     "section": "Git",
     "text": "Git\n\nGit 基本操作① — GitとGitHubを使い始める\nGit 基本操作② — fetch, merge, pull",
     "crumbs": [
-      "Slides"
+      "スライド"
     ]
   },
   {

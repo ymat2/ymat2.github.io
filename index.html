@@ -77,6 +77,35 @@ gtag('js', new Date());
 gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
 </script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -124,7 +153,7 @@ gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./slides/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Slides</span></a>
+ <span class="menu-text">スライド</span></a>
   </div>
 </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -169,6 +198,12 @@ gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./bio/fst_hands_on.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="math inline">\(F_\text{st}\)</span> 解析ハンズオン</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./bio/ncbi_download.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ゲノムデータ取得</span></a>
   </div>
@@ -189,6 +224,12 @@ gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
   <div class="sidebar-item-container"> 
   <a href="./bio/rerconverge.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">RERconverge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bio/snpEff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">snpEff</span></a>
   </div>
 </li>
       </ul>

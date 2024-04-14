@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Yuki MATSUDA - OrthoFinder</title>
+<title>Yuki MATSUDA - snpEff</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -153,7 +153,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">OrthoFinder</h1>
+          <h1 class="quarto-secondary-nav-title">snpEff — 変異のアノテーション</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -244,7 +244,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/orthofinder.html" class="sidebar-item-text sidebar-link active">
+  <a href="../bio/orthofinder.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">OrthoFinder</span></a>
   </div>
 </li>
@@ -262,7 +262,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/snpEff.html" class="sidebar-item-text sidebar-link">
+  <a href="../bio/snpEff.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">snpEff</span></a>
   </div>
 </li>
@@ -422,198 +422,140 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header">
-<h1 class="title d-none d-lg-block display-7">OrthoFinder</h1>
+<h1 class="title d-none d-lg-block display-7">snpEff — 変異のアノテーション</h1>
 
 
 </header>
 
 
 <ul>
-<li>公式: <a href="https://davidemms.github.io/" class="uri">https://davidemms.github.io/</a></li>
-<li>GitHub リポジトリ: <a href="https://github.com/davidemms/OrthoFinder" class="uri">https://github.com/davidemms/OrthoFinder</a></li>
-<li>論文: <a href="https://doi.org/10.1186/s13059-015-0721-2">Emms and Kelly 2015</a></li>
+<li><a href="https://pcingola.github.io/SnpEff/" class="uri">https://pcingola.github.io/SnpEff/</a></li>
+<li><a href="https://github.com/pcingola/SnpEff" class="uri">https://github.com/pcingola/SnpEff</a></li>
 </ul>
-<section id="usage" class="level2">
-<h2 class="anchored" data-anchor-id="usage">Usage</h2>
-<p>解析したい種の遺伝子の配列 (Fasta ファイル) を 1つのディレクトリ (ex. <code>fasta_dir/</code>) に用意して<code>-f</code>に渡すだけ。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">orthofinder</span> <span class="at">-f</span> fasta_dir</span></code></pre></div>
-</section>
-<section id="出力" class="level2">
-<h2 class="anchored" data-anchor-id="出力">出力</h2>
-<p>出力は <code>-f</code> に渡したディレクトリ中に <code>Result_*date*</code> ディレクトリが作られてその中に入る。 以下は <code>ver2.5.2</code> の例。</p>
-<p><code>Phylogenetic_Hierarchical_Orthogroups/</code></p>
-<dl>
-<dt><code>Single_Copy_Orthologue_Sequences/</code></dt>
-<dd>
-OG ごとのシングルコピーオーソログの配列
-</dd>
-<dt><code>Orthogroup_Sequences/</code></dt>
-<dd>
-全部の OG ごとの配列
-</dd>
-</dl>
-<p><strong><code>Comparative_Genomics_Statistics/</code></strong></p>
+<p>参考になる日本語のサイト:</p>
 <ul>
-<li><dl>
-<dt><strong><code>Duplications_per_Orthogroup.tsv</code></strong><br></dt>
-<dd>
-OGごとの重複（*）の数
-</dd>
-</dl></li>
-<li><dl>
-<dt><strong><code>OrthologuesStats_Totals.tsv</code></strong><br></dt>
-<dd>
-1種対1種のオーソログの数
-</dd>
-</dl></li>
-<li><dl>
-<dt><strong><code>OrthologuesStats_{one-to-many/many2one/many2many}.tsv</code></strong><br></dt>
-<dd>
-1種対多種, 多種対1種, 多種対多種のオーソログの数
-</dd>
-</dl></li>
-<li><dl>
-<dt><strong><code>Statistics_PerSpecies.tsv</code></strong><br></dt>
-<dd>
-種ごとのオーソログの数に関する要約統計
-</dd>
-</dl></li>
-<li><dl>
-<dt><strong><code>Duplications_per_Species_Tree_Node.tsv</code></strong><br></dt>
-<dd>
-種ごとの重複の数
-</dd>
-</dl></li>
-<li><dl>
-<dt><strong><code>Orthogroups_SpeciesOverlaps.tsv</code></strong><br></dt>
-<dd>
-OrthologuesStats_Totals と同じ？
-</dd>
-</dl></li>
-<li><dl>
-<dt><strong><code>Statistics_Overall.tsv</code></strong><br></dt>
-<dd>
-全体の要約統計
-</dd>
-</dl></li>
-</ul>
-<p><strong><code>Phylogenetically_Misplaced_Genes</code></strong></p>
-<dl>
-<dt><code>Species_Tree/</code></dt>
-<dd>
-種の系統樹 (.txt)
-</dd>
-</dl>
-<p><strong><code>Gene_Duplication_Events/</code></strong></p>
-<ul>
-<li><dl>
-<dt><strong><code>Duplication.tsv</code></strong><br></dt>
-<dd>
-OG ごとにどのノードでどの遺伝子とどの遺伝子が重複したかが書かれてる
-</dd>
-</dl></li>
-<li><dl>
-<dt><strong><code>SpeciesTree_Gene_Duplications_0.5_Support.txt</code></strong><br></dt>
-<dd>
-種の系統樹と若干違う？
-</dd>
-</dl></li>
-</ul>
-<p><strong><code>Orthogroups/</code></strong></p>
-<ul>
-<li><dl>
-<dt><strong><code>Orthogroups.GeneCount.tsv</code></strong><br></dt>
-<dd>
-OG × 種ごとの遺伝子数
-</dd>
-</dl></li>
-<li><dl>
-<dt><strong><code>Orthogroups.tsv/.txt</code></strong><br></dt>
-<dd>
-OG × 種ごとの遺伝子名
-</dd>
-</dl></li>
-<li><dl>
-<dt><strong><code>Orthogroups_SingleCopyOrthologues.txt</code></strong><br></dt>
-<dd>
-シングルコピー OG 名
-</dd>
-</dl></li>
-<li><dl>
-<dt><strong><code>Orthogroups_UnassignedGenes.tsv</code></strong><br></dt>
-<dd>
-1種しかいない OG 名
-</dd>
-</dl></li>
+<li><a href="https://kazumaxneo.hatenablog.com/entry/2021/05/13/120000">mac でインフォマティクス::SnpEffとSnpSift</a></li>
+<li><a href="https://qiita.com/shibanosuke/items/7fd695ffa9a04448f1db">Qiita::snpEff を動かす</a></li>
 </ul>
 <dl>
-<dt><code>Putative_Xenologs</code></dt>
+<dt>SnpEff</dt>
 <dd>
-水平伝播したと推定される遺伝子 (あれば)
+SNP のアノテーションと VEP (Variant Effect Prediction) のためのツール
 </dd>
-<dt><code>WorkingDirectory/</code></dt>
+<dt>SnpSift</dt>
 <dd>
-Blast などの中間ファイルが圧縮されて入っている。
-</dd>
-<dd>
-<strong><code>SpeciesIDs.txt</code></strong> は再解析 (後述) をする際に必要
-</dd>
-<dt><strong><code>Gene_Trees/</code></strong></dt>
-<dd>
-OG ごとの遺伝子系統樹 (.txt) が入ってる。
+アノテーションに加えて、フィルタリングなどの操作ができる。
 </dd>
 </dl>
-<p><strong><code>Orthologues/</code></strong></p>
-<ul>
-<li><dl>
-<dt><strong><code>Orthologues_*種名*</code></strong><br></dt>
-<dd>
-1種対1種のオーソログが書かれてる。
-</dd>
-</dl></li>
-<li><dl>
-<dt><strong><code>Resolved_Gene_Trees</code></strong><br></dt>
-<dd>
-OG ごとの種分化を考慮した系統樹。4遺伝子以上の OG についてしか書かれていない。
-</dd>
-</dl></li>
-</ul>
-<section id="unassigned-gene-と-species-specific-orthogroup" class="level3">
-<h3 class="anchored" data-anchor-id="unassigned-gene-と-species-specific-orthogroup">Unassigned gene と Species-specific Orthogroup</h3>
-<p>両方とも系統特異的な遺伝子であると考えられ、 Unassigned gene はそのうちシングルトンであるもの (自身の中にもパラログが存在しない)、 Species-specific Orthogroup はそのうち重複遺伝子であるもの。 系統特異的な重複とは異なる。</p>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>遺伝研で環境構築。 Anaconda を使っていれば <code>conda</code> で入れてしまうのが楽っぽい:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install bioconda::snpeff</span></code></pre></div>
+<p><code>/usr/local/biotools/</code> にもあるのでそれでもいいかも。 (ただ最新版は動かなかった。)</p>
+<section id="バイナリ版をインストールする場合-個人的に推奨" class="level3">
+<h3 class="anchored" data-anchor-id="バイナリ版をインストールする場合-個人的に推奨">バイナリ版をインストールする場合 (個人的に推奨):</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/bin</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> snpEff_latest_core.zip</span></code></pre></div>
+<p><code>PATH</code> を通す:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>~/.bash_profile</strong></pre>
+</div>
+<div class="sourceCode" id="cb3" data-filename="~/.bash_profile"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${HOME}</span>/bin/snpEff/scripts:<span class="va">$PATH</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span></span></code></pre></div>
+</div>
+<p>読み込み &amp; 動作確認:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span> ~/.bash_profile</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> <span class="at">-h</span></span></code></pre></div>
 </section>
 </section>
-<section id="種の追加除外" class="level2">
-<h2 class="anchored" data-anchor-id="種の追加除外">種の追加/除外</h2>
-<section id="種の追加を行う場合" class="level3">
-<h3 class="anchored" data-anchor-id="種の追加を行う場合">種の追加を行う場合</h3>
-<p>追加したい種の Fasta ファイルが入ったディレクトリを用意して、<code>-f</code> で指定:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">orthofinder</span> <span class="at">-b</span> /Result_<span class="pp">*</span>/WorkingDirectory <span class="at">-f</span> new_fasta_directory</span></code></pre></div>
-<p>結果は <code>/WorkingDirectory/OrthoFinder/Result_*Date*/</code> に出力される。</p>
+<section id="basic-usage" class="level2">
+<h2 class="anchored" data-anchor-id="basic-usage">Basic Usage</h2>
+<p>ニワトリ (Gallus gallus) の場合:</p>
+<section id="データベースを探してダウンロード" class="level3">
+<h3 class="anchored" data-anchor-id="データベースを探してダウンロード">データベースを探してダウンロード</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> databases <span class="kw">|</span> <span class="fu">grep</span> Gallus</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># GRCg6a.99  Gallus_gallus [https://snpeff.blob.core.windows.net/databases/v5_2/snpEff_v5_2_GRCg6a.99.zip, https://snpeff.blob.core.windows.net/databases/v5_0/snpEff_v5_0_GRCg6a.99.zip, https://snpeff.blob.core.windows.net/databases/v5_1/snpEff_v5_1_GRCg6a.99.zip]</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Galgal4.75  Gallus_gallus [https://snpeff.blob.core.windows.net/databases/v5_2/snpEff_v5_2_Galgal4.75.zip, https://snpeff.blob.core.windows.net/databases/v5_0/snpEff_v5_0_Galgal4.75.zip, https://snpeff.blob.core.windows.net/databases/v5_1/snpEff_v5_1_Galgal4.75.zip]</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> download <span class="at">-v</span> GRCg6a.99  <span class="co"># ない</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> download <span class="at">-v</span> Galgal4.75</span></code></pre></div>
 </section>
-<section id="種を除外する場合" class="level3">
-<h3 class="anchored" data-anchor-id="種を除外する場合">種を除外する場合</h3>
-<p><code>/Result_*/WorkingDirectory/</code> にある <code>SpeciesIDs.txt</code> を編集し、 除外する種を <code>#</code> でコメントアウトする。その上で、</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">orthofinder</span> <span class="at">-b</span> /Result_<span class="pp">*</span>/WorkingDirectory</span></code></pre></div>
-<p>を実行する。 <code>-f</code> で追加ディレクトリを指定しつつ追加と除外を同時に行うことも可能。</p>
+<section id="vcf-にアノテーション" class="level3">
+<h3 class="anchored" data-anchor-id="vcf-にアノテーション">VCF にアノテーション</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> Galgal4.75 <span class="pp">[</span><span class="ss">VCF</span><span class="pp">]</span> <span class="op">&gt;</span> <span class="pp">[</span><span class="ss">OUTFILE</span><span class="pp">]</span></span></code></pre></div>
 </section>
 </section>
-<section id="遺伝研" class="level2">
-<h2 class="anchored" data-anchor-id="遺伝研">遺伝研</h2>
-<p><code>biotools</code> にある:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/o/orthofinder<span class="pp">*</span></span></code></pre></div>
-<section id="並列化" class="level3">
-<h3 class="anchored" data-anchor-id="並列化">並列化</h3>
-<p>種数にもよるが全種×全種で <code>blast</code> する都合上かなりメモリを食うので、 <code>medium</code> に並列で投げることをおすすめする。 下記は5スロットで投げる例。</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/bash</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -pe def_slot 5</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l medium</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_vmem=64G</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l mem_req=64G</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load singularity</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">singularity</span> exec /usr/local/biotools/o/orthofinder:%ver orthofinder <span class="at">-f</span> dir <span class="at">-t</span> 5 <span class="at">-a</span> 5</span></code></pre></div>
+<section id="ann-field" class="level2">
+<h2 class="anchored" data-anchor-id="ann-field"><a href="https://pcingola.github.io/SnpEff/snpeff/inputoutput/">ANN field</a></h2>
+<p>アノテーションは、出力 VCF の <code>INFO</code> フィールドに <code>ANN=</code> の形で書かれる。 以前は <code>EFF</code> フィールドというのが使われていたらしく、こっちが良ければ <code>-formatEff</code> を付ける。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ANN field : ANN=Allele|Annotation|Putative_impact|Gene Name|Gene ID|Feature type|Feature ID|Transcript biotype|Rank/total|HGVS.c|HGVS.p|cDNA_position/cDNA_length|CDS_position/CDS_length|Protein_position/Protein_length|Distance to feature|Errors, Warnings or Information messages</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Example   : ANN=T|missense_variant|MODERATE|CCT8L2|ENSG00000198445|transcript|ENST00000359963|protein_coding|1/1|c.1406G&gt;A|p.Gly469Glu|1666/2034|1406/1674|469/557||</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Example   : ANN=T|downstream_gene_variant|MODIFIER|FABP5P11|ENSG00000240122|transcript|ENST00000430910|processed_pseudogene||n.*397G&gt;A|||||3944|</span></code></pre></div>
+</section>
+<section id="output-summary" class="level2">
+<h2 class="anchored" data-anchor-id="output-summary"><a href="https://pcingola.github.io/SnpEff/snpeff/outputsummary/">Output summary</a></h2>
+<p>デフォルトでは <code>snpEff</code> を実行したディレクトリに <code>snpEff_summary.html</code> と <code>snpEff_genes.txt</code> の2種類の 要約統計ファイルが出力される。</p>
+<p><code>-stats</code> で出力先パスの指定が可能。 <code>-noStats</code> で要約統計ファイルを出力しない。 <code>-csvStats</code> で HTML ではなく CSV として出力。</p>
+</section>
+<section id="custom-annotation" class="level2">
+<h2 class="anchored" data-anchor-id="custom-annotation"><a href="https://pcingola.github.io/SnpEff/snpeff/build_db/">Custom Annotation</a></h2>
+<p><a href="https://pcingola.github.io/SnpEff/snpeff/build_db/" class="uri">https://pcingola.github.io/SnpEff/snpeff/build_db/</a></p>
+<p>使いたいデータベースがなかったり、あってもうまくダウンロードできない場合、 手元にゲノム配列とアノテーションファイルがあればデータベースを自作できる。 アノテーションファイルは (GTF/GFF/GenBank file/RefSeq table) のいずれかでできる。 今回 GFF/GTF を使う。</p>
+<div class="note">
+<p>後述するが少なくとも GRCg7b については GFF ではなく GTF がおすすめ。</p>
+</div>
+<p>全ゲノム配列 (<code>.fa</code>) とアノテーション (<code>.gff</code>) をダウンロード:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">datasets</span> download genome accession GCF_016699485.2 <span class="at">--include</span> gff3,genome</span></code></pre></div>
+<p><code>datasets</code> コマンドについては<a href="../bio/ncbi_download.html#datasets-コマンドを使う方法">ゲノムデータ取得 — datasets コマンドを使う方法</a>を参照。</p>
+<p><code>snpEff/snpEff.config</code> に追記:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>snpEff.config</strong></pre>
+</div>
+<div class="sourceCode" id="cb9" data-filename="snpEff.config"><pre class="sourceCode conf"><code class="sourceCode toml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#---</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Custom Annotation</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#---</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Chicken genome, bGalGal1.mat.broiler.GRCg7b</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="dt">GRCg7b.genome</span> <span class="er">:</span> <span class="dt">Gallus_gallus_domestics</span></span></code></pre></div>
+</div>
+<p>Standard codon tables じゃない場合、それも config に書く必要がある。 (MT とかバクテリアとか)</p>
+<p><code>snpEff/data/</code> に <code>.fa</code> と <code>.gff</code> を格納する:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mkdir ~/bin/snpEff/data/  # data/ は download を先にやっていればあるはず</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/bin/snpEff/data/</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> GRCg7b <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> GRCg7b</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~/ref/grcg7b/GCF_016699485.2.fa sequences.fa</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~/ref/grcg7b/GCF_016699485.2.gff genes.gff</span></code></pre></div>
+<p>全ゲノム配列の方は <code>snpEff/data/genomes/GRCg7b.fa</code> でもいいらしい。</p>
+<p>ここまでできたら <code>snpEff build</code> コマンドでデータベースを作る。 <code>snpEff build</code> は、デフォルトでは CDS とタンパク質の配列を探してチェックをしようとする。</p>
+<p>それを避けて確認なしでデータベースを作る場合:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> build <span class="at">-gff3</span> <span class="at">-v</span> GRCg7b <span class="at">-noCheckCds</span> <span class="at">-noCheckProtein</span></span></code></pre></div>
+<p>確認を実行する場合:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 配列をget</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">datasets</span> download genome accession GCF_016699485.2 <span class="at">--include</span> protein,cds</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> ncbi_dataset.zip</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 名前を変えて移動</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> ncbi_dataset/data/GCF_016699485.2/cds_from_genomic.fna data/GRCg7b/cds.fa</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> ncbi_dataset/data/GCF_016699485.2/protein.faa data/GRCg7b/protein.fa</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># build</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> build <span class="at">-gff3</span> <span class="at">-v</span> GRCg7b</span></code></pre></div>
+<p>今回使った CDS ファイルは、ヘッダーの違いで受け付けてもらえなかったので <code>-noCheckCds</code> でタンパク質配列のみ確認した:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Protein</span> check:  GRCg7b  OK: 68163       Not found: 69043        Errors: 521     Error percentage: 0.7585463863490769%</span></code></pre></div>
+<section id="gtf-の方を使って再ビルド" class="level3">
+<h3 class="anchored" data-anchor-id="gtf-の方を使って再ビルド">GTF の方を使って再ビルド</h3>
+<p>GFF を使ってビルドしたデータベースによるアノテーションでは、 <code>NO_START_CODON</code> となっている遺伝子が散見された。 GTF の方には開始コドンの情報があるが、GFF 側にはそれがなさそうなのが原因？ そこで、GTF を使って再度データベースをビルドしてみる。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~/ref/grcg7b/GCF_016699485.2.gtf ~/bin/snpEff/data/GRCg7b/genes.gtf</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> build <span class="at">-gtf22</span> <span class="at">-v</span> GRCg7b <span class="at">-noCheckCds</span></span></code></pre></div>
+<p>今回使っている GTF は <code>gtf-version 2.2</code> というもので、 これを使うときは <code>-gtf22</code> とする。 gff2 の方の GFT は <code>-gff2</code> で使えるが、<code>obsolete</code> らしい。</p>
+<p><code>Not found</code> が少なくていいかもしれない:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Protein</span> check:  GRCg7b  OK: 68138       Not found: 373  Errors: 546     Error percentage: 0.7949449653485529%</span></code></pre></div>
+<p>アノテーション:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> GRCg7b <span class="pp">[</span><span class="ss">VCF</span><span class="pp">]</span> <span class="op">&gt;</span> <span class="pp">[</span><span class="ss">OUTFILE</span><span class="pp">]</span></span></code></pre></div>
 
 
 </section>

@@ -312,7 +312,7 @@ qqman::manhattan(
 
 今回、2番染色体のピークに座上する *ISPD* は、
 軍鶏を対象とした先行研究
-([Luo et al. 2020](https://doi.org/10.1093/g3journal/jkad267),
+([Luo et al. 2020](https://doi.org/10.1038/s41598-020-71421-z),
 [Bendesly et al. 2024](https://doi.org/10.1093/g3journal/jkad267))
 でも得られており、有力な候補と言える。
 
@@ -335,7 +335,7 @@ NCBI で [*ISPD* のページ](https://www.ncbi.nlm.nih.gov/gene/420591)を見�
 vcf=YOUR_DIR/varsites.snponly.vcf.gz
 
 vcftools --gzvcf ${vcf} \
-  --chr NC_052533.1 --from-bp 28184591-5000 --to-bp 28296806+5000 \
+  --chr NC_052533.1 --from-bp $((28184591-5000)) --to-bp $((28296806+5000)) \
   --recode --out ISPD
 ```
 

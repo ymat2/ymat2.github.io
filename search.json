@@ -757,7 +757,7 @@
     "href": "index.html",
     "title": "About",
     "section": "",
-    "text": "松田 優樹 (MATSUDA Yuki)\n\n東京農工大学 大学院 連合農学研究科 システム行動生物学研究グループ\n\nContacts\n\nyuki.matsuda.m10あっとgmail.com\n\n\ns249780wあっとst.go.tuat.ac.jp\n\nLinks\n\n  ymat2 \n\n\n  0009-0006-2288-1621",
+    "text": "松田 優樹 / MATSUDA Yuki\n\n東京農工大学 大学院 連合農学研究科 システム行動生物学研究グループ 博士課程1年\n\n\nDoctoral student in Research Group of Systems Ethology, United Graduate School of Agricultural Science, Tokyo University of Agriculture and Technology\n\n連絡先 / Contacts\n\nyuki.matsuda.m10あっとgmail.com\n\n\ns249780wあっとst.go.tuat.ac.jp\n\n外部リンク / Links\n\n  ymat2 \n\n\n  0009-0006-2288-1621",
     "crumbs": [
       "HOME"
     ]
@@ -1119,7 +1119,7 @@
     "href": "bio/fst_hands_on.html#vcf-から候補遺伝子の周辺領域を抽出",
     "title": "\\(F_\\text{st}\\) 解析ハンズオン — 候補遺伝子・SNPの抽出",
     "section": "VCF から候補遺伝子の周辺領域を抽出",
-    "text": "VCF から候補遺伝子の周辺領域を抽出\n前半の \\(F_\\text{st}\\) 解析で候補遺伝子で抽出した ISPD の周辺領域を SNP 単位で解析していく。\n\nISPD 領域\nNCBI で ISPD のページを見ると、 2番染色体 (NC_052533.1) の 28184591..28296806 にあるらしい。\nこの前後 5000 bp を VCF から抽出する:\nvcf=YOUR_DIR/varsites.snponly.vcf.gz\n\nvcftools --gzvcf ${vcf} \\\n  --chr NC_052533.1 --from-bp 28184591-5000 --to-bp 28296806+5000 \\\n  --recode --out ISPD\n--chr で染色体accession、--from-bp/--to-bp で座位を指定して VCF の特定領域を抽出する。 --out で指定した Prefix で、ISPD.recode.vcf が生成される。",
+    "text": "VCF から候補遺伝子の周辺領域を抽出\n前半の \\(F_\\text{st}\\) 解析で候補遺伝子で抽出した ISPD の周辺領域を SNP 単位で解析していく。\n\nISPD 領域\nNCBI で ISPD のページを見ると、 2番染色体 (NC_052533.1) の 28184591..28296806 にあるらしい。\nこの前後 5000 bp を VCF から抽出する:\nvcf=YOUR_DIR/varsites.snponly.vcf.gz\n\nvcftools --gzvcf ${vcf} \\\n  --chr NC_052533.1 --from-bp $((28184591-5000)) --to-bp $((28296806+5000)) \\\n  --recode --out ISPD\n--chr で染色体accession、--from-bp/--to-bp で座位を指定して VCF の特定領域を抽出する。 --out で指定した Prefix で、ISPD.recode.vcf が生成される。",
     "crumbs": [
       "Bioinformatics",
       "$F_\\text{st}$ 解析ハンズオン"

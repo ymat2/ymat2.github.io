@@ -728,7 +728,7 @@ window.Quarto = {
 <section id="解釈" class="level3">
 <h3 class="anchored" data-anchor-id="解釈">解釈</h3>
 <p>こうして絞り込んだ遺伝子リストから、 さらにジェノタイピングやハプロタイプ解析に回す遺伝子を探していく。</p>
-<p>今回、2番染色体のピークに座上する <em>ISPD</em> は、 軍鶏を対象とした先行研究 (<a href="https://doi.org/10.1093/g3journal/jkad267">Luo et al.&nbsp;2020</a>, <a href="https://doi.org/10.1093/g3journal/jkad267">Bendesly et al.&nbsp;2024</a>) でも得られており、有力な候補と言える。</p>
+<p>今回、2番染色体のピークに座上する <em>ISPD</em> は、 軍鶏を対象とした先行研究 (<a href="https://doi.org/10.1038/s41598-020-71421-z">Luo et al.&nbsp;2020</a>, <a href="https://doi.org/10.1093/g3journal/jkad267">Bendesly et al.&nbsp;2024</a>) でも得られており、有力な候補と言える。</p>
 <p>この後は、<em>ISPD</em> の周辺領域を抽出してハプロタイプ解析を行っていく。</p>
 </section>
 </section>
@@ -742,7 +742,7 @@ window.Quarto = {
 <div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="va">vcf</span><span class="op">=</span>YOUR_DIR/varsites.snponly.vcf.gz</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">vcftools</span> <span class="at">--gzvcf</span> <span class="va">${vcf}</span> <span class="dt">\</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--chr</span> NC_052533.1 <span class="at">--from-bp</span> 28184591-5000 <span class="at">--to-bp</span> 28296806+5000 <span class="dt">\</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--chr</span> NC_052533.1 <span class="at">--from-bp</span> <span class="va">$((</span><span class="dv">28184591</span><span class="op">-</span><span class="dv">5000</span><span class="va">))</span> <span class="at">--to-bp</span> <span class="va">$((</span><span class="dv">28296806</span><span class="op">+</span><span class="dv">5000</span><span class="va">))</span> <span class="dt">\</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--recode</span> <span class="at">--out</span> ISPD</span></code></pre></div>
 <p><code>--chr</code> で染色体accession、<code>--from-bp</code>/<code>--to-bp</code> で座位を指定して VCF の特定領域を抽出する。 <code>--out</code> で指定した Prefix で、<code>ISPD.recode.vcf</code> が生成される。</p>
 </section>

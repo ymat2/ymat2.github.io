@@ -1,0 +1,205 @@
+---
+format:
+  html:
+    title: "GWAS"
+---
+
+
+<u>G</u>enome <u>W</u>ide <u>A</u>ssociation <u>S</u>tudy
+
+疾患や特定の表現型などと統計的に相関する遺伝子変異を網羅的に探索する手法。
+[2002年の理研の報告](https://doi.org/10.1038/ng1047)が初出らしい。
+
+最近のレビュー: [Uffelmann et al. 2021](https://doi.org/10.1038/s43586-021-00056-9)
+
+
+## Softwares
+
+よく使われる GWAS ソフトウェアとして
+[PLINK](https://www.cog-genomics.org/plink/2.0/assoc)
+と
+[GCTA](https://yanglab.westlake.edu.cn/software/gcta/#Overview)
+があるが、今回は PLINK を使う。
+バイナリ版のダウンロードページは[こちら](https://www.cog-genomics.org/plink/)。
+
+遺伝研スパコンで使う場合、Apptainer にある:
+
+```sh
+ls /usr/local/biotools/p/plink*
+```
+
+
+## Tutorial
+
+<https://www.cog-genomics.org/plink/2.0/assoc>
+
+多サンプルマージ済みの VCF ファイルからスタートする。
+
+### SNP サイトを抽出する
+
+```sh
+bcftools view -v snps -m2 -M2 -Oz file.vcf.gz > file.snp.vcf.gz
+bcftools index file.snp.vcf.gz
+```
+
+### PCA (主成分分析) をおこなう
+
+:::{.note}
+
+GWAS では SNP 以外の変数を共変量として組み込むことがある。
+集団構造の主成分はこの典型で、
+例えば平均的に体サイズの大きい集団Aと小さい集団Bがいるときに、
+本当は体サイズと無関係だが集団AとBで分化している座位を
+体サイズ関連の SNP として検出してしまう可能性がある。
+
+このような偽陽性を補正するために、
+集団構造のデータを共変量として組み込む。<br>
+([Price et al. 2006](https://doi.org/10.1038/ng1847))
+
+:::
+
+まず連鎖不平衡にあるアリルを刈り取る:
+
+```sh
+plink2 --vcf file.snp.vcf.gz \
+  --allow-extra-chr \
+  --double-id \
+  --set-missing-var-ids @:# \
+  --maf 0.05 \
+  --indep-pairwise 50 10 0.2 \
+  --out file.plink
+
+plink2 --vcf file.snp.vcf.gz \
+  --allow-extra-chr \
+  --double-id \
+  --set-missing-var-ids @:# \
+  --extract file.plink.prune.in \
+  --make-bed \
+  --out file.plink
+```
+
+`.bed`、`.bim`、`.fam` の3種類のファイルが出てくれば OK。
+PLINK の詳しい使い方については省略する。
+
+- `--maf 0.05` はマイナーアレル頻度 0.05 未満の座位を取り除く。
+- `--indep-pairwise 50 10 0.2` は 10 SNPs のステップサイズで 50 SNPs のウィンドウ内にある
+  $r^2 > 0.2$ で連鎖不平衡にある SNP を取り除く。
+
+PCAを実行:
+
+```sh
+plink2 --bfile file.plink --pca --allow-extra-chr --double-id --out file.pca
+```
+
+`.eigenvec`、`.eigenval` の2種類のファイルが出てきたら OK。
+
+### 表現型データのファイルを用意する
+
+<https://www.cog-genomics.org/plink/2.0/input#pheno>
+
+GWAS に用いる表現型のデータを用意する。
+`.fam` と同じ形式のタブ/スペース区切りで、1列目に "Family ID"、
+2列目に "Individual ID"、3列目以降に表現型データを記載したファイルにする。
+
+例えば3列目に体重のような連続値データ、4列目に病気の有無のようなバイナリデータの場合:
+
+```{.txt filename="file.pheno"}
+#FID  IID BM  Disease
+sample1 popA  56.3  2
+sample2 popA  50.1  2
+sample3 popA  61.3  1
+sample4 popB  59.9  1
+sample5 popB  53.6  2
+sample6 popB  49.8  1
+︙
+```
+
+- バイナリデータは、2がケース群、1がコントロール群として扱われる。
+- FID, IID, phenotype の順ならヘッダーなしでも3列目が自動的に使われる。
+
+
+### GWAS を実行する
+
+PLINK1 と PLINK2 で方法が異なる。以下は PLINK2 の場合。
+
+```sh
+plink2 --bfile file.plink \
+  --allow-extra-chr \
+  --out file.gwas \
+  --pheno file.pheno \
+  --pheno-name Disease \
+  --covar file.pca.eigenvec \
+  --covar-name PC1-PC2 \
+  --covar-variance-standardize \
+  --glm skip-invalid-pheno firth-fallback hide-covar \
+  --adjust \
+  --ci 0.95
+```
+
+この通り実行すると、
+`file.gwas.$phrno-name.glm.$model.hybrid` と `file.gwas.$phrno-name.glm.$model.hybrid.adjusted`
+の2種類のファイルができる。
+
+- `--pheno`: 上で作った表現型ファイル
+- `--pheno-name`: 使用する表現型の列名 (`--pheno-col-nums` でれ番号での指定も可)
+- `--covar`: PCA の出力ファイル
+- `--covar-name`: どの主成分を共変量として使うか。PC10 まで全部使うなら `PC1-PC10`。
+- `--covar-variance-standardize`: 共変量のスケーリングを行う
+- `--glm`: 相関解析のモデル。バイナリデータには `--logistic`、
+  連続値データには `--linear` が勝手に使われるが、直接指定してもいい。
+  - `skip-invalid-pheno`: 共変量 (ここでは PCA) と表現型の共線性があると判断されると、解析が止まる。
+    これを避けてひとまず解析を押し通すオプション。
+  - `firth-fallback`: バイナリの表現型に対してロジスティック回帰を行うときのモデル
+    [`no-firth`(PLINK1のデフォルト)/`firth-fallback`(デフォルト)/`firth`]
+  - `hide-covar`: 出力ファイルに共変量の情報を出さない。(主にファイルサイズ削減のため)
+- `--adjust`: 多重補正をおこなう
+- `--ci 0.95`: 信頼区間
+
+
+### 可視化
+
+非常にファイルサイズが大きいので、
+例えば遺伝研スパコンで作業制定て手元に結果を取り寄せるときは
+あらかじめ使う列だけ抽出しておくのも手:
+
+```sh
+# 最低でも染色体、座位、SNPのID、P値があればいい
+cat file.gwas.Disease.glm.logistic.hybrid | awk -F '\t' '{print $1 "\t" $2 "\t"　$3 "\t" $18}' > gwas-result.txt
+```
+
+#### --- 以降、Rでの作業 ---
+
+[qqman](https://cran.r-project.org/web/packages/qqman/vignettes/qqman.html) ライブラリを使う。
+
+(染色体アクセッションの変換のために `sequence_report.tsv` を使用している。
+[$F_\text{st}$ 解析ハンズオン](./fst_hands_on.qmd)も参照。)
+
+```r
+library(conflicted)
+library(tidyverse)
+library(qqman)
+
+## sequence_report を準備:
+acc2chr= readr::read_tsv("sequence_report.tsv") |>
+  dplyr::rename(CHROM = `RefSeq seq accession`, chr = `Chromosome name`) |>
+  dplyr::select(CHROM, chr)
+
+## GWAS の結果を読み込む:
+gwas_result = readr::read_tsv("out/gwas-result.txt") |>
+  dplyr::rename(CHROM = "#CHROM") |>
+  dplyr::inner_join(acc2chr, by = "CHROM") |>
+  dplyr::filter(!chr %in% c("Z", "W", "MT", "Un")) |>
+  dplyr::mutate(chr = as.integer(chr))
+```
+
+QQ-plot の描画:
+
+```r
+qqman::qqplot(gwas_result$P)
+```
+
+マンハッタンプロットの描画:
+
+```r
+qqman::manhattan(gwas_result, chr = "chr", bp = "POS", p = "P", snp = "ID")
+```

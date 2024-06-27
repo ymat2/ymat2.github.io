@@ -10,7 +10,7 @@ $black: #444 !default;
 $grey1: #f1f1f1 !default;
 $grey2: #f4f4f4 !default;
 $grey3: #ccc !default;
-$color-link: #006fb7 !default;
+$color-link: #4575B4 !default;
 
 $callout-color-note: #0072B2cc;
 $callout-color-tip: #009E73cc;
@@ -229,6 +229,7 @@ kbd {
 }
 
 /*-- Callouts --*/
+
 div {
   .note {
   	margin: 0.5rem 0;
@@ -273,4 +274,32 @@ div {
 
 .warn > p, .note > p {
 	margin: 0.2rem 0;
+}
+
+/*-- News --*/
+
+div {
+  .news {
+    width: 100%;
+    height: 300px;
+    padding-inline: 1em;
+    overflow-y: scroll;
+    box-shadow: 4px 0px 8px -4px inset #808080;
+  }
+
+  .news dl dt {
+    font-weight: 600;
+    margin-block-start: 1em;
+  }
+
+  .news dl dd {
+  	margin-block: 0.3em;
+  	margin-inline: 0;
+  	position: relative;
+    border-bottom: dashed 1px $grey3;
+  }
+
+  .news dl dd::before {
+    content: none;
+  }
 }

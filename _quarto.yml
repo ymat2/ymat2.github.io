@@ -30,10 +30,10 @@ website:
       - section: "Python"
         contents: python/*.qmd
       - text: "---"
-      - section: "Web Development"
+      - section: "Web 開発"
         contents: site/*.qmd
   page-footer:
-    right: "Copyright 2023, Yuki Matsuda"
+    right: "Copyright 2023 &ndash; 2024, Yuki Matsuda"
   google-analytics: "G-HLCP5V0Y7N"
 
 format:

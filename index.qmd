@@ -1,9 +1,11 @@
 ---
 format:
   html:
-    title: "About"
+    title: "HOME"
 ---
 
+
+## About
 
 松田 優樹 / MATSUDA Yuki
 : [東京農工大学](https://www.tuat.ac.jp/)

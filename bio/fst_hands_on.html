@@ -699,11 +699,11 @@ window.Quarto = {
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fst2gene <span class="ot">=</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">"./shamo_vs_other.03.annot.fst"</span>, <span class="at">col_names =</span> cols) <span class="sc">|&gt;</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="st">"gene_id"</span> <span class="ot">=</span> X15) <span class="sc">|&gt;</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(BIN_START, gene_id, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(BIN_START) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(CHROM, BIN_START) <span class="sc">|&gt;</span></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">gene_id =</span> <span class="fu">paste</span>(gene_id, <span class="at">collapse =</span> <span class="st">", "</span>))</span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>fst <span class="ot">=</span> fst <span class="sc">|&gt;</span> <span class="fu">left_join</span>(fst2gene, <span class="at">by =</span> <span class="st">"BIN_START"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>fst <span class="ot">=</span> fst <span class="sc">|&gt;</span> <span class="fu">left_join</span>(fst2gene, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"CHROM"</span>, <span class="st">"BIN_START"</span>))</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>qqman<span class="sc">::</span><span class="fu">manhattan</span>(</span>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  fst,</span>

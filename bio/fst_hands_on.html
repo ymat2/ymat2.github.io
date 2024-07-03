@@ -466,6 +466,11 @@ window.Quarto = {
   <li><a href="#delta-allele-frequency-の計算と可視化" id="toc-delta-allele-frequency-の計算と可視化"><span class="math inline">\(\Delta\)</span> Allele frequency の計算と可視化</a></li>
   <li><a href="#ハプロタイプのヒートマップ描画" id="toc-ハプロタイプのヒートマップ描画">ハプロタイプのヒートマップ描画</a></li>
   </ul></li>
+  <li><a href="#pbs-の計算" id="toc-pbs-の計算">PBS の計算</a>
+  <ul>
+  <li><a href="#原理" id="toc-原理">原理</a></li>
+  <li><a href="#r-で実装" id="toc-r-で実装">R で実装</a></li>
+  </ul></li>
   </ul>
 </nav>
 <section id="概要" class="level2">
@@ -837,6 +842,72 @@ window.Quarto = {
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 </div>
 <p>このようにしてアリル頻度の集団間差が特に大きい SNP を絞り込んでいく。 <a href="../bio/snpEff.html">snpEff</a> などを組み合わせれば、 その中でアミノ酸変異を伴うもの、といった絞り込みも可能。</p>
+</section>
+</section>
+<section id="pbs-の計算" class="level2">
+<h2 class="anchored" data-anchor-id="pbs-の計算">PBS の計算</h2>
+<section id="原理" class="level3">
+<h3 class="anchored" data-anchor-id="原理">原理</h3>
+<p>2集団の <span class="math inline">\(F_\text{st}\)</span> では、得られるピークがどちらの集団のアリル頻度変化によるものかが区別できない。 そこで3集団目を追加し、<span class="math inline">\(F_\text{st}\)</span> を枝長とみなすことで特定の集団でアリル頻度が変化した領域を特定する手法が PBS (<u>P</u>opulation <u>B</u>ranch <u>S</u>tatistics) である。 (<a href="https://doi.org/10.1126/science.1190371">Yi et al.&nbsp;2010</a>)</p>
+<p>3集団 (A, B, C) のペアワイズで <span class="math inline">\(F_\text{st}\)</span> を算出して、各2集団間の枝長を求める:</p>
+<p><span class="math display">\[
+T = -\log{(1-F_\text{st})}
+\]</span></p>
+<p>各集団間の枝長を <span class="math inline">\(T_\text{AB}\)</span>, <span class="math inline">\(T_\text{BC}\)</span>, <span class="math inline">\(T_\text{CA}\)</span>, として、 例えば集団AのPBSを求めたければ、次のようにする:</p>
+<p><span class="math display">\[
+PBS_\text{A} = \frac{T_\text{AB} + T_\text{CA} - T_\text{BC} }{2}
+\]</span></p>
+</section>
+<section id="r-で実装" class="level3">
+<h3 class="anchored" data-anchor-id="r-で実装">R で実装</h3>
+<p>PBS を算出するソフトウェアはいくつかあるが (例えば <a href="https://scikit-allel.readthedocs.io/en/stable/">scikit-allel</a> や <a href="https://github.com/takuronkym/kpbs">kpbs</a>)、 ここでは VCFtools の出力をつかって R で PBS を計算する。</p>
+<p>まず、3集団の総当たりで算出した <span class="math inline">\(F_\text{st}\)</span> を読み込む。 ここでは仮に pop1、pop2、pop3 とする:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## パッケージの読み込み</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(conflicted)  <span class="co"># おまじない</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)   <span class="co"># データの操作用</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="do">## sequence_report.tsv を読み込む:</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>acc2chr<span class="ot">=</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">"sequence_report.tsv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">CHROM =</span> <span class="st">`</span><span class="at">RefSeq seq accession</span><span class="st">`</span>, <span class="at">chr =</span> <span class="st">`</span><span class="at">Chromosome name</span><span class="st">`</span>) <span class="sc">|&gt;</span>  <span class="co"># 列名の変更</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(CHROM, chr)                                                  <span class="co"># 染色体のaccessionと番号のみ抽出</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 3集団の総当たり Fst を読み込む</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>fst_pop1_pop2 <span class="ot">=</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">"pop1_vs_pop2.windowed.weir.fst"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">"SNP"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(acc2chr, <span class="at">by =</span> <span class="st">"CHROM"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">chr =</span> readr<span class="sc">::</span><span class="fu">parse_integer</span>(chr, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"W"</span>, <span class="st">"Z"</span>, <span class="st">"Un"</span>, <span class="st">"MT"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(chr))</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>fst_pop2_pop3 <span class="ot">=</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">"pop2_vs_pop3.windowed.weir.fst"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">"SNP"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(acc2chr, <span class="at">by =</span> <span class="st">"CHROM"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">chr =</span> readr<span class="sc">::</span><span class="fu">parse_integer</span>(chr, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"W"</span>, <span class="st">"Z"</span>, <span class="st">"Un"</span>, <span class="st">"MT"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(chr))</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>fst_pop3_pop1 <span class="ot">=</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">"pop3_vs_pop1.windowed.weir.fst"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">"SNP"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(acc2chr, <span class="at">by =</span> <span class="st">"CHROM"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">chr =</span> readr<span class="sc">::</span><span class="fu">parse_integer</span>(chr, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"W"</span>, <span class="st">"Z"</span>, <span class="st">"Un"</span>, <span class="st">"MT"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(chr))</span></code></pre></div>
+<p>次に <span class="math inline">\(F_\text{st}\)</span> を枝長に変換する:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>t_pop1_pop2 <span class="ot">=</span> fst_pop1_pop2 <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">t_pop1_pop2 =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> WEIGHTED_FST)) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(CHROM, chr, BIN_START, BIN_END, t_pop1_pop2)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>t_pop2_pop3 <span class="ot">=</span> fst_pop2_pop3 <span class="sc">|&gt;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">t_pop2_pop3 =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> WEIGHTED_FST)) <span class="sc">|&gt;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(CHROM, chr, BIN_START, BIN_END, t_pop2_pop3)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>t_pop3_pop1 <span class="ot">=</span> fst_pop3_pop1 <span class="sc">|&gt;</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">t_pop3_pop1 =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> WEIGHTED_FST)) <span class="sc">|&gt;</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(CHROM, chr, BIN_START, BIN_END, t_pop3_pop1)</span></code></pre></div>
+<p>最後にデータフレームを結合し、PBS を算出する。 ここでは例として pop1 における PBS を計算する。</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 対象の集団が含まれる T 2つを足したものから対象の集団が含まれない T を引いて2で割る</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>df_pbs <span class="ot">=</span> t_pop1_pop2 <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">inner_join</span>(t_pop2_pop3, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"CHROM"</span>, <span class="st">"chr"</span>, <span class="st">"BIN_START"</span>, <span class="st">"BIN_END"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">inner_join</span>(t_pop3_pop1, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"CHROM"</span>, <span class="st">"chr"</span>, <span class="st">"BIN_START"</span>, <span class="st">"BIN_END"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">pbs_pop1 =</span> (t_pop1_pop2 <span class="sc">+</span> t_pop3_pop1 <span class="sc">-</span> t_pop2_pop3)<span class="sc">/</span><span class="dv">2</span>)</span></code></pre></div>
 
 
 </section>

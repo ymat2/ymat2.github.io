@@ -755,7 +755,17 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "About",
+    "title": "HOME",
+    "section": "",
+    "text": "松田 優樹 / MATSUDA Yuki\n\n東京農工大学 大学院 連合農学研究科 システム行動生物学研究グループ 博士課程1年\n\n連絡先 / Contacts\n\nyuki.matsuda.m10あっとgmail.com\n\n\ns249780wあっとst.go.tuat.ac.jp\n\n外部リンク / Links\n\n  ymat2 \n\n\n  0009-0006-2288-1621",
+    "crumbs": [
+      "HOME"
+    ]
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "HOME",
     "section": "",
     "text": "松田 優樹 / MATSUDA Yuki\n\n東京農工大学 大学院 連合農学研究科 システム行動生物学研究グループ 博士課程1年\n\n連絡先 / Contacts\n\nyuki.matsuda.m10あっとgmail.com\n\n\ns249780wあっとst.go.tuat.ac.jp\n\n外部リンク / Links\n\n  ymat2 \n\n\n  0009-0006-2288-1621",
     "crumbs": [
@@ -765,7 +775,7 @@
   {
     "objectID": "index.html#news",
     "href": "index.html#news",
-    "title": "About",
+    "title": "HOME",
     "section": "News",
     "text": "News\n\n\n2024.04.02\n\n東京農工大学 大学院 連合農学研究科に進学しました。主にニワトリを対象に、家畜化の遺伝的基盤を探る研究を進めていきます。\n\n2024.03.26\n\n東北大学 大学院 生命科学研究科を修了し、修士 (生命科学) を取得しました。\n\n2024.03.16 – 2024.03.21\n\n第71回日本生態学会大会 (横浜) に参加し、ポスター発表を行いました。\n\n2024.03.16\n\nサイトのビルドフレームワークを、HUGO から Quarto に乗り換えました。\n\n2023.08.31 – 2023.09.03\n\n日本進化学会第25回大会 (沖縄) に参加し、ポスター発表を行いました。\n\n2023.01.12\n\n個人サイトを立ち上げました。",
     "crumbs": [
@@ -1482,6 +1492,17 @@
     "title": "\\(F_\\text{st}\\) 解析ハンズオン — 候補遺伝子・SNPの抽出",
     "section": "ハプロタイプ解析",
     "text": "ハプロタイプ解析\n抽出した ISPD 周辺領域の VCF を手元にダウンロードして、 R で読み込む。 全領域を可視化するとプロットが横に潰れるので、\\(F_\\text{st}\\) が特に高い領域に絞っておく:\n\n\ndraw_haplotype_plot.R\n\nlibrary(conflicted)\nlibrary(tidyverse)\n\nispd_vcf = readr::read_tsv(\"ISPD.recode.vcf\", comment = \"##\") |&gt;  # もしくは ISPD.snpEff.vcf\n  dplyr::filter(POS &gt;= 28200001 & POS &lt;= 28215000) |&gt;\n  tidyr::pivot_longer(\n    dplyr::starts_with(\"bam/\"),\n    names_to = \"sample\",\n    values_to = \"genotype\"\n  ) |&gt;\n  dplyr::mutate(\n    POS = as.character(POS),\n    sample = stringr::str_split(sample, \"/\", simplify = TRUE)[,2],\n    genotype = stringr::str_replace(genotype, \":.+\", \"\"),\n    FORMAT = \"GT\",\n    category = dplyr::if_else(stringr::str_detect(sample, \"SM|YKD\"), 1, 0),\n    sample = forcats::fct_reorder(sample, category)\n  )\n\n\n\\(\\Delta\\) Allele frequency の計算と可視化\n軍鶏とその他品種のアリル頻度の差を計算する。 ここは VCF の形式によって方法が異なる。 今回は bcftools mpileup | bcftools call --ploidy 2 でバリアントコールした形式を想定している。\nこの場合、あるアリルの遺伝子型が2本とも Reference と同じ (REF/REF) であれば 0/0、 ヘテロで SNP を持つ場合 (REF/ALT) 0/1、ホモで持つ場合 (ALT/ALT) 1/1 となる。\nALT 遺伝子型のアリル頻度を、0/0 = 0, 0/1 = 0.5, 1/1 = 1 としてその平均をとって計算する:\n\n\ndraw_haplotype_plot.R の続き\n\nispd_af = ispd_vcf |&gt;\n  dplyr::select(POS, sample, genotype, category) |&gt;\n  dplyr::mutate(\n    AF = dplyr::case_when(\n      genotype == \"1/1\" ~ 0,\n      genotype == \"0/1\" ~ 0.5,\n      .default = 1),\n    category = dplyr::if_else(category == 1, \"Shamo_AF\", \"Other_AF\")\n  ) |&gt;\n  dplyr::group_by(POS, category) |&gt;\n  dplyr::summarise(mean_AF = mean(AF)) |&gt;\n  tidyr::pivot_wider(names_from = category, values_from = mean_AF) |&gt;\n  dplyr::mutate(diff_AF = abs(Shamo_AF - Other_AF))\n\nこれを ggplot::geom_col() で可視化する:\n\n\ndraw_haplotype_plot.R の続き\n\nggplot2::ggplot(ispd_af) +\n  aes(x = POS, y = diff_AF) +                      # 横軸に座位、縦軸にアリル頻度の差\n  geom_col(fill =  \"#999999\") +                    # バープロットの描画\n  labs(x = \"POS\", y = \"delta allele frequency\") +  # x軸, y軸のタイトル\n  theme_classic() +                                # シンプルなテーマで\n  theme(\n    axis.text.x = element_blank(),                 # x軸のラベルはなくす\n    axis.ticks.x = element_blank()                 # x軸の ticks もなくす\n  )\n\n\n\nハプロタイプのヒートマップ描画\n続いて、各品種の遺伝子型をヒートマップ形式で可視化する。\n\n\ndraw_haplotype_plot.R の続き\n\nggplot2::ggplot(ispd_vcf) +\n  aes(x = POS, y = sample) +                    # 横軸に座位、縦軸にサンプル\n  geom_tile(aes(fill = genotype)) +             # タイルプロット。色分けはgenotypeで。\n  scale_fill_viridis_d(option = \"cividis\") +    # 色分けの色の指定\n  labs(x = \"POS\", y = \"\", fill = \"Genotype\") +  # x軸, y軸, 色分けのタイトル\n  theme_bw() +\n  theme(\n    axis.text.x = element_blank(),              # x軸のラベルはなくす\n    axis.ticks.x = element_blank(),             # x軸のticksもなくす\n  )\n\nこのようにしてアリル頻度の集団間差が特に大きい SNP を絞り込んでいく。 snpEff などを組み合わせれば、 その中でアミノ酸変異を伴うもの、といった絞り込みも可能。",
+    "crumbs": [
+      "Bioinformatics",
+      "$F_\\text{st}$ 解析ハンズオン"
+    ]
+  },
+  {
+    "objectID": "bio/fst_hands_on.html#pbs-の計算",
+    "href": "bio/fst_hands_on.html#pbs-の計算",
+    "title": "\\(F_\\text{st}\\) 解析ハンズオン — 候補遺伝子・SNPの抽出",
+    "section": "PBS の計算",
+    "text": "PBS の計算\n\n原理\n2集団の \\(F_\\text{st}\\) では、得られるピークがどちらの集団のアリル頻度変化によるものかが区別できない。 そこで3集団目を追加し、\\(F_\\text{st}\\) を枝長とみなすことで特定の集団でアリル頻度が変化した領域を特定する手法が PBS (Population Branch Statistics) である。 (Yi et al. 2010)\n3集団 (A, B, C) のペアワイズで \\(F_\\text{st}\\) を算出して、各2集団間の枝長を求める:\n\\[\nT = -\\log{(1-F_\\text{st})}\n\\]\n各集団間の枝長を \\(T_\\text{AB}\\), \\(T_\\text{BC}\\), \\(T_\\text{CA}\\), として、 例えば集団AのPBSを求めたければ、次のようにする:\n\\[\nPBS_\\text{A} = \\frac{T_\\text{AB} + T_\\text{CA} - T_\\text{BC} }{2}\n\\]\n\n\nR で実装\nPBS を算出するソフトウェアはいくつかあるが (例えば scikit-allel や kpbs)、 ここでは VCFtools の出力をつかって R で PBS を計算する。\nまず、3集団の総当たりで算出した \\(F_\\text{st}\\) を読み込む。 ここでは仮に pop1、pop2、pop3 とする:\n## パッケージの読み込み\nlibrary(conflicted)  # おまじない\nlibrary(tidyverse)   # データの操作用\n\n## sequence_report.tsv を読み込む:\nacc2chr= readr::read_tsv(\"sequence_report.tsv\") |&gt;\n  dplyr::rename(CHROM = `RefSeq seq accession`, chr = `Chromosome name`) |&gt;  # 列名の変更\n  dplyr::select(CHROM, chr)                                                  # 染色体のaccessionと番号のみ抽出\n\n## 3集団の総当たり Fst を読み込む\nfst_pop1_pop2 = readr::read_tsv(\"pop1_vs_pop2.windowed.weir.fst\") |&gt;\n  tibble::rownames_to_column(var = \"SNP\") |&gt;\n  dplyr::left_join(acc2chr, by = \"CHROM\") |&gt;\n  dplyr::mutate(chr = readr::parse_integer(chr, na = c(\"W\", \"Z\", \"Un\", \"MT\"))) |&gt;\n  dplyr::filter(!is.na(chr))\n\nfst_pop2_pop3 = readr::read_tsv(\"pop2_vs_pop3.windowed.weir.fst\") |&gt;\n  tibble::rownames_to_column(var = \"SNP\") |&gt;\n  dplyr::left_join(acc2chr, by = \"CHROM\") |&gt;\n  dplyr::mutate(chr = readr::parse_integer(chr, na = c(\"W\", \"Z\", \"Un\", \"MT\"))) |&gt;\n  dplyr::filter(!is.na(chr))\n\nfst_pop3_pop1 = readr::read_tsv(\"pop3_vs_pop1.windowed.weir.fst\") |&gt;\n  tibble::rownames_to_column(var = \"SNP\") |&gt;\n  dplyr::left_join(acc2chr, by = \"CHROM\") |&gt;\n  dplyr::mutate(chr = readr::parse_integer(chr, na = c(\"W\", \"Z\", \"Un\", \"MT\"))) |&gt;\n  dplyr::filter(!is.na(chr))\n次に \\(F_\\text{st}\\) を枝長に変換する:\nt_pop1_pop2 = fst_pop1_pop2 |&gt;\n  dplyr::mutate(t_pop1_pop2 = -log(1 - WEIGHTED_FST)) |&gt;\n  dplyr::select(CHROM, chr, BIN_START, BIN_END, t_pop1_pop2)\n\nt_pop2_pop3 = fst_pop2_pop3 |&gt;\n  dplyr::mutate(t_pop2_pop3 = -log(1 - WEIGHTED_FST)) |&gt;\n  dplyr::select(CHROM, chr, BIN_START, BIN_END, t_pop2_pop3)\n\nt_pop3_pop1 = fst_pop3_pop1 |&gt;\n  dplyr::mutate(t_pop3_pop1 = -log(1 - WEIGHTED_FST)) |&gt;\n  dplyr::select(CHROM, chr, BIN_START, BIN_END, t_pop3_pop1)\n最後にデータフレームを結合し、PBS を算出する。 ここでは例として pop1 における PBS を計算する。\n## 対象の集団が含まれる T 2つを足したものから対象の集団が含まれない T を引いて2で割る\n\ndf_pbs = t_pop1_pop2 |&gt;\n  dplyr::inner_join(t_pop2_pop3, by = c(\"CHROM\", \"chr\", \"BIN_START\", \"BIN_END\")) |&gt;\n  dplyr::inner_join(t_pop3_pop1, by = c(\"CHROM\", \"chr\", \"BIN_START\", \"BIN_END\")) |&gt;\n  dplyr::mutate(pbs_pop1 = (t_pop1_pop2 + t_pop3_pop1 - t_pop2_pop3)/2)",
     "crumbs": [
       "Bioinformatics",
       "$F_\\text{st}$ 解析ハンズオン"

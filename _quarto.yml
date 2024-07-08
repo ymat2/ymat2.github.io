@@ -53,6 +53,7 @@ format:
     highlight-style: github
     template-partials:
       - static/title-block.html
+    html-math-method: katex
   revealjs:
     theme: static/slide.scss
     width: 1080

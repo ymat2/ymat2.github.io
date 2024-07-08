@@ -275,11 +275,11 @@ cols= c("CHROM", "BIN_START", "BIN_END", "N_VARIANTS", "WEIGHTED_FST", "MEAN_FST
 fst2gene = readr::read_tsv("./shamo_vs_other.03.annot.fst", col_names = cols) |>
   dplyr::rename("gene_id" = X15) |>
   dplyr::distinct(BIN_START, gene_id, .keep_all = TRUE) |>
-  group_by(BIN_START) |>
+  group_by(CHROM, BIN_START) |>
   summarize(gene_id = paste(gene_id, collapse = ", "))
 
 
-fst = fst |> left_join(fst2gene, by = "BIN_START")
+fst = fst |> left_join(fst2gene, by = c("CHROM", "BIN_START"))
 
 qqman::manhattan(
   fst,

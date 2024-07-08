@@ -111,8 +111,22 @@ gtag('js', new Date());
 gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -233,7 +247,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../bio/fst_hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="math inline">\(F_\text{st}\)</span> 解析ハンズオン</span></a>
+ <span class="menu-text"><span class="math inline">F_\text{st}</span> 解析ハンズオン</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -439,7 +453,7 @@ window.Quarto = {
 </div>
 <p>PAML のテストデータを材料に codeml を一通り動かしてみる。</p>
 <p><u>P</u>hylogenetic <u>A</u>nalysis by <u>M</u>aximum <u>L</u>ikelihood (PAML) は、DNA やタンパク質の配列を最尤法で系統解析するための 種々のプログラムを含むパッケージ。</p>
-<p>今回はその中で、コドンの配列から同義置換に対する非同義置換の速度である <span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> を推定して正の自然選択の検出を行う codeml を使う。</p>
+<p>今回はその中で、コドンの配列から同義置換に対する非同義置換の速度である <span class="math inline">\omega = d_\text{N} / d_\text{S}</span> を推定して正の自然選択の検出を行う codeml を使う。</p>
 <section id="テストデータの準備" class="level2">
 <h2 class="anchored" data-anchor-id="テストデータの準備">テストデータの準備</h2>
 <p>PAML の方で用意してある <a href="https://github.com/abacus-gene/paml/tree/master/examples/lysozyme">リゾチームの配列</a> を使う。んだけど、ファイルフォーマットが普段牧野研でよく使う形式と異なるので、 ひとまず↓をコピペして使ってください。</p>
@@ -631,23 +645,23 @@ DNAまたはタンパク質の配列のファイルパス。
 </dd>
 <dt><code>model</code></dt>
 <dd>
-系統樹の各 branch における <span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> の設定。
+系統樹の各 branch における <span class="math inline">\omega = d_\text{N} / d_\text{S}</span> の設定。
 </dd>
 <dd>
-0: 系統樹全体で均一の <span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> を推定。
+0: 系統樹全体で均一の <span class="math inline">\omega = d_\text{N} / d_\text{S}</span> を推定。
 </dd>
 <dd>
-1: branch ごとに異なる <span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> を推定。
+1: branch ごとに異なる <span class="math inline">\omega = d_\text{N} / d_\text{S}</span> を推定。
 </dd>
 <dd>
-2: <code>treefile</code> の branch に <code>#</code>, <code>#1</code> などの記号を振って各記号の branch で異なる <span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> を推定。
+2: <code>treefile</code> の branch に <code>#</code>, <code>#1</code> などの記号を振って各記号の branch で異なる <span class="math inline">\omega = d_\text{N} / d_\text{S}</span> を推定。
 </dd>
 <dt><code>NSsites</code></dt>
 <dd>
-コドン/アミノ酸サイトごとの <span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> の設定。
+コドン/アミノ酸サイトごとの <span class="math inline">\omega = d_\text{N} / d_\text{S}</span> の設定。
 </dd>
 <dd>
-0: サイト間で <span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> が同じと仮定。branchモデルの時はこれ。
+0: サイト間で <span class="math inline">\omega = d_\text{N} / d_\text{S}</span> が同じと仮定。branchモデルの時はこれ。
 </dd>
 <dd>
 1: Neutral
@@ -657,7 +671,7 @@ DNAまたはタンパク質の配列のファイルパス。
 </dd>
 <dt><code>fix_omega</code></dt>
 <dd>
-<span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> を固定するかどうか。
+<span class="math inline">\omega = d_\text{N} / d_\text{S}</span> を固定するかどうか。
 </dd>
 <dd>
 0: 初期値から最尤推定する。
@@ -667,7 +681,7 @@ DNAまたはタンパク質の配列のファイルパス。
 </dd>
 <dt><code>omega</code></dt>
 <dd>
-<span class="math inline">\(\omega = d_\text{N} / d_\text{S}\)</span> の初期値。
+<span class="math inline">\omega = d_\text{N} / d_\text{S}</span> の初期値。
 </dd>
 </dl>
 </section>
@@ -695,7 +709,7 @@ DNAまたはタンパク質の配列のファイルパス。
 <tr class="even">
 <td style="text-align: left;">M3</td>
 <td style="text-align: left;">M0</td>
-<td style="text-align: left;">サイト間で <span class="math inline">\(d_\text{N} / d_\text{S}\)</span> が異なるか</td>
+<td style="text-align: left;">サイト間で <span class="math inline">d_\text{N} / d_\text{S}</span> が異なるか</td>
 <td style="text-align: left;">〃</td>
 </tr>
 <tr class="odd">
@@ -725,25 +739,25 @@ DNAまたはタンパク質の配列のファイルパス。
 <tr class="odd">
 <td style="text-align: left;">bsC</td>
 <td style="text-align: left;">M1</td>
-<td style="text-align: left;">特定のクレードの特定のサイトで <span class="math inline">\(d_\text{N} / d_\text{S}\)</span> が異なるか</td>
+<td style="text-align: left;">特定のクレードの特定のサイトで <span class="math inline">d_\text{N} / d_\text{S}</span> が異なるか</td>
 <td style="text-align: left;"><a href="https://doi.org/10.1093/oxfordjournals.molbev.a004148">Yang 2002</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">bsD</td>
 <td style="text-align: left;">M3</td>
-<td style="text-align: left;">特定のクレードの特定のサイトで <span class="math inline">\(d_\text{N} / d_\text{S}\)</span> が異なるか</td>
+<td style="text-align: left;">特定のクレードの特定のサイトで <span class="math inline">d_\text{N} / d_\text{S}</span> が異なるか</td>
 <td style="text-align: left;"><a href="https://doi.org/10.1093/oxfordjournals.molbev.a004148">Yang 2002</a>, <a href="http://link.springer.com/article/10.1007/s00239-004-2597-8">Bielawski 2004</a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">b_free</td>
 <td style="text-align: left;">b_neut</td>
-<td style="text-align: left;">特定の枝で <span class="math inline">\(d_\text{N} / d_\text{S}\)</span> が1と異なるか</td>
+<td style="text-align: left;">特定の枝で <span class="math inline">d_\text{N} / d_\text{S}</span> が1と異なるか</td>
 <td style="text-align: left;"><a href="https://doi.org/10.1093/oxfordjournals.molbev.a004148">Yang 2002</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">b_free</td>
 <td style="text-align: left;">M0</td>
-<td style="text-align: left;">特定の枝で <span class="math inline">\(d_\text{N} / d_\text{S}\)</span> が他と異なるか</td>
+<td style="text-align: left;">特定の枝で <span class="math inline">d_\text{N} / d_\text{S}</span> が他と異なるか</td>
 <td style="text-align: left;"><a href="https://doi.org/10.1093/oxfordjournals.molbev.a004148">Yang 2002</a></td>
 </tr>
 </tbody>
@@ -755,9 +769,9 @@ DNAまたはタンパク質の配列のファイルパス。
 </section>
 <section id="branch-モデル" class="level3">
 <h3 class="anchored" data-anchor-id="branch-モデル">Branch モデル</h3>
-<p>旧世界ザルの共通祖先の枝を対象に、 正の自然選択 (<span class="math inline">\(d_\text{N} / d_\text{S} &gt; 0\)</span>) を検出する。</p>
-<p>まず対立仮説として、注目する枝で <span class="math inline">\(d_\text{N} / d_\text{S}\)</span> が異なると仮定して codeml を動かす。</p>
-<p>系統樹 (<code>lysozymeSmall.fa.treefile</code>) をエディタで編集して、 注目する枝 (i.e.&nbsp;<span class="math inline">\(d_\text{N} / d_\text{S} &gt; 0\)</span> を想定する枝) に <code>#1</code> を振る:</p>
+<p>旧世界ザルの共通祖先の枝を対象に、 正の自然選択 (<span class="math inline">d_\text{N} / d_\text{S} &gt; 0</span>) を検出する。</p>
+<p>まず対立仮説として、注目する枝で <span class="math inline">d_\text{N} / d_\text{S}</span> が異なると仮定して codeml を動かす。</p>
+<p>系統樹 (<code>lysozymeSmall.fa.treefile</code>) をエディタで編集して、 注目する枝 (i.e.&nbsp;<span class="math inline">d_\text{N} / d_\text{S} &gt; 0</span> を想定する枝) に <code>#1</code> を振る:</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="sourceCode" id="cb6"><pre class="sourceCode txt code-overflow-wrap"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(Hsa_Human:0.0087447996,Hla_gibbon:0.0130303081,(((Cgu/Can_colobus:0.0156654142,Pne_langur:0.0181835564)#1:0.0280807319,Mmu_rhesus:0.0070703774):0.0147707727,(Ssc_squirrelM:0.0140657314,Cja_marmoset:0.0076397044):0.0477319527):0.0256856586);</span></code></pre></div>
@@ -773,7 +787,7 @@ DNAまたはタンパク質の配列のファイルパス。
 </div>
 </div>
 </div>
-<p><code>#1</code> を振った枝とその他の枝で <span class="math inline">\(d_\text{N} / d_\text{S}\)</span> が異なる、 というシナリオの <code>.ctl</code> を書く:</p>
+<p><code>#1</code> を振った枝とその他の枝で <span class="math inline">d_\text{N} / d_\text{S}</span> が異なる、 というシナリオの <code>.ctl</code> を書く:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>b_free.ctl</strong></pre>
@@ -788,7 +802,7 @@ DNAまたはタンパク質の配列のファイルパス。
 </div>
 <p>この <code>.ctl</code> を指定して codeml を実行:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">codeml</span> b_free.ctl</span></code></pre></div>
-<p>指定した出力ファイル <code>branch_alt</code> を見てみる。 まずは最後の方に書かれている各枝の <span class="math inline">\(\omega\)</span> の値:</p>
+<p>指定した出力ファイル <code>branch_alt</code> を見てみる。 まずは最後の方に書かれている各枝の <span class="math inline">\omega</span> の値:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> branch_alt</span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="sourceCode txt code-overflow-wrap"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dS tree:</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>(Hsa_Human: 0.011030, Hla_gibbon: 0.016794, (((Cgu/Can_colobus: 0.018929, Pne_langur: 0.022497): 0.009367, Mmu_rhesus: 0.008406): 0.018929, (Ssc_squirrelM: 0.017701, Cja_marmoset: 0.010258): 0.052331): 0.030198);</span>
@@ -800,13 +814,13 @@ DNAまたはタンパク質の配列のファイルパス。
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>Time used:  0:01</span></code></pre></div>
-<p>期待通り、<code>#1</code> を振った枝とそれ以外の枝で異なる <span class="math inline">\(\omega\)</span> が計算されている。 (旧世界ザルの共通祖先で <span class="math inline">\(\omega = 3.50573\)</span>, そのほかの枝で <span class="math inline">\(\omega = 0.68581\)</span>)</p>
+<p>期待通り、<code>#1</code> を振った枝とそれ以外の枝で異なる <span class="math inline">\omega</span> が計算されている。 (旧世界ザルの共通祖先で <span class="math inline">\omega = 3.50573</span>, そのほかの枝で <span class="math inline">\omega = 0.68581</span>)</p>
 <p>もう一か所は、パラメータ数と対数尤度が記述された行:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"lnL"</span> branch_alt</span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lnL(ntime: 11  np: 14):   -904.636553      +0.000000</span></code></pre></div>
 <p>パラメータ数が14、対数尤度が -904.636553 であることを示している。</p>
 <hr>
-<p>次に、帰無仮説として指定した枝の <span class="math inline">\(\omega\)</span> を1で固定したモデルの 当てはまりを計算する。</p>
+<p>次に、帰無仮説として指定した枝の <span class="math inline">\omega</span> を1で固定したモデルの 当てはまりを計算する。</p>
 <p><code>.ctl</code> の以下のパラメータを変更する:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -820,7 +834,7 @@ DNAまたはタンパク質の配列のファイルパス。
 </div>
 <p>この <code>.ctl</code> を指定して codeml を実行:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">codeml</span> b_neut.ctl</span></code></pre></div>
-<p>同様に出力ファイル <code>branch_null</code> を見てみる。 各枝の <span class="math inline">\(\omega\)</span> の値は:</p>
+<p>同様に出力ファイル <code>branch_null</code> を見てみる。 各枝の <span class="math inline">\omega</span> の値は:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode txt code-overflow-wrap"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>w ratios as labels for TreeView:</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>(Hsa_Human #0.685577 , Hla_gibbon #0.685577 , (((Cgu/Can_colobus #0.685577 , Pne_langur #0.685577 ) #1 , Mmu_rhesus #0.685577 ) #0.685577 , (Ssc_squirrelM #0.685577 , Cja_marmoset #0.685577 ) #0.685577 ) #0.685577 );</span></code></pre></div>
 <p>パラメータ数と対数尤度は:</p>
@@ -831,7 +845,7 @@ DNAまたはタンパク質の配列のファイルパス。
 <thead>
 <tr class="header">
 <th style="text-align: left;">仮説</th>
-<th style="text-align: right;">注目する枝の <span class="math inline">\(\omega\)</span></th>
+<th style="text-align: right;">注目する枝の <span class="math inline">\omega</span></th>
 <th style="text-align: right;">パラメータ数</th>
 <th style="text-align: right;">対数尤度</th>
 </tr>
@@ -852,7 +866,7 @@ DNAまたはタンパク質の配列のファイルパス。
 </tbody>
 </table>
 <hr>
-<p>最後に尤度比検定を行って、 「注目する枝の <span class="math inline">\(\omega\)</span> が他の枝より高いようだけど、 これは選択の緩和 (<span class="math inline">\(\omega=1\)</span>) じゃなくて 正の自然選択　(<span class="math inline">\(\omega&gt;1\)</span>) だ。」 ということを統計的に主張できるかどうか確かめる。</p>
+<p>最後に尤度比検定を行って、 「注目する枝の <span class="math inline">\omega</span> が他の枝より高いようだけど、 これは選択の緩和 (<span class="math inline">\omega=1</span>) じゃなくて 正の自然選択　(<span class="math inline">\omega&gt;1</span>) だ。」 ということを統計的に主張できるかどうか確かめる。</p>
 <p>尤度比検定の方法はいくつかあるけど、R とか Python 使うのがいいんじゃないだろうか。 (エクセルとかでもできるらしい。)</p>
 <p>Python の尤度比検定の関数を使って検定する:</p>
 <div class="code-with-filename">
@@ -878,11 +892,11 @@ DNAまたはタンパク質の配列のファイルパス。
 </section>
 <section id="branch-site-モデル" class="level3">
 <h3 class="anchored" data-anchor-id="branch-site-モデル">Branch-Site モデル</h3>
-<p>Site モデルや Branch モデルは枝全体やサイト全体で <span class="math inline">\(\omega\)</span> を平均するため、 時に検出力が弱くなる。</p>
-<p>つまり、ある枝で特定のサイトに正の自然選択が本当に働いていたとしても、 他のサイトや枝の <span class="math inline">\(\omega\)</span> が小さければそれに引っ張られて <span class="math inline">\(\omega &gt; 1\)</span> を検出できない。</p>
+<p>Site モデルや Branch モデルは枝全体やサイト全体で <span class="math inline">\omega</span> を平均するため、 時に検出力が弱くなる。</p>
+<p>つまり、ある枝で特定のサイトに正の自然選択が本当に働いていたとしても、 他のサイトや枝の <span class="math inline">\omega</span> が小さければそれに引っ張られて <span class="math inline">\omega &gt; 1</span> を検出できない。</p>
 <p>そこで、Branch-Site モデルは特定の枝の特定のサイトに働いた自然選択を検出する。</p>
 <p>使う系統樹は Branch モデルと同じ。</p>
-<p>まず対立仮説として、<code>#1</code> を振った枝で <span class="math inline">\(\omega &gt; 1\)</span> のサイトがある、 というシナリオの <code>.ctl</code> を書く:</p>
+<p>まず対立仮説として、<code>#1</code> を振った枝で <span class="math inline">\omega &gt; 1</span> のサイトがある、 というシナリオの <code>.ctl</code> を書く:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>bsA.ctl</strong></pre>
@@ -908,28 +922,28 @@ DNAまたはタンパク質の配列のファイルパス。
 <dl>
 <dt>site class 0</dt>
 <dd>
-<code>#1</code> を振った枝もそれ以外も <span class="math inline">\(\omega &lt; 1\)</span> であるサイト
+<code>#1</code> を振った枝もそれ以外も <span class="math inline">\omega &lt; 1</span> であるサイト
 </dd>
 <dd>
-今回は全サイトのうち約29%がこれにあたり、<span class="math inline">\(\omega = 0\)</span> の強い純化選択をうけている。
+今回は全サイトのうち約29%がこれにあたり、<span class="math inline">\omega = 0</span> の強い純化選択をうけている。
 </dd>
 <dt>site class 1</dt>
 <dd>
-<code>#1</code> を振った枝もそれ以外も <span class="math inline">\(\omega = 1\)</span> であるサイト
+<code>#1</code> を振った枝もそれ以外も <span class="math inline">\omega = 1</span> であるサイト
 </dd>
 <dd>
 今回は全サイトのうち約36%がこれにあたる。
 </dd>
 <dt>site class 2a</dt>
 <dd>
-<code>#1</code> を振った枝で <span class="math inline">\(\omega &gt; 1\)</span>、 それ以外で <span class="math inline">\(\omega &lt; 1\)</span> であるサイト
+<code>#1</code> を振った枝で <span class="math inline">\omega &gt; 1</span>、 それ以外で <span class="math inline">\omega &lt; 1</span> であるサイト
 </dd>
 <dd>
-今回は全サイトのうち約16%がこれにあたり、<code>#1</code> の枝では <span class="math inline">\(\omega = 5.78754\)</span> の強い正の自然選択が働いている。
+今回は全サイトのうち約16%がこれにあたり、<code>#1</code> の枝では <span class="math inline">\omega = 5.78754</span> の強い正の自然選択が働いている。
 </dd>
 <dt>site class 2b</dt>
 <dd>
-<code>#1</code> を振った枝で <span class="math inline">\(\omega &gt; 1\)</span>、 それ以外で <span class="math inline">\(\omega = 1\)</span> であるサイト
+<code>#1</code> を振った枝で <span class="math inline">\omega &gt; 1</span>、 それ以外で <span class="math inline">\omega = 1</span> であるサイト
 </dd>
 <dd>
 今回は全サイトのうち約19%がこれにあたる。
@@ -953,7 +967,7 @@ DNAまたはタンパク質の配列のファイルパス。
 <p>BEB法 (Bayes empirical Bayes法) により求められた、 そのサイトがω&gt;1で正の選択下にある事後確率を示す。 この事後確率が0.95や0.99を超えていた場合に正の自然選択が働いたサイトとする論文をよく見る。</p>
 <p>今回はそういうサイトはなさそう。</p>
 <hr>
-<p>次に、帰無仮説として指定した枝のサイトの <span class="math inline">\(\omega\)</span> を1で固定したモデルの 当てはまりを計算する。</p>
+<p>次に、帰無仮説として指定した枝のサイトの <span class="math inline">\omega</span> を1で固定したモデルの 当てはまりを計算する。</p>
 <p><code>.ctl</code> のパラメータを変更する:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -967,7 +981,7 @@ DNAまたはタンパク質の配列のファイルパス。
 </div>
 <p>この <code>.ctl</code> を指定して codeml を実行:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">codeml</span> bsA1.ctl</span></code></pre></div>
-<p>同様に出力ファイル <code>bs_null</code> を見てみる。 サイトクラスを見ると <code>#1</code> の枝の <span class="math inline">\(\omega\)</span> が1になっている:</p>
+<p>同様に出力ファイル <code>bs_null</code> を見てみる。 サイトクラスを見ると <code>#1</code> の枝の <span class="math inline">\omega</span> が1になっている:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>MLEs of dN/dS (w) for site classes (K=4)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>site class             0        1       2a       2b</span>

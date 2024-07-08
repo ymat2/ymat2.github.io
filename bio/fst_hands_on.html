@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Yuki MATSUDA - \(F_\text{st}\) 解析ハンズオン</title>
+<title>Yuki MATSUDA - F_\text{st} 解析ハンズオン</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -111,8 +111,22 @@ gtag('js', new Date());
 gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -153,7 +167,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"><span class="math inline">\(F_\text{st}\)</span> 解析ハンズオン — 候補遺伝子・SNPの抽出</h1>
+          <h1 class="quarto-secondary-nav-title"><span class="math inline">F_\text{st}</span> 解析ハンズオン — 候補遺伝子・SNPの抽出</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -233,7 +247,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../bio/fst_hands_on.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="math inline">\(F_\text{st}\)</span> 解析ハンズオン</span></a>
+ <span class="menu-text"><span class="math inline">F_\text{st}</span> 解析ハンズオン</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -429,7 +443,7 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header">
-<h1 class="title d-none d-lg-block display-7"><span class="math inline">\(F_\text{st}\)</span> 解析ハンズオン — 候補遺伝子・SNPの抽出</h1>
+<h1 class="title d-none d-lg-block display-7"><span class="math inline">F_\text{st}</span> 解析ハンズオン — 候補遺伝子・SNPの抽出</h1>
 
 
 </header>
@@ -445,13 +459,13 @@ window.Quarto = {
   <li><a href="#材料" id="toc-材料">材料</a></li>
   <li><a href="#使うソフトウェア" id="toc-使うソフトウェア">使うソフトウェア</a></li>
   </ul></li>
-  <li><a href="#f_textst-を計算してマンハッタンプロットを描く" id="toc-f_textst-を計算してマンハッタンプロットを描く"><span class="math inline">\(F_\text{st}\)</span> を計算してマンハッタンプロットを描く</a>
+  <li><a href="#f_textst-を計算してマンハッタンプロットを描く" id="toc-f_textst-を計算してマンハッタンプロットを描く"><span class="math inline">F_\text{st}</span> を計算してマンハッタンプロットを描く</a>
   <ul>
   <li><a href="#集団のサンプル名を抽出する" id="toc-集団のサンプル名を抽出する">2集団のサンプル名を抽出する</a></li>
-  <li><a href="#f_textst-を計算する" id="toc-f_textst-を計算する"><span class="math inline">\(F_\text{st}\)</span> を計算する</a></li>
+  <li><a href="#f_textst-を計算する" id="toc-f_textst-を計算する"><span class="math inline">F_\text{st}</span> を計算する</a></li>
   <li><a href="#マンハッタンプロットを描く" id="toc-マンハッタンプロットを描く">マンハッタンプロットを描く</a></li>
   </ul></li>
-  <li><a href="#f_textst-の高い領域に含まれる遺伝子をリストする" id="toc-f_textst-の高い領域に含まれる遺伝子をリストする"><span class="math inline">\(F_\text{st}\)</span> の高い領域に含まれる遺伝子をリストする</a>
+  <li><a href="#f_textst-の高い領域に含まれる遺伝子をリストする" id="toc-f_textst-の高い領域に含まれる遺伝子をリストする"><span class="math inline">F_\text{st}</span> の高い領域に含まれる遺伝子をリストする</a>
   <ul>
   <li><a href="#bedtools-による重なり抽出" id="toc-bedtools-による重なり抽出"><code>bedtools</code> による重なり抽出</a></li>
   <li><a href="#再びマンハッタンプロットの描画" id="toc-再びマンハッタンプロットの描画">再びマンハッタンプロットの描画</a></li>
@@ -463,7 +477,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#ハプロタイプ解析" id="toc-ハプロタイプ解析">ハプロタイプ解析</a>
   <ul>
-  <li><a href="#delta-allele-frequency-の計算と可視化" id="toc-delta-allele-frequency-の計算と可視化"><span class="math inline">\(\Delta\)</span> Allele frequency の計算と可視化</a></li>
+  <li><a href="#delta-allele-frequency-の計算と可視化" id="toc-delta-allele-frequency-の計算と可視化"><span class="math inline">\Delta</span> Allele frequency の計算と可視化</a></li>
   <li><a href="#ハプロタイプのヒートマップ描画" id="toc-ハプロタイプのヒートマップ描画">ハプロタイプのヒートマップ描画</a></li>
   </ul></li>
   <li><a href="#pbs-の計算" id="toc-pbs-の計算">PBS の計算</a>
@@ -480,7 +494,7 @@ window.Quarto = {
 </div>
 <section id="目標" class="level3">
 <h3 class="anchored" data-anchor-id="目標">目標</h3>
-<p>他サンプルをマージした VCF ファイルからスタートして、 <span class="math inline">\(F_\text{st}\)</span> のマンハッタンプロットとハプロタイプのヒートマップを描く。</p>
+<p>他サンプルをマージした VCF ファイルからスタートして、 <span class="math inline">F_\text{st}</span> のマンハッタンプロットとハプロタイプのヒートマップを描く。</p>
 </section>
 <section id="事前準備" class="level3">
 <h3 class="anchored" data-anchor-id="事前準備">事前準備</h3>
@@ -528,7 +542,7 @@ window.Quarto = {
 </section>
 </section>
 <section id="f_textst-を計算してマンハッタンプロットを描く" class="level2">
-<h2 class="anchored" data-anchor-id="f_textst-を計算してマンハッタンプロットを描く"><span class="math inline">\(F_\text{st}\)</span> を計算してマンハッタンプロットを描く</h2>
+<h2 class="anchored" data-anchor-id="f_textst-を計算してマンハッタンプロットを描く"><span class="math inline">F_\text{st}</span> を計算してマンハッタンプロットを描く</h2>
 <p>軍鶏 vs 他品種で分化しているゲノム領域を特定する。 <a href="https://vcftools.github.io/index.html">VCFtools</a> を使う。</p>
 <div class="note">
 <p>遺伝研での作業なので、以降の操作はシェルスクリプト (<code>.sh</code>) を書いて <code>qsub</code> してもよい。 今回は便宜上、通常のコマンドラインで実行する形で説明する。</p>
@@ -543,8 +557,8 @@ window.Quarto = {
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> query <span class="at">-l</span> <span class="va">${vcf}</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-v</span> <span class="at">-E</span> <span class="st">'SM|YKD'</span> <span class="op">&gt;</span> non-shamo.txt</span></code></pre></div>
 </section>
 <section id="f_textst-を計算する" class="level3">
-<h3 class="anchored" data-anchor-id="f_textst-を計算する"><span class="math inline">\(F_\text{st}\)</span> を計算する</h3>
-<p>2集団と <code>window-size</code>、<code>window-step</code> を指定して <span class="math inline">\(F_\text{st}\)</span> を計算する:</p>
+<h3 class="anchored" data-anchor-id="f_textst-を計算する"><span class="math inline">F_\text{st}</span> を計算する</h3>
+<p>2集団と <code>window-size</code>、<code>window-step</code> を指定して <span class="math inline">F_\text{st}</span> を計算する:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vcftools</span> <span class="at">--gzvcf</span> <span class="va">${vcf}</span> <span class="at">--weir-fst-pop</span> shamo.txt <span class="at">--weir-fst-pop</span> non-shamo.txt <span class="dt">\</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--fst-window-size</span> 10000 <span class="at">--fst-window-step</span> 5000 <span class="at">--out</span> shamo_vs_other</span></code></pre></div>
 <p><code>--out</code> で指定した Prefix で <code>.windowed.weir.fst</code> と <code>.log</code> の2ファイルができる。</p>
@@ -615,7 +629,7 @@ window.Quarto = {
 </dd>
 <dt><code>logp</code></dt>
 <dd>
-縦軸 <code>p</code> を対数変換するかどうか。 今回は <span class="math inline">\(F_\text{st}\)</span> の生の値を使うので <code>FALSE</code>。
+縦軸 <code>p</code> を対数変換するかどうか。 今回は <span class="math inline">F_\text{st}</span> の生の値を使うので <code>FALSE</code>。
 </dd>
 <dt><code>xlab</code>, <code>ylab</code></dt>
 <dd>
@@ -625,12 +639,12 @@ window.Quarto = {
 </section>
 </section>
 <section id="f_textst-の高い領域に含まれる遺伝子をリストする" class="level2">
-<h2 class="anchored" data-anchor-id="f_textst-の高い領域に含まれる遺伝子をリストする"><span class="math inline">\(F_\text{st}\)</span> の高い領域に含まれる遺伝子をリストする</h2>
+<h2 class="anchored" data-anchor-id="f_textst-の高い領域に含まれる遺伝子をリストする"><span class="math inline">F_\text{st}</span> の高い領域に含まれる遺伝子をリストする</h2>
 <section id="bedtools-による重なり抽出" class="level3">
 <h3 class="anchored" data-anchor-id="bedtools-による重なり抽出"><code>bedtools</code> による重なり抽出</h3>
-<p>マンハッタンプロットをみて、いい感じに閾値を決める。 今回 <span class="math inline">\(F_\text{st} &gt; 0.3\)</span> でやってみる。</p>
-<p>ここでまた遺伝研に戻り、<code>bedtools</code> を使って <span class="math inline">\(F_\text{st}\)</span> の高い領域とオーバーラップする遺伝子をリストする。</p>
-<p>AWK コマンドで <span class="math inline">\(F_\text{st} &gt; 0.3\)</span> の行を抽出:</p>
+<p>マンハッタンプロットをみて、いい感じに閾値を決める。 今回 <span class="math inline">F_\text{st} &gt; 0.3</span> でやってみる。</p>
+<p>ここでまた遺伝研に戻り、<code>bedtools</code> を使って <span class="math inline">F_\text{st}</span> の高い領域とオーバーラップする遺伝子をリストする。</p>
+<p>AWK コマンドで <span class="math inline">F_\text{st} &gt; 0.3</span> の行を抽出:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="at">-F</span><span class="st">'\t'</span> <span class="st">'$5 &gt; 0.3'</span> shamo_vs_other.windowed.weir.fst <span class="op">&gt;</span> shamo_vs_other.03.fst</span></code></pre></div>
 <div class="note">
 <p><code>.fst</code> ファイルの5列目 (<code>$5</code>) が <code>WEIGHTED_FST</code> なので、これが 0.3 より大きい行を抽出する。 この作業自体はエクセルでやっても R でやってもいい。</p>
@@ -725,7 +739,7 @@ window.Quarto = {
 縦軸がこの値以上の点の <code>snp</code> を表示する。
 </dd>
 <dd>
-今回は <span class="math inline">\(F_\text{st} &gt; 0.3\)</span> でやっているので <code>0.3</code> を指定
+今回は <span class="math inline">F_\text{st} &gt; 0.3</span> でやっているので <code>0.3</code> を指定
 </dd>
 <dt><code>annotateTop</code></dt>
 <dd>
@@ -745,7 +759,7 @@ window.Quarto = {
 </section>
 <section id="vcf-から候補遺伝子の周辺領域を抽出" class="level2">
 <h2 class="anchored" data-anchor-id="vcf-から候補遺伝子の周辺領域を抽出">VCF から候補遺伝子の周辺領域を抽出</h2>
-<p>前半の <span class="math inline">\(F_\text{st}\)</span> 解析で候補遺伝子で抽出した <em>ISPD</em> の周辺領域を SNP 単位で解析していく。</p>
+<p>前半の <span class="math inline">F_\text{st}</span> 解析で候補遺伝子で抽出した <em>ISPD</em> の周辺領域を SNP 単位で解析していく。</p>
 <section id="ispd-領域" class="level3">
 <h3 class="anchored" data-anchor-id="ispd-領域"><em>ISPD</em> 領域</h3>
 <p>NCBI で <a href="https://www.ncbi.nlm.nih.gov/gene/420591"><em>ISPD</em> のページ</a>を見ると、 2番染色体 (<code>NC_052533.1</code>) の 28184591..28296806 にあるらしい。</p>
@@ -760,7 +774,7 @@ window.Quarto = {
 </section>
 <section id="ハプロタイプ解析" class="level2">
 <h2 class="anchored" data-anchor-id="ハプロタイプ解析">ハプロタイプ解析</h2>
-<p>抽出した <em>ISPD</em> 周辺領域の VCF を手元にダウンロードして、 R で読み込む。 全領域を可視化するとプロットが横に潰れるので、<span class="math inline">\(F_\text{st}\)</span> が特に高い領域に絞っておく:</p>
+<p>抽出した <em>ISPD</em> 周辺領域の VCF を手元にダウンロードして、 R で読み込む。 全領域を可視化するとプロットが横に潰れるので、<span class="math inline">F_\text{st}</span> が特に高い領域に絞っておく:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>draw_haplotype_plot.R</strong></pre>
@@ -785,7 +799,7 @@ window.Quarto = {
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 </div>
 <section id="delta-allele-frequency-の計算と可視化" class="level3">
-<h3 class="anchored" data-anchor-id="delta-allele-frequency-の計算と可視化"><span class="math inline">\(\Delta\)</span> Allele frequency の計算と可視化</h3>
+<h3 class="anchored" data-anchor-id="delta-allele-frequency-の計算と可視化"><span class="math inline">\Delta</span> Allele frequency の計算と可視化</h3>
 <p>軍鶏とその他品種のアリル頻度の差を計算する。 ここは <u>VCF の形式によって方法が異なる</u>。 今回は <code>bcftools mpileup | bcftools call --ploidy 2</code> でバリアントコールした形式を想定している。</p>
 <p>この場合、あるアリルの遺伝子型が2本とも Reference と同じ (<code>REF/REF</code>) であれば <code>0/0</code>、 ヘテロで SNP を持つ場合 (<code>REF/ALT</code>) <code>0/1</code>、ホモで持つ場合 (<code>ALT/ALT</code>) <code>1/1</code> となる。</p>
 <p><code>ALT</code> 遺伝子型のアリル頻度を、<code>0/0</code> = 0, <code>0/1</code> = 0.5, <code>1/1</code> = 1 としてその平均をとって計算する:</p>
@@ -848,20 +862,20 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="pbs-の計算">PBS の計算</h2>
 <section id="原理" class="level3">
 <h3 class="anchored" data-anchor-id="原理">原理</h3>
-<p>2集団の <span class="math inline">\(F_\text{st}\)</span> では、得られるピークがどちらの集団のアリル頻度変化によるものかが区別できない。 そこで3集団目を追加し、<span class="math inline">\(F_\text{st}\)</span> を枝長とみなすことで特定の集団でアリル頻度が変化した領域を特定する手法が PBS (<u>P</u>opulation <u>B</u>ranch <u>S</u>tatistics) である。 (<a href="https://doi.org/10.1126/science.1190371">Yi et al.&nbsp;2010</a>)</p>
-<p>3集団 (A, B, C) のペアワイズで <span class="math inline">\(F_\text{st}\)</span> を算出して、各2集団間の枝長を求める:</p>
-<p><span class="math display">\[
+<p>2集団の <span class="math inline">F_\text{st}</span> では、得られるピークがどちらの集団のアリル頻度変化によるものかが区別できない。 そこで3集団目を追加し、<span class="math inline">F_\text{st}</span> を枝長とみなすことで特定の集団でアリル頻度が変化した領域を特定する手法が PBS (<u>P</u>opulation <u>B</u>ranch <u>S</u>tatistics) である。 (<a href="https://doi.org/10.1126/science.1190371">Yi et al.&nbsp;2010</a>)</p>
+<p>3集団 (A, B, C) のペアワイズで <span class="math inline">F_\text{st}</span> を算出して、各2集団間の枝長を求める:</p>
+<p><span class="math display">
 T = -\log{(1-F_\text{st})}
-\]</span></p>
-<p>各集団間の枝長を <span class="math inline">\(T_\text{AB}\)</span>, <span class="math inline">\(T_\text{BC}\)</span>, <span class="math inline">\(T_\text{CA}\)</span>, として、 例えば集団AのPBSを求めたければ、次のようにする:</p>
-<p><span class="math display">\[
+</span></p>
+<p>各集団間の枝長を <span class="math inline">T_\text{AB}</span>, <span class="math inline">T_\text{BC}</span>, <span class="math inline">T_\text{CA}</span>, として、 例えば集団AのPBSを求めたければ、次のようにする:</p>
+<p><span class="math display">
 PBS_\text{A} = \frac{T_\text{AB} + T_\text{CA} - T_\text{BC} }{2}
-\]</span></p>
+</span></p>
 </section>
 <section id="r-で実装" class="level3">
 <h3 class="anchored" data-anchor-id="r-で実装">R で実装</h3>
 <p>PBS を算出するソフトウェアはいくつかあるが (例えば <a href="https://scikit-allel.readthedocs.io/en/stable/">scikit-allel</a> や <a href="https://github.com/takuronkym/kpbs">kpbs</a>)、 ここでは VCFtools の出力をつかって R で PBS を計算する。</p>
-<p>まず、3集団の総当たりで算出した <span class="math inline">\(F_\text{st}\)</span> を読み込む。 ここでは仮に pop1、pop2、pop3 とする:</p>
+<p>まず、3集団の総当たりで算出した <span class="math inline">F_\text{st}</span> を読み込む。 ここでは仮に pop1、pop2、pop3 とする:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## パッケージの読み込み</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(conflicted)  <span class="co"># おまじない</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)   <span class="co"># データの操作用</span></span>
@@ -889,7 +903,7 @@ PBS_\text{A} = \frac{T_\text{AB} + T_\text{CA} - T_\text{BC} }{2}
 <span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(acc2chr, <span class="at">by =</span> <span class="st">"CHROM"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">chr =</span> readr<span class="sc">::</span><span class="fu">parse_integer</span>(chr, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"W"</span>, <span class="st">"Z"</span>, <span class="st">"Un"</span>, <span class="st">"MT"</span>))) <span class="sc">|&gt;</span></span>
 <span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(chr))</span></code></pre></div>
-<p>次に <span class="math inline">\(F_\text{st}\)</span> を枝長に変換する:</p>
+<p>次に <span class="math inline">F_\text{st}</span> を枝長に変換する:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>t_pop1_pop2 <span class="ot">=</span> fst_pop1_pop2 <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">t_pop1_pop2 =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> WEIGHTED_FST)) <span class="sc">|&gt;</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(CHROM, chr, BIN_START, BIN_END, t_pop1_pop2)</span>

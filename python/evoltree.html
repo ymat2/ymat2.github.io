@@ -111,8 +111,22 @@ gtag('js', new Date());
 gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -233,7 +247,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../bio/fst_hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="math inline">\(F_\text{st}\)</span> 解析ハンズオン</span></a>
+ <span class="menu-text"><span class="math inline">F_\text{st}</span> 解析ハンズオン</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -531,7 +545,7 @@ branch モデルや branch-site モデルに使う系統樹のマーキングを
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Model M1 is not rejected."</span>)</span></code></pre></div>
 <p><code>model.sites["BEB"]</code> には BEB法 (Bayes empirical Bayes法) により求められたサイトごとのパラメータが入っている。</p>
-<p><code>model.sites["BEB"]["p2"]</code> はそのサイトが <span class="math inline">\(\omega &gt; 1\)</span> で正の選択下にある事後確率であり、 一般的にはこの事後確率が0.95や0.99を超えていた場合に正の選択が働いたサイトとする。</p>
+<p><code>model.sites["BEB"]["p2"]</code> はそのサイトが <span class="math inline">\omega &gt; 1</span> で正の選択下にある事後確率であり、 一般的にはこの事後確率が0.95や0.99を超えていた場合に正の選択が働いたサイトとする。</p>
 </section>
 <section id="branch-モデル" class="level2">
 <h2 class="anchored" data-anchor-id="branch-モデル">Branch モデル</h2>
@@ -550,7 +564,7 @@ branch モデルや branch-site モデルに使う系統樹のマーキングを
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>tree.mark_tree(node_ids, marks<span class="op">=</span>[<span class="st">'#1'</span>]<span class="op">*</span><span class="bu">len</span>(node_ids))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tree.write())</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ((Hylobates_lar,(Gorilla_gorilla,Pan_troglodytes) #1),Papio_cynocephalus);</span></span></code></pre></div>
-<p><code>b_free</code> vs <code>M0</code> で特定の枝で <span class="math inline">\(\omega\)</span> が異なるかを検定:</p>
+<p><code>b_free</code> vs <code>M0</code> で特定の枝で <span class="math inline">\omega</span> が異なるかを検定:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tree.run_model(<span class="st">"b_free"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tree.run_model(<span class="st">"M0"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>

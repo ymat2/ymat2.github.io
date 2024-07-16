@@ -14,8 +14,8 @@ format:
   博士課程1年
 
 連絡先 / Contacts
-: yuki.matsuda.m10あっとgmail.com
-: s249780wあっとst.go.tuat.ac.jp
+: yuki.matsuda.m10![](./images/share/atmark.svg){height="18"}gmail.com
+: s249780w![](./images/share/atmark.svg){height="18"}st.go.tuat.ac.jp
 
 外部リンク / Links
 : <a rel="me" href="https://github.com/ymat2/" title="GitHub">

@@ -7,13 +7,14 @@ $else$
 $endif$
 $endif$
 
+$if(date)$
+<p class="date">最終更新日: $date$</p>
+$endif$
+
 $for(author)$
 <p class="author">$author$</p>
 $endfor$
 
-$if(date)$
-<p class="date">$date$</p>
-$endif$
 $if(abstract)$
 <div class="abstract">
 <div class="abstract-title">$abstract-title$</div>

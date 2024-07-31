@@ -2,6 +2,7 @@
 format:
   html:
     title: "Slides"
+    date: ""
 ---
 
 

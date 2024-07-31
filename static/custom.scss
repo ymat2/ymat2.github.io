@@ -10,6 +10,7 @@ $black: #444 !default;
 $grey1: #f1f1f1 !default;
 $grey2: #f4f4f4 !default;
 $grey3: #ccc !default;
+$grey4: #888 !default;
 $color-link: #4575B4 !default;
 
 $callout-color-note: #0072B2cc;
@@ -302,4 +303,11 @@ div {
   .news dl dd::before {
     content: none;
   }
+}
+
+/*-- Other classes --*/
+
+.date {
+  color: $grey4;
+  font-size: .85em;
 }

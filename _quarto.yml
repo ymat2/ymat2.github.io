@@ -47,6 +47,8 @@ format:
     toc: false
     toc-location: body
     toc-title: "Table Of Contents:"
+    date: last-modified
+    date-format: YYYY-MM-DD
     link-external-icon: false
     link-external-newwindow: true
     code-copy: false

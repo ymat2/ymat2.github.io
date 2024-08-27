@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Git/GitHub – Yuki MATSUDA</title>
+<title>Windows 開発環境 – Yuki MATSUDA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -167,7 +167,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Git/GitHub</h1>
+          <h1 class="quarto-secondary-nav-title">Windows 開発環境</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -291,13 +291,13 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Command Line Tools</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cli/apt.html" class="sidebar-item-text sidebar-link">
@@ -306,7 +306,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cli/git.html" class="sidebar-item-text sidebar-link active">
+  <a href="../cli/git.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Git/GitHub</span></a>
   </div>
 </li>
@@ -393,16 +393,16 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Windows</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../win/0-dev-win.html" class="sidebar-item-text sidebar-link">
+  <a href="../win/0-dev-win.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Windows 開発環境</span></a>
   </div>
 </li>
@@ -472,200 +472,183 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header">
-<h1 class="title d-none d-lg-block display-7">Git/GitHub</h1>
+<h1 class="title d-none d-lg-block display-7">Windows 開発環境</h1>
 
 
 </header>
 
 
-<p><img height="20" width="20" src="https://cdn.simpleicons.org/git/F05032" style="vertical-align: text-bottom;"> <a href="https://git-scm.com/" class="uri">https://git-scm.com/</a></p>
-<p><img height="20" width="20" src="https://cdn.simpleicons.org/github/181717" style="vertical-align: text-bottom;"> <a href="https://github.co.jp/" class="uri">https://github.co.jp/</a></p>
-<section id="基本操作" class="level2">
-<h2 class="anchored" data-anchor-id="基本操作">基本操作</h2>
-<p>これから使い始める人向けスライド:</p>
-<ul>
-<li><a href="../slides/git-circle/git-vol1.html">Git 基本操作① — Git と GitHubを使い始める</a></li>
-<li><a href="../slides/git-circle/git-vol2.html">Git 基本操作② — <code>fetch</code>, <code>merge</code>, <code>pull</code></a></li>
-</ul>
-<section id="新しいリポジトリの作成" class="level3">
-<h3 class="anchored" data-anchor-id="新しいリポジトリの作成">新しいリポジトリの作成</h3>
-<ol type="1">
-<li><p>GitHub のサイト右上の “+” ボタンから “New repository” を選択し、“Create repository” する。</p></li>
-<li><p>手元の PC にローカルリポジトリをつくる:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> new_repository</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> new_repository</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div></li>
-<li><p>ファイルを <code>add</code> して <code>commit</code> してもいいし、空の <code>commit</code> をしてもいい:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## ファイルをつくってadd&amp;commit</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Hello, Github"</span> <span class="op">&gt;</span> README.md</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">## コミットメッセージを添える</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initial commit"</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">## 空のコミットでもいい</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--allow-empty</span> <span class="at">-m</span> <span class="st">":coffee: Create repository"</span></span></code></pre></div></li>
-<li><p>リモートリポジトリを紐づけて <code>push</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span>        <span class="co"># 何も表示されない</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">## HTTP の場合</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/<span class="pp">*</span>username<span class="pp">*</span>/<span class="pp">*</span>new_repository<span class="pp">*</span>.git</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">## SSH の場合</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:<span class="pp">*</span>username<span class="pp">*</span>/<span class="pp">*</span>new_repository<span class="pp">*</span>.git</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span>        <span class="co"># リモートリポジトリが表示されることを確認</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div>
-<p>Private リポジトリの場合、 SSH で紐付けしないと下り (<code>fetch</code>, <code>pull</code>) のときもパスワードを要求される。</p></li>
-</ol>
-</section>
-<section id="手元の変更をリモートリポジトリに反映" class="level3">
-<h3 class="anchored" data-anchor-id="手元の変更をリモートリポジトリに反映">手元の変更をリモートリポジトリに反映</h3>
-<div class="note">
-<p><strong>基本</strong>: <code>git add</code> → <code>git commit</code> → <code>git push</code></p>
+<section id="はじめに" class="level2">
+<h2 class="anchored" data-anchor-id="はじめに">はじめに</h2>
+<p>Windows で Linux や Mac と同じようにコマンドラインツールを使う場合、 <a href="../win/wsl.html">WSL (Windows Subsystem for Linux)</a> を使うのが便利。</p>
+<p>一方、WSL は Windows 上で Linux ディストリビューションを利用できて便利な反面、 VSCode でリモート開発を使おうとすると不便があったり、 <a href="../win/wsl-disk-space.html">ディスクスペースを食いつぶす問題</a>があったりする。</p>
+<p>それを避けて Linux 系の作業はリモートマシンでやる、とした際に、 手元の Windows でもある程度コマンドラインの環境を整えたい、というときの Tips。 (私も試行錯誤中なので変わるかもしれない。)</p>
+<div class="warn">
+<p>デスクトップを OneDrive 下に置く設定は無効にしておいた方が CUI 操作のうえでは安全。</p>
 </div>
-<ol type="1">
-<li><p>手元でファイルをいじって変更を確認:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Hello, Github"</span> <span class="op">&gt;</span> README.md</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status   <span class="co"># README.md が Changes not staged for commit: に表示される。</span></span></code></pre></div></li>
-<li><p>変更したファイルをインデックスに登録:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status     <span class="co"># README.md が Changes to be committed: に表示される。</span></span></code></pre></div></li>
-<li><p>変更をコミット:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"modified hoge.txt"</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status   <span class="co"># nothing to commit, working tree clean となる。</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log      <span class="co"># コミットが表示される。</span></span></code></pre></div></li>
-<li><p>リモートリポジトリへ <code>push</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div></li>
-</ol>
 </section>
-<section id="リモートリポジトリの変更を手元に反映" class="level3">
-<h3 class="anchored" data-anchor-id="リモートリポジトリの変更を手元に反映">リモートリポジトリの変更を手元に反映</h3>
-<div class="note">
-<p><strong>基本</strong>: <code>git fetch</code> → <code>git merge</code> もしくは <code>git pull</code></p>
-</div>
+<section id="powershell" class="level2">
+<h2 class="anchored" data-anchor-id="powershell">PowerShell</h2>
+<p>基本的には Microsoft 製の CUI である <a href="https://learn.microsoft.com/ja-jp/powershell/">PowerShell</a> での作業となる。 UNIX でいう <code>sudo</code> にあたる操作は、PowerShell を「管理者として開く」ことで実行する。</p>
+<section id="コマンドレット" class="level3">
+<h3 class="anchored" data-anchor-id="コマンドレット">コマンドレット</h3>
+<p>PowerShellで実行できるネイティブコマンドはコマンドレットと呼ばれており、 “動詞-名詞”の名前で登録されている。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Get-Command</span>  <span class="co"># すべてのコマンドレットを取得</span></span></code></pre></div>
+</section>
+<section id="エイリアス" class="level3">
+<h3 class="anchored" data-anchor-id="エイリアス">エイリアス</h3>
+<p>例えばディレクトリを移るコマンドは <code>Set-Location</code> だが、要は <code>cd</code> と同じ。 実際、<code>Set-Location</code> には <code>sl</code>, <code>cd</code>, <code>chdir</code> の3つのエイリアスが用意されている。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> Set-Location</span></code></pre></div>
+<p>他にもエイリアスを調べるには <code>Get-Alias</code></p>
+</section>
+<section id="linux-コマンド" class="level3">
+<h3 class="anchored" data-anchor-id="linux-コマンド">Linux コマンド</h3>
+<p>WSL を有効化していれば、<code>wsl</code> に続ける形で Linux コマンドを実行可能:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> wget</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> NG</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">wsl</span> which wget</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> 実行可能</span></code></pre></div>
+</section>
+<section id="profile" class="level3">
+<h3 class="anchored" data-anchor-id="profile">PROFILE</h3>
 <ul>
-<li><p>リモートブランチの状態を手元のファイルまで一気に反映:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre></div></li>
-<li><p>リモートブランチの変更を一度ローカルのアップストリームブランチに反映させてから手元のファイルに反映:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--all</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge</span></code></pre></div></li>
+<li><a href="https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4" class="uri">https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4</a></li>
+<li><a href="https://qiita.com/smicle/items/0ca4e6ae14ea92000d18" class="uri">https://qiita.com/smicle/items/0ca4e6ae14ea92000d18</a></li>
 </ul>
-</section>
-</section>
-<section id="gitignore" class="level2">
-<h2 class="anchored" data-anchor-id="gitignore"><code>.gitignore</code></h2>
-<p><a href="https://docs.github.com/ja/get-started/getting-started-with-git/ignoring-files" class="uri">https://docs.github.com/ja/get-started/getting-started-with-git/ignoring-files</a></p>
-<p>リポジトリのルートディレクトリに <code>.gitignore</code> を配置して、 Git の管理から除外するファイルを制御する:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 場所を問わず特定のファイル・ディレクトリを除外</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hoge</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">## .gitignore が置かれたリポジトリの特定のファイル・ディレクトリを除外</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">/hoge</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">## 場所を問わず特定のディレクトリの除外</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">dir/</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">## .gitignore が置かれたリポジトリの特定のディレクトリを除外</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="ex">/dir/</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">## 特定のファイル・ディレクトリのみ追跡</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="ex">*</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="ex">!hoge</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">## ワイルドカードによる指定</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="ex">/*.py</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="ex">/*.Rproj</span></span></code></pre></div>
-<p><code>~/.config/git/ignore</code> でグローバルに除外対象を設定:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.DS_Store</span></span></code></pre></div>
-<p>すでに追跡しているファイルを除外するにはトラッキングを外す:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> <span class="op">&lt;</span>FILE_NAME<span class="op">&gt;</span></span></code></pre></div>
-</section>
-<section id="ssh-接続" class="level2">
-<h2 class="anchored" data-anchor-id="ssh-接続">SSH 接続</h2>
-<p><a href="https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/about-ssh" class="uri">https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/about-ssh</a></p>
-<p>手順:</p>
-<ul>
-<li><a href="../cli/ssh.html">SSH キーを生成する。</a></li>
-<li><a href="https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">github に公開キーを登録する。</a></li>
-<li><code>ssh -T git@github.com</code> で接続確認。</li>
-</ul>
-<section id="ssh--t-の際に-permission-denied-となる場合" class="level3">
-<h3 class="anchored" data-anchor-id="ssh--t-の際に-permission-denied-となる場合"><code>ssh -T</code> の際に <code>permission denied</code> となる場合</h3>
-<p><a href="https://docs.github.com/ja/authentication/troubleshooting-ssh/using-ssh-over-the-https-port" class="uri">https://docs.github.com/ja/authentication/troubleshooting-ssh/using-ssh-over-the-https-port</a></p>
-<p><code>ssh-keygen</code> の際にファイル名を変更していると認証がうまくいかない。 <code>~/.ssh/config</code> に以下を追記して解決。</p>
+<p>PowerShell でも Linux でいう <code>.profile</code> とか <code>.bashrc</code> を設定したい。 設定用のファイルは <code>$PROFILE</code> で決まっており、スコープに応じて以下がある:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">$PROFILE</span><span class="ex">.AllUsersAllHosts</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">$PROFILE</span><span class="ex">.AllUsersCurrentHost</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">$PROFILE</span><span class="ex">.CurrentUserAllHosts</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Users\_username_\OneDrive\ドキュメント\WindowsPowerShell\profile.ps1</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">$PROFILE</span><span class="ex">.CurrentUserCurrentHost</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Users\_username_\OneDrive\ドキュメント\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</span></span></code></pre></div>
+<p>CurrentUserCurrentHost が一番安全だけど、 <code>C:\Users\_username_\OneDrive\ドキュメント\</code> とかいう諸悪の根源ディレクトリにおきたくない。</p>
+<p>ひとまず <code>$PROFILE.AllUsersAllHosts</code> に読み込みのみの PROFILE を置いて、 <code>$HOME</code> のスクリプトを読む、という設定にしてみる:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>~/.ssh/config</strong></pre>
+<pre><strong>$PROFILE.AllUsersAllHosts</strong></pre>
 </div>
-<div class="sourceCode" id="cb13" data-filename="~/.ssh/config"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Host github github.com</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  HostName github.com</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  User git</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  IdentityFile ~/.ssh/id_rsa_git    # Github 用の秘密鍵</span></code></pre></div>
+<div class="sourceCode" id="cb5" data-filename="$PROFILE.AllUsersAllHosts"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">$USER_PROFILE</span><span class="ex">=</span><span class="st">"</span><span class="va">$HOME</span><span class="st">\profile.ps1"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">(</span><span class="ex">Test-Path</span> <span class="va">$USER_PROFILE</span><span class="kw">)</span> <span class="ex">{.</span> <span class="va">$USER_PROFILE</span>}</span></code></pre></div>
 </div>
-</section>
-</section>
-<section id="git-submodule" class="level2">
-<h2 class="anchored" data-anchor-id="git-submodule"><code>git submodule</code></h2>
-<p>外部のリポジトリを自分のリポジトリのサブディレクトリとして取り込む仕組み。</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule add https://github.com/<span class="op">&lt;</span>username<span class="op">&gt;</span>/<span class="op">&lt;</span>repository<span class="op">&gt;</span>.git <span class="op">&lt;</span>directory<span class="op">&gt;</span></span></code></pre></div>
-<section id="submodule-を最新版に更新する" class="level3">
-<h3 class="anchored" data-anchor-id="submodule-を最新版に更新する">submodule を最新版に更新する</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule foreach git pull</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="op">&lt;</span>submodule<span class="op">&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"updated submodule"</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># git push</span></span></code></pre></div>
-</section>
-<section id="サブモジュールを含むリポジトリを-clone-するとき" class="level3">
-<h3 class="anchored" data-anchor-id="サブモジュールを含むリポジトリを-clone-するとき">サブモジュールを含むリポジトリを clone するとき</h3>
-<p>普通に <code>clone</code> してくるとサブモジュールの中身は空になっている。 <code>clone</code> する際に、</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--recurse-sebmodules</span> <span class="op">&lt;</span>repository<span class="op">&gt;</span></span></code></pre></div>
-<p>としてサブモジュールの中身ごと落としてくるか、親リポジトリをクローンしたあと、</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule update <span class="at">--init</span></span></code></pre></div>
-<p>してサブモジュールの中身を取得する。</p>
-</section>
-</section>
-<section id="そのほかのコマンド" class="level2">
-<h2 class="anchored" data-anchor-id="そのほかのコマンド">そのほかのコマンド</h2>
+<p>この PROFILE でファイルを実行する (Linux でいう <code>source</code>) には 実行権限の付与が必要:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-ExecutionPolicy</span> <span class="at">-ExecutionPolicy</span> RemoteSigned</span></code></pre></div>
+<p>ひとまず <code>touch</code> と <code>which</code> を定義:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>$HOME\profile.ps1</strong></pre>
+</div>
+<div class="sourceCode" id="cb7" data-filename="$HOME\profile.ps1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-Alias</span> touch New-Item</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> which()</span> <span class="ex">{</span><span class="kw">(</span><span class="ex">Get-Command</span> <span class="va">$args</span><span class="kw">)</span><span class="ex">.Path}</span></span></code></pre></div>
+</div>
 <ul>
-<li><p>直前の操作を修正:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 直前のミスコミットを修正</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--amend</span> <span class="at">-m</span> <span class="st">"hogehoge"</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">## commitの取り消し</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--soft</span> HEAD^</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">## addの取り消し</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> file_name</span></code></pre></div></li>
-<li><p>すでにリポジトリに登録されたファイルを削除:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> <span class="pp">*</span>file<span class="pp">*</span></span></code></pre></div></li>
-<li><p>ファイル名を変更:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> mv file file_renamed</span></code></pre></div></li>
-<li><p><code>git stash</code></p>
-<p><code>git merge</code> や <code>git pull</code> の際、コミットするほどでもない手元の変更を一時的に退避するために使う。</p>
-<p>working directory と staging area の変更を退避する:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash <span class="at">-u</span>        <span class="co"># -u: Untrackedなファイルも含める</span></span></code></pre></div>
-<p>退避した変更を確認:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash list</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># stash@{0}: WIP on main: d426bc4 Fix a bug</span></span></code></pre></div>
-<p><code>git merge</code> や <code>git pull</code> でリモートの変更を手元に反映した後、 退避していた変更を戻す:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash apply stash@{0} <span class="at">--index</span></span></code></pre></div>
-<p><code>--index</code> オプションなしだと、もともとステージングされていた変更も <code>add</code> 前の扱いで戻ってくる。</p>
-<p>退避していた変更を消す:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash drop stash@{0}    <span class="co"># 退避内容を指定して削除</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash pop stash@{0}     <span class="co"># 退避内容を指定してブランチに戻すとともに削除</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash clear                     <span class="co"># 退避内容を全て削除</span></span></code></pre></div></li>
-<li><p>リポジトリ名を変更:</p>
-<ul>
-<li><p>リモート側の操作： リポジトリのページ &gt; “Setting” &gt; “Rename” から変更</p></li>
-<li><p>手元の操作：ローカルリポジトリの名前と <code>.git/config</code> を書き換える</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> repository_name_before repository_name_after</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="at">-e</span> <span class="st">'s/repository_name_before/repository_name_after/g'</span> .git/config</span></code></pre></div></li>
-</ul></li>
+<li>引数をともなう Alias の設定は <code>function</code> を使う。</li>
+<li>既存のコマンドの上書きはできない？</li>
 </ul>
+</section>
+</section>
+<section id="chocolatey" class="level2">
+<h2 class="anchored" data-anchor-id="chocolatey">chocolatey</h2>
+<p><a href="https://chocolatey.org/install" class="uri">https://chocolatey.org/install</a></p>
+<p>Windows のパッケージマネージャ。 以降のコマンドラインツールを用意する際に、あると便利。</p>
+<section id="chocolatey-のインストール" class="level3">
+<h3 class="anchored" data-anchor-id="chocolatey-のインストール">chocolatey のインストール</h3>
+<p>PowerShell を<strong>管理者として開く</strong>。その後下記のインストールコマンドを実行:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-ExecutionPolicy</span> Bypass <span class="at">-Scope</span> Process <span class="at">-Force</span><span class="kw">;</span> <span class="ex">[System.Net.ServicePointManager]::SecurityProtocol</span> = <span class="pp">[</span><span class="ss">System.Net.ServicePointManager</span><span class="pp">]</span>::SecurityProtocol <span class="at">-bor</span> 3072<span class="kw">;</span> <span class="ex">iex</span> <span class="er">(</span><span class="kw">(</span><span class="ex">New-Object</span> System.Net.WebClient<span class="kw">)</span><span class="ex">.DownloadString</span><span class="er">(</span><span class="st">'https://community.chocolatey.org/install.ps1'</span><span class="kw">))</span></span></code></pre></div>
+</section>
+<section id="basic-commands" class="level3">
+<h3 class="anchored" data-anchor-id="basic-commands">Basic commands</h3>
+<dl>
+<dt><code>choco install/uninstall パッケージ</code></dt>
+<dd>
+パッケージのインストール/アンインストール (管理者としての実行が必要)
+</dd>
+<dt><code>choco search 検索ワード</code></dt>
+<dd>
+パッケージの検索
+</dd>
+<dt><code>choco list</code></dt>
+<dd>
+インストール済みパッケージの表示
+</dd>
+<dt><code>choco upgrade</code></dt>
+<dd>
+パッケージの更新
+</dd>
+</dl>
+</section>
+<section id="packages" class="level3">
+<h3 class="anchored" data-anchor-id="packages">Packages</h3>
+<p>rsync、vi、SSH あたりは入れておいて損はない:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">choco</span> install rsync vi ssh</span></code></pre></div>
+<p>(SSH は一応最初から入ってるやつがある。)</p>
+</section>
+</section>
+<section id="git" class="level2">
+<h2 class="anchored" data-anchor-id="git">Git</h2>
+<p>プロジェクトのバージョン管理のためにも必須。 インストールは <a href="../win/git4win.html">Git for Windows</a> を参照。</p>
+<p>もしくは上で用意した chocolatey で入れてもいい:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">choco</span> install git</span></code></pre></div>
+</section>
+<section id="r" class="level2">
+<h2 class="anchored" data-anchor-id="r">R</h2>
+<p><a href="https://cran.r-project.org/bin/windows/base/" class="uri">https://cran.r-project.org/bin/windows/base/</a></p>
+<p>VSCode で使うには PATH を教えてあげる必要がある:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>settings.json</strong></pre>
+</div>
+<div class="sourceCode" id="cb11" data-filename="settings.json"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rpath.windows"</span><span class="fu">:</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">R</span><span class="ch">\\</span><span class="st">R-4.4.0</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">x64</span><span class="ch">\\</span><span class="st">R.exe"</span><span class="fu">,</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rterm.windows"</span><span class="fu">:</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">R</span><span class="ch">\\</span><span class="st">R-4.4.0</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">x64</span><span class="ch">\\</span><span class="st">Rterm.exe"</span><span class="fu">,</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+</div>
+</section>
+<section id="python" class="level2">
+<h2 class="anchored" data-anchor-id="python">Python</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/ja-jp/windows/python/beginners" class="uri">https://learn.microsoft.com/ja-jp/windows/python/beginners</a></li>
+<li><a href="https://www.python.org/downloads/windows/" class="uri">https://www.python.org/downloads/windows/</a></li>
+</ul>
+<p><a href="../python/0_install.html#python-のインストール">Python 環境構築 — Windows</a> を参照</p>
+</section>
+<section id="統合開発環境" class="level2">
+<h2 class="anchored" data-anchor-id="統合開発環境">統合開発環境</h2>
+<p>好きなやつを入れる:</p>
+<ul>
+<li><a href="https://code.visualstudio.com/Download">VSCode</a></li>
+<li><a href="https://posit.co/download/rstudio-desktop/">Rstudio</a></li>
+<li><a href="https://github.com/posit-dev/positron">Positron</a></li>
+</ul>
+</section>
+<section id="quarto" class="level2">
+<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
+<p><a href="https://quarto.org/docs/get-started/" class="uri">https://quarto.org/docs/get-started/</a></p>
+<p>Windows 用のやつを入れてあげる。 (R に付属しているやつを使うことはできなさそう?)</p>
+<p>PDF のレンダリング用に tex を入れてやる (c.f. <code>~/AppData/Roaming/TinyTeX/</code>):</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code></pre></div>
+<section id="pdf-で日本語フォントを使うには" class="level3">
+<h3 class="anchored" data-anchor-id="pdf-で日本語フォントを使うには">PDF で日本語フォントを使うには?</h3>
+<p>Quarto PDF で日本語フォントを使う場合、 デフォルトでは<a href="https://github.com/trueroad/HaranoAjiFonts">原ノ味フォント</a>が使われるらしい。 Ubuntu とかは最初のインストールでプリセットされていたはずだが、 Windows の Quarto では原ノ味含め、日本語フォントがプリセットされていないっぽい。</p>
+<p>そこで、<code>tlmgr</code> を使ってフォントをインストールしてやることで使えるようになる:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> .\AppData\Roaming\TinyTeX\bin\windows\tlmgr.bat <span class="fu">install</span> haranoaji</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Locale</span> <span class="st">'Japanese_Japan.932'</span> is unsupported, and may crash the interpreter.</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> package repository https://ftp.kddilabs.jp/CTAN/systems/texlive/tlnet/ <span class="er">(</span><span class="ex">verified</span><span class="kw">)</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[1/1,</span> <span class="pp">??</span>:<span class="pp">??</span>/<span class="pp">??</span>:<span class="pp">??</span>] install: haranoaji <span class="pp">[</span><span class="ss">25570k</span><span class="pp">]</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Locale</span> <span class="st">'Japanese_Japan.932'</span> is unsupported, and may crash the interpreter.</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="ex">running</span> mktexlsr ...</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span> <span class="ex">running</span> mktexlsr.</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> package log updated: C:/Users/kokep/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr.log</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> command log updated: C:/Users/kokep/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr-commands.log</span></code></pre></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

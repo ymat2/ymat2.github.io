@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Yuki MATSUDA - Vi/Vim</title>
+<title>Vi/Vim – Yuki MATSUDA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -77,7 +77,7 @@ gtag('js', new Date());
 gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
 </script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -92,7 +92,7 @@ gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
    });
 }}});
   </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -129,13 +129,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
           <h1 class="quarto-secondary-nav-title">Vi/Vim</h1>
         </a>     
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -173,9 +173,9 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Bioinformatics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -257,9 +257,9 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Command Line Tools</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -306,24 +306,24 @@ window.Quarto = {
  <span class="menu-text">Visual Studio Code</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/wsl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/0_install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python 環境構築</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/argparse.html" class="sidebar-item-text sidebar-link">
@@ -344,12 +344,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python/install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 環境構築</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../python/package.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python パッケージ作成</span></a>
   </div>
@@ -365,13 +359,49 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
- <span class="menu-text">Web 開発</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Windows</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/0-dev-win.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Windows 開発環境</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/git4win.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git for Windows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/wsl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WSL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WSL2 Disk space</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Web 開発</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../site/gollum.html" class="sidebar-item-text sidebar-link">
@@ -419,13 +449,13 @@ window.Quarto = {
 <section id="最低限覚えておくこと" class="level2">
 <h2 class="anchored" data-anchor-id="最低限覚えておくこと">最低限覚えておくこと</h2>
 <ul>
-<li><p>起動時はノーマルモード (編集はできない) 。</p></li>
-<li><p>カーソル移動は (矢印キーも使えるけど) 基本 <kbd>h</kbd>: 左, <kbd>j</kbd>: 下, <kbd>k</kbd>: 上, <kbd>l</kbd>: 右 でおこなう。</p></li>
-<li><p>編集は <kbd>i</kbd> でインサートモード <code>--INSERT--</code> に入って行う。 インサートモードではカーソル移動はなるべくしない。</p></li>
-<li><p>インサートモードから抜けるには <kbd>esc</kbd> や <kbd>control</kbd><kbd>C</kbd></p></li>
-<li><p><kbd>:w</kbd> で変更を保存、<kbd>:q</kbd> で終了</p></li>
-<li><p><kbd>:wq</kbd> や <kbd>ZZ</kbd> で保存して終了</p></li>
-<li><p><kbd>:q!</kbd> で保存せずに強制終了</p></li>
+<li>起動時はノーマルモード (編集はできない)。</li>
+<li>カーソル移動は (矢印キーも使えるけど) 基本 <kbd>h</kbd>: 左, <kbd>j</kbd>: 下, <kbd>k</kbd>: 上, <kbd>l</kbd>: 右 でおこなう。</li>
+<li>編集は <kbd>i</kbd> でインサートモード <code>--INSERT--</code> に入って行う。 インサートモードではカーソル移動はなるべくしない。</li>
+<li>インサートモードから抜けるには <kbd>esc</kbd> や <kbd>control</kbd><kbd>C</kbd></li>
+<li><kbd>:w</kbd> で変更を保存、<kbd>:q</kbd> で終了</li>
+<li><kbd>:wq</kbd> や <kbd>ZZ</kbd> で保存して終了</li>
+<li><kbd>:q!</kbd> で保存せずに強制終了</li>
 </ul>
 </section>
 <section id="設定" class="level2">
@@ -469,11 +499,11 @@ window.Quarto = {
 <kbd>I</kbd> でインサートモードへ
 </dd>
 <dd>
-編集したら <kbd>esc</kbd> や <kbd>controlC</kbd> でノーマルモードへ
+編集したら <kbd>esc</kbd> や <kbd>control</kbd><kbd>C</kbd> でノーマルモードへ
 </dd>
 <dt>テキストの追加</dt>
 <dd>
-編集行まで移動 (行の上ならどの位置でもOK)
+編集行まで移動 (行の上ならどの位置でも OK)
 </dd>
 <dd>
 <kbd>A</kbd> でインサートモードへ。カーソルは末尾に移る。
@@ -496,7 +526,7 @@ window.Quarto = {
 </dd>
 <dt>モーション + カウント</dt>
 <dd>
-<kbd>w</kbd>, <kbd>e</kbd> は単体でカーソル移動コマンドとして機能する。
+<kbd>w</kbd>、<kbd>e</kbd> は単体でカーソル移動コマンドとして機能する。
 </dd>
 <dd>
 数字と組み合わせて使用できる。
@@ -557,7 +587,7 @@ window.Quarto = {
 </dd>
 <dt>ファイル内の移動</dt>
 <dd>
-<kbd>controlG</kbd> で行番号を取得
+<kbd>control</kbd><kbd>G</kbd> で行番号を取得
 </dd>
 <dd>
 <kbd>G</kbd> でファイルの最下行へ
@@ -581,7 +611,7 @@ window.Quarto = {
 </dd>
 <dt>置換</dt>
 <dd>
-<kbd>:s/old/new/g</kbd> でカーソル行の”old”を”new”に置換
+<kbd>:s/old/new/g</kbd> でカーソル行の “old” を “new” に置換
 </dd>
 <dd>
 <kbd>:#,#s/old/new/g</kbd> で置換開始行と終了行を指定
@@ -597,11 +627,11 @@ window.Quarto = {
 <kbd>:!</kbd> に続けてコマンドを実行できる。(e.x. <kbd>:!pwd</kbd>)
 </dd>
 <dd>
-Enterで終了
+Enter で終了
 </dd>
 <dt>範囲選択</dt>
 <dd>
-<kbd>v</kbd> でヴィジュアルモードに移行
+<kbd>v</kbd> でビジュアルモードに移行
 </dd>
 <dd>
 カーソルキーを移動して範囲選択
@@ -635,7 +665,7 @@ Enterで終了
 </dd>
 <dt>コピー</dt>
 <dd>
-<kbd>v</kbd> でヴィジュアルモードに移行して範囲選択 → <kbd>y</kbd> でコピー
+<kbd>v</kbd> でビジュアルモードに移行して範囲選択 → <kbd>y</kbd> でコピー
 </dd>
 <dd>
 <kbd>p</kbd> でペースト
@@ -686,10 +716,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -731,7 +766,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

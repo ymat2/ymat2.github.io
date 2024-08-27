@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Yuki MATSUDA - GWAS</title>
+<title>GWAS – Yuki MATSUDA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -111,7 +111,7 @@ gtag('js', new Date());
 gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
 </script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -126,7 +126,7 @@ gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
    });
 }}});
   </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -163,13 +163,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">GWAS</h1>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">GWAS — <u>G</u>enome <u>W</u>ide <u>A</u>ssociation <u>S</u>tudy</h1>
         </a>     
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -207,9 +207,9 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Bioinformatics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -291,9 +291,9 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Command Line Tools</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -340,24 +340,24 @@ window.Quarto = {
  <span class="menu-text">Visual Studio Code</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/wsl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/0_install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python 環境構築</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/argparse.html" class="sidebar-item-text sidebar-link">
@@ -378,12 +378,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python/install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 環境構築</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../python/package.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python パッケージ作成</span></a>
   </div>
@@ -399,13 +393,49 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
- <span class="menu-text">Web 開発</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Windows</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/0-dev-win.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Windows 開発環境</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/git4win.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git for Windows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/wsl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WSL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WSL2 Disk space</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Web 開発</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../site/gollum.html" class="sidebar-item-text sidebar-link">
@@ -442,13 +472,12 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header">
-<h1 class="title d-none d-lg-block display-7">GWAS</h1>
+<h1 class="title d-none d-lg-block display-7">GWAS — <u>G</u>enome <u>W</u>ide <u>A</u>ssociation <u>S</u>tudy</h1>
 
 
 </header>
 
 
-<p><u>G</u>enome <u>W</u>ide <u>A</u>ssociation <u>S</u>tudy</p>
 <p>疾患や特定の表現型などと統計的に相関する遺伝子変異を網羅的に探索する手法。 <a href="https://doi.org/10.1038/ng1047">2002年の理研の報告</a>が初出らしい。</p>
 <p>最近のレビュー: <a href="https://doi.org/10.1038/s43586-021-00056-9">Uffelmann et al.&nbsp;2021</a></p>
 <section id="softwares" class="level2">
@@ -469,8 +498,7 @@ window.Quarto = {
 <section id="pca-主成分分析-をおこなう" class="level3">
 <h3 class="anchored" data-anchor-id="pca-主成分分析-をおこなう">PCA (主成分分析) をおこなう</h3>
 <div class="note">
-<p>GWAS では SNP 以外の変数を共変量として組み込むことがある。 集団構造の主成分はこの典型で、 例えば平均的に体サイズの大きい集団Aと小さい集団Bがいるときに、 本当は体サイズと無関係だが集団AとBで分化している座位を 体サイズ関連の SNP として検出してしまう可能性がある。</p>
-<p>このような偽陽性を補正するために、 集団構造のデータを共変量として組み込む。<br> (<a href="https://doi.org/10.1038/ng1847">Price et al.&nbsp;2006</a>)</p>
+<p>GWAS では SNP 以外の変数を共変量として組み込むことがある。 集団構造の主成分はこの典型で、 例えば平均的に体サイズの大きい集団 A と小さい集団 B がいるときに、 本当は体サイズと無関係だが集団 A と B で分化している座位を 体サイズ関連の SNP として検出してしまう可能性がある。 このような偽陽性を補正するために、 集団構造のデータを共変量として組み込む。 (<a href="https://doi.org/10.1038/ng1847">Price et al.&nbsp;2006</a>)</p>
 </div>
 <p>まず連鎖不平衡にあるアリルを刈り取る:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">plink2</span> <span class="at">--vcf</span> file.snp.vcf.gz <span class="dt">\</span></span>
@@ -537,14 +565,14 @@ window.Quarto = {
 <p>この通り実行すると、 <code>file.gwas.$phrno-name.glm.$model.hybrid</code> と <code>file.gwas.$phrno-name.glm.$model.hybrid.adjusted</code> の2種類のファイルができる。</p>
 <ul>
 <li><code>--pheno</code>: 上で作った表現型ファイル</li>
-<li><code>--pheno-name</code>: 使用する表現型の列名 (<code>--pheno-col-nums</code> でれ番号での指定も可)</li>
+<li><code>--pheno-name</code>: 使用する表現型の列名 (<code>--pheno-col-nums</code> で列番号での指定も可)</li>
 <li><code>--covar</code>: PCA の出力ファイル</li>
 <li><code>--covar-name</code>: どの主成分を共変量として使うか。PC10 まで全部使うなら <code>PC1-PC10</code>。</li>
 <li><code>--covar-variance-standardize</code>: 共変量のスケーリングを行う</li>
 <li><code>--glm</code>: 相関解析のモデル。バイナリデータには <code>--logistic</code>、 連続値データには <code>--linear</code> が勝手に使われるが、直接指定してもいい。
 <ul>
 <li><code>skip-invalid-pheno</code>: 共変量 (ここでは PCA) と表現型の共線性があると判断されると、解析が止まる。 これを避けてひとまず解析を押し通すオプション。</li>
-<li><code>firth-fallback</code>: バイナリの表現型に対してロジスティック回帰を行うときのモデル [<code>no-firth</code>(PLINK1のデフォルト)/<code>firth-fallback</code>(デフォルト)/<code>firth</code>]</li>
+<li><code>firth-fallback</code>: バイナリの表現型に対してロジスティック回帰を行うときのモデル [<code>no-firth</code>(PLINK1 のデフォルト)/<code>firth-fallback</code>(デフォルト)/<code>firth</code>]</li>
 <li><code>hide-covar</code>: 出力ファイルに共変量の情報を出さない。(主にファイルサイズ削減のため)</li>
 </ul></li>
 <li><code>--adjust</code>: 多重補正をおこなう</li>
@@ -554,7 +582,7 @@ window.Quarto = {
 <section id="可視化" class="level3">
 <h3 class="anchored" data-anchor-id="可視化">可視化</h3>
 <p>非常にファイルサイズが大きいので、 例えば遺伝研スパコンで作業制定て手元に結果を取り寄せるときは あらかじめ使う列だけ抽出しておくのも手:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 最低でも染色体、座位、SNPのID、P値があればいい</span></span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 最低でも染色体、座位、SNP の ID、P 値があればいい</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> file.gwas.Disease.glm.logistic.hybrid <span class="kw">|</span> <span class="fu">awk</span> <span class="at">-F</span> <span class="st">'\t'</span> <span class="st">'{print $1 "\t" $2 "\t"　$3 "\t" $18}'</span> <span class="op">&gt;</span> gwas-result.txt</span></code></pre></div>
 <section id="以降rでの作業" class="level4">
 <h4 class="anchored" data-anchor-id="以降rでの作業">— 以降、Rでの作業 —</h4>
@@ -620,10 +648,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -665,7 +698,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

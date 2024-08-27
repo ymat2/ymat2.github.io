@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Git/GitHub – Yuki MATSUDA</title>
+<title>WSL2 Disk space – Yuki MATSUDA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -167,7 +167,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Git/GitHub</h1>
+          <h1 class="quarto-secondary-nav-title">WSL2 Disk space — 逼迫した WSL2 のディスクスペースを解放する</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -291,13 +291,13 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Command Line Tools</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cli/apt.html" class="sidebar-item-text sidebar-link">
@@ -306,7 +306,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cli/git.html" class="sidebar-item-text sidebar-link active">
+  <a href="../cli/git.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Git/GitHub</span></a>
   </div>
 </li>
@@ -393,13 +393,13 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Windows</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../win/0-dev-win.html" class="sidebar-item-text sidebar-link">
@@ -420,7 +420,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link">
+  <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">WSL2 Disk space</span></a>
   </div>
 </li>
@@ -472,198 +472,140 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header">
-<h1 class="title d-none d-lg-block display-7">Git/GitHub</h1>
+<h1 class="title d-none d-lg-block display-7">WSL2 Disk space — 逼迫した WSL2 のディスクスペースを解放する</h1>
 
 
 </header>
 
 
-<p><img height="20" width="20" src="https://cdn.simpleicons.org/git/F05032" style="vertical-align: text-bottom;"> <a href="https://git-scm.com/" class="uri">https://git-scm.com/</a></p>
-<p><img height="20" width="20" src="https://cdn.simpleicons.org/github/181717" style="vertical-align: text-bottom;"> <a href="https://github.co.jp/" class="uri">https://github.co.jp/</a></p>
-<section id="基本操作" class="level2">
-<h2 class="anchored" data-anchor-id="基本操作">基本操作</h2>
-<p>これから使い始める人向けスライド:</p>
 <ul>
-<li><a href="../slides/git-circle/git-vol1.html">Git 基本操作① — Git と GitHubを使い始める</a></li>
-<li><a href="../slides/git-circle/git-vol2.html">Git 基本操作② — <code>fetch</code>, <code>merge</code>, <code>pull</code></a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/windows/wsl/disk-space" class="uri">https://learn.microsoft.com/ja-jp/windows/wsl/disk-space</a></li>
+<li><a href="https://qiita.com/TsuyoshiUshio@github/items/7a745582bbcd35062430" class="uri">https://qiita.com/TsuyoshiUshio@github/items/7a745582bbcd35062430</a></li>
+<li><a href="https://01futabato10.hateblo.jp/entry/2022/12/02/095031" class="uri">https://01futabato10.hateblo.jp/entry/2022/12/02/095031</a></li>
 </ul>
-<section id="新しいリポジトリの作成" class="level3">
-<h3 class="anchored" data-anchor-id="新しいリポジトリの作成">新しいリポジトリの作成</h3>
-<ol type="1">
-<li><p>GitHub のサイト右上の “+” ボタンから “New repository” を選択し、“Create repository” する。</p></li>
-<li><p>手元の PC にローカルリポジトリをつくる:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> new_repository</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> new_repository</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div></li>
-<li><p>ファイルを <code>add</code> して <code>commit</code> してもいいし、空の <code>commit</code> をしてもいい:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## ファイルをつくってadd&amp;commit</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Hello, Github"</span> <span class="op">&gt;</span> README.md</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">## コミットメッセージを添える</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initial commit"</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">## 空のコミットでもいい</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--allow-empty</span> <span class="at">-m</span> <span class="st">":coffee: Create repository"</span></span></code></pre></div></li>
-<li><p>リモートリポジトリを紐づけて <code>push</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span>        <span class="co"># 何も表示されない</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">## HTTP の場合</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/<span class="pp">*</span>username<span class="pp">*</span>/<span class="pp">*</span>new_repository<span class="pp">*</span>.git</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">## SSH の場合</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:<span class="pp">*</span>username<span class="pp">*</span>/<span class="pp">*</span>new_repository<span class="pp">*</span>.git</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span>        <span class="co"># リモートリポジトリが表示されることを確認</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div>
-<p>Private リポジトリの場合、 SSH で紐付けしないと下り (<code>fetch</code>, <code>pull</code>) のときもパスワードを要求される。</p></li>
-</ol>
+<section id="wsl-を使っている人へ" class="level2">
+<h2 class="anchored" data-anchor-id="wsl-を使っている人へ">WSL を使っている人へ</h2>
+<p><strong>WSL2 のディスク消費は、WSL2 内部でファイルを消してもサイズが小さくならない</strong>らしい。 つまり、いくら WSL 側でファイルを <code>rm</code> しようが garbage collection しようが、 マシンのストレージは圧迫され続ける。</p>
+<p>WSL2 で使用する Linux ディストリビューションのデータは仮想ハードディスク (VHD) で管理されていて、 ここがデータの本体を持っているから、だと思う。</p>
+<p>なので根本的にディスク容量を開放するには、 VHD を最適化する必要がある。</p>
 </section>
-<section id="手元の変更をリモートリポジトリに反映" class="level3">
-<h3 class="anchored" data-anchor-id="手元の変更をリモートリポジトリに反映">手元の変更をリモートリポジトリに反映</h3>
-<div class="note">
-<p><strong>基本</strong>: <code>git add</code> → <code>git commit</code> → <code>git push</code></p>
-</div>
-<ol type="1">
-<li><p>手元でファイルをいじって変更を確認:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Hello, Github"</span> <span class="op">&gt;</span> README.md</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status   <span class="co"># README.md が Changes not staged for commit: に表示される。</span></span></code></pre></div></li>
-<li><p>変更したファイルをインデックスに登録:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status     <span class="co"># README.md が Changes to be committed: に表示される。</span></span></code></pre></div></li>
-<li><p>変更をコミット:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"modified hoge.txt"</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status   <span class="co"># nothing to commit, working tree clean となる。</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log      <span class="co"># コミットが表示される。</span></span></code></pre></div></li>
-<li><p>リモートリポジトリへ <code>push</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div></li>
-</ol>
-</section>
-<section id="リモートリポジトリの変更を手元に反映" class="level3">
-<h3 class="anchored" data-anchor-id="リモートリポジトリの変更を手元に反映">リモートリポジトリの変更を手元に反映</h3>
-<div class="note">
-<p><strong>基本</strong>: <code>git fetch</code> → <code>git merge</code> もしくは <code>git pull</code></p>
-</div>
-<ul>
-<li><p>リモートブランチの状態を手元のファイルまで一気に反映:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre></div></li>
-<li><p>リモートブランチの変更を一度ローカルのアップストリームブランチに反映させてから手元のファイルに反映:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--all</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge</span></code></pre></div></li>
-</ul>
-</section>
-</section>
-<section id="gitignore" class="level2">
-<h2 class="anchored" data-anchor-id="gitignore"><code>.gitignore</code></h2>
-<p><a href="https://docs.github.com/ja/get-started/getting-started-with-git/ignoring-files" class="uri">https://docs.github.com/ja/get-started/getting-started-with-git/ignoring-files</a></p>
-<p>リポジトリのルートディレクトリに <code>.gitignore</code> を配置して、 Git の管理から除外するファイルを制御する:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 場所を問わず特定のファイル・ディレクトリを除外</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hoge</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">## .gitignore が置かれたリポジトリの特定のファイル・ディレクトリを除外</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">/hoge</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">## 場所を問わず特定のディレクトリの除外</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">dir/</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">## .gitignore が置かれたリポジトリの特定のディレクトリを除外</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="ex">/dir/</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">## 特定のファイル・ディレクトリのみ追跡</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="ex">*</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="ex">!hoge</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">## ワイルドカードによる指定</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="ex">/*.py</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="ex">/*.Rproj</span></span></code></pre></div>
-<p><code>~/.config/git/ignore</code> でグローバルに除外対象を設定:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.DS_Store</span></span></code></pre></div>
-<p>すでに追跡しているファイルを除外するにはトラッキングを外す:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> <span class="op">&lt;</span>FILE_NAME<span class="op">&gt;</span></span></code></pre></div>
-</section>
-<section id="ssh-接続" class="level2">
-<h2 class="anchored" data-anchor-id="ssh-接続">SSH 接続</h2>
-<p><a href="https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/about-ssh" class="uri">https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/about-ssh</a></p>
-<p>手順:</p>
-<ul>
-<li><a href="../cli/ssh.html">SSH キーを生成する。</a></li>
-<li><a href="https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">github に公開キーを登録する。</a></li>
-<li><code>ssh -T git@github.com</code> で接続確認。</li>
-</ul>
-<section id="ssh--t-の際に-permission-denied-となる場合" class="level3">
-<h3 class="anchored" data-anchor-id="ssh--t-の際に-permission-denied-となる場合"><code>ssh -T</code> の際に <code>permission denied</code> となる場合</h3>
-<p><a href="https://docs.github.com/ja/authentication/troubleshooting-ssh/using-ssh-over-the-https-port" class="uri">https://docs.github.com/ja/authentication/troubleshooting-ssh/using-ssh-over-the-https-port</a></p>
-<p><code>ssh-keygen</code> の際にファイル名を変更していると認証がうまくいかない。 <code>~/.ssh/config</code> に以下を追記して解決。</p>
+<section id="vhd-.vhdx-を探す" class="level2">
+<h2 class="anchored" data-anchor-id="vhd-.vhdx-を探す"><a href="https://01futabato10.hateblo.jp/entry/2022/12/02/095031">VHD (<code>.vhdx</code>) を探す</a></h2>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>~/.ssh/config</strong></pre>
+<pre><strong>PowerShell</strong></pre>
 </div>
-<div class="sourceCode" id="cb13" data-filename="~/.ssh/config"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Host github github.com</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  HostName github.com</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  User git</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  IdentityFile ~/.ssh/id_rsa_git    # Github 用の秘密鍵</span></code></pre></div>
+<div class="sourceCode" id="cb1" data-filename="PowerShell"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ls <span class="ex">C:\Users\_username_\AppData\Local\Packages\Canonical*</span>  <span class="co"># _username_ は自分のものを</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">ディレクトリ:</span> C:<span class="dt">\U</span>sers<span class="dt">\_</span>username_<span class="dt">\A</span>ppData<span class="dt">\L</span>ocal<span class="dt">\P</span>ackages</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Mode</span>                 LastWriteTime         Length Name</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">----</span>                 <span class="at">-------------</span>         <span class="at">------</span> <span class="at">----</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">d-----</span>        2023/01/05     21:33                CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">d-----</span>        2023/01/05     21:36                CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc</span></code></pre></div>
+</div>
+<p>使っているディストリビューションのディレクトリ内にある <code>LocalState\</code> に <code>ext4.vhdx</code> がいる。 (<code>onWindows</code> の方にはなかった。)</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>PowerShell</strong></pre>
+</div>
+<div class="sourceCode" id="cb2" data-filename="PowerShell"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ls <span class="ex">C:\Users\_username_\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState</span><span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">ディレクトリ:</span> C:<span class="dt">\U</span>sers<span class="dt">\_</span>username_<span class="dt">\A</span>ppData<span class="dt">\L</span>ocal<span class="dt">\P</span>ackages<span class="dt">\C</span>anonicalGroupLimited.Ubuntu_79rhkp1fndgsc<span class="dt">\L</span>ocalState</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Mode</span>                 LastWriteTime         Length Name</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">----</span>                 <span class="at">-------------</span>         <span class="at">------</span> <span class="at">----</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">-a----</span>        2024/06/06     14:04   208281796608 ext4.vhdx</span></code></pre></div>
 </div>
 </section>
+<section id="diskpart-を使って-vhd-を確認する" class="level2">
+<h2 class="anchored" data-anchor-id="diskpart-を使って-vhd-を確認する">DISKPART を使って VHD を確認する</h2>
+<p>まず <code>wsl</code> をシャットダウンする:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>PowerShell</strong></pre>
+</div>
+<div class="sourceCode" id="cb3" data-filename="PowerShell"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wsl</span> <span class="at">--shutdown</span></span></code></pre></div>
+</div>
+<p>DISKPART インタプリタを起動する:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>PowerShell</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="PowerShell"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">diskpart</span></span></code></pre></div>
+</div>
+<p>先ほど調べた VHD を選択する:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>DISKPART</strong></pre>
+</div>
+<div class="sourceCode" id="cb5" data-filename="DISKPART"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DISKPART</span><span class="op">&gt;</span> select vdisk file=C:<span class="dt">\U</span>sers<span class="dt">\_</span>username_<span class="dt">\A</span>ppData<span class="dt">\L</span>ocal<span class="dt">\P</span>ackages<span class="dt">\C</span>anonicalGroupLimited.Ubuntu_79rhkp1fndgsc<span class="dt">\L</span>ocalState<span class="dt">\e</span>xt4.vhdx</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">DiskPart</span> により、仮想ディスク ファイルが選択されました。</span></code></pre></div>
+</div>
+<p>VHD の情報を確認する:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>DISKPART</strong></pre>
+</div>
+<div class="sourceCode" id="cb6" data-filename="DISKPART"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DISKPART</span><span class="op">&gt;</span> detail vdisk</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">デバイスの種類</span> ID: 0 <span class="er">(</span><span class="ex">不明</span><span class="kw">)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">ベンダー</span> ID: {00000000-0000-0000-0000-000000000000} <span class="er">(</span><span class="ex">不明</span><span class="kw">)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">状態:</span> 追加済み</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">仮想サイズ:</span> 1024 GB</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">物理サイズ:</span>  193 GB</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ex">ファイル名:</span> C:<span class="dt">\U</span>sers<span class="dt">\_</span>username_<span class="dt">\A</span>ppData<span class="dt">\L</span>ocal<span class="dt">\P</span>ackages<span class="dt">\C</span>anonicalGroupLimited.Ubuntu_79rhkp1fndgsc<span class="dt">\L</span>ocalState<span class="dt">\e</span>xt4.vhdx</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">子:</span> いいえ</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">親ファイル名:</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ex">関連付けられたディスク番号:</span> 見つかりません。</span></code></pre></div>
+</div>
 </section>
-<section id="git-submodule" class="level2">
-<h2 class="anchored" data-anchor-id="git-submodule"><code>git submodule</code></h2>
-<p>外部のリポジトリを自分のリポジトリのサブディレクトリとして取り込む仕組み。</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule add https://github.com/<span class="op">&lt;</span>username<span class="op">&gt;</span>/<span class="op">&lt;</span>repository<span class="op">&gt;</span>.git <span class="op">&lt;</span>directory<span class="op">&gt;</span></span></code></pre></div>
-<section id="submodule-を最新版に更新する" class="level3">
-<h3 class="anchored" data-anchor-id="submodule-を最新版に更新する">submodule を最新版に更新する</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule foreach git pull</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="op">&lt;</span>submodule<span class="op">&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"updated submodule"</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># git push</span></span></code></pre></div>
-</section>
-<section id="サブモジュールを含むリポジトリを-clone-するとき" class="level3">
-<h3 class="anchored" data-anchor-id="サブモジュールを含むリポジトリを-clone-するとき">サブモジュールを含むリポジトリを clone するとき</h3>
-<p>普通に <code>clone</code> してくるとサブモジュールの中身は空になっている。 <code>clone</code> する際に、</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--recurse-sebmodules</span> <span class="op">&lt;</span>repository<span class="op">&gt;</span></span></code></pre></div>
-<p>としてサブモジュールの中身ごと落としてくるか、親リポジトリをクローンしたあと、</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule update <span class="at">--init</span></span></code></pre></div>
-<p>してサブモジュールの中身を取得する。</p>
-</section>
-</section>
-<section id="そのほかのコマンド" class="level2">
-<h2 class="anchored" data-anchor-id="そのほかのコマンド">そのほかのコマンド</h2>
-<ul>
-<li><p>直前の操作を修正:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 直前のミスコミットを修正</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--amend</span> <span class="at">-m</span> <span class="st">"hogehoge"</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">## commitの取り消し</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--soft</span> HEAD^</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">## addの取り消し</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> file_name</span></code></pre></div></li>
-<li><p>すでにリポジトリに登録されたファイルを削除:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> <span class="pp">*</span>file<span class="pp">*</span></span></code></pre></div></li>
-<li><p>ファイル名を変更:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> mv file file_renamed</span></code></pre></div></li>
-<li><p><code>git stash</code></p>
-<p><code>git merge</code> や <code>git pull</code> の際、コミットするほどでもない手元の変更を一時的に退避するために使う。</p>
-<p>working directory と staging area の変更を退避する:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash <span class="at">-u</span>        <span class="co"># -u: Untrackedなファイルも含める</span></span></code></pre></div>
-<p>退避した変更を確認:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash list</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># stash@{0}: WIP on main: d426bc4 Fix a bug</span></span></code></pre></div>
-<p><code>git merge</code> や <code>git pull</code> でリモートの変更を手元に反映した後、 退避していた変更を戻す:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash apply stash@{0} <span class="at">--index</span></span></code></pre></div>
-<p><code>--index</code> オプションなしだと、もともとステージングされていた変更も <code>add</code> 前の扱いで戻ってくる。</p>
-<p>退避していた変更を消す:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash drop stash@{0}    <span class="co"># 退避内容を指定して削除</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash pop stash@{0}     <span class="co"># 退避内容を指定してブランチに戻すとともに削除</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash clear                     <span class="co"># 退避内容を全て削除</span></span></code></pre></div></li>
-<li><p>リポジトリ名を変更:</p>
-<ul>
-<li><p>リモート側の操作： リポジトリのページ &gt; “Setting” &gt; “Rename” から変更</p></li>
-<li><p>手元の操作：ローカルリポジトリの名前と <code>.git/config</code> を書き換える</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> repository_name_before repository_name_after</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="at">-e</span> <span class="st">'s/repository_name_before/repository_name_after/g'</span> .git/config</span></code></pre></div></li>
-</ul></li>
-</ul>
+<section id="vhd-ディスクスペースを最適化する" class="level2">
+<h2 class="anchored" data-anchor-id="vhd-ディスクスペースを最適化する">VHD ディスクスペースを最適化する</h2>
+<p>Attach -&gt; Compact -&gt; Detach の順に実行する。</p>
+<p>Attach:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>DISKPART</strong></pre>
+</div>
+<div class="sourceCode" id="cb7" data-filename="DISKPART"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DISKPART</span><span class="op">&gt;</span> attach vdisk readonly</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">100%</span> 完了しました</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">DiskPart</span> により、仮想ディスク ファイルがアタッチされました。</span></code></pre></div>
+</div>
+<p>Compact (本質):</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>DISKPART</strong></pre>
+</div>
+<div class="sourceCode" id="cb8" data-filename="DISKPART"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DISKPART</span><span class="op">&gt;</span> compact vdisk</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">100%</span> 完了しました</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">DiskPart</span> により、仮想ディスク ファイルは正常に圧縮されました。</span></code></pre></div>
+</div>
+<p>Detach:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>DISKPART</strong></pre>
+</div>
+<div class="sourceCode" id="cb9" data-filename="DISKPART"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DISKPART</span><span class="op">&gt;</span> detach vdisk</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">DiskPart</span> により、仮想ディスク ファイルがデタッチされました。</span></code></pre></div>
+</div>
+<p>DISKPART を終了する (その前にもう一回 <code>detail</code> してもよい):</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>DISKPART</strong></pre>
+</div>
+<div class="sourceCode" id="cb10" data-filename="DISKPART"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DISKPART</span><span class="op">&gt;</span> exit</span></code></pre></div>
+</div>
 
 
 </section>

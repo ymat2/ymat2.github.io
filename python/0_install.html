@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Yuki MATSUDA - WSL</title>
+<title>Python 環境構築 – Yuki MATSUDA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -111,7 +111,7 @@ gtag('js', new Date());
 gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
 </script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -126,7 +126,7 @@ gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
    });
 }}});
   </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -163,13 +163,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">WSL — <u>W</u>indows <u>S</u>ubsystem for <u>L</u>inux</h1>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">Python 環境構築</h1>
         </a>     
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -207,9 +207,9 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Bioinformatics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -291,13 +291,13 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Command Line Tools</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cli/apt.html" class="sidebar-item-text sidebar-link">
@@ -340,24 +340,24 @@ window.Quarto = {
  <span class="menu-text">Visual Studio Code</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/wsl.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">WSL</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/0_install.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Python 環境構築</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/argparse.html" class="sidebar-item-text sidebar-link">
@@ -378,12 +378,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python/install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 環境構築</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../python/package.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python パッケージ作成</span></a>
   </div>
@@ -399,13 +393,49 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
- <span class="menu-text">Web 開発</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Windows</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/0-dev-win.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Windows 開発環境</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/git4win.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git for Windows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/wsl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WSL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WSL2 Disk space</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Web 開発</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../site/gollum.html" class="sidebar-item-text sidebar-link">
@@ -442,97 +472,219 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header">
-<h1 class="title d-none d-lg-block display-7">WSL — <u>W</u>indows <u>S</u>ubsystem for <u>L</u>inux</h1>
+<h1 class="title d-none d-lg-block display-7">Python 環境構築</h1>
 
 
 </header>
 
 
-<section id="wslとは" class="level2">
-<h2 class="anchored" data-anchor-id="wslとは">WSLとは</h2>
-<p><a href="https://learn.microsoft.com/ja-jp/windows/wsl/" class="uri">https://learn.microsoft.com/ja-jp/windows/wsl/</a></p>
-<p>乱暴に言ってしまうと Windows で Linux を扱う仮想環境のこと</p>
-</section>
-<section id="wslのインストール-windows11の場合" class="level2">
-<h2 class="anchored" data-anchor-id="wslのインストール-windows11の場合">WSLのインストール: Windows11の場合</h2>
-<p>参考: <a href="https://chigusa-web.com/blog/wsl2-win11/" class="uri">https://chigusa-web.com/blog/wsl2-win11/</a></p>
-<section id="wslのインストール" class="level3">
-<h3 class="anchored" data-anchor-id="wslのインストール">wslのインストール</h3>
-<ol type="1">
-<li><p><kbd>Win</kbd><kbd>X</kbd> → <kbd>A</kbd>でターミナルを管理者として起動。</p></li>
-<li><p><code>wsl --install</code></p></li>
-</ol>
-</section>
-<section id="再起動と設定" class="level3">
-<h3 class="anchored" data-anchor-id="再起動と設定">再起動と設定</h3>
-<ol type="1">
-<li><p>マシンを再起動する。</p></li>
-<li><p>再起動後、インストール処理を経て Ubuntu が起動する。</p></li>
-<li><p><code>Enter new UNIX usernaem:</code> と表示されたらユーザーネームを設定<br> (NG例: <code>松田</code> (日本語), <code>y matsuda</code> (スペース), <code>y.matsuda</code> (ピリオド))</p></li>
-<li><p><code>Enter new UNIX password:</code> と表示されたらパスワードを設定。 <code>sudo</code> とかするときに要求される。</p></li>
-<li><p><code>Retype new UNIX password:</code> と表示されたらパスワードを再入力</p></li>
-</ol>
-</section>
-</section>
-<section id="wslのインストール-windows10の場合" class="level2">
-<h2 class="anchored" data-anchor-id="wslのインストール-windows10の場合">WSLのインストール: Windows10の場合</h2>
-<p>参考: <a href="https://lab.sonicmoov.com/development/windows-bash/" class="uri">https://lab.sonicmoov.com/development/windows-bash/</a></p>
-<section id="windows-subsystem-for-linuxwslを有効化する" class="level3">
-<h3 class="anchored" data-anchor-id="windows-subsystem-for-linuxwslを有効化する">Windows subsystem for Linux(WSL)を有効化する</h3>
-<ol type="1">
-<li><p><kbd>Win</kbd><kbd>S</kbd> → 「コントロールパネル」を検索 → 「開く」</p></li>
-<li><p>「プログラム」を開く。</p></li>
-<li><p>Windowsの機能の有効化または無効化」をクリック。</p></li>
-<li><p>「Windows Subsystem for Linux」にチェック → 「OK」</p></li>
-<li><p>「今すぐ再起動(N)」</p></li>
-</ol>
-</section>
-<section id="ubuntuのインストール" class="level3">
-<h3 class="anchored" data-anchor-id="ubuntuのインストール">Ubuntuのインストール</h3>
-<ol type="1">
-<li><p><kbd>Win</kbd><kbd>S</kbd> → 「Microsoft Store」を検索 → 「開く」</p></li>
-<li><p>「Ubuntu」を検索してクリック。</p></li>
-<li><p>「入手」</p></li>
-</ol>
-</section>
-<section id="ubuntuの起動と設定" class="level3">
-<h3 class="anchored" data-anchor-id="ubuntuの起動と設定">Ubuntuの起動と設定</h3>
-<ol type="1">
-<li><p><kbd>Win</kbd><kbd>S</kbd> → 「Ubuntu」を検索 → 「開く」</p></li>
-<li><p><code>Enter new UNIX usernaem:</code> と表示されたらユーザーネームを設定<br> (NG: <code>松田</code> (日本語), <code>y matsuda</code> (スペース), <code>y.matsuda</code> (ピリオド))</p></li>
-<li><p><code>Enter new UNIX password:</code> と表示されたらパスワードを設定。 <code>sudo</code> とかするときに要求される。</p></li>
-<li><p><code>Retype new UNIX password:</code> と表示されたらパスワードを再入力</p></li>
-</ol>
-</section>
-</section>
-<section id="ubuntuの更新アップグレード" class="level2">
-<h2 class="anchored" data-anchor-id="ubuntuの更新アップグレード">Ubuntuの更新・アップグレード</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 最新のパッケージ情報を取得</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># パッケージを最新に更新</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade</span></code></pre></div>
-</section>
-<section id="余談-windows標準のターミナル" class="level2">
-<h2 class="anchored" data-anchor-id="余談-windows標準のターミナル">余談: Windows標準のターミナル</h2>
-<section id="コマンドプロンプト" class="level3">
-<h3 class="anchored" data-anchor-id="コマンドプロンプト">コマンドプロンプト</h3>
-<p>古のMicrosoft製CUI。</p>
-</section>
-<section id="powershell" class="level3">
-<h3 class="anchored" data-anchor-id="powershell">PowerShell</h3>
-<p>コマンドプロンプトの後継（Windows7以降）。 コマンドプロンプトで使えたコマンドも基本的に使える。</p>
-</section>
-<section id="windows-terminal" class="level3">
-<h3 class="anchored" data-anchor-id="windows-terminal">Windows Terminal</h3>
-<p>コマンドプロンプト、PowerShell、bash (WSL 経由) など複数のコマンドラインシェルのホストアプリケーション。</p>
+<p>Python を使うための環境構築に関するメモ。 基本的には <a href="https://www.python.jp/install/install.html">Python 環境構築ガイド</a>の写経。</p>
+<section id="ガイドライン" class="level2">
+<h2 class="anchored" data-anchor-id="ガイドライン">ガイドライン</h2>
+<section id="python-をインストールする前に検討" class="level3">
+<h3 class="anchored" data-anchor-id="python-をインストールする前に検討">Python をインストールする前に検討</h3>
 <ul>
-<li><p><kbd>Win</kbd><kbd>X</kbd> → <kbd>I</kbd>/<kbd>A</kbd>(管理者として実行)</p></li>
-<li><p><kbd>Ctrl</kbd><kbd>,</kbd>で設定画面に。 デフォルトのプロファイルや外観をいじれる。</p></li>
+<li><a href="https://colab.research.google.com/">Google Colab</a> で事足りない？</li>
+<li>Python の入手元として、公式版と Anaconda 経由が存在。目的に応じて選択する。</li>
+<li><a href="https://www.python.jp/install/docs/doyouneedpyenv.html">Pyenv は必要？</a>(特に初学者向けには非推奨)</li>
 </ul>
-
-
+<div class="note">
+<p><strong>Anaconda</strong> はデータサイエンスや科学技術計算のためのさまざまなツールやライブラリの実行環境。 パッケージ管理も仮想環境も全部担う。</p>
+</div>
 </section>
+<section id="python-と-anaconda" class="level3">
+<h3 class="anchored" data-anchor-id="python-と-anaconda">Python と Anaconda</h3>
+<p>Python パッケージをどう利用するか。</p>
+<ol type="1">
+<li><code>pip</code> を使って <a href="https://pypi.org/">The Python Package Index (PyPI)</a> から取得する。</li>
+<li><code>conda</code> を使って <a href="https://www.anaconda.com/">Anaconda</a> から取得する。</li>
+</ol>
+<p>PyPI と Anaconda の併用は困難。 特に同じパッケージを <code>pip</code> と <code>conda</code> の両方で入れるのは避けたほうがいいらしい。 プログラミング入門の場合は PyPI、データサイエンス・科学技術計算には Anaconda。</p>
+<!--
+### 自分の方針
+
+`pyenv` またはHomebrewでインストールしたPythonを使い、
+プロジェクトごとに `venv` で仮想環境をつくってその中で
+`pip` を使ってパッケージを管理する。
+
+`pyenv` は使うけど複数バージョンの使い分けは基本しない。
+LinuxでOS標準のPython環境を汚さない目的で使う。
+-->
+</section>
+</section>
+<section id="python-のインストール" class="level2">
+<h2 class="anchored" data-anchor-id="python-のインストール">Python のインストール</h2>
+<section id="macos" class="level3">
+<h3 class="anchored" data-anchor-id="macos">MacOS</h3>
+<p><a href="https://www.python.org/downloads/mac-osx/">MacOS 用のインストーラ</a>か、 <a href="https://brew.sh">Homebrew</a> を使う。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Homebrew による python インストール</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Homebrew 自体のインストールは割愛</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">berw</span> install python3</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 複数バージョンのインストール</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install python@3.7  <span class="co"># バージョンを指定してインストール</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> /usr/local/opt/python@3.7/bin/python3.7 /usr/local/bin/python3.7  <span class="co"># /usr/local/bin/ にシンボリックリンク</span></span></code></pre></div>
+</section>
+<section id="windows" class="level3">
+<h3 class="anchored" data-anchor-id="windows">Windows</h3>
+<ul>
+<li><a href="https://www.python.jp/install/windows/index.html" class="uri">https://www.python.jp/install/windows/index.html</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/windows/python/beginners" class="uri">https://learn.microsoft.com/ja-jp/windows/python/beginners</a></li>
+</ul>
+<p><a href="https://www.python.org/downloads/windows/">Windows用のインストーラ</a>を使う。 最初に出てくるウィンドウで “Add PATH” にチェックを入れる。</p>
+<p>Windows の場合、Microsoft ストアからインストールする方法もある。 初学者向けには推奨されているが、 ディレクトリやレジストリへのアクセス制限があるため使いようによっては不具合の原因になる。</p>
+</section>
+<section id="ubuntu" class="level3">
+<h3 class="anchored" data-anchor-id="ubuntu">Ubuntu</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install build-essential libbz2-dev libdb-dev <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  libreadline-dev libffi-dev libgdbm-dev liblzma-dev <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  libncursesw5-dev libsqlite3-dev libssl-dev <span class="dt">\</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  zlib1g-dev uuid-dev tk-dev</span></code></pre></div>
+<p><a href="https://www.python.org/">ダウンロードページ</a>からソースコードをダウンロードして解凍、ビルド:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xJf Python-3.x.y.tar.xz</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Python-3.x.y</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">./configure</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> make install</span></code></pre></div>
+<p>デフォルトでは <code>usr/local/bin</code> にインストールされる。</p>
+<section id="ubuntuの-pip" class="level4">
+<h4 class="anchored" data-anchor-id="ubuntuの-pip">Ubuntuの <code>pip</code></h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install python3-pip</span></code></pre></div>
+<p>OS 標準の Python 環境のパッケージ管理は <code>pip</code> ではなく <code>apt</code> を介して行うのが安全。 <code>apt</code> との衝突を避けるためか、Ubuntu 標準の <code>pip</code> は <code>sudo</code> なしで実行すると <code>--user</code> つきで実行された扱いになってパッケージは <code>~/.local/</code> にインストールされる。</p>
+</section>
+</section>
+<section id="pyenv-によるインストール" class="level3">
+<h3 class="anchored" data-anchor-id="pyenv-によるインストール"><code>pyenv</code> によるインストール</h3>
+<p><code>pyenv</code> は複数バージョンの Python を切り替えながら利用するためのツール。 Python x.y.z のマイナーバージョンまで切り替えて使えるが、そこまで必要か？という説もある。</p>
+<ol type="1">
+<li><p>必要に応じて<a href="https://github.com/pyenv/pyenv/wiki#suggested-build-environment">ビルド環境の用意</a></p></li>
+<li><p><code>pyenv</code> のインストール:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/pyenv/pyenv.git ~/.pyenv</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install pyenv</span></code></pre></div></li>
+<li><p>環境設定:</p>
+<p><code>~/.bash_profile</code> など</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PYENV_ROOT</span><span class="op">=</span><span class="st">"</span><span class="va">$HOME</span><span class="st">/.pyenv"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"</span><span class="va">$PYENV_ROOT</span><span class="st">/bin:</span><span class="va">$PATH</span><span class="st">"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="ex">pyenv</span> init <span class="at">-</span><span class="va">)</span><span class="st">"</span></span></code></pre></div></li>
+<li><p>バージョンを探してインストール:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pyenv</span> install <span class="at">--list</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pyenv</span> install 3.11.3</span></code></pre></div></li>
+<li><p>バージョンを切り替える:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pyenv</span> global 3.11.3  <span class="co"># システム全体で切り替え</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pyenv</span> local 3.11.3   <span class="co"># 実行したディレクトリのみで切り替え</span></span></code></pre></div></li>
+</ol>
+</section>
+</section>
+<section id="pyenv" class="level2">
+<h2 class="anchored" data-anchor-id="pyenv">Pyenv</h2>
+<p><a href="https://github.com/pyenv/pyenv" class="uri">https://github.com/pyenv/pyenv</a></p>
+<p>Python のバージョン管理ツール。 <code>python3.x.y</code>, <code>python2.x.y</code> などのバージョンごとのインストール、管理のほか、 <a href="https://www.anaconda.com/"><code>conda</code></a> 環境も Pyenv 越しに用意することができる。</p>
+<section id="よく使うコマンド" class="level3">
+<h3 class="anchored" data-anchor-id="よく使うコマンド">よく使うコマンド</h3>
+<dl>
+<dt><code>pyenv --version</code></dt>
+<dd>
+<code>pyenv</code> 自体のバージョンを確認
+</dd>
+<dt><code>pyenv version</code></dt>
+<dd>
+いま指定されている Python のバージョンを表示する。
+</dd>
+<dt><code>pyenv versions</code></dt>
+<dd>
+利用可能な Python のバージョン一覧を表示する。(c.f. <code>$PYENV_ROOT/versions/*</code>)
+</dd>
+<dd>
+いま指定されているバージョンには <code>*</code> がついている。
+</dd>
+<dt><code>pyenv install -l/--list</code></dt>
+<dd>
+インストール可能なすべてのバージョンを表示する。
+</dd>
+<dd>
+<code>grep</code> で絞ったり。(e.g.&nbsp;<code>pyenv install -l | grep "miniconda"</code>)
+</dd>
+<dt><code>pyenv install &lt;version&gt;</code></dt>
+<dd>
+指定したバージョンをインストールする。
+</dd>
+<dt><code>pyenv rehash</code></dt>
+<dd>
+新規インストール時に必要な処理らしい。<code>shims</code> をなんとかする。ドキュメントなし。
+</dd>
+<dt><code>pyenv uninstall &lt;version&gt;</code></dt>
+<dd>
+指定したバージョンをアンインストールする。
+</dd>
+<dt><code>pyenv global &lt;version&gt;</code></dt>
+<dd>
+グローバルな <code>python</code> のバージョンを指定する。
+</dd>
+<dd>
+<code>pyenv global 3.7.0 2.7.15</code> のように <code>python2</code> と <code>python3</code> をそれぞれ指定することもできる。
+</dd>
+<dt><code>pyenv local &lt;version&gt;</code></dt>
+<dd>
+ローカルなプロジェクトで使う <code>python</code> のバージョンを指定する。
+</dd>
+<dd>
+解除する時は <code>pyenv local --unset</code>
+</dd>
+</dl>
+</section>
+</section>
+<section id="pip" class="level2">
+<h2 class="anchored" data-anchor-id="pip"><code>pip</code></h2>
+<p><a href="https://pypi.org/">PyPI</a>(The Python Package Index) に公開されている Python パッケージを管理するコマンド。</p>
+<p><code>python3 -m pip</code> など、バージョンや現在使っている環境を明示した使い方が <a href="https://www.python.jp/install/ubuntu/pip.html">推奨されている</a>。</p>
+<section id="よく使うコマンド-1" class="level3">
+<h3 class="anchored" data-anchor-id="よく使うコマンド-1">よく使うコマンド</h3>
+<dl>
+<dt><code>pip3 install &lt;package&gt;</code></dt>
+<dd>
+パッケージのインストール
+</dd>
+<dt><code>pip3 uninstall &lt;package&gt;</code></dt>
+<dd>
+パッケージのアンインストール
+</dd>
+<dt><code>pip3 list</code></dt>
+<dd>
+インストール済みパッケージの表示
+</dd>
+</dl>
+<p><code>outdated</code> なパッケージをまとめて更新:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> list <span class="at">-o</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> +3 <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{ print $1 }'</span> <span class="kw">|</span> <span class="fu">xargs</span> pip3 install <span class="at">-U</span></span></code></pre></div>
+</section>
+</section>
+<section id="venv" class="level2">
+<h2 class="anchored" data-anchor-id="venv"><code>venv</code></h2>
+<p>プロジェクトごとに専用の Python 実行環境を作成する。</p>
+<ol type="1">
+<li><p>プロジェクトを作成する:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> proj</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> proj</span></code></pre></div></li>
+<li><p>仮想環境を作成する:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv .venv</span></code></pre></div></li>
+<li><p>仮想環境へ切り替える:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span> .venv/bin/activate</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">$</span></span></code></pre></div>
+<p>ターミナル先頭に <code>(.venv)</code> と表示され、仮想環境での実行状態になる。</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">$</span> deactivate  <span class="co"># 仮想環境の終了</span></span></code></pre></div></li>
+<li><p>パッケージのインストール:</p>
+<p>仮想環境中でインストールしたパッケージはその環境内でのみ使用できる。 <code>requirements.txt</code> を使った環境のコピーも可能。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> pip install pandas</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> pip freeze <span class="op">&gt;</span> requirements.txt     <span class="co"># パッケージ一覧を書き出し</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> pip install <span class="at">-r</span> requirements.txt   <span class="co"># まとめてインストール</span></span></code></pre></div>
+<p>仮想環境でのパッケージのインストール先は <code>.venv/lib/python3.11/site-packages/</code> になる。 バイナリ実行ファイルは <code>.venv/bin/</code> にあり、<code>python3</code>, <code>pip</code> もここに PATH が通る。</p></li>
+</ol>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -570,10 +722,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -615,7 +772,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

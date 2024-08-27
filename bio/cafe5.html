@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Yuki MATSUDA - CAFE5</title>
+<title>CAFE5 – Yuki MATSUDA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -111,7 +111,7 @@ gtag('js', new Date());
 gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
 </script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -126,7 +126,7 @@ gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
    });
 }}});
   </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -163,13 +163,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
           <h1 class="quarto-secondary-nav-title">CAFE5 — 遺伝子ファミリーの進化解析</h1>
         </a>     
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -207,9 +207,9 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Bioinformatics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -291,9 +291,9 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Command Line Tools</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -340,24 +340,24 @@ window.Quarto = {
  <span class="menu-text">Visual Studio Code</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/wsl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/0_install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python 環境構築</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/argparse.html" class="sidebar-item-text sidebar-link">
@@ -378,12 +378,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python/install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 環境構築</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../python/package.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python パッケージ作成</span></a>
   </div>
@@ -399,13 +393,49 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
- <span class="menu-text">Web 開発</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Windows</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/0-dev-win.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Windows 開発環境</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/git4win.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git for Windows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/wsl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WSL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WSL2 Disk space</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Web 開発</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../site/gollum.html" class="sidebar-item-text sidebar-link">
@@ -453,7 +483,7 @@ window.Quarto = {
 <li>Github: <a href="https://github.com/hahnlab/CAFE5" class="uri">https://github.com/hahnlab/CAFE5</a></li>
 <li>論文: <a href="https://doi.org/10.1093/bioinformatics/btaa1022">Mendes et al.&nbsp;2020</a></li>
 </ul>
-<p>ドキュメントが丁寧に書いてあるので助かる。</p>
+<p>ドキュメントが丁寧に書いてあるので基本的には読めば OK。</p>
 <ul>
 <li><a href="https://github.com/hahnlab/CAFE5/blob/master/README.md" class="uri">https://github.com/hahnlab/CAFE5/blob/master/README.md</a></li>
 <li><a href="https://github.com/hahnlab/CAFE5/blob/master/docs/tutorial/tutorial.md" class="uri">https://github.com/hahnlab/CAFE5/blob/master/docs/tutorial/tutorial.md</a></li>
@@ -463,7 +493,7 @@ window.Quarto = {
 <ul>
 <li>各遺伝子ファミリーが異なる速度で進化することを仮定したパラメータ推定を行う。</li>
 <li>シェルスクリプトを書く必要がなくなった。</li>
-<li>エラーモデルの最適化やサマリーテーブルの出力が内部で行われるようになった。 (Pythonスクリプトが不要になった。)</li>
+<li>エラーモデルの最適化やサマリーテーブルの出力が内部で行われるようになった。 (Python スクリプトが不要になった。)</li>
 </ul>
 </section>
 <section id="インストール" class="level2">
@@ -480,16 +510,16 @@ window.Quarto = {
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> CAFE5</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./configure</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span></code></pre></div>
-<p>実行ファイルは <code>CAFE5/bin/</code> にあるので、ここに <code>$PATH</code> を通す。</p>
-</section>
-<section id="osx-の場合" class="level3">
-<h3 class="anchored" data-anchor-id="osx-の場合">OSX の場合</h3>
+<p>実行ファイルは <code>CAFE5/bin/</code> にあるので、ここに PATH を通す。</p>
+<section id="macos-の場合" class="level4">
+<h4 class="anchored" data-anchor-id="macos-の場合">macOS の場合</h4>
 <p><code>src/matrix_cache.cpp:2:10: fatal error: 'omp.h' file not found</code> などコンパイラが見つからない系のエラーが出る場合があるらしい。 <code>gcc</code> を入れてシンボリックリンクを張る:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install gcc</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> / <span class="at">-name</span> omp.h</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sv</span> path/to/omp.h /usr/local/include/</span></code></pre></div>
 <p>改めて、</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span></code></pre></div>
+</section>
 </section>
 <section id="遺伝研" class="level3">
 <h3 class="anchored" data-anchor-id="遺伝研">遺伝研</h3>
@@ -499,67 +529,47 @@ window.Quarto = {
 </section>
 <section id="quick-start" class="level2">
 <h2 class="anchored" data-anchor-id="quick-start">Quick Start</h2>
+<section id="input" class="level3">
+<h3 class="anchored" data-anchor-id="input">Input</h3>
 <p>基本的に必要なファイルは以前の CAFE と同じ。</p>
-<ol type="1">
+<ul>
 <li><p>種ごと、遺伝子ファミリーごとの遺伝子数のテーブル(タブ区切り)。 <a href="../bio/orthofinder.html">OrthoFinder</a> とか OrthoMCL とかでつくる。</p>
-<p>例：gene_families.txt</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Description</th>
-<th style="text-align: left;">ID</th>
-<th style="text-align: right;">Chicken</th>
-<th style="text-align: right;">Lizard</th>
-<th style="text-align: right;">Mouse</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">OG00001</td>
-<td style="text-align: left;">OG00001</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">21</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">OG00002</td>
-<td style="text-align: left;">OG00002</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">OG00003</td>
-<td style="text-align: left;">OG00003</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">4</td>
-</tr>
-</tbody>
-</table></li>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>gene_families.txt</strong></pre>
+</div>
+<div class="sourceCode" id="cb5" data-filename="gene_families.txt"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Description ID  Chicken Lizard  Mouse</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>OG00001 OG00001 12  14  21</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>OG00002 OG00002 9   13  5</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>OG00003 OG00003 7   0   4</span></code></pre></div>
+</div></li>
 <li><p>Newick 形式の系統樹。binary, rooted, ultrametric である必要がある。 (cf.&nbsp;Rパッケージ <code>ape::is.binary()</code>, <code>ape::is.rooted()</code>, <code>ape::is.ultrametric()</code>)</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>species_tree.txt</strong></pre>
 </div>
-<div class="sourceCode" id="cb5" data-filename="species_tree.txt"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(Mouse:319.00000000,(Lizard:281.10000000,Chicken:281.10000000):37.90000000);</span></code></pre></div>
+<div class="sourceCode" id="cb6" data-filename="species_tree.txt"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(Mouse:319.00000000,(Lizard:281.10000000,Chicken:281.10000000):37.90000000);</span></code></pre></div>
 </div></li>
-<li><p>CAFE5 を実行。 想定するシナリオにより、いくつかの実行方法がある:</p>
+</ul>
+</section>
+<section id="cafe5-の実行" class="level3">
+<h3 class="anchored" data-anchor-id="cafe5-の実行">CAFE5 の実行</h3>
+<p>想定するシナリオにより、いくつかの実行方法がある:</p>
 <ul>
 <li><p>遺伝子ファミリー間で進化速度が一定であるという仮定の下で、遺伝子ファミリーの進化速度を推定:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cafe5</span> <span class="at">-i</span> gene_families.txt <span class="at">-t</span> species_tree.txt</span></code></pre></div></li>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cafe5</span> <span class="at">-i</span> gene_families.txt <span class="at">-t</span> species_tree.txt</span></code></pre></div></li>
 <li><p>遺伝子ファミリーごとの進化速度が異なるという仮定の下で、遺伝子ファミリーの進化速度を推定:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cafe5</span> <span class="at">-i</span> gene_families.txt <span class="at">-t</span> species_tree.txt <span class="at">-k</span> 3</span></code></pre></div></li>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cafe5</span> <span class="at">-i</span> gene_families.txt <span class="at">-t</span> species_tree.txt <span class="at">-k</span> 3</span></code></pre></div></li>
 <li><p>特定の系統で遺伝子ファミリーの進化速度が異なることを仮定する場合、 以前のバージョンと同じように <span class="math inline">\lambda</span> 構造を規定した Newick ファイルを用意する:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>lambda_structure.txt</strong></pre>
 </div>
-<div class="sourceCode" id="cb8" data-filename="lambda_structure.txt"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(Mouse:1,(Lizard:1,Chicken:2):1);  # Chickenの系統で進化速度が異なることを仮定。</span></code></pre></div>
+<div class="sourceCode" id="cb9" data-filename="lambda_structure.txt"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(Mouse:1,(Lizard:1,Chicken:2):1);  # Chickenの系統で進化速度が異なることを仮定。</span></code></pre></div>
 </div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cafe5</span> <span class="at">-i</span> gene_families.txt <span class="at">-t</span> species_tree.txt <span class="at">-y</span> lambda_structure.txt</span></code></pre></div></li>
-</ul></li>
-</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cafe5</span> <span class="at">-i</span> gene_families.txt <span class="at">-t</span> species_tree.txt <span class="at">-y</span> lambda_structure.txt</span></code></pre></div></li>
+</ul>
+</section>
 </section>
 <section id="出力ファイル" class="level2">
 <h2 class="anchored" data-anchor-id="出力ファイル">出力ファイル</h2>
@@ -574,7 +584,7 @@ window.Quarto = {
 </dd>
 <dt><code>model_family_results.txt</code></dt>
 <dd>
-遺伝子ファミリー、P値、変化が有意であるかどうか (y/n) がタブ区切りで記述されている。
+遺伝子ファミリー、P 値、変化が有意であるかどうか (<code>y/n</code>) がタブ区切りで記述されている。
 </dd>
 <dt><code>model_clade_results.txt</code></dt>
 <dd>
@@ -610,20 +620,20 @@ Gamma モデルではそれに加えて事後確率がタブ区切りで書か�
 <section id="rapidly-evolving-gene-famillies-について" class="level3">
 <h3 class="anchored" data-anchor-id="rapidly-evolving-gene-famillies-について"><code>Rapidly evolving gene famillies</code> について</h3>
 <p>CAFE は確率的誕生-死亡モデルの下で、 ある <span class="math inline">\lambda</span> 値 (単位時間当たりの遺伝子の増減) にしたがって インプットした系統樹上で遺伝子の増減をシミュレートする。</p>
-<p>その結果各遺伝子ファミリーの実際の遺伝子数が得られる確率がp値として得られる。 このp値が事前に定めた有意水準 (例えば0.05) を下回ったものが <code>rapidly expanded/contracted gene families</code> として得られる。</p>
+<p>その結果各遺伝子ファミリーの実際の遺伝子数が得られる確率が P 値として得られる。 この P 値が事前に定めた有意水準 (例えば0.05) を下回ったものが <code>rapidly expanded/contracted gene families</code> として得られる。</p>
 </section>
 </section>
 <section id="並列化" class="level2">
 <h2 class="anchored" data-anchor-id="並列化">並列化</h2>
 <p><code>--cores</code> オプションで指定:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cafe5</span> <span class="at">-i</span> gene_families.txt <span class="at">-t</span> species_tree.txt <span class="at">--cores</span> 5</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cafe5</span> <span class="at">-i</span> gene_families.txt <span class="at">-t</span> species_tree.txt <span class="at">--cores</span> 5</span></code></pre></div>
 </section>
 <section id="トラブルシューティング" class="level2">
 <h2 class="anchored" data-anchor-id="トラブルシューティング">トラブルシューティング</h2>
 <p><a href="../bio/cafe.html">CAFE4</a> のトラブルシューティングも参照。</p>
 <section id="既知の問題" class="level3">
 <h3 class="anchored" data-anchor-id="既知の問題">既知の問題</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>OG0000001    1    2    94    1    3    2    1</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>OG0000001    1    2    94    1    3    2    1</span></code></pre></div>
 <p>みたいに遺伝子数にとびぬけた値があると、計算が途中で止まる。 (CAFE4 のときは <code>inf/-inf</code> で押し通していた。)</p>
 <p>標準エラーでどの遺伝子ファミリーが原因か教えてくれるので、そのファミリーを除いて再解析する。</p>
 
@@ -666,10 +676,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -711,7 +726,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

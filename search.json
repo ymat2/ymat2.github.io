@@ -1353,7 +1353,7 @@
     "href": "bio/ete-toolkit.html",
     "title": "ETE Toolkit — ete-evol による配列解析",
     "section": "",
-    "text": "ETE Toolkit は系統樹データを扱うための Python フレームワーク。\nその中の ete-evol は CODEML や SLR の実行を手助けする Python 製コマンドラインツール。\nパッケージとして import して Pyhton スクリプトの中で使うこともできる。",
+    "text": "ETE Toolkit は系統樹データを扱うための Python フレームワーク。\nその中の ete-evol は CODEML や SLR の実行を手助けする Python 製コマンドラインツール。\nパッケージとして import して Python スクリプトの中で使うこともできる。",
     "crumbs": [
       "Bioinformatics",
       "ETE Toolkit"
@@ -1713,7 +1713,7 @@
     "href": "python/argparse.html",
     "title": "ArgumentParser — コマンドライン引数の実装",
     "section": "",
-    "text": "https://docs.python.org/ja/3/library/argparse.html\nhttps://qiita.com/kzkadc/items/e4fc7bc9c003de1eb6d0\nPyhton プログラム実行時にコマンドライン引数を受け取る処理を簡単に実装できる標準ライブラリ。 sys とかでも似たことは実現できるけど使い勝手と可読性は argparse の方が圧倒的にいい。",
+    "text": "https://docs.python.org/ja/3/library/argparse.html\nhttps://qiita.com/kzkadc/items/e4fc7bc9c003de1eb6d0\nPython プログラム実行時にコマンドライン引数を受け取る処理を簡単に実装できる標準ライブラリ。 sys とかでも似たことは実現できるけど使い勝手と可読性は argparse の方が圧倒的にいい。",
     "crumbs": [
       "Python",
       "ArgumentParser"

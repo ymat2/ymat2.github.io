@@ -1,0 +1,106 @@
+---
+format:
+  html:
+    title: 全ゲノム解析ハンズオン
+    subtitle: スモールデータで理解する SNP 解析の流れ
+    mermaid:
+      theme: neutral
+---
+
+
+## 概要
+
+目的
+: スモールデータを使って、全ゲノム解析のパイプラインを一通り (公開データ取得から SNP アノテーションまで) 体験する。
+  その際、各解析で出てくる中間ファイル等にも触れることで、どのようなデータを使って、どのような解析が動いているかについて理解を深める。
+
+日程
+: comming soon
+
+環境
+: 遺伝研スパコン
+
+やること
+: 基本的なコマンドライン操作
+: NGS 公開データの取得
+: クオリティコントロール
+: リードマッピング、バリアントコール
+: <span style="color:#CCC;">SNP アノテーション</span>
+: <span style="color:#CCC;">IGV/R を用いた可視化</span>
+
+スライドのリンク
+: 🚧 under construction
+
+
+## 材料
+
+大腸菌 *Escherichia coli*
+
+- 参照配列: [ASM584v2](https://bacteria.ensembl.org/Escherichia_coli_str_k_12_substr_mg1655_gca_000005845/Info/Index) (Ensembl59)
+- Illumina ショートリード: [SRR030253](https://www.ncbi.nlm.nih.gov/sra/?term=SRR030253)
+
+参考論文
+: [Barrick et al. 2009](https://doi.org/10.1038/nature08480)
+
+
+## Requirement
+
+- 遺伝研スパコンにログインできる環境
+- SRA toolkit
+- fastp
+- BWA
+- SAMtools
+- BCFtools
+
+スライドを見て、自身で進められるところまで進めておいてもらえると当日とてもスムーズです。
+
+
+## 全ゲノム解析の流れ
+
+:::: {.columns}
+
+::: {.column width=65%}
+
+配列取得
+: 次世代シーケンサ (NGS) によりシーケンスした DNA は
+  Fastq フォーマット (`.fastq`) になる。
+  既報で解読済みの配列は NCBI などにアーカイブされており、
+  データベースから取得して利用できる。
+: SRA Toolkit
+
+クオリティコントロール (QC)
+: Fastq の生データにはうまくシーケンスできていない低品質な配列、
+  シーケンス時に付加するアダプタ配列、他サンプル由来のリードなどが含まれる。
+  こうした配列は偽陽性バリアントのもととなるため、解析から取り除く。
+: FastQC, Fastp, Trimmomatic など
+
+マッピング
+: シーケンスしたショートリードを参照配列 (リファレンス) の一致する箇所に並べ、
+  もとのゲノム配列のどこに由来するのかを調べる。
+: BWA, Bowtie2 など
+
+バリアントコール
+: 参照配列とリードの配列とを比べ、参照配列と異なる塩基 (SNP) や
+  重複配列、欠失配列 (Indel) を特定する。
+: GATK, SAMtools, BCFtools など
+
+:::
+
+::: {.column width=5%}
+:::
+
+::: {.column width=30%}
+
+```{mermaid}
+flowchart TD
+  A(Sample) -.->|DNA 抽出| B(DNA)
+  B -.->|NGS| C[Fastq]
+  X[(NCBI)] -.->|prefetch| C
+  C -.->|QC, マッピング| D[SAM]
+  D -.->|圧縮| E[BAM]
+  E -.->|バリアントコール| F[VCF/BCF]
+```
+
+:::
+
+::::

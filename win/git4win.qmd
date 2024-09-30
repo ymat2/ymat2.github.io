@@ -62,14 +62,14 @@ Configuring experimental options
 
 Windows のホームディレクトリに `.gitconfig` ができる。
 
-```{.conf filename="~/.gitcomfig"}
+```{.conf filename="~/.gitconfig"}
 [core]
     editor = \"C:\\Users\\_username_\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
 ```
 
 ここに必要な設定を追加していく:
 
-```{.conf filename="~/.gitcomfig"}
+```{.conf filename="~/.gitconfig"}
 [user]
         name = ymat2
         email = ymat2@users.noreply.github.com

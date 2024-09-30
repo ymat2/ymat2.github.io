@@ -11,73 +11,53 @@ format:
 
 ## Usage
 
-- パッケージ一覧を更新:
+`sudo apt update`
+: パッケージ一覧を更新
 
-	```sh
-	sudo apt update
-	```
-
-- インストール済みのソフトウェアを更新:
-
-	```sh
-	sudo apt upgrade
-	```
-
-	必要に応じて依存パッケージをインストールすることがある。
+`sudo apt upgrade`
+: インストール済みのソフトウェアを更新
+: 必要に応じて依存パッケージをインストールすることがある。
 	(古い `apt-get` だと新規インストールは起こらない。)
 
-- パッケージのダウンロード:
+`sudo apt install パッケージ`
+:	パッケージのダウンロード
 
-	```sh
-	sudo apt install パッケージ名
-	```
+`sudo apt remove パッケージ`
+: パッケージの削除
 
-- パッケージの削除:
+`sudo apt purge パッケージ`
+:	設定ファイルを含め、パッケージを完全削除
 
-	```sh
-	sudo apt remove パッケージ名
-	sudo apt purge パッケージ名		# 設定ファイルを含め完全削除
-	```
+`sudo apt autoremove`
+: 更新に伴い、必要なくなった依存パッケージを削除
 
-- 更新に伴い、必要なくなった依存パッケージを削除:
+`apt search 検索キーワード`
+:	パッケージの検索
 
-	```sh
-	sudo apt autoremove
-	```
+`apt list --upgradable`
+: 更新可能なパッケージ一覧を表示
 
-- パッケージの検索:
+`apt list --installed`
+: インストール済みのパッケージ一覧を表示
 
-	```sh
-	apt search 検索キーワード
-	```
+`apt show パッケージ`
+: パッケージの詳細を表示
 
-- パッケージの表示:
 
-	```sh
-	apt list --upgradable		# 更新可能なパッケージ一覧を表示
-	apt list --installed		# インストール済みのパッケージ一覧を表示
-	```
+おまけ:
 
-- パッケージの詳細を表示:
-
-	```sh
-	apt show パッケージ名
-  ```
-
-- おまけ:
-
-	```sh
-	apt moo
-	```
-	```txt
-             (__)
-             (oo)
-       /------\/
-      / |    ||
-     *  /\---/\
-        ~~   ~~
-	..."Have you mooed today?"...
-	```
+```sh
+apt moo
+```
+```txt
+           (__)
+           (oo)
+     /------\/
+    / |    ||
+   *  /\---/\
+      ~~   ~~
+..."Have you mooed today?"...
+```
 
 
 ## `apt-get`, `apt-cache`

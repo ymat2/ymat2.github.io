@@ -2,7 +2,6 @@
 format:
   html:
     title: "HOME"
-    date: ""
 ---
 
 
@@ -15,10 +14,9 @@ format:
   博士課程1年
 
 連絡先 / Contacts
-: yuki.matsuda.m10![](./images/share/atmark.svg){height="18"}gmail.com
-: s249780w![](./images/share/atmark.svg){height="18"}st.go.tuat.ac.jp
-
-外部リンク / Links
+: <img height=20 width=20 style="vertical-align: text-top;" src="https://cdn.simpleicons.org/gmail/EA4335">
+  yuki.matsuda.m10![](./images/share/atmark.svg){height="18"}gmail.com (個人),
+  s249780w![](./images/share/atmark.svg){height="18"}st.go.tuat.ac.jp (大学)
 : <a rel="me" href="https://github.com/ymat2/" title="GitHub">
   <img height=20 width=20 style="vertical-align: text-top;" src="https://cdn.simpleicons.org/github/333333">
   ymat2
@@ -33,8 +31,18 @@ format:
 
 ::: {.news}
 
+2024.08.28
+: 東北大 牧野研究室で取り組んでいた、
+  [鳥類とコウモリの寿命の進化に関わる遺伝基盤を調べた研究](https://doi.org/10.1098/rspb.2024.1068)
+  が Proceedings of the Royal Society B に掲載されました。
+
+2024.08.21 &ndash; 2024.08.24
+: [第26回日本進化学会 (神奈川)](https://rcies.soken.ac.jp/sesj2024/index.html)
+  に参加し、ポスター発表を行いました。
+
 2024.04.02
-: 東京農工大学 大学院 連合農学研究科に進学しました。主にニワトリを対象に、家畜化の遺伝的基盤を探る研究を進めていきます。
+: 東京農工大学 大学院 連合農学研究科に進学しました。
+  主にニワトリを対象に、家畜化の遺伝的基盤を探る研究を進めていきます。
 
 2024.03.26
 : 東北大学 大学院 生命科学研究科を修了し、修士 (生命科学) を取得しました。

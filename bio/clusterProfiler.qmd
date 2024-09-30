@@ -19,9 +19,9 @@ Over Representation Analysis
 : 興味のある遺伝子/ない遺伝子が明確に二分できるとき
 
 Gene Set Enrichment Analysis
-: 何らかの解析をした結果、全遺伝子にP値などのスコアがつく場合、
+: 何らかの解析をした結果、全遺伝子に P 値などのスコアがつく場合、
   そのスコアの順に遺伝子を並べて上位/下位の遺伝子にどんな機能が濃縮しているかをみる。
-: 「`p < 0.05` で切ってもいいけど `p=0.051` の遺伝子は本当に無関係？」みたいな問題に対処
+: 「`p < 0.05` で切ってもいいけど `p = 0.051` の遺伝子は本当に無関係？」みたいな問題に対処
 
 
 ## GO enrichment analysis
@@ -51,7 +51,7 @@ library(org.Hs.eg.db)
 ### GO over-representation analysis
 
 ```r
-data(geneList, package="DOSE")  # サンプルデータ
+data(geneList, package = "DOSE")  # サンプルデータ
 gene = names(geneList)[abs(geneList) > 2]
 
 ego = enrichGO(
@@ -76,7 +76,7 @@ View(ego_result)
 : `"BP"`, `"CC"`, `"MF"`, `"ALL"` から選ぶ
 
 `pvalueCutoff`, `qvalueCutoff`
-: それぞれ与えたP値、Q値以下の GO を表示する。
+: それぞれ与えた P 値、Q 値以下の GO を表示する。
 : ここで設定してもいいけど、ここはとりあえず `1` にしておいて、
   `ego@result` を格納してから `|> dplyr::filter(qvalue < 0.1)` とかする方が柔軟では。
 
@@ -88,12 +88,12 @@ View(ego_result)
 : いくつ以上/以下の遺伝子が紐づく GO までを使う。
 
 `readable`
-: TRUE にすると ENTREZID を遺伝子シンボルに変換する。
+: `TRUE` にすると ENTREZID を遺伝子シンボルに変換する。
 
 ### GO Gene Set Enrichment Analysis
 
 ```r
-data(geneList, package="DOSE")
+data(geneList, package = "DOSE")
 # 渡す `geneList` はスコアの降順で並んでいる必要がある。
 
 ego = gseGO(
@@ -132,20 +132,21 @@ KEGG (Kyoto Encyclopedia of Genes and Genomes) は、
 利用可能な生物種を探す:
 
 ```R
-search_kegg_organism('hsa', by='kegg_code')
-search_kegg_organism('Homo sapiens', by='scientific_name')
+search_kegg_organism('hsa', by = 'kegg_code')
+search_kegg_organism('Homo sapiens', by = 'scientific_name')
 ```
 
 [KEGG Organisms のページ](https://www.genome.jp/kegg/catalog/org_list.html)から探してもいい。
 
-GO エンリッチメント解析と同様に、興味のある遺伝子/ない遺伝子で区切る解析と、
-なんらかのスコアに基づいてソートした時に上位に濃縮するパスウェイを調べる解析がサポートされている。
+GO エンリッチメント解析と同様に、
+興味のある遺伝子/ない遺伝子で区切る解析 (over-representation) と、
+なんらかのスコアに基づいてソートした時に上位に濃縮するパスウェイを調べる解析 (gene set enrichment) がサポートされている。
 
 
 ### KEGG pathway over-representation analysis
 
 ```R
-data(geneList, package="DOSE")  # サンプルデータ
+data(geneList, package = "DOSE")  # サンプルデータ
 gene <- names(geneList)[abs(geneList) > 2]
 
 kk <- enrichKEGG(
@@ -167,7 +168,7 @@ View(kk_result)
 ### KEGG pathway gene set enrichment analysis
 
 ```R
-data(geneList, package="DOSE")
+data(geneList, package = "DOSE")
 
 kk <- gseKEGG(
   geneList,
@@ -200,7 +201,7 @@ ID と gene_symbol の対応を取得して変換する。
 
 ```R
 library(org.Hs.eg.db)
-kk2 = kk |> setReadable(OrgDb = org.Hs.eg.db, keyType="ENTREZID")
+kk2 = kk |> setReadable(OrgDb = org.Hs.eg.db, keyType = "ENTREZID")
 ```
 
 
@@ -212,7 +213,7 @@ kk2 = kk |> setReadable(OrgDb = org.Hs.eg.db, keyType="ENTREZID")
 ```R
 dotplot(kk2, showCategory = 10, title = "Enriched Pathways" , split=".sign")
 # とか
-cnetplot(kk2, showCategory = 5, categorySize="pvalue")
+cnetplot(kk2, showCategory = 5, categorySize = "pvalue")
 # とか
 ```
 
@@ -224,6 +225,6 @@ pathview(
   gene.data = geneList,
   pathway.id = "hsa04110",
   species = "hsa",
-  limit = list(gene=max(abs(geneList)), cpd=1)
+  limit = list(gene = max(abs(geneList)), cpd = 1)
 )
 ```

@@ -188,7 +188,7 @@ PATH の通った `python3` 越しに `pip` を使うとうまくいった。
 python3 -m pip install git+https://github.com/ymat2/mython
 ```
 
-[`.venv`](./install.qmd) で仮想環境の中に入れたり、
+[`.venv`](./0_install.qmd) で仮想環境の中に入れたり、
 ローカルコピーで使う分には無問題。
 
 
@@ -206,7 +206,7 @@ bithon/
 ├── pyproject.toml
 ├── src/bithon/
 │   ├── __init__.py
-│   └── bithon.py  # setup.pyのときは拡張子なしでもよかったけど、pyproject.tomlではNGらしい?
+│   └── bithon.py  # setup.py のときは拡張子なしでもよかったけど、pyproject.toml では NG らしい?
 └── tests/
 ```
 

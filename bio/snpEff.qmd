@@ -40,7 +40,7 @@ wget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip
 unzip snpEff_latest_core.zip
 ```
 
-`PATH` を通す:
+PATH を通す:
 
 ```{.sh filename="~/.bash_profile"}
 PATH=${HOME}/bin/snpEff/scripts:$PATH
@@ -109,11 +109,9 @@ Example   : ANN=T|downstream_gene_variant|MODIFIER|FABP5P11|ENSG00000240122|tran
 アノテーションファイルは (GTF/GFF/GenBank file/RefSeq table) のいずれかでできる。
 今回 GFF/GTF を使う。
 
-<div class="note">
-
+::: {.note}
 後述するが少なくとも GRCg7b については GFF ではなく GTF がおすすめ。
-
-</div>
+:::
 
 全ゲノム配列 (`.fa`) とアノテーション (`.gff`) をダウンロード:
 

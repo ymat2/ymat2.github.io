@@ -8,10 +8,9 @@ format:
 - <https://docs.python.org/ja/3/library/argparse.html>
 - <https://qiita.com/kzkadc/items/e4fc7bc9c003de1eb6d0>
 
-Pyhton プログラム実行時にコマンドライン引数を受け取る処理を簡単に実装できる標準ライブラリ。
-
-[`sys`](https://docs.python.org/ja/3/library/sys.html?highlight=sys#module-sys) とかでも似たことは実現できるけど
-使い勝手と可読性は `argparse` の方が圧倒的にいい。
+Python プログラム実行時にコマンドライン引数を受け取る処理を簡単に実装できる標準ライブラリ。
+[`sys`](https://docs.python.org/ja/3/library/sys.html?highlight=sys#module-sys)
+とかでも似たことは実現できるけど使い勝手と可読性は `argparse` の方が圧倒的にいい。
 
 
 ## 基本的な使い方
@@ -42,8 +41,11 @@ python3 test.py hoge fuga --input koke -o piyo
 # arg2=fuga
 # arg3=koke
 # arg4=piyo
+```
 
-# ポジション引数は順番通りならどこでもいい
+ポジション引数は順番通りならどこでもいい:
+
+```sh
 python3 test.py hoge --input koke -o piyo fuga
 # arg1=hoge
 # arg2=fuga

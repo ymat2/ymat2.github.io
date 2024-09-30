@@ -2,10 +2,9 @@
 format:
   html:
     title: "GWAS"
+    subtitle: "<u>G</u>enome <u>W</u>ide <u>A</u>ssociation <u>S</u>tudy"
 ---
 
-
-<u>G</u>enome <u>W</u>ide <u>A</u>ssociation <u>S</u>tudy
 
 疾患や特定の表現型などと統計的に相関する遺伝子変異を網羅的に探索する手法。
 [2002年の理研の報告](https://doi.org/10.1038/ng1047)が初出らしい。
@@ -44,16 +43,15 @@ bcftools index file.snp.vcf.gz
 
 ### PCA (主成分分析) をおこなう
 
-:::{.note}
+::: {.note}
 
 GWAS では SNP 以外の変数を共変量として組み込むことがある。
 集団構造の主成分はこの典型で、
-例えば平均的に体サイズの大きい集団Aと小さい集団Bがいるときに、
-本当は体サイズと無関係だが集団AとBで分化している座位を
+例えば平均的に体サイズの大きい集団 A と小さい集団 B がいるときに、
+本当は体サイズと無関係だが集団 A と B で分化している座位を
 体サイズ関連の SNP として検出してしまう可能性がある。
-
 このような偽陽性を補正するために、
-集団構造のデータを共変量として組み込む。<br>
+集団構造のデータを共変量として組み込む。
 ([Price et al. 2006](https://doi.org/10.1038/ng1847))
 
 :::
@@ -141,7 +139,7 @@ plink2 --bfile file.plink \
 の2種類のファイルができる。
 
 - `--pheno`: 上で作った表現型ファイル
-- `--pheno-name`: 使用する表現型の列名 (`--pheno-col-nums` でれ番号での指定も可)
+- `--pheno-name`: 使用する表現型の列名 (`--pheno-col-nums` で列番号での指定も可)
 - `--covar`: PCA の出力ファイル
 - `--covar-name`: どの主成分を共変量として使うか。PC10 まで全部使うなら `PC1-PC10`。
 - `--covar-variance-standardize`: 共変量のスケーリングを行う
@@ -150,7 +148,7 @@ plink2 --bfile file.plink \
   - `skip-invalid-pheno`: 共変量 (ここでは PCA) と表現型の共線性があると判断されると、解析が止まる。
     これを避けてひとまず解析を押し通すオプション。
   - `firth-fallback`: バイナリの表現型に対してロジスティック回帰を行うときのモデル
-    [`no-firth`(PLINK1のデフォルト)/`firth-fallback`(デフォルト)/`firth`]
+    [`no-firth`(PLINK1 のデフォルト)/`firth-fallback`(デフォルト)/`firth`]
   - `hide-covar`: 出力ファイルに共変量の情報を出さない。(主にファイルサイズ削減のため)
 - `--adjust`: 多重補正をおこなう
 - `--ci 0.95`: 信頼区間
@@ -163,7 +161,7 @@ plink2 --bfile file.plink \
 あらかじめ使う列だけ抽出しておくのも手:
 
 ```sh
-# 最低でも染色体、座位、SNPのID、P値があればいい
+# 最低でも染色体、座位、SNP の ID、P 値があればいい
 cat file.gwas.Disease.glm.logistic.hybrid | awk -F '\t' '{print $1 "\t" $2 "\t"　$3 "\t" $18}' > gwas-result.txt
 ```
 

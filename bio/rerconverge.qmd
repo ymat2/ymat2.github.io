@@ -40,7 +40,7 @@ Mac で使う場合はまずバイナリ版インストールを試してみる�
    library(devtools)
    ```
 
-1. github からパッケージをインストール。
+1. Github からパッケージをインストール。
    これを実行すると、RERconverge 本体のインストールは失敗するけど、
    他の依存パッケージは入ってくるらしい:
 
@@ -245,9 +245,10 @@ estimatePhangornTreeAll(
 `format`
 : デフォルトは FASTA フォーマット
 
-<div class="warn">
+::: {.warn}
 Ambiguousなアミノ酸残基を表す `B`, `Z`, `J` は読んでくれない。`X` で置換しとくとか？
-</div>
+:::
+
 
 ## 相対進化速度の計算
 

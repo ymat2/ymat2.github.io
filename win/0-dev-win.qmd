@@ -1,0 +1,233 @@
+---
+format:
+  html:
+    title: "Windows 開発環境"
+---
+
+
+## はじめに
+
+Windows で Linux や Mac と同じようにコマンドラインツールを使う場合、
+[WSL (Windows Subsystem for Linux)](./wsl.qmd)
+を使うのが便利。
+
+一方、WSL は Windows 上で Linux ディストリビューションを利用できて便利な反面、
+VSCode でリモート開発を使おうとすると不便があったり、
+[ディスクスペースを食いつぶす問題](./wsl-disk-space.qmd)があったりする。
+
+それを避けて Linux 系の作業はリモートマシンでやる、とした際に、
+手元の Windows でもある程度コマンドラインの環境を整えたい、というときの Tips。
+(私も試行錯誤中なので変わるかもしれない。)
+
+::: {.warn}
+デスクトップを OneDrive 下に置く設定は無効にしておいた方が CUI 操作のうえでは安全。
+:::
+
+
+## PowerShell
+
+基本的には Microsoft 製の CUI である
+[PowerShell](https://learn.microsoft.com/ja-jp/powershell/)
+での作業となる。
+UNIX でいう `sudo` にあたる操作は、PowerShell を「管理者として開く」ことで実行する。
+
+### コマンドレット
+
+PowerShellで実行できるネイティブコマンドはコマンドレットと呼ばれており、
+"動詞-名詞"の名前で登録されている。
+
+```sh
+Get-Command  # すべてのコマンドレットを取得
+```
+
+### エイリアス
+
+例えばディレクトリを移るコマンドは `Set-Location` だが、要は `cd` と同じ。
+実際、`Set-Location` には `sl`, `cd`, `chdir` の3つのエイリアスが用意されている。
+
+```sh
+man Set-Location
+```
+
+他にもエイリアスを調べるには `Get-Alias`
+
+### Linux コマンド
+
+WSL を有効化していれば、`wsl` に続ける形で Linux コマンドを実行可能:
+
+```sh
+which wget
+>>> NG
+
+wsl which wget
+>>> 実行可能
+```
+
+### PROFILE
+
+- <https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4>
+- <https://qiita.com/smicle/items/0ca4e6ae14ea92000d18>
+
+PowerShell でも Linux でいう `.profile` とか `.bashrc` を設定したい。
+設定用のファイルは `$PROFILE` で決まっており、スコープに応じて以下がある:
+
+```sh
+> echo $PROFILE.AllUsersAllHosts
+C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1
+
+> echo $PROFILE.AllUsersCurrentHost
+C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
+
+> echo $PROFILE.CurrentUserAllHosts
+C:\Users\_username_\OneDrive\ドキュメント\WindowsPowerShell\profile.ps1
+
+> echo $PROFILE.CurrentUserCurrentHost
+C:\Users\_username_\OneDrive\ドキュメント\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+```
+
+CurrentUserCurrentHost が一番安全だけど、
+`C:\Users\_username_\OneDrive\ドキュメント\` とかいう諸悪の根源ディレクトリにおきたくない。
+
+ひとまず `$PROFILE.AllUsersAllHosts` に読み込みのみの PROFILE を置いて、
+`$HOME` のスクリプトを読む、という設定にしてみる:
+
+```{.sh filename="$PROFILE.AllUsersAllHosts"}
+$USER_PROFILE="$HOME\profile.ps1"
+if (Test-Path $USER_PROFILE) {. $USER_PROFILE}
+```
+
+この PROFILE でファイルを実行する (Linux でいう `source`) には
+実行権限の付与が必要:
+
+```sh
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+```
+
+ひとまず `touch` と `which` を定義:
+
+```{.sh filename="$HOME\profile.ps1"}
+Set-Alias touch New-Item
+function which() {(Get-Command $args).Path}
+```
+
+- 引数をともなう Alias の設定は `function` を使う。
+- 既存のコマンドの上書きはできない？
+
+
+## chocolatey
+
+<https://chocolatey.org/install>
+
+Windows のパッケージマネージャ。
+以降のコマンドラインツールを用意する際に、あると便利。
+
+### chocolatey のインストール
+
+PowerShell を**管理者として開く**。その後下記のインストールコマンドを実行:
+
+```sh
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+
+### Basic commands
+
+`choco install/uninstall パッケージ`
+: パッケージのインストール/アンインストール (管理者としての実行が必要)
+
+`choco search 検索ワード`
+: パッケージの検索
+
+`choco list`
+: インストール済みパッケージの表示
+
+`choco upgrade`
+: パッケージの更新
+
+
+### Packages
+
+rsync、vi、SSH あたりは入れておいて損はない:
+
+```sh
+choco install rsync vi ssh
+```
+
+(SSH は一応最初から入ってるやつがある。)
+
+
+## Git
+
+プロジェクトのバージョン管理のためにも必須。
+インストールは [Git for Windows](./git4win.qmd) を参照。
+
+もしくは上で用意した chocolatey で入れてもいい:
+
+```sh
+choco install git
+```
+
+
+## R
+
+<https://cran.r-project.org/bin/windows/base/>
+
+VSCode で使うには PATH を教えてあげる必要がある:
+
+```{.json filename="settings.json"}
+{
+  "r.rpath.windows": "C:\\Program Files\\R\\R-4.4.0\\bin\\x64\\R.exe",
+  "r.rterm.windows": "C:\\Program Files\\R\\R-4.4.0\\bin\\x64\\Rterm.exe",
+}
+```
+
+
+## Python
+
+- <https://learn.microsoft.com/ja-jp/windows/python/beginners>
+- <https://www.python.org/downloads/windows/>
+
+[Python 環境構築 --- Windows](/python/0_install.qmd#python-のインストール) を参照
+
+
+## 統合開発環境
+
+好きなやつを入れる:
+
+- [VSCode](https://code.visualstudio.com/Download)
+- [Rstudio](https://posit.co/download/rstudio-desktop/)
+- [Positron](https://github.com/posit-dev/positron)
+
+
+## Quarto
+
+<https://quarto.org/docs/get-started/>
+
+Windows 用のやつを入れてあげる。
+(R に付属しているやつを使うことはできなさそう?)
+
+PDF のレンダリング用に tex を入れてやる (c.f. `~/AppData/Roaming/TinyTeX/`):
+
+```sh
+quarto install tinytex
+```
+
+### PDF で日本語フォントを使うには?
+
+Quarto PDF で日本語フォントを使う場合、
+デフォルトでは[原ノ味フォント](https://github.com/trueroad/HaranoAjiFonts)が使われるらしい。
+Ubuntu とかは最初のインストールでプリセットされていたはずだが、
+Windows の Quarto では原ノ味含め、日本語フォントがプリセットされていないっぽい。
+
+そこで、`tlmgr` を使ってフォントをインストールしてやることで使えるようになる:
+
+```sh
+> .\AppData\Roaming\TinyTeX\bin\windows\tlmgr.bat install haranoaji
+Locale 'Japanese_Japan.932' is unsupported, and may crash the interpreter.
+tlmgr.pl: package repository https://ftp.kddilabs.jp/CTAN/systems/texlive/tlnet/ (verified)
+[1/1, ??:??/??:??] install: haranoaji [25570k]
+Locale 'Japanese_Japan.932' is unsupported, and may crash the interpreter.
+running mktexlsr ...
+done running mktexlsr.
+tlmgr.pl: package log updated: C:/Users/kokep/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr.log
+tlmgr.pl: command log updated: C:/Users/kokep/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr-commands.log
+```

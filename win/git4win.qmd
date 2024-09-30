@@ -1,0 +1,105 @@
+---
+format:
+  html:
+    title: "Git for Windows"
+    subtitle: "Windows (PowerShell) で Git を使う"
+---
+
+
+- <https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-PowerShell>
+- <https://qiita.com/kerobot/items/718d50ba8ebc2e199bc1>
+
+
+## Git for Windows をインストールする
+
+[Download for Windows のページ](https://git-scm.com/download/win)からインストーラを入手。
+
+インストール時の設定は基本的にデフォルトでいい。
+コミット時のエディタと `git pull` の挙動は適当なものを選ぶ。
+
+Select Destination Location
+: `C:\Program Files\Git`
+
+Select Components, Select Start Menu Folder
+: default
+
+Choosing the default editor used by Git
+: Use Visual Studio Code as Git's default editor
+
+Adjusting the name of the initil branch in new repositories
+: Override the default branch name for new repositories `main`
+
+Adjusting your PATH environment
+: Git from the command line and also from 3rd-party software (recommended)
+
+Choosing the SSH executable
+: Use bundle OpenSSH
+
+Choose HTTPS transport backend
+: Use the OpenSSL library
+
+Configuring the line ending conversion
+: Checkout Windows-style, commit Unix-style line ending
+
+Configuring the terminal emulator to use with Git Bash
+: Use MinTTY (the default terminal of MSYS2)
+
+Choose the default behavior of `git pull`
+: Fast-forward or merge
+
+Choose a credential helper
+: Git Credential Manager
+
+Configuring extra options
+: Enable file system caching
+: Enable symboic links
+
+Configuring experimental options
+: チェックなし
+
+
+## グローバル設定
+
+Windows のホームディレクトリに `.gitconfig` ができる。
+
+```{.conf filename="~/.gitcomfig"}
+[core]
+    editor = \"C:\\Users\\_username_\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
+```
+
+ここに必要な設定を追加していく:
+
+```{.conf filename="~/.gitcomfig"}
+[user]
+        name = ymat2
+        email = ymat2@users.noreply.github.com
+
+[init]
+        defaultBranch = main
+
+[push]
+        default = simple
+
+[pull]
+        ff = only
+
+[url "git@github.com:"]
+        pushinsteadof = https://github.com/
+
+[diff]
+        submodule = log
+
+[core]
+        editor = \"C:\\Users\\_username_\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
+```
+
+これだけでもほぼ Unix と同じように使える。
+
+
+## posh-git
+
+> posh-git is a PowerShell module that integrates Git and PowerShell
+> by providing Git status summary information that can be displayed in the PowerShell prompt
+
+らしい。
+PowerShell で Git を便利に使うためのモジュールっぽいが、必ずしも必要感ではない。

@@ -19,7 +19,7 @@ format:
 [RStudio](https://posit.co/products/open-source/rstudio/),
 [VSCode](/cli/vscode.qmd) などのエディタと連携してより快適に利用できる。
 
-類似フレームワークの [HUGO](./hugo.qmd) と比べてもはるかに高機能でラクに使えるが、
+類似フレームワークの [HUGO](./hugo.qmd) と比べて高機能でラクに使えるが、
 その分細かいところをいじろうとするとむしろ面倒くさかったり、
 単純にマークダウンの変換が遅かったりするので、その辺りは HUGO に軍配があがる。
 
@@ -40,10 +40,10 @@ RStudio でつかうときは既に同梱されているので不要。
 コマンドラインからやってももちろん OK:
 
 ```sh
-## Macならhomebrewで
+## Mac なら homebrew で
 brew install --cask quarto
 
-## WSL/Linuxは.debを落としてくるのが正攻法？
+## WSL/Linux では deb を落としてくるのが正攻法？
 sudo curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb
 # sudo apt-get install gdebi-core  # if needed
 sudo gdebi quarto-linux-amd64.deb
@@ -52,7 +52,7 @@ sudo gdebi quarto-linux-amd64.deb
 [Jupyter](https://jupyter.org/),
 [RStudio](https://posit.co/products/open-source/rstudio/),
 [VSCode](/cli/vscode.qmd) など好きなエディタで作業する。
-VSCode で使う時は[Quarto拡張機能](https://marketplace.visualstudio.com/items?itemName=quarto.quarto)を入れておく。
+VSCode で使う時は [Quarto 拡張機能](https://marketplace.visualstudio.com/items?itemName=quarto.quarto)を入れておく。
 
 
 ## まずは骨格をつくる
@@ -60,7 +60,7 @@ VSCode で使う時は[Quarto拡張機能](https://marketplace.visualstudio.com/
 <https://quarto.org/docs/websites/>
 
 `_quarto.yml` という名前の config ファイルでほとんどを管理する。
-WEBサイト用のディレクトリを作って `_quarto.yml` を用意:
+WEB サイト用のディレクトリを作って `_quarto.yml` を用意:
 
 ```sh
 mkdir my-website
@@ -68,7 +68,7 @@ cd my-website
 touch _quarto.yml
 ```
 
-エディタによってはQuartoのプロジェクトを作るボタンでこの辺の骨組みを自動で作ってくれる。
+エディタによっては Quarto のプロジェクトを作るボタンでこの辺の骨組みを自動で作ってくれる。
 
 `_quarto.yml` はとりあえず以下のように記述:
 
@@ -136,7 +136,7 @@ quarto render
 ```{.yaml filename="_quarto.yml"}
 project:
   type: website
-  output-dir: docs  # HTMLの出力先を指定
+  output-dir: docs  # HTML の出力先を指定
 
 website:
   title: "My Website"
@@ -202,7 +202,7 @@ format:
 
 <https://quarto.org/docs/presentations/revealjs/>
 
-quartoでは、[`revealjs`](https://revealjs.com/) という
+Quarto では、[`revealjs`](https://revealjs.com/) という
 JavaScript のフレームワークを使って HTML をスライドっぽく表示する。
 
 `_quarto.yml` にスライド用の設定を追記:
@@ -235,6 +235,7 @@ format:
 
 `history`
 : デフォルトの `true` だとブラウザバックでスライド単位の移動になって不快。
+  かならず `false` にする。
 
 スライド用のディレクトリを作ってファイルを作ってみる:
 
@@ -290,3 +291,7 @@ format: revealjs
 例えば [GitHub Pages](https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages)
 にホストさせる場合、
 `my-website` をリポジトリとして `push` して `docs` の中身を公開する設定をすればよい。
+
+この辺の面倒を見てくれる
+[`quarto publish`](https://quarto.org/docs/publishing/)
+というコマンドもある。

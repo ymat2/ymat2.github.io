@@ -2,7 +2,6 @@
 format:
   html:
     title: "Page not found..."
-    date: ""
 ---
 
 [> Back to HOME](index.qmd)

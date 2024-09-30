@@ -11,7 +11,7 @@ format:
 - Github: <https://github.com/hahnlab/CAFE5>
 - 論文: [Mendes et al. 2020](https://doi.org/10.1093/bioinformatics/btaa1022)
 
-ドキュメントが丁寧に書いてあるので助かる。
+ドキュメントが丁寧に書いてあるので基本的には読めば OK。
 
 - <https://github.com/hahnlab/CAFE5/blob/master/README.md>
 - <https://github.com/hahnlab/CAFE5/blob/master/docs/tutorial/tutorial.md>
@@ -22,7 +22,7 @@ format:
 - 各遺伝子ファミリーが異なる速度で進化することを仮定したパラメータ推定を行う。
 - シェルスクリプトを書く必要がなくなった。
 - エラーモデルの最適化やサマリーテーブルの出力が内部で行われるようになった。
-  (Pythonスクリプトが不要になった。)
+  (Python スクリプトが不要になった。)
 
 ## インストール
 
@@ -39,9 +39,9 @@ cd CAFE5
 make
 ```
 
-実行ファイルは `CAFE5/bin/` にあるので、ここに `$PATH` を通す。
+実行ファイルは `CAFE5/bin/` にあるので、ここに PATH を通す。
 
-### OSX の場合
+#### macOS の場合
 
 `src/matrix_cache.cpp:2:10: fatal error: 'omp.h' file not found`
 などコンパイラが見つからない系のエラーが出る場合があるらしい。
@@ -70,51 +70,53 @@ ls /usr/local/biotools/c/cafe:5*
 
 ## Quick Start
 
+### Input
+
 基本的に必要なファイルは以前の CAFE と同じ。
 
-1. 種ごと、遺伝子ファミリーごとの遺伝子数のテーブル(タブ区切り)。
+- 種ごと、遺伝子ファミリーごとの遺伝子数のテーブル(タブ区切り)。
   [OrthoFinder](./orthofinder.qmd) とか OrthoMCL とかでつくる。
 
-	例：gene_families.txt
+	```{.txt filename="gene_families.txt"}
+	Description	ID	Chicken	Lizard	Mouse
+	OG00001	OG00001	12	14	21
+	OG00002	OG00002	9	13	5
+	OG00003	OG00003	7	0	4
+	```
 
-	|Description|ID|Chicken|Lizard|Mouse|
-	|:---|:---|---:|---:|---:|
-	|OG00001|OG00001|12|14|21|
-	|OG00002|OG00002|9|13|5|
-	|OG00003|OG00003|7|0|4|
-
-1. Newick 形式の系統樹。binary, rooted, ultrametric である必要がある。
+- Newick 形式の系統樹。binary, rooted, ultrametric である必要がある。
   (cf. Rパッケージ `ape::is.binary()`, `ape::is.rooted()`, `ape::is.ultrametric()`)
 
    ```{.txt filename="species_tree.txt"}
    (Mouse:319.00000000,(Lizard:281.10000000,Chicken:281.10000000):37.90000000);
    ```
 
-2. CAFE5 を実行。
-   想定するシナリオにより、いくつかの実行方法がある:
+### CAFE5 の実行
 
-	- 遺伝子ファミリー間で進化速度が一定であるという仮定の下で、遺伝子ファミリーの進化速度を推定:
+想定するシナリオにより、いくつかの実行方法がある:
 
-		```sh
-		cafe5 -i gene_families.txt -t species_tree.txt
-		```
+- 遺伝子ファミリー間で進化速度が一定であるという仮定の下で、遺伝子ファミリーの進化速度を推定:
 
-	- 遺伝子ファミリーごとの進化速度が異なるという仮定の下で、遺伝子ファミリーの進化速度を推定:
+	```sh
+	cafe5 -i gene_families.txt -t species_tree.txt
+	```
 
-		```sh
-		cafe5 -i gene_families.txt -t species_tree.txt -k 3
-		```
+- 遺伝子ファミリーごとの進化速度が異なるという仮定の下で、遺伝子ファミリーの進化速度を推定:
 
-	- 特定の系統で遺伝子ファミリーの進化速度が異なることを仮定する場合、
-  	以前のバージョンと同じように $\lambda$ 構造を規定した Newick ファイルを用意する:
+	```sh
+	cafe5 -i gene_families.txt -t species_tree.txt -k 3
+	```
 
-		```{.txt filename="lambda_structure.txt"}
-		(Mouse:1,(Lizard:1,Chicken:2):1);  # Chickenの系統で進化速度が異なることを仮定。
-		```
+- 特定の系統で遺伝子ファミリーの進化速度が異なることを仮定する場合、
+  以前のバージョンと同じように $\lambda$ 構造を規定した Newick ファイルを用意する:
 
-		```sh
-		cafe5 -i gene_families.txt -t species_tree.txt -y lambda_structure.txt
-		```
+	```{.txt filename="lambda_structure.txt"}
+	(Mouse:1,(Lizard:1,Chicken:2):1);  # Chickenの系統で進化速度が異なることを仮定。
+	```
+
+	```sh
+	cafe5 -i gene_families.txt -t species_tree.txt -y lambda_structure.txt
+	```
 
 
 ## 出力ファイル
@@ -128,7 +130,7 @@ ls /usr/local/biotools/c/cafe:5*
   有意な増減があったノードには `*` がふってある。
 
 `model_family_results.txt`
-:	遺伝子ファミリー、P値、変化が有意であるかどうか (y/n) がタブ区切りで記述されている。
+:	遺伝子ファミリー、P 値、変化が有意であるかどうか (`y/n`) がタブ区切りで記述されている。
 
 `model_clade_results.txt`
 :	各ノードごとに遺伝子数が増加/減少したファミリーの数が書いてある。
@@ -158,8 +160,8 @@ CAFE は確率的誕生-死亡モデルの下で、
 ある $\lambda$ 値 (単位時間当たりの遺伝子の増減) にしたがって
 インプットした系統樹上で遺伝子の増減をシミュレートする。
 
-その結果各遺伝子ファミリーの実際の遺伝子数が得られる確率がp値として得られる。
-このp値が事前に定めた有意水準 (例えば0.05) を下回ったものが
+その結果各遺伝子ファミリーの実際の遺伝子数が得られる確率が P 値として得られる。
+この P 値が事前に定めた有意水準 (例えば0.05) を下回ったものが
 `rapidly expanded/contracted gene families` として得られる。
 
 

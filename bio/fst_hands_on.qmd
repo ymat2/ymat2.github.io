@@ -73,12 +73,12 @@ apptainer exec /usr/local/biotools/v/vcftools:0.1.16--h9a82719_5 vcftools --vers
 軍鶏 vs 他品種で分化しているゲノム領域を特定する。
 [VCFtools](https://vcftools.github.io/index.html) を使う。
 
-<div class="note">
+::: {.note}
 
 遺伝研での作業なので、以降の操作はシェルスクリプト (`.sh`) を書いて `qsub` してもよい。
 今回は便宜上、通常のコマンドラインで実行する形で説明する。
 
-</div>
+:::
 
 毎回 VCF を指定するのは面倒なので変数に代入して `${vcf}` で使う:
 
@@ -91,9 +91,8 @@ vcf=YOUR_DIR/varsites.snponly.vcf.gz
 `bcftools query` と `grep` を組み合わせて軍鶏とそれ以外のサンプル名を
 それぞれテキストファイルに格納する:
 
-<small>(軍鶏はサンプル名に `SM` を含む。これと八木戸 `YKD` を抽出。)</small>
-
 ```sh
+# 軍鶏はサンプル名に `SM` を含む。これと八木戸 `YKD` を抽出。
 bcftools query -l ${vcf} | grep -E 'SM|YKD' > shamo.txt
 bcftools query -l ${vcf} | grep -v -E 'SM|YKD' > non-shamo.txt
 ```
@@ -153,7 +152,7 @@ qqman::manhattan(
 ```
 
 `qqman::manhattan()` はデフォルトでは [PLINK](https://www.cog-genomics.org/plink/) の出力ファイルである
-BP列、CHR列、P列、SNP列をもつデータフレームを想定する。
+BP 列、CHR 列、P 列、SNP 列をもつデータフレームを想定する。
 これ以外のデータでマンハッタンプロットの描画をするときは、引数に列名などを指定していく。
 
 `chr`
@@ -198,19 +197,19 @@ AWK コマンドで $F_\text{st} > 0.3$ の行を抽出:
 awk -F'\t' '$5 > 0.3' shamo_vs_other.windowed.weir.fst > shamo_vs_other.03.fst
 ```
 
-<div class="note">
+::: {.note}
 
 `.fst` ファイルの5列目 (`$5`) が `WEIGHTED_FST` なので、これが 0.3 より大きい行を抽出する。
 この作業自体はエクセルでやっても R でやってもいい。
 
-</div>
+:::
 
 NCBI から `bGalGal1.mat.broiler.GRCg7b` の GTF をダウンロードする:
 
-   1. <https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_016699485.2/> へ
-   2. <kbd style="color:#fff; background-color:rgb(0, 113, 188);">Download</kbd>
-      から  Annotation features (GTF) のみ選択してダウンロード
-   3. 手元に取得した `genomic.gtf` を遺伝研に送る
+1. <https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_016699485.2/> へ
+2. <kbd style="color:#fff; background-color:rgb(0, 113, 188);">Download</kbd>
+   から  Annotation features (GTF) のみ選択してダウンロード
+3. 手元に取得した `genomic.gtf` を遺伝研に送る
 
 このまま使ってもいいけど、9列目の Attribute の情報が多すぎる。
 今回は遺伝子ID (`gene_id`) さえあればいいので、ここだけ残したシンプルな GFF に変えておく:
@@ -329,7 +328,7 @@ qqman::manhattan(
 NCBI で [*ISPD* のページ](https://www.ncbi.nlm.nih.gov/gene/420591)を見ると、
 2番染色体 (`NC_052533.1`) の 28184591..28296806 にあるらしい。
 
-この前後 5000 bp を VCF から抽出する:
+この前後 5000bp を VCF から抽出する:
 
 ```sh
 vcf=YOUR_DIR/varsites.snponly.vcf.gz
@@ -339,7 +338,7 @@ vcftools --gzvcf ${vcf} \
   --recode --out ISPD
 ```
 
-`--chr` で染色体accession、`--from-bp`/`--to-bp` で座位を指定して
+`--chr` で染色体 accession、`--from-bp`/`--to-bp` で座位を指定して
 VCF の特定領域を抽出する。
 `--out` で指定した Prefix で、`ISPD.recode.vcf` が生成される。
 
@@ -450,7 +449,7 @@ T = -\log{(1-F_\text{st})}
 $$
 
 各集団間の枝長を $T_\text{AB}$, $T_\text{BC}$, $T_\text{CA}$, として、
-例えば集団AのPBSを求めたければ、次のようにする:
+例えば集団 A の PBS を求めたければ、次のようにする:
 
 $$
 PBS_\text{A} = \frac{T_\text{AB} + T_\text{CA} - T_\text{BC} }{2}
@@ -461,7 +460,7 @@ $$
 PBS を算出するソフトウェアはいくつかあるが (例えば
 [scikit-allel](https://scikit-allel.readthedocs.io/en/stable/) や
 [kpbs](https://github.com/takuronkym/kpbs))、
-ここでは VCFtools の出力をつかって R で PBS を計算する。
+ここでは VCFtools の出力を使って R で PBS を計算する。
 
 まず、3集団の総当たりで算出した $F_\text{st}$ を読み込む。
 ここでは仮に pop1、pop2、pop3 とする:

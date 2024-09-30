@@ -7,7 +7,7 @@ format:
 
 `EvolTree` は、[ETE toolkit](http://etetoolkit.org/) の
 [ete-evol](/bio/ete-toolkit.qmd) を
-python スクリプトの中で動かすための拡張クラス。
+Python スクリプトの中で動かすための拡張クラス。
 
 - reference: <http://etetoolkit.org/docs/latest/reference/reference_evoltree.html>
 - tutorial: <http://etetoolkit.org/docs/latest/tutorial/tutorial_adaptation.html>
@@ -15,7 +15,7 @@ python スクリプトの中で動かすための拡張クラス。
 
 ## Installation
 
-[ete-toolkit](/bio/ete-toolkit.qmd) を参照。
+[ete-toolkit](/bio/ete-toolkit.qmd) を参照
 
 
 ## 準備
@@ -81,7 +81,7 @@ tree.workdir = "/path_to/my_working_directory/"
 : 推定したモデルのパラメータなどが入った `Model` オブジェクトを返す。
 
 `tree.get_most_likely(altn, null)`
-: 対立仮説 vs 帰無仮説での尤度比検定のP値を返す。
+: 対立仮説 vs 帰無仮説での尤度比検定の P 値を返す。
 
 
 ## Site モデル
@@ -103,7 +103,7 @@ else:
   print("Model M1 is not rejected.")
 ```
 
-`model.sites["BEB"]` には BEB法 (Bayes empirical Bayes法)
+`model.sites["BEB"]` には BEB 法 (Bayes empirical Bayes 法)
 により求められたサイトごとのパラメータが入っている。
 
 `model.sites["BEB"]["p2"]` はそのサイトが $\omega > 1$ で正の選択下にある事後確率であり、
@@ -119,7 +119,6 @@ tip 名でうまく指定できるように関数を書く:
 def get_node_ids(tree, names: list[str]) -> list[int]:
   node_ids = [ leaf.node_id for leaf in tree if leaf.name in names ]
   return node_ids
-
 
 def get_mrca_node_ids(tree, names: list[str]) -> list[int]:
   node_ids = [ get_node(tree, name) for name in names ]
@@ -147,7 +146,7 @@ pval = tree.get_most_likely("b_free", "M0")
 
 def get_omega(tree, model):
   """
-  b_freeからωを取得するのもちょっとメンドいので関数書いちゃう
+  b_free から ω を取得するのもちょっとメンドいので関数書いちゃう
   """
   mark2omega = {}
   result = tree.get_evol_model(model)
@@ -165,7 +164,7 @@ else:
   print("Model b_neut is not rejected.")
 ```
 
-正の選択かどうか調べたければ `b_free` vs `b_neut` をやって `wfgb > 1` かどうかみる。
+正の選択かどうか調べたければ `b_free` vs `b_neut` をやって `wfgb > 1` かどうかをみる。
 
 
 ## Branch-site モデル

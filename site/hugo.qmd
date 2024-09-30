@@ -72,10 +72,10 @@ sudo apt install hugo
 :	この中にマークダウンでページを書いていく。
 
 `public/`
-:	後述の `hugo` コマンドを走らせたときに html ファイルがこの中に生成される。
+:	後述の `hugo` コマンドを走らせたときに HTML ファイルがこの中に生成される。
 
 `static/`
-:	画像、css、javascript などの置き場。
+:	画像、CSS、Javascript などの置き場。
 
 `themes/`
 :	サイトの見た目を決めるテーマを入れる。
@@ -112,14 +112,14 @@ http://localhost:1313 で閲覧できる。
 
 ### `hugo`
 
-`public/` に html を生成する。
+`public/` に HTML を生成する。
 Github Pages でホストする場合、この中身を公開する。
 
 
 ## Github Actions による自動デプロイ
 
 - 参考: <https://sat8bit.github.io/posts/hugo-with-github-pages/>
-- Hugo 公式: <https://gohugo.io/hosting-and-deployment/hosting-on-github/>
+- HUGO 公式: <https://gohugo.io/hosting-and-deployment/hosting-on-github/>
 - Github Pages: >https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages>
 
 1. Github で `ユーザ名.github.io` という名の[リポジトリを作成](/cli/git.qmd)

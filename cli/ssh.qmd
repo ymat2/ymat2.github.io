@@ -38,7 +38,7 @@ ssh-keygen -t ed25519
 	cat ~/.ssh/id_ed25519.pub | pbcopy
 	```
 
-- コマンドで送る場合( `PasswordAuthentication yes` である必要がある):
+- コマンドで送る場合 (`PasswordAuthentication yes` である必要がある):
 
 	```sh
 	cat id_ed25519.pub | ssh ユーザー名@ipアドレス "mkdir ~/.ssh; cat>>~/.ssh/authorized_keys"
@@ -79,7 +79,7 @@ ssh username@example.com	# 毎回打つのは面倒！
 Host hoge
 	Hostname example.com                 # ホスト名(@のうしろ)
 	User username                        # ユーザー名
-	IdentityFile ~/.ssh/id_ed25519_hoge  # 秘密鍵へのPATH
+	IdentityFile ~/.ssh/id_ed25519_hoge  # 秘密鍵への PATH
 ```
 
 こうすると以下の二つは等価:
@@ -99,14 +99,14 @@ rsync -auvz src/ hoge:dest/
 
 ## サーバー (`ssh` される側) の設定
 
-`openssh-server` をインストールして起動を確認。
+`openssh-server` をインストールして起動を確認:
 
 ```sh
 sudo apt -y install openssh-server
 sudo systemctl status sshd.service  # Active: active (running) となっていれば起動している。
 ```
 
-この状態でいったん同一 LAN 内の別のマシンから `ssh` してみる。
+この状態でいったん同一 LAN 内の別のマシンから `ssh` してみる:
 
 ```sh
 ssh ユーザー名@ipアドレス

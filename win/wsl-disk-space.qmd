@@ -1,0 +1,140 @@
+---
+format:
+  html:
+    title: "WSL2 Disk space"
+    subtitle: "逼迫した WSL2 のディスクスペースを解放する"
+---
+
+
+- <https://learn.microsoft.com/ja-jp/windows/wsl/disk-space>
+- <https://qiita.com/TsuyoshiUshio@github/items/7a745582bbcd35062430>
+- <https://01futabato10.hateblo.jp/entry/2022/12/02/095031>
+
+
+## WSL を使っている人へ
+
+**WSL2 のディスク消費は、WSL2 内部でファイルを消してもサイズが小さくならない**らしい。
+つまり、いくら WSL 側でファイルを `rm` しようが garbage collection しようが、
+マシンのストレージは圧迫され続ける。
+
+WSL2 で使用する Linux ディストリビューションのデータは仮想ハードディスク (VHD) で管理されていて、
+ここがデータの本体を持っているから、だと思う。
+
+なので根本的にディスク容量を開放するには、
+VHD を最適化する必要がある。
+
+
+## [VHD (`.vhdx`) を探す](https://01futabato10.hateblo.jp/entry/2022/12/02/095031)
+
+```{.sh filename="PowerShell"}
+> ls C:\Users\_username_\AppData\Local\Packages\Canonical*  # _username_ は自分のものを
+
+
+    ディレクトリ: C:\Users\_username_\AppData\Local\Packages
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023/01/05     21:33                CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc
+d-----        2023/01/05     21:36                CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc
+
+```
+
+使っているディストリビューションのディレクトリ内にある `LocalState\` に `ext4.vhdx` がいる。
+(`onWindows` の方にはなかった。)
+
+```{.sh filename="PowerShell"}
+> ls C:\Users\_username_\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState\
+
+
+    ディレクトリ: C:\Users\_username_\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2024/06/06     14:04   208281796608 ext4.vhdx
+
+```
+
+
+## DISKPART を使って VHD を確認する
+
+まず `wsl` をシャットダウンする:
+
+```{.sh filename="PowerShell"}
+wsl --shutdown
+```
+
+DISKPART インタプリタを起動する:
+
+```{.sh filename="PowerShell"}
+diskpart
+```
+
+先ほど調べた VHD を選択する:
+
+```{.sh filename="DISKPART"}
+DISKPART> select vdisk file=C:\Users\_username_\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState\ext4.vhdx
+
+DiskPart により、仮想ディスク ファイルが選択されました。
+
+```
+
+VHD の情報を確認する:
+
+```{.sh filename="DISKPART"}
+DISKPART> detail vdisk
+
+デバイスの種類 ID: 0 (不明)
+ベンダー ID: {00000000-0000-0000-0000-000000000000} (不明)
+状態: 追加済み
+仮想サイズ: 1024 GB
+物理サイズ:  193 GB
+ファイル名: C:\Users\_username_\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState\ext4.vhdx
+子: いいえ
+親ファイル名:
+関連付けられたディスク番号: 見つかりません。
+
+```
+
+
+## VHD ディスクスペースを最適化する
+
+Attach -> Compact -> Detach の順に実行する。
+
+Attach:
+
+```{.sh filename="DISKPART"}
+DISKPART> attach vdisk readonly
+
+  100% 完了しました
+
+DiskPart により、仮想ディスク ファイルがアタッチされました。
+
+```
+
+Compact (本質):
+
+```{.sh filename="DISKPART"}
+DISKPART> compact vdisk
+
+  100% 完了しました
+
+DiskPart により、仮想ディスク ファイルは正常に圧縮されました。
+
+```
+
+Detach:
+
+```{.sh filename="DISKPART"}
+DISKPART> detach vdisk
+
+DiskPart により、仮想ディスク ファイルがデタッチされました。
+
+```
+
+DISKPART を終了する (その前にもう一回 `detail` してもよい):
+
+```{.sh filename="DISKPART"}
+DISKPART> exit
+```

@@ -1,0 +1,260 @@
+---
+format:
+  html:
+    title: "Python 環境構築"
+---
+
+Python を使うための環境構築に関するメモ。
+基本的には [Python 環境構築ガイド](https://www.python.jp/install/install.html)の写経。
+
+
+## ガイドライン
+
+### Python をインストールする前に検討
+
+- [Google Colab](https://colab.research.google.com/) で事足りない？
+- Python の入手元として、公式版と Anaconda 経由が存在。目的に応じて選択する。
+- [Pyenv は必要？](https://www.python.jp/install/docs/doyouneedpyenv.html)(特に初学者向けには非推奨)
+
+::: {.note}
+**Anaconda** はデータサイエンスや科学技術計算のためのさまざまなツールやライブラリの実行環境。
+パッケージ管理も仮想環境も全部担う。
+:::
+
+### Python と Anaconda
+
+Python パッケージをどう利用するか。
+
+1. `pip` を使って [The Python Package Index (PyPI)](https://pypi.org/) から取得する。
+2. `conda` を使って [Anaconda](https://www.anaconda.com/) から取得する。
+
+PyPI と Anaconda の併用は困難。
+特に同じパッケージを `pip` と `conda` の両方で入れるのは避けたほうがいいらしい。
+プログラミング入門の場合は PyPI、データサイエンス・科学技術計算には Anaconda。
+
+<!--
+### 自分の方針
+
+`pyenv` またはHomebrewでインストールしたPythonを使い、
+プロジェクトごとに `venv` で仮想環境をつくってその中で
+`pip` を使ってパッケージを管理する。
+
+`pyenv` は使うけど複数バージョンの使い分けは基本しない。
+LinuxでOS標準のPython環境を汚さない目的で使う。
+-->
+
+## Python のインストール
+
+### MacOS
+
+[MacOS 用のインストーラ](https://www.python.org/downloads/mac-osx/)か、
+[Homebrew](https://brew.sh) を使う。
+
+```sh
+# Homebrew による python インストール
+# Homebrew 自体のインストールは割愛
+
+berw install python3
+
+# 複数バージョンのインストール
+brew install python@3.7  # バージョンを指定してインストール
+ln -s /usr/local/opt/python@3.7/bin/python3.7 /usr/local/bin/python3.7  # /usr/local/bin/ にシンボリックリンク
+```
+
+### Windows
+
+- <https://www.python.jp/install/windows/index.html>
+- <https://learn.microsoft.com/ja-jp/windows/python/beginners>
+
+[Windows用のインストーラ](https://www.python.org/downloads/windows/)を使う。
+最初に出てくるウィンドウで "Add PATH" にチェックを入れる。
+
+Windows の場合、Microsoft ストアからインストールする方法もある。
+初学者向けには推奨されているが、
+ディレクトリやレジストリへのアクセス制限があるため使いようによっては不具合の原因になる。
+
+### Ubuntu
+
+```sh
+sudo apt update
+sudo apt install build-essential libbz2-dev libdb-dev \
+  libreadline-dev libffi-dev libgdbm-dev liblzma-dev \
+  libncursesw5-dev libsqlite3-dev libssl-dev \
+  zlib1g-dev uuid-dev tk-dev
+```
+
+[ダウンロードページ](https://www.python.org/)からソースコードをダウンロードして解凍、ビルド:
+
+```sh
+tar xJf Python-3.x.y.tar.xz
+cd Python-3.x.y
+./configure
+make
+sudo make install
+```
+
+デフォルトでは `usr/local/bin` にインストールされる。
+
+#### Ubuntuの `pip`
+
+```sh
+sudo apt install python3-pip
+```
+
+OS 標準の Python 環境のパッケージ管理は `pip` ではなく `apt` を介して行うのが安全。
+`apt` との衝突を避けるためか、Ubuntu 標準の `pip` は `sudo` なしで実行すると
+`--user` つきで実行された扱いになってパッケージは `~/.local/` にインストールされる。
+
+### `pyenv` によるインストール
+
+`pyenv` は複数バージョンの Python を切り替えながら利用するためのツール。
+Python x.y.z のマイナーバージョンまで切り替えて使えるが、そこまで必要か？という説もある。
+
+1. 必要に応じて[ビルド環境の用意](https://github.com/pyenv/pyenv/wiki#suggested-build-environment)
+
+1. `pyenv` のインストール:
+
+   ```sh
+   git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+   # or
+   brew install pyenv
+   ```
+
+1. 環境設定:
+
+   `~/.bash_profile` など
+
+   ```sh
+   export PYENV_ROOT="$HOME/.pyenv"
+   export PATH="$PYENV_ROOT/bin:$PATH"
+   eval "$(pyenv init -)"
+   ```
+
+1. バージョンを探してインストール:
+
+   ```sh
+   pyenv install --list
+   pyenv install 3.11.3
+   ```
+
+1. バージョンを切り替える:
+
+   ```sh
+   pyenv global 3.11.3  # システム全体で切り替え
+   pyenv local 3.11.3   # 実行したディレクトリのみで切り替え
+   ```
+
+
+## Pyenv
+
+<https://github.com/pyenv/pyenv>
+
+Python のバージョン管理ツール。
+`python3.x.y`, `python2.x.y` などのバージョンごとのインストール、管理のほか、
+[`conda`](https://www.anaconda.com/) 環境も Pyenv 越しに用意することができる。
+
+### よく使うコマンド
+
+`pyenv --version`
+: `pyenv` 自体のバージョンを確認
+
+`pyenv version`
+: いま指定されている Python のバージョンを表示する。
+
+`pyenv versions`
+: 利用可能な Python のバージョン一覧を表示する。(c.f. `$PYENV_ROOT/versions/*`)
+: いま指定されているバージョンには `*` がついている。
+
+`pyenv install -l/--list`
+: インストール可能なすべてのバージョンを表示する。
+: `grep` で絞ったり。(e.g. `pyenv install -l | grep "miniconda"`)
+
+`pyenv install <version>`
+: 指定したバージョンをインストールする。
+
+`pyenv rehash`
+: 新規インストール時に必要な処理らしい。`shims` をなんとかする。ドキュメントなし。
+
+`pyenv uninstall <version>`
+: 指定したバージョンをアンインストールする。
+
+`pyenv global <version>`
+: グローバルな `python` のバージョンを指定する。
+: `pyenv global 3.7.0 2.7.15` のように `python2` と `python3` をそれぞれ指定することもできる。
+
+`pyenv local <version>`
+: ローカルなプロジェクトで使う `python` のバージョンを指定する。
+: 解除する時は `pyenv local --unset`
+
+
+## `pip`
+
+[PyPI](https://pypi.org/)(The Python Package Index) に公開されている
+Python パッケージを管理するコマンド。
+
+`python3 -m pip` など、バージョンや現在使っている環境を明示した使い方が
+[推奨されている](https://www.python.jp/install/ubuntu/pip.html)。
+
+### よく使うコマンド
+
+`pip3 install <package>`
+: パッケージのインストール
+
+`pip3 uninstall <package>`
+: パッケージのアンインストール
+
+`pip3 list`
+: インストール済みパッケージの表示
+
+`outdated` なパッケージをまとめて更新:
+
+```sh
+pip3 list -o | tail -n +3 | awk '{ print $1 }' | xargs pip3 install -U
+```
+
+
+## `venv`
+
+プロジェクトごとに専用の Python 実行環境を作成する。
+
+1. プロジェクトを作成する:
+
+   ```sh
+   mkdir proj
+   cd proj
+   ```
+
+1. 仮想環境を作成する:
+
+   ```sh
+   python3 -m venv .venv
+   ```
+
+1. 仮想環境へ切り替える:
+
+   ```sh
+   source .venv/bin/activate
+   # or
+   . .venv/bin/activate
+   (.venv) $
+   ```
+
+   ターミナル先頭に `(.venv)` と表示され、仮想環境での実行状態になる。
+
+   ```sh
+   (.venv) $ deactivate  # 仮想環境の終了
+   ```
+
+1. パッケージのインストール:
+
+   仮想環境中でインストールしたパッケージはその環境内でのみ使用できる。
+   `requirements.txt` を使った環境のコピーも可能。
+
+   ```sh
+   python3 -m pip install pandas
+   python3 -m pip freeze > requirements.txt     # パッケージ一覧を書き出し
+   python3 -m pip install -r requirements.txt   # まとめてインストール
+   ```
+
+   仮想環境でのパッケージのインストール先は `.venv/lib/python3.11/site-packages/` になる。
+   バイナリ実行ファイルは `.venv/bin/` にあり、`python3`, `pip` もここに PATH が通る。

@@ -21,7 +21,7 @@ sudo apt install nano  ## ubuntu
 ```
 
 macOS 12.3 Monterey 以降、
-Macの `nano` の正体は `pico` なので、
+Mac の `nano` の正体は `pico` なので、
 いろいろ設定して使いたい場合は `brew` でインストールする。
 
 
@@ -97,14 +97,14 @@ set mouse	        # マウスを使えるようにする
 
 :	`set mouse` すると完全に `nano` の中の挙動になる。
   カーソルも動く。
-  ダブルクリックで範囲選択開始( `Set Mark` )、次のクリックで範囲決定。
-  もう一度クリックすると解除( `Unset Mark` )。
+  ダブルクリックで範囲選択開始 (`Set Mark`)、次のクリックで範囲決定。
+  もう一度クリックすると解除 (`Unset Mark`)。
 
 ### Syntax highlight
 
 デフォルトの見た目は非常に寂しい。
 
-Linuxでは `/usr/share/nano/` 、Mac(brew)では `/usr/local/share/nano/` や
+Linuxでは `/usr/share/nano/` 、Mac (brew) では `/usr/local/share/nano/` や
 `/usr/local/Cellar/nano/%v/share/nano/` にハイライト定義ファイルが置いてあるので、
 これらの設定を `~/.nanorc` に加える。
 

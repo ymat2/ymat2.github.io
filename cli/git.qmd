@@ -11,6 +11,8 @@ format:
 
 ## 基本操作
 
+これから使い始める人向けスライド:
+
 - [Git 基本操作① — Git と GitHubを使い始める](/slides/git-circle/git-vol1.qmd)
 - [Git 基本操作② — `fetch`, `merge`, `pull`](/slides/git-circle/git-vol2.qmd)
 
@@ -61,31 +63,29 @@ format:
 
 ### 手元の変更をリモートリポジトリに反映
 
-<div class="note">
-
-**基本**: "`git add` → `git commit` → `git push`"
-
-</div>
+::: {.note}
+**基本**: `git add` → `git commit` → `git push`
+:::
 
 1. 手元でファイルをいじって変更を確認:
 
    ```sh
    echo "Hello, Github" > README.md
-   git status	# README.mdが`Changes not staged for commit:`に表示される。
+   git status 	# README.md が Changes not staged for commit: に表示される。
    ```
 
 1. 変更したファイルをインデックスに登録:
 
    ```sh
    git add README.md
-   git status	  # README.mdが`Changes to be committed:`に表示される。
+   git status	  # README.md が Changes to be committed: に表示される。
 	 ```
 
 1. 変更をコミット:
 
    ```sh
    git commit -m "modified hoge.txt"
-   git status  	# `nothing to commit, working tree clean`となる。
+   git status  	# nothing to commit, working tree clean となる。
    git log      # コミットが表示される。
 	 ```
 
@@ -97,11 +97,9 @@ format:
 
 ### リモートリポジトリの変更を手元に反映
 
-<div class="note">
-
-**基本**: "`git fetch` → `git merge`" もしくは "`git pull`"
-
-</div>
+::: {.note}
+**基本**: `git fetch` → `git merge` もしくは `git pull`
+:::
 
 - リモートブランチの状態を手元のファイルまで一気に反映:
 
@@ -129,13 +127,13 @@ Git の管理から除外するファイルを制御する:
 ## 場所を問わず特定のファイル・ディレクトリを除外
 hoge
 
-## .gitignoreが置かれたリポジトリの特定のファイル・ディレクトリを除外
+## .gitignore が置かれたリポジトリの特定のファイル・ディレクトリを除外
 /hoge
 
 ## 場所を問わず特定のディレクトリの除外
 dir/
 
-## .gitignoreが置かれたリポジトリの特定のディレクトリを除外
+## .gitignore が置かれたリポジトリの特定のディレクトリを除外
 /dir/
 
 ## 特定のファイル・ディレクトリのみ追跡
@@ -166,8 +164,8 @@ git rm --cached <FILE_NAME>
 
 手順:
 
-- [SSHキーを生成する。](./ssh.qmd)
-- [githubに公開キーを登録する。](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+- [SSH キーを生成する。](./ssh.qmd)
+- [github に公開キーを登録する。](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 - `ssh -T git@github.com` で接続確認。
 
 ### `ssh -T` の際に `permission denied` となる場合
@@ -181,7 +179,7 @@ git rm --cached <FILE_NAME>
 Host github github.com
   HostName github.com
   User git
-  IdentityFile ~/.ssh/id_rsa_git	# github用の秘密鍵
+  IdentityFile ~/.ssh/id_rsa_git	# Github 用の秘密鍵
 ```
 
 
@@ -193,7 +191,7 @@ Host github github.com
 git submodule add https://github.com/<username>/<repository>.git <directory>
 ```
 
-### submoduleを最新版に更新する
+### submodule を最新版に更新する
 
 ```sh
 git submodule foreach git pull
@@ -202,7 +200,7 @@ git commit -m "updated submodule"
 # git push
 ```
 
-### サブモジュールを含むリポジトリをcloneするとき
+### サブモジュールを含むリポジトリを clone するとき
 
 普通に `clone` してくるとサブモジュールの中身は空になっている。
 `clone` する際に、

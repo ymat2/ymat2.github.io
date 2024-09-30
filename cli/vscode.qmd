@@ -7,23 +7,24 @@ format:
 <https://code.visualstudio.com/>
 
 
-## WSL
+## WSL で使う場合
 
 <https://learn.microsoft.com/ja-jp/windows/wsl/tutorials/wsl-vscode>
 
-### VSCode本体と拡張機能のインストール
+### VSCode 本体と拡張機能のインストール
 
 <https://code.visualstudio.com/download>
 
-1. VSCode を (WSLではなく) Windows にインストールする。
+1. VSCode を (WSL ではなく) Windows にインストールする。
 
-1. インストール中に "追加タスクの選択" が求められたときは、"PATH への追加" オプションをオンにする。
+1. インストール中に "追加タスクの選択" が求められたときは、
+   "PATH への追加" オプションをオンにする。
 
 1. [Remote Development 拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)をインストールする。
 
 Remote Development 拡張機能なしで WSL にアクセスすることは非推奨とされている。
 
-### Linuxディストリビューションの更新と必要なパッケージのインストール
+### Linux ディストリビューションの更新と必要なパッケージのインストール
 
 ```sh
 sudo apt update
@@ -37,7 +38,7 @@ WSL から `code .` 、
 でコマンドパレットを開いて "WSL: Connect to WSL" を選択。
 
 なお、WSL から VSCode を立ち上げた場合、
-ログインシェルの設定( `~/.bash_profile`, `~/.zprofile` )は読まれない。
+ログインシェルの設定 (`~/.bash_profile`, `~/.zprofile`)は読まれない。
 
 ### 環境設定
 
@@ -54,7 +55,7 @@ WSL で VSCode を使う場合、ユーザーホームに `.vscode-server/` が�
 - 環境設定は `.vscode-server/data/Machine/settings.json`
 
 
-## Mac
+## Mac で使う場合
 
 ### VSCode のインストール
 
@@ -70,7 +71,7 @@ WSL で VSCode を使う場合、ユーザーホームに `.vscode-server/` が�
 ここに `$PATH` を通せばいい。
 
 公式のやり方
-: VSCode を起動してコマンドパレットを開き( <kbd>Command</kbd><kbd>Shift</kbd><kbd>P</kbd> )、
+: VSCode を起動してコマンドパレットを開き (<kbd>Command</kbd><kbd>Shift</kbd><kbd>P</kbd>)、
   "shell" と検索して出てくる "Shell Command: Install 'cpde' command in PATH" をクリック。
 : これで上記の実行ファイル PATH が `/usr/local/bin/` にシンボリックリンクされる。
 
@@ -83,7 +84,9 @@ Mac の VSCode の環境設定ファイルは
 `/Library/application Support/Code/User/settings.json` にある。
 
 
-## SSH
+## 拡張機能
+
+### SSH
 
 <https://code.visualstudio.com/docs/remote/ssh-tutorial>
 
@@ -101,35 +104,35 @@ WSL で使う場合すでに Remote で使っている扱いになるからか S
 - ということで WSL のホームにある `~/.ssh/` を Windows 側のホームにコピーしてしのぐ。
 
 
-## Quarto
+### Quarto
 
 <https://quarto.org/docs/tools/vscode.html>
 
-### 準備
+#### 準備
 
 1. VSCode に [Quarto の拡張機能](https://marketplace.visualstudio.com/items?itemName=quarto.quarto)をインストールする。
 
-2. Quarto CLI をマシンにインストールする。
+1. Quarto CLI をマシンにインストールする。
 
    ```sh
-   ## Macならhomebrewで
+   ## Mac なら homebrew で
    brew install --cask quarto
 
-   ## WSLは.debを落としてくるのが正攻法？
+   ## WSL は .deb を落としてくるのが正攻法？
    sudo curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb
    # sudo apt-get install gdebi-core  # if needed
    sudo gdebi quarto-linux-amd64.deb
    ```
 
-### Render
+#### Render
 
 右上の Render ボタンから。
 もしくは <kbd>Control/Command</kbd><kbd>Shift</kbd><kbd>K</kbd>。
 
 
-## R
+### R
 
-1. Rに `languageserver` を入れる。
+1. R に `languageserver` を入れる。
 
    ```R
    install.packages("languageserver")

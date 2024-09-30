@@ -29,10 +29,14 @@ $link-color: $color-link;
 $font-family-sans-serif:
   -apple-system,
   BlinkMacSystemFont,
-  "ヒラギノ角ゴ ProN W3",
-  HiraKakuProN-W3,
-  "Yu Gothic Medium",
   "Segoe UI",
+  "Noto Sans JP",
+  "Arial",
+  "Helvetica",
+  "Hiragino Sans",
+  "Hiragino Kaku Gothic ProN",
+  "Yu Gothic Medium",
+  "Meiryo",
   system-ui,
   sans-serif;
 $font-family-monospace:
@@ -47,6 +51,7 @@ $h2-font-size: 1.5rem;
 $h3-font-size: 1.4rem;
 $h4-font-size: 1.3rem;
 $h5-font-size: 1.2rem;
+$h6-font-size: 1.1rem;
 
 //
 // Code blocks, Inline code
@@ -89,10 +94,14 @@ main {
 
 /*-- md2html contents --*/
 
+h1 {
+  font-weight: bold;
+}
+
 h2 {
 	background-color: $grey2;
 	border-bottom: none;
-	padding: 0.4em 0.5em;
+	padding: 0.5rem .75rem;
 	font-weight: 400;
 	margin-top: 1.5em;
 	margin-bottom: 1em;
@@ -101,10 +110,64 @@ h2 {
 }
 
 h3 {
-	border-bottom: 2px solid $grey1;
+  position: relative;
+  padding: .2rem 0rem;
+	border-bottom: 1.5px solid $grey3;
 	font-weight: 400;
 	margin-top: 1.33em;
 	margin-bottom: 1em;
+}
+
+h3:before {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 20%;
+  height: 1px;
+  content: "";
+  background: #444;
+}
+
+h3:after {
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  height: .875rem;
+  content: '###';
+  font-size: .875rem;
+  color: $grey4;
+}
+
+h4 {
+  position: relative;
+  padding: .2rem 0rem;
+  border-bottom: 1.5px solid $grey3;
+  font-weight: 400;
+}
+
+h4:before {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 15%;
+  height: 1px;
+  content: "";
+  background: #444;
+}
+
+h4:after {
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  height: .875rem;
+  content: '####';
+  font-size: .875rem;
+  color: $grey4;
+}
+
+h5, h6 {
+  font-weight: 400;
+  padding: .2rem 0rem;
 }
 
 ol, ul {
@@ -133,8 +196,10 @@ dl dd::before {
   left: -0.8em;
 }
 
-table{
+table {
 	margin-left: 0;
+  margin-top: .5rem !important;
+  margin-bottom: 1.5rem !important;
   box-shadow: 1px 1px 5px #808080;
 	font-size: 0.875rem;
 }
@@ -233,7 +298,7 @@ kbd {
 
 div {
   .note {
-  	margin: 0.5rem 0;
+  	margin-block: 0.5rem 1.5rem;
     padding-block: 0.5rem;
     padding-inline: 2rem 1rem;
     position: relative;
@@ -253,7 +318,7 @@ div {
   }
 
   .warn {
-  	margin: 0.5rem 0;
+    margin-block: 0.5rem 1.5rem;
     padding-block: 0.5rem;
     padding-inline: 2rem 1rem;
     position: relative;
@@ -285,7 +350,7 @@ div {
     height: 300px;
     padding-inline: 1em;
     overflow-y: scroll;
-    box-shadow: 4px 0px 8px -4px inset #808080;
+    box-shadow: 0px 0px 10px -3px inset #808080;
   }
 
   .news dl dt {
@@ -303,11 +368,4 @@ div {
   .news dl dd::before {
     content: none;
   }
-}
-
-/*-- Other classes --*/
-
-.date {
-  color: $grey4;
-  font-size: .85em;
 }

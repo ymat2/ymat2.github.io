@@ -11,9 +11,10 @@ Python フレームワーク。
 その中の [*ete-evol*](http://etetoolkit.org/documentation/ete-evol/) は
 [CODEML](http://abacus.gene.ucl.ac.uk/software/paml.html) や
 [SLR](https://doi.org/10.1534/genetics.104.032144) の実行を手助けする
-python 製コマンドラインツール。
+Python 製コマンドラインツール。
 
-パッケージとして `import` して[スクリプトの中で使う](/python/evoltree.qmd)こともできる。
+パッケージとして `import` して
+[Python スクリプトの中で使う](/python/evoltree.qmd)こともできる。
 
 
 ## Installation
@@ -41,7 +42,7 @@ ete3 build check
 conda activate ete3
 ```
 
-condaを介さないインストール:
+`conda` を介さないインストール:
 
 ```sh
 pip3 install cython bottle brotli numpy scipy PyQt5
@@ -66,13 +67,13 @@ ete3 evol -t tree_file --alg fasta_file -o outdir/ --models models --cpu N
 ```
 
 `-t`
-: 系統樹のパス
+: 系統樹ファイルのパス
 
 `--alg`
-: アライメントのパス
+: アライメントファイルのパス
 
 `-o`
-: 出力先。この中にモデルの名前のディレクトリが作られる。
+: 出力先ディレクトリ。この中にモデルの名前でサブディレクトリが作られる。
 
 `--cpu`
 : コア数
@@ -157,9 +158,9 @@ ete3 evol -t tree_file --alg fasta_file --models M2 M1 --tests M2,M1 -o outdir/
 |b_free|b_neut|特定の枝でdN/dSが1と異なるか|[Yang 2002][Y02]|
 |b_free|M0|特定の枝でdN/dSが他と異なるか|[Yang 2002][Y02]|
 
-`b_free` vs `b_neut` の検定はP値とフォアグラウンド枝の
+`b_free` vs `b_neut` の検定は P 値とフォアグラウンド枝の
 $\omega = d_\text{N} / d_\text{S}$ の値によって複数の解釈がある。
-(ここについては公式ドキュメントの記載が間違っている気もする。。。)
+(ここについてはドキュメントの記載が間違っている気もする。)
 
 - `P > 0.05` の場合、Relaxed selection の可能性がある。
   統計的に主張するには `b_neut` を対立仮説にして帰無仮説 `b_free` を棄却する必要あり？

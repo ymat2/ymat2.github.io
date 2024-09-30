@@ -4,6 +4,9 @@ format:
     title: "OrthoFinder"
 ---
 
+複数種の遺伝子配列を、共通の1遺伝子に由来するパラログ + オーソログのグループ
+(Orthogroup; OG) に分類する。
+
 - 公式: <https://davidemms.github.io/>
 - GitHub リポジトリ: <https://github.com/davidemms/OrthoFinder>
 - 論文: [Emms and Kelly 2015](https://doi.org/10.1186/s13059-015-0721-2)

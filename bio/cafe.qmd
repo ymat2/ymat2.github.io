@@ -5,12 +5,12 @@ format:
     subtitle: "遺伝子ファミリーの進化解析"
 ---
 
-<div class="warn">
+::: {.warn}
 
 [CAFE5](./cafe5.qmd) にアップデートされ、より柔軟な推定が可能になり、
 動かし方も容易になったため、特に理由がなければ CAFE5 を推奨する。
 
-</div>
+:::
 
 <u>C</u>omputational <u>A</u>nalysis of gene <u>F</u>amily <u>E</u>volution
 

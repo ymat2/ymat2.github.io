@@ -14,7 +14,7 @@ format:
 
 ```{.txt filename="~/.ssh/config"}
 Host ddbj
-	IdentityFile ~/.ssh/id_ed25519
+  IdentityFile ~/.ssh/id_ed25519
   Hostname gw.ddbj.nig.ac.jp
   RequestTTY yes
   User yukimatsu
@@ -29,8 +29,8 @@ ssh ddbj
 qlogin
 ```
 
-`-l s_vmem=4G`, `-l mem_req=4G` でログインノードのメモリ量を指定できる。
-デフォルトは4GBで、96GBまで指定可能。
+`-l s_vmem`, `-l mem_req` でログインノードのメモリ量を指定できる。
+デフォルトは 4GB で、96GB まで指定可能。
 
 ```sh
 qlogin -l s_vmem=16G -l mem_req=16G  # 16GB でログイン
@@ -41,7 +41,7 @@ qlogin -l s_vmem=16G -l mem_req=16G  # 16GB でログイン
 
 <https://sc.ddbj.nig.ac.jp/software/grid_engine/interactive_jobs>
 
-手元のターミナルと同じように、linux コマンドやスクリプトの実行が可能:
+手元のターミナルと同じように、Linux コマンドやスクリプトの実行が可能:
 
 ```sh
 $ pwd
@@ -101,7 +101,7 @@ qsub sample.sh
 qsub sample.py -cwd -l short -l s_vmem=4G -l mem_req=4G
 ```
 
-オプションはジョブスクリプト内で `#$` につづけて渡してもいいし、
+オプションはジョブスクリプト内で `#$` に続けて渡してもいいし、
 `qsub` するときのコマンドライン引数として渡してもいい。
 
 `-cwd`
@@ -164,13 +164,13 @@ orthofinder -f ExampleData -a 5
 :	複数の計算ノードにわたって、
 	なるべく少数のノードに N 個の CPU コアを確保する。
 
-<div class="note">
+:::{.note}
 
 `-l s_vmem=4G`, `-l mem_req=4G` でメモリ量を指定する場合、×スレッド数
 だけメモリを要求する。例えば `qsub -pe def_slot 16 -l s_vmem=4G -l mem_req=4G`
 であれば 4×16=64G を使うことになる。
 
-</div>
+:::
 
 
 ## アレイジョブ
@@ -184,6 +184,7 @@ orthofinder -f ExampleData -a 5
 ```sh
 #$ -S /bin/bash
 #$ -t 1-6:1
+#$ -tc 3
 #$ -cwd
 
 seq_ids=(SRR030253 SRR030254 SRR030255 SRR030256 SRR030257 SRR030258)
@@ -262,7 +263,7 @@ qsub array10000.sh genes.txt
 インストール不要で使うことができる。
 
 服すバージョン用意されている場合もある。
-どんなツールが使えるか見てみる。たとえば blast:
+どんなツールが使えるか見てみる。たとえば BLAST:
 
 ```sh
 ls /usr/local/biotools/b/blast*
@@ -280,12 +281,12 @@ apptainer exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -help
 
 ### `guix`
 
-<div class="warn">
+::: {.warn}
 
 2023/11/30 の OS アップデートと同時にドキュメントがアーカイブされた。
 もうすぐ使われなくなるかもしれない。
 
-</div>
+:::
 
 ユーザー権限で利用できるパッケージマネージャで、最初から使えるようになっている。
 

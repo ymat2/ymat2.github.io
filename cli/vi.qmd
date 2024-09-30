@@ -13,20 +13,14 @@ Vim であることが多い。
 
 ## 最低限覚えておくこと
 
-- 起動時はノーマルモード (編集はできない) 。
-
+- 起動時はノーマルモード (編集はできない)。
 - カーソル移動は (矢印キーも使えるけど)
   基本 <kbd>h</kbd>: 左, <kbd>j</kbd>: 下, <kbd>k</kbd>: 上, <kbd>l</kbd>: 右 でおこなう。
-
 - 編集は <kbd>i</kbd> でインサートモード `--INSERT--` に入って行う。
   インサートモードではカーソル移動はなるべくしない。
-
 - インサートモードから抜けるには <kbd>esc</kbd> や <kbd>control</kbd><kbd>C</kbd>
-
 - <kbd>:w</kbd> で変更を保存、<kbd>:q</kbd> で終了
-
 - <kbd>:wq</kbd> や <kbd>ZZ</kbd> で保存して終了
-
 - <kbd>:q!</kbd> で保存せずに強制終了
 
 
@@ -41,7 +35,6 @@ c.f. <https://github.com/ymat2/dotfiles/blob/main/.vimrc>
 
 `vim` の操作を習得するための練習問題付き教材。
 `vimtutor` で起動する。
-
 
 カーソル移動
 : <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd>, <kbd>l</kbd> (左、下、上、右)
@@ -59,10 +52,10 @@ c.f. <https://github.com/ymat2/dotfiles/blob/main/.vimrc>
 テキストの挿入
 : 編集箇所まで移動 (インサートモードでも移動できるけどしないつもりで)
 : <kbd>I</kbd> でインサートモードへ
-: 編集したら <kbd>esc</kbd> や <kbd>controlC</kbd> でノーマルモードへ
+: 編集したら <kbd>esc</kbd> や <kbd>control</kbd><kbd>C</kbd> でノーマルモードへ
 
 テキストの追加
-: 編集行まで移動 (行の上ならどの位置でもOK)
+: 編集行まで移動 (行の上ならどの位置でも OK)
 : <kbd>A</kbd> でインサートモードへ。カーソルは末尾に移る。
 : 編集したらノーマルモードへ
 
@@ -73,7 +66,7 @@ c.f. <https://github.com/ymat2/dotfiles/blob/main/.vimrc>
 : <kbd>d$</kbd> でカーソル位置から行末まで
 
 モーション + カウント
-: <kbd>w</kbd>, <kbd>e</kbd> は単体でカーソル移動コマンドとして機能する。
+: <kbd>w</kbd>、<kbd>e</kbd> は単体でカーソル移動コマンドとして機能する。
 : 数字と組み合わせて使用できる。
 : <kbd>2w</kbd> で2単語先の語頭へ
 : <kbd>3e</kbd> で3単語先の終端へ
@@ -105,7 +98,7 @@ c.f. <https://github.com/ymat2/dotfiles/blob/main/.vimrc>
 : 同時にインサートモードに移るので、編集して <kbd>esc</kbd>
 
 ファイル内の移動
-: <kbd>controlG</kbd> で行番号を取得
+: <kbd>control</kbd><kbd>G</kbd> で行番号を取得
 : <kbd>G</kbd> でファイルの最下行へ
 : <kbd>gg</kbd> でファイルの先頭へ
 : 行番号 <kbd>G</kbd> で指定した行へ
@@ -118,17 +111,17 @@ c.f. <https://github.com/ymat2/dotfiles/blob/main/.vimrc>
 : <kbd>%</kbd> でカーソル位置の括弧と対応する括弧へ移動
 
 置換
-: <kbd>:s/old/new/g</kbd> でカーソル行の"old"を"new"に置換
+: <kbd>:s/old/new/g</kbd> でカーソル行の "old" を "new" に置換
 : <kbd>:#,#s/old/new/g</kbd> で置換開始行と終了行を指定
 : <kbd>:%s/old/new/g</kbd> でファイル全体にわたって置換
 : <kbd>:%s/old/new/gc</kbd> でファイル全体にわたって1つ1つ確認をとりながら置換
 
 外部コマンドの実行
 : <kbd>:!</kbd> に続けてコマンドを実行できる。(e.x. <kbd>:!pwd</kbd>)
-: Enterで終了
+: Enter で終了
 
 範囲選択
-: <kbd>v</kbd> でヴィジュアルモードに移行
+: <kbd>v</kbd> でビジュアルモードに移行
 : カーソルキーを移動して範囲選択
 : <kbd>shift</kbd><kbd>v</kbd> は行選択モード、<kbd>control</kbd><kbd>v</kbd> は矩形選択モード
 
@@ -146,7 +139,7 @@ c.f. <https://github.com/ymat2/dotfiles/blob/main/.vimrc>
 : <kbd>esc</kbd> や <kbd>control</kbd><kbd>C</kbd> で脱出
 
 コピー
-: <kbd>v</kbd> でヴィジュアルモードに移行して範囲選択 → <kbd>y</kbd> でコピー
+: <kbd>v</kbd> でビジュアルモードに移行して範囲選択 → <kbd>y</kbd> でコピー
 : <kbd>p</kbd> でペースト
 : <kbd>yw</kbd> で1単語コピー
 : <kbd>yy</kbd> で行まるごとコピー

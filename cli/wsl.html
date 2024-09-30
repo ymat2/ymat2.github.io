@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>apt – Yuki MATSUDA</title>
+<title>WSL – Yuki MATSUDA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -167,7 +167,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">apt — Debian 系 Linux パッケージマネージャ</h1>
+          <h1 class="quarto-secondary-nav-title">WSL — <u>W</u>indows <u>S</u>ubsystem for <u>L</u>inux</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -300,7 +300,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cli/apt.html" class="sidebar-item-text sidebar-link active">
+  <a href="../cli/apt.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">apt</span></a>
   </div>
 </li>
@@ -342,7 +342,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cli/wsl.html" class="sidebar-item-text sidebar-link">
+  <a href="../cli/wsl.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">WSL</span></a>
   </div>
 </li>
@@ -484,88 +484,97 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header">
-<h1 class="title d-none d-lg-block display-7">apt — Debian 系 Linux パッケージマネージャ</h1>
+<h1 class="title d-none d-lg-block display-7">WSL — <u>W</u>indows <u>S</u>ubsystem for <u>L</u>inux</h1>
 
 
 </header>
 
 
-<ul>
-<li><a href="https://tracker.debian.org/pkg/apt" class="uri">https://tracker.debian.org/pkg/apt</a></li>
-<li><a href="https://www.debian.org/doc/manuals/debian-faq/pkgtools.ja.html#apt-get" class="uri">https://www.debian.org/doc/manuals/debian-faq/pkgtools.ja.html#apt-get</a></li>
-</ul>
-<section id="usage" class="level2">
-<h2 class="anchored" data-anchor-id="usage">Usage</h2>
-<dl>
-<dt><code>sudo apt update</code></dt>
-<dd>
-パッケージ一覧を更新
-</dd>
-<dt><code>sudo apt upgrade</code></dt>
-<dd>
-インストール済みのソフトウェアを更新
-</dd>
-<dd>
-必要に応じて依存パッケージをインストールすることがある。 (古い <code>apt-get</code> だと新規インストールは起こらない。)
-</dd>
-<dt><code>sudo apt install パッケージ</code></dt>
-<dd>
-パッケージのダウンロード
-</dd>
-<dt><code>sudo apt remove パッケージ</code></dt>
-<dd>
-パッケージの削除
-</dd>
-<dt><code>sudo apt purge パッケージ</code></dt>
-<dd>
-設定ファイルを含め、パッケージを完全削除
-</dd>
-<dt><code>sudo apt autoremove</code></dt>
-<dd>
-更新に伴い、必要なくなった依存パッケージを削除
-</dd>
-<dt><code>apt search 検索キーワード</code></dt>
-<dd>
-パッケージの検索
-</dd>
-<dt><code>apt list --upgradable</code></dt>
-<dd>
-更新可能なパッケージ一覧を表示
-</dd>
-<dt><code>apt list --installed</code></dt>
-<dd>
-インストール済みのパッケージ一覧を表示
-</dd>
-<dt><code>apt show パッケージ</code></dt>
-<dd>
-パッケージの詳細を表示
-</dd>
-</dl>
-<p>おまけ:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> moo</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>           (__)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>           (oo)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>     /------\/</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    / |    ||</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>   *  /\---/\</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      ~~   ~~</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>..."Have you mooed today?"...</span></code></pre></div>
+<section id="wslとは" class="level2">
+<h2 class="anchored" data-anchor-id="wslとは">WSLとは</h2>
+<p><a href="https://learn.microsoft.com/ja-jp/windows/wsl/" class="uri">https://learn.microsoft.com/ja-jp/windows/wsl/</a></p>
+<p>乱暴に言ってしまうと Windows で Linux を扱う仮想環境のこと</p>
 </section>
-<section id="apt-get-apt-cache" class="level2">
-<h2 class="anchored" data-anchor-id="apt-get-apt-cache"><code>apt-get</code>, <code>apt-cache</code></h2>
-<p><code>apt</code> はパッケージの管理を担う <code>apt-get</code> と検索を担う <code>apt-cache</code> の統合を図るコマンド。 それぞれのコマンドの対応は以下のようになっている。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> update             <span class="at">-</span><span class="op">&gt;</span>  apt update</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> upgrade            <span class="at">-</span><span class="op">&gt;</span>  apt upgrade</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> dist-upgrade       <span class="at">-</span><span class="op">&gt;</span>  apt full-upgrade</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> install package    <span class="at">-</span><span class="op">&gt;</span>  apt install package</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> remove package     <span class="at">-</span><span class="op">&gt;</span>  apt remove package</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> autoremove         <span class="at">-</span><span class="op">&gt;</span>  apt autoremove</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-cache</span> search string    <span class="at">-</span><span class="op">&gt;</span>  apt search string</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-cache</span> policy package   <span class="at">-</span><span class="op">&gt;</span>  apt list <span class="at">-a</span> package</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-cache</span> show package     <span class="at">-</span><span class="op">&gt;</span>  apt show package</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-cache</span> showpkg package  <span class="at">-</span><span class="op">&gt;</span>  apt show <span class="at">-a</span> package</span></code></pre></div>
+<section id="wslのインストール-windows11の場合" class="level2">
+<h2 class="anchored" data-anchor-id="wslのインストール-windows11の場合">WSLのインストール: Windows11の場合</h2>
+<p>参考: <a href="https://chigusa-web.com/blog/wsl2-win11/" class="uri">https://chigusa-web.com/blog/wsl2-win11/</a></p>
+<section id="wslのインストール" class="level3">
+<h3 class="anchored" data-anchor-id="wslのインストール">wslのインストール</h3>
+<ol type="1">
+<li><p><kbd>Win</kbd><kbd>X</kbd> → <kbd>A</kbd>でターミナルを管理者として起動。</p></li>
+<li><p><code>wsl --install</code></p></li>
+</ol>
+</section>
+<section id="再起動と設定" class="level3">
+<h3 class="anchored" data-anchor-id="再起動と設定">再起動と設定</h3>
+<ol type="1">
+<li><p>マシンを再起動する。</p></li>
+<li><p>再起動後、インストール処理を経て Ubuntu が起動する。</p></li>
+<li><p><code>Enter new UNIX usernaem:</code> と表示されたらユーザーネームを設定<br> (NG例: <code>松田</code> (日本語), <code>y matsuda</code> (スペース), <code>y.matsuda</code> (ピリオド))</p></li>
+<li><p><code>Enter new UNIX password:</code> と表示されたらパスワードを設定。 <code>sudo</code> とかするときに要求される。</p></li>
+<li><p><code>Retype new UNIX password:</code> と表示されたらパスワードを再入力</p></li>
+</ol>
+</section>
+</section>
+<section id="wslのインストール-windows10の場合" class="level2">
+<h2 class="anchored" data-anchor-id="wslのインストール-windows10の場合">WSLのインストール: Windows10の場合</h2>
+<p>参考: <a href="https://lab.sonicmoov.com/development/windows-bash/" class="uri">https://lab.sonicmoov.com/development/windows-bash/</a></p>
+<section id="windows-subsystem-for-linuxwslを有効化する" class="level3">
+<h3 class="anchored" data-anchor-id="windows-subsystem-for-linuxwslを有効化する">Windows subsystem for Linux(WSL)を有効化する</h3>
+<ol type="1">
+<li><p><kbd>Win</kbd><kbd>S</kbd> → 「コントロールパネル」を検索 → 「開く」</p></li>
+<li><p>「プログラム」を開く。</p></li>
+<li><p>Windowsの機能の有効化または無効化」をクリック。</p></li>
+<li><p>「Windows Subsystem for Linux」にチェック → 「OK」</p></li>
+<li><p>「今すぐ再起動(N)」</p></li>
+</ol>
+</section>
+<section id="ubuntuのインストール" class="level3">
+<h3 class="anchored" data-anchor-id="ubuntuのインストール">Ubuntuのインストール</h3>
+<ol type="1">
+<li><p><kbd>Win</kbd><kbd>S</kbd> → 「Microsoft Store」を検索 → 「開く」</p></li>
+<li><p>「Ubuntu」を検索してクリック。</p></li>
+<li><p>「入手」</p></li>
+</ol>
+</section>
+<section id="ubuntuの起動と設定" class="level3">
+<h3 class="anchored" data-anchor-id="ubuntuの起動と設定">Ubuntuの起動と設定</h3>
+<ol type="1">
+<li><p><kbd>Win</kbd><kbd>S</kbd> → 「Ubuntu」を検索 → 「開く」</p></li>
+<li><p><code>Enter new UNIX usernaem:</code> と表示されたらユーザーネームを設定<br> (NG: <code>松田</code> (日本語), <code>y matsuda</code> (スペース), <code>y.matsuda</code> (ピリオド))</p></li>
+<li><p><code>Enter new UNIX password:</code> と表示されたらパスワードを設定。 <code>sudo</code> とかするときに要求される。</p></li>
+<li><p><code>Retype new UNIX password:</code> と表示されたらパスワードを再入力</p></li>
+</ol>
+</section>
+</section>
+<section id="ubuntuの更新アップグレード" class="level2">
+<h2 class="anchored" data-anchor-id="ubuntuの更新アップグレード">Ubuntuの更新・アップグレード</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 最新のパッケージ情報を取得</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># パッケージを最新に更新</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade</span></code></pre></div>
+</section>
+<section id="余談-windows標準のターミナル" class="level2">
+<h2 class="anchored" data-anchor-id="余談-windows標準のターミナル">余談: Windows標準のターミナル</h2>
+<section id="コマンドプロンプト" class="level3">
+<h3 class="anchored" data-anchor-id="コマンドプロンプト">コマンドプロンプト</h3>
+<p>古のMicrosoft製CUI。</p>
+</section>
+<section id="powershell" class="level3">
+<h3 class="anchored" data-anchor-id="powershell">PowerShell</h3>
+<p>コマンドプロンプトの後継（Windows7以降）。 コマンドプロンプトで使えたコマンドも基本的に使える。</p>
+</section>
+<section id="windows-terminal" class="level3">
+<h3 class="anchored" data-anchor-id="windows-terminal">Windows Terminal</h3>
+<p>コマンドプロンプト、PowerShell、bash (WSL 経由) など複数のコマンドラインシェルのホストアプリケーション。</p>
+<ul>
+<li><p><kbd>Win</kbd><kbd>X</kbd> → <kbd>I</kbd>/<kbd>A</kbd>(管理者として実行)</p></li>
+<li><p><kbd>Ctrl</kbd><kbd>,</kbd>で設定画面に。 デフォルトのプロファイルや外観をいじれる。</p></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

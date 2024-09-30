@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Page not found… – Yuki MATSUDA</title>
+<title>全ゲノム解析ハンズオン – Yuki MATSUDA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="/site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="/site_libs/quarto-nav/headroom.min.js"></script>
-<script src="/site_libs/clipboard/clipboard.min.js"></script>
-<script src="/site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="/site_libs/quarto-search/fuse.min.js"></script>
-<script src="/site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="/">
-<link href="/./static/favicon.png" rel="icon" type="image/png">
-<script src="/site_libs/quarto-html/quarto.js"></script>
-<script src="/site_libs/quarto-html/popper.min.js"></script>
-<script src="/site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="/site_libs/quarto-html/anchor.min.js"></script>
-<link href="/site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="/site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="/site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="/site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="/site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../static/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -76,6 +76,10 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
 </script>
+<meta name="mermaid-theme" content="neutral">
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -92,15 +96,138 @@ gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header">
-<h1 class="title display-7">Page not found…</h1>
+<h1 class="title display-7">全ゲノム解析ハンズオン — スモールデータで理解する SNP 解析の流れ</h1>
 
 
 </header>
 
 
-<p><a href="/./index.html">&gt; Back to HOME</a></p>
+<section id="概要" class="level2">
+<h2 class="anchored" data-anchor-id="概要">概要</h2>
+<dl>
+<dt>目的</dt>
+<dd>
+スモールデータを使って、全ゲノム解析のパイプラインを一通り (公開データ取得から SNP アノテーションまで) 体験する。 その際、各解析で出てくる中間ファイル等にも触れることで、どのようなデータを使って、どのような解析が動いているかについて理解を深める。
+</dd>
+<dt>日程</dt>
+<dd>
+comming soon
+</dd>
+<dt>環境</dt>
+<dd>
+遺伝研スパコン
+</dd>
+<dt>やること</dt>
+<dd>
+基本的なコマンドライン操作
+</dd>
+<dd>
+NGS 公開データの取得
+</dd>
+<dd>
+クオリティコントロール
+</dd>
+<dd>
+リードマッピング、バリアントコール
+</dd>
+<dd>
+<span style="color:#CCC;">SNP アノテーション</span>
+</dd>
+<dd>
+<span style="color:#CCC;">IGV/R を用いた可視化</span>
+</dd>
+<dt>スライドのリンク</dt>
+<dd>
+🚧 under construction
+</dd>
+</dl>
+</section>
+<section id="材料" class="level2">
+<h2 class="anchored" data-anchor-id="材料">材料</h2>
+<p>大腸菌 <em>Escherichia coli</em></p>
+<ul>
+<li>参照配列: <a href="https://bacteria.ensembl.org/Escherichia_coli_str_k_12_substr_mg1655_gca_000005845/Info/Index">ASM584v2</a> (Ensembl59)</li>
+<li>Illumina ショートリード: <a href="https://www.ncbi.nlm.nih.gov/sra/?term=SRR030253">SRR030253</a></li>
+</ul>
+<dl>
+<dt>参考論文</dt>
+<dd>
+<a href="https://doi.org/10.1038/nature08480">Barrick et al.&nbsp;2009</a>
+</dd>
+</dl>
+</section>
+<section id="requirement" class="level2">
+<h2 class="anchored" data-anchor-id="requirement">Requirement</h2>
+<ul>
+<li>遺伝研スパコンにログインできる環境</li>
+<li>SRA toolkit</li>
+<li>fastp</li>
+<li>BWA</li>
+<li>SAMtools</li>
+<li>BCFtools</li>
+</ul>
+<p>スライドを見て、自身で進められるところまで進めておいてもらえると当日とてもスムーズです。</p>
+</section>
+<section id="全ゲノム解析の流れ" class="level2">
+<h2 class="anchored" data-anchor-id="全ゲノム解析の流れ">全ゲノム解析の流れ</h2>
+<div class="columns">
+<div class="column" style="width:65%;">
+<dl>
+<dt>配列取得</dt>
+<dd>
+次世代シーケンサ (NGS) によりシーケンスした DNA は Fastq フォーマット (<code>.fastq</code>) になる。 既報で解読済みの配列は NCBI などにアーカイブされており、 データベースから取得して利用できる。
+</dd>
+<dd>
+SRA Toolkit
+</dd>
+<dt>クオリティコントロール (QC)</dt>
+<dd>
+Fastq の生データにはうまくシーケンスできていない低品質な配列、 シーケンス時に付加するアダプタ配列、他サンプル由来のリードなどが含まれる。 こうした配列は偽陽性バリアントのもととなるため、解析から取り除く。
+</dd>
+<dd>
+FastQC, Fastp, Trimmomatic など
+</dd>
+<dt>マッピング</dt>
+<dd>
+シーケンスしたショートリードを参照配列 (リファレンス) の一致する箇所に並べ、 もとのゲノム配列のどこに由来するのかを調べる。
+</dd>
+<dd>
+BWA, Bowtie2 など
+</dd>
+<dt>バリアントコール</dt>
+<dd>
+参照配列とリードの配列とを比べ、参照配列と異なる塩基 (SNP) や 重複配列、欠失配列 (Indel) を特定する。
+</dd>
+<dd>
+GATK, SAMtools, BCFtools など
+</dd>
+</dl>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  A(Sample) -.-&gt;|DNA 抽出| B(DNA)
+  B -.-&gt;|NGS| C[Fastq]
+  X[(NCBI)] -.-&gt;|prefetch| C
+  C -.-&gt;|QC, マッピング| D[SAM]
+  D -.-&gt;|圧縮| E[BAM]
+  E -.-&gt;|バリアントコール| F[VCF/BCF]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

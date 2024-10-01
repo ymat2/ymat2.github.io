@@ -13,9 +13,10 @@ format:
   [システム行動生物学研究グループ](https://tsuyoshishimmura.wixsite.com/website-1)
   博士課程1年
 
-連絡先 / Contacts
+連絡先・リンク / Contacts and Links
 : <img height=20 width=20 style="vertical-align: text-top;" src="https://cdn.simpleicons.org/gmail/EA4335">
-  yuki.matsuda.m10![](./images/share/atmark.svg){height="18"}gmail.com (個人),
+  yuki.matsuda.m10![](./images/share/atmark.svg){height="18"}gmail.com (個人)
+: <img height=20 width=20 style="vertical-align: text-top;" src="https://cdn.simpleicons.org/gmail/666666">
   s249780w![](./images/share/atmark.svg){height="18"}st.go.tuat.ac.jp (大学)
 : <a rel="me" href="https://github.com/ymat2/" title="GitHub">
   <img height=20 width=20 style="vertical-align: text-top;" src="https://cdn.simpleicons.org/github/333333">

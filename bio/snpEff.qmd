@@ -34,6 +34,32 @@ conda install bioconda::snpeff
 
 ### バイナリ版をインストールする場合 (個人的に推奨):
 
+SnpEff は Java に依存するので、手元に Java 環境を整える。
+(遺伝研にもともとある Java では古くて動かない。)
+
+最新版の Java (binary) をダウンロードする:
+
+```sh
+cd ~/bin
+wget https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.tar.gz
+tar zxvf jdk-17_linux-x64_bin.tar.gz
+```
+
+PATH を通して動作確認:
+
+```{.sh filename="~/.bash_profile"}
+export JAVA_HOME=${HOME}/bin/jdk-23
+export PATH=${JAVA_HOME}/bin:$PATH
+export MALLOC_ARENA_MAX=2
+```
+
+```sh
+source .bash_profile
+java -version
+```
+
+Java が用意できたら SnpEff をダウンロードする:
+
 ```sh
 cd ~/bin
 wget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip

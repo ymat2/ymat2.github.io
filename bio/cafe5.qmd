@@ -6,7 +6,7 @@ format:
 ---
 
 
-[CAFE](./cafe.qmd) のメジャーアップデート版。
+[CAFE](/archive/cafe.qmd) のメジャーアップデート版。
 
 - Github: <https://github.com/hahnlab/CAFE5>
 - 論文: [Mendes et al. 2020](https://doi.org/10.1093/bioinformatics/btaa1022)

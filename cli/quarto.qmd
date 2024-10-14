@@ -5,7 +5,6 @@ format:
     subtitle: "書類・スライド作成からウェブサイト構築まで"
     aliases:
       - /site/quarto.html
-      - /site/quarto.qmd
     toc: true
 ---
 

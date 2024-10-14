@@ -5,7 +5,6 @@ format:
     subtitle: "Go 製静的サイトジェネレータ"
     aliases:
       - /site/hugo.html
-      - /site/hugo.qmd
 ---
 
 <https://gohugo.io/about/>

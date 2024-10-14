@@ -5,7 +5,6 @@ format:
     subtitle: "遺伝子ファミリーの進化解析"
     aliases:
       - /bio/cafe.html
-      - /bio/cafe.qmd
 ---
 
 ::: {.warn}

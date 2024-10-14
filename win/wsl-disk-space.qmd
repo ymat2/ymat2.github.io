@@ -1,8 +1,8 @@
 ---
 format:
   html:
-    title: "WSL2 Disk space"
-    subtitle: "逼迫した WSL2 のディスクスペースを解放する"
+    title: "WSL Disk space"
+    subtitle: "逼迫した WSL のディスクスペースを解放する"
 ---
 
 

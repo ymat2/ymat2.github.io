@@ -94,7 +94,7 @@ Windows のホームディレクトリに `.gitconfig` ができる。
 ```
 
 これだけでもほぼ Unix と同じように使える。
-
+実際の使い方は [Git/GitHub](/cli/git.qmd) を参照。
 
 ## posh-git
 

@@ -8,12 +8,12 @@ format:
 ## はじめに
 
 Windows で Linux や Mac と同じようにコマンドラインツールを使う場合、
-[WSL (Windows Subsystem for Linux)](./wsl.qmd)
+[WSL (Windows Subsystem for Linux)](/win/wsl.qmd)
 を使うのが便利。
 
 一方、WSL は Windows 上で Linux ディストリビューションを利用できて便利な反面、
 VSCode でリモート開発を使おうとすると不便があったり、
-[ディスクスペースを食いつぶす問題](./wsl-disk-space.qmd)があったりする。
+[ディスクスペースを食いつぶす問題](/win/wsl-disk-space.qmd)があったりする。
 
 それを避けて Linux 系の作業はリモートマシンでやる、とした際に、
 手元の Windows でもある程度コマンドラインの環境を整えたい、というときの Tips。
@@ -114,62 +114,88 @@ function which() {(Get-Command $args).Path}
 - 既存のコマンドの上書きはできない？
 
 
-## chocolatey
+### Windows 標準のターミナル
 
-<https://chocolatey.org/install>
+コマンドプロンプト
+: 古の Microsoft 製 CUI
 
-Windows のパッケージマネージャ。
-以降のコマンドラインツールを用意する際に、あると便利。
+[PowerShell](https://learn.microsoft.com/ja-jp/powershell/)
+: コマンドプロンプトの後継 (Windows7 以降)。
+: コマンドプロンプトで使えたコマンドも基本的に使える。
 
-### chocolatey のインストール
+Windows Terminal
+: コマンドプロンプト、PowerShell、bash (WSL 経由)
+  など複数のコマンドラインシェルのホストアプリケーション。
+: <kbd>Win</kbd><kbd>X</kbd> → <kbd>I</kbd>/<kbd>A</kbd>(管理者として実行)
+: <kbd>Ctrl</kbd><kbd>,</kbd>で設定画面。
+  デフォルトのプロファイルや外観をいじれる。
 
-PowerShell を**管理者として開く**。その後下記のインストールコマンドを実行:
+
+## パッケージ管理
+
+Windows におけるパッケージ管理の主な選択肢として、
+Microsoft 公式の [Winget](https://learn.microsoft.com/ja-jp/windows/package-manager/winget/)、
+古株で対応するパッケージも多い [Chocolatey](https://chocolatey.org/install)、
+ユーザー権限で使いやすい [Scoop](https://scoop.sh/)
+の3つがある。
+
+### [Winget](https://learn.microsoft.com/ja-jp/windows/package-manager/winget/)
+
+新しめの Windows ならデフォルトで使えるはず。
+
+#### Basic usage
+
+`winget install/uninstall`
+: パッケージのインストール/アンインストール
+
+`winget search`
+: パッケージの検索
+: 例: `winget search rstat`
+
+`winget list`
+: インストール済みパッケージの表示
+
+### [Chocolatey](https://chocolatey.org/install)
+
+#### Chocolatey のインストール
+
+PowerShell を**管理者として**開く。その後下記のインストールコマンドを実行:
 
 ```sh
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
-### Basic commands
+#### Basic usage
 
-`choco install/uninstall パッケージ`
-: パッケージのインストール/アンインストール (管理者としての実行が必要)
+`choco install/uninstall`
+: パッケージのインストール/アンインストール (管理者権限が必要)
 
-`choco search 検索ワード`
+`choco search`
 : パッケージの検索
 
 `choco list`
 : インストール済みパッケージの表示
 
-`choco upgrade`
-: パッケージの更新
+### [Scoop](https://scoop.sh/)
 
-
-### Packages
-
-rsync、vi、SSH あたりは入れておいて損はない:
+#### インストール
 
 ```sh
-choco install rsync vi ssh
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 ```
-
-(SSH は一応最初から入ってるやつがある。)
 
 
 ## Git
 
 プロジェクトのバージョン管理のためにも必須。
-インストールは [Git for Windows](./git4win.qmd) を参照。
-
-もしくは上で用意した chocolatey で入れてもいい:
-
-```sh
-choco install git
-```
+インストールは [Git for Windows](/win/git4win.qmd) を参照。
 
 
 ## R
 
-<https://cran.r-project.org/bin/windows/base/>
+- [R for Windows](https://cran.r-project.org/bin/windows/base/)
+- [Rtools](https://cran.r-project.org/bin/windows/Rtools/)
 
 VSCode で使うには PATH を教えてあげる必要がある:
 

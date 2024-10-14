@@ -3,6 +3,9 @@ format:
   html:
     title: "Quarto"
     subtitle: "書類・スライド作成からウェブサイト構築まで"
+    aliases:
+      - /site/quarto.html
+      - /site/quarto.qmd
     toc: true
 ---
 
@@ -19,7 +22,7 @@ format:
 [RStudio](https://posit.co/products/open-source/rstudio/),
 [VSCode](/cli/vscode.qmd) などのエディタと連携してより快適に利用できる。
 
-類似フレームワークの [HUGO](/site/hugo.qmd) と比べて高機能でラクに使えるが、
+類似フレームワークの [HUGO](/cli/hugo.qmd) と比べて高機能でラクに使えるが、
 その分細かいところをいじろうとするとむしろ面倒くさかったり、
 単純にマークダウンの変換が遅かったりするので、その辺りは HUGO に軍配があがる。
 

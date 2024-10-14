@@ -3,13 +3,16 @@ format:
   html:
     title: "HUGO"
     subtitle: "Go 製静的サイトジェネレータ"
+    aliases:
+      - /site/hugo.html
+      - /site/hugo.qmd
 ---
 
 <https://gohugo.io/about/>
 
 マークダウンで書いたファイルから HTML を生成し、静的ウェブサイトを構築するフレームワーク。
 本サイトも以前は HUGO でビルドしていた。
-(現在は [Quarto](/site/quarto.qmd) に移行)
+(現在は [Quarto](/cli/quarto.qmd) に移行)
 
 
 ## インストール

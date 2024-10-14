@@ -24,7 +24,7 @@ website:
       - section: "Bioinformatics"
         contents: bio/*.qmd
       - text: "---"
-      - section: "Command Line Tools"
+      - section: "開発環境"
         contents: cli/*.qmd
       - text: "---"
       - section: "Python"
@@ -32,9 +32,6 @@ website:
       - text: "---"
       - section: "Windows"
         contents: win/*.qmd
-      - text: "---"
-      - section: "Web 開発"
-        contents: site/*.qmd
   page-footer:
     right: "Copyright 2023 &ndash; 2024, Yuki Matsuda"
   google-analytics: "G-HLCP5V0Y7N"

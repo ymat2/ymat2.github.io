@@ -2,6 +2,9 @@
 format:
   html:
     title: "Gollum"
+    aliases:
+      - /sites/gollum.html
+      - /sites/gollum.qmd
 ---
 
 Linux サーバーに gollum で wiki を立てたときの奮闘記。

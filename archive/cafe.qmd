@@ -3,11 +3,14 @@ format:
   html:
     title: "CAFE"
     subtitle: "遺伝子ファミリーの進化解析"
+    aliases:
+      - /bio/cafe.html
+      - /bio/cafe.qmd
 ---
 
 ::: {.warn}
 
-[CAFE5](./cafe5.qmd) にアップデートされ、より柔軟な推定が可能になり、
+[CAFE5](/bio/cafe5.qmd) にアップデートされ、より柔軟な推定が可能になり、
 動かし方も容易になったため、特に理由がなければ CAFE5 を推奨する。
 
 :::
@@ -19,7 +22,7 @@ MCMC 法で推定するプログラム。
 
 基本的な動かし方は、入力となるシェルスクリプトを書いて CAFE に渡す、という形になる。
 このシェルスクリプトを書く過程で、
-[OrthoFinder](./orthofinder.qmd) の出力である `Orthogroups.GeneCount.tsv` と
+[OrthoFinder](/bio/orthofinder.qmd) の出力である `Orthogroups.GeneCount.tsv` と
 種の系統樹 (`Species_Tree`/`SpeciesTree_rooted.txt`) が必要。
 
 

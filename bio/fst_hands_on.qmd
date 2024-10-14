@@ -429,7 +429,7 @@ ggplot2::ggplot(ispd_vcf) +
 ```
 
 このようにしてアリル頻度の集団間差が特に大きい SNP を絞り込んでいく。
-[snpEff](./snpEff.qmd) などを組み合わせれば、
+[snpEff](/bio/snpEff.qmd) などを組み合わせれば、
 その中でアミノ酸変異を伴うもの、といった絞り込みも可能。
 
 

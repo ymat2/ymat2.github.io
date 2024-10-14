@@ -164,7 +164,7 @@ git rm --cached <FILE_NAME>
 
 手順:
 
-- [SSH キーを生成する。](./ssh.qmd)
+- [SSH キーを生成する。](/cli/ssh.qmd)
 - [github に公開キーを登録する。](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 - `ssh -T git@github.com` で接続確認。
 

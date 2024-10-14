@@ -138,7 +138,7 @@ qsub sample.py -cwd -l short -l s_vmem=4G -l mem_req=4G
 <https://sc.ddbj.nig.ac.jp/software/grid_engine/parallel_jobs/>
 
 CPU コアを複数同時に使用するジョブ。
-例えば [OrthoFinder](./orthofinder.qmd) であれば
+例えば [OrthoFinder](/bio/orthofinder.qmd) であれば
 `-a N` で N スレッドの並列解析を指定する。
 これを遺伝研上で投げるときは、下のようにする:
 

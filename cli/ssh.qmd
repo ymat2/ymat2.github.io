@@ -89,7 +89,7 @@ ssh username@example.com
 ssh hoge
 ```
 
-[rsync](./rsync.qmd) でリモートに接続するときも記述を省略できて便利:
+[rsync](/cli/rsync.qmd) でリモートに接続するときも記述を省略できて便利:
 
 ```sh
 rsync -auvz src/ username@example.com:dest/

@@ -10,8 +10,8 @@ format:
 
 参考になる日本語のサイト:
 
-- [mac でインフォマティクス::SnpEffとSnpSift](https://kazumaxneo.hatenablog.com/entry/2021/05/13/120000)
-- [Qiita::snpEff を動かす](https://qiita.com/shibanosuke/items/7fd695ffa9a04448f1db)
+- [SnpEffとSnpSift (mac でインフォマティクス)](https://kazumaxneo.hatenablog.com/entry/2021/05/13/120000)
+- [snpEff を動かす (Qiita)](https://qiita.com/shibanosuke/items/7fd695ffa9a04448f1db)
 
 SnpEff
 : SNP のアノテーションと VEP (Variant Effect Prediction) のためのツール

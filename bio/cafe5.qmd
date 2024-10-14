@@ -75,7 +75,7 @@ ls /usr/local/biotools/c/cafe:5*
 基本的に必要なファイルは以前の CAFE と同じ。
 
 - 種ごと、遺伝子ファミリーごとの遺伝子数のテーブル(タブ区切り)。
-  [OrthoFinder](./orthofinder.qmd) とか OrthoMCL とかでつくる。
+  [OrthoFinder](/bio/orthofinder.qmd) とか OrthoMCL とかでつくる。
 
 	```{.txt filename="gene_families.txt"}
 	Description	ID	Chicken	Lizard	Mouse
@@ -176,7 +176,7 @@ cafe5 -i gene_families.txt -t species_tree.txt --cores 5
 
 ## トラブルシューティング
 
-[CAFE4](./cafe.qmd) のトラブルシューティングも参照。
+[CAFE4](/bio/cafe.qmd) のトラブルシューティングも参照。
 
 ### 既知の問題
 

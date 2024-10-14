@@ -55,6 +55,7 @@ ln -s /usr/local/opt/python@3.7/bin/python3.7 /usr/local/bin/python3.7  # /usr/l
 
 - <https://www.python.jp/install/windows/index.html>
 - <https://learn.microsoft.com/ja-jp/windows/python/beginners>
+- <https://docs.python.org/ja/3/using/windows.html>
 
 [Windows用のインストーラ](https://www.python.org/downloads/windows/)を使う。
 最初に出てくるウィンドウで "Add PATH" にチェックを入れる。

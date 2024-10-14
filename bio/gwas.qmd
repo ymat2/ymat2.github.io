@@ -7,7 +7,6 @@ format:
 
 
 疾患や特定の表現型などと統計的に相関する遺伝子変異を網羅的に探索する手法。
-[2002年の理研の報告](https://doi.org/10.1038/ng1047)が初出らしい。
 
 最近のレビュー: [Uffelmann et al. 2021](https://doi.org/10.1038/s43586-021-00056-9)
 
@@ -170,7 +169,7 @@ cat file.gwas.Disease.glm.logistic.hybrid | awk -F '\t' '{print $1 "\t" $2 "\t"�
 [qqman](https://cran.r-project.org/web/packages/qqman/vignettes/qqman.html) ライブラリを使う。
 
 (染色体アクセッションの変換のために `sequence_report.tsv` を使用している。
-[$F_\text{st}$ 解析ハンズオン](./fst_hands_on.qmd)も参照。)
+[$F_\text{st}$ 解析ハンズオン](/bio/fst_hands_on.qmd)も参照。)
 
 ```r
 library(conflicted)

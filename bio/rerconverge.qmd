@@ -469,7 +469,7 @@ res = correlateWithContinuousPhenotype(
 ## エンリッチメント解析
 
 ウィルコクソンの順位和検定を使ったエンリッチメント解析の機能が実装されている。
-もちろん topGO や [clusterProfiler](./clusterProfiler.qmd) を使ってもいい。
+もちろん topGO や [clusterProfiler](/bio/clusterProfiler.qmd) を使ってもいい。
 
 `.gmt` ファイルをダウンロードする:
 

@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../static/favicon.png" rel="icon" type="image/png">
+<link href="../images/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -181,7 +181,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../"><img src="../static/favicon.png" height="28" vertical-align="text-bottom"> Yuki MATSUDA</a> 
+      <a href="../"><img src="../images/favicon.png" height="28" vertical-align="text-bottom"> Yuki MATSUDA</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -214,12 +214,6 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/cafe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CAFE</span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../bio/cafe5.html" class="sidebar-item-text sidebar-link">
@@ -292,7 +286,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Command Line Tools</span></a>
+ <span class="menu-text">開発環境</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -312,8 +306,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../cli/hugo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HUGO</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../cli/nano.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">nano</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cli/quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quarto</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -338,12 +344,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../cli/vscode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visual Studio Code</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/wsl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL</span></a>
   </div>
 </li>
       </ul>
@@ -427,43 +427,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL2 Disk space</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
- <span class="menu-text">Web 開発</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../site/gollum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Gollum</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../site/hugo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HUGO</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../site/pallet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">配色の基本</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../site/quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quarto</span></a>
+ <span class="menu-text">WSL Disk space</span></a>
   </div>
 </li>
       </ul>
@@ -558,24 +522,75 @@ window.Quarto = {
 <li>既存のコマンドの上書きはできない？</li>
 </ul>
 </section>
+<section id="windows-標準のターミナル" class="level3">
+<h3 class="anchored" data-anchor-id="windows-標準のターミナル">Windows 標準のターミナル</h3>
+<dl>
+<dt>コマンドプロンプト</dt>
+<dd>
+古の Microsoft 製 CUI
+</dd>
+<dt><a href="https://learn.microsoft.com/ja-jp/powershell/">PowerShell</a></dt>
+<dd>
+コマンドプロンプトの後継 (Windows7 以降)。
+</dd>
+<dd>
+コマンドプロンプトで使えたコマンドも基本的に使える。
+</dd>
+<dt>Windows Terminal</dt>
+<dd>
+コマンドプロンプト、PowerShell、bash (WSL 経由) など複数のコマンドラインシェルのホストアプリケーション。
+</dd>
+<dd>
+<kbd>Win</kbd><kbd>X</kbd> → <kbd>I</kbd>/<kbd>A</kbd>(管理者として実行)
+</dd>
+<dd>
+<kbd>Ctrl</kbd><kbd>,</kbd>で設定画面。 デフォルトのプロファイルや外観をいじれる。
+</dd>
+</dl>
 </section>
-<section id="chocolatey" class="level2">
-<h2 class="anchored" data-anchor-id="chocolatey">chocolatey</h2>
-<p><a href="https://chocolatey.org/install" class="uri">https://chocolatey.org/install</a></p>
-<p>Windows のパッケージマネージャ。 以降のコマンドラインツールを用意する際に、あると便利。</p>
-<section id="chocolatey-のインストール" class="level3">
-<h3 class="anchored" data-anchor-id="chocolatey-のインストール">chocolatey のインストール</h3>
-<p>PowerShell を<strong>管理者として開く</strong>。その後下記のインストールコマンドを実行:</p>
+</section>
+<section id="パッケージ管理" class="level2">
+<h2 class="anchored" data-anchor-id="パッケージ管理">パッケージ管理</h2>
+<p>Windows におけるパッケージ管理の主な選択肢として、 Microsoft 公式の <a href="https://learn.microsoft.com/ja-jp/windows/package-manager/winget/">Winget</a>、 古株で対応するパッケージも多い <a href="https://chocolatey.org/install">Chocolatey</a>、 ユーザー権限で使いやすい <a href="https://scoop.sh/">Scoop</a> の3つがある。</p>
+<section id="winget" class="level3">
+<h3 class="anchored" data-anchor-id="winget"><a href="https://learn.microsoft.com/ja-jp/windows/package-manager/winget/">Winget</a></h3>
+<p>新しめの Windows ならデフォルトで使えるはず。</p>
+<section id="basic-usage" class="level4">
+<h4 class="anchored" data-anchor-id="basic-usage">Basic usage</h4>
+<dl>
+<dt><code>winget install/uninstall</code></dt>
+<dd>
+パッケージのインストール/アンインストール
+</dd>
+<dt><code>winget search</code></dt>
+<dd>
+パッケージの検索
+</dd>
+<dd>
+例: <code>winget search rstat</code>
+</dd>
+<dt><code>winget list</code></dt>
+<dd>
+インストール済みパッケージの表示
+</dd>
+</dl>
+</section>
+</section>
+<section id="chocolatey" class="level3">
+<h3 class="anchored" data-anchor-id="chocolatey"><a href="https://chocolatey.org/install">Chocolatey</a></h3>
+<section id="chocolatey-のインストール" class="level4">
+<h4 class="anchored" data-anchor-id="chocolatey-のインストール">Chocolatey のインストール</h4>
+<p>PowerShell を<strong>管理者として</strong>開く。その後下記のインストールコマンドを実行:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-ExecutionPolicy</span> Bypass <span class="at">-Scope</span> Process <span class="at">-Force</span><span class="kw">;</span> <span class="ex">[System.Net.ServicePointManager]::SecurityProtocol</span> = <span class="pp">[</span><span class="ss">System.Net.ServicePointManager</span><span class="pp">]</span>::SecurityProtocol <span class="at">-bor</span> 3072<span class="kw">;</span> <span class="ex">iex</span> <span class="er">(</span><span class="kw">(</span><span class="ex">New-Object</span> System.Net.WebClient<span class="kw">)</span><span class="ex">.DownloadString</span><span class="er">(</span><span class="st">'https://community.chocolatey.org/install.ps1'</span><span class="kw">))</span></span></code></pre></div>
 </section>
-<section id="basic-commands" class="level3">
-<h3 class="anchored" data-anchor-id="basic-commands">Basic commands</h3>
+<section id="basic-usage-1" class="level4">
+<h4 class="anchored" data-anchor-id="basic-usage-1">Basic usage</h4>
 <dl>
-<dt><code>choco install/uninstall パッケージ</code></dt>
+<dt><code>choco install/uninstall</code></dt>
 <dd>
-パッケージのインストール/アンインストール (管理者としての実行が必要)
+パッケージのインストール/アンインストール (管理者権限が必要)
 </dd>
-<dt><code>choco search 検索ワード</code></dt>
+<dt><code>choco search</code></dt>
 <dd>
 パッケージの検索
 </dd>
@@ -583,37 +598,37 @@ window.Quarto = {
 <dd>
 インストール済みパッケージの表示
 </dd>
-<dt><code>choco upgrade</code></dt>
-<dd>
-パッケージの更新
-</dd>
 </dl>
 </section>
-<section id="packages" class="level3">
-<h3 class="anchored" data-anchor-id="packages">Packages</h3>
-<p>rsync、vi、SSH あたりは入れておいて損はない:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">choco</span> install rsync vi ssh</span></code></pre></div>
-<p>(SSH は一応最初から入ってるやつがある。)</p>
+</section>
+<section id="scoop" class="level3">
+<h3 class="anchored" data-anchor-id="scoop"><a href="https://scoop.sh/">Scoop</a></h3>
+<section id="インストール" class="level4">
+<h4 class="anchored" data-anchor-id="インストール">インストール</h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-ExecutionPolicy</span> <span class="at">-ExecutionPolicy</span> RemoteSigned <span class="at">-Scope</span> CurrentUser</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Invoke-RestMethod</span> <span class="at">-Uri</span> https://get.scoop.sh <span class="kw">|</span> <span class="ex">Invoke-Expression</span></span></code></pre></div>
+</section>
 </section>
 </section>
 <section id="git" class="level2">
 <h2 class="anchored" data-anchor-id="git">Git</h2>
 <p>プロジェクトのバージョン管理のためにも必須。 インストールは <a href="../win/git4win.html">Git for Windows</a> を参照。</p>
-<p>もしくは上で用意した chocolatey で入れてもいい:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">choco</span> install git</span></code></pre></div>
 </section>
 <section id="r" class="level2">
 <h2 class="anchored" data-anchor-id="r">R</h2>
-<p><a href="https://cran.r-project.org/bin/windows/base/" class="uri">https://cran.r-project.org/bin/windows/base/</a></p>
+<ul>
+<li><a href="https://cran.r-project.org/bin/windows/base/">R for Windows</a></li>
+<li><a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a></li>
+</ul>
 <p>VSCode で使うには PATH を教えてあげる必要がある:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>settings.json</strong></pre>
 </div>
-<div class="sourceCode" id="cb11" data-filename="settings.json"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rpath.windows"</span><span class="fu">:</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">R</span><span class="ch">\\</span><span class="st">R-4.4.0</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">x64</span><span class="ch">\\</span><span class="st">R.exe"</span><span class="fu">,</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rterm.windows"</span><span class="fu">:</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">R</span><span class="ch">\\</span><span class="st">R-4.4.0</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">x64</span><span class="ch">\\</span><span class="st">Rterm.exe"</span><span class="fu">,</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb10" data-filename="settings.json"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rpath.windows"</span><span class="fu">:</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">R</span><span class="ch">\\</span><span class="st">R-4.4.0</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">x64</span><span class="ch">\\</span><span class="st">R.exe"</span><span class="fu">,</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rterm.windows"</span><span class="fu">:</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">R</span><span class="ch">\\</span><span class="st">R-4.4.0</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">x64</span><span class="ch">\\</span><span class="st">Rterm.exe"</span><span class="fu">,</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
 </div>
 </section>
 <section id="python" class="level2">
@@ -638,20 +653,20 @@ window.Quarto = {
 <p><a href="https://quarto.org/docs/get-started/" class="uri">https://quarto.org/docs/get-started/</a></p>
 <p>Windows 用のやつを入れてあげる。 (R に付属しているやつを使うことはできなさそう?)</p>
 <p>PDF のレンダリング用に tex を入れてやる (c.f. <code>~/AppData/Roaming/TinyTeX/</code>):</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code></pre></div>
 <section id="pdf-で日本語フォントを使うには" class="level3">
 <h3 class="anchored" data-anchor-id="pdf-で日本語フォントを使うには">PDF で日本語フォントを使うには?</h3>
 <p>Quarto PDF で日本語フォントを使う場合、 デフォルトでは<a href="https://github.com/trueroad/HaranoAjiFonts">原ノ味フォント</a>が使われるらしい。 Ubuntu とかは最初のインストールでプリセットされていたはずだが、 Windows の Quarto では原ノ味含め、日本語フォントがプリセットされていないっぽい。</p>
 <p>そこで、<code>tlmgr</code> を使ってフォントをインストールしてやることで使えるようになる:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> .\AppData\Roaming\TinyTeX\bin\windows\tlmgr.bat <span class="fu">install</span> haranoaji</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Locale</span> <span class="st">'Japanese_Japan.932'</span> is unsupported, and may crash the interpreter.</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> package repository https://ftp.kddilabs.jp/CTAN/systems/texlive/tlnet/ <span class="er">(</span><span class="ex">verified</span><span class="kw">)</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[1/1,</span> <span class="pp">??</span>:<span class="pp">??</span>/<span class="pp">??</span>:<span class="pp">??</span>] install: haranoaji <span class="pp">[</span><span class="ss">25570k</span><span class="pp">]</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Locale</span> <span class="st">'Japanese_Japan.932'</span> is unsupported, and may crash the interpreter.</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="ex">running</span> mktexlsr ...</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span> <span class="ex">running</span> mktexlsr.</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> package log updated: C:/Users/kokep/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr.log</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> command log updated: C:/Users/kokep/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr-commands.log</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> .\AppData\Roaming\TinyTeX\bin\windows\tlmgr.bat <span class="fu">install</span> haranoaji</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Locale</span> <span class="st">'Japanese_Japan.932'</span> is unsupported, and may crash the interpreter.</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> package repository https://ftp.kddilabs.jp/CTAN/systems/texlive/tlnet/ <span class="er">(</span><span class="ex">verified</span><span class="kw">)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[1/1,</span> <span class="pp">??</span>:<span class="pp">??</span>/<span class="pp">??</span>:<span class="pp">??</span>] install: haranoaji <span class="pp">[</span><span class="ss">25570k</span><span class="pp">]</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Locale</span> <span class="st">'Japanese_Japan.932'</span> is unsupported, and may crash the interpreter.</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ex">running</span> mktexlsr ...</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span> <span class="ex">running</span> mktexlsr.</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> package log updated: C:/Users/kokep/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr.log</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> command log updated: C:/Users/kokep/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr-commands.log</span></code></pre></div>
 
 
 </section>

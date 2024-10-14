@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>オブジェクト指向とクラス – Yuki MATSUDA</title>
+<title>Quarto – Yuki MATSUDA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -157,7 +157,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -167,7 +167,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">オブジェクト指向とクラス</h1>
+          <h1 class="quarto-secondary-nav-title">Quarto — 書類・スライド作成からウェブサイト構築まで</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -285,13 +285,13 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">開発環境</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cli/apt.html" class="sidebar-item-text sidebar-link">
@@ -318,7 +318,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cli/quarto.html" class="sidebar-item-text sidebar-link">
+  <a href="../cli/quarto.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Quarto</span></a>
   </div>
 </li>
@@ -351,13 +351,13 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Python</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/0_install.html" class="sidebar-item-text sidebar-link">
@@ -372,7 +372,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python/class.html" class="sidebar-item-text sidebar-link active">
+  <a href="../python/class.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">オブジェクト指向とクラス</span></a>
   </div>
 </li>
@@ -437,146 +437,270 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header">
-<h1 class="title d-none d-lg-block display-7">オブジェクト指向とクラス</h1>
+<h1 class="title d-none d-lg-block display-7">Quarto — 書類・スライド作成からウェブサイト構築まで</h1>
 
 
 </header>
 
-
-<div class="note">
-<p><strong>これはなに？</strong><br> <code>class</code> の使い方を、<strong>オブジェクト指向</strong>とは何か、から理解するためのノート。</p>
-</div>
-<p><a href="https://docs.python.org/3/tutorial/classes.html" class="uri">https://docs.python.org/3/tutorial/classes.html</a></p>
-<section id="オブジェクト指向とは" class="level2">
-<h2 class="anchored" data-anchor-id="オブジェクト指向とは">オブジェクト指向とは</h2>
-<p><strong>オブジェクト指向</strong>とはプログラミングやソフトウェア開発における考え方の1つで、 データとその処理の仕方をひとまとまりのモノ (オブジェクト) として扱う方法をいう。</p>
-<p>例えば RPG などにおける「勇者」というオブジェクトには、 「HP」や「MP」といったデータ (<strong>属性</strong>という) と、 「攻撃する」や「回復する」といったデータの処理 (<strong>メソッド</strong>という) がひとまとまりとなっている。 同様に「魔法使い」や「魔王」などのオブジェクトにも属性とメソッドがあり、 これらオブジェクトを基準にプログラムを組み立てていく。</p>
-</section>
-<section id="python-におけるオブジェクト指向プログラミング" class="level2">
-<h2 class="anchored" data-anchor-id="python-におけるオブジェクト指向プログラミング">Python におけるオブジェクト指向プログラミング</h2>
-<p>Python においては、データと、 その処理の仕方 (<strong>メソッド</strong>) をまとめて記述したもの (<strong>オブジェクト</strong>) を格納しておく雛形が <strong><code>class</code></strong> である。</p>
-<p>RPG の勇者を例に、シンプルな <code>class</code> を定義してみる。</p>
-<p>この勇者には「<code>atk</code>: 攻撃力」と「<code>hp</code>: 体力」という属性があり、 「<code>powerup</code>: 攻撃力を上げる」と「<code>recover</code>: 回復する」 という処理があるものとする。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># シンプルな class の例</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RpgHero:</span>
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table Of Contents:</h2>
+   
+  <ul>
+  <li><a href="#インストール" id="toc-インストール">インストール</a></li>
+  <li><a href="#まずは骨格をつくる" id="toc-まずは骨格をつくる">まずは骨格をつくる</a></li>
+  <li><a href="#適当にカスタムしてみる" id="toc-適当にカスタムしてみる">適当にカスタムしてみる</a></li>
+  <li><a href="#サブディレクトリを作ってサイドバーに反映させる" id="toc-サブディレクトリを作ってサイドバーに反映させる">サブディレクトリを作ってサイドバーに反映させる</a></li>
+  <li><a href="#スライドも作ってみる" id="toc-スライドも作ってみる">スライドも作ってみる</a></li>
+  <li><a href="#公開する" id="toc-公開する">公開する</a></li>
+  </ul>
+</nav>
+<hr>
+<p><a href="https://quarto.org/" class="uri">https://quarto.org/</a></p>
+<p>マークダウンで書いた記事を HTML、PDF、MS Word などへ変換し、 ウェブサイトや書籍として公開するまでを一手に担うフレームワーク。</p>
+<p>コードチャンクで R、Python、Julia を実行でき、 研究ノートなどにも有用。 <a href="https://jupyter.org/">Jupyter</a>, <a href="https://posit.co/products/open-source/rstudio/">RStudio</a>, <a href="../cli/vscode.html">VSCode</a> などのエディタと連携してより快適に利用できる。</p>
+<p>類似フレームワークの <a href="../cli/hugo.html">HUGO</a> と比べて高機能でラクに使えるが、 その分細かいところをいじろうとするとむしろ面倒くさかったり、 単純にマークダウンの変換が遅かったりするので、その辺りは HUGO に軍配があがる。</p>
+<p><a href="https://quarto.org/docs/guide/">ドキュメント</a>がこれでもかというほど 丁寧に書かれているので、基本的にここを見ればなんでもできる。</p>
+<p>ここでは、「細かいことは後回しにしてひとまずメモやスライドをウェブサイトとして公開できる形にする」 までの方法を紹介する。</p>
+<section id="インストール" class="level2">
+<h2 class="anchored" data-anchor-id="インストール">インストール</h2>
+<p><a href="https://quarto.org/docs/get-started/" class="uri">https://quarto.org/docs/get-started/</a></p>
+<p>上のページから Quarto CLI をダウンロードする。 RStudio でつかうときは既に同梱されているので不要。</p>
+<p>コマンドラインからやってももちろん OK:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Mac なら homebrew で</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> quarto</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  atk <span class="op">=</span> <span class="dv">50</span> <span class="co"># 攻撃力</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  hp <span class="op">=</span> <span class="dv">100</span>   <span class="co"># 体力</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> powerup(<span class="va">self</span>, i):</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.atk <span class="op">=</span> <span class="va">self</span>.atk <span class="op">+</span> i</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> recover(<span class="va">self</span>, j):</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.hp <span class="op">=</span> <span class="va">self</span>.hp <span class="op">+</span> j</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 作成したクラスを使うためにインスタンス化:</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>yoshihiko <span class="op">=</span> RpgHero()</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 最初の状態をprint:</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ATK:"</span>, yoshihiko.atk)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"HP:"</span>, yoshihiko.hp)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt;&gt;&gt; ATK: 50</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt;&gt;&gt; HP: 100</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># メソッドを呼び出す:</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>yoshihiko.powerup(<span class="dv">10</span>)   <span class="co"># 攻撃力を上げてみる</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>yoshihiko.recover(<span class="dv">25</span>)   <span class="co"># 体力も回復させてみる</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 再び確認:</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ATK:"</span>, yoshihiko.atk)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"HP:"</span>, yoshihiko.hp)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt;&gt;&gt; ATK: 60</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt;&gt;&gt; HP: 125</span></span></code></pre></div>
-<p><code>class RpgHero</code> でクラスを定義し、 <code>atk = 50</code>, <code>hp = 100</code> で属性を与えている。 <code>class</code> で <code>def</code> により関数を定義し (メソッド)、 属性に対する処理を記述する。</p>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">## WSL/Linux では deb を落としてくるのが正攻法？</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> curl <span class="at">-LO</span> https://quarto.org/download/latest/quarto-linux-amd64.deb</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># sudo apt-get install gdebi-core  # if needed</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gdebi quarto-linux-amd64.deb</span></code></pre></div>
+<p><a href="https://jupyter.org/">Jupyter</a>, <a href="https://posit.co/products/open-source/rstudio/">RStudio</a>, <a href="../cli/vscode.html">VSCode</a> など好きなエディタで作業する。 VSCode で使う時は <a href="https://marketplace.visualstudio.com/items?itemName=quarto.quarto">Quarto 拡張機能</a>を入れておく。</p>
 </section>
-<section id="コンストラクタとは" class="level2">
-<h2 class="anchored" data-anchor-id="コンストラクタとは">コンストラクタとは</h2>
-<p>クラスをインスタンス化した時に最初に呼ばれるメソッドを<strong>コンストラクタ</strong>とよぶ。 データの初期化をするものだと思えばいい。 <code>class</code> 内で <code>__init__()</code> で定義する。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RpgHero:</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.atk <span class="op">=</span> <span class="dv">50</span>   <span class="co"># 攻撃力</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.hp <span class="op">=</span> <span class="dv">100</span>   <span class="co"># 体力</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> powerup(<span class="va">self</span>, i):</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.atk <span class="op">=</span> <span class="va">self</span>.atk <span class="op">+</span> i</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> recover(<span class="va">self</span>, j):</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.hp <span class="op">=</span> <span class="va">self</span>.hp <span class="op">+</span> j</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>yoshihiko <span class="op">=</span> RpgHero()</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ATK:"</span>, yoshihiko.atk)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"HP:"</span>, yoshihiko.hp)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt;&gt;&gt; ATK: 50</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt;&gt;&gt; HP: 100</span></span></code></pre></div>
-<p>インスタンス化のときに値を渡すことでより柔軟に class を利用できる:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RpgHero:</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, atk <span class="op">=</span> <span class="dv">0</span>, hp <span class="op">=</span> <span class="dv">0</span>):  <span class="co"># デフォルト値を持たせておくこともできる</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.atk <span class="op">=</span> atk   <span class="co"># 攻撃力</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.hp <span class="op">=</span> hp     <span class="co"># 体力</span></span>
+<section id="まずは骨格をつくる" class="level2">
+<h2 class="anchored" data-anchor-id="まずは骨格をつくる">まずは骨格をつくる</h2>
+<p><a href="https://quarto.org/docs/websites/" class="uri">https://quarto.org/docs/websites/</a></p>
+<p><code>_quarto.yml</code> という名前の config ファイルでほとんどを管理する。 WEB サイト用のディレクトリを作って <code>_quarto.yml</code> を用意:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> my-website</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my-website</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> _quarto.yml</span></code></pre></div>
+<p>エディタによっては Quarto のプロジェクトを作るボタンでこの辺の骨組みを自動で作ってくれる。</p>
+<p><code>_quarto.yml</code> はとりあえず以下のように記述:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb3" data-filename="_quarto.yml"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Website"</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> powerup(<span class="va">self</span>, i):</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.atk <span class="op">=</span> <span class="va">self</span>.atk <span class="op">+</span> i</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> recover(<span class="va">self</span>, j):</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.hp <span class="op">=</span> <span class="va">self</span>.hp <span class="op">+</span> j</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>yoshihiko <span class="op">=</span> RpgHero(atk <span class="op">=</span> <span class="dv">50</span>, hp <span class="op">=</span> <span class="dv">100</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>dai <span class="op">=</span> RpgHero(hp <span class="op">=</span> <span class="dv">110</span>)   <span class="co"># dai は HP だけ与えてみる</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ATK:"</span>, yoshihiko.atk)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"HP:"</span>, yoshihiko.hp)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt;&gt;&gt; ATK: 50</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt;&gt;&gt; HP: 100</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ATK:"</span>, dai.atk)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"HP:"</span>, dai.hp)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt;&gt;&gt; ATK: 0</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt;&gt;&gt; HP: 110</span></span></code></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span></code></pre></div>
+</div>
+<p>続いて <code>index.qmd</code> というファイルを作ってマークダウンで内容を書いてみる:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> index.qmd</span></code></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>index.qmd</strong></pre>
+</div>
+<div class="sourceCode" id="cb5" data-filename="index.qmd"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "This is my website"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Hello, world.</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>My *name* is **Yuki** ***Matsuda***.</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>I like</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sushi</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ra-men</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Coffee</span></code></pre></div>
+</div>
+<p><code>---</code> で囲まれた部分にはタイトル、著者、フォーマットなどのメタデータを記述する。 より詳しくは<a href="https://quarto.org/docs/output-formats/html-basics.html">ドキュメント</a>を参照。</p>
+<p>ここまでできたら作ったファイルを HTML に変換して閲覧してみる:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># もしくは</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># もしくは</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 各エディタの "Preview" や "Render" のボタン</span></span></code></pre></div>
+<dl>
+<dt><code>quarto preview</code></dt>
+<dd>
+localhost が立ち上がるので、ブラウザで閲覧
+</dd>
+<dt><code>quarto render</code></dt>
+<dd>
+(デフォルトでは) <code>_site/</code> というディレクトリが作られてその中に <code>index.html</code> ができる。 ダブルクリックして見てみる。
+</dd>
+</dl>
 </section>
-<section id="クラスの継承" class="level2">
-<h2 class="anchored" data-anchor-id="クラスの継承">クラスの継承</h2>
-<p>一般的な場合の処理を記述したクラスを引き継いで、 より特殊な場合のデータと処理を記述することを<strong>クラスの継承</strong>という。</p>
-<p>例えば勇者がレベルアップした「マスター」というオブジェクトがあるとする。 このマスターには、もともと勇者が持っていた属性と処理に加えて、 「<code>mp</code>: 魔法力」という属性と「<code>enhance</code>: 魔法力の分だけ攻撃力を上げる」という処理が加わるとする。</p>
-<p>継承先のクラス内では、<code>super()</code> を使うことで継承元のメソッドを呼び出すことができる。</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RpgHero:</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.atk <span class="op">=</span> <span class="dv">50</span>   <span class="co"># 攻撃力</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.hp <span class="op">=</span> <span class="dv">100</span>   <span class="co"># 体力</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> powerup(<span class="va">self</span>, i):</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.atk <span class="op">=</span> <span class="va">self</span>.atk <span class="op">+</span> i</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> recover(<span class="va">self</span>, j):</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.hp <span class="op">=</span> <span class="va">self</span>.hp <span class="op">+</span> j</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 「勇者」クラスを継承する「マスター」のクラス</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RpgMaster(RpgHero):</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, atk<span class="op">=</span><span class="dv">0</span>, hp<span class="op">=</span><span class="dv">0</span>, mp <span class="op">=</span> <span class="dv">0</span>):</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">super</span>().<span class="fu">__init__</span>(atk, hp)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.mp <span class="op">=</span> mp</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> enhance(<span class="va">self</span>):</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">super</span>().powerup(<span class="va">self</span>.mp)</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>yoshihiko <span class="op">=</span> RpgMaster(atk <span class="op">=</span> <span class="dv">50</span>, hp <span class="op">=</span> <span class="dv">100</span>, mp <span class="op">=</span> <span class="dv">20</span>)</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>yoshihiko.enhance()</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ATK:"</span>, yoshihiko.atk)</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt;&gt;&gt; ATK: 70</span></span></code></pre></div>
+<section id="適当にカスタムしてみる" class="level2">
+<h2 class="anchored" data-anchor-id="適当にカスタムしてみる">適当にカスタムしてみる</h2>
+<p><code>_quarto.yml</code> や 各 <code>.qmd</code> のヘッダーでいろいろカスタムできる。 例えば:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb7" data-filename="_quarto.yml"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> docs</span><span class="co">  # HTML の出力先を指定</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Website"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> darkly</span><span class="co">   # ダークテーマにしてみる</span></span></code></pre></div>
+</div>
+<dl>
+<dt><code>output-dir</code></dt>
+<dd>
+例えば GitHub Pages を使うなら <code>docs</code> という名前が便利だったりする。
+</dd>
+<dd>
+<code>render</code> 時になくても勝手に作られる。
+</dd>
+<dt><code>theme</code></dt>
+<dd>
+サイトの見た目がいくつか選べる。詳しくは<a href="https://quarto.org/docs/output-formats/html-themes.html">ここから</a>。
+</dd>
+<dd>
+CSS や SCSS を書いて自分でカスタマイズすることもできる。 例えば: <a href="https://github.com/ymat2/slides/blob/main/static/" class="uri">https://github.com/ymat2/slides/blob/main/static/</a>
+</dd>
+</dl>
+</section>
+<section id="サブディレクトリを作ってサイドバーに反映させる" class="level2">
+<h2 class="anchored" data-anchor-id="サブディレクトリを作ってサイドバーに反映させる">サブディレクトリを作ってサイドバーに反映させる</h2>
+<p><a href="https://quarto.org/docs/websites/website-navigation.html" class="uri">https://quarto.org/docs/websites/website-navigation.html</a></p>
+<p>ページが増えてくると、セクションごとにディレクトリを分けておきたい。 それぞれのページにサイドバーのドロップダウンからアクセスする、みたいなことも簡単にできる。</p>
+<p>まずはディレクトリを分けていくつかページを作る。例えば:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>my-website/</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>├── _quarto.yml</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>├── index.qmd</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>├── dir1/</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>│   ├── page1.qmd</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>│   └── page2.qmd</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>└── dir2/</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    ├── page3.qmd</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    └── page4.qmd</span></code></pre></div>
+<p>次に、<code>_quarto.yml</code> に <code>sidebar</code> の設定をする:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb9" data-filename="_quarto.yml"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> docs</span><span class="co">  # HTMLの出力先を指定</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Website"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sidebar</span><span class="kw">:</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> auto</span><span class="co">  # 細かく指定もできるけどとりあえず任せる</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span></code></pre></div>
+</div>
+<p>改めて <code>quarto render</code> して <code>docs/index.html</code> を見てみると、 ページの横にサイドバーが表示されて各ページにアクセスできる。</p>
+</section>
+<section id="スライドも作ってみる" class="level2">
+<h2 class="anchored" data-anchor-id="スライドも作ってみる">スライドも作ってみる</h2>
+<p><a href="https://quarto.org/docs/presentations/revealjs/" class="uri">https://quarto.org/docs/presentations/revealjs/</a></p>
+<p>Quarto では、<a href="https://revealjs.com/"><code>revealjs</code></a> という JavaScript のフレームワークを使って HTML をスライドっぽく表示する。</p>
+<p><code>_quarto.yml</code> にスライド用の設定を追記:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb10" data-filename="_quarto.yml"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> docs</span><span class="co">  # HTMLの出力先を指定</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Website"</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sidebar</span><span class="kw">:</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> auto</span><span class="co">  # 細かく指定もできるけどとりあえず任せる</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">scrollable</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">history</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div>
+</div>
+<dl>
+<dt><code>theme</code></dt>
+<dd>
+HTML 同様にいくつか<a href="https://quarto.org/docs/presentations/revealjs/#themes">テーマが用意</a>されている。
+</dd>
+<dd>
+もちろん自分で CSS を書いてカスタム可能
+</dd>
+<dt><code>scrollable</code></dt>
+<dd>
+縦に長いスライドをスクロールして閲覧できるように。
+</dd>
+<dt><code>history</code></dt>
+<dd>
+デフォルトの <code>true</code> だとブラウザバックでスライド単位の移動になって不快。 かならず <code>false</code> にする。
+</dd>
+</dl>
+<p>スライド用のディレクトリを作ってファイルを作ってみる:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>my-website/</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>├── _quarto.yml</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>├── index.qmd</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>├── dir1/</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>│   ├── page1.qmd</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>│   └── page2.qmd</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>├── dir2/</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>│   ├── page3.qmd</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>│   └── page4.qmd</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>└── slides/</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    └── sample-slide.qmd</span></code></pre></div>
+<p><code>sample-slide.qmd</code>:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>sample-slide.qmd</strong></pre>
+</div>
+<div class="sourceCode" id="cb12" data-filename="sample-slide.qmd"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "サンプルスライド"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> revealjs</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## ここにタイトル</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>スライドでは、<span class="in">`##`</span> で書く <span class="in">`&lt;h2&gt;`</span> タグごとに1ページになる。</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## これは次のスライド</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>基本的な</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>マークダウンの</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**記法**は</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>同じ。</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>詳しくは<span class="co">[</span><span class="ot">デモスライド</span><span class="co">](https://quarto.org/docs/presentations/revealjs/demo/#/title-slide)</span>や</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>その<span class="co">[</span><span class="ot">ソースコード</span><span class="co">](https://github.com/quarto-dev/quarto-web/blob/main/docs/presentations/revealjs/demo/index.qmd)</span>を</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>見てみる。</span></code></pre></div>
+</div>
+<p>もう一度 <code>quarto render</code> してスライドを見てみる。</p>
+</section>
+<section id="公開する" class="level2">
+<h2 class="anchored" data-anchor-id="公開する">公開する</h2>
+<p><a href="https://quarto.org/docs/publishing/" class="uri">https://quarto.org/docs/publishing/</a></p>
+<p>デプロイ先に合わせる。 手元で閲覧する分には <code>index.html</code> を開けばよい。</p>
+<p>例えば <a href="https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages">GitHub Pages</a> にホストさせる場合、 <code>my-website</code> をリポジトリとして <code>push</code> して <code>docs</code> の中身を公開する設定をすればよい。</p>
+<p>この辺の面倒を見てくれる <a href="https://quarto.org/docs/publishing/"><code>quarto publish</code></a> というコマンドもある。</p>
 
 
 </section>

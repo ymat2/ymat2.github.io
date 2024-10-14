@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../static/favicon.png" rel="icon" type="image/png">
+<link href="../images/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -181,7 +181,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../"><img src="../static/favicon.png" height="28" vertical-align="text-bottom"> Yuki MATSUDA</a> 
+      <a href="../"><img src="../images/favicon.png" height="28" vertical-align="text-bottom"> Yuki MATSUDA</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -214,12 +214,6 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/cafe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CAFE</span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../bio/cafe5.html" class="sidebar-item-text sidebar-link">
@@ -292,7 +286,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Command Line Tools</span></a>
+ <span class="menu-text">開発環境</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -312,8 +306,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../cli/hugo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HUGO</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../cli/nano.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">nano</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cli/quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quarto</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -338,12 +344,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../cli/vscode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visual Studio Code</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/wsl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL</span></a>
   </div>
 </li>
       </ul>
@@ -427,43 +427,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL2 Disk space</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
- <span class="menu-text">Web 開発</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../site/gollum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Gollum</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../site/hugo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HUGO</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../site/pallet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">配色の基本</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../site/quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quarto</span></a>
+ <span class="menu-text">WSL Disk space</span></a>
   </div>
 </li>
       </ul>
@@ -488,12 +452,13 @@ window.Quarto = {
 <p>Windows で Linux ディストリビューションを扱うための機能</p>
 <section id="wsl-のインストール-windows11-の場合" class="level2">
 <h2 class="anchored" data-anchor-id="wsl-のインストール-windows11-の場合">WSL のインストール: Windows11 の場合</h2>
-<p>参考: <a href="https://chigusa-web.com/blog/wsl2-win11/" class="uri">https://chigusa-web.com/blog/wsl2-win11/</a></p>
+<p><a href="https://learn.microsoft.com/ja-jp/windows/wsl/install" class="uri">https://learn.microsoft.com/ja-jp/windows/wsl/install</a></p>
 <section id="wsl-のインストール" class="level3">
 <h3 class="anchored" data-anchor-id="wsl-のインストール">WSL のインストール</h3>
 <ol type="1">
 <li><p><kbd>Win</kbd><kbd>X</kbd> → <kbd>A</kbd> でターミナルを管理者として起動。</p></li>
-<li><p><code>wsl --install</code></p></li>
+<li><div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">wsl</span> <span class="at">--install</span></span></code></pre></div>
+<p>既定では Ubuntu がインストールされる。<code>-d</code> でほかのディストリビューションを指定可能。</p></li>
 </ol>
 </section>
 <section id="再起動と設定" class="level3">
@@ -501,15 +466,19 @@ window.Quarto = {
 <ol type="1">
 <li><p>マシンを再起動する。</p></li>
 <li><p>再起動後、インストール処理を経て Ubuntu が起動する。</p></li>
-<li><p><code>Enter new UNIX usernaem:</code> と表示されたらユーザーネームを設定<br> (NG 例: <code>松田</code> (日本語), <code>y matsuda</code> (スペース), <code>y.matsuda</code> (ピリオド))</p></li>
+<li><p><code>Enter new UNIX usernaem:</code> と表示されたらユーザーネームを設定。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NG例:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">松田</span>  <span class="co"># 日本語</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">y</span> matsuda  <span class="co"># スペースを含む</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">y.matsuda</span>  <span class="co"># ピリオドを含む</span></span></code></pre></div></li>
 <li><p><code>Enter new UNIX password:</code> と表示されたらパスワードを設定。 <code>sudo</code> とかするときに要求される。</p></li>
-<li><p><code>Retype new UNIX password:</code> と表示されたらパスワードを再入力</p></li>
+<li><p><code>Retype new UNIX password:</code> と表示されたらパスワードを再入力。</p></li>
 </ol>
 </section>
 </section>
 <section id="wsl-のインストール-windows10-の場合" class="level2">
 <h2 class="anchored" data-anchor-id="wsl-のインストール-windows10-の場合">WSL のインストール: Windows10 の場合</h2>
-<p>参考: <a href="https://lab.sonicmoov.com/development/windows-bash/" class="uri">https://lab.sonicmoov.com/development/windows-bash/</a></p>
+<p><a href="https://learn.microsoft.com/ja-jp/windows/wsl/install-manual" class="uri">https://learn.microsoft.com/ja-jp/windows/wsl/install-manual</a></p>
 <section id="windows-subsystem-for-linux-wsl-を有効化する" class="level3">
 <h3 class="anchored" data-anchor-id="windows-subsystem-for-linux-wsl-を有効化する">Windows subsystem for Linux (WSL) を有効化する</h3>
 <ol type="1">
@@ -532,45 +501,23 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="ubuntu-の起動と設定">Ubuntu の起動と設定</h3>
 <ol type="1">
 <li><p><kbd>Win</kbd><kbd>S</kbd> → 「Ubuntu」を検索 → 「開く」</p></li>
-<li><p><code>Enter new UNIX usernaem:</code> と表示されたらユーザーネームを設定<br> (NG: <code>松田</code> (日本語), <code>y matsuda</code> (スペース), <code>y.matsuda</code> (ピリオド))</p></li>
+<li><p><code>Enter new UNIX usernaem:</code> と表示されたらユーザーネームを設定。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NG例:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">松田</span>  <span class="co"># 日本語</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">y</span> matsuda  <span class="co"># スペースを含む</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">y.matsuda</span>  <span class="co"># ピリオドを含む</span></span></code></pre></div></li>
 <li><p><code>Enter new UNIX password:</code> と表示されたらパスワードを設定。 <code>sudo</code> とかするときに要求される。</p></li>
-<li><p><code>Retype new UNIX password:</code> と表示されたらパスワードを再入力</p></li>
+<li><p><code>Retype new UNIX password:</code> と表示されたらパスワードを再入力。</p></li>
 </ol>
 </section>
 </section>
 <section id="ubuntu-の更新アップグレード" class="level2">
 <h2 class="anchored" data-anchor-id="ubuntu-の更新アップグレード">Ubuntu の更新・アップグレード</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 最新のパッケージ情報を取得</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># パッケージを最新に更新</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade</span></code></pre></div>
-</section>
-<section id="余談-windows-標準のターミナル" class="level2">
-<h2 class="anchored" data-anchor-id="余談-windows-標準のターミナル">余談: Windows 標準のターミナル</h2>
-<dl>
-<dt>コマンドプロンプト</dt>
-<dd>
-古の Microsoft 製 CUI
-</dd>
-<dt><a href="https://learn.microsoft.com/ja-jp/powershell/">PowerShell</a></dt>
-<dd>
-コマンドプロンプトの後継 (Windows7 以降)。
-</dd>
-<dd>
-コマンドプロンプトで使えたコマンドも基本的に使える。
-</dd>
-<dt>Windows Terminal</dt>
-<dd>
-コマンドプロンプト、PowerShell、bash (WSL 経由) など複数のコマンドラインシェルのホストアプリケーション。
-</dd>
-<dd>
-<kbd>Win</kbd><kbd>X</kbd> → <kbd>I</kbd>/<kbd>A</kbd>(管理者として実行)
-</dd>
-<dd>
-<kbd>Ctrl</kbd><kbd>,</kbd>で設定画面。 デフォルトのプロファイルや外観をいじれる。
-</dd>
-</dl>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 最新のパッケージ情報を取得</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># パッケージを最新に更新</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade</span></code></pre></div>
 
 
 </section>

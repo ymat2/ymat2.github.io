@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../static/favicon.png" rel="icon" type="image/png">
+<link href="../images/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -181,7 +181,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../"><img src="../static/favicon.png" height="28" vertical-align="text-bottom"> Yuki MATSUDA</a> 
+      <a href="../"><img src="../images/favicon.png" height="28" vertical-align="text-bottom"> Yuki MATSUDA</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -214,12 +214,6 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/cafe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CAFE</span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../bio/cafe5.html" class="sidebar-item-text sidebar-link active">
@@ -292,7 +286,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Command Line Tools</span></a>
+ <span class="menu-text">開発環境</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -312,8 +306,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../cli/hugo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HUGO</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../cli/nano.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">nano</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cli/quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quarto</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -338,12 +344,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../cli/vscode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visual Studio Code</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/wsl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL</span></a>
   </div>
 </li>
       </ul>
@@ -427,43 +427,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL2 Disk space</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
- <span class="menu-text">Web 開発</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../site/gollum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Gollum</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../site/hugo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HUGO</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../site/pallet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">配色の基本</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../site/quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quarto</span></a>
+ <span class="menu-text">WSL Disk space</span></a>
   </div>
 </li>
       </ul>
@@ -484,7 +448,7 @@ window.Quarto = {
 </header>
 
 
-<p><a href="../bio/cafe.html">CAFE</a> のメジャーアップデート版。</p>
+<p><a href="./cafe.qmd">CAFE</a> のメジャーアップデート版。</p>
 <ul>
 <li>Github: <a href="https://github.com/hahnlab/CAFE5" class="uri">https://github.com/hahnlab/CAFE5</a></li>
 <li>論文: <a href="https://doi.org/10.1093/bioinformatics/btaa1022">Mendes et al.&nbsp;2020</a></li>
@@ -636,7 +600,7 @@ Gamma モデルではそれに加えて事後確率がタブ区切りで書か�
 </section>
 <section id="トラブルシューティング" class="level2">
 <h2 class="anchored" data-anchor-id="トラブルシューティング">トラブルシューティング</h2>
-<p><a href="../bio/cafe.html">CAFE4</a> のトラブルシューティングも参照。</p>
+<p><a href="..\bio/cafe.qmd">CAFE4</a> のトラブルシューティングも参照。</p>
 <section id="既知の問題" class="level3">
 <h3 class="anchored" data-anchor-id="既知の問題">既知の問題</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>OG0000001    1    2    94    1    3    2    1</span></code></pre></div>

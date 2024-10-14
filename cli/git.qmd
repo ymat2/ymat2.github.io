@@ -274,14 +274,16 @@ git submodule update --init
 	退避していた変更を消す:
 
 	```sh
-	git stash drop stash@{0}	# 退避内容を指定して削除
-	git stash pop stash@{0}		# 退避内容を指定してブランチに戻すとともに削除
-	git stash clear						# 退避内容を全て削除
+	git stash drop stash@{0}  # 退避内容を指定して削除
+	git stash pop stash@{0}   # 退避内容を指定してブランチに戻すとともに削除
+	git stash clear           # 退避内容を全て削除
 	```
 
 - リポジトリ名を変更:
 
-	-	リモート側の操作： リポジトリのページ > "Setting" > "Rename" から変更
+	-	リモート側の操作： リポジトリのページ >
+    ![](/images/share/settings.svg){height="22"} "Setting" >
+    "Rename" から変更
 
 	- 手元の操作：ローカルリポジトリの名前と `.git/config` を書き換える
 

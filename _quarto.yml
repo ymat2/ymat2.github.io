@@ -6,10 +6,10 @@ project:
 
 website:
   title: "Yuki MATSUDA"
-  favicon: static/favicon.png
+  favicon: images/favicon.png
   bread-crumbs: false
   sidebar:
-    title: <img src="/static/favicon.png" height="28" vertical-align="text-bottom">
+    title: <img src="/images/favicon.png" height="28" vertical-align="text-bottom">
            Yuki MATSUDA
     style: "floating"
     search: true

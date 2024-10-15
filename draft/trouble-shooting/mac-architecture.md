@@ -73,7 +73,7 @@ Finderでlibstdc++.6.0.9.dylibを消すことで解決することがある([1],
 Hisat2の[ダウンロードページ](http://daehwankimlab.github.io/hisat2/download/)からバイナリ版をダウンロードして、PATHを通すことで解決。
 
 macOS 12.3 Monterey以降のOSでは、
-完全にPyhton3に移行してしまい[古いPythonは使えなくなっている](https://applech2.com/archives/20220309-apple-removed-python-from-macos-123-monterey.html)
+完全にPython3に移行してしまい[古いPythonは使えなくなっている](https://applech2.com/archives/20220309-apple-removed-python-from-macos-123-monterey.html)
 のでhisat2のソースコードをpython3で動くように書き換える必要があった。
 
 https://www.biostars.org/p/9494176/#9494665

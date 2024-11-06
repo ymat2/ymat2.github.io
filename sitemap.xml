@@ -6,7 +6,7 @@
   </url>
   <url>
     <loc>https://ymat2.github.io/slides/snp24/index.html</loc>
-    <lastmod>2024-10-07T05:50:02.710Z</lastmod>
+    <lastmod>2024-11-06T05:24:07.554Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/win/wsl.html</loc>
@@ -15,6 +15,10 @@
   <url>
     <loc>https://ymat2.github.io/win/git4win.html</loc>
     <lastmod>2024-10-14T03:50:16.702Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/slides/snp24/snpeff.html</loc>
+    <lastmod>2024-11-06T05:27:48.220Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/slides/minicong/minicong.html</loc>
@@ -78,7 +82,7 @@
   </url>
   <url>
     <loc>https://ymat2.github.io/bio/ddbj.html</loc>
-    <lastmod>2024-10-14T03:36:50.505Z</lastmod>
+    <lastmod>2024-10-15T03:49:59.407Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/bio/cafe5.html</loc>
@@ -106,7 +110,7 @@
   </url>
   <url>
     <loc>https://ymat2.github.io/bio/gwas.html</loc>
-    <lastmod>2024-10-14T03:38:29.104Z</lastmod>
+    <lastmod>2024-11-06T05:10:09.278Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/bio/orthofinder.html</loc>
@@ -161,6 +165,10 @@
     <lastmod>2024-08-25T14:20:46.000Z</lastmod>
   </url>
   <url>
+    <loc>https://ymat2.github.io/slides/snp24/mapping-call.html</loc>
+    <lastmod>2024-11-06T05:27:38.445Z</lastmod>
+  </url>
+  <url>
     <loc>https://ymat2.github.io/win/0-dev-win.html</loc>
     <lastmod>2024-10-14T06:29:14.505Z</lastmod>
   </url>
@@ -169,8 +177,8 @@
     <lastmod>2024-10-14T06:33:31.647Z</lastmod>
   </url>
   <url>
-    <loc>https://ymat2.github.io/slides/snp24/hands-on.html</loc>
-    <lastmod>2024-10-07T05:14:02.545Z</lastmod>
+    <loc>https://ymat2.github.io/slides/snp24/basic-prefetch-qc.html</loc>
+    <lastmod>2024-11-06T05:27:25.959Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/bio/paml-tutorial.html</loc>

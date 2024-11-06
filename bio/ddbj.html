@@ -677,7 +677,7 @@ N個のタスクを持つアレイジョブとして投入する。
 <h2 class="anchored" data-anchor-id="apptainer-singularity">Apptainer (Singularity)</h2>
 <p><a href="https://sc.ddbj.nig.ac.jp/software/Apptainer" class="uri">https://sc.ddbj.nig.ac.jp/software/Apptainer</a></p>
 <p>バイオインフォマティクスでよく使われる解析ツールは各ソフトウェアの頭文字ごとに <code>/usr/local/biotools/</code> に配置されており、 インストール不要で使うことができる。</p>
-<p>服すバージョン用意されている場合もある。 どんなツールが使えるか見てみる。たとえば BLAST:</p>
+<p>複数のバージョン用意されている場合もある。 どんなツールが使えるか見てみる。たとえば BLAST:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/b/blast<span class="pp">*</span></span></code></pre></div>
 <p>使用例:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp <span class="at">-help</span></span>

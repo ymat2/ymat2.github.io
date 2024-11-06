@@ -1,0 +1,189 @@
+---
+title: "全ゲノム解析ハンズオン 2024 新村グループ"
+subtitle: "スモールデータで理解する SNP 解析の流れ"
+author: "畜産研 博士1年&emsp;松田 優樹"
+format: revealjs
+revealjs-plugins:
+  - pointer
+highlight-style: github
+---
+
+
+## Part3. SnpEff によるアノテーション
+
+**目標**
+
+1. 公開データを用いた SNP 解析ができるようになる。
+2. データの中身と解析の流れについて理解を深める。
+
+<hr style="margin-block: 20px;">
+
+**コンテンツ**
+
+- <span style="color: #DDD;">基本的なコマンドライン操作</span>
+- <span style="color: #DDD;">NGS 公開データの取得</span>
+- <span style="color: #DDD;">クオリティコントロール</span>
+- <span style="color: #DDD;">リードマッピング</span>
+- <span style="color: #DDD;">バリアントコール</span>
+- SNP アノテーション
+
+
+## SnpEff を用いた変異のアノテーション
+
+遺伝子の位置情報 (GTF/GFF) を参照して、
+"**この SNP は XX 遺伝子上の変異で、しかもアミノ酸を変える**"
+みたいな情報を付加する。
+
+![](./images/snp_annotation.png){width="900"}
+
+
+## SnpEff 実行環境の構築 (Java 環境構築)
+
+- <https://pcingola.github.io/SnpEff/download/>
+- <https://www.oracle.com/java/technologies/downloads/?er=221886>
+
+SnpEff は Java というプログラミング言語に依存している。
+遺伝研の Java はちょっと古いので、最新版の Java をインストールする:
+
+```sh
+mkdir ~/bin
+cd ~/bin
+wget https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.tar.gz
+tar zxvf jdk-17_linux-x64_bin.tar.gz
+# rm jdk-17_linux-x64_bin.tar.gz
+```
+
+
+## SnpEff 実行環境の構築 (Java 環境構築)
+
+Java コマンドをどこでも使えるようにする。 (PATH を通す。)
+
+ホームに戻って、`.bash_profile` (もしくは `.bashrc`) というファイルがあることを確認する。
+
+```Sh
+cd
+ls -a
+```
+
+どちらかを開いて、以下の行を追加して保存する:
+
+```sh
+export JAVA_HOME=${HOME}/bin/jdk-23
+export PATH=${JAVA_HOME}/bin:$PATH
+export MALLOC_ARENA_MAX=2
+```
+
+編集したファイルを読み込み、Java の動作確認をする:
+
+```sh
+source .bash_profile
+java -version
+```
+
+
+## SnpEff 実行環境の構築
+
+最新版の SnpEff をダウンロードする:
+
+```sh
+cd ~/bin
+wget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip
+unzip snpEff_latest_core.zip
+# rm snpEff_latest_core.zip
+```
+
+先ほどと同じように SnpEff の PATH を通す。
+ホームの `.bash_profile` か `.bashrc` を開いて以下の行を追加する:
+
+```sh
+export PATH=${HOME}/bin/snpEff/scripts:$PATH
+```
+
+SnpEff の動作確認をする:
+
+```sh
+snpEff -version
+```
+
+
+## SnpEff による変異のアノテーション
+
+SnpEff は既存の遺伝子情報データベースをダウンロードしたり、
+手元の GTF/GFF からデータベースを自作したりして使う。
+
+Escherichia_coli_b_str_rel606 の遺伝子情報をダウンロード:
+
+```sh
+cd ~/snp24  # 作業ディレクトリへ戻るのを忘れずに
+snpEff download -v Escherichia_coli_b_str_rel606
+```
+
+変異のアノテーション:
+
+```sh
+snpEff Escherichia_coli_b_str_rel606 hq_SRR030257.vcf > hq_SRR030257_snpeff.vcf
+```
+
+
+## SnpEff の結果 (VCF)
+
+```sh
+less hq_SRR030257_snpeff.vcf
+```
+
+長くて見づらいが、INFO フィールドに新たに
+`ANN=` に続く形でアノテーション結果が書かれている。
+
+アノテーション結果は `|` 区切りの16項目からなる。
+複数の遺伝子にまたがる場合はさらに `,` 区切りで続く。
+
+例:
+
+```txt
+G|missense_variant|MODERATE|pcnB|ECB_00142|transcript|ACT37835|protein_coding|1/1|c.904A>C|p.Asn302His|904/1365|904/1365|302/454||WARNING_TRANSCRIPT_NO_START_CODON
+# ALTアリル|変異の種類|変異の影響|遺伝子名|遺伝子ID|タイプ|転写産物名|転写産物biotype|Rank/total|塩基の位置と変異|アミノ酸の位置と変異|cDNA_position/cDNA_length|CDS_position/CDS_length|Protein_position/Protein_length|Distance to feature|エラーや警告
+```
+
+*pcnB* のアミノ酸を変える変異、302番目のアスパラギンがヒスチジンになっている。
+
+
+## SnpEff の結果 (genes)
+
+SnpEff を実行すると、`snpEff_genes.txt` というファイルもできる。
+
+このファイルには各転写産物ごとに、どの程度の影響の変異がいくつあるかがタブ区切りで整理されている。
+
+アミノ酸を変える変異をともなう遺伝子を抜き出してみる:
+
+```sh
+cat snpEff_genes.txt | awk 'NR>1 { if ($11 >= 1) { print $0 } }'
+```
+
+🔰 元論文 [Barrick et al. 2009](https://doi.org/10.1038/nature08480) の
+[Table. 1](https://www.nature.com/articles/nature08480/tables/1) と比べてみよう。
+
+
+## 今日のまとめ
+
+**達成🎉**
+
+- [ ] SnpEff を使って SNP のアノテーションができるようになった。
+
+
+## 今日のまとめ
+
+**達成🎉**
+
+- [ ] 公開データを用いた SNP 解析ができるようになった。
+- [ ] データの中身と解析の流れについて理解が深まった。
+
+<hr style="margin-block: 20px;">
+
+**できるようになったこと**
+
+- 基本的なコマンドライン操作
+- NGS 公開データの取得
+- クオリティコントロール
+- リードマッピング
+- バリアントコール
+- SNP アノテーション

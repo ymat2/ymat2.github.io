@@ -1,0 +1,366 @@
+---
+title: "全ゲノム解析ハンズオン 2024 新村グループ"
+subtitle: "スモールデータで理解する SNP 解析の流れ"
+author: "畜産研 博士1年&emsp;松田 優樹"
+format: revealjs
+revealjs-plugins:
+  - pointer
+highlight-style: github
+---
+
+
+
+## 今日の目標と実施内容
+
+**目標**
+
+1. 公開データを用いた SNP 解析ができるようになる。
+2. データの中身と解析の流れについて理解を深める。
+
+<hr style="margin-block: 20px;">
+
+**コンテンツ**
+
+- 基本的なコマンドライン操作
+- NGS 公開データの取得
+- クオリティコントロール
+- リードマッピング
+- バリアントコール
+- SNP アノテーション
+
+
+## Part1. コマンドライン操作、データ取得、QC
+
+**目標**
+
+1. 公開データを用いた SNP 解析ができるようになる。
+2. データの中身と解析の流れについて理解を深める。
+
+<hr style="margin-block: 20px;">
+
+**コンテンツ**
+
+- 基本的なコマンドライン操作
+- NGS 公開データの取得
+- クオリティコントロール
+- <span style="color: #DDD;">リードマッピング</span>
+- <span style="color: #DDD;">バリアントコール</span>
+- <span style="color: #DDD;">SNP アノテーション</span>
+
+
+## 基本的なコマンドライン操作①
+
+`cd` (<u>c</u>hange <u>d</u>irectory)
+: ディレクトリを移る
+
+`mkdir` (<u>m</u>a<u>k</u>e <u>dir</u>ectory)
+: 新しいディレクトリを作成する
+
+`ls` (<u>l</u>ist <u>s</u>egments)
+: ディレクトリ内のファイル、ディレクトリを表示する
+
+`mv` (<u>m</u>o<u>v</u>e)
+: ファイル、ディレクトリを移動する/名前を変更する
+
+`rm` (<u>r</u>e<u>m</u>ove)
+: ファイル、ディレクトリを削除する
+
+
+## 基本的なコマンドライン操作②
+
+`pwd`
+: 今いるディレクトリのフルパスを表示する
+
+`>` (リダイレクト)
+: コマンドの結果をターミナルに表示する代わりに、ファイルに書き込む
+
+`head -n N`
+: ファイルの先頭 N 行を表示する (デフォルトは10行)
+
+`tail -n N`
+: ファイルの末尾 N 行を表示する (デフォルトは10行)
+
+`less`
+: ファイルを閲覧モードで開く。`Q` で閉じる。
+
+
+## 基本的なコマンドライン操作の練習🔰
+
+1. 遺伝研スパコンにログインし、今日の実習用のディレクトリ `snp24` を作成する。
+2. `snp24` 内に移動し、今いるディレクトリのフルパスをターミナルに出力する。
+3. 今いるディレクトリのフルパスを、ファイル `fullpath.txt` に書き込む。
+4. `fullpath.txt` のファイル名を、`pwd.txt` に書き換える。
+5. `pwd.txt` の中身を確認する。
+6. `pwd.txt` を削除する。
+
+
+## 解答例
+
+1. `mkdir snp24`
+2. `cd snp24` して `pwd`
+3. `pwd > fullpath.txt`
+4. `mv fullpath.txt pwd.txt`
+5. `head pwd.txt` とか、`less pwd.txt` とか。
+6. `rm pwd.txt`
+
+<br>
+
+今日のハンズオンはすべて `snp24` ディレクトリの中で行います。
+
+<u>ハンズオン終了後</u>は、ディレクトリごと消してもらって構いません:
+
+```sh
+cd ..        # snp24 のひとつ上のディレクトリへ移動
+rm -r snp24  # snp24 のディレクトリごと削除
+```
+
+
+## SNP 解析の流れ
+
+:::: {.columns}
+
+::: {.column width="25%"}
+
+```{mermaid}
+flowchart TD
+  A(Sample) -.->|DNA 抽出| B(DNA)
+  B -.->|NGS| C[Fastq]
+  X[(NCBI)] -.->|prefetch| C
+  C -.->|リードマッピング| D[SAM/BAM]
+  D -.->|バリアントコール| E[VCF/BCF]
+```
+
+:::
+
+::: {.column width="75%"}
+
+リードマッピング
+: リードを参照配列の相同な位置に貼り付ける
+: ![](./images/read_mapping.png){width="640px"}
+
+バリアントコール
+: 参照配列と異なる配列を特定する
+: ![](./images/variant_call.png){width="640px"}
+
+:::
+
+::::
+
+
+## 今日使うデータの説明
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/E_coli_at_10000x%2C_original.jpg/1280px-E_coli_at_10000x%2C_original.jpg){
+  .absolute width="360px" right="30px" top="135px"
+}
+
+大腸菌 *Escherichia coli* (*E. coli*)
+
+- ゲノムサイズが約 4.6Mb と小さい<br>
+  (ニワトリで約 1Gb)
+- 参照配列: B str. REL606 (Ensembl47)
+- SRA ショートリード: [SRR030257](https://www.ncbi.nlm.nih.gov/sra/?term=SRR030257)
+
+なんのデータ？
+: 高温条件下での進化実験 20,000世代
+  <small>([Barrick et al. 2009](https://doi.org/10.1038/nature08480))</small>
+
+問い
+: 高温条件で進化させるとどんな遺伝子に変異が入るのか？
+
+
+## 今日使うソフトウェア一覧
+
+- 公開データの取得
+  - [SRA Toolkit](https://github.com/ncbi/sra-tools)
+- クオリティコントロール (QC)
+  - [fastp](https://github.com/OpenGene/fastp)
+- リードマッピング
+  - [BWA](https://bio-bwa.sourceforge.net/)
+- バリアントコール
+  - [SAMtools](https://www.htslib.org/doc/samtools.html)
+  - [BCFtools](https://samtools.github.io/bcftools/bcftools.html)
+- SNP アノテーション
+  - [SnpEff](https://pcingola.github.io/SnpEff/)
+
+
+## 公開データの取得
+
+研究で読まれた配列データは
+[NCBI](https://www.ncbi.nlm.nih.gov/)
+などのデータベースにアーカイブされ、だれでも利用できる。
+
+&emsp;&emsp;![](/images/share/arrow.svg)
+
+どうやって探すか:
+
+1. [NCBI](https://www.ncbi.nlm.nih.gov/) で検索する
+2. 論文の Data availability などから BioProject ID を探す<br>
+   (例: [Bendesky et al. 2024](https://academic.oup.com/g3journal/article/14/2/jkad267/7441603#440660152))
+
+
+## 今回使うデータをみてみる
+
+1. [NCBI](https://www.ncbi.nlm.nih.gov/) にアクセスして、
+   SRR030257 を検索
+1. <kbd>Genomes</kbd> タブの <kbd>SRA</kbd> をクリック
+
+![](./images/ncbi_sra_example.png){width="850"}
+
+<div style="position:absolute;right:50px;bottom:40px;padding:10px;background-color:#fff;">
+<span style="color:#D73027;">
+← ダウンロードにはこの **Run ID** が必要
+</span>
+</div>
+
+
+## SRA Toolkit を使って配列をダウンロードする
+
+<https://github.com/ncbi/sra-tools/wiki/08.-prefetch-and-fasterq-dump>
+
+```sh
+prefetch SRR030257
+fasterq-dump SRR030257/SRR030257.sra
+```
+
+`prefetch`
+: SRA アクセッションをダウンロードする
+
+`fasterq-dump`
+: SRA アクセッションから Fastq ファイルを取り出す
+
+<br>
+
+`ls` して2つの `.fastq` ファイルができていたら成功:
+
+```sh
+ls
+# SRR030257  SRR030257_1.fastq  SRR030257_2.fastq
+```
+
+
+## Fastq ファイルの中身を見てみる
+
+```sh
+head SRR030257_1.fastq  # 先頭行を表示
+```
+
+4行でひとまとまり (1リード) のデータ:
+
+```txt
+@SRR030257.1 HWI-EAS_4_PE-FC20GCB:6:1:385:567 length=36  # @リードの情報
+TTACACTCCTGTTAATCCATACAGCAACAGTATTGG                     # 配列
++SRR030257.1 HWI-EAS_4_PE-FC20GCB:6:1:385:567 length=36  # +
+AAA;A;AA?A?AAAAA?;?A?1A;;????566)=*1                     # クオリティ値
+```
+
+
+## クオリティ値
+
+Fastq の4行目は、各塩基のクオリティ値が記号で記されている。
+
+記号と数字の対応は以下の通り
+([ASCII コード](https://www.ascii-code.com/)):
+
+```txt
+ Quality encoding: !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHI
+                   |         |         |         |         |
+    Quality score: 0........10........20........30........40
+```
+
+<br>
+
+これらの数字 (Q値) は Log スケールであり、ある塩基が間違って読まれている確率を
+$P$ として、
+
+$$
+Q = -10 \times \log_{10}{P}
+$$
+
+で計算される。<br>
+例えば `?` なら $Q=30$ で、間違って読まれている確率は $P=0.001$。
+
+
+## NGS 配列のクオリティコントロール
+
+- 低品質な (Q値の低い) 塩基
+- アダプタ配列の混入
+- PCR duplicates
+- 他サンプルのコンタミネーション
+- など
+
+&emsp;&emsp;![](/images/share/arrow.svg)
+
+偽陽性バリアントの増加
+
+
+## クオリティコントロールのツール
+
+| Tool name | language | input | QC | QF | Ad | cont | PE |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| FastqPuri | C, R | fq | 〇 | 〇 | 〇 | 〇 | 〇 |
+| **fastp** | C++ | fq, gz | 〇 | 〇 | 〇 | x | 〇 |
+| Fastq Screen | perl | fq | x | x | x | 〇 | x |
+| trimmomatic | java | fq, gz | x | 〇 | 〇 | x | 〇 |
+| FastQC | java | fq, gz | 〇 | x | x | x | x |
+| RSeQC | C, Python | BAM/SAM | 〇 | x | x | x | x |
+: {tbl-colwidths="[25, 15, 20, 8, 8, 8, 8, 8]"}
+
+<small>
+[Pérez-Rubio et al. 2019 Table. 1](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-2799-0/tables/1) より抜粋
+</small>
+
+<small>
+QC: Quality Control<br>
+QF: Quality Filtering<br>
+Ad: アダプタ配列除去<br>
+cont: コンタミ除去<br>
+PE: Paired-end 対応<br>
+</small>
+
+今回のハンズオンでは、C++ 製で高速、<br>
+圧縮ファイル (gz) にも対応した **fastp** を使う。
+
+
+## fastp によるクオリティコントロール
+
+```sh
+fastp -i SRR030257_1.fastq -I SRR030257_2.fastq \
+  -o qc_SRR030257_1.fq.gz -O qc_SRR030257_2.fq.gz \
+  -q 20 -u 40 -h SRR030257.qc.html
+```
+
+`-i`, `-I`
+: 入力 Fastq ファイル。Single-end の場合 `-i` のみ。
+
+`-o`, `-O`
+: 出力 Fastq ファイル。Single-end の場合 `-o` のみ。
+: `.gz` をつければそのまま圧縮可能。
+
+`-h`
+: レポートファイル (`.html`) の出力先
+
+
+## fastp によるクオリティコントロール
+
+```sh
+fastp -i SRR030257_1.fastq -I SRR030257_2.fastq \
+  -o qc_SRR030257_1.fq.gz -O qc_SRR030257_2.fq.gz \
+  -q 20 -u 40 -h SRR030257.qc.html
+```
+
+`-q`
+: クオリティ値の下限 (デフォルトは15)
+
+`-u`
+: 基準を下回る塩基が何%以上含まれているリードを除くか (デフォルトは40)
+
+今回の場合、$Q<20$ の塩基が40%以上含まれれるリードを除去。
+
+
+## Part1. まとめ
+
+**達成🎉**
+
+- [ ] 基本的なコマンドライン操作を身に着けた。
+- [ ] NGS の公開データの探し方、使い方を理解した。
+- [ ] クオリティコントロールの内容と方法を理解した。

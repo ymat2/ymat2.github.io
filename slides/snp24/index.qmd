@@ -28,7 +28,9 @@ format:
 : SNP アノテーション
 
 スライドのリンク
-: 🚧 [全ゲノム解析ハンズオン --- スライド](./hands-on.qmd)
+: 🚧 [Part1. コマンドライン操作、データ取得、クオリティコントロール](./basic-prefetch-qc.qmd)
+: 🚧 [Part2. リードマッピング、バリアントコール](./mapping-call.qmd)
+: 🚧 [Part3. SNP アノテーション](./snpeff.qmd)
 
 
 ## 材料

@@ -49,8 +49,8 @@ SnpEff は Java というプログラミング言語に依存している。
 mkdir ~/bin
 cd ~/bin
 wget https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.tar.gz
-tar zxvf jdk-17_linux-x64_bin.tar.gz
-# rm jdk-17_linux-x64_bin.tar.gz
+tar zxvf jdk-23_linux-x64_bin.tar.gz
+# rm jdk-23_linux-x64_bin.tar.gz
 ```
 
 

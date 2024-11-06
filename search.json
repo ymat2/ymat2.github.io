@@ -246,7 +246,7 @@
     "href": "slides/snp24/snpeff.html#snpeff-実行環境の構築-java-環境構築",
     "title": "全ゲノム解析ハンズオン 2024 新村グループ",
     "section": "SnpEff 実行環境の構築 (Java 環境構築)",
-    "text": "SnpEff 実行環境の構築 (Java 環境構築)\n\nhttps://pcingola.github.io/SnpEff/download/\nhttps://www.oracle.com/java/technologies/downloads/?er=221886\n\nSnpEff は Java というプログラミング言語に依存している。 遺伝研の Java はちょっと古いので、最新版の Java をインストールする:\nmkdir ~/bin\ncd ~/bin\nwget https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.tar.gz\ntar zxvf jdk-17_linux-x64_bin.tar.gz\n# rm jdk-17_linux-x64_bin.tar.gz"
+    "text": "SnpEff 実行環境の構築 (Java 環境構築)\n\nhttps://pcingola.github.io/SnpEff/download/\nhttps://www.oracle.com/java/technologies/downloads/?er=221886\n\nSnpEff は Java というプログラミング言語に依存している。 遺伝研の Java はちょっと古いので、最新版の Java をインストールする:\nmkdir ~/bin\ncd ~/bin\nwget https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.tar.gz\ntar zxvf jdk-23_linux-x64_bin.tar.gz\n# rm jdk-23_linux-x64_bin.tar.gz"
   },
   {
     "objectID": "slides/snp24/snpeff.html#snpeff-実行環境の構築-java-環境構築-1",

@@ -192,7 +192,7 @@ gwas_result = readr::read_tsv("out/gwas-result.txt") |>
 QQ-plot の描画:
 
 ```r
-qqman::qqplot(gwas_result$P)
+qqman::qq(gwas_result$P)
 ```
 
 マンハッタンプロットの描画:

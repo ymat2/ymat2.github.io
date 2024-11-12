@@ -9,7 +9,6 @@ highlight-style: github
 ---
 
 
-
 ## 今日の目標と実施内容
 
 **目標**
@@ -364,3 +363,48 @@ fastp -i SRR030257_1.fastq -I SRR030257_2.fastq \
 - [ ] 基本的なコマンドライン操作を身に着けた。
 - [ ] NGS の公開データの探し方、使い方を理解した。
 - [ ] クオリティコントロールの内容と方法を理解した。
+
+<br>
+
+<style>
+.button a {
+  background: #eee;
+  border-radius: 9999px;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 250px;
+  padding: 5px 10px;
+  color: #333333;
+  line-height: 1.8;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+  font-weight: 500;
+}
+.button a:hover {
+  background: #333333;
+  color: #FFF;
+}
+.button a:after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-top: 3px solid #333333;
+  border-right: 3px solid #333333;
+  transform: rotate(45deg) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  border-radius: 1px;
+  transition: 0.3s ease-in-out;
+}
+.button a:hover:after {
+  border-color: #FFF;
+}
+</style>
+
+<div class="button">
+  [Part. 2 へ](./mapping-call.qmd)
+</div>

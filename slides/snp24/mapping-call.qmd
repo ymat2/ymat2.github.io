@@ -524,3 +524,48 @@ bcftools filter -i "QUAL>20 && INFO/DP>10" SRR030257.vcf -o hq_SRR030257.vcf
 
 - [ ] リードマッピングの方法と SAM ファイルの形式について理解した。
 - [ ] バリアントコールの方法と VCF について理解した。
+
+<br>
+
+<style>
+.button a {
+    background: #eee;
+    border-radius: 9999px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 250px;
+    padding: 5px 10px;
+    color: #333333;
+    line-height: 1.8;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+}
+.button a:hover {
+    background: #333333;
+    color: #FFF;
+}
+.button a:after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #333333;
+    border-right: 3px solid #333333;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    border-radius: 1px;
+    transition: 0.3s ease-in-out;
+}
+.button a:hover:after {
+    border-color: #FFF;
+}
+</style>
+
+<div class="button">
+  [Part. 3 へ](./snpeff.qmd)
+</div>

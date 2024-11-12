@@ -436,8 +436,8 @@
 <li>SNP アノテーション</li>
 </ul>
 </section>
-<section id="part1.-コマンドライン操作データ取得qc" class="slide level2 scrollable">
-<h2>Part1. コマンドライン操作、データ取得、QC</h2>
+<section id="part.-1-コマンドライン操作データ取得qc" class="slide level2 scrollable">
+<h2>Part. 1 コマンドライン操作、データ取得、QC</h2>
 <p><strong>目標</strong></p>
 <ol type="1">
 <li>公開データを用いた SNP 解析ができるようになる。</li>
@@ -459,7 +459,7 @@
 <dl>
 <dt><code>cd</code> (<u>c</u>hange <u>d</u>irectory)</dt>
 <dd>
-ディレクトリを移る
+ディレクトリ📁を移る
 </dd>
 <dt><code>mkdir</code> (<u>m</u>a<u>k</u>e <u>dir</u>ectory)</dt>
 <dd>
@@ -825,14 +825,56 @@ Q = -10 \times \log_{10}{P}
 </dl>
 <p>今回の場合、<span class="math inline">\(Q&lt;20\)</span> の塩基が40%以上含まれれるリードを除去。</p>
 </section>
-<section id="part1.-まとめ" class="slide level2">
-<h2>Part1. まとめ</h2>
+<section id="part.-1-まとめ" class="slide level2">
+<h2>Part. 1 まとめ</h2>
 <p><strong>達成🎉</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox">基本的なコマンドライン操作を身に着けた。</label></li>
 <li><label><input type="checkbox">NGS の公開データの探し方、使い方を理解した。</label></li>
 <li><label><input type="checkbox">クオリティコントロールの内容と方法を理解した。</label></li>
 </ul>
+<p><br></p>
+<style>
+.button a {
+  background: #eee;
+  border-radius: 9999px;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 250px;
+  padding: 5px 10px;
+  color: #333333;
+  line-height: 1.8;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+  font-weight: 500;
+}
+.button a:hover {
+  background: #333333;
+  color: #FFF;
+}
+.button a:after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-top: 3px solid #333333;
+  border-right: 3px solid #333333;
+  transform: rotate(45deg) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  border-radius: 1px;
+  transition: 0.3s ease-in-out;
+}
+.button a:hover:after {
+  border-color: #FFF;
+}
+</style>
+<div class="button">
+<p><a href="../../slides/snp24/mapping-call.html">Part. 2 へ</a></p>
+</div>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">

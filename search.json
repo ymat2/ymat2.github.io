@@ -109,14 +109,14 @@
     "href": "slides/snp24/index.html",
     "title": "全ゲノム解析ハンズオン — スモールデータで理解する SNP 解析の流れ",
     "section": "",
-    "text": "目的\n\nスモールデータを使って、全ゲノム解析のパイプラインを一通り (公開データ取得から SNP アノテーションまで) 体験する。 その際、各解析で出てくる中間ファイル等にも触れることで、どのようなデータを使って、どのような解析が動いているかについて理解を深める。\n\n日程\n\ncomming soon\n\n環境\n\n遺伝研スパコン\n\nやること\n\n基本的なコマンドライン操作\n\n\nNGS 公開データの取得\n\n\nクオリティコントロール\n\n\nリードマッピング、バリアントコール\n\n\nSNP アノテーション\n\nスライドのリンク\n\n🚧 Part1. コマンドライン操作、データ取得、クオリティコントロール\n\n\n🚧 Part2. リードマッピング、バリアントコール\n\n\n🚧 Part3. SNP アノテーション"
+    "text": "目的\n\nスモールデータを使って、全ゲノム解析のパイプラインを一通り (公開データ取得から SNP アノテーションまで) 体験する。 その際、各解析で出てくる中間ファイル等にも触れることで、どのようなデータを使って、どのような解析が動いているかについて理解を深める。\n\n日程\n\ncomming soon\n\n環境\n\n遺伝研スパコン\n\nやること\n\n基本的なコマンドライン操作\n\n\nNGS 公開データの取得\n\n\nクオリティコントロール\n\n\nリードマッピング、バリアントコール\n\n\nSNP アノテーション\n\nスライドのリンク\n\n🚧 Part. 1 コマンドライン操作、データ取得、クオリティコントロール\n\n\n🚧 Part. 2 リードマッピング、バリアントコール\n\n\n🚧 Part. 3 SNP アノテーション"
   },
   {
     "objectID": "slides/snp24/index.html#概要",
     "href": "slides/snp24/index.html#概要",
     "title": "全ゲノム解析ハンズオン — スモールデータで理解する SNP 解析の流れ",
     "section": "",
-    "text": "目的\n\nスモールデータを使って、全ゲノム解析のパイプラインを一通り (公開データ取得から SNP アノテーションまで) 体験する。 その際、各解析で出てくる中間ファイル等にも触れることで、どのようなデータを使って、どのような解析が動いているかについて理解を深める。\n\n日程\n\ncomming soon\n\n環境\n\n遺伝研スパコン\n\nやること\n\n基本的なコマンドライン操作\n\n\nNGS 公開データの取得\n\n\nクオリティコントロール\n\n\nリードマッピング、バリアントコール\n\n\nSNP アノテーション\n\nスライドのリンク\n\n🚧 Part1. コマンドライン操作、データ取得、クオリティコントロール\n\n\n🚧 Part2. リードマッピング、バリアントコール\n\n\n🚧 Part3. SNP アノテーション"
+    "text": "目的\n\nスモールデータを使って、全ゲノム解析のパイプラインを一通り (公開データ取得から SNP アノテーションまで) 体験する。 その際、各解析で出てくる中間ファイル等にも触れることで、どのようなデータを使って、どのような解析が動いているかについて理解を深める。\n\n日程\n\ncomming soon\n\n環境\n\n遺伝研スパコン\n\nやること\n\n基本的なコマンドライン操作\n\n\nNGS 公開データの取得\n\n\nクオリティコントロール\n\n\nリードマッピング、バリアントコール\n\n\nSNP アノテーション\n\nスライドのリンク\n\n🚧 Part. 1 コマンドライン操作、データ取得、クオリティコントロール\n\n\n🚧 Part. 2 リードマッピング、バリアントコール\n\n\n🚧 Part. 3 SNP アノテーション"
   },
   {
     "objectID": "slides/snp24/index.html#材料",
@@ -228,72 +228,72 @@
     ]
   },
   {
-    "objectID": "slides/snp24/snpeff.html#part3.-snpeff-によるアノテーション",
-    "href": "slides/snp24/snpeff.html#part3.-snpeff-によるアノテーション",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
-    "section": "Part3. SnpEff によるアノテーション",
-    "text": "Part3. SnpEff によるアノテーション\n目標\n\n公開データを用いた SNP 解析ができるようになる。\nデータの中身と解析の流れについて理解を深める。\n\n\nコンテンツ\n\n基本的なコマンドライン操作\nNGS 公開データの取得\nクオリティコントロール\nリードマッピング\nバリアントコール\nSNP アノテーション"
+    "objectID": "slides/snp24/snpeff.html#part.-3-snpeff-によるアノテーション",
+    "href": "slides/snp24/snpeff.html#part.-3-snpeff-によるアノテーション",
+    "title": "Part. 3 SnpEff によるアノテーション",
+    "section": "Part. 3 SnpEff によるアノテーション",
+    "text": "Part. 3 SnpEff によるアノテーション\n目標\n\n公開データを用いた SNP 解析ができるようになる。\nデータの中身と解析の流れについて理解を深める。\n\n\nコンテンツ\n\n基本的なコマンドライン操作\nNGS 公開データの取得\nクオリティコントロール\nリードマッピング\nバリアントコール\nSNP アノテーション"
   },
   {
     "objectID": "slides/snp24/snpeff.html#snpeff-を用いた変異のアノテーション",
     "href": "slides/snp24/snpeff.html#snpeff-を用いた変異のアノテーション",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 3 SnpEff によるアノテーション",
     "section": "SnpEff を用いた変異のアノテーション",
     "text": "SnpEff を用いた変異のアノテーション\n遺伝子の位置情報 (GTF/GFF) を参照して、 “この SNP は XX 遺伝子上の変異で、しかもアミノ酸を変える” みたいな情報を付加する。"
   },
   {
     "objectID": "slides/snp24/snpeff.html#snpeff-実行環境の構築-java-環境構築",
     "href": "slides/snp24/snpeff.html#snpeff-実行環境の構築-java-環境構築",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 3 SnpEff によるアノテーション",
     "section": "SnpEff 実行環境の構築 (Java 環境構築)",
     "text": "SnpEff 実行環境の構築 (Java 環境構築)\n\nhttps://pcingola.github.io/SnpEff/download/\nhttps://www.oracle.com/java/technologies/downloads/?er=221886\n\nSnpEff は Java というプログラミング言語に依存している。 遺伝研の Java はちょっと古いので、最新版の Java をインストールする:\nmkdir ~/bin\ncd ~/bin\nwget https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.tar.gz\ntar zxvf jdk-23_linux-x64_bin.tar.gz\n# rm jdk-23_linux-x64_bin.tar.gz"
   },
   {
     "objectID": "slides/snp24/snpeff.html#snpeff-実行環境の構築-java-環境構築-1",
     "href": "slides/snp24/snpeff.html#snpeff-実行環境の構築-java-環境構築-1",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 3 SnpEff によるアノテーション",
     "section": "SnpEff 実行環境の構築 (Java 環境構築)",
     "text": "SnpEff 実行環境の構築 (Java 環境構築)\nJava コマンドをどこでも使えるようにする。 (PATH を通す。)\nホームに戻って、.bash_profile (もしくは .bashrc) というファイルがあることを確認する。\ncd\nls -a\nどちらかを開いて、以下の行を追加して保存する:\nexport JAVA_HOME=${HOME}/bin/jdk-23\nexport PATH=${JAVA_HOME}/bin:$PATH\nexport MALLOC_ARENA_MAX=2\n編集したファイルを読み込み、Java の動作確認をする:\nsource .bash_profile\njava -version"
   },
   {
     "objectID": "slides/snp24/snpeff.html#snpeff-実行環境の構築",
     "href": "slides/snp24/snpeff.html#snpeff-実行環境の構築",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 3 SnpEff によるアノテーション",
     "section": "SnpEff 実行環境の構築",
     "text": "SnpEff 実行環境の構築\n最新版の SnpEff をダウンロードする:\ncd ~/bin\nwget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip\nunzip snpEff_latest_core.zip\n# rm snpEff_latest_core.zip\n先ほどと同じように SnpEff の PATH を通す。 ホームの .bash_profile か .bashrc を開いて以下の行を追加する:\nexport PATH=${HOME}/bin/snpEff/scripts:$PATH\nSnpEff の動作確認をする:\nsnpEff -version"
   },
   {
     "objectID": "slides/snp24/snpeff.html#snpeff-による変異のアノテーション",
     "href": "slides/snp24/snpeff.html#snpeff-による変異のアノテーション",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 3 SnpEff によるアノテーション",
     "section": "SnpEff による変異のアノテーション",
     "text": "SnpEff による変異のアノテーション\nSnpEff は既存の遺伝子情報データベースをダウンロードしたり、 手元の GTF/GFF からデータベースを自作したりして使う。\nEscherichia_coli_b_str_rel606 の遺伝子情報をダウンロード:\ncd ~/snp24  # 作業ディレクトリへ戻るのを忘れずに\nsnpEff download -v Escherichia_coli_b_str_rel606\n変異のアノテーション:\nsnpEff Escherichia_coli_b_str_rel606 hq_SRR030257.vcf &gt; hq_SRR030257_snpeff.vcf"
   },
   {
     "objectID": "slides/snp24/snpeff.html#snpeff-の結果-vcf",
     "href": "slides/snp24/snpeff.html#snpeff-の結果-vcf",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 3 SnpEff によるアノテーション",
     "section": "SnpEff の結果 (VCF)",
     "text": "SnpEff の結果 (VCF)\nless hq_SRR030257_snpeff.vcf\n長くて見づらいが、INFO フィールドに新たに ANN= に続く形でアノテーション結果が書かれている。\nアノテーション結果は | 区切りの16項目からなる。 複数の遺伝子にまたがる場合はさらに , 区切りで続く。\n例:\nG|missense_variant|MODERATE|pcnB|ECB_00142|transcript|ACT37835|protein_coding|1/1|c.904A&gt;C|p.Asn302His|904/1365|904/1365|302/454||WARNING_TRANSCRIPT_NO_START_CODON\n# ALTアリル|変異の種類|変異の影響|遺伝子名|遺伝子ID|タイプ|転写産物名|転写産物biotype|Rank/total|塩基の位置と変異|アミノ酸の位置と変異|cDNA_position/cDNA_length|CDS_position/CDS_length|Protein_position/Protein_length|Distance to feature|エラーや警告\npcnB のアミノ酸を変える変異、302番目のアスパラギンがヒスチジンになっている。"
   },
   {
     "objectID": "slides/snp24/snpeff.html#snpeff-の結果-genes",
     "href": "slides/snp24/snpeff.html#snpeff-の結果-genes",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 3 SnpEff によるアノテーション",
     "section": "SnpEff の結果 (genes)",
     "text": "SnpEff の結果 (genes)\nSnpEff を実行すると、snpEff_genes.txt というファイルもできる。\nこのファイルには各転写産物ごとに、どの程度の影響の変異がいくつあるかがタブ区切りで整理されている。\nアミノ酸を変える変異をともなう遺伝子を抜き出してみる:\ncat snpEff_genes.txt | awk 'NR&gt;1 { if ($11 &gt;= 1) { print $0 } }'\n🔰 元論文 Barrick et al. 2009 の Table. 1 と比べてみよう。"
   },
   {
-    "objectID": "slides/snp24/snpeff.html#今日のまとめ",
-    "href": "slides/snp24/snpeff.html#今日のまとめ",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
-    "section": "今日のまとめ",
-    "text": "今日のまとめ\n達成🎉\n\nSnpEff を使って SNP のアノテーションができるようになった。"
+    "objectID": "slides/snp24/snpeff.html#part.-3-まとめ",
+    "href": "slides/snp24/snpeff.html#part.-3-まとめ",
+    "title": "Part. 3 SnpEff によるアノテーション",
+    "section": "Part. 3 まとめ",
+    "text": "Part. 3 まとめ\n達成🎉\n\nSnpEff を使って SNP のアノテーションができるようになった。"
   },
   {
-    "objectID": "slides/snp24/snpeff.html#今日のまとめ-1",
-    "href": "slides/snp24/snpeff.html#今日のまとめ-1",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "objectID": "slides/snp24/snpeff.html#今日のまとめ",
+    "href": "slides/snp24/snpeff.html#今日のまとめ",
+    "title": "Part. 3 SnpEff によるアノテーション",
     "section": "今日のまとめ",
     "text": "今日のまとめ\n達成🎉\n\n公開データを用いた SNP 解析ができるようになった。\nデータの中身と解析の流れについて理解が深まった。\n\n\nできるようになったこと\n\n基本的なコマンドライン操作\nNGS 公開データの取得\nクオリティコントロール\nリードマッピング\nバリアントコール\nSNP アノテーション"
   },
@@ -2364,186 +2364,186 @@
     "text": "\\(F_\\text{st}\\) 解析ハンズオン: vcftools\nvcftools --gzvcf file.vcf.gz --weir-fst-pop pop1.txt --weir-fst-pop pop2.txt \\\n  --fst-window-size 10000 --fst-window-step 5000 --out outfile\n\n--gzvcf\n\n圧縮済み VCF ファイル\n\n--weir-fst-pop\n\n\\(F_\\text{ST}\\) を計算したい2集団のサンプルをリストしたテキストファイル\n\n--fst-window-size, --fst-window-step\n\n塩基数で指定\n\n\n\n\n--out\n\n出力ファイルの名前 (.log と .windowed.weir.fst の2ファイル)"
   },
   {
-    "objectID": "slides/snp24/mapping-call.html#part2.-リードマッピングバリアントコール",
-    "href": "slides/snp24/mapping-call.html#part2.-リードマッピングバリアントコール",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
-    "section": "Part2. リードマッピング、バリアントコール",
-    "text": "Part2. リードマッピング、バリアントコール\n目標\n\n公開データを用いた SNP 解析ができるようになる。\nデータの中身と解析の流れについて理解を深める。\n\n\nコンテンツ\n\n基本的なコマンドライン操作\nNGS 公開データの取得\nクオリティコントロール\nリードマッピング\nバリアントコール\nSNP アノテーション"
+    "objectID": "slides/snp24/mapping-call.html#part.-2-リードマッピングバリアントコール",
+    "href": "slides/snp24/mapping-call.html#part.-2-リードマッピングバリアントコール",
+    "title": "Part. 2 リードマッピング、バリアントコール",
+    "section": "Part. 2 リードマッピング、バリアントコール",
+    "text": "Part. 2 リードマッピング、バリアントコール\n目標\n\n公開データを用いた SNP 解析ができるようになる。\nデータの中身と解析の流れについて理解を深める。\n\n\nコンテンツ\n\n基本的なコマンドライン操作\nNGS 公開データの取得\nクオリティコントロール\nリードマッピング\nバリアントコール\nSNP アノテーション"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#参照配列にリードをマッピング-前準備",
     "href": "slides/snp24/mapping-call.html#参照配列にリードをマッピング-前準備",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "参照配列にリードをマッピング (前準備)",
     "text": "参照配列にリードをマッピング (前準備)\n\nリードマッピング\n\nリードを参照配列の相同な位置に貼り付ける\n\n\n\n\n\n前準備\n大腸菌の参照配列をダウンロード\nwget https://ftp.ensemblgenomes.ebi.ac.uk/pub/bacteria/release-47/fasta/bacteria_5_collection/escherichia_coli_b_str_rel606/dna/Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa.gz\n\n\n\nダウンロードしたファイルは圧縮されている (.gz) ので解凍する:\ngunzip Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa.gz"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#参照配列にリードをマッピング-前準備-1",
     "href": "slides/snp24/mapping-call.html#参照配列にリードをマッピング-前準備-1",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "参照配列にリードをマッピング (前準備)",
     "text": "参照配列にリードをマッピング (前準備)\nファイル名が長いので Ecoli.fa に変えておく (任意):\nmv Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa.gz Ecoli.fa\n\n\n\n参照配列の中身を見てみる:\nless Ecoli.fa\n\n\n\n&gt;Chromosome dna:chromosome chromosome:ASM1798v1:Chromosome:1:4629812:1 REF\nAGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTC\nTGATAGCAGCTTCTGAACTGGTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGG\nTCACTAAATACTTTAACCAATATAGGCATAGCGCACAGACAGATAAAAATTACAGAGTAC\n︙\n&gt; で始まるヘッダー行と配列からなる FASTA というファイル形式。 Fastq と似ているけど別フォーマット。"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#より小さいデータを使ってリードマッピングを理解する",
     "href": "slides/snp24/mapping-call.html#より小さいデータを使ってリードマッピングを理解する",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "より小さいデータを使ってリードマッピングを理解する",
     "text": "より小さいデータを使ってリードマッピングを理解する\n使うデータ (fastq と参照配列) が用意できたところで、 より小さなデータを使ってこれから扱うファイルの形式を先に理解しよう。\nデータ置き場: https://github.com/ymat2/md4rm\n\nデータをダウンロードする:\ngit clone https://github.com/ymat2/md4rm.git\n\n\n\nディレクトリを移動して ls で中身を確認:\ncd md4rm\nls\n\nref.fa: 参照配列。100bp。\nsra_1.fq, sra_2.fq: Paired-end のショートリード (もどき)。"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#ショートリードの詳細",
     "href": "slides/snp24/mapping-call.html#ショートリードの詳細",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "ショートリードの詳細",
     "text": "ショートリードの詳細\nsra_1.fq, sra_2.fq には以下の5本のリードがある。\n\nless などで中身を見てみる:\nless sra_1.fq\nless sra_2.fq"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#リードマッピングの全体をまず眺める",
     "href": "slides/snp24/mapping-call.html#リードマッピングの全体をまず眺める",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "リードマッピングの全体をまず眺める",
     "text": "リードマッピングの全体をまず眺める\n## 参照配列のインデックスを作る\nbwa index ref.fa\n\n## ショートリードを参照配列へマッピングする\nbwa mem ref.fa sra_1.fq sra_2.fq &gt; small.sam\n\n## SAM ファイルを処理する\nsamtools collate small.sam -o small.c.sam      # リード名ソート\nsamtools fixmate -m small.c.sam small.cf.sam   # MC, ms タグを付加\nsamtools sort small.cf.sam -o small.cfs.sam    # 位置順ソート\nsamtools markdup small.cfs.sam small.cfsm.sam  # PCR duplicates をマーク\n\n## BAM ファイルへ圧縮する\nsamtools view -b small.cfsm.sam &gt; small.bam\n\n# 一般的には BAM への圧縮を最初にやる。(SAM のサイズが大きいので。)\n# 今回はファイルの中身を見ながら進めるので最後に。"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#参照配列のインデックス作成とリードマッピング",
     "href": "slides/snp24/mapping-call.html#参照配列のインデックス作成とリードマッピング",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "参照配列のインデックス作成とリードマッピング",
     "text": "参照配列のインデックス作成とリードマッピング\nbwa index ref.fa\nbwa mem ref.fa sra_1.fq sra_2.fq &gt; small.sam\nマッピングの結果はターミナルに出力されるので、 リダイレクト &gt; して small.sam に書き込む。\n\n\n\n\n「インデックスを作る」とは？\n\n文字列検索を高速化するために参照配列を変換したファイルを生成する。 BWA では Burrows-Wheeler 変換というのを使うらしい。"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#sequence-alignment-map-sam-フォーマット",
     "href": "slides/snp24/mapping-call.html#sequence-alignment-map-sam-フォーマット",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "Sequence Alignment Map (SAM) フォーマット",
     "text": "Sequence Alignment Map (SAM) フォーマット\nhttps://samtools.github.io/hts-specs/SAMv1.pdf\n参照配列にマッピングされたリードの情報を記載するためのフォーマット\n@SQ SN:NC_052532.1  LN:100\n@PG ID:bwa  PN:bwa  VN:0.7.17-r1188 CL:bwa mem -I 90 ref.fa sra_1.fq sra_2.fq\nread1   99  NC_052532.1 3   60  40M =   53  90  TCACCCATCTCGGAGTGCTCACACCATCCCCATGATCTTG    AAAAAAAAA6AAA7AAAAABBAAA?A7&lt;?AAA:&gt;6::662    NM:i:1  MD:Z:13G26  MC:Z:40M    AS:i:35 XS:i:0\nread1   147 NC_052532.1 53  60  40M =   3   -90 ATCACCCCCATGTCCCCCGGATGCTCACAGCATCACCCAT    266::6&gt;:AAA?&lt;7A?AAABBAAAAA7AAA6AAAAAAAAA    NM:i:0  MD:Z:40 MC:Z:40M    AS:i:40 XS:i:0\nread2   83  NC_052532.1 55  60  40M =   5   -90 CACCCCCATGTCCCCCGGATGCTCACAGCATCACCCATCT    266::6&gt;:AAA?&lt;7A?AAABBAAAAA7AAA6AAAAAAAAA    NM:i:0  MD:Z:40 MC:Z:40M    AS:i:40 XS:i:0\nread2   163 NC_052532.1 5   60  40M =   55  90  ACCCATCTCGGAGTGCTCACACCATCCCCATGATCTTGGG    AAAAAAAAA6AAA7AAAAABBAAA?A7&lt;?AAA:&gt;6::662    NM:i:1  MD:Z:11G28  MC:Z:40M    AS:i:35 XS:i:0\n︙\n@ で始まるヘッダー行と、1リード1行のデータからなる。\n11 列以上で構成され、11列目まではツール共通、それ以降はマッピングツールによって異なる。"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#sequence-alignment-map-sam-フォーマット-1",
     "href": "slides/snp24/mapping-call.html#sequence-alignment-map-sam-フォーマット-1",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "Sequence Alignment Map (SAM) フォーマット",
     "text": "Sequence Alignment Map (SAM) フォーマット\n\nQNAME: リード名\nFLAG: マッピング状況を表す数字\nRNAME: 参照配列の名前 (染色体、コンティグ等)\nPOS: 位置\nMAPQ: マッピングクオリティ (\\(-10 \\times \\log_{10}{\\text{誤マッピングの確率}}\\))\nCIGAR: いくつの塩基がどう張り付いたかを示す文字列\nMRNM: Paired-end のもう片方が張り付いた染色体。一緒なら =。\nMPOS: Paired-end のもう片方の位置\nTLEN: Insert size (Paired-end の端から端までの長さ)\nSEQ: 配列\nQUAL: 配列のクオリティ"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#flag-について-このあと出てくるので説明",
     "href": "slides/snp24/mapping-call.html#flag-について-このあと出てくるので説明",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "FLAG について (このあと出てくるので説明)",
     "text": "FLAG について (このあと出てくるので説明)\nリードのマッピング状況を表す数字。Bit 表現の足し算。\n    1  0x001  Paired-end である\n    2  0x002  正しくマッピングされている\n    4  0x004  マッピングされていない\n    8  0x008  Pair の相方がマッピングされていない\n   16  0x010  逆鎖\n   32  0x020  Pair の相方が逆鎖\n   64  0x040  read1 である\n  128  0x080  read2 である\n  256  0x100  ゲノム上の複数個所にマッピングされている\n  512  0x200  クオリティが低い\n 1024  0x400  Duplicate である\n 2048  0x800  supplementary alignment\n例えば FLAG が 99 なら 64+32+2+1 で「正しくマッピングされた、ペアが逆鎖のread1」、 133 なら 128+5+1 で「マッピングされていないペアのread2」となる。"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#samtools-を用いたファイル処理-collate-fixmate",
     "href": "slides/snp24/mapping-call.html#samtools-を用いたファイル処理-collate-fixmate",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "SAMtools を用いたファイル処理: collate, fixmate",
     "text": "SAMtools を用いたファイル処理: collate, fixmate\nsamtools collate small.sam -o small.c.sam\nsamtools fixmate -m small.c.sam small.cf.sam\n\nsamtools collate\n\nリードの名前をシャッフルして同じリード名でグループ化する。\n\n\nBWA の出力がすでにこうなっているのでやらなくても OK。\n\nsamtools fixmate -m\n\nmate タグ (MC, ms) というタグを付加する。\n\n\n下流の markdup の際にどのリードを残すかの基準となる。\n\n\n\n\n\n🔰 small.sam と small.cf.sam を見比べて、 リードの順番の違いと、行の右端に MC/ms タグがあることを確認しよう。"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#samtools-を用いたファイル処理-sort",
     "href": "slides/snp24/mapping-call.html#samtools-を用いたファイル処理-sort",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "SAMtools を用いたファイル処理: sort",
     "text": "SAMtools を用いたファイル処理: sort\nsamtools sort small.cf.sam -o small.cfs.sam\n\nsamtools sort\n\nリードを位置順に (4列目の POS に基づいて) 並び替える。\n\n\n\n\n\n🔰 small.cf.sam と small.cfs.sam を見比べて、 リードの順番が4列目 POS の昇順になっていることを確認しよう。"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#samtools-を用いたファイル処理-markdup",
     "href": "slides/snp24/mapping-call.html#samtools-を用いたファイル処理-markdup",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "SAMtools を用いたファイル処理: markdup",
     "text": "SAMtools を用いたファイル処理: markdup\nsamtools markdup small.cfs.sam small.cfsm.sam\n\nsamtools markdup\n\nDuplicates (同じ領域のリード) を重複リードとしてマークする。\n\n\n\n\n\n🔰 small.cfs.sam と small.cfsm.sam とで read3 の2列目 FLAG の変化を比べよう。\nread3   163 NC_052532.1 5   60  40M =   55  90  ACCCATCTCGGAGTGCTCACACCATCCCCATGATCTTGGG    AAAAAAAAA6AAA7AAAAABBAAA?A7&lt;?AAA:&gt;6::662    NM:i:1  MD:Z:11G28  AS:i:35 XS:i:0  MQ:i:60 MC:Z:40M    ms:i:1170\n↓\nread3   1187    NC_052532.1 5   60  40M =   55  90  ACCCATCTCGGAGTGCTCACACCATCCCCATGATCTTGGG    AAAAAAAAA6AAA7AAAAABBAAA?A7&lt;?AAA:&gt;6::662    NM:i:1  MD:Z:11G28  AS:i:35 XS:i:0  MQ:i:60 MC:Z:40M    ms:i:1170\n\n163 = 128 + 32 + 2 + 1\n1187 = 1024 + 128 + 32 + 2 + 1"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#samtools-を用いたファイル処理-markdup--r",
     "href": "slides/snp24/mapping-call.html#samtools-を用いたファイル処理-markdup--r",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "SAMtools を用いたファイル処理: markdup -r",
     "text": "SAMtools を用いたファイル処理: markdup -r\nsamtools markdup -r small.cfs.sam small.cfsm.sam\n\nsamtools markdup -r\n\nDuplicates (同じ領域のリード) を重複リードとしてマークして除く。\n\n\nなお、リードを除かなくてもマークさえしておけば、 この後のバリアントコールの時には使われないっぽい。\n\n\n\n\n\n🔰 small.cfsm.sam から read3 が除かれたことを確認しよう。"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#bam-ファイルへの圧縮と閲覧",
     "href": "slides/snp24/mapping-call.html#bam-ファイルへの圧縮と閲覧",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "BAM ファイルへの圧縮と閲覧",
     "text": "BAM ファイルへの圧縮と閲覧\nBAM は SAM をバイナリに圧縮したファイル形式。 バイナリファイルなのでそのままでは読めず、インデックスを作って閲覧する。\nsamtools view -b small.cfsm.sam &gt; small.bam\nsamtools index small.bam\n\n閲覧\n\nSAM として閲覧\n\nsamtools view -h --no-PG small.bam | less\n\nリードの貼りつき状況を視覚的に表示 (Q で閲覧画面を閉じる)\n\nsamtools tview small.bam ref.fa"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#公開データを使ってリードマッピング",
     "href": "slides/snp24/mapping-call.html#公開データを使ってリードマッピング",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "公開データを使ってリードマッピング",
     "text": "公開データを使ってリードマッピング\n改めて先ほど取得した大腸菌のデータを使って、リードマッピングを行う。\ncd ..  # 元の snp24 ディレクトリへ移動\n\n## インデックス作成とマッピング\nbwa index Ecoli.fa\nbwa mem Ecoli.fa qc_SRR030257_1.fq.gz qc_SRR030257_2.fq.gz &gt; SRR030257.sam\n\n## SAMtools による処理\nsamtools view -b SRR030257.sam &gt; SRR030257.bam         # 最初に BAM へ圧縮\nsamtools collate SRR030257.bam -o SRR030257.c.bam      # リード名ソート\nsamtools fixmate -m SRR030257.c.bam SRR030257.cf.bam   # MC, ms タグを付加\nsamtools sort SRR030257.cf.bam -o SRR030257.cfs.bam    # 位置順ソート\nsamtools markdup SRR030257.cfs.bam SRR030257.cfsm.bam  # PCR duplicates をマーク\nsamtools index SRR030257.cfsm.bam                      # インデックス作成\n\n\n\n🔰 samtools tview でリードのマッピング状況を可視化してみよう。 (矢印キー ←/→ で移動できる。)"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#samtools-tview-で眺めると変異らしき座位が見つかる",
     "href": "slides/snp24/mapping-call.html#samtools-tview-で眺めると変異らしき座位が見つかる",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "samtools tview で眺めると変異らしき座位が見つかる",
     "text": "samtools tview で眺めると変異らしき座位が見つかる\n\n\n 閲覧画面で / を押して Chromosome:161041 と打つとこの位置へジャンプ \n\nSNP (T から G) ↑"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#アライメントから変異を特定する-バリアントコール",
     "href": "slides/snp24/mapping-call.html#アライメントから変異を特定する-バリアントコール",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "アライメントから変異を特定する (=バリアントコール)",
     "text": "アライメントから変異を特定する (=バリアントコール)\nバリアントコールのお気持ち。例えば参照配列が A のある座位に対して、\n\n100本のリードがマッピングされ、99本が G\n\nこの座位は G だろう。\n\n100本のリードがマッピングされ、49本が A、51本が G\n\nこの座位は A/G のヘテロだろう。\n\n100本のリードがマッピングされ、98本が A、2本が G\n\nA/G のヘテロである確率よりは、2本が誤っている確率が高そう。 シーケンスのエラー、誤った場所へのマッピングなど。\n\n2本のリードがマッピングされ、1本が A、1本が G\n\n割合的には A/G のヘテロだけど、本数が少ないので確実な変異とは言えない。"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#bcftools-によるバリアントコール",
     "href": "slides/snp24/mapping-call.html#bcftools-によるバリアントコール",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "BCFtools によるバリアントコール",
     "text": "BCFtools によるバリアントコール\nbcftools mpileup -f Ecoli.fa SRR030257.cfsm.bam &gt; SRR030257.mpileup\nbcftools call -c -v --ploidy 1 SRR030257.mpileup -o SRR030257.vcf\n\nbcftools mpileup\n\n1座位ごとに遺伝子型尤ゆう度を計算して VCF/BCF を生成する。\n\nbcftools call\n\nmpileup で出力した遺伝子型尤度に基づいて遺伝子型を決定する。\n\n\n-c: biallelic コール (REF/ALT)。-m にすると multi-allelic コール (REF/ALT1/ALT2…)。\n\n\n-v: 変異がある座位のみを出力する。\n\n\n--ploidy N: 一倍体か二倍体か。デフォルトは二倍体。"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#vcf-variant-call-format",
     "href": "slides/snp24/mapping-call.html#vcf-variant-call-format",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "VCF (Variant Call Format)",
     "text": "VCF (Variant Call Format)\nhttps://samtools.github.io/hts-specs/VCFv4.2.pdf\nバリアントコールした変異の情報を記述するフォーマット。 BCF は VCF をバイナリ化したもの。\n##fileformat=VCFv4.2\n##FILTER=&lt;ID=PASS,Description=\"All filters passed\"&gt;\n##bcftoolsVersion=1.13+htslib-1.13+ds\n︙\n#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  SRR030257.cfsm.bam\nChromosome      161041  .       T       G       225.007 .       DP=55;VDB=0.000910305;SGB=-0.693147;MQSBZ=1.32288;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,20,35;MQ=60;FQ=-999   GT:PL   1:255,0\nChromosome      380188  .       A       C       225.007 .       DP=42;VDB=0.701392;SGB=-0.693146;MQSBZ=-0.595683;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,11,31;MQ=60;FQ=-999    GT:PL   1:255,0\n︙\n## で始まるヘッダー行と、1座位1行のデータ行からなる。\n8列目までは共通、10列目以降は各サンプルの列。"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#vcf-variant-call-format-1",
     "href": "slides/snp24/mapping-call.html#vcf-variant-call-format-1",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "VCF (Variant Call Format)",
     "text": "VCF (Variant Call Format)\n\n#CHROM: 染色体やコンティグの名前\nPOS: 染色体上の位置\nID: SNP に名前がついている場合がある。(例: rs247)\nREF: 参照配列の塩基 (配列)\nALT: 変異の塩基 (配列)\nQUAL: クオリティ。\\(-10 \\times \\log_{10}{\\text{(変異が間違いである確率)}}\\)\nFILTER: フィルターを通過したかどうか (PASS)\nINFO: ; 区切りの追加情報。たいていヘッダー行に説明が書いてある。\n##INFO=&lt;ID=DP,Number=1,Type=Integer,Description=\"Raw read depth\"&gt;\nFORMAT: 10列目以降の各サンプル列に何が書いてあるか。"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#format-フィールドの読み方",
     "href": "slides/snp24/mapping-call.html#format-フィールドの読み方",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "FORMAT フィールドの読み方",
     "text": "FORMAT フィールドの読み方\nFORMAT  sampleA         sampleB\nGT:PL   0/1:139,0,112   1/1:245,27,0\n\nsampleA 以降の列には GT と PL の情報が : 区切りで書いてある。\nsampleA の GT は 0/1、PL は 139,0,112。\nsampleB の GT は 1/1、PL は 245,27,0。\n\n\nGT (genotype)\n\n遺伝子型。/ もしくは | 区切りで、0/0 なら REF/REF (参照配列のホモ)、 0/1 なら REF/ALT (ヘテロ)、1/1 なら ALT/ALT (変異のホモ) のように読む。\n\nPL (phred-scaled genotype likelihood)\n\n遺伝子型ごとの尤度。, 区切りで REF/REF,REF/ALT,ALT/ALT の順にスコアリングされており、 数字が小さいほど尤もらしい。"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#srr030257.vcf-を見てみる",
     "href": "slides/snp24/mapping-call.html#srr030257.vcf-を見てみる",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "SRR030257.vcf を見てみる",
     "text": "SRR030257.vcf を見てみる\n## ヘッダー省略\n#CHROM          POS     ID      REF     ALT     QUAL    FILTER  FORMAT  SRR030257.cfsm.bam\nChromosome      161041  .       T       G       225.007 .       DP=55;VDB=0.000910305;SGB=-0.693147;MQSBZ=1.32288;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,20,35;MQ=60;FQ=-999   GT:PL   1:255,0\nChromosome      380188  .       A       C       225.007 .       DP=42;VDB=0.701392;SGB=-0.693146;MQSBZ=-0.595683;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,11,31;MQ=60;FQ=-999    GT:PL   1:255,0\nChromosome      430835  .       C       T       225.007 .       DP=72;VDB=0.0514064;SGB=-0.693147;RPBZ=-4.55905;MQBZ=5.72838;MQSBZ=-2.34454;BQBZ=-1.62502;SCBZ=-1.61283;FS=0;MQ0F=0.208333;AF1=1;AC1=1;DP4=1,13,31,27;MQ=46;FQ=-999;PV4=0.0020037,0.174994,1,1    GT:PL   1:255,0\nChromosome      475288  .       CGGGG   CGGGGG  217.469 .       INDEL;IDV=34;IMF=0.772727;DP=44;VDB=0.0585699;SGB=-0.693132;RPBZ=-1.90593;MQBZ=-1.12363;MQSBZ=2.23545;SCBZ=-3.81819;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=3,1,14,20;MQ=60;FQ=-999;PV4=0.30678,1,0.282827,1  GT:PL   1:255,65,0\nChromosome      649391  .       T       A       225.007 .       DP=60;VDB=0.100294;SGB=-0.693147;MQSBZ=-0.0713471;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,31,29;MQ=60;FQ=-999   GT:PL   1:255,0\n︙\nChromosome      1286699 .       C       A       225.007 .       DP=53;VDB=0.327747;SGB=-0.693147;MQSBZ=2.54111;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,21,32;MQ=59;FQ=-999      GT:PL   1:255,0\nChromosome      1329516 .       C       T       225.007 .       DP=50;VDB=0.0979545;SGB=-0.693147;MQSBZ=2.05363;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,31;MQ=59;FQ=-999     GT:PL   1:255,0\nChromosome      1976879 .       T       G       225.007 .       DP=48;VDB=0.218639;SGB=-0.693147;MQSBZ=-1.29099;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,30,18;MQ=60;FQ=-999     GT:PL   1:255,0\nChromosome      2031736 .       A       G       18.0728 .       DP=5;VDB=0.0672958;SGB=-0.590765;FS=0;MQ0F=0.2;AF1=1;AC1=1;DP4=0,0,0,5;MQ=19;FQ=-999    GT:PL   1:48,0\nChromosome      2054876 .       A       G       119.006 .       DP=18;VDB=0.155125;SGB=-0.691153;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,0;MQ=31;FQ=-999     GT:PL   1:149,0"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#クオリティがよろしくない変異もある",
     "href": "slides/snp24/mapping-call.html#クオリティがよろしくない変異もある",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "クオリティがよろしくない変異もある",
     "text": "クオリティがよろしくない変異もある\n## ヘッダー省略\n#CHROM          POS     ID      REF     ALT     QUAL    FILTER  FORMAT  SRR030257.cfsm.bam\nChromosome      161041  .       T       G       225.007 .       DP=55;VDB=0.000910305;SGB=-0.693147;MQSBZ=1.32288;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,20,35;MQ=60;FQ=-999   GT:PL   1:255,0\nChromosome      380188  .       A       C       225.007 .       DP=42;VDB=0.701392;SGB=-0.693146;MQSBZ=-0.595683;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,11,31;MQ=60;FQ=-999    GT:PL   1:255,0\nChromosome      430835  .       C       T       225.007 .       DP=72;VDB=0.0514064;SGB=-0.693147;RPBZ=-4.55905;MQBZ=5.72838;MQSBZ=-2.34454;BQBZ=-1.62502;SCBZ=-1.61283;FS=0;MQ0F=0.208333;AF1=1;AC1=1;DP4=1,13,31,27;MQ=46;FQ=-999;PV4=0.0020037,0.174994,1,1    GT:PL   1:255,0\nChromosome      475288  .       CGGGG   CGGGGG  217.469 .       INDEL;IDV=34;IMF=0.772727;DP=44;VDB=0.0585699;SGB=-0.693132;RPBZ=-1.90593;MQBZ=-1.12363;MQSBZ=2.23545;SCBZ=-3.81819;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=3,1,14,20;MQ=60;FQ=-999;PV4=0.30678,1,0.282827,1  GT:PL   1:255,65,0\nChromosome      649391  .       T       A       225.007 .       DP=60;VDB=0.100294;SGB=-0.693147;MQSBZ=-0.0713471;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,31,29;MQ=60;FQ=-999   GT:PL   1:255,0\n︙\nChromosome      1286699 .       C       A       225.007 .       DP=53;VDB=0.327747;SGB=-0.693147;MQSBZ=2.54111;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,21,32;MQ=59;FQ=-999      GT:PL   1:255,0\nChromosome      1329516 .       C       T       225.007 .       DP=50;VDB=0.0979545;SGB=-0.693147;MQSBZ=2.05363;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,31;MQ=59;FQ=-999     GT:PL   1:255,0\nChromosome      1976879 .       T       G       225.007 .       DP=48;VDB=0.218639;SGB=-0.693147;MQSBZ=-1.29099;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,30,18;MQ=60;FQ=-999     GT:PL   1:255,0\nChromosome      2031736 .       A       G       18.0728 .       DP=5;VDB=0.0672958;SGB=-0.590765;FS=0;MQ0F=0.2;AF1=1;AC1=1;DP4=0,0,0,5;MQ=19;FQ=-999    GT:PL   1:48,0\nChromosome      2054876 .       A       G       119.006 .       DP=18;VDB=0.155125;SGB=-0.691153;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,0;MQ=31;FQ=-999     GT:PL   1:149,0"
   },
   {
     "objectID": "slides/snp24/mapping-call.html#高品質な変異をフィルタリングする",
     "href": "slides/snp24/mapping-call.html#高品質な変異をフィルタリングする",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "高品質な変異をフィルタリングする",
     "text": "高品質な変異をフィルタリングする\nhttps://samtools.github.io/bcftools/howtos/filtering.html\nbcftools filter -i \"QUAL&gt;20 && INFO/DP&gt;10\" SRR030257.vcf -o hq_SRR030257.vcf\n\n-i (or -e)\n\n条件を満たす変異を残す -i (or 除外する -e)\n\n\"QUAL&gt;20 && INFO/DP&gt;10\"\n\nQUAL フィールドの値が20より大きい、かつ (&&) INFO フィールドの DP が10より大きい。\n\n\nほかにもいろいろ指定可能\n\n\n🔰 条件を変えて bcftools filter してみよう。\n🔰 SRR030257.vcf と hq_SRR030257.vcf を比べて意図した通りできているか確認しよう。"
   },
   {
-    "objectID": "slides/snp24/mapping-call.html#part2.-まとめ",
-    "href": "slides/snp24/mapping-call.html#part2.-まとめ",
-    "title": "全ゲノム解析ハンズオン 2024 新村グループ",
-    "section": "Part2. まとめ",
-    "text": "Part2. まとめ\n達成🎉\n\nリードマッピングの方法と SAM ファイルの形式について理解した。\nバリアントコールの方法と VCF について理解した。"
+    "objectID": "slides/snp24/mapping-call.html#part.-2-まとめ",
+    "href": "slides/snp24/mapping-call.html#part.-2-まとめ",
+    "title": "Part. 2 リードマッピング、バリアントコール",
+    "section": "Part. 2 まとめ",
+    "text": "Part. 2 まとめ\n達成🎉\n\nリードマッピングの方法と SAM ファイルの形式について理解した。\nバリアントコールの方法と VCF について理解した。\n\n\n\n\nPart. 3 へ"
   },
   {
     "objectID": "win/0-dev-win.html",
@@ -2707,18 +2707,18 @@
     "text": "今日の目標と実施内容\n目標\n\n公開データを用いた SNP 解析ができるようになる。\nデータの中身と解析の流れについて理解を深める。\n\n\nコンテンツ\n\n基本的なコマンドライン操作\nNGS 公開データの取得\nクオリティコントロール\nリードマッピング\nバリアントコール\nSNP アノテーション"
   },
   {
-    "objectID": "slides/snp24/basic-prefetch-qc.html#part1.-コマンドライン操作データ取得qc",
-    "href": "slides/snp24/basic-prefetch-qc.html#part1.-コマンドライン操作データ取得qc",
+    "objectID": "slides/snp24/basic-prefetch-qc.html#part.-1-コマンドライン操作データ取得qc",
+    "href": "slides/snp24/basic-prefetch-qc.html#part.-1-コマンドライン操作データ取得qc",
     "title": "全ゲノム解析ハンズオン 2024 新村グループ",
-    "section": "Part1. コマンドライン操作、データ取得、QC",
-    "text": "Part1. コマンドライン操作、データ取得、QC\n目標\n\n公開データを用いた SNP 解析ができるようになる。\nデータの中身と解析の流れについて理解を深める。\n\n\nコンテンツ\n\n基本的なコマンドライン操作\nNGS 公開データの取得\nクオリティコントロール\nリードマッピング\nバリアントコール\nSNP アノテーション"
+    "section": "Part. 1 コマンドライン操作、データ取得、QC",
+    "text": "Part. 1 コマンドライン操作、データ取得、QC\n目標\n\n公開データを用いた SNP 解析ができるようになる。\nデータの中身と解析の流れについて理解を深める。\n\n\nコンテンツ\n\n基本的なコマンドライン操作\nNGS 公開データの取得\nクオリティコントロール\nリードマッピング\nバリアントコール\nSNP アノテーション"
   },
   {
     "objectID": "slides/snp24/basic-prefetch-qc.html#基本的なコマンドライン操作①",
     "href": "slides/snp24/basic-prefetch-qc.html#基本的なコマンドライン操作①",
     "title": "全ゲノム解析ハンズオン 2024 新村グループ",
     "section": "基本的なコマンドライン操作①",
-    "text": "基本的なコマンドライン操作①\n\ncd (change directory)\n\nディレクトリを移る\n\nmkdir (make directory)\n\n新しいディレクトリを作成する\n\nls (list segments)\n\nディレクトリ内のファイル、ディレクトリを表示する\n\nmv (move)\n\nファイル、ディレクトリを移動する/名前を変更する\n\nrm (remove)\n\nファイル、ディレクトリを削除する"
+    "text": "基本的なコマンドライン操作①\n\ncd (change directory)\n\nディレクトリ📁を移る\n\nmkdir (make directory)\n\n新しいディレクトリを作成する\n\nls (list segments)\n\nディレクトリ内のファイル、ディレクトリを表示する\n\nmv (move)\n\nファイル、ディレクトリを移動する/名前を変更する\n\nrm (remove)\n\nファイル、ディレクトリを削除する"
   },
   {
     "objectID": "slides/snp24/basic-prefetch-qc.html#基本的なコマンドライン操作②",
@@ -2826,11 +2826,11 @@
     "text": "fastp によるクオリティコントロール\nfastp -i SRR030257_1.fastq -I SRR030257_2.fastq \\\n  -o qc_SRR030257_1.fq.gz -O qc_SRR030257_2.fq.gz \\\n  -q 20 -u 40 -h SRR030257.qc.html\n\n-q\n\nクオリティ値の下限 (デフォルトは15)\n\n-u\n\n基準を下回る塩基が何%以上含まれているリードを除くか (デフォルトは40)\n\n\n今回の場合、\\(Q&lt;20\\) の塩基が40%以上含まれれるリードを除去。"
   },
   {
-    "objectID": "slides/snp24/basic-prefetch-qc.html#part1.-まとめ",
-    "href": "slides/snp24/basic-prefetch-qc.html#part1.-まとめ",
+    "objectID": "slides/snp24/basic-prefetch-qc.html#part.-1-まとめ",
+    "href": "slides/snp24/basic-prefetch-qc.html#part.-1-まとめ",
     "title": "全ゲノム解析ハンズオン 2024 新村グループ",
-    "section": "Part1. まとめ",
-    "text": "Part1. まとめ\n達成🎉\n\n基本的なコマンドライン操作を身に着けた。\nNGS の公開データの探し方、使い方を理解した。\nクオリティコントロールの内容と方法を理解した。"
+    "section": "Part. 1 まとめ",
+    "text": "Part. 1 まとめ\n達成🎉\n\n基本的なコマンドライン操作を身に着けた。\nNGS の公開データの探し方、使い方を理解した。\nクオリティコントロールの内容と方法を理解した。\n\n\n\n\nPart. 2 へ"
   },
   {
     "objectID": "bio/paml-tutorial.html",

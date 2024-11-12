@@ -12,7 +12,7 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="畜産研 博士1年 松田 優樹">
-  <title>Yuki MATSUDA – 全ゲノム解析ハンズオン 2024 新村グループ</title>
+  <title>Yuki MATSUDA – Part. 3 SnpEff によるアノテーション</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -403,8 +403,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">全ゲノム解析ハンズオン 2024 新村グループ</h1>
-  <p class="subtitle">スモールデータで理解する SNP 解析の流れ</p>
+  <h1 class="title">Part. 3 SnpEff によるアノテーション</h1>
+  <p class="subtitle">全ゲノム解析ハンズオン 2024 新村グループ<br>—スモールデータで理解する SNP 解析の流れ</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -415,8 +415,8 @@
 </div>
 
 </section>
-<section id="part3.-snpeff-によるアノテーション" class="slide level2 scrollable">
-<h2>Part3. SnpEff によるアノテーション</h2>
+<section id="part.-3-snpeff-によるアノテーション" class="slide level2 scrollable">
+<h2>Part. 3 SnpEff によるアノテーション</h2>
 <p><strong>目標</strong></p>
 <ol type="1">
 <li>公開データを用いた SNP 解析ができるようになる。</li>
@@ -504,14 +504,14 @@
 <div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> snpEff_genes.txt <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'NR&gt;1 { if ($11 &gt;= 1) { print $0 } }'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>🔰 元論文 <a href="https://doi.org/10.1038/nature08480">Barrick et al.&nbsp;2009</a> の <a href="https://www.nature.com/articles/nature08480/tables/1">Table. 1</a> と比べてみよう。</p>
 </section>
-<section id="今日のまとめ" class="slide level2">
-<h2>今日のまとめ</h2>
+<section id="part.-3-まとめ" class="slide level2">
+<h2>Part. 3 まとめ</h2>
 <p><strong>達成🎉</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox">SnpEff を使って SNP のアノテーションができるようになった。</label></li>
 </ul>
 </section>
-<section id="今日のまとめ-1" class="slide level2">
+<section id="今日のまとめ" class="slide level2">
 <h2>今日のまとめ</h2>
 <p><strong>達成🎉</strong></p>
 <ul class="task-list">

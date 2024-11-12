@@ -12,7 +12,7 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="畜産研 博士1年 松田 優樹">
-  <title>Yuki MATSUDA – 全ゲノム解析ハンズオン 2024 新村グループ</title>
+  <title>Yuki MATSUDA – Part. 2 リードマッピング、バリアントコール</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -403,8 +403,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">全ゲノム解析ハンズオン 2024 新村グループ</h1>
-  <p class="subtitle">スモールデータで理解する SNP 解析の流れ</p>
+  <h1 class="title">Part. 2 リードマッピング、バリアントコール</h1>
+  <p class="subtitle">全ゲノム解析ハンズオン 2024 新村グループ<br>—スモールデータで理解する SNP 解析の流れ</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -415,8 +415,8 @@
 </div>
 
 </section>
-<section id="part2.-リードマッピングバリアントコール" class="slide level2 scrollable">
-<h2>Part2. リードマッピング、バリアントコール</h2>
+<section id="part.-2-リードマッピングバリアントコール" class="slide level2 scrollable">
+<h2>Part. 2 リードマッピング、バリアントコール</h2>
 <p><strong>目標</strong></p>
 <ol type="1">
 <li>公開データを用いた SNP 解析ができるようになる。</li>
@@ -851,13 +851,55 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 <p>🔰 条件を変えて <code>bcftools filter</code> してみよう。</p>
 <p>🔰 <code>SRR030257.vcf</code> と <code>hq_SRR030257.vcf</code> を比べて意図した通りできているか確認しよう。</p>
 </section>
-<section id="part2.-まとめ" class="slide level2">
-<h2>Part2. まとめ</h2>
+<section id="part.-2-まとめ" class="slide level2">
+<h2>Part. 2 まとめ</h2>
 <p><strong>達成🎉</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox">リードマッピングの方法と SAM ファイルの形式について理解した。</label></li>
 <li><label><input type="checkbox">バリアントコールの方法と VCF について理解した。</label></li>
 </ul>
+<p><br></p>
+<style>
+.button a {
+    background: #eee;
+    border-radius: 9999px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 250px;
+    padding: 5px 10px;
+    color: #333333;
+    line-height: 1.8;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+}
+.button a:hover {
+    background: #333333;
+    color: #FFF;
+}
+.button a:after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #333333;
+    border-right: 3px solid #333333;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    border-radius: 1px;
+    transition: 0.3s ease-in-out;
+}
+.button a:hover:after {
+    border-color: #FFF;
+}
+</style>
+<div class="button">
+<p><a href="../../slides/snp24/snpeff.html">Part. 3 へ</a></p>
+</div>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">

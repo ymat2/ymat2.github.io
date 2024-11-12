@@ -28,9 +28,9 @@ format:
 : SNP アノテーション
 
 スライドのリンク
-: 🚧 [Part1. コマンドライン操作、データ取得、クオリティコントロール](./basic-prefetch-qc.qmd)
-: 🚧 [Part2. リードマッピング、バリアントコール](./mapping-call.qmd)
-: 🚧 [Part3. SNP アノテーション](./snpeff.qmd)
+: 🚧 [Part. 1 コマンドライン操作、データ取得、クオリティコントロール](./basic-prefetch-qc.qmd)
+: 🚧 [Part. 2 リードマッピング、バリアントコール](./mapping-call.qmd)
+: 🚧 [Part. 3 SNP アノテーション](./snpeff.qmd)
 
 
 ## 材料

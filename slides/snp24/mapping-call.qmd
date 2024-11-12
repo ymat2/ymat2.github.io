@@ -1,6 +1,6 @@
 ---
-title: "全ゲノム解析ハンズオン 2024 新村グループ"
-subtitle: "スモールデータで理解する SNP 解析の流れ"
+title: "Part. 2 リードマッピング、バリアントコール"
+subtitle: "全ゲノム解析ハンズオン 2024 新村グループ<br>&mdash;スモールデータで理解する SNP 解析の流れ"
 author: "畜産研 博士1年&emsp;松田 優樹"
 format: revealjs
 revealjs-plugins:
@@ -9,7 +9,7 @@ highlight-style: github
 ---
 
 
-## Part2. リードマッピング、バリアントコール
+## Part. 2 リードマッピング、バリアントコール
 
 **目標**
 
@@ -518,7 +518,7 @@ bcftools filter -i "QUAL>20 && INFO/DP>10" SRR030257.vcf -o hq_SRR030257.vcf
 🔰 `SRR030257.vcf` と `hq_SRR030257.vcf` を比べて意図した通りできているか確認しよう。
 
 
-## Part2. まとめ
+## Part. 2 まとめ
 
 **達成🎉**
 

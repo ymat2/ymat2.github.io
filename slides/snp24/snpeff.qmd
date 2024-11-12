@@ -1,6 +1,6 @@
 ---
-title: "全ゲノム解析ハンズオン 2024 新村グループ"
-subtitle: "スモールデータで理解する SNP 解析の流れ"
+title: "Part. 3 SnpEff によるアノテーション"
+subtitle: "全ゲノム解析ハンズオン 2024 新村グループ<br>&mdash;スモールデータで理解する SNP 解析の流れ"
 author: "畜産研 博士1年&emsp;松田 優樹"
 format: revealjs
 revealjs-plugins:
@@ -9,7 +9,7 @@ highlight-style: github
 ---
 
 
-## Part3. SnpEff によるアノテーション
+## Part. 3 SnpEff によるアノテーション
 
 **目標**
 
@@ -163,7 +163,7 @@ cat snpEff_genes.txt | awk 'NR>1 { if ($11 >= 1) { print $0 } }'
 [Table. 1](https://www.nature.com/articles/nature08480/tables/1) と比べてみよう。
 
 
-## 今日のまとめ
+## Part. 3 まとめ
 
 **達成🎉**
 

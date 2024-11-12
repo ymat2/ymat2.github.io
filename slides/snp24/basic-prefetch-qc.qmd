@@ -28,7 +28,7 @@ highlight-style: github
 - SNP アノテーション
 
 
-## Part1. コマンドライン操作、データ取得、QC
+## Part. 1 コマンドライン操作、データ取得、QC
 
 **目標**
 
@@ -50,7 +50,7 @@ highlight-style: github
 ## 基本的なコマンドライン操作①
 
 `cd` (<u>c</u>hange <u>d</u>irectory)
-: ディレクトリを移る
+: ディレクトリ📁を移る
 
 `mkdir` (<u>m</u>a<u>k</u>e <u>dir</u>ectory)
 : 新しいディレクトリを作成する
@@ -356,7 +356,7 @@ fastp -i SRR030257_1.fastq -I SRR030257_2.fastq \
 今回の場合、$Q<20$ の塩基が40%以上含まれれるリードを除去。
 
 
-## Part1. まとめ
+## Part. 1 まとめ
 
 **達成🎉**
 

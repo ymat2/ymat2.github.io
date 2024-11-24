@@ -68,7 +68,7 @@ ls -a
 どちらかを開いて、以下の行を追加して保存する:
 
 ```sh
-export JAVA_HOME=${HOME}/bin/jdk-23
+export JAVA_HOME=${HOME}/bin/jdk-23  # ダウンロードしたものに合わせる。jdk23-1 なら ${HOME}/bin/jdk23-1 と書く。
 export PATH=${JAVA_HOME}/bin:$PATH
 export MALLOC_ARENA_MAX=2
 ```

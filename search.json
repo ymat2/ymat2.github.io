@@ -109,14 +109,14 @@
     "href": "slides/snp24/index.html",
     "title": "全ゲノム解析ハンズオン — スモールデータで理解する SNP 解析の流れ",
     "section": "",
-    "text": "目的\n\nスモールデータを使って、全ゲノム解析のパイプラインを一通り (公開データ取得から SNP アノテーションまで) 体験する。 その際、各解析で出てくる中間ファイル等にも触れることで、どのようなデータを使って、どのような解析が動いているかについて理解を深める。\n\n日程\n\ncomming soon\n\n環境\n\n遺伝研スパコン\n\nやること\n\n基本的なコマンドライン操作\n\n\nNGS 公開データの取得\n\n\nクオリティコントロール\n\n\nリードマッピング、バリアントコール\n\n\nSNP アノテーション\n\nスライドのリンク\n\n🚧 Part. 1 コマンドライン操作、データ取得、クオリティコントロール\n\n\n🚧 Part. 2 リードマッピング、バリアントコール\n\n\n🚧 Part. 3 SNP アノテーション"
+    "text": "目的\n\nスモールデータを使って、全ゲノム解析のパイプラインを一通り (公開データ取得から SNP アノテーションまで) 体験する。 その際、各解析で出てくる中間ファイル等にも触れることで、どのようなデータを使って、どのような解析が動いているかについて理解を深める。\n\n日程\n\n2024-11-29 10:30–12:00, 15:00–16:30\n\n環境\n\n遺伝研スパコン\n\nやること\n\n基本的なコマンドライン操作\n\n\nNGS 公開データの取得\n\n\nクオリティコントロール\n\n\nリードマッピング、バリアントコール\n\n\nSNP アノテーション\n\nスライドのリンク\n\n🚧 Part. 1 コマンドライン操作、データ取得、クオリティコントロール\n\n\n🚧 Part. 2 リードマッピング、バリアントコール\n\n\n🚧 Part. 3 SNP アノテーション"
   },
   {
     "objectID": "slides/snp24/index.html#概要",
     "href": "slides/snp24/index.html#概要",
     "title": "全ゲノム解析ハンズオン — スモールデータで理解する SNP 解析の流れ",
     "section": "",
-    "text": "目的\n\nスモールデータを使って、全ゲノム解析のパイプラインを一通り (公開データ取得から SNP アノテーションまで) 体験する。 その際、各解析で出てくる中間ファイル等にも触れることで、どのようなデータを使って、どのような解析が動いているかについて理解を深める。\n\n日程\n\ncomming soon\n\n環境\n\n遺伝研スパコン\n\nやること\n\n基本的なコマンドライン操作\n\n\nNGS 公開データの取得\n\n\nクオリティコントロール\n\n\nリードマッピング、バリアントコール\n\n\nSNP アノテーション\n\nスライドのリンク\n\n🚧 Part. 1 コマンドライン操作、データ取得、クオリティコントロール\n\n\n🚧 Part. 2 リードマッピング、バリアントコール\n\n\n🚧 Part. 3 SNP アノテーション"
+    "text": "目的\n\nスモールデータを使って、全ゲノム解析のパイプラインを一通り (公開データ取得から SNP アノテーションまで) 体験する。 その際、各解析で出てくる中間ファイル等にも触れることで、どのようなデータを使って、どのような解析が動いているかについて理解を深める。\n\n日程\n\n2024-11-29 10:30–12:00, 15:00–16:30\n\n環境\n\n遺伝研スパコン\n\nやること\n\n基本的なコマンドライン操作\n\n\nNGS 公開データの取得\n\n\nクオリティコントロール\n\n\nリードマッピング、バリアントコール\n\n\nSNP アノテーション\n\nスライドのリンク\n\n🚧 Part. 1 コマンドライン操作、データ取得、クオリティコントロール\n\n\n🚧 Part. 2 リードマッピング、バリアントコール\n\n\n🚧 Part. 3 SNP アノテーション"
   },
   {
     "objectID": "slides/snp24/index.html#材料",
@@ -253,7 +253,7 @@
     "href": "slides/snp24/snpeff.html#snpeff-実行環境の構築-java-環境構築-1",
     "title": "Part. 3 SnpEff によるアノテーション",
     "section": "SnpEff 実行環境の構築 (Java 環境構築)",
-    "text": "SnpEff 実行環境の構築 (Java 環境構築)\nJava コマンドをどこでも使えるようにする。 (PATH を通す。)\nホームに戻って、.bash_profile (もしくは .bashrc) というファイルがあることを確認する。\ncd\nls -a\nどちらかを開いて、以下の行を追加して保存する:\nexport JAVA_HOME=${HOME}/bin/jdk-23\nexport PATH=${JAVA_HOME}/bin:$PATH\nexport MALLOC_ARENA_MAX=2\n編集したファイルを読み込み、Java の動作確認をする:\nsource .bash_profile\njava -version"
+    "text": "SnpEff 実行環境の構築 (Java 環境構築)\nJava コマンドをどこでも使えるようにする。 (PATH を通す。)\nホームに戻って、.bash_profile (もしくは .bashrc) というファイルがあることを確認する。\ncd\nls -a\nどちらかを開いて、以下の行を追加して保存する:\nexport JAVA_HOME=${HOME}/bin/jdk-23  # ダウンロードしたものに合わせる。jdk23-1 なら ${HOME}/bin/jdk23-1 と書く。\nexport PATH=${JAVA_HOME}/bin:$PATH\nexport MALLOC_ARENA_MAX=2\n編集したファイルを読み込み、Java の動作確認をする:\nsource .bash_profile\njava -version"
   },
   {
     "objectID": "slides/snp24/snpeff.html#snpeff-実行環境の構築",
@@ -442,7 +442,7 @@
     "href": "slides/index.html",
     "title": "Slides",
     "section": "",
-    "text": "🚧 2024 全ゲノム解析 ハンズオン — スモールデータで理解する SNP 解析の流れ\n2024-04-03 新村グループ プロトコル共有 — 遺伝研スパコンで集団ゲノミクス解析\nRで系統樹を扱う — ggtreeによる系統樹の可視化\nWEBサイト作成のための基礎知識 — HTML, CSS, JavaScript, 静的サイトジェネレータ\nGit 基本操作① — GitとGitHubを使い始める\nGit 基本操作② — fetch, merge, pull\n2023-05-09 牧野研 技術輪読会 — GNU nanoエディタを便利に使う",
+    "text": "2024 全ゲノム解析 ハンズオン — スモールデータで理解する SNP 解析の流れ\n2024-04-03 新村グループ プロトコル共有 — 遺伝研スパコンで集団ゲノミクス解析\nRで系統樹を扱う — ggtreeによる系統樹の可視化\nWEBサイト作成のための基礎知識 — HTML, CSS, JavaScript, 静的サイトジェネレータ\nGit 基本操作① — GitとGitHubを使い始める\nGit 基本操作② — fetch, merge, pull\n2023-05-09 牧野研 技術輪読会 — GNU nanoエディタを便利に使う",
     "crumbs": [
       "スライド"
     ]

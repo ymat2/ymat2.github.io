@@ -458,7 +458,7 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span>
 <span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>どちらかを開いて、以下の行を追加して保存する:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME</span><span class="op">=</span><span class="va">${HOME}</span>/bin/jdk-23</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME</span><span class="op">=</span><span class="va">${HOME}</span>/bin/jdk-23  <span class="co"># ダウンロードしたものに合わせる。jdk23-1 なら ${HOME}/bin/jdk23-1 と書く。</span></span>
 <span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">${JAVA_HOME}</span>/bin:<span class="va">$PATH</span></span>
 <span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">MALLOC_ARENA_MAX</span><span class="op">=</span>2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>編集したファイルを読み込み、Java の動作確認をする:</p>

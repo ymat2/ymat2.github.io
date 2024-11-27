@@ -254,5 +254,5 @@ snpEff databases | grep Gallus
 </style>
 
 <div class="button">
-  [Top へ戻る](./00_index.qmd)
+  [Top へ戻る](./index.qmd)
 </div>

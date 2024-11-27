@@ -37,13 +37,16 @@ highlight-style: github
 ![](./images/snp_annotation.png){width="900"}
 
 
-## SnpEff 実行環境の構築 (Java 環境構築)
+## SnpEff 実行環境の構築 (のための Java 環境構築)
 
-- <https://pcingola.github.io/SnpEff/download/>
-- <https://www.oracle.com/java/technologies/downloads/?er=221886>
+<small>
+<https://pcingola.github.io/SnpEff/download/>
+</small>
 
 SnpEff は Java というプログラミング言語に依存している。
-遺伝研の Java はちょっと古いので、最新版の Java をインストールする:
+遺伝研の Java はちょっと古いので、
+[最新版の Java をインストール](https://www.oracle.com/java/technologies/downloads/?er=221886)
+する:
 
 ```sh
 mkdir ~/bin
@@ -54,7 +57,7 @@ tar zxvf jdk-23_linux-x64_bin.tar.gz
 ```
 
 
-## SnpEff 実行環境の構築 (Java 環境構築)
+## SnpEff 実行環境の構築 (のための Java 環境構築)
 
 Java コマンドをどこでも使えるようにする。 (PATH を通す。)
 
@@ -163,11 +166,34 @@ cat snpEff_genes.txt | awk 'NR>1 { if ($11 >= 1) { print $0 } }'
 [Table. 1](https://www.nature.com/articles/nature08480/tables/1) と比べてみよう。
 
 
+## ニワトリで SnpEff を動かす場合
+
+生物種/ゲノムのバージョンによってはデータベースがない場合もある:
+
+```sh
+snpEff databases | grep Gallus
+# GRCg6a.99  Gallus_gallus
+# Galgal4.75  Gallus_gallus
+```
+
+ニワトリも GRCg7b を使う場合、データベースを自作する必要がある:
+
+やり方
+: <https://pcingola.github.io/SnpEff/snpeff/build_db/>
+: <https://ymat2.github.io/bio/snpEff.html>
+
+
 ## Part. 3 まとめ
 
 **達成🎉**
 
 - [ ] SnpEff を使って SNP のアノテーションができるようになった。
+
+<br>
+
+**参考**
+
+- [SnpEff 公式サイト](https://pcingola.github.io/SnpEff/snpeff/introduction/)
 
 
 ## 今日のまとめ
@@ -187,3 +213,46 @@ cat snpEff_genes.txt | awk 'NR>1 { if ($11 >= 1) { print $0 } }'
 - リードマッピング
 - バリアントコール
 - SNP アノテーション
+
+<style>
+.button a {
+    background: #eee;
+    border-radius: 9999px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 250px;
+    padding: 5px 10px;
+    color: #333333;
+    line-height: 1.8;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+}
+.button a:hover {
+    background: #333333;
+    color: #FFF;
+}
+.button a:after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #333333;
+    border-right: 3px solid #333333;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    border-radius: 1px;
+    transition: 0.3s ease-in-out;
+}
+.button a:hover:after {
+    border-color: #FFF;
+}
+</style>
+
+<div class="button">
+  [Top へ戻る](./00_index.qmd)
+</div>

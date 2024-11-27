@@ -158,14 +158,16 @@ bwa mem ref.fa sra_1.fq sra_2.fq > small.sam
 
 <div style="height: 20px;"></div>
 
-「インデックスを作る」とは？
+「インデックスを作る📑」とは？
 : 文字列検索を高速化するために参照配列を変換したファイルを生成する。
   BWA では Burrows-Wheeler 変換というのを使うらしい。
 
 
 ## <u>S</u>equence <u>A</u>lignment <u>M</u>ap (SAM) フォーマット
 
+<small>
 <https://samtools.github.io/hts-specs/SAMv1.pdf>
+</small>
 
 参照配列にマッピングされたリードの情報を記載するためのフォーマット
 
@@ -190,7 +192,7 @@ read2	163	NC_052532.1	5	60	40M	=	55	90	ACCCATCTCGGAGTGCTCACACCATCCCCATGATCTTGGG	
 2. `FLAG`: マッピング状況を表す数字
 3. `RNAME`: 参照配列の名前 (染色体、コンティグ等)
 4. `POS`: 位置
-5. `MAPQ`: マッピングクオリティ ($-10 \times \log_{10}{\text{誤マッピングの確率}}$)
+5. `MAPQ`: マッピングクオリティ。$-10 \times \log_{10}{\text{(誤マッピングの確率)}}$。
 6. `CIGAR`: いくつの塩基がどう張り付いたかを示す文字列
 7. `MRNM`: Paired-end のもう片方が張り付いた染色体。一緒なら `=`。
 8. `MPOS`: Paired-end のもう片方の位置
@@ -219,7 +221,7 @@ read2	163	NC_052532.1	5	60	40M	=	55	90	ACCCATCTCGGAGTGCTCACACCATCCCCATGATCTTGGG	
 ```
 
 例えば `FLAG` が `99` なら `64+32+2+1` で「正しくマッピングされた、ペアが逆鎖のread1」、
-`133` なら `128+5+1` で「マッピングされていないペアのread2」となる。
+`133` なら `128+4+1` で「マッピングされていないペアのread2」となる。
 
 
 ## SAMtools を用いたファイル処理: `collate`, `fixmate`
@@ -309,7 +311,7 @@ samtools index small.bam
 
 <hr style="margin-block: 20px;">
 
-**閲覧**
+**閲覧方法**
 
 1. SAM として閲覧
 
@@ -369,7 +371,7 @@ SNP (T から G) ↑
 
 バリアントコールのお気持ち。例えば参照配列が `A` のある座位に対して、
 
-100本のリードがマッピングされ、99本が `G`
+100本のリードがマッピングされ、100本が `G`
 : この座位は `G` だろう。
 
 100本のリードがマッピングされ、49本が `A`、51本が `G`
@@ -402,7 +404,9 @@ bcftools call -c -v --ploidy 1 SRR030257.mpileup -o SRR030257.vcf
 
 ## VCF (<u>V</u>ariant <u>C</u>all <u>F</u>ormat)
 
+<small>
 <https://samtools.github.io/hts-specs/VCFv4.2.pdf>
+</small>
 
 バリアントコールした変異の情報を記述するフォーマット。
 BCF は VCF をバイナリ化したもの。
@@ -442,8 +446,8 @@ Chromosome      380188  .       A       C       225.007 .       DP=42;VDB=0.7013
 ## `FORMAT` フィールドの読み方
 
 ```txt
-FORMAT  sampleA         sampleB
-GT:PL   0/1:139,0,112   1/1:245,27,0
+... FORMAT  sampleA         sampleB
+... GT:PL   0/1:139,0,112   1/1:245,27,0
 ```
 
 - `sampleA` 以降の列には `GT` と `PL` の情報が `:` 区切りで書いてある。
@@ -499,7 +503,9 @@ Chromosome      2054876 .       A       G       119.006 .       DP=18;VDB=0.1551
 
 ## 高品質な変異をフィルタリングする
 
+<small>
 <https://samtools.github.io/bcftools/howtos/filtering.html>
+</small>
 
 ```sh
 bcftools filter -i "QUAL>20 && INFO/DP>10" SRR030257.vcf -o hq_SRR030257.vcf
@@ -524,6 +530,14 @@ bcftools filter -i "QUAL>20 && INFO/DP>10" SRR030257.vcf -o hq_SRR030257.vcf
 
 - [ ] リードマッピングの方法と SAM ファイルの形式について理解した。
 - [ ] バリアントコールの方法と VCF について理解した。
+
+<br>
+
+**参考**
+
+- [BWA ドキュメント](https://bio-bwa.sourceforge.net/bwa.shtml)
+- [SAMtools マニュアルページ](https://www.htslib.org/doc/samtools.html)
+- [BCFtools マニュアルページ](https://samtools.github.io/bcftools/bcftools.html)
 
 <br>
 

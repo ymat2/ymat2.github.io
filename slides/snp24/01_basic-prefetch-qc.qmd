@@ -188,13 +188,19 @@ flowchart TD
 [NCBI](https://www.ncbi.nlm.nih.gov/)
 などのデータベースにアーカイブされ、だれでも利用できる。
 
+```{mermaid}
+flowchart LR
+  A(Sample) -.->|DNA/RNA 抽出| B(DNA/RNA)
+  B -.->|アーカイブ| C[(NCBI)]
+```
+
 &emsp;&emsp;![](/images/share/arrow.svg)
 
 どうやって探すか:
 
 1. [NCBI](https://www.ncbi.nlm.nih.gov/) で検索する
 2. 論文の Data availability などから BioProject ID を探す<br>
-   (例: [Bendesky et al. 2024](https://academic.oup.com/g3journal/article/14/2/jkad267/7441603#440660152))
+   <small>(例: [Bendesky et al. 2024](https://academic.oup.com/g3journal/article/14/2/jkad267/7441603#440660152))</small>
 
 
 ## 今回使うデータをみてみる
@@ -214,7 +220,9 @@ flowchart TD
 
 ## SRA Toolkit を使って配列をダウンロードする
 
+<small>
 <https://github.com/ncbi/sra-tools/wiki/08.-prefetch-and-fasterq-dump>
+</small>
 
 ```sh
 prefetch SRR030257
@@ -360,9 +368,17 @@ fastp -i SRR030257_1.fastq -I SRR030257_2.fastq \
 
 **達成🎉**
 
-- [ ] 基本的なコマンドライン操作を身に着けた。
+- [ ] 基本的なコマンドライン操作を身に付けた。
 - [ ] NGS の公開データの探し方、使い方を理解した。
 - [ ] クオリティコントロールの内容と方法を理解した。
+
+<br>
+
+**参考**
+
+- [The Linux command line for beginners](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview)
+- [SRA Toolkit Wiki](https://github.com/ncbi/sra-tools/wiki)
+- [Fastp README](https://github.com/OpenGene/fastp/blob/master/README.md)
 
 <br>
 

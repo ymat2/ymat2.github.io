@@ -176,7 +176,7 @@ cafe5 -i gene_families.txt -t species_tree.txt --cores 5
 
 ## トラブルシューティング
 
-[CAFE4](/bio/cafe.qmd) のトラブルシューティングも参照。
+[CAFE4](/archive/cafe.qmd) のトラブルシューティングも参照。
 
 ### 既知の問題
 

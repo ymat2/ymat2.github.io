@@ -6,7 +6,7 @@ format:
 ---
 
 
-- [2024 全ゲノム解析 ハンズオン &mdash; スモールデータで理解する SNP 解析の流れ](/slides/snp24/index.qmd)
+- [2024-11-29 全ゲノム解析 ハンズオン &mdash; スモールデータで理解する SNP 解析の流れ](/slides/snp24/00_index.qmd)
 - [2024-04-03 新村グループ プロトコル共有 &mdash; 遺伝研スパコンで集団ゲノミクス解析](/slides/lt/tuat2024pipeline.qmd)
 - [Rで系統樹を扱う &mdash; ggtreeによる系統樹の可視化](/slides/lt/ggtree.qmd)
 - [WEBサイト作成のための基礎知識 &mdash; HTML, CSS, JavaScript, 静的サイトジェネレータ](/slides/lt/html-css.qmd)

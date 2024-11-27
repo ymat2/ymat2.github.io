@@ -406,5 +406,5 @@ fastp -i SRR030257_1.fastq -I SRR030257_2.fastq \
 </style>
 
 <div class="button">
-  [Part. 2 へ](./mapping-call.qmd)
+  [Part. 2 へ](./02_mapping-call.qmd)
 </div>

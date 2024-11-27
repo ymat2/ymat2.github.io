@@ -567,5 +567,5 @@ bcftools filter -i "QUAL>20 && INFO/DP>10" SRR030257.vcf -o hq_SRR030257.vcf
 </style>
 
 <div class="button">
-  [Part. 3 へ](./snpeff.qmd)
+  [Part. 3 へ](./03_snpeff.qmd)
 </div>

@@ -527,7 +527,7 @@
 
 </div>
 <dl>
-<dt>「インデックスを作る」とは？</dt>
+<dt>「インデックスを作る📑」とは？</dt>
 <dd>
 文字列検索を高速化するために参照配列を変換したファイルを生成する。 BWA では Burrows-Wheeler 変換というのを使うらしい。
 </dd>
@@ -535,7 +535,7 @@
 </section>
 <section id="sequence-alignment-map-sam-フォーマット" class="slide level2">
 <h2><u>S</u>equence <u>A</u>lignment <u>M</u>ap (SAM) フォーマット</h2>
-<p><a href="https://samtools.github.io/hts-specs/SAMv1.pdf" class="uri">https://samtools.github.io/hts-specs/SAMv1.pdf</a></p>
+<p><small> <a href="https://samtools.github.io/hts-specs/SAMv1.pdf" class="uri">https://samtools.github.io/hts-specs/SAMv1.pdf</a> </small></p>
 <p>参照配列にマッピングされたリードの情報を記載するためのフォーマット</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>@SQ SN:NC_052532.1  LN:100</span>
 <span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>@PG ID:bwa  PN:bwa  VN:0.7.17-r1188 CL:bwa mem -I 90 ref.fa sra_1.fq sra_2.fq</span>
@@ -554,7 +554,7 @@
 <li><code>FLAG</code>: マッピング状況を表す数字</li>
 <li><code>RNAME</code>: 参照配列の名前 (染色体、コンティグ等)</li>
 <li><code>POS</code>: 位置</li>
-<li><code>MAPQ</code>: マッピングクオリティ (<span class="math inline">\(-10 \times \log_{10}{\text{誤マッピングの確率}}\)</span>)</li>
+<li><code>MAPQ</code>: マッピングクオリティ。<span class="math inline">\(-10 \times \log_{10}{\text{(誤マッピングの確率)}}\)</span>。</li>
 <li><code>CIGAR</code>: いくつの塩基がどう張り付いたかを示す文字列</li>
 <li><code>MRNM</code>: Paired-end のもう片方が張り付いた染色体。一緒なら <code>=</code>。</li>
 <li><code>MPOS</code>: Paired-end のもう片方の位置</li>
@@ -578,7 +578,7 @@
 <span id="cb12-10"><a aria-hidden="true" tabindex="-1"></a>  512  0x200  クオリティが低い</span>
 <span id="cb12-11"><a aria-hidden="true" tabindex="-1"></a> 1024  0x400  Duplicate である</span>
 <span id="cb12-12"><a aria-hidden="true" tabindex="-1"></a> 2048  0x800  supplementary alignment</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>例えば <code>FLAG</code> が <code>99</code> なら <code>64+32+2+1</code> で「正しくマッピングされた、ペアが逆鎖のread1」、 <code>133</code> なら <code>128+5+1</code> で「マッピングされていないペアのread2」となる。</p>
+<p>例えば <code>FLAG</code> が <code>99</code> なら <code>64+32+2+1</code> で「正しくマッピングされた、ペアが逆鎖のread1」、 <code>133</code> なら <code>128+4+1</code> で「マッピングされていないペアのread2」となる。</p>
 </section>
 <section id="samtools-を用いたファイル処理-collate-fixmate" class="slide level2">
 <h2>SAMtools を用いたファイル処理: <code>collate</code>, <code>fixmate</code></h2>
@@ -663,7 +663,7 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 <div class="sourceCode" id="cb18"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> small.cfsm.sam <span class="op">&gt;</span> small.bam</span>
 <span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index small.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr style="margin-block: 20px;">
-<p><strong>閲覧</strong></p>
+<p><strong>閲覧方法</strong></p>
 <ol type="1">
 <li>SAM として閲覧</li>
 </ol>
@@ -707,7 +707,7 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 <h2>アライメントから変異を特定する (=バリアントコール)</h2>
 <p>バリアントコールのお気持ち。例えば参照配列が <code>A</code> のある座位に対して、</p>
 <dl>
-<dt>100本のリードがマッピングされ、99本が <code>G</code></dt>
+<dt>100本のリードがマッピングされ、100本が <code>G</code></dt>
 <dd>
 この座位は <code>G</code> だろう。
 </dd>
@@ -751,7 +751,7 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 </section>
 <section id="vcf-variant-call-format" class="slide level2">
 <h2>VCF (<u>V</u>ariant <u>C</u>all <u>F</u>ormat)</h2>
-<p><a href="https://samtools.github.io/hts-specs/VCFv4.2.pdf" class="uri">https://samtools.github.io/hts-specs/VCFv4.2.pdf</a></p>
+<p><small> <a href="https://samtools.github.io/hts-specs/VCFv4.2.pdf" class="uri">https://samtools.github.io/hts-specs/VCFv4.2.pdf</a> </small></p>
 <p>バリアントコールした変異の情報を記述するフォーマット。 BCF は VCF をバイナリ化したもの。</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a>##fileformat=VCFv4.2</span>
 <span id="cb23-2"><a aria-hidden="true" tabindex="-1"></a>##FILTER=&lt;ID=PASS,Description="All filters passed"&gt;</span>
@@ -781,8 +781,8 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 </section>
 <section id="format-フィールドの読み方" class="slide level2">
 <h2><code>FORMAT</code> フィールドの読み方</h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a aria-hidden="true" tabindex="-1"></a>FORMAT  sampleA         sampleB</span>
-<span id="cb25-2"><a aria-hidden="true" tabindex="-1"></a>GT:PL   0/1:139,0,112   1/1:245,27,0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a aria-hidden="true" tabindex="-1"></a>... FORMAT  sampleA         sampleB</span>
+<span id="cb25-2"><a aria-hidden="true" tabindex="-1"></a>... GT:PL   0/1:139,0,112   1/1:245,27,0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>sampleA</code> 以降の列には <code>GT</code> と <code>PL</code> の情報が <code>:</code> 区切りで書いてある。</li>
 <li><code>sampleA</code> の <code>GT</code> は <code>0/1</code>、<code>PL</code> は <code>139,0,112</code>。</li>
@@ -833,7 +833,7 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 </section>
 <section id="高品質な変異をフィルタリングする" class="slide level2">
 <h2>高品質な変異をフィルタリングする</h2>
-<p><a href="https://samtools.github.io/bcftools/howtos/filtering.html" class="uri">https://samtools.github.io/bcftools/howtos/filtering.html</a></p>
+<p><small> <a href="https://samtools.github.io/bcftools/howtos/filtering.html" class="uri">https://samtools.github.io/bcftools/howtos/filtering.html</a> </small></p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> filter <span class="at">-i</span> <span class="st">"QUAL&gt;20 &amp;&amp; INFO/DP&gt;10"</span> SRR030257.vcf <span class="at">-o</span> hq_SRR030257.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <dl>
 <dt><code>-i</code> (or <code>-e</code>)</dt>
@@ -857,6 +857,13 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 <ul class="task-list">
 <li><label><input type="checkbox">リードマッピングの方法と SAM ファイルの形式について理解した。</label></li>
 <li><label><input type="checkbox">バリアントコールの方法と VCF について理解した。</label></li>
+</ul>
+<p><br></p>
+<p><strong>参考</strong></p>
+<ul>
+<li><a href="https://bio-bwa.sourceforge.net/bwa.shtml">BWA ドキュメント</a></li>
+<li><a href="https://www.htslib.org/doc/samtools.html">SAMtools マニュアルページ</a></li>
+<li><a href="https://samtools.github.io/bcftools/bcftools.html">BCFtools マニュアルページ</a></li>
 </ul>
 <p><br></p>
 <style>
@@ -898,7 +905,7 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 }
 </style>
 <div class="button">
-<p><a href="../../slides/snp24/snpeff.html">Part. 3 へ</a></p>
+<p><a href="../../slides/snp24/03_snpeff.html">Part. 3 へ</a></p>
 </div>
 
 <div class="quarto-auto-generated-content">

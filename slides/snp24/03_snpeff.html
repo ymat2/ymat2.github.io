@@ -12,7 +12,7 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="畜産研 博士1年 松田 優樹">
-  <title>Yuki MATSUDA – 全ゲノム解析ハンズオン 2024 新村グループ</title>
+  <title>Yuki MATSUDA – Part. 3 SnpEff によるアノテーション</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -397,17 +397,14 @@
       margin-right: 0; 
     }
   </style>
-  <script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
-  <script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
-  <link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">全ゲノム解析ハンズオン 2024 新村グループ</h1>
-  <p class="subtitle">スモールデータで理解する SNP 解析の流れ</p>
+  <h1 class="title">Part. 3 SnpEff によるアノテーション</h1>
+  <p class="subtitle">全ゲノム解析ハンズオン 2024 新村グループ<br>—スモールデータで理解する SNP 解析の流れ</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -418,8 +415,8 @@
 </div>
 
 </section>
-<section id="今日の目標と実施内容" class="slide level2 scrollable">
-<h2>今日の目標と実施内容</h2>
+<section id="part.-3-snpeff-によるアノテーション" class="slide level2 scrollable">
+<h2>Part. 3 SnpEff によるアノテーション</h2>
 <p><strong>目標</strong></p>
 <ol type="1">
 <li>公開データを用いた SNP 解析ができるようになる。</li>
@@ -427,6 +424,121 @@
 </ol>
 <hr style="margin-block: 20px;">
 <p><strong>コンテンツ</strong></p>
+<ul>
+<li><span style="color: #DDD;">基本的なコマンドライン操作</span></li>
+<li><span style="color: #DDD;">NGS 公開データの取得</span></li>
+<li><span style="color: #DDD;">クオリティコントロール</span></li>
+<li><span style="color: #DDD;">リードマッピング</span></li>
+<li><span style="color: #DDD;">バリアントコール</span></li>
+<li>SNP アノテーション</li>
+</ul>
+</section>
+<section id="snpeff-を用いた変異のアノテーション" class="slide level2">
+<h2>SnpEff を用いた変異のアノテーション</h2>
+<p>遺伝子の位置情報 (GTF/GFF) を参照して、 “<strong>この SNP は XX 遺伝子上の変異で、しかもアミノ酸を変える</strong>” みたいな情報を付加する。</p>
+<p><img data-src="./images/snp_annotation.png" width="900"></p>
+</section>
+<section id="snpeff-実行環境の構築-のための-java-環境構築" class="slide level2">
+<h2>SnpEff 実行環境の構築 (のための Java 環境構築)</h2>
+<p><small> <a href="https://pcingola.github.io/SnpEff/download/" class="uri">https://pcingola.github.io/SnpEff/download/</a> </small></p>
+<p>SnpEff は Java というプログラミング言語に依存している。 遺伝研の Java はちょっと古いので、 <a href="https://www.oracle.com/java/technologies/downloads/?er=221886">最新版の Java をインストール</a> する:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/bin</span>
+<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/bin</span>
+<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.tar.gz</span>
+<span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> zxvf jdk-23_linux-x64_bin.tar.gz</span>
+<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a><span class="co"># rm jdk-23_linux-x64_bin.tar.gz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="snpeff-実行環境の構築-のための-java-環境構築-1" class="slide level2">
+<h2>SnpEff 実行環境の構築 (のための Java 環境構築)</h2>
+<p>Java コマンドをどこでも使えるようにする。 (PATH を通す。)</p>
+<p>ホームに戻って、<code>.bash_profile</code> (もしくは <code>.bashrc</code>) というファイルがあることを確認する。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span>
+<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>どちらかを開いて、以下の行を追加して保存する:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME</span><span class="op">=</span><span class="va">${HOME}</span>/bin/jdk-23  <span class="co"># ダウンロードしたものに合わせる。jdk23-1 なら ${HOME}/bin/jdk23-1 と書く。</span></span>
+<span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">${JAVA_HOME}</span>/bin:<span class="va">$PATH</span></span>
+<span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">MALLOC_ARENA_MAX</span><span class="op">=</span>2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>編集したファイルを読み込み、Java の動作確認をする:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .bash_profile</span>
+<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="snpeff-実行環境の構築" class="slide level2">
+<h2>SnpEff 実行環境の構築</h2>
+<p>最新版の SnpEff をダウンロードする:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/bin</span>
+<span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip</span>
+<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> snpEff_latest_core.zip</span>
+<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a><span class="co"># rm snpEff_latest_core.zip</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>先ほどと同じように SnpEff の PATH を通す。 ホームの <code>.bash_profile</code> か <code>.bashrc</code> を開いて以下の行を追加する:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">${HOME}</span>/bin/snpEff/scripts:<span class="va">$PATH</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>SnpEff の動作確認をする:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> <span class="at">-version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="snpeff-による変異のアノテーション" class="slide level2">
+<h2>SnpEff による変異のアノテーション</h2>
+<p>SnpEff は既存の遺伝子情報データベースをダウンロードしたり、 手元の GTF/GFF からデータベースを自作したりして使う。</p>
+<p>Escherichia_coli_b_str_rel606 の遺伝子情報をダウンロード:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/snp24  <span class="co"># 作業ディレクトリへ戻るのを忘れずに</span></span>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> download <span class="at">-v</span> Escherichia_coli_b_str_rel606</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>変異のアノテーション:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> Escherichia_coli_b_str_rel606 hq_SRR030257.vcf <span class="op">&gt;</span> hq_SRR030257_snpeff.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="snpeff-の結果-vcf" class="slide level2">
+<h2>SnpEff の結果 (VCF)</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> hq_SRR030257_snpeff.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>長くて見づらいが、INFO フィールドに新たに <code>ANN=</code> に続く形でアノテーション結果が書かれている。</p>
+<p>アノテーション結果は <code>|</code> 区切りの16項目からなる。 複数の遺伝子にまたがる場合はさらに <code>,</code> 区切りで続く。</p>
+<p>例:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>G|missense_variant|MODERATE|pcnB|ECB_00142|transcript|ACT37835|protein_coding|1/1|c.904A&gt;C|p.Asn302His|904/1365|904/1365|302/454||WARNING_TRANSCRIPT_NO_START_CODON</span>
+<span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a># ALTアリル|変異の種類|変異の影響|遺伝子名|遺伝子ID|タイプ|転写産物名|転写産物biotype|Rank/total|塩基の位置と変異|アミノ酸の位置と変異|cDNA_position/cDNA_length|CDS_position/CDS_length|Protein_position/Protein_length|Distance to feature|エラーや警告</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>pcnB</em> のアミノ酸を変える変異、302番目のアスパラギンがヒスチジンになっている。</p>
+</section>
+<section id="snpeff-の結果-genes" class="slide level2">
+<h2>SnpEff の結果 (genes)</h2>
+<p>SnpEff を実行すると、<code>snpEff_genes.txt</code> というファイルもできる。</p>
+<p>このファイルには各転写産物ごとに、どの程度の影響の変異がいくつあるかがタブ区切りで整理されている。</p>
+<p>アミノ酸を変える変異をともなう遺伝子を抜き出してみる:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> snpEff_genes.txt <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'NR&gt;1 { if ($11 &gt;= 1) { print $0 } }'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>🔰 元論文 <a href="https://doi.org/10.1038/nature08480">Barrick et al.&nbsp;2009</a> の <a href="https://www.nature.com/articles/nature08480/tables/1">Table. 1</a> と比べてみよう。</p>
+</section>
+<section id="ニワトリで-snpeff-を動かす場合" class="slide level2">
+<h2>ニワトリで SnpEff を動かす場合</h2>
+<p>生物種/ゲノムのバージョンによってはデータベースがない場合もある:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> databases <span class="kw">|</span> <span class="fu">grep</span> Gallus</span>
+<span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a><span class="co"># GRCg6a.99  Gallus_gallus</span></span>
+<span id="cb13-3"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Galgal4.75  Gallus_gallus</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>ニワトリも GRCg7b を使う場合、データベースを自作する必要がある:</p>
+<dl>
+<dt>やり方</dt>
+<dd>
+<a href="https://pcingola.github.io/SnpEff/snpeff/build_db/" class="uri">https://pcingola.github.io/SnpEff/snpeff/build_db/</a>
+</dd>
+<dd>
+<a href="https://ymat2.github.io/bio/snpEff.html" class="uri">https://ymat2.github.io/bio/snpEff.html</a>
+</dd>
+</dl>
+</section>
+<section id="part.-3-まとめ" class="slide level2">
+<h2>Part. 3 まとめ</h2>
+<p><strong>達成🎉</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">SnpEff を使って SNP のアノテーションができるようになった。</label></li>
+</ul>
+<p><br></p>
+<p><strong>参考</strong></p>
+<ul>
+<li><a href="https://pcingola.github.io/SnpEff/snpeff/introduction/">SnpEff 公式サイト</a></li>
+</ul>
+</section>
+<section id="今日のまとめ" class="slide level2">
+<h2>今日のまとめ</h2>
+<p><strong>達成🎉</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">公開データを用いた SNP 解析ができるようになった。</label></li>
+<li><label><input type="checkbox">データの中身と解析の流れについて理解が深まった。</label></li>
+</ul>
+<hr style="margin-block: 20px;">
+<p><strong>できるようになったこと</strong></p>
 <ul>
 <li>基本的なコマンドライン操作</li>
 <li>NGS 公開データの取得</li>
@@ -435,445 +547,46 @@
 <li>バリアントコール</li>
 <li>SNP アノテーション</li>
 </ul>
-</section>
-<section id="part.-1-コマンドライン操作データ取得qc" class="slide level2 scrollable">
-<h2>Part. 1 コマンドライン操作、データ取得、QC</h2>
-<p><strong>目標</strong></p>
-<ol type="1">
-<li>公開データを用いた SNP 解析ができるようになる。</li>
-<li>データの中身と解析の流れについて理解を深める。</li>
-</ol>
-<hr style="margin-block: 20px;">
-<p><strong>コンテンツ</strong></p>
-<ul>
-<li>基本的なコマンドライン操作</li>
-<li>NGS 公開データの取得</li>
-<li>クオリティコントロール</li>
-<li><span style="color: #DDD;">リードマッピング</span></li>
-<li><span style="color: #DDD;">バリアントコール</span></li>
-<li><span style="color: #DDD;">SNP アノテーション</span></li>
-</ul>
-</section>
-<section id="基本的なコマンドライン操作①" class="slide level2">
-<h2>基本的なコマンドライン操作①</h2>
-<dl>
-<dt><code>cd</code> (<u>c</u>hange <u>d</u>irectory)</dt>
-<dd>
-ディレクトリ📁を移る
-</dd>
-<dt><code>mkdir</code> (<u>m</u>a<u>k</u>e <u>dir</u>ectory)</dt>
-<dd>
-新しいディレクトリを作成する
-</dd>
-<dt><code>ls</code> (<u>l</u>ist <u>s</u>egments)</dt>
-<dd>
-ディレクトリ内のファイル、ディレクトリを表示する
-</dd>
-<dt><code>mv</code> (<u>m</u>o<u>v</u>e)</dt>
-<dd>
-ファイル、ディレクトリを移動する/名前を変更する
-</dd>
-<dt><code>rm</code> (<u>r</u>e<u>m</u>ove)</dt>
-<dd>
-ファイル、ディレクトリを削除する
-</dd>
-</dl>
-</section>
-<section id="基本的なコマンドライン操作②" class="slide level2">
-<h2>基本的なコマンドライン操作②</h2>
-<dl>
-<dt><code>pwd</code></dt>
-<dd>
-今いるディレクトリのフルパスを表示する
-</dd>
-<dt><code>&gt;</code> (リダイレクト)</dt>
-<dd>
-コマンドの結果をターミナルに表示する代わりに、ファイルに書き込む
-</dd>
-<dt><code>head -n N</code></dt>
-<dd>
-ファイルの先頭 N 行を表示する (デフォルトは10行)
-</dd>
-<dt><code>tail -n N</code></dt>
-<dd>
-ファイルの末尾 N 行を表示する (デフォルトは10行)
-</dd>
-<dt><code>less</code></dt>
-<dd>
-ファイルを閲覧モードで開く。<code>Q</code> で閉じる。
-</dd>
-</dl>
-</section>
-<section id="基本的なコマンドライン操作の練習" class="slide level2 scrollable">
-<h2>基本的なコマンドライン操作の練習🔰</h2>
-<ol type="1">
-<li>遺伝研スパコンにログインし、今日の実習用のディレクトリ <code>snp24</code> を作成する。</li>
-<li><code>snp24</code> 内に移動し、今いるディレクトリのフルパスをターミナルに出力する。</li>
-<li>今いるディレクトリのフルパスを、ファイル <code>fullpath.txt</code> に書き込む。</li>
-<li><code>fullpath.txt</code> のファイル名を、<code>pwd.txt</code> に書き換える。</li>
-<li><code>pwd.txt</code> の中身を確認する。</li>
-<li><code>pwd.txt</code> を削除する。</li>
-</ol>
-</section>
-<section id="解答例" class="slide level2 scrollable">
-<h2>解答例</h2>
-<ol type="1">
-<li><code>mkdir snp24</code></li>
-<li><code>cd snp24</code> して <code>pwd</code></li>
-<li><code>pwd &gt; fullpath.txt</code></li>
-<li><code>mv fullpath.txt pwd.txt</code></li>
-<li><code>head pwd.txt</code> とか、<code>less pwd.txt</code> とか。</li>
-<li><code>rm pwd.txt</code></li>
-</ol>
-<p><br></p>
-<p>今日のハンズオンはすべて <code>snp24</code> ディレクトリの中で行います。</p>
-<p><u>ハンズオン終了後</u>は、ディレクトリごと消してもらって構いません:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..        <span class="co"># snp24 のひとつ上のディレクトリへ移動</span></span>
-<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> snp24  <span class="co"># snp24 のディレクトリごと削除</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="snp-解析の流れ" class="slide level2">
-<h2>SNP 解析の流れ</h2>
-<div class="columns">
-<div class="column" style="width:25%;">
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-  A(Sample) -.-&gt;|DNA 抽出| B(DNA)
-  B -.-&gt;|NGS| C[Fastq]
-  X[(NCBI)] -.-&gt;|prefetch| C
-  C -.-&gt;|リードマッピング| D[SAM/BAM]
-  D -.-&gt;|バリアントコール| E[VCF/BCF]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:75%;">
-<dl>
-<dt>リードマッピング</dt>
-<dd>
-リードを参照配列の相同な位置に貼り付ける
-</dd>
-<dd>
-<img data-src="./images/read_mapping.png" width="640">
-</dd>
-<dt>バリアントコール</dt>
-<dd>
-参照配列と異なる配列を特定する
-</dd>
-<dd>
-<img data-src="./images/variant_call.png" width="640">
-</dd>
-</dl>
-</div></div>
-</section>
-<section id="今日使うデータの説明" class="slide level2">
-<h2>今日使うデータの説明</h2>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/E_coli_at_10000x%2C_original.jpg/1280px-E_coli_at_10000x%2C_original.jpg" class="absolute" style="top: 135px; right: 30px; width: 360px; "></p>
-<p>大腸菌 <em>Escherichia coli</em> (<em>E. coli</em>)</p>
-<ul>
-<li>ゲノムサイズが約 4.6Mb と小さい<br> (ニワトリで約 1Gb)</li>
-<li>参照配列: B str. REL606 (Ensembl47)</li>
-<li>SRA ショートリード: <a href="https://www.ncbi.nlm.nih.gov/sra/?term=SRR030257">SRR030257</a></li>
-</ul>
-<dl>
-<dt>なんのデータ？</dt>
-<dd>
-高温条件下での進化実験 20,000世代 <small>(<a href="https://doi.org/10.1038/nature08480">Barrick et al.&nbsp;2009</a>)</small>
-</dd>
-<dt>問い</dt>
-<dd>
-高温条件で進化させるとどんな遺伝子に変異が入るのか？
-</dd>
-</dl>
-</section>
-<section id="今日使うソフトウェア一覧" class="slide level2">
-<h2>今日使うソフトウェア一覧</h2>
-<ul>
-<li>公開データの取得
-<ul>
-<li><a href="https://github.com/ncbi/sra-tools">SRA Toolkit</a></li>
-</ul></li>
-<li>クオリティコントロール (QC)
-<ul>
-<li><a href="https://github.com/OpenGene/fastp">fastp</a></li>
-</ul></li>
-<li>リードマッピング
-<ul>
-<li><a href="https://bio-bwa.sourceforge.net/">BWA</a></li>
-</ul></li>
-<li>バリアントコール
-<ul>
-<li><a href="https://www.htslib.org/doc/samtools.html">SAMtools</a></li>
-<li><a href="https://samtools.github.io/bcftools/bcftools.html">BCFtools</a></li>
-</ul></li>
-<li>SNP アノテーション
-<ul>
-<li><a href="https://pcingola.github.io/SnpEff/">SnpEff</a></li>
-</ul></li>
-</ul>
-</section>
-<section id="公開データの取得" class="slide level2 scrollable">
-<h2>公開データの取得</h2>
-<p>研究で読まれた配列データは <a href="https://www.ncbi.nlm.nih.gov/">NCBI</a> などのデータベースにアーカイブされ、だれでも利用できる。</p>
-<p>  <img data-src="../..\images/share/arrow.svg"></p>
-<p>どうやって探すか:</p>
-<ol type="1">
-<li><a href="https://www.ncbi.nlm.nih.gov/">NCBI</a> で検索する</li>
-<li>論文の Data availability などから BioProject ID を探す<br> (例: <a href="https://academic.oup.com/g3journal/article/14/2/jkad267/7441603#440660152">Bendesky et al.&nbsp;2024</a>)</li>
-</ol>
-</section>
-<section id="今回使うデータをみてみる" class="slide level2 scrollable">
-<h2>今回使うデータをみてみる</h2>
-<ol type="1">
-<li><a href="https://www.ncbi.nlm.nih.gov/">NCBI</a> にアクセスして、 SRR030257 を検索</li>
-<li><kbd>Genomes</kbd> タブの <kbd>SRA</kbd> をクリック</li>
-</ol>
-<p><img data-src="./images/ncbi_sra_example.png" width="850"></p>
-<div style="position:absolute;right:50px;bottom:40px;padding:10px;background-color:#fff;">
-<p><span style="color:#D73027;"> ← ダウンロードにはこの <strong>Run ID</strong> が必要 </span></p>
-</div>
-</section>
-<section id="sra-toolkit-を使って配列をダウンロードする" class="slide level2">
-<h2>SRA Toolkit を使って配列をダウンロードする</h2>
-<p><a href="https://github.com/ncbi/sra-tools/wiki/08.-prefetch-and-fasterq-dump" class="uri">https://github.com/ncbi/sra-tools/wiki/08.-prefetch-and-fasterq-dump</a></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">prefetch</span> SRR030257</span>
-<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">fasterq-dump</span> SRR030257/SRR030257.sra</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl>
-<dt><code>prefetch</code></dt>
-<dd>
-SRA アクセッションをダウンロードする
-</dd>
-<dt><code>fasterq-dump</code></dt>
-<dd>
-SRA アクセッションから Fastq ファイルを取り出す
-</dd>
-</dl>
-<p><br></p>
-<p><code>ls</code> して2つの <code>.fastq</code> ファイルができていたら成功:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
-<span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a><span class="co"># SRR030257  SRR030257_1.fastq  SRR030257_2.fastq</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="fastq-ファイルの中身を見てみる" class="slide level2">
-<h2>Fastq ファイルの中身を見てみる</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> SRR030257_1.fastq  <span class="co"># 先頭行を表示</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>4行でひとまとまり (1リード) のデータ:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>@SRR030257.1 HWI-EAS_4_PE-FC20GCB:6:1:385:567 length=36  # @リードの情報</span>
-<span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>TTACACTCCTGTTAATCCATACAGCAACAGTATTGG                     # 配列</span>
-<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>+SRR030257.1 HWI-EAS_4_PE-FC20GCB:6:1:385:567 length=36  # +</span>
-<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>AAA;A;AA?A?AAAAA?;?A?1A;;????566)=*1                     # クオリティ値</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="クオリティ値" class="slide level2">
-<h2>クオリティ値</h2>
-<p>Fastq の4行目は、各塩基のクオリティ値が記号で記されている。</p>
-<p>記号と数字の対応は以下の通り (<a href="https://www.ascii-code.com/">ASCII コード</a>):</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a> Quality encoding: !"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHI</span>
-<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>                   |         |         |         |         |</span>
-<span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a>    Quality score: 0........10........20........30........40</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
-<p>これらの数字 (Q値) は Log スケールであり、ある塩基が間違って読まれている確率を <span class="math inline">\(P\)</span> として、</p>
-<p><span class="math display">\[
-Q = -10 \times \log_{10}{P}
-\]</span></p>
-<p>で計算される。<br> 例えば <code>?</code> なら <span class="math inline">\(Q=30\)</span> で、間違って読まれている確率は <span class="math inline">\(P=0.001\)</span>。</p>
-</section>
-<section id="ngs-配列のクオリティコントロール" class="slide level2">
-<h2>NGS 配列のクオリティコントロール</h2>
-<ul>
-<li>低品質な (Q値の低い) 塩基</li>
-<li>アダプタ配列の混入</li>
-<li>PCR duplicates</li>
-<li>他サンプルのコンタミネーション</li>
-<li>など</li>
-</ul>
-<p>  <img data-src="../..\images/share/arrow.svg"></p>
-<p>偽陽性バリアントの増加</p>
-</section>
-<section id="クオリティコントロールのツール" class="slide level2">
-<h2>クオリティコントロールのツール</h2>
-<table class="caption-top" style="width:100%;">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 15%">
-<col style="width: 20%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 8%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Tool name</th>
-<th style="text-align: left;">language</th>
-<th style="text-align: left;">input</th>
-<th style="text-align: center;">QC</th>
-<th style="text-align: center;">QF</th>
-<th style="text-align: center;">Ad</th>
-<th style="text-align: center;">cont</th>
-<th style="text-align: center;">PE</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">FastqPuri</td>
-<td style="text-align: left;">C, R</td>
-<td style="text-align: left;">fq</td>
-<td style="text-align: center;">〇</td>
-<td style="text-align: center;">〇</td>
-<td style="text-align: center;">〇</td>
-<td style="text-align: center;">〇</td>
-<td style="text-align: center;">〇</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>fastp</strong></td>
-<td style="text-align: left;">C++</td>
-<td style="text-align: left;">fq, gz</td>
-<td style="text-align: center;">〇</td>
-<td style="text-align: center;">〇</td>
-<td style="text-align: center;">〇</td>
-<td style="text-align: center;">x</td>
-<td style="text-align: center;">〇</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Fastq Screen</td>
-<td style="text-align: left;">perl</td>
-<td style="text-align: left;">fq</td>
-<td style="text-align: center;">x</td>
-<td style="text-align: center;">x</td>
-<td style="text-align: center;">x</td>
-<td style="text-align: center;">〇</td>
-<td style="text-align: center;">x</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">trimmomatic</td>
-<td style="text-align: left;">java</td>
-<td style="text-align: left;">fq, gz</td>
-<td style="text-align: center;">x</td>
-<td style="text-align: center;">〇</td>
-<td style="text-align: center;">〇</td>
-<td style="text-align: center;">x</td>
-<td style="text-align: center;">〇</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">FastQC</td>
-<td style="text-align: left;">java</td>
-<td style="text-align: left;">fq, gz</td>
-<td style="text-align: center;">〇</td>
-<td style="text-align: center;">x</td>
-<td style="text-align: center;">x</td>
-<td style="text-align: center;">x</td>
-<td style="text-align: center;">x</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">RSeQC</td>
-<td style="text-align: left;">C, Python</td>
-<td style="text-align: left;">BAM/SAM</td>
-<td style="text-align: center;">〇</td>
-<td style="text-align: center;">x</td>
-<td style="text-align: center;">x</td>
-<td style="text-align: center;">x</td>
-<td style="text-align: center;">x</td>
-</tr>
-</tbody>
-</table>
-<p><small> <a href="https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-2799-0/tables/1">Pérez-Rubio et al.&nbsp;2019 Table. 1</a> より抜粋 </small></p>
-<p><small> QC: Quality Control<br> QF: Quality Filtering<br> Ad: アダプタ配列除去<br> cont: コンタミ除去<br> PE: Paired-end 対応<br> </small></p>
-<p>今回のハンズオンでは、C++ 製で高速、<br> 圧縮ファイル (gz) にも対応した <strong>fastp</strong> を使う。</p>
-</section>
-<section id="fastp-によるクオリティコントロール" class="slide level2">
-<h2>fastp によるクオリティコントロール</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="at">-i</span> SRR030257_1.fastq <span class="at">-I</span> SRR030257_2.fastq <span class="dt">\</span></span>
-<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> qc_SRR030257_1.fq.gz <span class="at">-O</span> qc_SRR030257_2.fq.gz <span class="dt">\</span></span>
-<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">-q</span> 20 <span class="at">-u</span> 40 <span class="at">-h</span> SRR030257.qc.html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl>
-<dt><code>-i</code>, <code>-I</code></dt>
-<dd>
-入力 Fastq ファイル。Single-end の場合 <code>-i</code> のみ。
-</dd>
-<dt><code>-o</code>, <code>-O</code></dt>
-<dd>
-出力 Fastq ファイル。Single-end の場合 <code>-o</code> のみ。
-</dd>
-<dd>
-<code>.gz</code> をつければそのまま圧縮可能。
-</dd>
-<dt><code>-h</code></dt>
-<dd>
-レポートファイル (<code>.html</code>) の出力先
-</dd>
-</dl>
-</section>
-<section id="fastp-によるクオリティコントロール-1" class="slide level2">
-<h2>fastp によるクオリティコントロール</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="at">-i</span> SRR030257_1.fastq <span class="at">-I</span> SRR030257_2.fastq <span class="dt">\</span></span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> qc_SRR030257_1.fq.gz <span class="at">-O</span> qc_SRR030257_2.fq.gz <span class="dt">\</span></span>
-<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">-q</span> 20 <span class="at">-u</span> 40 <span class="at">-h</span> SRR030257.qc.html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl>
-<dt><code>-q</code></dt>
-<dd>
-クオリティ値の下限 (デフォルトは15)
-</dd>
-<dt><code>-u</code></dt>
-<dd>
-基準を下回る塩基が何%以上含まれているリードを除くか (デフォルトは40)
-</dd>
-</dl>
-<p>今回の場合、<span class="math inline">\(Q&lt;20\)</span> の塩基が40%以上含まれれるリードを除去。</p>
-</section>
-<section id="part.-1-まとめ" class="slide level2">
-<h2>Part. 1 まとめ</h2>
-<p><strong>達成🎉</strong></p>
-<ul class="task-list">
-<li><label><input type="checkbox">基本的なコマンドライン操作を身に着けた。</label></li>
-<li><label><input type="checkbox">NGS の公開データの探し方、使い方を理解した。</label></li>
-<li><label><input type="checkbox">クオリティコントロールの内容と方法を理解した。</label></li>
-</ul>
-<p><br></p>
 <style>
 .button a {
-  background: #eee;
-  border-radius: 9999px;
-  position: relative;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 0 auto;
-  max-width: 250px;
-  padding: 5px 10px;
-  color: #333333;
-  line-height: 1.8;
-  text-decoration: none;
-  transition: 0.3s ease-in-out;
-  font-weight: 500;
+    background: #eee;
+    border-radius: 9999px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 250px;
+    padding: 5px 10px;
+    color: #333333;
+    line-height: 1.8;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
 }
 .button a:hover {
-  background: #333333;
-  color: #FFF;
+    background: #333333;
+    color: #FFF;
 }
 .button a:after {
-  content: '';
-  width: 5px;
-  height: 5px;
-  border-top: 3px solid #333333;
-  border-right: 3px solid #333333;
-  transform: rotate(45deg) translateY(-50%);
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  border-radius: 1px;
-  transition: 0.3s ease-in-out;
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #333333;
+    border-right: 3px solid #333333;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    border-radius: 1px;
+    transition: 0.3s ease-in-out;
 }
 .button a:hover:after {
-  border-color: #FFF;
+    border-color: #FFF;
 }
 </style>
 <div class="button">
-<p><a href="../../slides/snp24/mapping-call.html">Part. 2 へ</a></p>
+<p><a href="../../slides/snp24/00_index.html">Top へ戻る</a></p>
 </div>
 
 <div class="quarto-auto-generated-content">

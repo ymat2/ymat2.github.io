@@ -92,6 +92,24 @@ main {
 	box-shadow: 0 2px 5px 1px $grey3;
 }
 
+@media (max-width: 992px) {
+  body {
+    background-color: $white;
+    font-size: .875rem;
+  }
+
+  main {
+  	line-height: 1.4;
+    background-color: $white;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    text-rendering: optimizeLegibility;
+    font-kerning: normal;
+    padding: 12px;
+    box-shadow: none;
+  }
+}
+
 /*-- md2html contents --*/
 
 h1 {

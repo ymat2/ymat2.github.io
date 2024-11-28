@@ -56,7 +56,7 @@ gunzip Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa.gz
 ファイル名が長いので `Ecoli.fa` に変えておく (任意):
 
 ```sh
-mv Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa.gz Ecoli.fa
+mv Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa Ecoli.fa
 ```
 
 <div style="height: 20px;"></div>
@@ -583,3 +583,48 @@ bcftools filter -i "QUAL>20 && INFO/DP>10" SRR030257.vcf -o hq_SRR030257.vcf
 <div class="button">
   [Part. 3 へ](./03_snpeff.qmd)
 </div>
+
+
+## Tips 1. パイプ `|` によるファイル出力の省略
+
+パイプ `|` は `|` の前のコマンドの標準出力を
+`|` の後のコマンドの標準入力へ渡す仕組み。
+
+<div style="height: 20px;"></div>
+
+使い方:
+
+```sh
+bcftools mpileup -f Ecoli.fa SRR030257.cfsm.bam > SRR030257.mpileup
+bcftools call -c -v --ploidy 1 SRR030257.mpileup -o SRR030257.vcf
+```
+
+&emsp;&emsp;![](/images/share/arrow.svg)
+
+```sh
+bcftools mpileup -f Ecoli.fa SRR030257.cfsm.bam | bcftools call -c -v --ploidy 1 -o SRR030257.vcf
+```
+
+`bcftools mpileup` の出力 (`SRR030257.mpileup`) を
+`bcftools call` の入力として直接使う。
+
+
+## Tips 2. `apptainer` イメージの使用
+
+<small>
+<https://sc.ddbj.nig.ac.jp/software/BioContainers/>
+</small>
+
+Apptainer はユーザが解析ソフトウェアをインストール不要で使える仕組み。
+
+「使いたいコマンドが遺伝研スパコンにない！」ときや「違うバージョンのソフトが使いたい！」ときに便利。
+
+```sh
+$ samtools --version
+samtools 1.13
+# デフォルトの SAMtools のバージョンは 1.13 だけど
+
+$ apptainer exec /usr/local/biotools/s/samtools:1.19.1--h50ea8bc_0 samtools --version
+samtools 1.19.1
+# もっと新しいバージョンを使うこともできる。
+```

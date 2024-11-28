@@ -456,7 +456,7 @@
 <section id="参照配列にリードをマッピング-前準備-1" class="slide level2">
 <h2>参照配列にリードをマッピング (前準備)</h2>
 <p>ファイル名が長いので <code>Ecoli.fa</code> に変えておく (任意):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa.gz Ecoli.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa Ecoli.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div style="height: 20px;">
 
 </div>
@@ -907,6 +907,32 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 <div class="button">
 <p><a href="../../slides/snp24/03_snpeff.html">Part. 3 へ</a></p>
 </div>
+</section>
+<section id="tips-1.-パイプ-によるファイル出力の省略" class="slide level2">
+<h2>Tips 1. パイプ <code>|</code> によるファイル出力の省略</h2>
+<p>パイプ <code>|</code> は <code>|</code> の前のコマンドの標準出力を <code>|</code> の後のコマンドの標準入力へ渡す仕組み。</p>
+<div style="height: 20px;">
+
+</div>
+<p>使い方:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> mpileup <span class="at">-f</span> Ecoli.fa SRR030257.cfsm.bam <span class="op">&gt;</span> SRR030257.mpileup</span>
+<span id="cb29-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> call <span class="at">-c</span> <span class="at">-v</span> <span class="at">--ploidy</span> 1 SRR030257.mpileup <span class="at">-o</span> SRR030257.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>  <img data-src="../..\images/share/arrow.svg"></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> mpileup <span class="at">-f</span> Ecoli.fa SRR030257.cfsm.bam <span class="kw">|</span> <span class="ex">bcftools</span> call <span class="at">-c</span> <span class="at">-v</span> <span class="at">--ploidy</span> 1 <span class="at">-o</span> SRR030257.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>bcftools mpileup</code> の出力 (<code>SRR030257.mpileup</code>) を <code>bcftools call</code> の入力として直接使う。</p>
+</section>
+<section id="tips-2.-apptainer-イメージの使用" class="slide level2">
+<h2>Tips 2. <code>apptainer</code> イメージの使用</h2>
+<p><small> <a href="https://sc.ddbj.nig.ac.jp/software/BioContainers/" class="uri">https://sc.ddbj.nig.ac.jp/software/BioContainers/</a> </small></p>
+<p>Apptainer はユーザが解析ソフトウェアをインストール不要で使える仕組み。</p>
+<p>「使いたいコマンドが遺伝研スパコンにない！」ときや「違うバージョンのソフトが使いたい！」ときに便利。</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> samtools <span class="at">--version</span></span>
+<span id="cb31-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> 1.13</span>
+<span id="cb31-3"><a aria-hidden="true" tabindex="-1"></a><span class="co"># デフォルトの SAMtools のバージョンは 1.13 だけど</span></span>
+<span id="cb31-4"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> apptainer exec /usr/local/biotools/s/samtools:1.19.1--h50ea8bc_0 samtools <span class="at">--version</span></span>
+<span id="cb31-6"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> 1.19.1</span>
+<span id="cb31-7"><a aria-hidden="true" tabindex="-1"></a><span class="co"># もっと新しいバージョンを使うこともできる。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">

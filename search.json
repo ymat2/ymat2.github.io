@@ -2487,7 +2487,7 @@
     "href": "slides/snp24/02_mapping-call.html#参照配列にリードをマッピング-前準備-1",
     "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "参照配列にリードをマッピング (前準備)",
-    "text": "参照配列にリードをマッピング (前準備)\nファイル名が長いので Ecoli.fa に変えておく (任意):\nmv Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa.gz Ecoli.fa\n\n\n\n参照配列の中身を見てみる:\nless Ecoli.fa\n\n\n\n&gt;Chromosome dna:chromosome chromosome:ASM1798v1:Chromosome:1:4629812:1 REF\nAGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTC\nTGATAGCAGCTTCTGAACTGGTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGG\nTCACTAAATACTTTAACCAATATAGGCATAGCGCACAGACAGATAAAAATTACAGAGTAC\n︙\n&gt; で始まるヘッダー行と配列からなる FASTA というファイル形式。 Fastq と似ているけど別フォーマット。"
+    "text": "参照配列にリードをマッピング (前準備)\nファイル名が長いので Ecoli.fa に変えておく (任意):\nmv Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa Ecoli.fa\n\n\n\n参照配列の中身を見てみる:\nless Ecoli.fa\n\n\n\n&gt;Chromosome dna:chromosome chromosome:ASM1798v1:Chromosome:1:4629812:1 REF\nAGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTC\nTGATAGCAGCTTCTGAACTGGTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGG\nTCACTAAATACTTTAACCAATATAGGCATAGCGCACAGACAGATAAAAATTACAGAGTAC\n︙\n&gt; で始まるヘッダー行と配列からなる FASTA というファイル形式。 Fastq と似ているけど別フォーマット。"
   },
   {
     "objectID": "slides/snp24/02_mapping-call.html#より小さいデータを使ってリードマッピングを理解する",
@@ -2649,6 +2649,20 @@
     "title": "Part. 2 リードマッピング、バリアントコール",
     "section": "Part. 2 まとめ",
     "text": "Part. 2 まとめ\n達成🎉\n\nリードマッピングの方法と SAM ファイルの形式について理解した。\nバリアントコールの方法と VCF について理解した。\n\n\n参考\n\nBWA ドキュメント\nSAMtools マニュアルページ\nBCFtools マニュアルページ\n\n\n\n\nPart. 3 へ"
+  },
+  {
+    "objectID": "slides/snp24/02_mapping-call.html#tips-1.-パイプ-によるファイル出力の省略",
+    "href": "slides/snp24/02_mapping-call.html#tips-1.-パイプ-によるファイル出力の省略",
+    "title": "Part. 2 リードマッピング、バリアントコール",
+    "section": "Tips 1. パイプ | によるファイル出力の省略",
+    "text": "Tips 1. パイプ | によるファイル出力の省略\nパイプ | は | の前のコマンドの標準出力を | の後のコマンドの標準入力へ渡す仕組み。\n\n\n\n使い方:\nbcftools mpileup -f Ecoli.fa SRR030257.cfsm.bam &gt; SRR030257.mpileup\nbcftools call -c -v --ploidy 1 SRR030257.mpileup -o SRR030257.vcf\n  \nbcftools mpileup -f Ecoli.fa SRR030257.cfsm.bam | bcftools call -c -v --ploidy 1 -o SRR030257.vcf\nbcftools mpileup の出力 (SRR030257.mpileup) を bcftools call の入力として直接使う。"
+  },
+  {
+    "objectID": "slides/snp24/02_mapping-call.html#tips-2.-apptainer-イメージの使用",
+    "href": "slides/snp24/02_mapping-call.html#tips-2.-apptainer-イメージの使用",
+    "title": "Part. 2 リードマッピング、バリアントコール",
+    "section": "Tips 2. apptainer イメージの使用",
+    "text": "Tips 2. apptainer イメージの使用\n https://sc.ddbj.nig.ac.jp/software/BioContainers/ \nApptainer はユーザが解析ソフトウェアをインストール不要で使える仕組み。\n「使いたいコマンドが遺伝研スパコンにない！」ときや「違うバージョンのソフトが使いたい！」ときに便利。\n$ samtools --version\nsamtools 1.13\n# デフォルトの SAMtools のバージョンは 1.13 だけど\n\n$ apptainer exec /usr/local/biotools/s/samtools:1.19.1--h50ea8bc_0 samtools --version\nsamtools 1.19.1\n# もっと新しいバージョンを使うこともできる。"
   },
   {
     "objectID": "win/0-dev-win.html",

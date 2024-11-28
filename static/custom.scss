@@ -267,7 +267,10 @@ kbd {
 
 .sidebar-navigation .sidebar-item {
 	cursor: pointer;
-	font-weight: bold;
+}
+
+.sidebar-navigation .sidebar-item a{
+	font-weight: bold !important;
 	line-height: 2;
 }
 

@@ -1,0 +1,237 @@
+---
+format:
+  html:
+    title: "uv"
+    subtitle: "Rust 製 Python マネージャ"
+---
+
+- <https://docs.astral.sh/uv/>
+- <https://github.com/astral-sh/uv>
+
+Python プロジェクト管理、コマンドラインツール管理、Python バージョン管理など一通りの機能を備える。
+Rust 製で高速。
+
+
+## Installation
+
+<https://docs.astral.sh/uv/getting-started/installation/>
+
+```sh
+## Linux and MacOS
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+## Windows
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+Unix 系 OS では `.bashrc`, `.bash_profile`, `.profile` の全部に `. "$HOME/.cargo/env"` が追加される。
+先に Rust の環境作っておけばカスタム可能かも。
+
+Windows ではcurrent user & current host の `.ps1` に PATH 設定が追記される。
+
+ほかに `pipx`, `pip`, Homebrew, Docker でも入る。
+先に Rust の環境があって Crate として入れる場合は GitHub から入れる:
+
+```sh
+pipx install uv
+pip install uv
+brew install uv  # MacOS
+winget install --id=astral-sh.uv  -e  # Windows
+
+cargo install --git https://github.com/astral-sh/uv uv
+```
+
+
+## Python インストーラとしての使用
+
+<https://docs.astral.sh/uv/guides/install-python/>
+
+:::{.note}
+
+`uv python install`
+は[サードパーティ](https://github.com/indygreg/python-build-standalone)製の
+binary distribution をとってくる。
+
+`uv` で入れた Python は現在のところグローバルな使用は想定されていない。
+`uv run` を介すか仮想環境中で使う。
+
+:::
+
+`uv python install`
+: Python のバージョンを指定してインストール
+: 指定しなければ最新版をインストール
+
+`uv python list`
+: 利用可能なバージョン一覧を表示
+
+`uv python find`
+: インストール済みのバージョンを表示
+
+`uv python pin`
+: カレントプロジェクトで使用する Python のバージョンを固定
+
+`uv python uninstall`
+: Python のバージョンを指定してアンインストール
+
+インストール済みの Python があれば、uv は自動的にそれを使う:
+
+```sh
+~$ uv python list
+cpython-3.13.0rc2-linux-x86_64-gnu    <download available>
+cpython-3.12.6-linux-x86_64-gnu       <download available>
+cpython-3.12.3-linux-x86_64-gnu       /usr/bin/python3.12
+cpython-3.12.3-linux-x86_64-gnu       /usr/bin/python3 -> python3.12
+cpython-3.12.3-linux-x86_64-gnu       /bin/python3.12
+cpython-3.12.3-linux-x86_64-gnu       /bin/python3 -> python3.12
+```
+
+Python をインストール:
+
+```sh
+~$ uv python install
+Searching for Python installations
+Installed Python 3.12.6 in 1.99s
+ + cpython-3.12.6-linux-x86_64-gnu
+
+~$ uv python list
+cpython-3.13.0rc2-linux-x86_64-gnu    <download available>
+cpython-3.12.6-linux-x86_64-gnu       .local/share/uv/python/cpython-3.12.6-linux-x86_64-gnu/bin/python3 -> python3.12
+cpython-3.12.3-linux-x86_64-gnu       /usr/bin/python3.12
+cpython-3.12.3-linux-x86_64-gnu       /usr/bin/python3 -> python3.12
+cpython-3.12.3-linux-x86_64-gnu       /bin/python3.12
+cpython-3.12.3-linux-x86_64-gnu       /bin/python3 -> python3.12
+```
+
+`uv` でインストールした python をグローバルに使いたければ
+インストール先を検出して自前で PATH を通せばいいはず...。
+
+```sh
+if [ -d "${UV_PYTHON_INSTALL_DIR:=$(uv python dir 2>/dev/null)}" ]; then
+  py_versions=($(ls "${UV_PYTHON_INSTALL_DIR}" | sort -V))
+  export PY_LATEST=${UV_PYTHON_INSTALL_DIR}/${py_versions[@]: -1}
+  PATH="${PY_LATEST}/bin:${PATH}"
+  unset py_versions PY_LATEST
+fi
+```
+
+
+## プロジェクトでの使用
+
+- <https://docs.astral.sh/uv/guides/projects/>
+- <https://docs.astral.sh/uv/concepts/projects/>
+- <https://docs.astral.sh/uv/guides/publish/>
+
+プロジェクトの立ち上げ:
+
+```sh
+uv init hello
+cd hello
+
+# or
+
+mkdir hello && cd hello
+uv init
+```
+
+デフォルトでは
+
+- `.git/`
+- `.gitignore`
+- `.python-version`
+- `README.md`
+- `hello.py` (`{project-name}.py`)
+- `pyproject.toml`
+
+が作られ、すでに `git init` もされた状態で構築される
+(`git` があれば)。
+
+どのようなプロジェクトにするかでいくつかオプションがある:
+
+`--package`
+: パッケージ用プロジェクトとして立ち上げる。
+: `{project-name}.py` の代わりに `src/{project-name}/__init__.py`
+
+`--app`
+: アプリケーション用プロジェクトとして立ち上げる。
+
+`--lib`
+: ライブラリ用プロジェクトとして立ち上げる。
+: `--package` 同様の `__init__.py` と、加えて `py.typed`
+
+プロジェクト作成後に初めて `uv run`, `uv sync`, `uv lock` を使ったときに
+`.venv/` と `uv.lock` も作られる。
+
+`pyproject.toml`
+: プロジェクトに関わる情報を書いておくファイル。
+  手動で編集してもいいし、`uv` 経由でツールを入れたりすると自動で `dependencies` とかは更新される。
+
+`.venv/`
+: 依存ツール等のインストール先
+
+`uv.lock`
+: `pyproject.toml` よりも厳密な依存関係管理のためのファイル。
+
+### パッケージのインストール
+
+プロジェクトで使用するパッケージの管理もすべて uv がやってくれる。
+例えば開発用パッケージとして `pytest` を使う場合:
+
+```sh
+uv add pytest --dev
+```
+
+自動で `pyproject.toml` に記述される:
+
+```toml
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.3.3",
+]
+```
+
+
+## Python 製コマンドラインツールの管理
+
+- <https://docs.astral.sh/uv/concepts/tools/>
+- <https://docs.astral.sh/uv/guides/tools/>
+
+Python 製コマンドラインツールを使うためのインターフェイスとして、
+インストールせず一時的に実行する `uvx` と、インストールしてグローバルに使う `uv tool` が用意されている。
+(`uvx` は `uv tool run` のエイリアス。)
+一応、ほとんどの場面ではインストールせず一時的に使うことが推奨されているっぽい。
+
+:::{.note}
+
+[PEP 668](https://peps.python.org/pep-0668/) にある通り
+`pip` でグローバルに使うツールを入れることができなくなったので、
+今のところその代わりとしても使える。
+
+:::
+
+### [インストールせず一時的に使う](https://docs.astral.sh/uv/guides/tools/#running-tools)
+
+```sh
+uvx ruff  # or `uv tool run ruff`
+```
+
+### [インストールして使う](https://docs.astral.sh/uv/guides/tools/#installing-tools)
+
+```sh
+uv tool install ruff
+ruff
+```
+
+その他コマンド:
+
+`uv tool upgrade`
+: インストール済みツールのアップデート
+
+`uv tool list`
+: インストール済みパッケージ一覧を表示
+
+`uv tool uninstall`
+: アンインストール
+
+`uv tool dir`
+: インストール先の PATH を表示
+: 実行ファイルのバイナリは `${HOME}/.local/bin` に入る。 (`--bin`)

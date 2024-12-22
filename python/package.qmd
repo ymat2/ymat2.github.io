@@ -15,187 +15,8 @@ format:
 
 - <https://packaging.python.org/en/latest/tutorials/packaging-projects/>
 
-`setuptools` に依存する `setup.py` を使う方法は現在は非推奨 (Legacy) らしい。
-`pyproject.toml` で一元管理する方法が主流で、[Poetry](https://python-poetry.org/) など
-パッケージ作成をラクに行えるツールがあるっぽい。
 
-
-## ひとまず `setup.py` で書いてみる
-
-成果物
-: <https://github.com/ymat2/mython>
-
-ファイル構成:
-
-```txt
-mython/
-├── LICENSE
-├── README.md
-├── setup.py
-├── mython/
-│   ├── __init__.py
-│   └── mython
-└── tests/
-```
-
-`__init__.py` はひとまず空にしておいて、
-`mython/mython` と `setup.py` をそれぞれ書く。
-
-```{.python filename="mython/mython"}
-#! /usr/bin/env python3
-
-"""
-`--to` で与えた文字列に挨拶するだけの機能
-"""
-
-import argparse
-
-def main():
-  parser = argparse.ArgumentParser()
-  parser.add_argument("-t", "--to")
-  args = parser.parse_args()
-
-  say_hello(args.to)
-
-
-def say_hello(str):
-  print("Hello,", str, "!")
-
-
-if __name__ == "__main__":
-  main()
-```
-
-```{.python filename="setup.py"}
-from setuptools import setup
-
-setup(
-  name = "mython",
-  version = "0.1.0",
-  python_requires = ">=3.6",
-  scripts = ["mython/mython",]
-)
-```
-
-
-これで最低限の雛形ができたはずなので、
-ディレクトリを移動して `pip` でインストール:
-
-```sh
-pip3 install -e ~/work/mython/
-# Defaulting to user installation because normal site-packages is not writeable
-# Obtaining file:///home/yukimatsu/work/mython
-#   Preparing metadata (setup.py) ... done
-# Installing collected packages: mython
-#   Running setup.py develop for mython
-# Successfully installed mython-0.1.0
-```
-
-`pip3 list` で確認するとちゃんと入ってる。
-
-いざ動かしてみる:
-
-```sh
-mython -t world
-# Hello, world !
-```
-
-ちゃんと動いてる。感動。
-
-### Subpackage の追加
-
-Subpackage を追加してみる。
-<https://docs.python.org/3/tutorial/modules.html> を参考に。
-
-ファイル構成を変更:
-
-```txt
-mython/
-├── LICENSE
-├── README.md
-├── setup.py
-├── mython/
-│   ├── __init__.py
-│   ├── mython
-│   └── util/
-│       ├── __init__.py
-│       ├── bye.py
-│       └── hello.py
-└── tests/
-```
-
-`util/__init__.py`
-: `from mython.util import *` のような形で非明示的に全部読み込むには、
-  どのスクリプトを含めるかを書いておかないといけない。
-: ```python
-  __all__ = ["hello", "bye"]
-  ```
-
-`mython/mython` に追記:
-
-```python
-from mython.util import *
-```
-
-### GitHub から `pip` で入れるテスト
-
-パッケージを GitHub に `push` したのち、
-
-```sh
-python3 -m pip install git+https://github.com/ymat2/mython
-```
-
-で入る。
-
-***
-
-以下はちょっと苦戦した時のメモ:
-
-```sh
-pip3 install git+https://github.com/ymat2/mython
-# Defaulting to user installation because normal site-packages is not writeable
-# Collecting git+https://github.com/ymat2/mython
-#   Cloning https://github.com/ymat2/mython to /private/var/folders/fv/v04jv6qj0s706gpx_1xmtb6h0000gn/T/pip-req-build-wybszzlv
-#   Running command git clone --filter=blob:none --quiet https://github.com/ymat2/mython /private/var/folders/fv/v04jv6qj0s706gpx_1xmtb6h0000gn/T/pip-req-build-wybszzlv
-#   Resolved https://github.com/ymat2/mython to commit 768582b5d3b1beeb907c7069ad9e1262ceff8e8a
-#   Preparing metadata (setup.py) ... done
-# Building wheels for collected packages: mython
-#   Building wheel for mython (setup.py) ... done
-#   Created wheel for mython: filename=mython-0.1.0-py3-none-any.whl size=2184 sha256=e027f1c56c0875027c675bae7ed8e6e930d5eda94ba56a3c89c8ab7a44d5c9cd
-#   Stored in directory: /private/var/folders/fv/v04jv6qj0s706gpx_1xmtb6h0000gn/T/pip-ephem-wheel-cache-h9514znu/wheels/ff/f8/78/b8c23ba02469077c837d9d6e6265973e5322a7fae67b897fdf
-# Successfully built mython
-# Installing collected packages: mython
-# Successfully installed mython-0.1.0
-```
-
-入った。PATH も通ってる。でも動かしてみると `ModuleNotFound` となる:
-
-```sh
-mython -t world
-# Traceback (most recent call last):
-#   File "/Users/yukimatsuda/Library/Python/3.9/bin/mython", line 4, in <module>
-#     from mython.util import *
-# ModuleNotFoundError: No module named 'mython'
-
-which mython
-# /Users/yukimatsuda/Library/Python/3.9/bin/mython
-```
-
-どうも Python または `pip` のバージョン齟齬の問題だったよう。
-PATH の通った `python3` 越しに `pip` を使うとうまくいった。
-
-```sh
-python3 -m pip install git+https://github.com/ymat2/mython
-```
-
-[`.venv`](/python/0_install.qmd) で仮想環境の中に入れたり、
-ローカルコピーで使う分には無問題。
-
-
-## `pyproject.toml` を使って作ってみる
-
-成果物
-: <https://github.com/ymat2/bithon>
+## `pyproject.toml` を使う方法
 
 ファイル構成:
 
@@ -206,7 +27,7 @@ bithon/
 ├── pyproject.toml
 ├── src/bithon/
 │   ├── __init__.py
-│   └── bithon.py  # setup.py のときは拡張子なしでもよかったけど、pyproject.toml では NG らしい?
+│   └── bithon.py
 └── tests/
 ```
 
@@ -252,3 +73,62 @@ Repository = "https://github.com/ymat2/bithon"
 
 `dependencies`
 : リスト形式で依存パッケージを記載する。
+
+
+## `setup.py` を使う方法
+
+::: {.note}
+
+`setuptools` に依存する `setup.py` を使う方法は現在は非推奨 (Legacy) らしい。
+`pyproject.toml` で一元管理する方法が主流で、[Poetry](https://python-poetry.org/) など
+パッケージ作成をラクに行えるツールがあるっぽい。
+
+:::
+
+ファイル構成:
+
+```txt
+mython/
+├── LICENSE
+├── README.md
+├── setup.py
+├── mython/
+│   ├── __init__.py
+│   └── mython  # 拡張子なしでもいい
+└── tests/
+```
+
+```{.python filename="setup.py"}
+from setuptools import setup
+
+setup(
+  name = "mython",
+  version = "0.1.0",
+  python_requires = ">=3.6",
+  scripts = ["mython/mython",]
+)
+```
+
+### サブディレクトリありの場合
+
+```txt
+mython/
+├── LICENSE
+├── README.md
+├── setup.py
+├── mython/
+│   ├── __init__.py
+│   ├── mython
+│   └── util/
+│       ├── __init__.py
+│       ├── bye.py
+│       └── hello.py
+└── tests/
+```
+
+`util/__init__.py`
+: `from mython.util import *` のような形で非明示的に全部読み込むには、
+  どのスクリプトを含めるかを書いておかないといけない。
+: ```python
+  __all__ = ["hello", "bye"]
+  ```

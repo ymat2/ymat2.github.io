@@ -5,32 +5,27 @@ format:
 ---
 
 Python を使うための環境構築に関するメモ。
-基本的には [Python 環境構築ガイド](https://www.python.jp/install/install.html)の写経。
 
 
 ## ガイドライン
 
-### Python をインストールする前に検討
-
-- [Google Colab](https://colab.research.google.com/) で事足りない？
-- Python の入手元として、公式版と Anaconda 経由が存在。目的に応じて選択する。
-- [Pyenv は必要？](https://www.python.jp/install/docs/doyouneedpyenv.html)(特に初学者向けには非推奨)
-
-::: {.note}
-**Anaconda** はデータサイエンスや科学技術計算のためのさまざまなツールやライブラリの実行環境。
-パッケージ管理も仮想環境も全部担う。
-:::
-
 ### Python と Anaconda
 
-Python パッケージをどう利用するか。
+Python パッケージをどう利用するかに、大きく2つの方法 (流派?) がある。
 
 1. `pip` を使って [The Python Package Index (PyPI)](https://pypi.org/) から取得する。
 2. `conda` を使って [Anaconda](https://www.anaconda.com/) から取得する。
 
+::: {.note}
+
+**Anaconda** はデータサイエンスや科学技術計算のためのさまざまなツールやライブラリの実行環境。
+パッケージ管理も仮想環境も全部担う。
+
+:::
+
 PyPI と Anaconda の併用は困難。
 特に同じパッケージを `pip` と `conda` の両方で入れるのは避けたほうがいいらしい。
-プログラミング入門の場合は PyPI、データサイエンス・科学技術計算には Anaconda。
+プログラミング入門の場合は PyPI、データサイエンス・科学技術計算には Anaconda が推奨されている。
 
 
 ## Python のインストール
@@ -190,6 +185,7 @@ Python パッケージを管理するコマンド。
 
 `pip3 install <package>`
 : パッケージのインストール
+: ローカルインストールは `-e/--editable` が便利: `pip3 install -v -e /path/to/pkg`
 
 `pip3 uninstall <package>`
 : パッケージのアンインストール
@@ -249,3 +245,12 @@ pip3 list -o | tail -n +3 | awk '{ print $1 }' | xargs pip3 install -U
 
    仮想環境でのパッケージのインストール先は `.venv/lib/python3.11/site-packages/` になる。
    バイナリ実行ファイルは `.venv/bin/` にあり、`python3`, `pip` もここに PATH が通る。
+
+
+## [uv](./1_uv.qmd)
+
+上記すべてをお世話してくれる Rust 製コマンドラインツールの uv という選択肢もある。
+
+Python 自体のインストールは `uv python install`、
+パッケージ管理は `uv tool` や `uv add`、
+仮想環境込みのプロジェクト管理は `uv init` など。

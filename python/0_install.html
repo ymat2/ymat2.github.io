@@ -366,6 +366,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../python/1_uv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">uv</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../python/argparse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ArgumentParser</span></a>
   </div>
@@ -448,28 +454,20 @@ window.Quarto = {
 </header>
 
 
-<p>Python を使うための環境構築に関するメモ。 基本的には <a href="https://www.python.jp/install/install.html">Python 環境構築ガイド</a>の写経。</p>
+<p>Python を使うための環境構築に関するメモ。</p>
 <section id="ガイドライン" class="level2">
 <h2 class="anchored" data-anchor-id="ガイドライン">ガイドライン</h2>
-<section id="python-をインストールする前に検討" class="level3">
-<h3 class="anchored" data-anchor-id="python-をインストールする前に検討">Python をインストールする前に検討</h3>
-<ul>
-<li><a href="https://colab.research.google.com/">Google Colab</a> で事足りない？</li>
-<li>Python の入手元として、公式版と Anaconda 経由が存在。目的に応じて選択する。</li>
-<li><a href="https://www.python.jp/install/docs/doyouneedpyenv.html">Pyenv は必要？</a>(特に初学者向けには非推奨)</li>
-</ul>
-<div class="note">
-<p><strong>Anaconda</strong> はデータサイエンスや科学技術計算のためのさまざまなツールやライブラリの実行環境。 パッケージ管理も仮想環境も全部担う。</p>
-</div>
-</section>
 <section id="python-と-anaconda" class="level3">
 <h3 class="anchored" data-anchor-id="python-と-anaconda">Python と Anaconda</h3>
-<p>Python パッケージをどう利用するか。</p>
+<p>Python パッケージをどう利用するかに、大きく2つの方法 (流派?) がある。</p>
 <ol type="1">
 <li><code>pip</code> を使って <a href="https://pypi.org/">The Python Package Index (PyPI)</a> から取得する。</li>
 <li><code>conda</code> を使って <a href="https://www.anaconda.com/">Anaconda</a> から取得する。</li>
 </ol>
-<p>PyPI と Anaconda の併用は困難。 特に同じパッケージを <code>pip</code> と <code>conda</code> の両方で入れるのは避けたほうがいいらしい。 プログラミング入門の場合は PyPI、データサイエンス・科学技術計算には Anaconda。</p>
+<div class="note">
+<p><strong>Anaconda</strong> はデータサイエンスや科学技術計算のためのさまざまなツールやライブラリの実行環境。 パッケージ管理も仮想環境も全部担う。</p>
+</div>
+<p>PyPI と Anaconda の併用は困難。 特に同じパッケージを <code>pip</code> と <code>conda</code> の両方で入れるのは避けたほうがいいらしい。 プログラミング入門の場合は PyPI、データサイエンス・科学技術計算には Anaconda が推奨されている。</p>
 </section>
 </section>
 <section id="python-のインストール" class="level2">
@@ -608,6 +606,9 @@ window.Quarto = {
 <dd>
 パッケージのインストール
 </dd>
+<dd>
+ローカルインストールは <code>-e/--editable</code> が便利: <code>pip3 install -v -e /path/to/pkg</code>
+</dd>
 <dt><code>pip3 uninstall &lt;package&gt;</code></dt>
 <dd>
 パッケージのアンインストール
@@ -644,6 +645,11 @@ window.Quarto = {
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> pip install <span class="at">-r</span> requirements.txt   <span class="co"># まとめてインストール</span></span></code></pre></div>
 <p>仮想環境でのパッケージのインストール先は <code>.venv/lib/python3.11/site-packages/</code> になる。 バイナリ実行ファイルは <code>.venv/bin/</code> にあり、<code>python3</code>, <code>pip</code> もここに PATH が通る。</p></li>
 </ol>
+</section>
+<section id="uv" class="level2">
+<h2 class="anchored" data-anchor-id="uv"><a href="../python/1_uv.html">uv</a></h2>
+<p>上記すべてをお世話してくれる Rust 製コマンドラインツールの uv という選択肢もある。</p>
+<p>Python 自体のインストールは <code>uv python install</code>、 パッケージ管理は <code>uv tool</code> や <code>uv add</code>、 仮想環境込みのプロジェクト管理は <code>uv init</code> など。</p>
 
 
 </section>

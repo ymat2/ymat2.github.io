@@ -366,6 +366,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../python/1_uv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">uv</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../python/argparse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ArgumentParser</span></a>
   </div>
@@ -459,82 +465,95 @@ window.Quarto = {
 <ul>
 <li><a href="https://packaging.python.org/en/latest/tutorials/packaging-projects/" class="uri">https://packaging.python.org/en/latest/tutorials/packaging-projects/</a></li>
 </ul>
-<p><code>setuptools</code> に依存する <code>setup.py</code> を使う方法は現在は非推奨 (Legacy) らしい。 <code>pyproject.toml</code> で一元管理する方法が主流で、<a href="https://python-poetry.org/">Poetry</a> など パッケージ作成をラクに行えるツールがあるっぽい。</p>
-<section id="ひとまず-setup.py-で書いてみる" class="level2">
-<h2 class="anchored" data-anchor-id="ひとまず-setup.py-で書いてみる">ひとまず <code>setup.py</code> で書いてみる</h2>
-<dl>
-<dt>成果物</dt>
-<dd>
-<a href="https://github.com/ymat2/mython" class="uri">https://github.com/ymat2/mython</a>
-</dd>
-</dl>
+<section id="pyproject.toml-を使う方法" class="level2">
+<h2 class="anchored" data-anchor-id="pyproject.toml-を使う方法"><code>pyproject.toml</code> を使う方法</h2>
 <p>ファイル構成:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mython/</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>bithon/</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>├── LICENSE</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>├── README.md</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>├── setup.py</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>├── mython/</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>├── pyproject.toml</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>├── src/bithon/</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>│   ├── __init__.py</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>│   └── mython</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>│   └── bithon.py</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>└── tests/</span></code></pre></div>
-<p><code>__init__.py</code> はひとまず空にしておいて、 <code>mython/mython</code> と <code>setup.py</code> をそれぞれ書く。</p>
+<section id="pyproject.toml-の書き方" class="level3">
+<h3 class="anchored" data-anchor-id="pyproject.toml-の書き方"><code>pyproject.toml</code> の書き方</h3>
+<p><code>[build-system]</code> では、どのビルドツールを使ってパッケージを作るかを指定する。 <a href="https://packaging.python.org/en/latest/tutorials/packaging-projects/#creating-pyproject-toml">書き方はツールごとに決まっている</a>。</p>
+<p>例えば <a href="https://pypi.org/project/hatchling/">Hatchling</a> の場合:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>mython/mython</strong></pre>
+<pre><strong>pyproject.toml</strong></pre>
 </div>
-<div class="sourceCode" id="cb2" data-filename="mython/mython"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /usr/bin/env python3</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">`--to` で与えた文字列に挨拶するだけの機能</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  parser <span class="op">=</span> argparse.ArgumentParser()</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  parser.add_argument(<span class="st">"-t"</span>, <span class="st">"--to"</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  args <span class="op">=</span> parser.parse_args()</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  say_hello(args.to)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> say_hello(<span class="bu">str</span>):</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Hello,"</span>, <span class="bu">str</span>, <span class="st">"!"</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  main()</span></code></pre></div>
+<div class="sourceCode" id="cb2" data-filename="pyproject.toml"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[build-system]</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"hatchling"</span><span class="op">]</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"hatchling.build"</span></span></code></pre></div>
 </div>
+<p><code>[project]</code> では、パッケージのメタ情報を記載する:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>pyproject.toml</strong></pre>
+</div>
+<div class="sourceCode" id="cb3" data-filename="pyproject.toml"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"bithon"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.0.1"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">{ </span><span class="dt">name</span><span class="op">=</span><span class="st">"ymat2"</span><span class="op">, </span><span class="dt">email</span><span class="op">=</span><span class="st">"yuki.matsuda.r7@dc.tohoku.ac.jp"</span><span class="op"> },</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Personal python package for bioinformatics"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="dt">license</span> <span class="op">=</span> <span class="op">{</span><span class="dt">file</span><span class="op"> =</span> <span class="st">"LICENSE"</span><span class="op">}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.8"</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[]</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">[project.urls]</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="dt">Homepage</span> <span class="op">=</span> <span class="st">"https://ymat2.github.io"</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="dt">Repository</span> <span class="op">=</span> <span class="st">"https://github.com/ymat2/bithon"</span></span></code></pre></div>
+</div>
+<dl>
+<dt><code>name</code></dt>
+<dd>
+PyPI 既存のものと被ってはいけないらしいが、git から利用する分には OK？
+</dd>
+<dt><code>version</code></dt>
+<dd>
+コードを更新した時は番号を変えないと <code>pip install --upgrade</code> で更新されない。
+</dd>
+<dt><code>dependencies</code></dt>
+<dd>
+リスト形式で依存パッケージを記載する。
+</dd>
+</dl>
+</section>
+</section>
+<section id="setup.py-を使う方法" class="level2">
+<h2 class="anchored" data-anchor-id="setup.py-を使う方法"><code>setup.py</code> を使う方法</h2>
+<div class="note">
+<p><code>setuptools</code> に依存する <code>setup.py</code> を使う方法は現在は非推奨 (Legacy) らしい。 <code>pyproject.toml</code> で一元管理する方法が主流で、<a href="https://python-poetry.org/">Poetry</a> など パッケージ作成をラクに行えるツールがあるっぽい。</p>
+</div>
+<p>ファイル構成:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mython/</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>├── LICENSE</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>├── README.md</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>├── setup.py</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>├── mython/</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>│   ├── __init__.py</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>│   └── mython  # 拡張子なしでもいい</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>└── tests/</span></code></pre></div>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>setup.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb3" data-filename="setup.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> setuptools <span class="im">import</span> setup</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>setup(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  name <span class="op">=</span> <span class="st">"mython"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  version <span class="op">=</span> <span class="st">"0.1.0"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  python_requires <span class="op">=</span> <span class="st">"&gt;=3.6"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  scripts <span class="op">=</span> [<span class="st">"mython/mython"</span>,]</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb5" data-filename="setup.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> setuptools <span class="im">import</span> setup</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>setup(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  name <span class="op">=</span> <span class="st">"mython"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  version <span class="op">=</span> <span class="st">"0.1.0"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  python_requires <span class="op">=</span> <span class="st">"&gt;=3.6"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  scripts <span class="op">=</span> [<span class="st">"mython/mython"</span>,]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
-<p>これで最低限の雛形ができたはずなので、 ディレクトリを移動して <code>pip</code> でインストール:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install <span class="at">-e</span> ~/work/mython/</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Defaulting to user installation because normal site-packages is not writeable</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtaining file:///home/yukimatsu/work/mython</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   Preparing metadata (setup.py) ... done</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Installing collected packages: mython</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   Running setup.py develop for mython</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Successfully installed mython-0.1.0</span></span></code></pre></div>
-<p><code>pip3 list</code> で確認するとちゃんと入ってる。</p>
-<p>いざ動かしてみる:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mython</span> <span class="at">-t</span> world</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Hello, world !</span></span></code></pre></div>
-<p>ちゃんと動いてる。感動。</p>
-<section id="subpackage-の追加" class="level3">
-<h3 class="anchored" data-anchor-id="subpackage-の追加">Subpackage の追加</h3>
-<p>Subpackage を追加してみる。 <a href="https://docs.python.org/3/tutorial/modules.html" class="uri">https://docs.python.org/3/tutorial/modules.html</a> を参考に。</p>
-<p>ファイル構成を変更:</p>
+<section id="サブディレクトリありの場合" class="level3">
+<h3 class="anchored" data-anchor-id="サブディレクトリありの場合">サブディレクトリありの場合</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mython/</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>├── LICENSE</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>├── README.md</span>
@@ -554,108 +573,6 @@ window.Quarto = {
 </dd>
 <dd>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  __all__ <span class="op">=</span> [<span class="st">"hello"</span>, <span class="st">"bye"</span>]</span></code></pre></div>
-</dd>
-</dl>
-<p><code>mython/mython</code> に追記:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mython.util <span class="im">import</span> <span class="op">*</span></span></code></pre></div>
-</section>
-<section id="github-から-pip-で入れるテスト" class="level3">
-<h3 class="anchored" data-anchor-id="github-から-pip-で入れるテスト">GitHub から <code>pip</code> で入れるテスト</h3>
-<p>パッケージを GitHub に <code>push</code> したのち、</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> pip install git+https://github.com/ymat2/mython</span></code></pre></div>
-<p>で入る。</p>
-<hr>
-<p>以下はちょっと苦戦した時のメモ:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install git+https://github.com/ymat2/mython</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Defaulting to user installation because normal site-packages is not writeable</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Collecting git+https://github.com/ymat2/mython</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   Cloning https://github.com/ymat2/mython to /private/var/folders/fv/v04jv6qj0s706gpx_1xmtb6h0000gn/T/pip-req-build-wybszzlv</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   Running command git clone --filter=blob:none --quiet https://github.com/ymat2/mython /private/var/folders/fv/v04jv6qj0s706gpx_1xmtb6h0000gn/T/pip-req-build-wybszzlv</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   Resolved https://github.com/ymat2/mython to commit 768582b5d3b1beeb907c7069ad9e1262ceff8e8a</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   Preparing metadata (setup.py) ... done</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Building wheels for collected packages: mython</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   Building wheel for mython (setup.py) ... done</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   Created wheel for mython: filename=mython-0.1.0-py3-none-any.whl size=2184 sha256=e027f1c56c0875027c675bae7ed8e6e930d5eda94ba56a3c89c8ab7a44d5c9cd</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   Stored in directory: /private/var/folders/fv/v04jv6qj0s706gpx_1xmtb6h0000gn/T/pip-ephem-wheel-cache-h9514znu/wheels/ff/f8/78/b8c23ba02469077c837d9d6e6265973e5322a7fae67b897fdf</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Successfully built mython</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Installing collected packages: mython</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Successfully installed mython-0.1.0</span></span></code></pre></div>
-<p>入った。PATH も通ってる。でも動かしてみると <code>ModuleNotFound</code> となる:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mython</span> <span class="at">-t</span> world</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Traceback (most recent call last):</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   File "/Users/yukimatsuda/Library/Python/3.9/bin/mython", line 4, in &lt;module&gt;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     from mython.util import *</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ModuleNotFoundError: No module named 'mython'</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> mython</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># /Users/yukimatsuda/Library/Python/3.9/bin/mython</span></span></code></pre></div>
-<p>どうも Python または <code>pip</code> のバージョン齟齬の問題だったよう。 PATH の通った <code>python3</code> 越しに <code>pip</code> を使うとうまくいった。</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> pip install git+https://github.com/ymat2/mython</span></code></pre></div>
-<p><a href="../python/0_install.html"><code>.venv</code></a> で仮想環境の中に入れたり、 ローカルコピーで使う分には無問題。</p>
-</section>
-</section>
-<section id="pyproject.toml-を使って作ってみる" class="level2">
-<h2 class="anchored" data-anchor-id="pyproject.toml-を使って作ってみる"><code>pyproject.toml</code> を使って作ってみる</h2>
-<dl>
-<dt>成果物</dt>
-<dd>
-<a href="https://github.com/ymat2/bithon" class="uri">https://github.com/ymat2/bithon</a>
-</dd>
-</dl>
-<p>ファイル構成:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>bithon/</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>├── LICENSE</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>├── README.md</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>├── pyproject.toml</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>├── src/bithon/</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>│   ├── __init__.py</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>│   └── bithon.py  # setup.py のときは拡張子なしでもよかったけど、pyproject.toml では NG らしい?</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>└── tests/</span></code></pre></div>
-<section id="pyproject.toml-の書き方" class="level3">
-<h3 class="anchored" data-anchor-id="pyproject.toml-の書き方"><code>pyproject.toml</code> の書き方</h3>
-<p><code>[build-system]</code> では、どのビルドツールを使ってパッケージを作るかを指定する。 <a href="https://packaging.python.org/en/latest/tutorials/packaging-projects/#creating-pyproject-toml">書き方はツールごとに決まっている</a>。</p>
-<p>例えば <a href="https://pypi.org/project/hatchling/">Hatchling</a> の場合:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>pyproject.toml</strong></pre>
-</div>
-<div class="sourceCode" id="cb14" data-filename="pyproject.toml"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[build-system]</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"hatchling"</span><span class="op">]</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"hatchling.build"</span></span></code></pre></div>
-</div>
-<p><code>[project]</code> では、パッケージのメタ情報を記載する:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>pyproject.toml</strong></pre>
-</div>
-<div class="sourceCode" id="cb15" data-filename="pyproject.toml"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"bithon"</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.0.1"</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">{ </span><span class="dt">name</span><span class="op">=</span><span class="st">"ymat2"</span><span class="op">, </span><span class="dt">email</span><span class="op">=</span><span class="st">"yuki.matsuda.r7@dc.tohoku.ac.jp"</span><span class="op"> },</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Personal python package for bioinformatics"</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="dt">license</span> <span class="op">=</span> <span class="op">{</span><span class="dt">file</span><span class="op"> =</span> <span class="st">"LICENSE"</span><span class="op">}</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.8"</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[]</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="kw">[project.urls]</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="dt">Homepage</span> <span class="op">=</span> <span class="st">"https://ymat2.github.io"</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="dt">Repository</span> <span class="op">=</span> <span class="st">"https://github.com/ymat2/bithon"</span></span></code></pre></div>
-</div>
-<dl>
-<dt><code>name</code></dt>
-<dd>
-PyPI 既存のものと被ってはいけないらしいが、git から利用する分には OK？
-</dd>
-<dt><code>version</code></dt>
-<dd>
-コードを更新した時は番号を変えないと <code>pip install --upgrade</code> で更新されない。
-</dd>
-<dt><code>dependencies</code></dt>
-<dd>
-リスト形式で依存パッケージを記載する。
 </dd>
 </dl>
 

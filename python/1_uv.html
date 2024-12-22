@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EvolTree – Yuki MATSUDA</title>
+<title>uv – Yuki MATSUDA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -167,7 +167,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">EvolTree — Python で dN/dS 解析</h1>
+          <h1 class="quarto-secondary-nav-title">uv — Rust 製 Python マネージャ</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -366,7 +366,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python/1_uv.html" class="sidebar-item-text sidebar-link">
+  <a href="../python/1_uv.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">uv</span></a>
   </div>
 </li>
@@ -384,7 +384,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python/evoltree.html" class="sidebar-item-text sidebar-link active">
+  <a href="../python/evoltree.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EvolTree</span></a>
   </div>
 </li>
@@ -445,7 +445,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">EvolTree — Python で dN/dS 解析</h1></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">uv — Rust 製 Python マネージャ</h1></header>
 
 <header id="title-block-header">
 
@@ -454,165 +454,205 @@ window.Quarto = {
 </header>
 
 
-<p><code>EvolTree</code> は、<a href="http://etetoolkit.org/">ETE toolkit</a> の <a href="../bio/ete-toolkit.html">ete-evol</a> を Python スクリプトの中で動かすための拡張クラス。</p>
 <ul>
-<li>reference: <a href="http://etetoolkit.org/docs/latest/reference/reference_evoltree.html" class="uri">http://etetoolkit.org/docs/latest/reference/reference_evoltree.html</a></li>
-<li>tutorial: <a href="http://etetoolkit.org/docs/latest/tutorial/tutorial_adaptation.html" class="uri">http://etetoolkit.org/docs/latest/tutorial/tutorial_adaptation.html</a></li>
+<li><a href="https://docs.astral.sh/uv/" class="uri">https://docs.astral.sh/uv/</a></li>
+<li><a href="https://github.com/astral-sh/uv" class="uri">https://github.com/astral-sh/uv</a></li>
 </ul>
+<p>Python プロジェクト管理、コマンドラインツール管理、Python バージョン管理など一通りの機能を備える。 Rust 製で高速。</p>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<p><a href="../bio/ete-toolkit.html">ete-toolkit</a> を参照</p>
+<p><a href="https://docs.astral.sh/uv/getting-started/installation/" class="uri">https://docs.astral.sh/uv/getting-started/installation/</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Linux and MacOS</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Windows</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">powershell</span> <span class="at">-c</span> <span class="st">"irm https://astral.sh/uv/install.ps1 | iex"</span></span></code></pre></div>
+<p>Unix 系 OS では <code>.bashrc</code>, <code>.bash_profile</code>, <code>.profile</code> の全部に <code>. "$HOME/.cargo/env"</code> が追加される。 先に Rust の環境作っておけばカスタム可能かも。</p>
+<p>Windows ではcurrent user &amp; current host の <code>.ps1</code> に PATH 設定が追記される。</p>
+<p>ほかに <code>pipx</code>, <code>pip</code>, Homebrew, Docker でも入る。 先に Rust の環境があって Crate として入れる場合は GitHub から入れる:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pipx</span> install uv</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install uv</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install uv  <span class="co"># MacOS</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">winget</span> install <span class="at">--id</span><span class="op">=</span>astral-sh.uv  <span class="at">-e</span>  <span class="co"># Windows</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> install <span class="at">--git</span> https://github.com/astral-sh/uv uv</span></code></pre></div>
 </section>
-<section id="準備" class="level2">
-<h2 class="anchored" data-anchor-id="準備">準備</h2>
-<p>系統樹とアライメントを読み込む:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ete3 <span class="im">import</span> EvolTree</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>tree <span class="op">=</span> EvolTree(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"((Hylobates_lar,(Gorilla_gorilla,Pan_troglodytes)),Papio_cynocephalus);"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  binpath <span class="op">=</span> path_to_codeml</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>tree.link_to_alignment(<span class="st">"""</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">  &gt;Hylobates_lar</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">  ATGGCCAGGTACAGATGCTGCCGCAGCCAGAGCCGGAGCAGATGTTACCG</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">  CCAGAGCCGGAGCAGATGTTACCGCCAGAGGCAAAGCCAGAGTCGGAGCA</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">  GATGTTACCGCCAGAGCCAGAGCCGGAGCAGATGTTACCGCCAGAGACAA</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st">  AGAAGTCGGAGACGAAGGAGGCGGAGCTGCCAGACACGGAGGAGAGCCAT</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="st">  GAGGTGT---CGCCGCAGGTACAGGCTGAGACGTAGAAGCTGTTACCACA</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="st">  TTGTATCT</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="st">  &gt;Papio_cynocephalus</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="st">  ATGGCCAGGTACAGATGCTGCCGCAGCCAGAGCCGAAGCAGATGCTATCG</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="st">  CCAGAGCCGGAGCAGATGTAACCGCCAGAGACAGAGCCAAAGCCGGAGAA</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="st">  GCTGCTATCGCCAGAGCCAAAGCCGGAGCAGATGTTACCGCCAGAGACAG</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="st">  AGAAGTCGTAGACGAAGGAGGCGACGCTGCCAGACACGGAGGAGAGCCAT</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="st">  GAGGTGCTTCCGCCGCAGGTACAGGCTGAGGCGTAGGAGGCCCTATCACA</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="st">  TCGTGTCT</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="st">  &gt;Gorilla_gorilla</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="st">  ATGGCCAGGTACAGATGCTGTCGCAGCCAGAGCCGCAGCAGATGTTACCG</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="st">  GCAGAGCCGGAGCAGGTGTTACCGGCAGAGACAAAGCCAGAGCCGGAGCA</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="st">  GATGCTACCGGCAGAGCCAAAGCCGGAGCAGGTGTTACCGGCAGAGACAA</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="st">  AGAAGTCGCAGACGTAGGCGGAGGAGCTGCCAGACACGGAGGAGAGCCAT</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="st">  GAGGTGCTGCCGCCGCAGGTACAGACTGAGACGTAGAAGACCCTATCATA</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="st">  TTGTATCT</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="st">  &gt;Pan_troglodytes</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="st">  ATGGCCAGGTACAGATGCTGTCGCAGCCAGAGCCGGAGCAGATGTTACCG</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="st">  GCAGAGACGGAGCAGGTGTTACCGGCAAAGGCAAAGCCAAAGTCGGAGCA</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="st">  GATGTTACCGGCAGAGCCAGAGACGGAGCAGGTGTTACCGGCAAAGACAA</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="st">  AGAAGTCGCAGACGAAGGCGACGGAGCTGCCAGACACGGAGGAGAGCCAT</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="st">  GAGGTGCTGCCGCCGCAGGTACAGACTGAGACGTAAAAGATGTTACCATA</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="st">  TTGTATCT</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>tree.workdir <span class="op">=</span> <span class="st">"/path_to/my_working_directory/"</span></span></code></pre></div>
-<p><code>binpath</code> は何も指定しないと <code>ete3</code> と同じ PATH を探しにいって怒られる。 (<code>codeml</code> に PATH を通していても。)</p>
-</section>
-<section id="共通" class="level2">
-<h2 class="anchored" data-anchor-id="共通">共通</h2>
+<section id="python-インストーラとしての使用" class="level2">
+<h2 class="anchored" data-anchor-id="python-インストーラとしての使用">Python インストーラとしての使用</h2>
+<p><a href="https://docs.astral.sh/uv/guides/install-python/" class="uri">https://docs.astral.sh/uv/guides/install-python/</a></p>
+<div class="note">
+<p><code>uv python install</code> は<a href="https://github.com/indygreg/python-build-standalone">サードパーティ</a>製の binary distribution をとってくる。</p>
+<p><code>uv</code> で入れた Python は現在のところグローバルな使用は想定されていない。 <code>uv run</code> を介すか仮想環境中で使う。</p>
+</div>
 <dl>
-<dt><code>tree.mark_tree(node_ids, marks)</code></dt>
+<dt><code>uv python install</code></dt>
 <dd>
-branch モデルや branch-site モデルに使う系統樹のマーキングをする。
+Python のバージョンを指定してインストール
 </dd>
 <dd>
-<code>node_ids</code>、<code>marks</code> には、同じ長さのリストを渡す。
+指定しなければ最新版をインストール
 </dd>
+<dt><code>uv python list</code></dt>
 <dd>
-(例) <code>tree.mark_tree([2,3], marks=["#1", "#2"])</code>
+利用可能なバージョン一覧を表示
 </dd>
-<dt><code>tree.run_model(model_name)</code></dt>
+<dt><code>uv python find</code></dt>
 <dd>
-<code>binpath</code> で指定した <code>codeml</code> でモデルを推定する。
+インストール済みのバージョンを表示
 </dd>
+<dt><code>uv python pin</code></dt>
 <dd>
-モデルの種類については <a href="{{< ref ete-toolkit.md >}}">ete-evol</a> を参照。
+カレントプロジェクトで使用する Python のバージョンを固定
 </dd>
-<dt><code>tree.get_evol_model(model_name)</code></dt>
+<dt><code>uv python uninstall</code></dt>
 <dd>
-推定したモデルのパラメータなどが入った <code>Model</code> オブジェクトを返す。
-</dd>
-<dt><code>tree.get_most_likely(altn, null)</code></dt>
-<dd>
-対立仮説 vs 帰無仮説での尤度比検定の P 値を返す。
+Python のバージョンを指定してアンインストール
 </dd>
 </dl>
+<p>インストール済みの Python があれば、uv は自動的にそれを使う:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~$</span> uv python list</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">cpython-3.13.0rc2-linux-x86_64-gnu</span>    <span class="op">&lt;</span>download available<span class="op">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">cpython-3.12.6-linux-x86_64-gnu</span>       <span class="op">&lt;</span>download available<span class="op">&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">cpython-3.12.3-linux-x86_64-gnu</span>       /usr/bin/python3.12</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">cpython-3.12.3-linux-x86_64-gnu</span>       /usr/bin/python3 <span class="at">-</span><span class="op">&gt;</span> python3.12</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">cpython-3.12.3-linux-x86_64-gnu</span>       /bin/python3.12</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">cpython-3.12.3-linux-x86_64-gnu</span>       /bin/python3 <span class="at">-</span><span class="op">&gt;</span> python3.12</span></code></pre></div>
+<p>Python をインストール:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~$</span> uv python install</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Searching</span> for Python installations</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Installed</span> Python 3.12.6 in 1.99s</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">+</span> cpython-3.12.6-linux-x86_64-gnu</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">~$</span> uv python list</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">cpython-3.13.0rc2-linux-x86_64-gnu</span>    <span class="op">&lt;</span>download available<span class="op">&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">cpython-3.12.6-linux-x86_64-gnu</span>       .local/share/uv/python/cpython-3.12.6-linux-x86_64-gnu/bin/python3 <span class="at">-</span><span class="op">&gt;</span> python3.12</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ex">cpython-3.12.3-linux-x86_64-gnu</span>       /usr/bin/python3.12</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ex">cpython-3.12.3-linux-x86_64-gnu</span>       /usr/bin/python3 <span class="at">-</span><span class="op">&gt;</span> python3.12</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">cpython-3.12.3-linux-x86_64-gnu</span>       /bin/python3.12</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">cpython-3.12.3-linux-x86_64-gnu</span>       /bin/python3 <span class="at">-</span><span class="op">&gt;</span> python3.12</span></code></pre></div>
+<p><code>uv</code> でインストールした python をグローバルに使いたければ インストール先を検出して自前で PATH を通せばいいはず…。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">-d</span> <span class="st">"</span><span class="va">${UV_PYTHON_INSTALL_DIR</span><span class="op">:=</span><span class="va">$(</span><span class="ex">uv</span> python dir <span class="dv">2</span><span class="op">&gt;</span>/dev/null<span class="va">)}</span><span class="st">"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">py_versions</span><span class="op">=</span><span class="va">($(</span><span class="fu">ls</span> <span class="st">"</span><span class="va">${UV_PYTHON_INSTALL_DIR}</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-V</span><span class="va">))</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">PY_LATEST</span><span class="op">=</span><span class="va">${UV_PYTHON_INSTALL_DIR}</span>/<span class="va">${py_versions</span><span class="op">[@]:</span> -<span class="dv">1</span><span class="va">}</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">PATH</span><span class="op">=</span><span class="st">"</span><span class="va">${PY_LATEST}</span><span class="st">/bin:</span><span class="va">${PATH}</span><span class="st">"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">unset</span> <span class="va">py_versions</span> <span class="va">PY_LATEST</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div>
 </section>
-<section id="site-モデル" class="level2">
-<h2 class="anchored" data-anchor-id="site-モデル">Site モデル</h2>
-<p><code>M2</code> vs <code>M1</code> で正の自然選択が働いたサイトを検出:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tree.run_model(<span class="st">"M1"</span>)    <span class="co"># 帰無仮説</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tree.run_model(<span class="st">"M2"</span>)    <span class="co"># 対立仮説</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> tree.get_evol_model(<span class="st">"M2"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>pval <span class="op">=</span> tree.get_most_likely(<span class="st">"M2"</span>, <span class="st">"M1"</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> pval <span class="op">&lt;</span> <span class="fl">0.05</span>:</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> site <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(m2.sites[<span class="st">"BEB"</span>][<span class="st">"aa"</span>])):</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> m2.sites[<span class="st">"BEB"</span>][<span class="st">"p2"</span>][site] <span class="op">&gt;</span> <span class="fl">0.95</span>:</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Positively selected site </span><span class="sc">%s</span><span class="st"> at position: </span><span class="sc">%s</span><span class="st">, with probability: </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> (model2.sites[<span class="st">'BEB'</span>][<span class="st">'aa'</span>][site], site<span class="op">+</span><span class="dv">1</span>, model2.sites[<span class="st">'BEB'</span>][<span class="st">'p2'</span>][site]))</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Model M1 is not rejected."</span>)</span></code></pre></div>
-<p><code>model.sites["BEB"]</code> には BEB 法 (Bayes empirical Bayes 法) により求められたサイトごとのパラメータが入っている。</p>
-<p><code>model.sites["BEB"]["p2"]</code> はそのサイトが <span class="math inline">\omega &gt; 1</span> で正の選択下にある事後確率であり、 一般的にはこの事後確率が0.95や0.99を超えていた場合に正の選択が働いたサイトとする。</p>
-</section>
-<section id="branch-モデル" class="level2">
-<h2 class="anchored" data-anchor-id="branch-モデル">Branch モデル</h2>
-<p><code>tree.mark_tree()</code> が <code>node_id</code> でしか動かないのが少し不便。 tip 名でうまく指定できるように関数を書く:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_node_ids(tree, names: <span class="bu">list</span>[<span class="bu">str</span>]) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">int</span>]:</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  node_ids <span class="op">=</span> [ leaf.node_id <span class="cf">for</span> leaf <span class="kw">in</span> tree <span class="cf">if</span> leaf.name <span class="kw">in</span> names ]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> node_ids</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_mrca_node_ids(tree, names: <span class="bu">list</span>[<span class="bu">str</span>]) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">int</span>]:</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  node_ids <span class="op">=</span> [ get_node(tree, name) <span class="cf">for</span> name <span class="kw">in</span> names ]</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  anc <span class="op">=</span> tree.get_common_ancestor(node_ids)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> [anc.node_id]</span></code></pre></div>
-<p><code>Gorilla_gorilla</code> と <code>Pan_troglodytes</code> の共通祖先の枝を指定:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>node_ids <span class="op">=</span> get_mrca_node_ids(tree, [<span class="st">"Gorilla_gorilla"</span>, <span class="st">"Pan_troglodytes"</span>])</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>tree.mark_tree(node_ids, marks<span class="op">=</span>[<span class="st">'#1'</span>]<span class="op">*</span><span class="bu">len</span>(node_ids))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tree.write())</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ((Hylobates_lar,(Gorilla_gorilla,Pan_troglodytes) #1),Papio_cynocephalus);</span></span></code></pre></div>
-<p><code>b_free</code> vs <code>M0</code> で特定の枝で <span class="math inline">\omega</span> が異なるかを検定:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tree.run_model(<span class="st">"b_free"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tree.run_model(<span class="st">"M0"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>b_free <span class="op">=</span> tree.get_evol_model(<span class="st">"b_free"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>pval <span class="op">=</span> tree.get_most_likely(<span class="st">"b_free"</span>, <span class="st">"M0"</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_omega(tree, model):</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">  b_free から ω を取得するのもちょっとメンドいので関数書いちゃう</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  mark2omega <span class="op">=</span> {}</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  result <span class="op">=</span> tree.get_evol_model(model)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> attr <span class="kw">in</span> result.branches.values():</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    mark <span class="op">=</span> attr.get(<span class="st">'mark'</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    omega <span class="op">=</span> attr.get(<span class="st">'w'</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    mark2omega[mark] <span class="op">=</span> omega</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> mark2omega</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> pval <span class="op">&lt;</span> <span class="fl">0.05</span>:</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  wfgb <span class="op">=</span> get_omega(tree, <span class="st">"b_free"</span>)[<span class="st">" #1"</span>]</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  wbgb <span class="op">=</span> get_omega(tree, <span class="st">"b_free"</span>)[<span class="st">" #0"</span>]</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Foreground branches evolving at omega value of </span><span class="sc">%s</span><span class="st"> significantly diferent from </span><span class="sc">%s</span><span class="st">.' % (wfrg, wbkg)"</span>)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Model b_neut is not rejected."</span>)</span></code></pre></div>
-<p>正の選択かどうか調べたければ <code>b_free</code> vs <code>b_neut</code> をやって <code>wfgb &gt; 1</code> かどうかをみる。</p>
-</section>
-<section id="branch-site-モデル" class="level2">
-<h2 class="anchored" data-anchor-id="branch-site-モデル">Branch-site モデル</h2>
-<p>Branch モデルの時と同じ枝で、 <code>bsA</code> vs <code>bsA1</code> で正の選択が働いたサイトを検出:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tree.run_model(<span class="st">'bsA'</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tree.run_model(<span class="st">'bsA1'</span>)</span>
+<section id="プロジェクトでの使用" class="level2">
+<h2 class="anchored" data-anchor-id="プロジェクトでの使用">プロジェクトでの使用</h2>
+<ul>
+<li><a href="https://docs.astral.sh/uv/guides/projects/" class="uri">https://docs.astral.sh/uv/guides/projects/</a></li>
+<li><a href="https://docs.astral.sh/uv/concepts/projects/" class="uri">https://docs.astral.sh/uv/concepts/projects/</a></li>
+<li><a href="https://docs.astral.sh/uv/guides/publish/" class="uri">https://docs.astral.sh/uv/guides/publish/</a></li>
+</ul>
+<p>プロジェクトの立ち上げ:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init hello</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> hello</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>pval <span class="op">=</span> tree.get_most_likely(<span class="st">'bsA'</span>, <span class="st">'bsA1'</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>bsA <span class="op">=</span> tree.get_evol_model(<span class="st">'bsA'</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> pval <span class="op">&lt;</span> <span class="fl">0.05</span>:</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> site <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(bsA.sites[<span class="st">"BEB"</span>][<span class="st">"aa"</span>])):</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> bsA.sites[<span class="st">"BEB"</span>][<span class="st">"p2"</span>][site] <span class="op">&gt;</span> <span class="fl">0.95</span>:</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Positively selected site </span><span class="sc">%s</span><span class="st"> at position: </span><span class="sc">%s</span><span class="st">, with probability: </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> (bsA.sites[<span class="st">'BEB'</span>][<span class="st">'aa'</span>][site], site<span class="op">+</span><span class="dv">1</span>, bsA.sites[<span class="st">'BEB'</span>][<span class="st">'p2'</span>][site]))</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Model bsA1 is not rejected."</span>)</span></code></pre></div>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> hello <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> hello</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init</span></code></pre></div>
+<p>デフォルトでは</p>
+<ul>
+<li><code>.git/</code></li>
+<li><code>.gitignore</code></li>
+<li><code>.python-version</code></li>
+<li><code>README.md</code></li>
+<li><code>hello.py</code> (<code>{project-name}.py</code>)</li>
+<li><code>pyproject.toml</code></li>
+</ul>
+<p>が作られ、すでに <code>git init</code> もされた状態で構築される (<code>git</code> があれば)。</p>
+<p>どのようなプロジェクトにするかでいくつかオプションがある:</p>
+<dl>
+<dt><code>--package</code></dt>
+<dd>
+パッケージ用プロジェクトとして立ち上げる。
+</dd>
+<dd>
+<code>{project-name}.py</code> の代わりに <code>src/{project-name}/__init__.py</code>
+</dd>
+<dt><code>--app</code></dt>
+<dd>
+アプリケーション用プロジェクトとして立ち上げる。
+</dd>
+<dt><code>--lib</code></dt>
+<dd>
+ライブラリ用プロジェクトとして立ち上げる。
+</dd>
+<dd>
+<code>--package</code> 同様の <code>__init__.py</code> と、加えて <code>py.typed</code>
+</dd>
+</dl>
+<p>プロジェクト作成後に初めて <code>uv run</code>, <code>uv sync</code>, <code>uv lock</code> を使ったときに <code>.venv/</code> と <code>uv.lock</code> も作られる。</p>
+<dl>
+<dt><code>pyproject.toml</code></dt>
+<dd>
+プロジェクトに関わる情報を書いておくファイル。 手動で編集してもいいし、<code>uv</code> 経由でツールを入れたりすると自動で <code>dependencies</code> とかは更新される。
+</dd>
+<dt><code>.venv/</code></dt>
+<dd>
+依存ツール等のインストール先
+</dd>
+<dt><code>uv.lock</code></dt>
+<dd>
+<code>pyproject.toml</code> よりも厳密な依存関係管理のためのファイル。
+</dd>
+</dl>
+<section id="パッケージのインストール" class="level3">
+<h3 class="anchored" data-anchor-id="パッケージのインストール">パッケージのインストール</h3>
+<p>プロジェクトで使用するパッケージの管理もすべて uv がやってくれる。 例えば開発用パッケージとして <code>pytest</code> を使う場合:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add pytest <span class="at">--dev</span></span></code></pre></div>
+<p>自動で <code>pyproject.toml</code> に記述される:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[tool.uv]</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">dev-dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pytest&gt;=8.3.3"</span><span class="op">,</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div>
+</section>
+</section>
+<section id="python-製コマンドラインツールの管理" class="level2">
+<h2 class="anchored" data-anchor-id="python-製コマンドラインツールの管理">Python 製コマンドラインツールの管理</h2>
+<ul>
+<li><a href="https://docs.astral.sh/uv/concepts/tools/" class="uri">https://docs.astral.sh/uv/concepts/tools/</a></li>
+<li><a href="https://docs.astral.sh/uv/guides/tools/" class="uri">https://docs.astral.sh/uv/guides/tools/</a></li>
+</ul>
+<p>Python 製コマンドラインツールを使うためのインターフェイスとして、 インストールせず一時的に実行する <code>uvx</code> と、インストールしてグローバルに使う <code>uv tool</code> が用意されている。 (<code>uvx</code> は <code>uv tool run</code> のエイリアス。) 一応、ほとんどの場面ではインストールせず一時的に使うことが推奨されているっぽい。</p>
+<div class="note">
+<p><a href="https://peps.python.org/pep-0668/">PEP 668</a> にある通り <code>pip</code> でグローバルに使うツールを入れることができなくなったので、 今のところその代わりとしても使える。</p>
+</div>
+<section id="インストールせず一時的に使う" class="level3">
+<h3 class="anchored" data-anchor-id="インストールせず一時的に使う"><a href="https://docs.astral.sh/uv/guides/tools/#running-tools">インストールせず一時的に使う</a></h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uvx</span> ruff  <span class="co"># or `uv tool run ruff`</span></span></code></pre></div>
+</section>
+<section id="インストールして使う" class="level3">
+<h3 class="anchored" data-anchor-id="インストールして使う"><a href="https://docs.astral.sh/uv/guides/tools/#installing-tools">インストールして使う</a></h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> tool install ruff</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ruff</span></span></code></pre></div>
+<p>その他コマンド:</p>
+<dl>
+<dt><code>uv tool upgrade</code></dt>
+<dd>
+インストール済みツールのアップデート
+</dd>
+<dt><code>uv tool list</code></dt>
+<dd>
+インストール済みパッケージ一覧を表示
+</dd>
+<dt><code>uv tool uninstall</code></dt>
+<dd>
+アンインストール
+</dd>
+<dt><code>uv tool dir</code></dt>
+<dd>
+インストール先の PATH を表示
+</dd>
+<dd>
+実行ファイルのバイナリは <code>${HOME}/.local/bin</code> に入る。 (<code>--bin</code>)
+</dd>
+</dl>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

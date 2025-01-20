@@ -82,11 +82,12 @@ html {
 }
 
 main {
-	line-height: 1.4;
+	line-height: 1.5;
   background-color: $white;
 	hyphens: auto;
 	overflow-wrap: break-word;
 	text-rendering: optimizeLegibility;
+  letter-spacing: 0.025em;
 	font-kerning: normal;
 	padding: 24px;
 	box-shadow: 0 2px 5px 1px $grey3;
@@ -110,8 +111,9 @@ main {
   }
 }
 
-/*-- md2html contents --*/
-
+//
+// Fonts
+//
 h1 {
   font-weight: bold;
 }
@@ -120,7 +122,7 @@ h2 {
 	background-color: $grey2;
 	border-bottom: none;
 	padding: 0.5rem .75rem;
-	font-weight: 400;
+	font-weight: normal;
 	margin-top: 1.5em;
 	margin-bottom: 1em;
 	margin-inline-start: -12px;
@@ -131,7 +133,7 @@ h3 {
   position: relative;
   padding: .2rem 0rem;
 	border-bottom: 1.5px solid $grey3;
-	font-weight: 400;
+	font-weight: normal;
 	margin-top: 1.33em;
 	margin-bottom: 1em;
 }
@@ -160,7 +162,7 @@ h4 {
   position: relative;
   padding: .2rem 0rem;
   border-bottom: 1.5px solid $grey3;
-  font-weight: 400;
+  font-weight: normal;
 }
 
 h4:before {
@@ -184,10 +186,13 @@ h4:after {
 }
 
 h5, h6 {
-  font-weight: 400;
+  font-weight: normal;
   padding: .2rem 0rem;
 }
 
+//
+// Lists
+//
 ol, ul {
 	padding-left: 1.5em;
 }
@@ -197,7 +202,7 @@ li {
 }
 
 dl dt {
-  font-weight: 600;
+  font-weight: bold;
   margin-block-start: 1em;
 }
 
@@ -214,6 +219,9 @@ dl dd::before {
   left: -0.8em;
 }
 
+//
+// Tables
+//
 table {
 	margin-left: 0;
   margin-top: .5rem !important;
@@ -231,6 +239,9 @@ th {
 	background: $grey2;
 }
 
+//
+// Other styles
+//
 pre code {
 	font-size: 0.875rem;
 }
@@ -263,8 +274,9 @@ kbd {
 	border-radius: 3px;
 }
 
-/*-- Navbar, Sidebar --*/
-
+//
+// Navbar and Sidebar
+//
 .sidebar-navigation .sidebar-item {
 	cursor: pointer;
 }
@@ -284,8 +296,9 @@ kbd {
 	padding-left: 0.25rem;
 }
 
-/*-- codeblock --*/
-
+//
+// Codeblocks
+//
 .code-with-filename .code-with-filename-file, .code-with-filename .code-with-filename-file pre {
   background-color: #dee2e6;
 }
@@ -315,8 +328,9 @@ kbd {
   border-radius: 0.25rem;
 }
 
-/*-- Callouts --*/
-
+//
+// Callouts
+//
 div {
   .note {
   	margin-block: 0.5rem 1.5rem;
@@ -363,8 +377,9 @@ div {
 	margin: 0.2rem 0;
 }
 
-/*-- News --*/
-
+//
+// News
+//
 div {
   .news {
     width: 100%;
@@ -375,7 +390,7 @@ div {
   }
 
   .news dl dt {
-    font-weight: 600;
+    font-weight: bold;
     margin-block-start: 1em;
   }
 

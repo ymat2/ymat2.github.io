@@ -42,7 +42,7 @@ SnpEff は Java に依存するので、手元に Java 環境を整える。
 ```sh
 cd ~/bin
 wget https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.tar.gz
-tar zxvf jdk-17_linux-x64_bin.tar.gz
+tar zxvf jdk-23_linux-x64_bin.tar.gz
 ```
 
 PATH を通して動作確認:

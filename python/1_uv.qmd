@@ -54,6 +54,8 @@ binary distribution をとってくる。
 
 `uv` で入れた Python は現在のところグローバルな使用は想定されていない。
 `uv run` を介すか仮想環境中で使う。
+もしくは、[プレビュー版](https://docs.astral.sh/uv/concepts/python-versions/#installing-python-executables)
+の機能を使って `~/.local/bin` にインストールする。
 
 :::
 

@@ -2,10 +2,11 @@
 format:
   html:
     title: "Git for Windows"
-    subtitle: "Windows (PowerShell) で Git を使う"
+    subtitle: "Windows で Git を使う"
 ---
 
-
+- <https://gitforwindows.org/>
+- <https://github.com/git-for-windows>
 - <https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-PowerShell>
 - <https://qiita.com/kerobot/items/718d50ba8ebc2e199bc1>
 
@@ -62,39 +63,46 @@ Configuring experimental options
 
 Windows のホームディレクトリに `.gitconfig` ができる。
 
-```{.conf filename="~/.gitconfig"}
-[core]
-    editor = \"C:\\Users\\_username_\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
-```
-
 ここに必要な設定を追加していく:
 
 ```{.conf filename="~/.gitconfig"}
 [user]
-        name = ymat2
-        email = ymat2@users.noreply.github.com
+    name = ymat2
+    email = ymat2@users.noreply.github.com
 
 [init]
-        defaultBranch = main
+    defaultBranch = main
 
 [push]
-        default = simple
+    default = simple
 
 [pull]
-        ff = only
+    ff = only
 
 [url "git@github.com:"]
-        pushinsteadof = https://github.com/
+    pushinsteadof = https://github.com/
 
 [diff]
-        submodule = log
+    submodule = log
 
 [core]
-        editor = \"C:\\Users\\_username_\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
+    editor = vim
 ```
 
 これだけでもほぼ Unix と同じように使える。
 実際の使い方は [Git/GitHub](/cli/git.qmd) を参照。
+
+
+## Git Bash
+
+Git for Windows に同梱されている Bash エミュレーション。
+Bash と基本的な POSIX コマンドが提供されている。
+[MSYS](https://www.msys2.org/) ベース。
+パッケージ管理ツール ( `pacman` ) とビルドツールチェイン ( `gcc` など) はなし。
+
+Git Bash アプリからターミナルを開くか、
+Windows Terminal のプロンプトの1つとして登録する。
+
 
 ## posh-git
 
@@ -102,4 +110,4 @@ Windows のホームディレクトリに `.gitconfig` ができる。
 > by providing Git status summary information that can be displayed in the PowerShell prompt
 
 らしい。
-PowerShell で Git を便利に使うためのモジュールっぽいが、必ずしも必要感ではない。
+PowerShell で Git を便利に使うためのモジュールっぽいが、必ずしも必要ではない。

@@ -1,0 +1,114 @@
+---
+format:
+  html:
+    title: "PowerShell"
+---
+
+
+<https://learn.microsoft.com/ja-jp/powershell/>
+
+Microsoft 製 CUI。
+
+
+## コマンドレット
+
+PowerShellで実行できるネイティブコマンドはコマンドレットと呼ばれており、
+"動詞-名詞"の名前で登録されている。
+
+```sh
+Get-Command  # すべてのコマンドレットを取得
+```
+
+Linux でいう `sudo` にあたる操作は、PowerShell を「管理者として開く」ことで実行するか、
+マシンの設定から、システム > 開発者向け で "sudo の有効化" を ON にして `sudo` を使う。
+
+### エイリアス
+
+例えばディレクトリを移るコマンドは `Set-Location` だが、要は `cd` と同じ。
+実際、`Set-Location` には `sl`, `cd`, `chdir` の3つのエイリアスが用意されている。
+
+```sh
+man Set-Location
+```
+
+他にもエイリアスを調べるには `Get-Alias`
+
+### Linux コマンド
+
+WSL を有効化していれば、`wsl` に続ける形で Linux コマンドを実行可能:
+
+```sh
+which wget
+>>> NG
+
+wsl which wget
+>>> 実行可能
+```
+
+
+## PROFILE
+
+- <https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4>
+- <https://qiita.com/smicle/items/0ca4e6ae14ea92000d18>
+
+PowerShell でも Linux でいう `.profile` とか `.bashrc` を設定したい。
+設定用のファイルは `$PROFILE` で決まっており、スコープに応じて以下がある:
+
+```sh
+> echo $PROFILE.AllUsersAllHosts
+C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1
+
+> echo $PROFILE.AllUsersCurrentHost
+C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
+
+> echo $PROFILE.CurrentUserAllHosts
+C:\Users\_username_\OneDrive\ドキュメント\WindowsPowerShell\profile.ps1
+
+> echo $PROFILE.CurrentUserCurrentHost
+C:\Users\_username_\OneDrive\ドキュメント\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+```
+
+CurrentUserCurrentHost が一番安全だけど、
+`C:\Users\_username_\OneDrive\ドキュメント\` とかいう諸悪の根源ディレクトリにおきたくない。
+
+ひとまず `$PROFILE.AllUsersAllHosts` に読み込みのみの PROFILE を置いて、
+`$HOME` のスクリプトを読む、という設定にしてみる:
+
+```{.sh filename="$PROFILE.AllUsersAllHosts"}
+$USER_PROFILE="$HOME\profile.ps1"
+if (Test-Path $USER_PROFILE) {. $USER_PROFILE}
+```
+
+この PROFILE でファイルを実行する (Linux でいう `source`) には
+実行権限の付与が必要:
+
+```sh
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+```
+
+ひとまず `touch` と `which` を定義:
+
+```{.sh filename="$HOME\profile.ps1"}
+Set-Alias touch New-Item
+function which() {(Get-Command $args).Path}
+```
+
+- 引数をともなう Alias の設定は `function` を使う。
+- 既存のコマンドの上書きはできない？
+
+
+## Windows 標準のターミナル
+
+コマンドプロンプト
+: 古の Microsoft 製 CUI
+
+[PowerShell](https://learn.microsoft.com/ja-jp/powershell/)
+: コマンドプロンプトの後継 (Windows7 以降)。
+: コマンドプロンプトで使えたコマンドも基本的に使える。
+
+Windows Terminal
+: コマンドプロンプト、PowerShell、bash (WSL 経由)
+  など複数のコマンドラインシェルのホストアプリケーション。
+: <kbd>Win</kbd><kbd>X</kbd> → <kbd>I</kbd>/<kbd>A</kbd>(管理者として実行)
+: <kbd>Ctrl</kbd><kbd>,</kbd>で設定画面。
+  デフォルトのプロファイルや外観をいじれる。

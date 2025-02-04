@@ -96,12 +96,13 @@ Windows のホームディレクトリに `.gitconfig` ができる。
 ## Git Bash
 
 Git for Windows に同梱されている Bash エミュレーション。
-Bash と基本的な POSIX コマンドが提供されている。
+Bash と基本的なコマンドが提供されている。
 [MSYS](https://www.msys2.org/) ベース。
-パッケージ管理ツール ( `pacman` ) とビルドツールチェイン ( `gcc` など) はなし。
+パッケージ管理ツール (`pacman`) とビルドツールチェイン (`gcc` など) は付いていない。
 
 Git Bash アプリからターミナルを開くか、
 Windows Terminal のプロンプトの1つとして登録する。
+起動オプションで明示的にログインシェルとして立ち上げる `--login` 必要がある?
 
 
 ## posh-git

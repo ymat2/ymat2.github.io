@@ -167,7 +167,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Git for Windows — Windows (PowerShell) で Git を使う</h1>
+          <h1 class="quarto-secondary-nav-title">Git for Windows — Windows で Git を使う</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -445,7 +445,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">Git for Windows — Windows (PowerShell) で Git を使う</h1></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">Git for Windows — Windows で Git を使う</h1></header>
 
 <header id="title-block-header">
 
@@ -455,6 +455,8 @@ window.Quarto = {
 
 
 <ul>
+<li><a href="https://gitforwindows.org/" class="uri">https://gitforwindows.org/</a></li>
+<li><a href="https://github.com/git-for-windows" class="uri">https://github.com/git-for-windows</a></li>
 <li><a href="https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-PowerShell" class="uri">https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-PowerShell</a></li>
 <li><a href="https://qiita.com/kerobot/items/718d50ba8ebc2e199bc1" class="uri">https://qiita.com/kerobot/items/718d50ba8ebc2e199bc1</a></li>
 </ul>
@@ -523,48 +525,46 @@ Enable symboic links
 <section id="グローバル設定" class="level2">
 <h2 class="anchored" data-anchor-id="グローバル設定">グローバル設定</h2>
 <p>Windows のホームディレクトリに <code>.gitconfig</code> ができる。</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>~/.gitconfig</strong></pre>
-</div>
-<div class="sourceCode" id="cb1" data-filename="~/.gitconfig"><pre class="sourceCode conf"><code class="sourceCode toml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[core]</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">editor</span> <span class="op">=</span> <span class="er">\</span><span class="dt">"C:</span><span class="sc">\\</span><span class="dt">Users</span><span class="sc">\\</span><span class="dt">_username_</span><span class="sc">\\</span><span class="dt">AppData</span><span class="sc">\\</span><span class="dt">Local</span><span class="sc">\\</span><span class="dt">Programs</span><span class="sc">\\</span><span class="dt">Microsoft VS Code</span><span class="sc">\\</span><span class="dt">bin</span><span class="sc">\\</span><span class="dt">code</span><span class="sc">\"</span><span class="dt"> --wait</span></span></code></pre></div>
-</div>
 <p>ここに必要な設定を追加していく:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>~/.gitconfig</strong></pre>
 </div>
-<div class="sourceCode" id="cb2" data-filename="~/.gitconfig"><pre class="sourceCode conf"><code class="sourceCode toml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[user]</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="dt">name</span> <span class="op">=</span> <span class="dt">ymat2</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">email</span> <span class="op">=</span> <span class="dt">ymat2</span><span class="er">@</span><span class="dt">users.noreply.github.com</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">[init]</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">defaultBranch</span> <span class="op">=</span> <span class="dt">main</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">[push]</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">default</span> <span class="op">=</span> <span class="dt">simple</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">[pull]</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ff</span> <span class="op">=</span> <span class="dt">only</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">[url</span> <span class="kw">"</span><span class="dt">git@github.com:"</span><span class="kw">]</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">pushinsteadof</span> <span class="op">=</span> <span class="dt">https</span><span class="er">://</span><span class="dt">github.com</span><span class="er">/</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">[diff]</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="dt">submodule</span> <span class="op">=</span> <span class="dt">log</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">[core]</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="dt">editor</span> <span class="op">=</span> <span class="er">\</span><span class="dt">"C:</span><span class="sc">\\</span><span class="dt">Users</span><span class="sc">\\</span><span class="dt">_username_</span><span class="sc">\\</span><span class="dt">AppData</span><span class="sc">\\</span><span class="dt">Local</span><span class="sc">\\</span><span class="dt">Programs</span><span class="sc">\\</span><span class="dt">Microsoft VS Code</span><span class="sc">\\</span><span class="dt">bin</span><span class="sc">\\</span><span class="dt">code</span><span class="sc">\"</span><span class="dt"> --wait</span></span></code></pre></div>
+<div class="sourceCode" id="cb1" data-filename="~/.gitconfig"><pre class="sourceCode conf"><code class="sourceCode toml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[user]</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">name</span> <span class="op">=</span> <span class="dt">ymat2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">email</span> <span class="op">=</span> <span class="dt">ymat2</span><span class="er">@</span><span class="dt">users.noreply.github.com</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">[init]</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">defaultBranch</span> <span class="op">=</span> <span class="dt">main</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">[push]</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">default</span> <span class="op">=</span> <span class="dt">simple</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">[pull]</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ff</span> <span class="op">=</span> <span class="dt">only</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">[url</span> <span class="kw">"</span><span class="dt">git@github.com:"</span><span class="kw">]</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pushinsteadof</span> <span class="op">=</span> <span class="dt">https</span><span class="er">://</span><span class="dt">github.com</span><span class="er">/</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="kw">[diff]</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">submodule</span> <span class="op">=</span> <span class="dt">log</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="kw">[core]</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">editor</span> <span class="op">=</span> <span class="dt">vim</span></span></code></pre></div>
 </div>
 <p>これだけでもほぼ Unix と同じように使える。 実際の使い方は <a href="../cli/git.html">Git/GitHub</a> を参照。</p>
+</section>
+<section id="git-bash" class="level2">
+<h2 class="anchored" data-anchor-id="git-bash">Git Bash</h2>
+<p>Git for Windows に同梱されている Bash エミュレーション。 Bash と基本的な POSIX コマンドが提供されている。 <a href="https://www.msys2.org/">MSYS</a> ベース。 パッケージ管理ツール ( <code>pacman</code> ) とビルドツールチェイン ( <code>gcc</code> など) はなし。</p>
+<p>Git Bash アプリからターミナルを開くか、 Windows Terminal のプロンプトの1つとして登録する。</p>
 </section>
 <section id="posh-git" class="level2">
 <h2 class="anchored" data-anchor-id="posh-git">posh-git</h2>
 <blockquote class="blockquote">
 <p>posh-git is a PowerShell module that integrates Git and PowerShell by providing Git status summary information that can be displayed in the PowerShell prompt</p>
 </blockquote>
-<p>らしい。 PowerShell で Git を便利に使うためのモジュールっぽいが、必ずしも必要感ではない。</p>
+<p>らしい。 PowerShell で Git を便利に使うためのモジュールっぽいが、必ずしも必要ではない。</p>
 
 
 </section>

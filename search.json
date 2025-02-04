@@ -46,7 +46,7 @@
   {
     "objectID": "win/git4win.html#git-for-windows-をインストールする",
     "href": "win/git4win.html#git-for-windows-をインストールする",
-    "title": "Git for Windows — Windows (PowerShell) で Git を使う",
+    "title": "Git for Windows — Windows で Git を使う",
     "section": "Git for Windows をインストールする",
     "text": "Git for Windows をインストールする\nDownload for Windows のページからインストーラを入手。\nインストール時の設定は基本的にデフォルトでいい。 コミット時のエディタと git pull の挙動は適当なものを選ぶ。\n\nSelect Destination Location\n\nC:\\Program Files\\Git\n\nSelect Components, Select Start Menu Folder\n\ndefault\n\nChoosing the default editor used by Git\n\nUse Visual Studio Code as Git’s default editor\n\nAdjusting the name of the initil branch in new repositories\n\nOverride the default branch name for new repositories main\n\nAdjusting your PATH environment\n\nGit from the command line and also from 3rd-party software (recommended)\n\nChoosing the SSH executable\n\nUse bundle OpenSSH\n\nChoose HTTPS transport backend\n\nUse the OpenSSL library\n\nConfiguring the line ending conversion\n\nCheckout Windows-style, commit Unix-style line ending\n\nConfiguring the terminal emulator to use with Git Bash\n\nUse MinTTY (the default terminal of MSYS2)\n\nChoose the default behavior of git pull\n\nFast-forward or merge\n\nChoose a credential helper\n\nGit Credential Manager\n\nConfiguring extra options\n\nEnable file system caching\n\n\nEnable symboic links\n\nConfiguring experimental options\n\nチェックなし",
     "crumbs": [
@@ -57,9 +57,20 @@
   {
     "objectID": "win/git4win.html#グローバル設定",
     "href": "win/git4win.html#グローバル設定",
-    "title": "Git for Windows — Windows (PowerShell) で Git を使う",
+    "title": "Git for Windows — Windows で Git を使う",
     "section": "グローバル設定",
-    "text": "グローバル設定\nWindows のホームディレクトリに .gitconfig ができる。\n\n\n~/.gitconfig\n\n[core]\n    editor = \\\"C:\\\\Users\\\\_username_\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code\\\\bin\\\\code\\\" --wait\n\nここに必要な設定を追加していく:\n\n\n~/.gitconfig\n\n[user]\n        name = ymat2\n        email = ymat2@users.noreply.github.com\n\n[init]\n        defaultBranch = main\n\n[push]\n        default = simple\n\n[pull]\n        ff = only\n\n[url \"git@github.com:\"]\n        pushinsteadof = https://github.com/\n\n[diff]\n        submodule = log\n\n[core]\n        editor = \\\"C:\\\\Users\\\\_username_\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code\\\\bin\\\\code\\\" --wait\n\nこれだけでもほぼ Unix と同じように使える。 実際の使い方は Git/GitHub を参照。",
+    "text": "グローバル設定\nWindows のホームディレクトリに .gitconfig ができる。\nここに必要な設定を追加していく:\n\n\n~/.gitconfig\n\n[user]\n    name = ymat2\n    email = ymat2@users.noreply.github.com\n\n[init]\n    defaultBranch = main\n\n[push]\n    default = simple\n\n[pull]\n    ff = only\n\n[url \"git@github.com:\"]\n    pushinsteadof = https://github.com/\n\n[diff]\n    submodule = log\n\n[core]\n    editor = vim\n\nこれだけでもほぼ Unix と同じように使える。 実際の使い方は Git/GitHub を参照。",
+    "crumbs": [
+      "Windows",
+      "Git for Windows"
+    ]
+  },
+  {
+    "objectID": "win/git4win.html#git-bash",
+    "href": "win/git4win.html#git-bash",
+    "title": "Git for Windows — Windows で Git を使う",
+    "section": "Git Bash",
+    "text": "Git Bash\nGit for Windows に同梱されている Bash エミュレーション。 Bash と基本的な POSIX コマンドが提供されている。 MSYS ベース。 パッケージ管理ツール ( pacman ) とビルドツールチェイン ( gcc など) はなし。\nGit Bash アプリからターミナルを開くか、 Windows Terminal のプロンプトの1つとして登録する。",
     "crumbs": [
       "Windows",
       "Git for Windows"
@@ -68,9 +79,9 @@
   {
     "objectID": "win/git4win.html#posh-git",
     "href": "win/git4win.html#posh-git",
-    "title": "Git for Windows — Windows (PowerShell) で Git を使う",
+    "title": "Git for Windows — Windows で Git を使う",
     "section": "posh-git",
-    "text": "posh-git\n\nposh-git is a PowerShell module that integrates Git and PowerShell by providing Git status summary information that can be displayed in the PowerShell prompt\n\nらしい。 PowerShell で Git を便利に使うためのモジュールっぽいが、必ずしも必要感ではない。",
+    "text": "posh-git\n\nposh-git is a PowerShell module that integrates Git and PowerShell by providing Git status summary information that can be displayed in the PowerShell prompt\n\nらしい。 PowerShell で Git を便利に使うためのモジュールっぽいが、必ずしも必要ではない。",
     "crumbs": [
       "Windows",
       "Git for Windows"

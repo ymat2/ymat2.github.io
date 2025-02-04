@@ -426,6 +426,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../win/powershell.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PowerShell</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../win/wsl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">WSL</span></a>
   </div>
@@ -433,7 +439,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL Disk space</span></a>
+ <span class="menu-text">WSL Disk Space</span></a>
   </div>
 </li>
       </ul>
@@ -456,111 +462,57 @@ window.Quarto = {
 
 <section id="はじめに" class="level2">
 <h2 class="anchored" data-anchor-id="はじめに">はじめに</h2>
-<p>Windows で Linux や Mac と同じようにコマンドラインツールを使う場合、 <a href="../win/wsl.html">WSL (Windows Subsystem for Linux)</a> を使うのが便利。</p>
-<p>一方、WSL は Windows 上で Linux ディストリビューションを利用できて便利な反面、 VSCode でリモート開発を使おうとすると不便があったり、 <a href="../win/wsl-disk-space.html">ディスクスペースを食いつぶす問題</a>があったりする。</p>
-<p>それを避けて Linux 系の作業はリモートマシンでやる、とした際に、 手元の Windows でもある程度コマンドラインの環境を整えたい、というときの Tips。 (私も試行錯誤中なので変わるかもしれない。)</p>
-<div class="warn">
-<p>デスクトップを OneDrive 下に置く設定は無効にしておいた方が CUI 操作のうえでは安全。</p>
-</div>
-</section>
-<section id="powershell" class="level2">
-<h2 class="anchored" data-anchor-id="powershell">PowerShell</h2>
-<p>基本的には Microsoft 製の CUI である <a href="https://learn.microsoft.com/ja-jp/powershell/">PowerShell</a> での作業となる。 UNIX でいう <code>sudo</code> にあたる操作は、PowerShell を「管理者として開く」ことで実行する。</p>
-<section id="コマンドレット" class="level3">
-<h3 class="anchored" data-anchor-id="コマンドレット">コマンドレット</h3>
-<p>PowerShellで実行できるネイティブコマンドはコマンドレットと呼ばれており、 “動詞-名詞”の名前で登録されている。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Get-Command</span>  <span class="co"># すべてのコマンドレットを取得</span></span></code></pre></div>
-</section>
-<section id="エイリアス" class="level3">
-<h3 class="anchored" data-anchor-id="エイリアス">エイリアス</h3>
-<p>例えばディレクトリを移るコマンドは <code>Set-Location</code> だが、要は <code>cd</code> と同じ。 実際、<code>Set-Location</code> には <code>sl</code>, <code>cd</code>, <code>chdir</code> の3つのエイリアスが用意されている。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> Set-Location</span></code></pre></div>
-<p>他にもエイリアスを調べるには <code>Get-Alias</code></p>
-</section>
-<section id="linux-コマンド" class="level3">
-<h3 class="anchored" data-anchor-id="linux-コマンド">Linux コマンド</h3>
-<p>WSL を有効化していれば、<code>wsl</code> に続ける形で Linux コマンドを実行可能:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> wget</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> NG</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">wsl</span> which wget</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> 実行可能</span></code></pre></div>
-</section>
-<section id="profile" class="level3">
-<h3 class="anchored" data-anchor-id="profile">PROFILE</h3>
-<ul>
-<li><a href="https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4" class="uri">https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4</a></li>
-<li><a href="https://qiita.com/smicle/items/0ca4e6ae14ea92000d18" class="uri">https://qiita.com/smicle/items/0ca4e6ae14ea92000d18</a></li>
-</ul>
-<p>PowerShell でも Linux でいう <code>.profile</code> とか <code>.bashrc</code> を設定したい。 設定用のファイルは <code>$PROFILE</code> で決まっており、スコープに応じて以下がある:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">$PROFILE</span><span class="ex">.AllUsersAllHosts</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">$PROFILE</span><span class="ex">.AllUsersCurrentHost</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">$PROFILE</span><span class="ex">.CurrentUserAllHosts</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Users\_username_\OneDrive\ドキュメント\WindowsPowerShell\profile.ps1</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">$PROFILE</span><span class="ex">.CurrentUserCurrentHost</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Users\_username_\OneDrive\ドキュメント\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</span></span></code></pre></div>
-<p>CurrentUserCurrentHost が一番安全だけど、 <code>C:\Users\_username_\OneDrive\ドキュメント\</code> とかいう諸悪の根源ディレクトリにおきたくない。</p>
-<p>ひとまず <code>$PROFILE.AllUsersAllHosts</code> に読み込みのみの PROFILE を置いて、 <code>$HOME</code> のスクリプトを読む、という設定にしてみる:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>$PROFILE.AllUsersAllHosts</strong></pre>
-</div>
-<div class="sourceCode" id="cb5" data-filename="$PROFILE.AllUsersAllHosts"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">$USER_PROFILE</span><span class="ex">=</span><span class="st">"</span><span class="va">$HOME</span><span class="st">\profile.ps1"</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">(</span><span class="ex">Test-Path</span> <span class="va">$USER_PROFILE</span><span class="kw">)</span> <span class="ex">{.</span> <span class="va">$USER_PROFILE</span>}</span></code></pre></div>
-</div>
-<p>この PROFILE でファイルを実行する (Linux でいう <code>source</code>) には 実行権限の付与が必要:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-ExecutionPolicy</span> <span class="at">-ExecutionPolicy</span> RemoteSigned</span></code></pre></div>
-<p>ひとまず <code>touch</code> と <code>which</code> を定義:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>$HOME\profile.ps1</strong></pre>
-</div>
-<div class="sourceCode" id="cb7" data-filename="$HOME\profile.ps1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-Alias</span> touch New-Item</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> which()</span> <span class="ex">{</span><span class="kw">(</span><span class="ex">Get-Command</span> <span class="va">$args</span><span class="kw">)</span><span class="ex">.Path}</span></span></code></pre></div>
-</div>
-<ul>
-<li>引数をともなう Alias の設定は <code>function</code> を使う。</li>
-<li>既存のコマンドの上書きはできない？</li>
-</ul>
-</section>
-<section id="windows-標準のターミナル" class="level3">
-<h3 class="anchored" data-anchor-id="windows-標準のターミナル">Windows 標準のターミナル</h3>
+<p>Windows で UNIX ライクなコマンドライン操作を行うには、いくつかの選択肢がある。</p>
 <dl>
-<dt>コマンドプロンプト</dt>
+<dt><a href="../win/wsl.html">WSL (Windows Subsystem for Linux)</a></dt>
 <dd>
-古の Microsoft 製 CUI
-</dd>
-<dt><a href="https://learn.microsoft.com/ja-jp/powershell/">PowerShell</a></dt>
-<dd>
-コマンドプロンプトの後継 (Windows7 以降)。
+Windows で Linux ディストリビューションを実行する環境を提供する機能。
 </dd>
 <dd>
-コマンドプロンプトで使えたコマンドも基本的に使える。
-</dd>
-<dt>Windows Terminal</dt>
-<dd>
-コマンドプロンプト、PowerShell、bash (WSL 経由) など複数のコマンドラインシェルのホストアプリケーション。
+WSL2 からは、カーネルも Linux になっている。
 </dd>
 <dd>
-<kbd>Win</kbd><kbd>X</kbd> → <kbd>I</kbd>/<kbd>A</kbd>(管理者として実行)
+Microsoft としては WSL を推奨している。
 </dd>
 <dd>
-<kbd>Ctrl</kbd><kbd>,</kbd>で設定画面。 デフォルトのプロファイルや外観をいじれる。
+便利だが、<a href="../win/wsl-disk-space.html">ディスクスペースを食いつぶす問題</a>がある。
+</dd>
+<dt><a href="../win/powershell.html">PowerShell</a></dt>
+<dd>
+Microsoft 製 CUI。UNIX とは異なる体系。
+</dd>
+<dd>
+コマンドレットエイリアスのおかげで多少の互換はある。
+</dd>
+<dd>
+いずれにしても最初はアプリケーションのインストールのために PowerShell での作業になる。 (GUI でもいける。)
+</dd>
+<dt>Git Bash</dt>
+<dd>
+後述する <a href="../win/git4win.html">Git for Windows</a> をインストールするとついてくる UNIX ライクな環境。
+</dd>
+<dd>
+パッケージ管理とかビルドユーティリティとかはついてない最低限の構成。
+</dd>
+<dt><a href="https://www.msys2.org/">MSYS2 + MinGW</a></dt>
+<dd>
+MSYS2 は Windows における POSIX 準拠を目指した開発環境。 パッケージ管理ツールとして Arch Linux で使われる <a href="https://gitlab.archlinux.org/pacman/pacman"><code>pacman</code></a> をフォークしている。
+</dd>
+<dd>
+MinGW は Windows 用の C/C++ ビルドツールチェイン。
 </dd>
 </dl>
-</section>
+<p>他の UNIX 系 OS との互換性をできる限り保つなら WSL、 Windows (C ドライブ) 内の作業で完結させつつもビルド環境が必要なら MSYS2 + MinGW、 それ以外の用途なら PowerShell か Git Bash がいいのでは。</p>
+<div class="note">
+<p>デスクトップを OneDrive 下に置く設定は無効にして <code>C:/Users/_username_</code> で作業する方が安全。</p>
+</div>
 </section>
 <section id="パッケージ管理" class="level2">
 <h2 class="anchored" data-anchor-id="パッケージ管理">パッケージ管理</h2>
 <p>Windows におけるパッケージ管理の主な選択肢として、 Microsoft 公式の <a href="https://learn.microsoft.com/ja-jp/windows/package-manager/winget/">Winget</a>、 古株で対応するパッケージも多い <a href="https://chocolatey.org/install">Chocolatey</a>、 ユーザー権限で使いやすい <a href="https://scoop.sh/">Scoop</a> の3つがある。</p>
 <section id="winget" class="level3">
 <h3 class="anchored" data-anchor-id="winget"><a href="https://learn.microsoft.com/ja-jp/windows/package-manager/winget/">Winget</a></h3>
-<p>新しめの Windows ならデフォルトで使えるはず。</p>
+<p>新しめの Windows ならデフォルトで使えるはず。 後述のツールはどれも winget で入れることができる。</p>
 <section id="basic-usage" class="level4">
 <h4 class="anchored" data-anchor-id="basic-usage">Basic usage</h4>
 <dl>
@@ -587,7 +539,7 @@ window.Quarto = {
 <section id="chocolatey-のインストール" class="level4">
 <h4 class="anchored" data-anchor-id="chocolatey-のインストール">Chocolatey のインストール</h4>
 <p>PowerShell を<strong>管理者として</strong>開く。その後下記のインストールコマンドを実行:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-ExecutionPolicy</span> Bypass <span class="at">-Scope</span> Process <span class="at">-Force</span><span class="kw">;</span> <span class="ex">[System.Net.ServicePointManager]::SecurityProtocol</span> = <span class="pp">[</span><span class="ss">System.Net.ServicePointManager</span><span class="pp">]</span>::SecurityProtocol <span class="at">-bor</span> 3072<span class="kw">;</span> <span class="ex">iex</span> <span class="er">(</span><span class="kw">(</span><span class="ex">New-Object</span> System.Net.WebClient<span class="kw">)</span><span class="ex">.DownloadString</span><span class="er">(</span><span class="st">'https://community.chocolatey.org/install.ps1'</span><span class="kw">))</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-ExecutionPolicy</span> Bypass <span class="at">-Scope</span> Process <span class="at">-Force</span><span class="kw">;</span> <span class="ex">[System.Net.ServicePointManager]::SecurityProtocol</span> = <span class="pp">[</span><span class="ss">System.Net.ServicePointManager</span><span class="pp">]</span>::SecurityProtocol <span class="at">-bor</span> 3072<span class="kw">;</span> <span class="ex">iex</span> <span class="er">(</span><span class="kw">(</span><span class="ex">New-Object</span> System.Net.WebClient<span class="kw">)</span><span class="ex">.DownloadString</span><span class="er">(</span><span class="st">'https://community.chocolatey.org/install.ps1'</span><span class="kw">))</span></span></code></pre></div>
 </section>
 <section id="basic-usage-1" class="level4">
 <h4 class="anchored" data-anchor-id="basic-usage-1">Basic usage</h4>
@@ -611,14 +563,14 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="scoop"><a href="https://scoop.sh/">Scoop</a></h3>
 <section id="インストール" class="level4">
 <h4 class="anchored" data-anchor-id="インストール">インストール</h4>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-ExecutionPolicy</span> <span class="at">-ExecutionPolicy</span> RemoteSigned <span class="at">-Scope</span> CurrentUser</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Invoke-RestMethod</span> <span class="at">-Uri</span> https://get.scoop.sh <span class="kw">|</span> <span class="ex">Invoke-Expression</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-ExecutionPolicy</span> <span class="at">-ExecutionPolicy</span> RemoteSigned <span class="at">-Scope</span> CurrentUser</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Invoke-RestMethod</span> <span class="at">-Uri</span> https://get.scoop.sh <span class="kw">|</span> <span class="ex">Invoke-Expression</span></span></code></pre></div>
 </section>
 </section>
 </section>
 <section id="git" class="level2">
 <h2 class="anchored" data-anchor-id="git">Git</h2>
-<p>プロジェクトのバージョン管理のためにも必須。 インストールは <a href="../win/git4win.html">Git for Windows</a> を参照。</p>
+<p>プロジェクトのバージョン管理のためにも必須。 インストールは winget か、<a href="../win/git4win.html">Git for Windows</a> を参照。</p>
 </section>
 <section id="r" class="level2">
 <h2 class="anchored" data-anchor-id="r">R</h2>
@@ -631,10 +583,10 @@ window.Quarto = {
 <div class="code-with-filename-file">
 <pre><strong>settings.json</strong></pre>
 </div>
-<div class="sourceCode" id="cb10" data-filename="settings.json"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rpath.windows"</span><span class="fu">:</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">R</span><span class="ch">\\</span><span class="st">R-4.4.0</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">x64</span><span class="ch">\\</span><span class="st">R.exe"</span><span class="fu">,</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rterm.windows"</span><span class="fu">:</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">R</span><span class="ch">\\</span><span class="st">R-4.4.0</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">x64</span><span class="ch">\\</span><span class="st">Rterm.exe"</span><span class="fu">,</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb3" data-filename="settings.json"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rpath.windows"</span><span class="fu">:</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">R</span><span class="ch">\\</span><span class="st">R-4.4.0</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">x64</span><span class="ch">\\</span><span class="st">R.exe"</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rterm.windows"</span><span class="fu">:</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">R</span><span class="ch">\\</span><span class="st">R-4.4.0</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">x64</span><span class="ch">\\</span><span class="st">Rterm.exe"</span><span class="fu">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
 </div>
 </section>
 <section id="python" class="level2">
@@ -659,20 +611,20 @@ window.Quarto = {
 <p><a href="https://quarto.org/docs/get-started/" class="uri">https://quarto.org/docs/get-started/</a></p>
 <p>Windows 用のやつを入れてあげる。 (R に付属しているやつを使うことはできなさそう?)</p>
 <p>PDF のレンダリング用に tex を入れてやる (c.f. <code>~/AppData/Roaming/TinyTeX/</code>):</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code></pre></div>
 <section id="pdf-で日本語フォントを使うには" class="level3">
 <h3 class="anchored" data-anchor-id="pdf-で日本語フォントを使うには">PDF で日本語フォントを使うには?</h3>
 <p>Quarto PDF で日本語フォントを使う場合、 デフォルトでは<a href="https://github.com/trueroad/HaranoAjiFonts">原ノ味フォント</a>が使われるらしい。 Ubuntu とかは最初のインストールでプリセットされていたはずだが、 Windows の Quarto では原ノ味含め、日本語フォントがプリセットされていないっぽい。</p>
 <p>そこで、<code>tlmgr</code> を使ってフォントをインストールしてやることで使えるようになる:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> .\AppData\Roaming\TinyTeX\bin\windows\tlmgr.bat <span class="fu">install</span> haranoaji</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Locale</span> <span class="st">'Japanese_Japan.932'</span> is unsupported, and may crash the interpreter.</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> package repository https://ftp.kddilabs.jp/CTAN/systems/texlive/tlnet/ <span class="er">(</span><span class="ex">verified</span><span class="kw">)</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[1/1,</span> <span class="pp">??</span>:<span class="pp">??</span>/<span class="pp">??</span>:<span class="pp">??</span>] install: haranoaji <span class="pp">[</span><span class="ss">25570k</span><span class="pp">]</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Locale</span> <span class="st">'Japanese_Japan.932'</span> is unsupported, and may crash the interpreter.</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ex">running</span> mktexlsr ...</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span> <span class="ex">running</span> mktexlsr.</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> package log updated: C:/Users/kokep/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr.log</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> command log updated: C:/Users/kokep/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr-commands.log</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> .\AppData\Roaming\TinyTeX\bin\windows\tlmgr.bat <span class="fu">install</span> haranoaji</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Locale</span> <span class="st">'Japanese_Japan.932'</span> is unsupported, and may crash the interpreter.</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> package repository https://ftp.kddilabs.jp/CTAN/systems/texlive/tlnet/ <span class="er">(</span><span class="ex">verified</span><span class="kw">)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[1/1,</span> <span class="pp">??</span>:<span class="pp">??</span>/<span class="pp">??</span>:<span class="pp">??</span>] install: haranoaji <span class="pp">[</span><span class="ss">25570k</span><span class="pp">]</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Locale</span> <span class="st">'Japanese_Japan.932'</span> is unsupported, and may crash the interpreter.</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">running</span> mktexlsr ...</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span> <span class="ex">running</span> mktexlsr.</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> package log updated: C:/Users/kokep/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr.log</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> command log updated: C:/Users/kokep/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr-commands.log</span></code></pre></div>
 
 
 </section>

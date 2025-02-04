@@ -5,23 +5,163 @@
     <lastmod>2024-10-14T06:34:06.119Z</lastmod>
   </url>
   <url>
-    <loc>https://ymat2.github.io/win/git4win.html</loc>
-    <lastmod>2025-02-04T03:34:45.226Z</lastmod>
+    <loc>https://ymat2.github.io/win/powershell.html</loc>
+    <lastmod>2025-02-04T09:40:04.376Z</lastmod>
   </url>
   <url>
-    <loc>https://ymat2.github.io/slides/snp24/index.html</loc>
-    <lastmod>2024-11-27T03:59:56.317Z</lastmod>
+    <loc>https://ymat2.github.io/win/0-dev-win.html</loc>
+    <lastmod>2025-02-04T09:48:14.241Z</lastmod>
   </url>
   <url>
-    <loc>https://ymat2.github.io/slides/snp24/02_mapping-call.html</loc>
-    <lastmod>2024-11-28T08:22:05.759Z</lastmod>
+    <loc>https://ymat2.github.io/slides/snp24/03_snpeff.html</loc>
+    <lastmod>2024-11-27T05:14:13.087Z</lastmod>
   </url>
   <url>
-    <loc>https://ymat2.github.io/slides/minicong/minicong.html</loc>
+    <loc>https://ymat2.github.io/slides/snp24/01_basic-prefetch-qc.html</loc>
+    <lastmod>2024-11-27T04:03:51.439Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/slides/lt/tuat2024pipeline.html</loc>
     <lastmod>2024-08-25T14:20:46.000Z</lastmod>
   </url>
   <url>
-    <loc>https://ymat2.github.io/slides/lt/html-css.html</loc>
+    <loc>https://ymat2.github.io/slides/lt/gnu-nano.html</loc>
+    <lastmod>2024-08-25T14:20:46.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/slides/index.html</loc>
+    <lastmod>2024-11-27T05:24:17.705Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/slides/git-circle/git-vol1.html</loc>
+    <lastmod>2024-11-28T09:27:52.399Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/python/package.html</loc>
+    <lastmod>2024-12-22T04:23:51.401Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/python/class.html</loc>
+    <lastmod>2024-08-27T07:53:20.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/python/1_uv.html</loc>
+    <lastmod>2025-01-31T06:43:13.705Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/index.html</loc>
+    <lastmod>2024-10-14T06:43:14.233Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/cli/vi.html</loc>
+    <lastmod>2024-08-27T07:29:08.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/cli/rsync.html</loc>
+    <lastmod>2024-08-25T14:20:46.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/cli/nano.html</loc>
+    <lastmod>2024-08-27T07:21:14.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/cli/git.html</loc>
+    <lastmod>2024-10-14T03:40:54.176Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/bio/snpEff.html</loc>
+    <lastmod>2025-01-20T05:43:53.152Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/bio/paml-tutorial.html</loc>
+    <lastmod>2024-08-27T07:06:14.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/bio/ncbi_download.html</loc>
+    <lastmod>2024-08-27T06:49:42.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/bio/fst_hands_on.html</loc>
+    <lastmod>2024-10-14T03:37:58.513Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/bio/ddbj.html</loc>
+    <lastmod>2024-10-15T03:49:59.407Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/bio/cafe5.html</loc>
+    <lastmod>2024-11-27T02:48:00.170Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/archive/gollum.html</loc>
+    <lastmod>2024-10-14T06:56:50.898Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/archive/cafe.html</loc>
+    <lastmod>2024-10-14T06:57:36.997Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/archive/index.html</loc>
+    <lastmod>2024-10-14T03:08:47.945Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/bio/clusterProfiler.html</loc>
+    <lastmod>2024-08-27T06:20:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/bio/ete-toolkit.html</loc>
+    <lastmod>2024-09-14T02:05:42.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/bio/gwas.html</loc>
+    <lastmod>2024-11-06T05:10:09.278Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/bio/orthofinder.html</loc>
+    <lastmod>2024-08-27T06:53:18.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/bio/rerconverge.html</loc>
+    <lastmod>2024-10-14T03:39:58.846Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/cli/apt.html</loc>
+    <lastmod>2024-08-27T07:09:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/cli/hugo.html</loc>
+    <lastmod>2024-10-14T06:56:54.116Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/cli/quarto.html</loc>
+    <lastmod>2024-10-14T06:57:01.574Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/cli/ssh.html</loc>
+    <lastmod>2024-10-14T03:41:33.990Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/cli/vscode.html</loc>
+    <lastmod>2024-08-27T07:32:36.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/python/0_install.html</loc>
+    <lastmod>2024-12-22T04:20:51.058Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/python/argparse.html</loc>
+    <lastmod>2024-09-14T02:06:18.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/python/evoltree.html</loc>
+    <lastmod>2024-08-27T07:55:18.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/python/python-tips.html</loc>
+    <lastmod>2024-08-27T08:06:00.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ymat2.github.io/slides/git-circle/git-vol2.html</loc>
     <lastmod>2024-08-25T14:20:46.000Z</lastmod>
   </url>
   <url>
@@ -29,163 +169,27 @@
     <lastmod>2024-08-25T14:20:46.000Z</lastmod>
   </url>
   <url>
-    <loc>https://ymat2.github.io/slides/git-circle/git-vol2.html</loc>
+    <loc>https://ymat2.github.io/slides/lt/html-css.html</loc>
     <lastmod>2024-08-25T14:20:46.000Z</lastmod>
   </url>
   <url>
-    <loc>https://ymat2.github.io/python/python-tips.html</loc>
-    <lastmod>2024-08-27T08:06:00.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/python/evoltree.html</loc>
-    <lastmod>2024-08-27T07:55:18.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/python/argparse.html</loc>
-    <lastmod>2024-09-14T02:06:18.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/python/0_install.html</loc>
-    <lastmod>2024-12-22T04:20:51.058Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/cli/vscode.html</loc>
-    <lastmod>2024-08-27T07:32:36.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/cli/ssh.html</loc>
-    <lastmod>2024-10-14T03:41:33.990Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/cli/quarto.html</loc>
-    <lastmod>2024-10-14T06:57:01.574Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/cli/hugo.html</loc>
-    <lastmod>2024-10-14T06:56:54.116Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/cli/apt.html</loc>
-    <lastmod>2024-08-27T07:09:54.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/bio/rerconverge.html</loc>
-    <lastmod>2024-10-14T03:39:58.846Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/bio/orthofinder.html</loc>
-    <lastmod>2024-08-27T06:53:18.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/bio/gwas.html</loc>
-    <lastmod>2024-11-06T05:10:09.278Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/bio/ete-toolkit.html</loc>
-    <lastmod>2024-09-14T02:05:42.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/bio/clusterProfiler.html</loc>
-    <lastmod>2024-08-27T06:20:54.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/archive/index.html</loc>
-    <lastmod>2024-10-14T03:08:47.945Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/archive/cafe.html</loc>
-    <lastmod>2024-10-14T06:57:36.997Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/archive/gollum.html</loc>
-    <lastmod>2024-10-14T06:56:50.898Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/bio/cafe5.html</loc>
-    <lastmod>2024-11-27T02:48:00.170Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/bio/ddbj.html</loc>
-    <lastmod>2024-10-15T03:49:59.407Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/bio/fst_hands_on.html</loc>
-    <lastmod>2024-10-14T03:37:58.513Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/bio/ncbi_download.html</loc>
-    <lastmod>2024-08-27T06:49:42.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/bio/paml-tutorial.html</loc>
-    <lastmod>2024-08-27T07:06:14.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/bio/snpEff.html</loc>
-    <lastmod>2025-01-20T05:43:53.152Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/cli/git.html</loc>
-    <lastmod>2024-10-14T03:40:54.176Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/cli/nano.html</loc>
-    <lastmod>2024-08-27T07:21:14.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/cli/rsync.html</loc>
+    <loc>https://ymat2.github.io/slides/minicong/minicong.html</loc>
     <lastmod>2024-08-25T14:20:46.000Z</lastmod>
   </url>
   <url>
-    <loc>https://ymat2.github.io/cli/vi.html</loc>
-    <lastmod>2024-08-27T07:29:08.000Z</lastmod>
+    <loc>https://ymat2.github.io/slides/snp24/02_mapping-call.html</loc>
+    <lastmod>2024-11-28T08:22:05.759Z</lastmod>
   </url>
   <url>
-    <loc>https://ymat2.github.io/index.html</loc>
-    <lastmod>2024-10-14T06:43:14.233Z</lastmod>
+    <loc>https://ymat2.github.io/slides/snp24/index.html</loc>
+    <lastmod>2024-11-27T03:59:56.317Z</lastmod>
   </url>
   <url>
-    <loc>https://ymat2.github.io/python/1_uv.html</loc>
-    <lastmod>2025-01-31T06:43:13.705Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/python/class.html</loc>
-    <lastmod>2024-08-27T07:53:20.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/python/package.html</loc>
-    <lastmod>2024-12-22T04:23:51.401Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/slides/git-circle/git-vol1.html</loc>
-    <lastmod>2024-11-28T09:27:52.399Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/slides/index.html</loc>
-    <lastmod>2024-11-27T05:24:17.705Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/slides/lt/gnu-nano.html</loc>
-    <lastmod>2024-08-25T14:20:46.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/slides/lt/tuat2024pipeline.html</loc>
-    <lastmod>2024-08-25T14:20:46.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/slides/snp24/01_basic-prefetch-qc.html</loc>
-    <lastmod>2024-11-27T04:03:51.439Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/slides/snp24/03_snpeff.html</loc>
-    <lastmod>2024-11-27T05:14:13.087Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/win/0-dev-win.html</loc>
-    <lastmod>2024-10-14T06:29:14.505Z</lastmod>
+    <loc>https://ymat2.github.io/win/git4win.html</loc>
+    <lastmod>2025-02-04T09:44:47.610Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/win/wsl-disk-space.html</loc>
-    <lastmod>2024-10-14T06:33:31.647Z</lastmod>
+    <lastmod>2025-02-04T09:06:34.336Z</lastmod>
   </url>
 </urlset>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CAFE5 – Yuki MATSUDA</title>
+<title>PowerShell – Yuki MATSUDA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -167,7 +167,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">CAFE5 — 遺伝子ファミリーの進化解析</h1>
+          <h1 class="quarto-secondary-nav-title">PowerShell</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -207,16 +207,16 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Bioinformatics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/cafe5.html" class="sidebar-item-text sidebar-link active">
+  <a href="../bio/cafe5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CAFE5</span></a>
   </div>
 </li>
@@ -405,13 +405,13 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Windows</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../win/0-dev-win.html" class="sidebar-item-text sidebar-link">
@@ -426,7 +426,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../win/powershell.html" class="sidebar-item-text sidebar-link">
+  <a href="../win/powershell.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">PowerShell</span></a>
   </div>
 </li>
@@ -451,7 +451,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">CAFE5 — 遺伝子ファミリーの進化解析</h1></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">PowerShell</h1></header>
 
 <header id="title-block-header">
 
@@ -460,167 +460,98 @@ window.Quarto = {
 </header>
 
 
-<p><a href="../archive/cafe.html">CAFE</a> のメジャーアップデート版。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/powershell/" class="uri">https://learn.microsoft.com/ja-jp/powershell/</a></p>
+<p>Microsoft 製 CUI。</p>
+<section id="コマンドレット" class="level2">
+<h2 class="anchored" data-anchor-id="コマンドレット">コマンドレット</h2>
+<p>PowerShellで実行できるネイティブコマンドはコマンドレットと呼ばれており、 “動詞-名詞”の名前で登録されている。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Get-Command</span>  <span class="co"># すべてのコマンドレットを取得</span></span></code></pre></div>
+<p>Linux でいう <code>sudo</code> にあたる操作は、PowerShell を「管理者として開く」ことで実行するか、 マシンの設定から、システム &gt; 開発者向け で “sudo の有効化” を ON にして <code>sudo</code> を使う。</p>
+<section id="エイリアス" class="level3">
+<h3 class="anchored" data-anchor-id="エイリアス">エイリアス</h3>
+<p>例えばディレクトリを移るコマンドは <code>Set-Location</code> だが、要は <code>cd</code> と同じ。 実際、<code>Set-Location</code> には <code>sl</code>, <code>cd</code>, <code>chdir</code> の3つのエイリアスが用意されている。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> Set-Location</span></code></pre></div>
+<p>他にもエイリアスを調べるには <code>Get-Alias</code></p>
+</section>
+<section id="linux-コマンド" class="level3">
+<h3 class="anchored" data-anchor-id="linux-コマンド">Linux コマンド</h3>
+<p>WSL を有効化していれば、<code>wsl</code> に続ける形で Linux コマンドを実行可能:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> wget</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> NG</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">wsl</span> which wget</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> 実行可能</span></code></pre></div>
+</section>
+</section>
+<section id="profile" class="level2">
+<h2 class="anchored" data-anchor-id="profile">PROFILE</h2>
 <ul>
-<li>Github: <a href="https://github.com/hahnlab/CAFE5" class="uri">https://github.com/hahnlab/CAFE5</a></li>
-<li>論文: <a href="https://doi.org/10.1093/bioinformatics/btaa1022">Mendes et al.&nbsp;2020</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4" class="uri">https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4</a></li>
+<li><a href="https://qiita.com/smicle/items/0ca4e6ae14ea92000d18" class="uri">https://qiita.com/smicle/items/0ca4e6ae14ea92000d18</a></li>
 </ul>
-<p>ドキュメントが丁寧に書いてあるので基本的には読めば OK。</p>
-<ul>
-<li><a href="https://github.com/hahnlab/CAFE5/blob/master/README.md" class="uri">https://github.com/hahnlab/CAFE5/blob/master/README.md</a></li>
-<li><a href="https://github.com/hahnlab/CAFE5/blob/master/docs/tutorial/tutorial.md" class="uri">https://github.com/hahnlab/CAFE5/blob/master/docs/tutorial/tutorial.md</a></li>
-</ul>
-<section id="新しい機能" class="level2">
-<h2 class="anchored" data-anchor-id="新しい機能">新しい機能</h2>
-<ul>
-<li>各遺伝子ファミリーが異なる速度で進化することを仮定したパラメータ推定を行う。</li>
-<li>シェルスクリプトを書く必要がなくなった。</li>
-<li>エラーモデルの最適化やサマリーテーブルの出力が内部で行われるようになった。 (Python スクリプトが不要になった。)</li>
-</ul>
-</section>
-<section id="インストール" class="level2">
-<h2 class="anchored" data-anchor-id="インストール">インストール</h2>
-<section id="download" class="level3">
-<h3 class="anchored" data-anchor-id="download">Download</h3>
-<ul>
-<li><a href="https://github.com/hahnlab/CAFE5/releases" class="uri">https://github.com/hahnlab/CAFE5/releases</a> から</li>
-<li>または、<code>git clone https://github.com/hahnlab/CAFE5.git</code></li>
-</ul>
-</section>
-<section id="compile" class="level3">
-<h3 class="anchored" data-anchor-id="compile">Compile</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> CAFE5</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./configure</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span></code></pre></div>
-<p>実行ファイルは <code>CAFE5/bin/</code> にあるので、ここに PATH を通す。</p>
-<section id="macos-の場合" class="level4">
-<h4 class="anchored" data-anchor-id="macos-の場合">macOS の場合</h4>
-<p><code>src/matrix_cache.cpp:2:10: fatal error: 'omp.h' file not found</code> などコンパイラが見つからない系のエラーが出る場合があるらしい。 <code>gcc</code> を入れてシンボリックリンクを張る:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install gcc</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> / <span class="at">-name</span> omp.h</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sv</span> path/to/omp.h /usr/local/include/</span></code></pre></div>
-<p>改めて、</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span></code></pre></div>
-</section>
-</section>
-<section id="遺伝研" class="level3">
-<h3 class="anchored" data-anchor-id="遺伝研">遺伝研</h3>
-<p><code>apptainer</code> にあるものを使うのが楽:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/c/cafe:5<span class="pp">*</span></span></code></pre></div>
-</section>
-</section>
-<section id="quick-start" class="level2">
-<h2 class="anchored" data-anchor-id="quick-start">Quick Start</h2>
-<section id="input" class="level3">
-<h3 class="anchored" data-anchor-id="input">Input</h3>
-<p>基本的に必要なファイルは以前の CAFE と同じ。</p>
-<ul>
-<li><p>種ごと、遺伝子ファミリーごとの遺伝子数のテーブル(タブ区切り)。 <a href="../bio/orthofinder.html">OrthoFinder</a> とか OrthoMCL とかでつくる。</p>
+<p>PowerShell でも Linux でいう <code>.profile</code> とか <code>.bashrc</code> を設定したい。 設定用のファイルは <code>$PROFILE</code> で決まっており、スコープに応じて以下がある:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">$PROFILE</span><span class="ex">.AllUsersAllHosts</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">$PROFILE</span><span class="ex">.AllUsersCurrentHost</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">$PROFILE</span><span class="ex">.CurrentUserAllHosts</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Users\_username_\OneDrive\ドキュメント\WindowsPowerShell\profile.ps1</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">$PROFILE</span><span class="ex">.CurrentUserCurrentHost</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\Users\_username_\OneDrive\ドキュメント\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</span></span></code></pre></div>
+<p>CurrentUserCurrentHost が一番安全だけど、 <code>C:\Users\_username_\OneDrive\ドキュメント\</code> とかいう諸悪の根源ディレクトリにおきたくない。</p>
+<p>ひとまず <code>$PROFILE.AllUsersAllHosts</code> に読み込みのみの PROFILE を置いて、 <code>$HOME</code> のスクリプトを読む、という設定にしてみる:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>gene_families.txt</strong></pre>
+<pre><strong>$PROFILE.AllUsersAllHosts</strong></pre>
 </div>
-<div class="sourceCode" id="cb5" data-filename="gene_families.txt"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Description ID  Chicken Lizard  Mouse</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>OG00001 OG00001 12  14  21</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>OG00002 OG00002 9   13  5</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>OG00003 OG00003 7   0   4</span></code></pre></div>
-</div></li>
-<li><p>Newick 形式の系統樹。binary, rooted, ultrametric である必要がある。 (cf.&nbsp;Rパッケージ <code>ape::is.binary()</code>, <code>ape::is.rooted()</code>, <code>ape::is.ultrametric()</code>)</p>
+<div class="sourceCode" id="cb5" data-filename="$PROFILE.AllUsersAllHosts"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">$USER_PROFILE</span><span class="ex">=</span><span class="st">"</span><span class="va">$HOME</span><span class="st">\profile.ps1"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">(</span><span class="ex">Test-Path</span> <span class="va">$USER_PROFILE</span><span class="kw">)</span> <span class="ex">{.</span> <span class="va">$USER_PROFILE</span>}</span></code></pre></div>
+</div>
+<p>この PROFILE でファイルを実行する (Linux でいう <code>source</code>) には 実行権限の付与が必要:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-ExecutionPolicy</span> <span class="at">-ExecutionPolicy</span> RemoteSigned</span></code></pre></div>
+<p>ひとまず <code>touch</code> と <code>which</code> を定義:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>species_tree.txt</strong></pre>
+<pre><strong>$HOME\profile.ps1</strong></pre>
 </div>
-<div class="sourceCode" id="cb6" data-filename="species_tree.txt"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(Mouse:319.00000000,(Lizard:281.10000000,Chicken:281.10000000):37.90000000);</span></code></pre></div>
-</div></li>
-</ul>
-</section>
-<section id="cafe5-の実行" class="level3">
-<h3 class="anchored" data-anchor-id="cafe5-の実行">CAFE5 の実行</h3>
-<p>想定するシナリオにより、いくつかの実行方法がある:</p>
+<div class="sourceCode" id="cb7" data-filename="$HOME\profile.ps1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-Alias</span> touch New-Item</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> which()</span> <span class="ex">{</span><span class="kw">(</span><span class="ex">Get-Command</span> <span class="va">$args</span><span class="kw">)</span><span class="ex">.Path}</span></span></code></pre></div>
+</div>
 <ul>
-<li><p>遺伝子ファミリー間で進化速度が一定であるという仮定の下で、遺伝子ファミリーの進化速度を推定:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cafe5</span> <span class="at">-i</span> gene_families.txt <span class="at">-t</span> species_tree.txt</span></code></pre></div></li>
-<li><p>遺伝子ファミリーごとの進化速度が異なるという仮定の下で、遺伝子ファミリーの進化速度を推定:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cafe5</span> <span class="at">-i</span> gene_families.txt <span class="at">-t</span> species_tree.txt <span class="at">-k</span> 3</span></code></pre></div></li>
-<li><p>特定の系統で遺伝子ファミリーの進化速度が異なることを仮定する場合、 以前のバージョンと同じように <span class="math inline">\lambda</span> 構造を規定した Newick ファイルを用意する:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>lambda_structure.txt</strong></pre>
-</div>
-<div class="sourceCode" id="cb9" data-filename="lambda_structure.txt"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(Mouse:1,(Lizard:1,Chicken:2):1);  # Chickenの系統で進化速度が異なることを仮定。</span></code></pre></div>
-</div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cafe5</span> <span class="at">-i</span> gene_families.txt <span class="at">-t</span> species_tree.txt <span class="at">-y</span> lambda_structure.txt</span></code></pre></div></li>
+<li>引数をともなう Alias の設定は <code>function</code> を使う。</li>
+<li>既存のコマンドの上書きはできない？</li>
 </ul>
 </section>
-</section>
-<section id="出力ファイル" class="level2">
-<h2 class="anchored" data-anchor-id="出力ファイル">出力ファイル</h2>
-<p><code>-o</code> で出力先を指定。 指定しなくても実行ディレクトリに <code>result/</code> ディレクトリが作られてその中に格納される。</p>
+<section id="windows-標準のターミナル" class="level2">
+<h2 class="anchored" data-anchor-id="windows-標準のターミナル">Windows 標準のターミナル</h2>
 <dl>
-<dt><code>model_asr.tre</code></dt>
+<dt>コマンドプロンプト</dt>
 <dd>
-各遺伝子ファミリーごとに再構成された系統樹が書かれている。
+古の Microsoft 製 CUI
+</dd>
+<dt><a href="https://learn.microsoft.com/ja-jp/powershell/">PowerShell</a></dt>
+<dd>
+コマンドプロンプトの後継 (Windows7 以降)。
 </dd>
 <dd>
-ノード名 + <code>_</code> に続く形でそのノードでの推定遺伝子数が書かれており、 有意な増減があったノードには <code>*</code> がふってある。
+コマンドプロンプトで使えたコマンドも基本的に使える。
 </dd>
-<dt><code>model_family_results.txt</code></dt>
+<dt>Windows Terminal</dt>
 <dd>
-遺伝子ファミリー、P 値、変化が有意であるかどうか (<code>y/n</code>) がタブ区切りで記述されている。
-</dd>
-<dt><code>model_clade_results.txt</code></dt>
-<dd>
-各ノードごとに遺伝子数が増加/減少したファミリーの数が書いてある。
-</dd>
-<dt><code>model_branch_probabilities.txt</code></dt>
-<dd>
-各ノード、各遺伝子ファミリーにおける事後確率のタブ区切りリスト
+コマンドプロンプト、PowerShell、bash (WSL 経由) など複数のコマンドラインシェルのホストアプリケーション。
 </dd>
 <dd>
-ガンマモデルの場合、有意な変化があったファミリーについてのみ書かれている。
-</dd>
-<dt><code>model_family_likelihoods.txt</code></dt>
-<dd>
-Base モデルでは各ファミリーごとの尤度
+<kbd>Win</kbd><kbd>X</kbd> → <kbd>I</kbd>/<kbd>A</kbd>(管理者として実行)
 </dd>
 <dd>
-Gamma モデルではそれに加えて事後確率がタブ区切りで書かれている。
-</dd>
-<dt><code>model_result.txt</code></dt>
-<dd>
-選択されたモデルの名前、そのモデルの最終的な尤度、 遺伝子数の進化速度にあたる <span class="math inline">\lambda</span> などが書かれている。
-</dd>
-<dt><code>model_change.txt</code></dt>
-<dd>
-各遺伝子ファミリーについて、各ノードにおける親ノードからの遺伝子数の変化量が書いてある。
-</dd>
-<dt><code>model_count.txt</code></dt>
-<dd>
-各遺伝子ファミリーについて、各ノードにおける推定遺伝子数
+<kbd>Ctrl</kbd><kbd>,</kbd>で設定画面。 デフォルトのプロファイルや外観をいじれる。
 </dd>
 </dl>
-<section id="rapidly-evolving-gene-famillies-について" class="level3">
-<h3 class="anchored" data-anchor-id="rapidly-evolving-gene-famillies-について"><code>Rapidly evolving gene famillies</code> について</h3>
-<p>CAFE は確率的誕生-死亡モデルの下で、 ある <span class="math inline">\lambda</span> 値 (単位時間当たりの遺伝子の増減) にしたがって インプットした系統樹上で遺伝子の増減をシミュレートする。</p>
-<p>その結果各遺伝子ファミリーの実際の遺伝子数が得られる確率が P 値として得られる。 この P 値が事前に定めた有意水準 (例えば0.05) を下回ったものが <code>rapidly expanded/contracted gene families</code> として得られる。</p>
-</section>
-</section>
-<section id="並列化" class="level2">
-<h2 class="anchored" data-anchor-id="並列化">並列化</h2>
-<p><code>--cores</code> オプションで指定:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cafe5</span> <span class="at">-i</span> gene_families.txt <span class="at">-t</span> species_tree.txt <span class="at">--cores</span> 5</span></code></pre></div>
-</section>
-<section id="トラブルシューティング" class="level2">
-<h2 class="anchored" data-anchor-id="トラブルシューティング">トラブルシューティング</h2>
-<p><a href="../archive/cafe.html">CAFE4</a> のトラブルシューティングも参照。</p>
-<section id="既知の問題" class="level3">
-<h3 class="anchored" data-anchor-id="既知の問題">既知の問題</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>OG0000001    1    2    94    1    3    2    1</span></code></pre></div>
-<p>みたいに遺伝子数にとびぬけた値があると、計算が途中で止まる。 (CAFE4 のときは <code>inf/-inf</code> で押し通していた。)</p>
-<p>標準エラーでどの遺伝子ファミリーが原因か教えてくれるので、そのファミリーを除いて再解析する。</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

@@ -102,12 +102,12 @@ GWAS に用いる表現型のデータを用意する。
 
 ```{.txt filename="file.pheno"}
 #FID  IID BM  Disease
-sample1 popA  56.3  2
-sample2 popA  50.1  2
-sample3 popA  61.3  1
-sample4 popB  59.9  1
-sample5 popB  53.6  2
-sample6 popB  49.8  1
+popA  sample1 56.3  2
+popA  sample2 50.1  2
+popA  sample3 61.3  1
+popB  sample4 59.9  1
+popB  sample5 53.6  2
+popB  sample6 49.8  1
 ︙
 ```
 
@@ -164,7 +164,7 @@ plink2 --bfile file.plink \
 cat file.gwas.Disease.glm.logistic.hybrid | awk -F '\t' '{print $1 "\t" $2 "\t"　$3 "\t" $18}' > gwas-result.txt
 ```
 
-#### --- 以降、Rでの作業 ---
+#### 以降、Rでの作業
 
 [qqman](https://cran.r-project.org/web/packages/qqman/vignettes/qqman.html) ライブラリを使う。
 

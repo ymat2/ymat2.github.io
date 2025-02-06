@@ -61,7 +61,7 @@ ego = enrichGO(
   ont = "MF",
   pvalueCutoff = 0.05,
   pAdjustMethod = "BH",
-  universe,
+  universe = geneList,
   qvalueCutoff = 0.2,
   minGSSize = 10,
   maxGSSize = 500,
@@ -73,7 +73,7 @@ View(ego_result)
 ```
 
 `ont`
-: `"BP"`, `"CC"`, `"MF"`, `"ALL"` から選ぶ
+: `"BP"`, `"CC"`, `"MF"`, `"ALL"` から選ぶ。
 
 `pvalueCutoff`, `qvalueCutoff`
 : それぞれ与えた P 値、Q 値以下の GO を表示する。
@@ -211,7 +211,7 @@ kk2 = kk |> setReadable(OrgDb = org.Hs.eg.db, keyType = "ENTREZID")
 - <https://yulab-smu.top/biomedical-knowledge-mining-book/clusterprofiler-kegg.html#visualize-enriched-kegg-pathways>
 
 ```R
-dotplot(kk2, showCategory = 10, title = "Enriched Pathways" , split=".sign")
+dotplot(kk2, showCategory = 10, title = "Enriched Pathways" , split = ".sign")
 # とか
 cnetplot(kk2, showCategory = 5, categorySize = "pvalue")
 # とか

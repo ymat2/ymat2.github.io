@@ -5,19 +5,21 @@ format:
     toc: true
 ---
 
-***
+::: {.before-toc}
 
 - <https://github.com/nclark-lab/RERconverge>
 - [Kowalczyk et al. 2019](https://doi.org/10.1093/bioinformatics/btz468)
 
 相同な配列の進化速度の相対的な加速度合いを計算して、表現型との相関を調べる R パッケージ。
-系統樹さえ描ければいいので、遺伝子のほかに CNS (Conserved Non-coding Sequence) にも応用できる。
+系統樹さえ描ければいいので、遺伝子のほかに非コード領域にも応用できる。
 (本ページでは便宜上「遺伝子」として記述する。)
 
 開発者たちのグループは
 [水棲適応](https://academic.oup.com/mbe/article/33/9/2182/2579331) や
 [地中生活](https://doi.org/10.7554/eLife.25884)などの二値的な形質、
 [体サイズや寿命](https://doi.org/10.7554/eLife.51089)などの連続形質に関わる遺伝子を報告している。
+
+:::
 
 
 ## インストール

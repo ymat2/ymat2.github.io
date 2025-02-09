@@ -73,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-32f90bcd81cf9056da432c26342c54b4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-dd464aad86da99df386deae3d8599460.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e4b249f2a611f28e0b628f80927699ca.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -452,6 +452,24 @@ window.Quarto = {
     
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">GWAS — <u>G</u>enome <u>W</u>ide <u>A</u>ssociation <u>S</u>tudy</h1></header>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  let toc = document.getElementById("TOC");
+
+  let beforeToc = document.querySelector(".before-toc");
+
+  if (toc && beforeToc) {
+
+    toc.parentNode.insertBefore(beforeToc, toc);
+
+  }
+
+});
+
+</script>
+
 
 <header id="title-block-header">
 
@@ -517,12 +535,12 @@ window.Quarto = {
 <pre><strong>file.pheno</strong></pre>
 </div>
 <div class="sourceCode" id="cb5" data-filename="file.pheno"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>#FID  IID BM  Disease</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sample1 popA  56.3  2</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sample2 popA  50.1  2</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>sample3 popA  61.3  1</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>sample4 popB  59.9  1</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>sample5 popB  53.6  2</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>sample6 popB  49.8  1</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>popA  sample1 56.3  2</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>popA  sample2 50.1  2</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>popA  sample3 61.3  1</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>popB  sample4 59.9  1</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>popB  sample5 53.6  2</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>popB  sample6 49.8  1</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>︙</span></code></pre></div>
 </div>
 <ul>
@@ -567,7 +585,7 @@ window.Quarto = {
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 最低でも染色体、座位、SNP の ID、P 値があればいい</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> file.gwas.Disease.glm.logistic.hybrid <span class="kw">|</span> <span class="fu">awk</span> <span class="at">-F</span> <span class="st">'\t'</span> <span class="st">'{print $1 "\t" $2 "\t"　$3 "\t" $18}'</span> <span class="op">&gt;</span> gwas-result.txt</span></code></pre></div>
 <section id="以降rでの作業" class="level4">
-<h4 class="anchored" data-anchor-id="以降rでの作業">— 以降、Rでの作業 —</h4>
+<h4 class="anchored" data-anchor-id="以降rでの作業">以降、Rでの作業</h4>
 <p><a href="https://cran.r-project.org/web/packages/qqman/vignettes/qqman.html">qqman</a> ライブラリを使う。</p>
 <p>(染色体アクセッションの変換のために <code>sequence_report.tsv</code> を使用している。 <a href="../bio/fst_hands_on.html"><span class="math inline">F_\text{st}</span> 解析ハンズオン</a>も参照。)</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(conflicted)</span>

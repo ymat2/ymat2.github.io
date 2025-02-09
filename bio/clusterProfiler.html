@@ -73,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-32f90bcd81cf9056da432c26342c54b4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-dd464aad86da99df386deae3d8599460.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e4b249f2a611f28e0b628f80927699ca.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -452,6 +452,24 @@ window.Quarto = {
     
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">clusterProfiler — R でエンリッチメント解析</h1></header>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  let toc = document.getElementById("TOC");
+
+  let beforeToc = document.querySelector(".before-toc");
+
+  if (toc && beforeToc) {
+
+    toc.parentNode.insertBefore(beforeToc, toc);
+
+  }
+
+});
+
+</script>
+
 
 <header id="title-block-header">
 
@@ -516,7 +534,7 @@ window.Quarto = {
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">ont =</span> <span class="st">"MF"</span>,</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>,</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">pAdjustMethod =</span> <span class="st">"BH"</span>,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  universe,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">universe =</span> geneList,</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">qvalueCutoff =</span> <span class="fl">0.2</span>,</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">minGSSize =</span> <span class="dv">10</span>,</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">maxGSSize =</span> <span class="dv">500</span>,</span>
@@ -528,7 +546,7 @@ window.Quarto = {
 <dl>
 <dt><code>ont</code></dt>
 <dd>
-<code>"BP"</code>, <code>"CC"</code>, <code>"MF"</code>, <code>"ALL"</code> から選ぶ
+<code>"BP"</code>, <code>"CC"</code>, <code>"MF"</code>, <code>"ALL"</code> から選ぶ。
 </dd>
 <dt><code>pvalueCutoff</code>, <code>qvalueCutoff</code></dt>
 <dd>
@@ -654,7 +672,7 @@ window.Quarto = {
 <li><a href="https://yulab-smu.top/biomedical-knowledge-mining-book/enrichplot.html" class="uri">https://yulab-smu.top/biomedical-knowledge-mining-book/enrichplot.html</a></li>
 <li><a href="https://yulab-smu.top/biomedical-knowledge-mining-book/clusterprofiler-kegg.html#visualize-enriched-kegg-pathways" class="uri">https://yulab-smu.top/biomedical-knowledge-mining-book/clusterprofiler-kegg.html#visualize-enriched-kegg-pathways</a></li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(kk2, <span class="at">showCategory =</span> <span class="dv">10</span>, <span class="at">title =</span> <span class="st">"Enriched Pathways"</span> , <span class="at">split=</span><span class="st">".sign"</span>)</span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(kk2, <span class="at">showCategory =</span> <span class="dv">10</span>, <span class="at">title =</span> <span class="st">"Enriched Pathways"</span> , <span class="at">split =</span> <span class="st">".sign"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># とか</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cnetplot</span>(kk2, <span class="at">showCategory =</span> <span class="dv">5</span>, <span class="at">categorySize =</span> <span class="st">"pvalue"</span>)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># とか</span></span></code></pre></div>

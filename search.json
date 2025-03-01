@@ -1200,62 +1200,18 @@
     "href": "bio/ddbj.html#ログイン",
     "title": "遺伝研スパコン",
     "section": "ログイン",
-    "text": "ログイン\nユーザーアカウントを発行したら、 ssh 接続の設定をする。\n\n\n~/.ssh/config\n\nHost ddbj\n  IdentityFile ~/.ssh/id_ed25519\n  Hostname gw.ddbj.nig.ac.jp\n  RequestTTY yes\n  User yukimatsu\n\nssh 接続後はゲートウェイノードにいる。 ここで作業をしてはいけない。 qlogin してログインノードへ移動:\nssh ddbj\nqlogin\n-l s_vmem, -l mem_req でログインノードのメモリ量を指定できる。 デフォルトは 4GB で、96GB まで指定可能。\nqlogin -l s_vmem=16G -l mem_req=16G  # 16GB でログイン",
+    "text": "ログイン\nユーザーアカウントを発行したら、 ssh 接続の設定をする。\n\nhttps://sc.ddbj.nig.ac.jp/application/ssh_keys\nhttps://sc.ddbj.nig.ac.jp/application/ssh_copy_id/\n\n\n\n~/.ssh/config\n\nHost ddbj\n  IdentityFile ~/.ssh/id_ed25519\n  Hostname gw.ddbj.nig.ac.jp\n  RequestTTY yes\n  User usename",
     "crumbs": [
       "Bioinformatics",
       "遺伝研スパコン"
     ]
   },
   {
-    "objectID": "bio/ddbj.html#インタラクティブジョブ",
-    "href": "bio/ddbj.html#インタラクティブジョブ",
+    "objectID": "bio/ddbj.html#ジョブ実行",
+    "href": "bio/ddbj.html#ジョブ実行",
     "title": "遺伝研スパコン",
-    "section": "インタラクティブジョブ",
-    "text": "インタラクティブジョブ\nhttps://sc.ddbj.nig.ac.jp/software/grid_engine/interactive_jobs\n手元のターミナルと同じように、Linux コマンドやスクリプトの実行が可能:\n$ pwd\n/home/yukimatsu\n$ python3\nPython 3.10.12 (main, Jun 11 2023, 05:26:28) [GCC 11.4.0] on linux\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n&gt;&gt;&gt; print(1+2)\n3",
-    "crumbs": [
-      "Bioinformatics",
-      "遺伝研スパコン"
-    ]
-  },
-  {
-    "objectID": "bio/ddbj.html#バッチジョブ",
-    "href": "bio/ddbj.html#バッチジョブ",
-    "title": "遺伝研スパコン",
-    "section": "バッチジョブ",
-    "text": "バッチジョブ\nhttps://sc.ddbj.nig.ac.jp/software/grid_engine/batch_jobs\n簡単なジョブであればインタラクティブジョブでよいが、 時間のかかるジョブやリソースを食うジョブ、繰り返し行うジョブを実行する場合は ジョブスクリプトを書いて計算ノードにやらせる。\nジョブスクリプトはシェルスクリプトまたは Python スクリプトで書くことができる。\n\n\nsample.sh\n\n#!/bin/bash\n\n#$ -S /bin/bash\n#$ -cwd\n#$ -V\n#$ -l short\n#$ -l d_rt=00:10:00\n#$ -l s_rt=00:10:00\n#$ -l s_vmem=4G\n#$ -l mem_req=4G\n\necho \"HOME: \" ${HOME}\necho \"USER: \" ${USER}\n\n\n\nsample.py\n\n#!/usr/bin/python3\n\n#$ -S /usr/bin/python3\n#$ -V\n#$ -l d_rt=00:10:00\n#$ -l s_rt=00:10:00\n\nimport os\nprint(\"HOME: \", os.environ[\"HOME\"])\nprint(\"USER: \", os.environ[\"USER\"])\n\nqsub コマンドでジョブスクリプトを計算ノードに投げる:\nqsub sample.sh\nqsub sample.py -cwd -l short -l s_vmem=4G -l mem_req=4G\nオプションはジョブスクリプト内で #$ に続けて渡してもいいし、 qsub するときのコマンドライン引数として渡してもいい。\n\n-cwd\n\nバッチジョブをカレントディレクトリ上で実行する。デフォルトは $HOME\n\n-V\n\nqsub を実行した際の環境変数を全て計算ノードに引き継ぐ。\n\n-l short\n\n計算ノードのキューの指定。 epyc, intel, gpu, short, medium がある。 (Grid Engineキューの種類)\n\n-l d_rt=00:10:00, s_rt=00:10:00\n\nジョブの実行上限時間。デフォルトは 72:00:00 (=3日間)\n\n-l s_vmem=4G, -l mem_req=4G\n\n使用するメモリ量の指定。単位は G, M, K。\n\n-N example\n\nジョブ名の指定。指定しなければはジョブスクリプトのファイル名になる。\n\n-S /bin/bash\n\nインタープリタの指定\n\n-o, -e\n\n標準出力/標準エラーファイルの出力先\n\n\nデフォルトではカレントディレクトリに {ジョブ名}.o{ジョブID}, {ジョブ名}.e{ジョブID} で出力される。",
-    "crumbs": [
-      "Bioinformatics",
-      "遺伝研スパコン"
-    ]
-  },
-  {
-    "objectID": "bio/ddbj.html#パラレルジョブ",
-    "href": "bio/ddbj.html#パラレルジョブ",
-    "title": "遺伝研スパコン",
-    "section": "パラレルジョブ",
-    "text": "パラレルジョブ\nhttps://sc.ddbj.nig.ac.jp/software/grid_engine/parallel_jobs/\nCPU コアを複数同時に使用するジョブ。 例えば OrthoFinder であれば -a N で N スレッドの並列解析を指定する。 これを遺伝研上で投げるときは、下のようにする:\n# 例\n#$ -S /bin/bash\n#$ -pe def_slot 5\n#$ -cwd\n\northofinder -f ExampleData -a 5\nスレッド数の指定にはいくつか方法がある:\n\n-pe def_slot N\n\n同一計算ノード上に N 個の CPU コアを確保する。\n\n-pe mpi N\n\n複数の計算ノードにわたって、 なるべく多数のノードに散るように N 個の CPU コアを確保する。\n\n-pe mpi-fillup N\n\n複数の計算ノードにわたって、 なるべく少数のノードに N 個の CPU コアを確保する。\n\n\n\n-l s_vmem=4G, -l mem_req=4G でメモリ量を指定する場合、×スレッド数 だけメモリを要求する。例えば qsub -pe def_slot 16 -l s_vmem=4G -l mem_req=4G であれば 4×16=64G を使うことになる。",
-    "crumbs": [
-      "Bioinformatics",
-      "遺伝研スパコン"
-    ]
-  },
-  {
-    "objectID": "bio/ddbj.html#アレイジョブ",
-    "href": "bio/ddbj.html#アレイジョブ",
-    "title": "遺伝研スパコン",
-    "section": "アレイジョブ",
-    "text": "アレイジョブ\nhttps://sc.ddbj.nig.ac.jp/software/grid_engine/array_jobs\n多数のジョブを同時に、あるいは順次に実行していくジョブ。\n例えば6個の SRA データを同時に取得する場合:\n#$ -S /bin/bash\n#$ -t 1-6:1\n#$ -tc 3\n#$ -cwd\n\nseq_ids=(SRR030253 SRR030254 SRR030255 SRR030256 SRR030257 SRR030258)\nseq_id=${seq_ids[$SGE_TASK_ID-1]}\n\nprefetch ${seq_id}\n\n-t 1-N\n\nN個のタスクを持つアレイジョブとして投入する。\n\n\n計算機が空いていれば同時に実行される。そうでなくても空き次第順次導入される。\n\n-tc M\n\n一度に実行されるアレイジョブのタスク数の上限を指定。 これをやらないとユーザーに割り振られた計算機数をオーバーしてしまうことがある。\n\n\nqquota でリソースを確認できる。2023/11/30時点で300。\n\n\n\nファイルの中身を seq_ids に流し込む\n10,000遺伝子の並列など、seq_ids が長くなるとジョブスクリプトの可読性が落ちる。 先に seq_ids の中身をテキストファイルに書き出して それをジョブスクリプトに読み込む場合、以下のようにする:\n\n\narray10000.sh\n\n#$ /bin/bash\n#$ -t 1-10000:1\n#$ -cwd\n\nseq_ids=()\nwhile read -r x; do\n    seq_ids+=($x)\ndone &lt; $1\nseq_id=${seq_ids[$SGE_TASK_ID-1]}\n\necho ${seq_id}\n\n\n\ngenes.txt\n\nGene_1\nGene_2\nGene_3\n⋮\nGene_10000\n\ngenes.txt を引数にして qsub:\nqsub array10000.sh genes.txt\ncat genes.txt | while read -r x で直接読もうとすると想定した挙動をしない。",
-    "crumbs": [
-      "Bioinformatics",
-      "遺伝研スパコン"
-    ]
-  },
-  {
-    "objectID": "bio/ddbj.html#その他のコマンド",
-    "href": "bio/ddbj.html#その他のコマンド",
-    "title": "遺伝研スパコン",
-    "section": "その他のコマンド",
-    "text": "その他のコマンド\n\nqstat\n\nジョブの投入状況の確認\n\n\nr: 実行中, qw: 投入待機中, t: 計算ノードへ転送中, E: エラー, d: 削除中\n\nqstat -g c\n\n計算・ログイン含む全ノードの混雑状況をみる。\n\nqdel jobID\n\nジョブの削除",
+    "section": "ジョブ実行",
+    "text": "ジョブ実行\n\nhttps://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/\nhttps://slurm.schedmd.com/documentation.html\n\n\nインタラクティブジョブ\n\n暫定的に a001, a002, a003 の3つのインタラクティブノードが用意されている。 ゲートウェイノードへ ssh ログイン後、インタラクティブノードのいずれかに ssh ログインする:\n[youraccount@local ~]$ ssh username@gw.ddbj.nig.ac.jp\n[youraccount@gw ~]$ ssh a001\n[youraccount@a001 ~]$\n後日変わると思うので、公式サイトをチェック。\n\nsrun コマンドを用いてインタラクティブジョブ用の計算ノードを要求する:\nsrun --pty bash\nAGE でいう qlogin のイメージ。\n\n\nバッチジョブ\nsbatch コマンドを使う。 基本的な流れは AGE と同じで、ジョブスクリプトを書いて qbatch example.sh するだけ:\n\n\nexample.sh\n\n#!/bin/bash\n\n#SBATCH -t 0-00:10:00\n#SBATCH --mem-per-cpu 4G\n#SBATCH -J an_example\n\npwd\n\nジョブ実行時のオプション設定は #SBATCH で渡す。 sbatch のコマンドライン引数で渡してもいい。 AGE でいう #$ -cwd (カレントディレクトリの設定) と #$ -V (環境変数の引継ぎ) は、Slurm ではデフォルトらしい。\nインタープリタの指定オプションはない (?) ので、shebang で指定する必要がある: #!/bin/bash, #!/bin/csh, #!/use/bin/python\n使いそうなオプション:\n\n-b, --bigin\n\nジョブの実行割り当て開始時間を指定するする。\n\n-D, --chdir\n\nバッチジョブのワーキングディレクトリを指定。 (デフォルトはカレントディレクトリ。)\n\n-c, --cpus-per-tasks\n\n複数のタスクがあるときに、タスクあたりに必要な CPU の数を指定する。\n\n-o, --output\n\n標準出力の出力先をファイル名で指定する。 デフォルトでは slurm-[JOBID]_[JOBインデックス].out に吐き出される。\n\n-e, --error\n\n標準エラーの出力先をファイル名で指定する。 デフォルトでは標準出力と同じファイルで、なにも指定しなければ slurm-[JOBID]_[JOBインデックス].out に吐き出される。\n\n-i, --input\n\nバッチジョブの標準入力。\n\n--export\n\nジョブに渡す環境変数を制御する。\n\n-J, --job-name\n\nジョブの名前。デフォルトではスクリプトのファイル名になる。\n\n--mem\n\nノードごとに必要なメモリの指定。単位は K, M, G, T を使う。(デフォルトは M)\n\n--mem-per-cpu\n\nCPU あたりに必要なメモリ量の指定。\n\n\nバッチジョブで使うのは1ノード1コアなので、--mem でも同じ。\n\n-t, --time\n\nジョブの実行時間を指定する。 デフォルトの単位は “minutes” で、他に “minutes:seconds”, “hours:minutes:seconds”, “days-hours”, “days-hours:minutes”, “days-hours:minutes:seconds” の形式で指定できる。\n\n\n\n\nアレイジョブ\n-a で制御する。 SLURM_ARRAY_TASK_ID, SLURM_ARRAY_TASK_COUNT などの変数を参照可能。\n例えば6個の SRA データを同時に取得する場合:\n#!/bin/bash\n\n#SBATCH -a 1-6\n\nseq_ids=(SRR030253 SRR030254 SRR030255 SRR030256 SRR030257 SRR030258)\nseq_id=${seq_ids[$SLURM_ARRAY_TASK_ID-1]}\n\nprefetch ${seq_id}\n一度に投入されるタスク数の上限は % で制御する。 (AGE でいう -tc):\n#SBATCH -a 1-1000%100  # 1から1000までの並列。同時に走る上限は100。\n\n\nパラレルジョブ\nhttps://slurm.schedmd.com/mc_support.html\nSlurm には AGE でいうパラレルジョブに直接該当する機能はない。 --nodes, --ntasks, --ntasks-per-node などを使って並列ジョブを制御する。\n\n-N, --nodes\n\nジョブに割り当てるノードの数を指定する。[最小-最大] の範囲指定も可。\n\n--spread-job\n\nジョブの割り当てをできるだけ多くのノードに均等に分散させる。\n\n-n, --ntasks\n\nジョブに割り当てる CPU コアの数を指定する。\n\n\n# 例\n#!/bin/bash\n#SBATCH --nodes 1-1\n#SBATCH --ntasks 5\n#SBATCH --mem-per-cpu 4G\n\northofinder -f ExampleData -a 5\n\nこの時ノード全体では、4G×5core=20G のメモリを使う。\n\n\n\nその他のコマンド\n\nsqueue\n\nジョブの状況を確認 (i.e. qstat)\n\nscancel [JOBID]\n\n実行中のジョブをキャンセルする (i.e. qdel)\n\nscontrol\n\nジョブの設定変更",
     "crumbs": [
       "Bioinformatics",
       "遺伝研スパコン"
@@ -1266,18 +1222,18 @@
     "href": "bio/ddbj.html#apptainer-singularity",
     "title": "遺伝研スパコン",
     "section": "Apptainer (Singularity)",
-    "text": "Apptainer (Singularity)\nhttps://sc.ddbj.nig.ac.jp/software/Apptainer\nバイオインフォマティクスでよく使われる解析ツールは各ソフトウェアの頭文字ごとに /usr/local/biotools/ に配置されており、 インストール不要で使うことができる。\n複数のバージョン用意されている場合もある。 どんなツールが使えるか見てみる。たとえば BLAST:\nls /usr/local/biotools/b/blast*\n使用例:\napptainer exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -help\n# singularity exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -help",
+    "text": "Apptainer (Singularity)\n\nhttps://sc.ddbj.nig.ac.jp/guides/software/Container/Apptainer/\nhttps://sc.ddbj.nig.ac.jp/guides/software/Container/BioContainers/\n\nバイオインフォマティクスでよく使われる解析ツールは各ソフトウェアの頭文字ごとに /usr/local/biotools/ に配置されており、インストール不要で使うことができる。\n複数のバージョン用意されている場合もある。 たとえば:\nls /usr/local/biotools/s/samtools*\n使用例:\napptainer exec /usr/local/biotools/s/samtools",
     "crumbs": [
       "Bioinformatics",
       "遺伝研スパコン"
     ]
   },
   {
-    "objectID": "bio/ddbj.html#パッケージ管理",
-    "href": "bio/ddbj.html#パッケージ管理",
+    "objectID": "bio/ddbj.html#grid-engine-と-slurm-の対応",
+    "href": "bio/ddbj.html#grid-engine-と-slurm-の対応",
     "title": "遺伝研スパコン",
-    "section": "パッケージ管理",
-    "text": "パッケージ管理\n\nguix\n\n2023/11/30 の OS アップデートと同時にドキュメントがアーカイブされた。 もうすぐ使われなくなるかもしれない。\n\nユーザー権限で利用できるパッケージマネージャで、最初から使えるようになっている。\n\nGNU Guix Reference Manual (公式マニュアル)\n遺伝研での使い方ページ (アーカイブ)\n\n前準備:\n~/.bashrc に以下を追記:\nexport GUIX_DAEMON_SOCKET=guix://at111\nexport GUIX_PROFILE=\"$HOME/.guix-profile\"\nsource \"$GUIX_PROFILE/etc/profile\"\n\nguix search, guix package --search\n\n利用可能なパッケージの検索。標準出力だと見切れるので less に渡す。\n\n\n(例) guix search paml | less\n\nguix install, guix package --install\n\nパッケージのインストール\n\n\n上記のように設定した場合のデフォルトのインストールパスは $HOME/.guix-profile/bin/ になる。\n\nguix pull\n\nguix 本体を最新版に更新する。\n\nguix update, guix package --update\n\nインストールしたパッケージを最新版に更新する。 正規表現でパッケージを指定可。\n\nguic remove, guix package --remove\n\nパッケージのアンインストール\n\n\nバイオインフォマティクス関連のパッケージ:\n\nhttps://github.com/genenetwork/guix-bioinformatics\nhttps://guix.gnu.org/en/blog/2018/paper-on-reproducible-bioinformatics-pipelines-with-guix/",
+    "section": "Grid Engine と Slurm の対応",
+    "text": "Grid Engine と Slurm の対応\n\nコマンド\n\nqsub -&gt; sbatch\nqstat -&gt; squeue\nqdel -&gt; scancel\n\n\n\nオプション\nAGE:                   -&gt; Slurm:\n\n#!/bin/bash             | #!/bin/bash\n#$ -S /bin/bash         | #  Shebang でよい?\n#$ -cwd                 | #  デフォルトでカレントディレクトリ\n#$ -V                   | #  デフォルトで環境変数をすべて引き継ぐ\n#$ -l short             | #SBATCH -p &lt;partition&gt;\n#$ -l d_rt=00:10:00     | #SBATCH -t 0-00:10:00\n#$ -l s_rt=00:10:00     |\n#$ -l s_vmem=4G         | #SBATCH --mem-per-cpu 4G\n#$ -l mem_req=4G        |",
     "crumbs": [
       "Bioinformatics",
       "遺伝研スパコン"

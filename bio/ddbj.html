@@ -482,6 +482,10 @@ document.addEventListener("DOMContentLoaded", function () {
 <section id="ログイン" class="level2">
 <h2 class="anchored" data-anchor-id="ログイン">ログイン</h2>
 <p><a href="https://sc.ddbj.nig.ac.jp/application/">ユーザーアカウントを発行</a>したら、 <a href="../cli/ssh.html">ssh 接続</a>の設定をする。</p>
+<ul>
+<li><a href="https://sc.ddbj.nig.ac.jp/application/ssh_keys" class="uri">https://sc.ddbj.nig.ac.jp/application/ssh_keys</a></li>
+<li><a href="https://sc.ddbj.nig.ac.jp/application/ssh_copy_id/" class="uri">https://sc.ddbj.nig.ac.jp/application/ssh_copy_id/</a></li>
+</ul>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>~/.ssh/config</strong></pre>
@@ -490,279 +494,193 @@ document.addEventListener("DOMContentLoaded", function () {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  IdentityFile ~/.ssh/id_ed25519</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  Hostname gw.ddbj.nig.ac.jp</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  RequestTTY yes</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  User yukimatsu</span></code></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  User usename</span></code></pre></div>
 </div>
-<p><code>ssh</code> 接続後はゲートウェイノードにいる。 ここで作業をしてはいけない。 <code>qlogin</code> してログインノードへ移動:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> ddbj</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">qlogin</span></span></code></pre></div>
-<p><code>-l s_vmem</code>, <code>-l mem_req</code> でログインノードのメモリ量を指定できる。 デフォルトは 4GB で、96GB まで指定可能。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qlogin</span> <span class="at">-l</span> s_vmem=16G <span class="at">-l</span> mem_req=16G  <span class="co"># 16GB でログイン</span></span></code></pre></div>
 </section>
-<section id="インタラクティブジョブ" class="level2">
-<h2 class="anchored" data-anchor-id="インタラクティブジョブ">インタラクティブジョブ</h2>
-<p><a href="https://sc.ddbj.nig.ac.jp/software/grid_engine/interactive_jobs" class="uri">https://sc.ddbj.nig.ac.jp/software/grid_engine/interactive_jobs</a></p>
-<p>手元のターミナルと同じように、Linux コマンドやスクリプトの実行が可能:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/yukimatsu</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python3</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Python</span> 3.10.12 <span class="er">(</span><span class="ex">main,</span> Jun 11 2023, 05:26:28<span class="kw">)</span> <span class="ex">[GCC</span> 11.4.0] on linux</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Type</span> <span class="st">"help"</span>, <span class="st">"copyright"</span>, <span class="st">"credits"</span> or <span class="st">"license"</span> for more information.</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> print<span class="kw">(</span><span class="ex">1+2</span><span class="kw">)</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">3</span></span></code></pre></div>
+<section id="ジョブ実行" class="level2">
+<h2 class="anchored" data-anchor-id="ジョブ実行">ジョブ実行</h2>
+<ul>
+<li><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/" class="uri">https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/</a></li>
+<li><a href="https://slurm.schedmd.com/documentation.html" class="uri">https://slurm.schedmd.com/documentation.html</a></li>
+</ul>
+<section id="インタラクティブジョブ" class="level3">
+<h3 class="anchored" data-anchor-id="インタラクティブジョブ"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/interactive_jobs">インタラクティブジョブ</a></h3>
+<div class="warn">
+<p>暫定的に <code>a001</code>, <code>a002</code>, <code>a003</code> の3つのインタラクティブノードが用意されている。 ゲートウェイノードへ <code>ssh</code> ログイン後、インタラクティブノードのいずれかに <code>ssh</code> ログインする:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[youraccount@local</span> ~]$ ssh username@gw.ddbj.nig.ac.jp</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[youraccount@gw</span> ~]$ ssh a001</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[youraccount@a001</span> ~]$</span></code></pre></div>
+<p>後日変わると思うので、<a href="https://sc.ddbj.nig.ac.jp/">公式サイト</a>をチェック。</p>
+</div>
+<p><a href="https://slurm.schedmd.com/srun.html"><code>srun</code></a> コマンドを用いてインタラクティブジョブ用の計算ノードを要求する:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> <span class="at">--pty</span> bash</span></code></pre></div>
+<p>AGE でいう <code>qlogin</code> のイメージ。</p>
 </section>
-<section id="バッチジョブ" class="level2">
-<h2 class="anchored" data-anchor-id="バッチジョブ">バッチジョブ</h2>
-<p><a href="https://sc.ddbj.nig.ac.jp/software/grid_engine/batch_jobs" class="uri">https://sc.ddbj.nig.ac.jp/software/grid_engine/batch_jobs</a></p>
-<p>簡単なジョブであればインタラクティブジョブでよいが、 時間のかかるジョブやリソースを食うジョブ、繰り返し行うジョブを実行する場合は ジョブスクリプトを書いて計算ノードにやらせる。</p>
-<p>ジョブスクリプトはシェルスクリプトまたは Python スクリプトで書くことができる。</p>
+<section id="バッチジョブ" class="level3">
+<h3 class="anchored" data-anchor-id="バッチジョブ"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/batch_jobs">バッチジョブ</a></h3>
+<p><a href="https://slurm.schedmd.com/sbatch.html"><code>sbatch</code></a> コマンドを使う。 基本的な流れは AGE と同じで、ジョブスクリプトを書いて <code>qbatch example.sh</code> するだけ:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>sample.sh</strong></pre>
+<pre><strong>example.sh</strong></pre>
 </div>
-<div class="sourceCode" id="cb5" data-filename="sample.sh"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/bash</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -V</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l short</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l d_rt=00:10:00</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_rt=00:10:00</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_vmem=4G</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l mem_req=4G</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"HOME: "</span> <span class="va">${HOME}</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"USER: "</span> <span class="va">${USER}</span></span></code></pre></div>
+<div class="sourceCode" id="cb4" data-filename="example.sh"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -t 0-00:10:00</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem-per-cpu 4G</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -J an_example</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div>
 </div>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>sample.py</strong></pre>
-</div>
-<div class="sourceCode" id="cb6" data-filename="sample.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/python3</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /usr/bin/python3</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -V</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l d_rt=00:10:00</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_rt=00:10:00</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"HOME: "</span>, os.environ[<span class="st">"HOME"</span>])</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"USER: "</span>, os.environ[<span class="st">"USER"</span>])</span></code></pre></div>
-</div>
-<p><code>qsub</code> コマンドでジョブスクリプトを計算ノードに投げる:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qsub</span> sample.sh</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">qsub</span> sample.py <span class="at">-cwd</span> <span class="at">-l</span> short <span class="at">-l</span> s_vmem=4G <span class="at">-l</span> mem_req=4G</span></code></pre></div>
-<p>オプションはジョブスクリプト内で <code>#$</code> に続けて渡してもいいし、 <code>qsub</code> するときのコマンドライン引数として渡してもいい。</p>
+<p>ジョブ実行時のオプション設定は <code>#SBATCH</code> で渡す。 <code>sbatch</code> のコマンドライン引数で渡してもいい。 AGE でいう <code>#$ -cwd</code> (カレントディレクトリの設定) と <code>#$ -V</code> (環境変数の引継ぎ) は、Slurm ではデフォルトらしい。</p>
+<p>インタープリタの指定オプションはない (<a href="https://cvw.cac.cornell.edu/slurm/basics/execution-sbatch">?</a>) ので、shebang で指定する必要がある: <code>#!/bin/bash</code>, <code>#!/bin/csh</code>, <code>#!/use/bin/python</code></p>
+<p>使いそうなオプション:</p>
 <dl>
-<dt><code>-cwd</code></dt>
+<dt><code>-b</code>, <code>--bigin</code></dt>
 <dd>
-バッチジョブをカレントディレクトリ上で実行する。デフォルトは <code>$HOME</code>
+ジョブの実行割り当て開始時間を指定するする。
 </dd>
-<dt><code>-V</code></dt>
+<dt><code>-D</code>, <code>--chdir</code></dt>
 <dd>
-<code>qsub</code> を実行した際の環境変数を全て計算ノードに引き継ぐ。
+バッチジョブのワーキングディレクトリを指定。 (デフォルトはカレントディレクトリ。)
 </dd>
-<dt><code>-l short</code></dt>
+<dt><code>-c</code>, <code>--cpus-per-tasks</code></dt>
 <dd>
-計算ノードのキューの指定。 <code>epyc</code>, <code>intel</code>, <code>gpu</code>, <code>short</code>, <code>medium</code> がある。 (<a href="https://sc.ddbj.nig.ac.jp/general_analysis_division/ga_queue">Grid Engineキューの種類</a>)
+複数のタスクがあるときに、タスクあたりに必要な CPU の数を指定する。
 </dd>
-<dt><code>-l d_rt=00:10:00</code>, <code>s_rt=00:10:00</code></dt>
+<dt><code>-o</code>, <code>--output</code></dt>
 <dd>
-ジョブの実行上限時間。デフォルトは <code>72:00:00</code> (=3日間)
+標準出力の出力先をファイル名で指定する。 デフォルトでは <code>slurm-[JOBID]_[JOBインデックス].out</code> に吐き出される。
 </dd>
-<dt><code>-l s_vmem=4G</code>, <code>-l mem_req=4G</code></dt>
+<dt><code>-e</code>, <code>--error</code></dt>
 <dd>
-使用するメモリ量の指定。単位は <code>G</code>, <code>M</code>, <code>K</code>。
+標準エラーの出力先をファイル名で指定する。 デフォルトでは標準出力と同じファイルで、なにも指定しなければ <code>slurm-[JOBID]_[JOBインデックス].out</code> に吐き出される。
 </dd>
-<dt><code>-N example</code></dt>
+<dt><code>-i</code>, <code>--input</code></dt>
 <dd>
-ジョブ名の指定。指定しなければはジョブスクリプトのファイル名になる。
+バッチジョブの標準入力。
 </dd>
-<dt><code>-S /bin/bash</code></dt>
+<dt><code>--export</code></dt>
 <dd>
-インタープリタの指定
+ジョブに渡す環境変数を制御する。
 </dd>
-<dt><code>-o</code>, <code>-e</code></dt>
+<dt><code>-J</code>, <code>--job-name</code></dt>
 <dd>
-標準出力/標準エラーファイルの出力先
+ジョブの名前。デフォルトではスクリプトのファイル名になる。
+</dd>
+<dt><code>--mem</code></dt>
+<dd>
+ノードごとに必要なメモリの指定。単位は K, M, G, T を使う。(デフォルトは M)
+</dd>
+<dt><code>--mem-per-cpu</code></dt>
+<dd>
+CPU あたりに必要なメモリ量の指定。
 </dd>
 <dd>
-デフォルトではカレントディレクトリに <code>{ジョブ名}.o{ジョブID}</code>, <code>{ジョブ名}.e{ジョブID}</code> で出力される。
+バッチジョブで使うのは1ノード1コアなので、<code>--mem</code> でも同じ。
+</dd>
+<dt><code>-t</code>, <code>--time</code></dt>
+<dd>
+ジョブの実行時間を指定する。 デフォルトの単位は “minutes” で、他に “minutes:seconds”, “hours:minutes:seconds”, “days-hours”, “days-hours:minutes”, “days-hours:minutes:seconds” の形式で指定できる。
 </dd>
 </dl>
 </section>
-<section id="パラレルジョブ" class="level2">
-<h2 class="anchored" data-anchor-id="パラレルジョブ">パラレルジョブ</h2>
-<p><a href="https://sc.ddbj.nig.ac.jp/software/grid_engine/parallel_jobs/" class="uri">https://sc.ddbj.nig.ac.jp/software/grid_engine/parallel_jobs/</a></p>
-<p>CPU コアを複数同時に使用するジョブ。 例えば <a href="../bio/orthofinder.html">OrthoFinder</a> であれば <code>-a N</code> で N スレッドの並列解析を指定する。 これを遺伝研上で投げるときは、下のようにする:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/bash</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -pe def_slot 5</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">orthofinder</span> <span class="at">-f</span> ExampleData <span class="at">-a</span> 5</span></code></pre></div>
-<p>スレッド数の指定にはいくつか方法がある:</p>
-<dl>
-<dt><code>-pe def_slot N</code></dt>
-<dd>
-同一計算ノード上に N 個の CPU コアを確保する。
-</dd>
-<dt><code>-pe mpi N</code></dt>
-<dd>
-複数の計算ノードにわたって、 なるべく多数のノードに散るように N 個の CPU コアを確保する。
-</dd>
-<dt><code>-pe mpi-fillup N</code></dt>
-<dd>
-複数の計算ノードにわたって、 なるべく少数のノードに N 個の CPU コアを確保する。
-</dd>
-</dl>
-<div class="note">
-<p><code>-l s_vmem=4G</code>, <code>-l mem_req=4G</code> でメモリ量を指定する場合、×スレッド数 だけメモリを要求する。例えば <code>qsub -pe def_slot 16 -l s_vmem=4G -l mem_req=4G</code> であれば 4×16=64G を使うことになる。</p>
-</div>
-</section>
-<section id="アレイジョブ" class="level2">
-<h2 class="anchored" data-anchor-id="アレイジョブ">アレイジョブ</h2>
-<p><a href="https://sc.ddbj.nig.ac.jp/software/grid_engine/array_jobs" class="uri">https://sc.ddbj.nig.ac.jp/software/grid_engine/array_jobs</a></p>
-<p>多数のジョブを同時に、あるいは順次に実行していくジョブ。</p>
+<section id="アレイジョブ" class="level3">
+<h3 class="anchored" data-anchor-id="アレイジョブ"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/array_jobs">アレイジョブ</a></h3>
+<p><code>-a</code> で制御する。 <code>SLURM_ARRAY_TASK_ID</code>, <code>SLURM_ARRAY_TASK_COUNT</code> などの変数を参照可能。</p>
 <p>例えば6個の SRA データを同時に取得する場合:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/bash</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -t 1-6:1</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -tc 3</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="va">seq_ids</span><span class="op">=</span><span class="va">(</span>SRR030253 SRR030254 SRR030255 SRR030256 SRR030257 SRR030258<span class="va">)</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="va">seq_id</span><span class="op">=</span><span class="va">${seq_ids</span><span class="op">[</span><span class="va">$SGE_TASK_ID</span>-1<span class="op">]</span><span class="va">}</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="ex">prefetch</span> <span class="va">${seq_id}</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -a 1-6</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="va">seq_ids</span><span class="op">=</span><span class="va">(</span>SRR030253 SRR030254 SRR030255 SRR030256 SRR030257 SRR030258<span class="va">)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="va">seq_id</span><span class="op">=</span><span class="va">${seq_ids</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span>-1<span class="op">]</span><span class="va">}</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">prefetch</span> <span class="va">${seq_id}</span></span></code></pre></div>
+<p>一度に投入されるタスク数の上限は <code>%</code> で制御する。 (AGE でいう <code>-tc</code>):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -a 1-1000%100  # 1から1000までの並列。同時に走る上限は100。</span></span></code></pre></div>
+</section>
+<section id="パラレルジョブ" class="level3">
+<h3 class="anchored" data-anchor-id="パラレルジョブ"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/parallel_jobs">パラレルジョブ</a></h3>
+<p><a href="https://slurm.schedmd.com/mc_support.html" class="uri">https://slurm.schedmd.com/mc_support.html</a></p>
+<p>Slurm には AGE でいうパラレルジョブに直接該当する機能はない。 <code>--nodes</code>, <code>--ntasks</code>, <code>--ntasks-per-node</code> などを使って並列ジョブを制御する。</p>
 <dl>
-<dt><code>-t 1-N</code></dt>
+<dt><code>-N</code>, <code>--nodes</code></dt>
 <dd>
-N個のタスクを持つアレイジョブとして投入する。
+ジョブに割り当てるノードの数を指定する。[最小-最大] の範囲指定も可。
 </dd>
+<dt><code>--spread-job</code></dt>
 <dd>
-計算機が空いていれば同時に実行される。そうでなくても空き次第順次導入される。
+ジョブの割り当てをできるだけ多くのノードに均等に分散させる。
 </dd>
-<dt><code>-tc M</code></dt>
+<dt><code>-n</code>, <code>--ntasks</code></dt>
 <dd>
-一度に実行されるアレイジョブのタスク数の上限を指定。 これをやらないとユーザーに割り振られた計算機数をオーバーしてしまうことがある。
-</dd>
-<dd>
-<code>qquota</code> でリソースを確認できる。2023/11/30時点で300。
+ジョブに割り当てる CPU コアの数を指定する。
 </dd>
 </dl>
-<section id="ファイルの中身を-seq_ids-に流し込む" class="level3">
-<h3 class="anchored" data-anchor-id="ファイルの中身を-seq_ids-に流し込む">ファイルの中身を <code>seq_ids</code> に流し込む</h3>
-<p>10,000遺伝子の並列など、<code>seq_ids</code> が長くなるとジョブスクリプトの可読性が落ちる。 先に <code>seq_ids</code> の中身をテキストファイルに書き出して それをジョブスクリプトに読み込む場合、以下のようにする:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>array10000.sh</strong></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --nodes 1-1</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --ntasks 5</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem-per-cpu 4G</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">orthofinder</span> <span class="at">-f</span> ExampleData <span class="at">-a</span> 5</span></code></pre></div>
+<div class="note">
+<p>この時ノード全体では、<code>4G</code>×<code>5core</code>=<code>20G</code> のメモリを使う。</p>
 </div>
-<div class="sourceCode" id="cb10" data-filename="array10000.sh"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#$ /bin/bash</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -t 1-10000:1</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="va">seq_ids</span><span class="op">=</span><span class="va">()</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="bu">read</span> <span class="at">-r</span> <span class="va">x</span><span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">seq_ids</span><span class="op">+=</span><span class="va">($x)</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span> <span class="op">&lt;</span> <span class="va">$1</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="va">seq_id</span><span class="op">=</span><span class="va">${seq_ids</span><span class="op">[</span><span class="va">$SGE_TASK_ID</span>-1<span class="op">]</span><span class="va">}</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">${seq_id}</span></span></code></pre></div>
-</div>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>genes.txt</strong></pre>
-</div>
-<div class="sourceCode" id="cb11" data-filename="genes.txt"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Gene_1</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Gene_2</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>Gene_3</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>⋮</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>Gene_10000</span></code></pre></div>
-</div>
-<p><code>genes.txt</code> を引数にして <code>qsub</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qsub</span> array10000.sh genes.txt</span></code></pre></div>
-<p><code>cat genes.txt | while read -r x</code> で直接読もうとすると想定した挙動をしない。</p>
 </section>
-</section>
-<section id="その他のコマンド" class="level2">
-<h2 class="anchored" data-anchor-id="その他のコマンド">その他のコマンド</h2>
+<section id="その他のコマンド" class="level3">
+<h3 class="anchored" data-anchor-id="その他のコマンド"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/other_commands">その他のコマンド</a></h3>
 <dl>
-<dt><code>qstat</code></dt>
+<dt><code>squeue</code></dt>
 <dd>
-ジョブの投入状況の確認
+ジョブの状況を確認 (i.e.&nbsp;<code>qstat</code>)
 </dd>
+<dt><code>scancel [JOBID]</code></dt>
 <dd>
-<code>r</code>: 実行中, <code>qw</code>: 投入待機中, <code>t</code>: 計算ノードへ転送中, <code>E</code>: エラー, <code>d</code>: 削除中
+実行中のジョブをキャンセルする (i.e.&nbsp;<code>qdel</code>)
 </dd>
-<dt><code>qstat -g c</code></dt>
+<dt><code>scontrol</code></dt>
 <dd>
-計算・ログイン含む全ノードの混雑状況をみる。
-</dd>
-<dt><code>qdel jobID</code></dt>
-<dd>
-ジョブの削除
+ジョブの設定変更
 </dd>
 </dl>
+</section>
 </section>
 <section id="apptainer-singularity" class="level2">
 <h2 class="anchored" data-anchor-id="apptainer-singularity">Apptainer (Singularity)</h2>
-<p><a href="https://sc.ddbj.nig.ac.jp/software/Apptainer" class="uri">https://sc.ddbj.nig.ac.jp/software/Apptainer</a></p>
-<p>バイオインフォマティクスでよく使われる解析ツールは各ソフトウェアの頭文字ごとに <code>/usr/local/biotools/</code> に配置されており、 インストール不要で使うことができる。</p>
-<p>複数のバージョン用意されている場合もある。 どんなツールが使えるか見てみる。たとえば BLAST:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/b/blast<span class="pp">*</span></span></code></pre></div>
+<ul>
+<li><a href="https://sc.ddbj.nig.ac.jp/guides/software/Container/Apptainer/" class="uri">https://sc.ddbj.nig.ac.jp/guides/software/Container/Apptainer/</a></li>
+<li><a href="https://sc.ddbj.nig.ac.jp/guides/software/Container/BioContainers/" class="uri">https://sc.ddbj.nig.ac.jp/guides/software/Container/BioContainers/</a></li>
+</ul>
+<p>バイオインフォマティクスでよく使われる解析ツールは各ソフトウェアの頭文字ごとに <code>/usr/local/biotools/</code> に配置されており、インストール不要で使うことができる。</p>
+<p>複数のバージョン用意されている場合もある。 たとえば:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/s/samtools<span class="pp">*</span></span></code></pre></div>
 <p>使用例:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp <span class="at">-help</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># singularity exec /usr/local/biotools/b/blast:2.6.0--boost1.60_0 blastp -help</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec /usr/local/biotools/s/samtools</span></code></pre></div>
 </section>
-<section id="パッケージ管理" class="level2">
-<h2 class="anchored" data-anchor-id="パッケージ管理">パッケージ管理</h2>
-<section id="guix" class="level3">
-<h3 class="anchored" data-anchor-id="guix"><code>guix</code></h3>
-<div class="warn">
-<p>2023/11/30 の OS アップデートと同時にドキュメントがアーカイブされた。 もうすぐ使われなくなるかもしれない。</p>
-</div>
-<p>ユーザー権限で利用できるパッケージマネージャで、最初から使えるようになっている。</p>
+<section id="grid-engine-と-slurm-の対応" class="level2">
+<h2 class="anchored" data-anchor-id="grid-engine-と-slurm-の対応">Grid Engine と Slurm の対応</h2>
+<section id="コマンド" class="level3">
+<h3 class="anchored" data-anchor-id="コマンド">コマンド</h3>
 <ul>
-<li><a href="https://guix.gnu.org/manual/en/html_node/index.html">GNU Guix Reference Manual</a> (公式マニュアル)</li>
-<li><a href="https://sc.ddbj.nig.ac.jp/oldDocuments/software/guix">遺伝研での使い方ページ (アーカイブ)</a></li>
+<li>qsub -&gt; sbatch</li>
+<li>qstat -&gt; squeue</li>
+<li>qdel -&gt; scancel</li>
 </ul>
-<p>前準備:</p>
-<p><code>~/.bashrc</code> に以下を追記:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GUIX_DAEMON_SOCKET</span><span class="op">=</span>guix://at111</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GUIX_PROFILE</span><span class="op">=</span><span class="st">"</span><span class="va">$HOME</span><span class="st">/.guix-profile"</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> <span class="st">"</span><span class="va">$GUIX_PROFILE</span><span class="st">/etc/profile"</span></span></code></pre></div>
-<dl>
-<dt><code>guix search</code>, <code>guix package --search</code></dt>
-<dd>
-利用可能なパッケージの検索。標準出力だと見切れるので <code>less</code> に渡す。
-</dd>
-<dd>
-(例) <code>guix search paml | less</code>
-</dd>
-<dt><code>guix install</code>, <code>guix package --install</code></dt>
-<dd>
-パッケージのインストール
-</dd>
-<dd>
-上記のように設定した場合のデフォルトのインストールパスは <code>$HOME/.guix-profile/bin/</code> になる。
-</dd>
-<dt><code>guix pull</code></dt>
-<dd>
-<code>guix</code> 本体を最新版に更新する。
-</dd>
-<dt><code>guix update</code>, <code>guix package --update</code></dt>
-<dd>
-インストールしたパッケージを最新版に更新する。 正規表現でパッケージを指定可。
-</dd>
-<dt><code>guic remove</code>, <code>guix package --remove</code></dt>
-<dd>
-パッケージのアンインストール
-</dd>
-</dl>
-<p>バイオインフォマティクス関連のパッケージ:</p>
-<ul>
-<li><a href="https://github.com/genenetwork/guix-bioinformatics" class="uri">https://github.com/genenetwork/guix-bioinformatics</a></li>
-<li><a href="https://guix.gnu.org/en/blog/2018/paper-on-reproducible-bioinformatics-pipelines-with-guix/" class="uri">https://guix.gnu.org/en/blog/2018/paper-on-reproducible-bioinformatics-pipelines-with-guix/</a></li>
-</ul>
+</section>
+<section id="オプション" class="level3">
+<h3 class="anchored" data-anchor-id="オプション">オプション</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">AGE:</span>                   <span class="at">-</span><span class="op">&gt;</span> Slurm:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash             | #!/bin/bash</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/bash         | #  Shebang でよい?</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd                 | #  デフォルトでカレントディレクトリ</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -V                   | #  デフォルトで環境変数をすべて引き継ぐ</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l short             | #SBATCH -p &lt;partition&gt;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l d_rt=00:10:00     | #SBATCH -t 0-00:10:00</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_rt=00:10:00     |</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_vmem=4G         | #SBATCH --mem-per-cpu 4G</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l mem_req=4G        |</span></span></code></pre></div>
 
 
 </section>

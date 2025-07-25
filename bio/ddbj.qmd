@@ -32,9 +32,7 @@ Host ddbj
 
 ### [インタラクティブジョブ](https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/interactive_jobs)
 
-::: {.warn}
-
-暫定的に `a001`, `a002`, `a003` の3つのインタラクティブノードが用意されている。
+`a001`, `a002`, `a003` の3つのインタラクティブノードが用意されている。
 ゲートウェイノードへ `ssh` ログイン後、インタラクティブノードのいずれかに `ssh` ログインする:
 
 ```sh
@@ -43,11 +41,7 @@ Host ddbj
 [youraccount@a001 ~]$
 ```
 
-後日変わると思うので、[公式サイト](https://sc.ddbj.nig.ac.jp/)をチェック。
-
-:::
-
-
+<!--
 [`srun`](https://slurm.schedmd.com/srun.html) コマンドを用いてインタラクティブジョブ用の計算ノードを要求する:
 
 ```sh
@@ -55,7 +49,7 @@ srun --pty bash
 ```
 
 AGE でいう `qlogin` のイメージ。
-
+-->
 
 ### [バッチジョブ](https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/batch_jobs)
 

@@ -52,16 +52,14 @@ cargo install --git https://github.com/astral-sh/uv uv
 は[サードパーティ](https://github.com/indygreg/python-build-standalone)製の
 binary distribution をとってくる。
 
-`uv` で入れた Python は現在のところグローバルな使用は想定されていない。
-`uv run` を介すか仮想環境中で使う。
-もしくは、[プレビュー版](https://docs.astral.sh/uv/concepts/python-versions/#installing-python-executables)
-の機能を使って `~/.local/bin` にインストールする。
-
 :::
 
 `uv python install`
 : Python のバージョンを指定してインストール
 : 指定しなければ最新版をインストール
+: [`0.8.0`](https://github.com/astral-sh/uv/releases/tag/0.8.0) 以降、
+  デフォルトのインストール先が `~/.local/bin` になった。
+  `--no-bin` もしくは環境変数 `UV_PYTHON_INSTALL_BIN=0` で避けられる。
 
 `uv python list`
 : 利用可能なバージョン一覧を表示

@@ -507,16 +507,19 @@ document.addEventListener("DOMContentLoaded", function () {
 </ul>
 <section id="インタラクティブジョブ" class="level3">
 <h3 class="anchored" data-anchor-id="インタラクティブジョブ"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/interactive_jobs">インタラクティブジョブ</a></h3>
-<div class="warn">
-<p>暫定的に <code>a001</code>, <code>a002</code>, <code>a003</code> の3つのインタラクティブノードが用意されている。 ゲートウェイノードへ <code>ssh</code> ログイン後、インタラクティブノードのいずれかに <code>ssh</code> ログインする:</p>
+<p><code>a001</code>, <code>a002</code>, <code>a003</code> の3つのインタラクティブノードが用意されている。 ゲートウェイノードへ <code>ssh</code> ログイン後、インタラクティブノードのいずれかに <code>ssh</code> ログインする:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[youraccount@local</span> ~]$ ssh username@gw.ddbj.nig.ac.jp</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[youraccount@gw</span> ~]$ ssh a001</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[youraccount@a001</span> ~]$</span></code></pre></div>
-<p>後日変わると思うので、<a href="https://sc.ddbj.nig.ac.jp/">公式サイト</a>をチェック。</p>
-</div>
-<p><a href="https://slurm.schedmd.com/srun.html"><code>srun</code></a> コマンドを用いてインタラクティブジョブ用の計算ノードを要求する:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> <span class="at">--pty</span> bash</span></code></pre></div>
-<p>AGE でいう <code>qlogin</code> のイメージ。</p>
+<!--
+[`srun`](https://slurm.schedmd.com/srun.html) コマンドを用いてインタラクティブジョブ用の計算ノードを要求する:
+
+```sh
+srun --pty bash
+```
+
+AGE でいう `qlogin` のイメージ。
+-->
 </section>
 <section id="バッチジョブ" class="level3">
 <h3 class="anchored" data-anchor-id="バッチジョブ"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/batch_jobs">バッチジョブ</a></h3>
@@ -525,13 +528,13 @@ document.addEventListener("DOMContentLoaded", function () {
 <div class="code-with-filename-file">
 <pre><strong>example.sh</strong></pre>
 </div>
-<div class="sourceCode" id="cb4" data-filename="example.sh"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -t 0-00:10:00</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem-per-cpu 4G</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -J an_example</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div>
+<div class="sourceCode" id="cb3" data-filename="example.sh"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -t 0-00:10:00</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem-per-cpu 4G</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -J an_example</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div>
 </div>
 <p>ジョブ実行時のオプション設定は <code>#SBATCH</code> で渡す。 <code>sbatch</code> のコマンドライン引数で渡してもいい。 AGE でいう <code>#$ -cwd</code> (カレントディレクトリの設定) と <code>#$ -V</code> (環境変数の引継ぎ) は、Slurm ではデフォルトらしい。</p>
 <p>インタープリタの指定オプションはない (<a href="https://cvw.cac.cornell.edu/slurm/basics/execution-sbatch">?</a>) ので、shebang で指定する必要がある: <code>#!/bin/bash</code>, <code>#!/bin/csh</code>, <code>#!/use/bin/python</code></p>
@@ -590,16 +593,16 @@ CPU あたりに必要なメモリ量の指定。
 <h3 class="anchored" data-anchor-id="アレイジョブ"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/array_jobs">アレイジョブ</a></h3>
 <p><code>-a</code> で制御する。 <code>SLURM_ARRAY_TASK_ID</code>, <code>SLURM_ARRAY_TASK_COUNT</code> などの変数を参照可能。</p>
 <p>例えば6個の SRA データを同時に取得する場合:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -a 1-6</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="va">seq_ids</span><span class="op">=</span><span class="va">(</span>SRR030253 SRR030254 SRR030255 SRR030256 SRR030257 SRR030258<span class="va">)</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="va">seq_id</span><span class="op">=</span><span class="va">${seq_ids</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span>-1<span class="op">]</span><span class="va">}</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">prefetch</span> <span class="va">${seq_id}</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -a 1-6</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">seq_ids</span><span class="op">=</span><span class="va">(</span>SRR030253 SRR030254 SRR030255 SRR030256 SRR030257 SRR030258<span class="va">)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">seq_id</span><span class="op">=</span><span class="va">${seq_ids</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span>-1<span class="op">]</span><span class="va">}</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">prefetch</span> <span class="va">${seq_id}</span></span></code></pre></div>
 <p>一度に投入されるタスク数の上限は <code>%</code> で制御する。 (AGE でいう <code>-tc</code>):</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -a 1-1000%100  # 1から1000までの並列。同時に走る上限は100。</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -a 1-1000%100  # 1から1000までの並列。同時に走る上限は100。</span></span></code></pre></div>
 </section>
 <section id="パラレルジョブ" class="level3">
 <h3 class="anchored" data-anchor-id="パラレルジョブ"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/parallel_jobs">パラレルジョブ</a></h3>
@@ -619,13 +622,13 @@ CPU あたりに必要なメモリ量の指定。
 ジョブに割り当てる CPU コアの数を指定する。
 </dd>
 </dl>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --nodes 1-1</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --ntasks 5</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem-per-cpu 4G</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">orthofinder</span> <span class="at">-f</span> ExampleData <span class="at">-a</span> 5</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --nodes 1-1</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --ntasks 5</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem-per-cpu 4G</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">orthofinder</span> <span class="at">-f</span> ExampleData <span class="at">-a</span> 5</span></code></pre></div>
 <div class="note">
 <p>この時ノード全体では、<code>4G</code>×<code>5core</code>=<code>20G</code> のメモリを使う。</p>
 </div>
@@ -656,9 +659,9 @@ CPU あたりに必要なメモリ量の指定。
 </ul>
 <p>バイオインフォマティクスでよく使われる解析ツールは各ソフトウェアの頭文字ごとに <code>/usr/local/biotools/</code> に配置されており、インストール不要で使うことができる。</p>
 <p>複数のバージョン用意されている場合もある。 たとえば:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/s/samtools<span class="pp">*</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/s/samtools<span class="pp">*</span></span></code></pre></div>
 <p>使用例:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec /usr/local/biotools/s/samtools</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec /usr/local/biotools/s/samtools</span></code></pre></div>
 </section>
 <section id="grid-engine-と-slurm-の対応" class="level2">
 <h2 class="anchored" data-anchor-id="grid-engine-と-slurm-の対応">Grid Engine と Slurm の対応</h2>
@@ -672,17 +675,17 @@ CPU あたりに必要なメモリ量の指定。
 </section>
 <section id="オプション" class="level3">
 <h3 class="anchored" data-anchor-id="オプション">オプション</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">AGE:</span>                   <span class="at">-</span><span class="op">&gt;</span> Slurm:</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash             | #!/bin/bash</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/bash         | #  Shebang でよい?</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd                 | #  デフォルトでカレントディレクトリ</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -V                   | #  デフォルトで環境変数をすべて引き継ぐ</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l short             | #SBATCH -p &lt;partition&gt;</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l d_rt=00:10:00     | #SBATCH -t 0-00:10:00</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_rt=00:10:00     |</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_vmem=4G         | #SBATCH --mem-per-cpu 4G</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l mem_req=4G        |</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">AGE:</span>                   <span class="at">-</span><span class="op">&gt;</span> Slurm:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash             | #!/bin/bash</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/bash         | #  Shebang でよい?</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd                 | #  デフォルトでカレントディレクトリ</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -V                   | #  デフォルトで環境変数をすべて引き継ぐ</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l short             | #SBATCH -p &lt;partition&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l d_rt=00:10:00     | #SBATCH -t 0-00:10:00</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_rt=00:10:00     |</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_vmem=4G         | #SBATCH --mem-per-cpu 4G</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l mem_req=4G        |</span></span></code></pre></div>
 
 
 </section>

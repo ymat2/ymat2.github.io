@@ -102,18 +102,6 @@ cpython-3.12.3-linux-x86_64-gnu       /bin/python3.12
 cpython-3.12.3-linux-x86_64-gnu       /bin/python3 -> python3.12
 ```
 
-`uv` でインストールした python をグローバルに使いたければ
-インストール先を検出して自前で PATH を通せばいいはず...。
-
-```sh
-if [ -d "${UV_PYTHON_INSTALL_DIR:=$(uv python dir 2>/dev/null)}" ]; then
-  py_versions=($(ls "${UV_PYTHON_INSTALL_DIR}" | sort -V))
-  export PY_LATEST=${UV_PYTHON_INSTALL_DIR}/${py_versions[@]: -1}
-  PATH="${PY_LATEST}/bin:${PATH}"
-  unset py_versions PY_LATEST
-fi
-```
-
 
 ## プロジェクトでの使用
 

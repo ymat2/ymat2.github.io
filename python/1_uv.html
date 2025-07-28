@@ -558,13 +558,6 @@ Python のバージョンを指定してアンインストール
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ex">cpython-3.12.3-linux-x86_64-gnu</span>       /usr/bin/python3 <span class="at">-</span><span class="op">&gt;</span> python3.12</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">cpython-3.12.3-linux-x86_64-gnu</span>       /bin/python3.12</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">cpython-3.12.3-linux-x86_64-gnu</span>       /bin/python3 <span class="at">-</span><span class="op">&gt;</span> python3.12</span></code></pre></div>
-<p><code>uv</code> でインストールした python をグローバルに使いたければ インストール先を検出して自前で PATH を通せばいいはず…。</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">-d</span> <span class="st">"</span><span class="va">${UV_PYTHON_INSTALL_DIR</span><span class="op">:=</span><span class="va">$(</span><span class="ex">uv</span> python dir <span class="dv">2</span><span class="op">&gt;</span>/dev/null<span class="va">)}</span><span class="st">"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">py_versions</span><span class="op">=</span><span class="va">($(</span><span class="fu">ls</span> <span class="st">"</span><span class="va">${UV_PYTHON_INSTALL_DIR}</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-V</span><span class="va">))</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">PY_LATEST</span><span class="op">=</span><span class="va">${UV_PYTHON_INSTALL_DIR}</span>/<span class="va">${py_versions</span><span class="op">[@]:</span> -<span class="dv">1</span><span class="va">}</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">PATH</span><span class="op">=</span><span class="st">"</span><span class="va">${PY_LATEST}</span><span class="st">/bin:</span><span class="va">${PATH}</span><span class="st">"</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">unset</span> <span class="va">py_versions</span> <span class="va">PY_LATEST</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div>
 </section>
 <section id="プロジェクトでの使用" class="level2">
 <h2 class="anchored" data-anchor-id="プロジェクトでの使用">プロジェクトでの使用</h2>
@@ -574,13 +567,13 @@ Python のバージョンを指定してアンインストール
 <li><a href="https://docs.astral.sh/uv/guides/publish/" class="uri">https://docs.astral.sh/uv/guides/publish/</a></li>
 </ul>
 <p>プロジェクトの立ち上げ:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init hello</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> hello</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> hello <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> hello</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init hello</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> hello</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> hello <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> hello</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init</span></code></pre></div>
 <p>デフォルトでは</p>
 <ul>
 <li><code>.git/</code></li>
@@ -630,12 +623,12 @@ Python のバージョンを指定してアンインストール
 <section id="パッケージのインストール" class="level3">
 <h3 class="anchored" data-anchor-id="パッケージのインストール">パッケージのインストール</h3>
 <p>プロジェクトで使用するパッケージの管理もすべて uv がやってくれる。 例えば開発用パッケージとして <code>pytest</code> を使う場合:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add pytest <span class="at">--dev</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add pytest <span class="at">--dev</span></span></code></pre></div>
 <p>自動で <code>pyproject.toml</code> に記述される:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[tool.uv]</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">dev-dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pytest&gt;=8.3.3"</span><span class="op">,</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[tool.uv]</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">dev-dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pytest&gt;=8.3.3"</span><span class="op">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div>
 </section>
 </section>
 <section id="python-製コマンドラインツールの管理" class="level2">
@@ -650,12 +643,12 @@ Python のバージョンを指定してアンインストール
 </div>
 <section id="インストールせず一時的に使う" class="level3">
 <h3 class="anchored" data-anchor-id="インストールせず一時的に使う"><a href="https://docs.astral.sh/uv/guides/tools/#running-tools">インストールせず一時的に使う</a></h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uvx</span> ruff  <span class="co"># or `uv tool run ruff`</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uvx</span> ruff  <span class="co"># or `uv tool run ruff`</span></span></code></pre></div>
 </section>
 <section id="インストールして使う" class="level3">
 <h3 class="anchored" data-anchor-id="インストールして使う"><a href="https://docs.astral.sh/uv/guides/tools/#installing-tools">インストールして使う</a></h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> tool install ruff</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ruff</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> tool install ruff</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ruff</span></span></code></pre></div>
 <p>その他コマンド:</p>
 <dl>
 <dt><code>uv tool upgrade</code></dt>

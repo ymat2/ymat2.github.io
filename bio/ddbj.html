@@ -511,19 +511,10 @@ document.addEventListener("DOMContentLoaded", function () {
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[youraccount@local</span> ~]$ ssh username@gw.ddbj.nig.ac.jp</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[youraccount@gw</span> ~]$ ssh a001</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[youraccount@a001</span> ~]$</span></code></pre></div>
-<!--
-[`srun`](https://slurm.schedmd.com/srun.html) コマンドを用いてインタラクティブジョブ用の計算ノードを要求する:
-
-```sh
-srun --pty bash
-```
-
-AGE でいう `qlogin` のイメージ。
--->
 </section>
 <section id="バッチジョブ" class="level3">
 <h3 class="anchored" data-anchor-id="バッチジョブ"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/batch_jobs">バッチジョブ</a></h3>
-<p><a href="https://slurm.schedmd.com/sbatch.html"><code>sbatch</code></a> コマンドを使う。 基本的な流れは AGE と同じで、ジョブスクリプトを書いて <code>qbatch example.sh</code> するだけ:</p>
+<p><a href="https://slurm.schedmd.com/sbatch.html"><code>sbatch</code></a> コマンドを使う。 基本的な流れは AGE と同じで、ジョブスクリプトを書いて <code>sbatch example.sh</code> するだけ:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>example.sh</strong></pre>
@@ -587,7 +578,198 @@ CPU あたりに必要なメモリ量の指定。
 <dd>
 ジョブの実行時間を指定する。 デフォルトの単位は “minutes” で、他に “minutes:seconds”, “hours:minutes:seconds”, “days-hours”, “days-hours:minutes”, “days-hours:minutes:seconds” の形式で指定できる。
 </dd>
+<dt><code>-p</code>, <code>--partition</code></dt>
+<dd>
+バッチジョブを投入する待ち行列の種類を指定。
+</dd>
+<dd>
+投入するジョブの実行時間や並列数、メモリに応じて選択する。 (すぐ終わるジョブは <code>short</code>、メモリを使うジョブは <code>medium</code> など)
+</dd>
+<dd>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">PARTITION</th>
+<th style="text-align: left;">HOSTNAMES</th>
+<th style="text-align: right;">#CPUS</th>
+<th style="text-align: right;">MEMORY(MB)</th>
+<th style="text-align: right;">TIMELIMIT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">epyc*</td>
+<td style="text-align: left;">a017</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: right;">376360</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">epyc*</td>
+<td style="text-align: left;">a018</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">1547816</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">epyc*</td>
+<td style="text-align: left;">a019</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">1547816</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">epyc*</td>
+<td style="text-align: left;">a020</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">1547682</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">epyc*</td>
+<td style="text-align: left;">a021</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">1547683</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">epyc*</td>
+<td style="text-align: left;">a022</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">1547682</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">epyc*</td>
+<td style="text-align: left;">a023</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">1547816</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">epyc*</td>
+<td style="text-align: left;">a024</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">1547816</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">epyc*</td>
+<td style="text-align: left;">a025</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">1547816</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">epyc*</td>
+<td style="text-align: left;">a026</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">1547816</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">epyc*</td>
+<td style="text-align: left;">a049</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">1547816</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">epyc*</td>
+<td style="text-align: left;">a004</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">1547817</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">epyc*</td>
+<td style="text-align: left;">a005</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">483650</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">short</td>
+<td style="text-align: left;">at137</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">515530</td>
+<td style="text-align: right;">1:00:00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">short</td>
+<td style="text-align: left;">at138</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">515530</td>
+<td style="text-align: right;">1:00:00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rome</td>
+<td style="text-align: left;">at145</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">515530</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rome</td>
+<td style="text-align: left;">at139</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">515530</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rome</td>
+<td style="text-align: left;">at140</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">515530</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rome</td>
+<td style="text-align: left;">at141</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">515530</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rome</td>
+<td style="text-align: left;">at143</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">515530</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rome</td>
+<td style="text-align: left;">at142</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">515530</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">medium</td>
+<td style="text-align: left;">m01</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">3096101</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">medium</td>
+<td style="text-align: left;">m03</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">3096101</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">medium</td>
+<td style="text-align: left;">m02</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">3096101</td>
+<td style="text-align: right;">124-00:00:00</td>
+</tr>
+</tbody>
+</table>
+</dd>
 </dl>
+<p>c.f. <code>sinfo -o "%P %n %c %m %l"</code></p>
 </section>
 <section id="アレイジョブ" class="level3">
 <h3 class="anchored" data-anchor-id="アレイジョブ"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/array_jobs">アレイジョブ</a></h3>
@@ -662,33 +844,8 @@ CPU あたりに必要なメモリ量の指定。
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/s/samtools<span class="pp">*</span></span></code></pre></div>
 <p>使用例:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec /usr/local/biotools/s/samtools</span></code></pre></div>
-</section>
-<section id="grid-engine-と-slurm-の対応" class="level2">
-<h2 class="anchored" data-anchor-id="grid-engine-と-slurm-の対応">Grid Engine と Slurm の対応</h2>
-<section id="コマンド" class="level3">
-<h3 class="anchored" data-anchor-id="コマンド">コマンド</h3>
-<ul>
-<li>qsub -&gt; sbatch</li>
-<li>qstat -&gt; squeue</li>
-<li>qdel -&gt; scancel</li>
-</ul>
-</section>
-<section id="オプション" class="level3">
-<h3 class="anchored" data-anchor-id="オプション">オプション</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">AGE:</span>                   <span class="at">-</span><span class="op">&gt;</span> Slurm:</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash             | #!/bin/bash</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/bash         | #  Shebang でよい?</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd                 | #  デフォルトでカレントディレクトリ</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -V                   | #  デフォルトで環境変数をすべて引き継ぐ</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l short             | #SBATCH -p &lt;partition&gt;</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l d_rt=00:10:00     | #SBATCH -t 0-00:10:00</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_rt=00:10:00     |</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l s_vmem=4G         | #SBATCH --mem-per-cpu 4G</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#$ -l mem_req=4G        |</span></span></code></pre></div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

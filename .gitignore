@@ -2,3 +2,5 @@ docs/
 .quarto
 _extensions
 /.quarto/
+
+**/*.quarto_ipynb

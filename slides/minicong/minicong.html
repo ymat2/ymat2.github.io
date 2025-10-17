@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-1ea80994d423707dffa4c5deb2e491f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.29">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-89ef1ee790bdc269b52a829279c5ce0e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
 
   <title>Yuki MATSUDA – Minimal hands-on for Comparative Genomics</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #bf0303; } /* VerbatimString */
     code span.wa { color: #bf0303; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5f41eecf9672478c168459c5b12d9712.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-2f440eda0bc257c53e7e7cafb8a7101a.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-HLCP5V0Y7N"></script>
 
   <script type="text/javascript">
@@ -316,32 +316,32 @@ DNAの塩基配列あるいはタンパク質のアミノ酸配列のアライ�
 <h2>実際にやってみよう: 前準備</h2>
 <ol type="1">
 <li><p>homebrewのインストール:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install.sh<span class="va">)</span><span class="st">"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install.sh<span class="va">)</span><span class="st">"</span></span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
 <span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install install build-essential curl file git</span>
 <span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"'</span> <span class="op">&gt;&gt;</span> ~/.bash_profile</span>
-<span id="cb1-7"><a aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bash_profile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb1-7"><a aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bash_profile</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>blastのインストール:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> update</span>
-<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install blast</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> update</span>
+<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install blast</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>今回使うリポジトリを取ってくる:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ymat2/minicong.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ymat2/minicong.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
 </section>
 <section id="実際にやってみよう" class="slide level2 scrollable">
 <h2>実際にやってみよう:</h2>
 <ol type="1">
 <li><p><code>minicong</code>に移動</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> minicong</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> minicong</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>イヌとディンゴの配列を取得</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> src/get_sequence.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> src/get_sequence.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><code>blastp</code>を実行 (1行ずつやってみてもいいよ)</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> src/run_blastp.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> src/run_blastp.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>結果を確認してみる。</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> result</span>
-<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> result/Canis_lupus_dingo.ASM325472v1.blastp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> result</span>
+<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> result/Canis_lupus_dingo.ASM325472v1.blastp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
 </section>
 <section id="アミラーゼ遺伝子の数は-イヌ-ディンゴ" class="slide level2">
@@ -556,7 +556,7 @@ DNAの塩基配列あるいはタンパク質のアミノ酸配列のアライ�
         margin: 0,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -630,13 +630,14 @@ DNAの塩基配列あるいはタンパク質のアミノ酸配列のアライ�
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bcbce66894bfa8e7e94e40e0186b9bb8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.29">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a6e161b2431e1f94a14e0f5d32135a3c.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
 
   <title>Yuki MATSUDA – Rで系統樹を扱う</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5f41eecf9672478c168459c5b12d9712.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-2f440eda0bc257c53e7e7cafb8a7101a.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-HLCP5V0Y7N"></script>
 
   <script type="text/javascript">
@@ -227,13 +227,13 @@
 <section id="必要なパッケージのインストール" class="slide level2">
 <h2>必要なパッケージのインストール</h2>
 <p><code>ape</code> をCRANから、<code>ggtree</code> を <code>bioconductor</code> からインストールする。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ape"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ape"</span>)</span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ape)</span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
 <span id="cb1-6"><a aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"ggtree"</span>)</span>
-<span id="cb1-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtree)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtree)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="newickフォーマットとr-ape-におけるオブジェクト" class="slide level2">
 <h2>newickフォーマットとR (ape) におけるオブジェクト</h2>
@@ -241,9 +241,9 @@
 <section id="r標準の-plot-でも可視化はできる" class="slide level2">
 <h2>R標準の <code>plot()</code> でも可視化はできる</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)               <span class="co"># シードを設定</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)               <span class="co"># シードを設定</span></span>
 <span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>tr <span class="ot">=</span> ape<span class="sc">::</span><span class="fu">rtree</span>(<span class="at">n =</span> <span class="dv">10</span>)   <span class="co"># 系統樹を生成</span></span>
-<span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tr)                  <span class="co"># 可視化</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tr)                  <span class="co"># 可視化</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -256,11 +256,11 @@
 <section id="ggtree-で系統樹を可視化する" class="slide level2">
 <h2><code>ggtree</code> で系統樹を可視化する</h2>
 <p>基本的な使い方は <code>ggplot()</code> と同じで、 <code>+</code> を使って指示を重ねていく。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                    <span class="co"># シードを設定</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                    <span class="co"># シードを設定</span></span>
 <span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a>tr <span class="ot">=</span> ape<span class="sc">::</span><span class="fu">rtree</span>(<span class="at">n =</span> <span class="dv">10</span>)        <span class="co"># 系統樹を生成</span></span>
 <span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr)             <span class="co"># 枝のみ描画</span></span>
 <span id="cb3-4"><a aria-hidden="true" tabindex="-1"></a><span class="co"># geom_tiplab() +              # tip(先端)のラベルを表示</span></span>
-<span id="cb3-5"><a aria-hidden="true" tabindex="-1"></a><span class="co"># geom_nodelab(aes(label = node), hjust = -0.2, node = "internal")   # 内部ノードを表示</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a aria-hidden="true" tabindex="-1"></a><span class="co"># geom_nodelab(aes(label = node), hjust = -0.2, node = "internal")   # 内部ノードを表示</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -274,11 +274,11 @@
 <section id="ggtree-で系統樹を可視化する-1" class="slide level2">
 <h2><code>ggtree</code> で系統樹を可視化する</h2>
 <p>基本的な使い方は <code>ggplot()</code> と同じで、 <code>+</code> を使って指示を重ねていく。</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                    <span class="co"># シードを設定</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                    <span class="co"># シードを設定</span></span>
 <span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>tr <span class="ot">=</span> ape<span class="sc">::</span><span class="fu">rtree</span>(<span class="at">n =</span> <span class="dv">10</span>)        <span class="co"># 系統樹を生成</span></span>
 <span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr)             <span class="co"># 枝のみ描画</span></span>
 <span id="cb4-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>()                <span class="co"># tip(先端)のラベルを表示</span></span>
-<span id="cb4-5"><a aria-hidden="true" tabindex="-1"></a><span class="co"># geom_nodelab(aes(label = node), hjust = -0.2, node = "internal")   # 内部ノードを表示</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a aria-hidden="true" tabindex="-1"></a><span class="co"># geom_nodelab(aes(label = node), hjust = -0.2, node = "internal")   # 内部ノードを表示</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -292,11 +292,11 @@
 <section id="ggtree-で系統樹を可視化する-2" class="slide level2">
 <h2><code>ggtree</code> で系統樹を可視化する</h2>
 <p>基本的な使い方は <code>ggplot()</code> と同じで、 <code>+</code> を使って指示を重ねていく。</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                    <span class="co"># シードを設定</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                    <span class="co"># シードを設定</span></span>
 <span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>tr <span class="ot">=</span> ape<span class="sc">::</span><span class="fu">rtree</span>(<span class="at">n =</span> <span class="dv">10</span>)        <span class="co"># 系統樹を生成</span></span>
 <span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr)             <span class="co"># 枝のみ描画</span></span>
 <span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>() <span class="sc">+</span>              <span class="co"># tip(先端)のラベルを表示</span></span>
-<span id="cb5-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_nodelab</span>(<span class="fu">aes</span>(<span class="at">label =</span> node), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.2</span>, <span class="at">node =</span> <span class="st">"internal"</span>)   <span class="co"># 内部ノードを表示</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_nodelab</span>(<span class="fu">aes</span>(<span class="at">label =</span> node), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.2</span>, <span class="at">node =</span> <span class="st">"internal"</span>)   <span class="co"># 内部ノードを表示</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -309,7 +309,7 @@
 </section>
 <section id="系統樹の形状も様々に変えることができる" class="slide level2">
 <h2>系統樹の形状も様々に変えることができる</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                    <span class="co"># シードを設定</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                    <span class="co"># シードを設定</span></span>
 <span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>tr <span class="ot">=</span> ape<span class="sc">::</span><span class="fu">rtree</span>(<span class="at">n =</span> <span class="dv">10</span>)        <span class="co"># 系統樹を生成</span></span>
 <span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr, <span class="at">layout =</span> <span class="st">"rectangular"</span>)  <span class="co"># デフォルト</span></span>
 <span id="cb6-4"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr, <span class="at">layout =</span> <span class="st">"circular"</span>)</span>
@@ -325,7 +325,7 @@
 <span id="cb6-14"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr, <span class="at">layout =</span> <span class="st">"daylight"</span>)</span>
 <span id="cb6-15"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr, <span class="at">layout =</span> <span class="st">"rectangular"</span>, <span class="at">branch.length =</span> <span class="st">'none'</span>)</span>
 <span id="cb6-16"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr, <span class="at">layout =</span> <span class="st">'circular'</span>, <span class="at">branch.length =</span> <span class="st">'none'</span>)</span>
-<span id="cb6-17"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr, <span class="at">layout =</span> <span class="st">"dendrogram"</span>, <span class="at">branch.length =</span> <span class="st">'none'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-17"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr, <span class="at">layout =</span> <span class="st">"dendrogram"</span>, <span class="at">branch.length =</span> <span class="st">'none'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>それぞれの形状は次ページへ</p>
 </section>
 <section id="系統樹の形状も様々に変えることができる-1" class="slide level2">
@@ -343,7 +343,7 @@
 <section id="系統樹のあしらい" class="slide level2">
 <h2>系統樹のあしらい</h2>
 <p>線のデザインを変えたり、nodeやtipにしるしを付けたりすることができる。</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                    <span class="co"># シードを設定</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                    <span class="co"># シードを設定</span></span>
 <span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>tr <span class="ot">=</span> ape<span class="sc">::</span><span class="fu">rtree</span>(<span class="at">n =</span> <span class="dv">7</span>)         <span class="co"># 系統樹を生成</span></span>
 <span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a><span class="do">## 線の色、太さ、種類を変える</span></span>
@@ -353,7 +353,7 @@
 <span id="cb7-8"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr) <span class="sc">+</span> <span class="fu">geom_nodepoint</span>(<span class="at">color =</span> <span class="st">"#009E73"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>)</span>
 <span id="cb7-9"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-10"><a aria-hidden="true" tabindex="-1"></a><span class="do">## tipに印をつける</span></span>
-<span id="cb7-11"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr) <span class="sc">+</span> <span class="fu">geom_tippoint</span>(<span class="at">color =</span> <span class="st">"#0072B2"</span>, <span class="at">shape =</span> <span class="dv">16</span>, <span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-11"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr) <span class="sc">+</span> <span class="fu">geom_tippoint</span>(<span class="at">color =</span> <span class="st">"#0072B2"</span>, <span class="at">shape =</span> <span class="dv">16</span>, <span class="at">size =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -366,7 +366,7 @@
 </section>
 <section id="系統樹のあしらい特定のtipやnodeを目立たせる" class="slide level2">
 <h2>系統樹のあしらい｜特定のtipやnodeを目立たせる</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                    <span class="co"># シードを設定</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                    <span class="co"># シードを設定</span></span>
 <span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>tr <span class="ot">=</span> ape<span class="sc">::</span><span class="fu">rtree</span>(<span class="at">n =</span> <span class="dv">10</span>)        <span class="co"># 系統樹を生成</span></span>
 <span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a><span class="do">## node18を目立たせる</span></span>
@@ -375,7 +375,7 @@
 <span id="cb8-7"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-8"><a aria-hidden="true" tabindex="-1"></a><span class="do">## node4とnode5を目立たせる</span></span>
 <span id="cb8-9"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr) <span class="sc">+</span></span>
-<span id="cb8-10"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point2</span>(<span class="fu">aes</span>(<span class="at">subset=</span>(node <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>))), <span class="at">color =</span> <span class="st">"#0072B2"</span>, <span class="at">shape =</span> <span class="dv">17</span>, <span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-10"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point2</span>(<span class="fu">aes</span>(<span class="at">subset=</span>(node <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>))), <span class="at">color =</span> <span class="st">"#0072B2"</span>, <span class="at">shape =</span> <span class="dv">17</span>, <span class="at">size =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -389,14 +389,14 @@
 <section id="系統樹のあしらい特定のクレードを目立たせる" class="slide level2">
 <h2>系統樹のあしらい｜特定のクレードを目立たせる</h2>
 <p><code>groupOTU</code> や <code>groupClade</code> を使ってクレードをグルーピングする。</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                    <span class="co"># シードを設定</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                    <span class="co"># シードを設定</span></span>
 <span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>tr <span class="ot">=</span> ape<span class="sc">::</span><span class="fu">rtree</span>(<span class="at">n =</span> <span class="dv">10</span>)        <span class="co"># 系統樹を生成</span></span>
 <span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a><span class="do">## tipで指定</span></span>
 <span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a>tr2 <span class="ot">=</span> ggtree<span class="sc">::</span><span class="fu">groupOTU</span>(tr, <span class="at">.node =</span> <span class="fu">c</span>(<span class="st">"t6"</span>,<span class="st">"t9"</span>,<span class="st">"t10"</span>))</span>
 <span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-7"><a aria-hidden="true" tabindex="-1"></a><span class="do">## nodeで指定</span></span>
-<span id="cb9-8"><a aria-hidden="true" tabindex="-1"></a>tr3 <span class="ot">=</span> ggtree<span class="sc">::</span><span class="fu">groupClade</span>(tr, <span class="at">.node =</span> <span class="dv">13</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-8"><a aria-hidden="true" tabindex="-1"></a>tr3 <span class="ot">=</span> ggtree<span class="sc">::</span><span class="fu">groupClade</span>(tr, <span class="at">.node =</span> <span class="dv">13</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -410,13 +410,13 @@
 <section id="系統樹のあしらい特定のクレードを目立たせる-1" class="slide level2">
 <h2>系統樹のあしらい｜特定のクレードを目立たせる</h2>
 <p>複数のグルーピングも可能。</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>tr <span class="ot">=</span> ape<span class="sc">::</span><span class="fu">rtree</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
 <span id="cb10-3"><a aria-hidden="true" tabindex="-1"></a>  ggtree<span class="sc">::</span><span class="fu">groupClade</span>(<span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">18</span>))</span>
 <span id="cb10-4"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr, <span class="fu">aes</span>(<span class="at">color =</span> group)) <span class="sc">+</span></span>
 <span id="cb10-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>() <span class="sc">+</span></span>
 <span id="cb10-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_nodelab</span>(<span class="fu">aes</span>(<span class="at">label =</span> node), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.2</span>, <span class="at">node =</span> <span class="st">"internal"</span>) <span class="sc">+</span></span>
-<span id="cb10-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"#444444"</span>, <span class="st">"#009E73"</span>, <span class="st">"#0072B2"</span>, ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"#444444"</span>, <span class="st">"#009E73"</span>, <span class="st">"#0072B2"</span>, ))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -433,11 +433,11 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <p>ラベルをつける方法:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr) <span class="sc">+</span></span>
 <span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>() <span class="sc">+</span></span>
 <span id="cb11-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_nodelab</span>(<span class="fu">aes</span>(<span class="at">label =</span> node), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.2</span>, <span class="at">node =</span> <span class="st">"internal"</span>) <span class="sc">+</span></span>
 <span id="cb11-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_cladelabel</span>(<span class="at">node=</span><span class="dv">17</span>, <span class="at">label=</span><span class="st">"Clade A"</span>, <span class="at">color=</span><span class="st">"#009E73"</span>, <span class="at">offset=</span><span class="sc">-</span><span class="fl">0.5</span>, <span class="at">align=</span><span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb11-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_cladelabel</span>(<span class="at">node=</span><span class="dv">18</span>, <span class="at">label=</span><span class="st">"Clade B"</span>, <span class="at">color=</span><span class="st">"#E69F00"</span>, <span class="at">offset=</span><span class="sc">-</span><span class="fl">0.5</span>, <span class="at">align=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_cladelabel</span>(<span class="at">node=</span><span class="dv">18</span>, <span class="at">label=</span><span class="st">"Clade B"</span>, <span class="at">color=</span><span class="st">"#E69F00"</span>, <span class="at">offset=</span><span class="sc">-</span><span class="fl">0.5</span>, <span class="at">align=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -449,11 +449,11 @@
 </div>
 </div><div class="column" style="width:50%;">
 <p>塗りつぶす方法:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a>ggtree<span class="sc">::</span><span class="fu">ggtree</span>(tr) <span class="sc">+</span></span>
 <span id="cb12-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>() <span class="sc">+</span></span>
 <span id="cb12-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_nodelab</span>(<span class="fu">aes</span>(<span class="at">label =</span> node), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.2</span>, <span class="at">node =</span> <span class="st">"internal"</span>) <span class="sc">+</span></span>
 <span id="cb12-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hilight</span>(<span class="at">node=</span><span class="dv">17</span>, <span class="at">fill=</span><span class="st">"#009E73"</span>, <span class="at">alpha=</span>.<span class="dv">2</span>, <span class="at">extend=</span>.<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb12-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hilight</span>(<span class="at">node=</span><span class="dv">18</span>, <span class="at">fill=</span><span class="st">"#E69F00"</span>, <span class="at">alpha=</span>.<span class="dv">2</span>, <span class="at">extend=</span>.<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hilight</span>(<span class="at">node=</span><span class="dv">18</span>, <span class="at">fill=</span><span class="st">"#E69F00"</span>, <span class="at">alpha=</span>.<span class="dv">2</span>, <span class="at">extend=</span>.<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -666,7 +666,7 @@
         margin: 0,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -816,13 +816,14 @@
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

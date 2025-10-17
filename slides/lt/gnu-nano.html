@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-1ea80994d423707dffa4c5deb2e491f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.29">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-89ef1ee790bdc269b52a829279c5ce0e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
 
   <title>Yuki MATSUDA – GNU nanoエディタを便利に使う</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #bf0303; } /* VerbatimString */
     code span.wa { color: #bf0303; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5f41eecf9672478c168459c5b12d9712.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-2f440eda0bc257c53e7e7cafb8a7101a.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-HLCP5V0Y7N"></script>
 
   <script type="text/javascript">
@@ -219,16 +219,16 @@
 </ul>
 <p><br></p>
 <p>新しいバージョンを入れて使うのもよい:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">## Macならhomebrewでインストール</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">## Macならhomebrewでインストール</span></span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install nano</span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">## Linux(Ubuntu)ならaptでインストール</span></span>
-<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install nano</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install nano</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="基本的な使い方" class="slide level2">
 <h2>基本的な使い方</h2>
 <p>ファイル名を指定して開く。ファイルが存在しない場合は新しく作られる。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> sample.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> sample.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl>
 <dt><kbd>Control</kbd><kbd>X</kbd></dt>
 <dd>
@@ -259,8 +259,8 @@
 </ol>
 <p><br></p>
 <p>ホームに<code>.nanorc</code>を作ってみる:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span>  <span class="co"># homeディレクトリに移動</span></span>
-<span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> .nanorc  <span class="co"># .nanorcをnanoで編集</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span>  <span class="co"># homeディレクトリに移動</span></span>
+<span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> .nanorc  <span class="co"># .nanorcをnanoで編集</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="nanoを便利に使う1-configuration-1" class="slide level2">
 <h2><code>nano</code>を便利に使う1: Configuration</h2>
@@ -270,11 +270,11 @@
 <div class="code-with-filename-file">
 <pre><strong>.nanorc</strong></pre>
 </div>
-<div class="sourceCode" id="cb4" data-filename=".nanorc"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> tabsize 4     <span class="co"># Tabでインデントするときの幅をspace4個分に。</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename=".nanorc"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> tabsize 4     <span class="co"># Tabでインデントするときの幅をspace4個分に。</span></span>
 <span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> autoindent    <span class="co"># 改行時にインデントを揃える</span></span>
 <span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> smooth        <span class="co"># スクロールがスムーズに</span></span>
 <span id="cb4-4"><a aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> linenumbers   <span class="co"># 行番号を表示する</span></span>
-<span id="cb4-5"><a aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> mouse         <span class="co"># カーソル移動や範囲選択でマウスを使えるように</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> mouse         <span class="co"># カーソル移動や範囲選択でマウスを使えるように</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>その他のオプションは<a href="https://www.nano-editor.org/dist/latest/nano.html#Settings">公式ドキュメント</a>を参照。</p>
 </section>
@@ -305,7 +305,7 @@
 <div class="code-with-filename-file">
 <pre><strong>.nanorc</strong></pre>
 </div>
-<div class="sourceCode" id="cb5" data-filename=".nanorc"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> <span class="st">"/usr/share/nano/*.nanorc"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename=".nanorc"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> <span class="st">"/usr/share/nano/*.nanorc"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
 <li><p>適当なスクリプトを<code>nano</code>で開いて、ハイライトされているか見てみる。</p></li>
 </ol>
@@ -548,7 +548,7 @@
         margin: 0,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -622,13 +622,14 @@
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bcbce66894bfa8e7e94e40e0186b9bb8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.29">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a6e161b2431e1f94a14e0f5d32135a3c.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
 
   <meta name="author" content="2024-04-03 松田 優樹">
   <title>Yuki MATSUDA – 遺伝研スパコンで集団ゲノミクス解析</title>
@@ -96,7 +96,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5f41eecf9672478c168459c5b12d9712.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-2f440eda0bc257c53e7e7cafb8a7101a.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-HLCP5V0Y7N"></script>
 
   <script type="text/javascript">
@@ -307,7 +307,7 @@ Apptainer (旧 Singularity)
 <div class="code-with-filename-file">
 <pre><strong>sample.sh</strong></pre>
 </div>
-<div class="sourceCode" id="cb1" data-filename="sample.sh"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">#! /bin/Bash</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="sample.sh"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">#! /bin/Bash</span></span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a><span class="va">myfile</span><span class="op">=</span>sample.vcf           <span class="co"># 変数 myfile に sample.vcf を代入</span></span>
 <span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">${myfile}</span>              <span class="co"># echo コマンドで変数の中身を表示</span></span>
@@ -317,10 +317,10 @@ Apptainer (旧 Singularity)
 <span id="cb1-8"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> <span class="va">${samples</span><span class="op">[@]</span><span class="va">}</span><span class="kw">;</span> <span class="cf">do</span>  <span class="co"># 配列の中身を1つずつループ</span></span>
 <span id="cb1-10"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">touch</span> <span class="va">${x}</span>.vcf            <span class="co"># touch コマンドでファイルを新規作成</span></span>
-<span id="cb1-11"><a aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-11"><a aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>遺伝研スパコン上で実行してみる:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sample.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sample.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="bash-リダイレクト" class="slide level2">
 <h2>Bash: リダイレクト <code>&gt;</code></h2>
@@ -334,13 +334,13 @@ Apptainer (旧 Singularity)
 </dd>
 </dl>
 <p>例:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>                    <span class="co"># カレントディレクトリのファイルを眺める</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>                    <span class="co"># カレントディレクトリのファイルを眺める</span></span>
 <span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="op">&gt;</span> ls-result.txt    <span class="co"># ls の結果をファイルに保存</span></span>
 <span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> ls-result.txt    <span class="co"># ファイルの中身を見てみる</span></span>
 <span id="cb3-4"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span>                   <span class="co"># カレントディレクトリの PATH を表示</span></span>
 <span id="cb3-6"><a aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span> <span class="op">&gt;&gt;</span> ls-result.txt  <span class="co"># ped の結果をファイルに追加</span></span>
-<span id="cb3-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ls-result.txt     <span class="co"># ファイルの中身を見てみる</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ls-result.txt     <span class="co"># ファイルの中身を見てみる</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="bash-パイプ" class="slide level2">
 <h2>Bash: パイプ <code>|</code></h2>
@@ -351,14 +351,14 @@ Apptainer (旧 Singularity)
 </dd>
 </dl>
 <p>例:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">## コマンド毎に中間ファイルを作るのは冗長</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">## コマンド毎に中間ファイルを作るのは冗長</span></span>
 <span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="op">&gt;</span> ls-result.txt         <span class="co"># コマンドの実行結果をファイルに保存して、</span></span>
 <span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="st">"hiku"</span> ls-result.txt  <span class="co"># そのファイルを引数に指定して...</span></span>
 <span id="cb4-4"><a aria-hidden="true" tabindex="-1"></a><span class="ex">hiku.vcf</span></span>
 <span id="cb4-5"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-6"><a aria-hidden="true" tabindex="-1"></a><span class="co">## パイプで直接流し込む</span></span>
 <span id="cb4-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"hiku"</span></span>
-<span id="cb4-8"><a aria-hidden="true" tabindex="-1"></a><span class="ex">hiku.vcf</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-8"><a aria-hidden="true" tabindex="-1"></a><span class="ex">hiku.vcf</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="bash-エイリアス-alias" class="slide level2">
 <h2>Bash: エイリアス <code>alias</code></h2>
@@ -369,11 +369,11 @@ Apptainer (旧 Singularity)
 </dd>
 </dl>
 <p>例:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span> <span class="at">-l</span>             <span class="co"># 隠しファイルを含むすべてのファイルの情報を表示</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span> <span class="at">-l</span>             <span class="co"># 隠しファイルを含むすべてのファイルの情報を表示</span></span>
 <span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>                     <span class="co"># 毎回打つのはめんどくさい。。。</span></span>
 <span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> ls=<span class="st">"ls -a -l"</span>  <span class="co"># エイリアスを設定</span></span>
-<span id="cb5-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>                   <span class="co"># 同じ結果に</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>                   <span class="co"># 同じ結果に</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="age-引数" class="slide level2">
 <h2>AGE: 引数</h2>
@@ -381,7 +381,7 @@ Apptainer (旧 Singularity)
 <div class="code-with-filename-file">
 <pre><strong>sample.sh</strong></pre>
 </div>
-<div class="sourceCode" id="cb6" data-filename="sample.sh"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-filename="sample.sh"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/bash      # インタープリタの指定</span></span>
 <span id="cb6-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd              # ジョブを実行する場所をカレントディレクトリに</span></span>
@@ -394,7 +394,7 @@ Apptainer (旧 Singularity)
 <span id="cb6-11"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -o stdout.txt     # 標準出力のファイル名</span></span>
 <span id="cb6-12"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -e stderr.txt     # エラー出力のファイル名</span></span>
 <span id="cb6-13"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> Hello</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-14"><a aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> Hello</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="age-apptainer-旧-singularity" class="slide level2 scrollable">
@@ -415,8 +415,8 @@ Apptainer (旧 Singularity)
 <li><code>apptainer exec</code> + バージョンまでのPATH + コマンド</li>
 </ol>
 <p><code>samtools</code> の場合:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/s/samtools<span class="pp">*</span></span>
-<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec /usr/local/biotools/s/samtools:1.8--2 samtools <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/s/samtools<span class="pp">*</span></span>
+<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec /usr/local/biotools/s/samtools:1.8--2 samtools <span class="at">--help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="age-アレイジョブ" class="slide level2">
 <h2>AGE: アレイジョブ</h2>
@@ -438,7 +438,7 @@ Apptainer (旧 Singularity)
 <div class="code-with-filename-file">
 <pre><strong>test-array.sh</strong></pre>
 </div>
-<div class="sourceCode" id="cb8" data-filename="test-array.sh"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-filename="test-array.sh"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -S /bin/Bash</span></span>
 <span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">#$ -cwd</span></span>
@@ -448,7 +448,7 @@ Apptainer (旧 Singularity)
 <span id="cb8-8"><a aria-hidden="true" tabindex="-1"></a><span class="va">samples</span><span class="op">=</span><span class="va">(</span>uwa hiku WL RIR<span class="va">)</span></span>
 <span id="cb8-9"><a aria-hidden="true" tabindex="-1"></a><span class="va">sample</span><span class="op">=</span><span class="va">${samples</span><span class="op">[</span><span class="va">$SGE_TASK_ID</span>-1<span class="op">]</span><span class="va">}</span></span>
 <span id="cb8-10"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">${sample}</span> is my favorite breed. <span class="op">&gt;&gt;</span> <span class="va">${sample}</span>.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-11"><a aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">${sample}</span> is my favorite breed. <span class="op">&gt;&gt;</span> <span class="va">${sample}</span>.vcf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="アレイジョブ関連の引数" class="slide level2">
@@ -489,7 +489,7 @@ Apptainer (旧 Singularity)
 </section>
 <section id="f_textst-解析ハンズオン-vcf-query" class="slide level2">
 <h2><span class="math inline">\(F_\text{st}\)</span> 解析ハンズオン: <code>vcf-query</code></h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">vcf-query</span> <span class="at">-l</span> file.vcf.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">vcf-query</span> <span class="at">-l</span> file.vcf.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl>
 <dt><code>-l</code></dt>
 <dd>
@@ -506,8 +506,8 @@ VCF ファイルのサンプルを表示
 </section>
 <section id="f_textst-解析ハンズオン-vcftools" class="slide level2">
 <h2><span class="math inline">\(F_\text{st}\)</span> 解析ハンズオン: <code>vcftools</code></h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">vcftools</span> <span class="at">--gzvcf</span> file.vcf.gz <span class="at">--weir-fst-pop</span> pop1.txt <span class="at">--weir-fst-pop</span> pop2.txt <span class="dt">\</span></span>
-<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">--fst-window-size</span> 10000 <span class="at">--fst-window-step</span> 5000 <span class="at">--out</span> outfile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">vcftools</span> <span class="at">--gzvcf</span> file.vcf.gz <span class="at">--weir-fst-pop</span> pop1.txt <span class="at">--weir-fst-pop</span> pop2.txt <span class="dt">\</span></span>
+<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">--fst-window-size</span> 10000 <span class="at">--fst-window-step</span> 5000 <span class="at">--out</span> outfile</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl>
 <dt><code>--gzvcf</code></dt>
 <dd>
@@ -721,7 +721,7 @@ VCF ファイルのサンプルを表示
         margin: 0,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -795,13 +795,14 @@ VCF ファイルのサンプルを表示
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

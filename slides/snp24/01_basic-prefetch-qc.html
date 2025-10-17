@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bcbce66894bfa8e7e94e40e0186b9bb8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.29">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a6e161b2431e1f94a14e0f5d32135a3c.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
 
   <meta name="author" content="畜産研 博士1年 松田 優樹">
   <title>Yuki MATSUDA – 全ゲノム解析ハンズオン 2024 新村グループ</title>
@@ -96,7 +96,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5f41eecf9672478c168459c5b12d9712.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-2f440eda0bc257c53e7e7cafb8a7101a.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-HLCP5V0Y7N"></script>
 
   <script type="text/javascript">
@@ -330,8 +330,8 @@
 <p><br></p>
 <p>今日のハンズオンはすべて <code>snp24</code> ディレクトリの中で行います。</p>
 <p><u>ハンズオン終了後</u>は、ディレクトリごと消してもらって構いません:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..        <span class="co"># snp24 のひとつ上のディレクトリへ移動</span></span>
-<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> snp24  <span class="co"># snp24 のディレクトリごと削除</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..        <span class="co"># snp24 のひとつ上のディレクトリへ移動</span></span>
+<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> snp24  <span class="co"># snp24 のディレクトリごと削除</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="snp-解析の流れ" class="slide level2">
 <h2>SNP 解析の流れ</h2>
@@ -457,8 +457,8 @@
 <section id="sra-toolkit-を使って配列をダウンロードする" class="slide level2">
 <h2>SRA Toolkit を使って配列をダウンロードする</h2>
 <p><small> <a href="https://github.com/ncbi/sra-tools/wiki/08.-prefetch-and-fasterq-dump" class="uri">https://github.com/ncbi/sra-tools/wiki/08.-prefetch-and-fasterq-dump</a> </small></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">prefetch</span> SRR030257</span>
-<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">fasterq-dump</span> SRR030257/SRR030257.sra</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">prefetch</span> SRR030257</span>
+<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">fasterq-dump</span> SRR030257/SRR030257.sra</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl>
 <dt><code>prefetch</code></dt>
 <dd>
@@ -471,25 +471,25 @@ SRA アクセッションから Fastq ファイルを取り出す
 </dl>
 <p><br></p>
 <p><code>ls</code> して2つの <code>.fastq</code> ファイルができていたら成功:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
-<span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a><span class="co"># SRR030257  SRR030257_1.fastq  SRR030257_2.fastq</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
+<span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a><span class="co"># SRR030257  SRR030257_1.fastq  SRR030257_2.fastq</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="fastq-ファイルの中身を見てみる" class="slide level2">
 <h2>Fastq ファイルの中身を見てみる</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> SRR030257_1.fastq  <span class="co"># 先頭行を表示</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> SRR030257_1.fastq  <span class="co"># 先頭行を表示</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>4行でひとまとまり (1リード) のデータ:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>@SRR030257.1 HWI-EAS_4_PE-FC20GCB:6:1:385:567 length=36  # @リードの情報</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>@SRR030257.1 HWI-EAS_4_PE-FC20GCB:6:1:385:567 length=36  # @リードの情報</span>
 <span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>TTACACTCCTGTTAATCCATACAGCAACAGTATTGG                     # 配列</span>
 <span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>+SRR030257.1 HWI-EAS_4_PE-FC20GCB:6:1:385:567 length=36  # +</span>
-<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>AAA;A;AA?A?AAAAA?;?A?1A;;????566)=*1                     # クオリティ値</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>AAA;A;AA?A?AAAAA?;?A?1A;;????566)=*1                     # クオリティ値</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="クオリティ値" class="slide level2">
 <h2>クオリティ値</h2>
 <p>Fastq の4行目は、各塩基のクオリティ値が記号で記されている。</p>
 <p>記号と数字の対応は以下の通り (<a href="https://www.ascii-code.com/">ASCII コード</a>):</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a> Quality encoding: !"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHI</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a> Quality encoding: !"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHI</span>
 <span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>                   |         |         |         |         |</span>
-<span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a>    Quality score: 0........10........20........30........40</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a>    Quality score: 0........10........20........30........40</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><br></p>
 <p>これらの数字 (Q値) は Log スケールであり、ある塩基が間違って読まれている確率を <span class="math inline">\(P\)</span> として、</p>
 <p><span class="math display">\[
@@ -603,9 +603,9 @@ Q = -10 \times \log_{10}{P}
 </section>
 <section id="fastp-によるクオリティコントロール" class="slide level2">
 <h2>fastp によるクオリティコントロール</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="at">-i</span> SRR030257_1.fastq <span class="at">-I</span> SRR030257_2.fastq <span class="dt">\</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="at">-i</span> SRR030257_1.fastq <span class="at">-I</span> SRR030257_2.fastq <span class="dt">\</span></span>
 <span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> qc_SRR030257_1.fq.gz <span class="at">-O</span> qc_SRR030257_2.fq.gz <span class="dt">\</span></span>
-<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">-q</span> 20 <span class="at">-u</span> 40 <span class="at">-h</span> SRR030257.qc.html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">-q</span> 20 <span class="at">-u</span> 40 <span class="at">-h</span> SRR030257.qc.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl>
 <dt><code>-i</code>, <code>-I</code></dt>
 <dd>
@@ -626,9 +626,9 @@ Q = -10 \times \log_{10}{P}
 </section>
 <section id="fastp-によるクオリティコントロール-1" class="slide level2">
 <h2>fastp によるクオリティコントロール</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="at">-i</span> SRR030257_1.fastq <span class="at">-I</span> SRR030257_2.fastq <span class="dt">\</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="at">-i</span> SRR030257_1.fastq <span class="at">-I</span> SRR030257_2.fastq <span class="dt">\</span></span>
 <span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> qc_SRR030257_1.fq.gz <span class="at">-O</span> qc_SRR030257_2.fq.gz <span class="dt">\</span></span>
-<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">-q</span> 20 <span class="at">-u</span> 40 <span class="at">-h</span> SRR030257.qc.html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">-q</span> 20 <span class="at">-u</span> 40 <span class="at">-h</span> SRR030257.qc.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl>
 <dt><code>-q</code></dt>
 <dd>
@@ -892,7 +892,7 @@ Q = -10 \times \log_{10}{P}
         margin: 0,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -966,13 +966,14 @@ Q = -10 \times \log_{10}{P}
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

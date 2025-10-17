@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bcbce66894bfa8e7e94e40e0186b9bb8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.29">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a6e161b2431e1f94a14e0f5d32135a3c.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
 
   <meta name="author" content="畜産研 博士1年 松田 優樹">
   <title>Yuki MATSUDA – Part. 3 SnpEff によるアノテーション</title>
@@ -96,7 +96,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5f41eecf9672478c168459c5b12d9712.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-2f440eda0bc257c53e7e7cafb8a7101a.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-HLCP5V0Y7N"></script>
 
   <script type="text/javascript">
@@ -244,55 +244,55 @@
 <h2>SnpEff 実行環境の構築 (のための Java 環境構築)</h2>
 <p><small> <a href="https://pcingola.github.io/SnpEff/download/" class="uri">https://pcingola.github.io/SnpEff/download/</a> </small></p>
 <p>SnpEff は Java というプログラミング言語に依存している。 遺伝研の Java はちょっと古いので、 <a href="https://www.oracle.com/java/technologies/downloads/?er=221886">最新版の Java をインストール</a> する:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/bin</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/bin</span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/bin</span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.tar.gz</span>
 <span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> zxvf jdk-23_linux-x64_bin.tar.gz</span>
-<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a><span class="co"># rm jdk-23_linux-x64_bin.tar.gz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a><span class="co"># rm jdk-23_linux-x64_bin.tar.gz</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="snpeff-実行環境の構築-のための-java-環境構築-1" class="slide level2">
 <h2>SnpEff 実行環境の構築 (のための Java 環境構築)</h2>
 <p>Java コマンドをどこでも使えるようにする。 (PATH を通す。)</p>
 <p>ホームに戻って、<code>.bash_profile</code> (もしくは <code>.bashrc</code>) というファイルがあることを確認する。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span>
-<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span>
+<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>どちらかを開いて、以下の行を追加して保存する:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME</span><span class="op">=</span><span class="va">${HOME}</span>/bin/jdk-23  <span class="co"># ダウンロードしたものに合わせる。jdk23-1 なら ${HOME}/bin/jdk23-1 と書く。</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME</span><span class="op">=</span><span class="va">${HOME}</span>/bin/jdk-23  <span class="co"># ダウンロードしたものに合わせる。jdk23-1 なら ${HOME}/bin/jdk23-1 と書く。</span></span>
 <span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">${JAVA_HOME}</span>/bin:<span class="va">$PATH</span></span>
-<span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">MALLOC_ARENA_MAX</span><span class="op">=</span>2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">MALLOC_ARENA_MAX</span><span class="op">=</span>2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>編集したファイルを読み込み、Java の動作確認をする:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .bash_profile</span>
-<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .bash_profile</span>
+<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="snpeff-実行環境の構築" class="slide level2">
 <h2>SnpEff 実行環境の構築</h2>
 <p>最新版の SnpEff をダウンロードする:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/bin</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/bin</span>
 <span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip</span>
 <span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> snpEff_latest_core.zip</span>
-<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a><span class="co"># rm snpEff_latest_core.zip</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a><span class="co"># rm snpEff_latest_core.zip</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>先ほどと同じように SnpEff の PATH を通す。 ホームの <code>.bash_profile</code> か <code>.bashrc</code> を開いて以下の行を追加する:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">${HOME}</span>/bin/snpEff/scripts:<span class="va">$PATH</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">${HOME}</span>/bin/snpEff/scripts:<span class="va">$PATH</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>SnpEff の動作確認をする:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> <span class="at">-version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> <span class="at">-version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="snpeff-による変異のアノテーション" class="slide level2">
 <h2>SnpEff による変異のアノテーション</h2>
 <p>SnpEff は既存の遺伝子情報データベースをダウンロードしたり、 手元の GTF/GFF からデータベースを自作したりして使う。</p>
 <p>Escherichia_coli_b_str_rel606 の遺伝子情報をダウンロード:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/snp24  <span class="co"># 作業ディレクトリへ戻るのを忘れずに</span></span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> download <span class="at">-v</span> Escherichia_coli_b_str_rel606</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/snp24  <span class="co"># 作業ディレクトリへ戻るのを忘れずに</span></span>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> download <span class="at">-v</span> Escherichia_coli_b_str_rel606</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>変異のアノテーション:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> Escherichia_coli_b_str_rel606 hq_SRR030257.vcf <span class="op">&gt;</span> hq_SRR030257_snpeff.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> Escherichia_coli_b_str_rel606 hq_SRR030257.vcf <span class="op">&gt;</span> hq_SRR030257_snpeff.vcf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="snpeff-の結果-vcf" class="slide level2">
 <h2>SnpEff の結果 (VCF)</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> hq_SRR030257_snpeff.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> hq_SRR030257_snpeff.vcf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>長くて見づらいが、INFO フィールドに新たに <code>ANN=</code> に続く形でアノテーション結果が書かれている。</p>
 <p>アノテーション結果は <code>|</code> 区切りの16項目からなる。 複数の遺伝子にまたがる場合はさらに <code>,</code> 区切りで続く。</p>
 <p>例:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>G|missense_variant|MODERATE|pcnB|ECB_00142|transcript|ACT37835|protein_coding|1/1|c.904A&gt;C|p.Asn302His|904/1365|904/1365|302/454||WARNING_TRANSCRIPT_NO_START_CODON</span>
-<span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a># ALTアリル|変異の種類|変異の影響|遺伝子名|遺伝子ID|タイプ|転写産物名|転写産物biotype|Rank/total|塩基の位置と変異|アミノ酸の位置と変異|cDNA_position/cDNA_length|CDS_position/CDS_length|Protein_position/Protein_length|Distance to feature|エラーや警告</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>G|missense_variant|MODERATE|pcnB|ECB_00142|transcript|ACT37835|protein_coding|1/1|c.904A&gt;C|p.Asn302His|904/1365|904/1365|302/454||WARNING_TRANSCRIPT_NO_START_CODON</span>
+<span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a># ALTアリル|変異の種類|変異の影響|遺伝子名|遺伝子ID|タイプ|転写産物名|転写産物biotype|Rank/total|塩基の位置と変異|アミノ酸の位置と変異|cDNA_position/cDNA_length|CDS_position/CDS_length|Protein_position/Protein_length|Distance to feature|エラーや警告</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>pcnB</em> のアミノ酸を変える変異、302番目のアスパラギンがヒスチジンになっている。</p>
 </section>
 <section id="snpeff-の結果-genes" class="slide level2">
@@ -300,15 +300,15 @@
 <p>SnpEff を実行すると、<code>snpEff_genes.txt</code> というファイルもできる。</p>
 <p>このファイルには各転写産物ごとに、どの程度の影響の変異がいくつあるかがタブ区切りで整理されている。</p>
 <p>アミノ酸を変える変異をともなう遺伝子を抜き出してみる:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> snpEff_genes.txt <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'NR&gt;1 { if ($11 &gt;= 1) { print $0 } }'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> snpEff_genes.txt <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'NR&gt;1 { if ($11 &gt;= 1) { print $0 } }'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>🔰 元論文 <a href="https://doi.org/10.1038/nature08480">Barrick et al.&nbsp;2009</a> の <a href="https://www.nature.com/articles/nature08480/tables/1">Table. 1</a> と比べてみよう。</p>
 </section>
 <section id="ニワトリで-snpeff-を動かす場合" class="slide level2">
 <h2>ニワトリで SnpEff を動かす場合</h2>
 <p>生物種/ゲノムのバージョンによってはデータベースがない場合もある:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> databases <span class="kw">|</span> <span class="fu">grep</span> Gallus</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> databases <span class="kw">|</span> <span class="fu">grep</span> Gallus</span>
 <span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a><span class="co"># GRCg6a.99  Gallus_gallus</span></span>
-<span id="cb13-3"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Galgal4.75  Gallus_gallus</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-3"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Galgal4.75  Gallus_gallus</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>ニワトリも GRCg7b を使う場合、データベースを自作する必要がある:</p>
 <dl>
 <dt>やり方</dt>
@@ -584,7 +584,7 @@
         margin: 0,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -658,13 +658,14 @@
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

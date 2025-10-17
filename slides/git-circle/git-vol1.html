@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bcbce66894bfa8e7e94e40e0186b9bb8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.29">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a6e161b2431e1f94a14e0f5d32135a3c.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
 
   <title>Yuki MATSUDA – Git 基本操作① — GitとGitHubを使い始める</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5f41eecf9672478c168459c5b12d9712.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-2f440eda0bc257c53e7e7cafb8a7101a.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-HLCP5V0Y7N"></script>
 
   <script type="text/javascript">
@@ -234,7 +234,7 @@
 <h2>こんなことありませんか？</h2>
 <p>論文を書いて、先生に見せて、修正して、、、</p>
 <p>どれが最新だっけ？</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">~$</span> ls thesis/</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">~$</span> ls thesis/</span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">卒論.docx</span></span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a><span class="ex">卒論_ver2.docx</span></span>
 <span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a><span class="ex">卒論_TM_review.docx</span></span>
@@ -243,7 +243,7 @@
 <span id="cb1-7"><a aria-hidden="true" tabindex="-1"></a><span class="ex">卒論_最新_TM_review.docx</span></span>
 <span id="cb1-8"><a aria-hidden="true" tabindex="-1"></a><span class="ex">20220301_卒論_最終版.docx</span></span>
 <span id="cb1-9"><a aria-hidden="true" tabindex="-1"></a><span class="ex">卒論_提出版.docx</span></span>
-<span id="cb1-10"><a aria-hidden="true" tabindex="-1"></a><span class="ex">卒論_提出版_こっち.docx</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a aria-hidden="true" tabindex="-1"></a><span class="ex">卒論_提出版_こっち.docx</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="こんなことありませんか-1" class="slide level2">
 <h2>こんなことありませんか？</h2>
@@ -294,8 +294,8 @@ Gitを使う上で便利な機能が盛りだくさん
 <section id="install-git" class="slide level2">
 <h2>Install <code>git</code></h2>
 <p>version 2 以降の <code>git</code> が入っているかどうか確認:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span>
-<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a><span class="co"># git version 2.42.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span>
+<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a><span class="co"># git version 2.42.1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><br></p>
 <p>入っていなければ:</p>
 <ul>
@@ -314,7 +314,7 @@ Gitを使う上で便利な機能が盛りだくさん
 <li>パスワード</li>
 </ul></li>
 <li><p>Git<img height="20" style="margin: 0;" src="https://cdn.simpleicons.org/git"> の初期設定をターミナルから行う:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span>        <span class="co"># 2.0以上であることを確認</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span>        <span class="co"># 2.0以上であることを確認</span></span>
 <span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Yuki Matsuda"</span></span>
 <span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"your-email@dc.tohoku.ac.jp"</span></span>
 <span id="cb3-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> push.default simple</span>
@@ -323,7 +323,7 @@ Gitを使う上で便利な機能が盛りだくさん
 <span id="cb3-7"><a aria-hidden="true" tabindex="-1"></a><span class="co">#   name = Yuki Matsuda</span></span>
 <span id="cb3-8"><a aria-hidden="true" tabindex="-1"></a><span class="co">#   email = your-email@dc.tohoku.ac.jp</span></span>
 <span id="cb3-9"><a aria-hidden="true" tabindex="-1"></a><span class="co"># [push]</span></span>
-<span id="cb3-10"><a aria-hidden="true" tabindex="-1"></a><span class="co">#   default = simple</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb3-10"><a aria-hidden="true" tabindex="-1"></a><span class="co">#   default = simple</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
 </section>
 <section id="ssh-任意" class="slide level2">
@@ -337,10 +337,10 @@ Gitを使う上で便利な機能が盛りだくさん
 <li><p>ダウンロード操作(clone/fetch/pull)は高速なHTTPSで、<br> アップロード操作(push)はパスワード無しのSSHで、というのが楽ちん。</p></li>
 <li><p><a href="https://ymat2.github.io/commandline/ssh/">SSH公開鍵を作って</a> ローカルマシンと<a href="https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">GitHubに登録</a>する。</p></li>
 <li><p>設定ファイル <code>~/.gitconfig</code> に <code>pushinsteadof</code> の設定を追加:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode ini code-with-copy"><code class="sourceCode ini"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="kw">[url "git@github.com:"]</span></span>
-<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a><span class="dt">  pushinsteadof </span><span class="ot">=</span><span class="st"> https://github.com/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode ini code-with-copy"><code class="sourceCode ini"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="kw">[url "git@github.com:"]</span></span>
+<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a><span class="dt">  pushinsteadof </span><span class="ot">=</span><span class="st"> https://github.com/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Macの場合、keyhcainを使ってPassword入力をスキップする:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> credential.helper osxkeychain</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> credential.helper osxkeychain</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Windowsの場合、SSH鍵作成の際にPassword入力をスキップするのがよい？</p></li>
 </ul>
 </section>
@@ -356,18 +356,18 @@ Gitを使う上で便利な機能が盛りだくさん
 <h2>手元のプロジェクトをGitで管理する</h2>
 <ol type="1">
 <li><p>適当なディレクトリを作ってテキストファイル <code>README.md</code> を新規作成する:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> new_project <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> new_project</span>
-<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> Hello, world! <span class="op">&gt;</span> README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> new_project <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> new_project</span>
+<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> Hello, world! <span class="op">&gt;</span> README.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>ローカルリポジトリをつくる:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>ローカルリポジトリに <code>README.md</code> をコミットする。</p>
 <p>最初は <code>git status</code> や <code>git log</code> で頻繁に確認すると安心。</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
 <span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md  <span class="co"># README.mdをindexに登録</span></span>
 <span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
 <span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Create README.md"</span> <span class="co"># コミットメッセージを添えてコミット</span></span>
 <span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb8-6"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb8-6"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
 </section>
 <section id="手元のプロジェクトをgithubでも管理する" class="slide level2 scrollable">
@@ -376,11 +376,11 @@ Gitを使う上で便利な機能が盛りだくさん
 <li><p>GitHubアカウントページの右上の “+” から “New repository” を選択する。</p></li>
 <li><p>適当なリポジトリ名（基本は手元と同じ）をつけて “Create repository” を押す。</p></li>
 <li><p>手順が表示されるので基本的にそれに従う:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/USER_NAME/new_project.git  <span class="co"># リモートリポジトリを紐づける</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/USER_NAME/new_project.git  <span class="co"># リモートリポジトリを紐づける</span></span>
 <span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span>               <span class="co"># ちゃんと紐づいたか確認</span></span>
 <span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a><span class="co"># git branch -M main        # ブランチの名前をmainに</span></span>
 <span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main     <span class="co"># リモートにpush</span></span>
-<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><small> “Private” リポジトリの場合、SSHで紐付けしないと下り( <code>fetch</code>, <code>pull</code> )でもパスワードを聞かれる。</small></p></li>
 <li><p>リポジトリのページを更新して <code>README.md</code> が見えるか確認する。</p></li>
 </ol>
@@ -393,9 +393,9 @@ Gitを使う上で便利な機能が盛りだくさん
 <li><p>SSHではなくHTTPSを選択し、URLをコピー。</p></li>
 <li><p><code>git clone https://github.com/ymat2/practice-git.git</code></p></li>
 <li><p>中身を眺めてみる:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> practice-git</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> practice-git</span>
 <span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span></span>
-<span id="cb10-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb10-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
 <hr>
 <dl>
@@ -612,7 +612,7 @@ etc.
         margin: 0,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -686,13 +686,14 @@ etc.
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bcbce66894bfa8e7e94e40e0186b9bb8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.29">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a6e161b2431e1f94a14e0f5d32135a3c.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
 
   <meta name="author" content="畜産研 博士1年 松田 優樹">
   <title>Yuki MATSUDA – Part. 2 リードマッピング、バリアントコール</title>
@@ -96,7 +96,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5f41eecf9672478c168459c5b12d9712.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-2f440eda0bc257c53e7e7cafb8a7101a.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-HLCP5V0Y7N"></script>
 
   <script type="text/javascript">
@@ -248,30 +248,30 @@
 </dl>
 <p><strong>前準備</strong></p>
 <p>大腸菌の参照配列をダウンロード</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://ftp.ensemblgenomes.ebi.ac.uk/pub/bacteria/release-47/fasta/bacteria_5_collection/escherichia_coli_b_str_rel606/dna/Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://ftp.ensemblgenomes.ebi.ac.uk/pub/bacteria/release-47/fasta/bacteria_5_collection/escherichia_coli_b_str_rel606/dna/Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div style="height: 20px;">
 
 </div>
 <p>ダウンロードしたファイルは圧縮されている (<code>.gz</code>) ので解凍する:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="参照配列にリードをマッピング-前準備-1" class="slide level2">
 <h2>参照配列にリードをマッピング (前準備)</h2>
 <p>ファイル名が長いので <code>Ecoli.fa</code> に変えておく (任意):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa Ecoli.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> Escherichia_coli_b_str_rel606.ASM1798v1.dna.toplevel.fa Ecoli.fa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div style="height: 20px;">
 
 </div>
 <p>参照配列の中身を見てみる:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> Ecoli.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> Ecoli.fa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div style="height: 20px;">
 
 </div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>&gt;Chromosome dna:chromosome chromosome:ASM1798v1:Chromosome:1:4629812:1 REF</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>&gt;Chromosome dna:chromosome chromosome:ASM1798v1:Chromosome:1:4629812:1 REF</span>
 <span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTC</span>
 <span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>TGATAGCAGCTTCTGAACTGGTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGG</span>
 <span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>TCACTAAATACTTTAACCAATATAGGCATAGCGCACAGACAGATAAAAATTACAGAGTAC</span>
-<span id="cb5-5"><a aria-hidden="true" tabindex="-1"></a>︙</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a aria-hidden="true" tabindex="-1"></a>︙</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>&gt;</code> で始まるヘッダー行と配列からなる <strong>FASTA</strong> というファイル形式。<br> Fastq と似ているけど別フォーマット。</p>
 </section>
 <section id="より小さいデータを使ってリードマッピングを理解する" class="slide level2">
@@ -280,13 +280,13 @@
 <p><small>データ置き場: <a href="https://github.com/ymat2/md4rm" class="uri">https://github.com/ymat2/md4rm</a></small></p>
 <hr style="margin-block: 20px;">
 <p>データをダウンロードする:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ymat2/md4rm.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ymat2/md4rm.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div style="height: 20px;">
 
 </div>
 <p>ディレクトリを移動して <code>ls</code> で中身を確認:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> md4rm</span>
-<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> md4rm</span>
+<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>ref.fa</code>: 参照配列。100bp。</li>
 <li><code>sra_1.fq</code>, <code>sra_2.fq</code>: Paired-end のショートリード (もどき)。</li>
@@ -297,12 +297,12 @@
 <p><code>sra_1.fq</code>, <code>sra_2.fq</code> には以下の5本のリードがある。</p>
 <p><img data-src="./images/md2rm.png"></p>
 <p><code>less</code> などで中身を見てみる:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> sra_1.fq</span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> sra_2.fq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> sra_1.fq</span>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> sra_2.fq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="リードマッピングの全体をまず眺める" class="slide level2">
 <h2>リードマッピングの全体をまず眺める</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">## 参照配列のインデックスを作る</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">## 参照配列のインデックスを作る</span></span>
 <span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> index ref.fa</span>
 <span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">## ショートリードを参照配列へマッピングする</span></span>
@@ -318,12 +318,12 @@
 <span id="cb9-14"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> small.cfsm.sam <span class="op">&gt;</span> small.bam</span>
 <span id="cb9-15"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-16"><a aria-hidden="true" tabindex="-1"></a><span class="co"># 一般的には BAM への圧縮を最初にやる。(SAM のサイズが大きいので。)</span></span>
-<span id="cb9-17"><a aria-hidden="true" tabindex="-1"></a><span class="co"># 今回はファイルの中身を見ながら進めるので最後に。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-17"><a aria-hidden="true" tabindex="-1"></a><span class="co"># 今回はファイルの中身を見ながら進めるので最後に。</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="参照配列のインデックス作成とリードマッピング" class="slide level2">
 <h2>参照配列のインデックス作成とリードマッピング</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> index ref.fa</span>
-<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> mem ref.fa sra_1.fq sra_2.fq <span class="op">&gt;</span> small.sam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> index ref.fa</span>
+<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> mem ref.fa sra_1.fq sra_2.fq <span class="op">&gt;</span> small.sam</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>マッピングの結果はターミナルに出力されるので、 リダイレクト <code>&gt;</code> して <code>small.sam</code> に書き込む。</p>
 <div style="height: 20px;">
 
@@ -339,13 +339,13 @@
 <h2><u>S</u>equence <u>A</u>lignment <u>M</u>ap (SAM) フォーマット</h2>
 <p><small> <a href="https://samtools.github.io/hts-specs/SAMv1.pdf" class="uri">https://samtools.github.io/hts-specs/SAMv1.pdf</a> </small></p>
 <p>参照配列にマッピングされたリードの情報を記載するためのフォーマット</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>@SQ SN:NC_052532.1  LN:100</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>@SQ SN:NC_052532.1  LN:100</span>
 <span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>@PG ID:bwa  PN:bwa  VN:0.7.17-r1188 CL:bwa mem -I 90 ref.fa sra_1.fq sra_2.fq</span>
 <span id="cb11-3"><a aria-hidden="true" tabindex="-1"></a>read1   99  NC_052532.1 3   60  40M =   53  90  TCACCCATCTCGGAGTGCTCACACCATCCCCATGATCTTG    AAAAAAAAA6AAA7AAAAABBAAA?A7&lt;?AAA:&gt;6::662    NM:i:1  MD:Z:13G26  MC:Z:40M    AS:i:35 XS:i:0</span>
 <span id="cb11-4"><a aria-hidden="true" tabindex="-1"></a>read1   147 NC_052532.1 53  60  40M =   3   -90 ATCACCCCCATGTCCCCCGGATGCTCACAGCATCACCCAT    266::6&gt;:AAA?&lt;7A?AAABBAAAAA7AAA6AAAAAAAAA    NM:i:0  MD:Z:40 MC:Z:40M    AS:i:40 XS:i:0</span>
 <span id="cb11-5"><a aria-hidden="true" tabindex="-1"></a>read2   83  NC_052532.1 55  60  40M =   5   -90 CACCCCCATGTCCCCCGGATGCTCACAGCATCACCCATCT    266::6&gt;:AAA?&lt;7A?AAABBAAAAA7AAA6AAAAAAAAA    NM:i:0  MD:Z:40 MC:Z:40M    AS:i:40 XS:i:0</span>
 <span id="cb11-6"><a aria-hidden="true" tabindex="-1"></a>read2   163 NC_052532.1 5   60  40M =   55  90  ACCCATCTCGGAGTGCTCACACCATCCCCATGATCTTGGG    AAAAAAAAA6AAA7AAAAABBAAA?A7&lt;?AAA:&gt;6::662    NM:i:1  MD:Z:11G28  MC:Z:40M    AS:i:35 XS:i:0</span>
-<span id="cb11-7"><a aria-hidden="true" tabindex="-1"></a>︙</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-7"><a aria-hidden="true" tabindex="-1"></a>︙</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>@</code> で始まるヘッダー行と、1リード1行のデータからなる。</p>
 <p>11 列以上で構成され、11列目まではツール共通、それ以降はマッピングツールによって異なる。</p>
 </section>
@@ -368,7 +368,7 @@
 <section id="flag-について-このあと出てくるので説明" class="slide level2">
 <h2><code>FLAG</code> について (このあと出てくるので説明)</h2>
 <p>リードのマッピング状況を表す数字。Bit 表現の足し算。</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a>    1  0x001  Paired-end である</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a>    1  0x001  Paired-end である</span>
 <span id="cb12-2"><a aria-hidden="true" tabindex="-1"></a>    2  0x002  正しくマッピングされている</span>
 <span id="cb12-3"><a aria-hidden="true" tabindex="-1"></a>    4  0x004  マッピングされていない</span>
 <span id="cb12-4"><a aria-hidden="true" tabindex="-1"></a>    8  0x008  Pair の相方がマッピングされていない</span>
@@ -379,13 +379,13 @@
 <span id="cb12-9"><a aria-hidden="true" tabindex="-1"></a>  256  0x100  ゲノム上の複数個所にマッピングされている</span>
 <span id="cb12-10"><a aria-hidden="true" tabindex="-1"></a>  512  0x200  クオリティが低い</span>
 <span id="cb12-11"><a aria-hidden="true" tabindex="-1"></a> 1024  0x400  Duplicate である</span>
-<span id="cb12-12"><a aria-hidden="true" tabindex="-1"></a> 2048  0x800  supplementary alignment</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-12"><a aria-hidden="true" tabindex="-1"></a> 2048  0x800  supplementary alignment</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>例えば <code>FLAG</code> が <code>99</code> なら <code>64+32+2+1</code> で「正しくマッピングされた、ペアが逆鎖のread1」、 <code>133</code> なら <code>128+4+1</code> で「マッピングされていないペアのread2」となる。</p>
 </section>
 <section id="samtools-を用いたファイル処理-collate-fixmate" class="slide level2">
 <h2>SAMtools を用いたファイル処理: <code>collate</code>, <code>fixmate</code></h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> collate small.sam <span class="at">-o</span> small.c.sam</span>
-<span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> fixmate <span class="at">-m</span> small.c.sam small.cf.sam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> collate small.sam <span class="at">-o</span> small.c.sam</span>
+<span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> fixmate <span class="at">-m</span> small.c.sam small.cf.sam</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl>
 <dt><code>samtools collate</code></dt>
 <dd>
@@ -409,7 +409,7 @@ mate タグ (<code>MC</code>, <code>ms</code>) というタグを付加する。
 </section>
 <section id="samtools-を用いたファイル処理-sort" class="slide level2">
 <h2>SAMtools を用いたファイル処理: <code>sort</code></h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort small.cf.sam <span class="at">-o</span> small.cfs.sam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort small.cf.sam <span class="at">-o</span> small.cfs.sam</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl>
 <dt><code>samtools sort</code></dt>
 <dd>
@@ -423,7 +423,7 @@ mate タグ (<code>MC</code>, <code>ms</code>) というタグを付加する。
 </section>
 <section id="samtools-を用いたファイル処理-markdup" class="slide level2">
 <h2>SAMtools を用いたファイル処理: <code>markdup</code></h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> markdup small.cfs.sam small.cfsm.sam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> markdup small.cfs.sam small.cfsm.sam</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl>
 <dt><code>samtools markdup</code></dt>
 <dd>
@@ -434,9 +434,9 @@ Duplicates (同じ領域のリード) を重複リードとしてマークする
 
 </div>
 <p>🔰 <code>small.cfs.sam</code> と <code>small.cfsm.sam</code> とで <code>read3</code> の2列目 <code>FLAG</code> の変化を比べよう。</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>read3   163 NC_052532.1 5   60  40M =   55  90  ACCCATCTCGGAGTGCTCACACCATCCCCATGATCTTGGG    AAAAAAAAA6AAA7AAAAABBAAA?A7&lt;?AAA:&gt;6::662    NM:i:1  MD:Z:11G28  AS:i:35 XS:i:0  MQ:i:60 MC:Z:40M    ms:i:1170</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>read3   163 NC_052532.1 5   60  40M =   55  90  ACCCATCTCGGAGTGCTCACACCATCCCCATGATCTTGGG    AAAAAAAAA6AAA7AAAAABBAAA?A7&lt;?AAA:&gt;6::662    NM:i:1  MD:Z:11G28  AS:i:35 XS:i:0  MQ:i:60 MC:Z:40M    ms:i:1170</span>
 <span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a>↓</span>
-<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>read3   1187    NC_052532.1 5   60  40M =   55  90  ACCCATCTCGGAGTGCTCACACCATCCCCATGATCTTGGG    AAAAAAAAA6AAA7AAAAABBAAA?A7&lt;?AAA:&gt;6::662    NM:i:1  MD:Z:11G28  AS:i:35 XS:i:0  MQ:i:60 MC:Z:40M    ms:i:1170</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>read3   1187    NC_052532.1 5   60  40M =   55  90  ACCCATCTCGGAGTGCTCACACCATCCCCATGATCTTGGG    AAAAAAAAA6AAA7AAAAABBAAA?A7&lt;?AAA:&gt;6::662    NM:i:1  MD:Z:11G28  AS:i:35 XS:i:0  MQ:i:60 MC:Z:40M    ms:i:1170</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>163 = 128 + 32 + 2 + 1</li>
 <li>1187 = <strong>1024</strong> + 128 + 32 + 2 + 1</li>
@@ -444,7 +444,7 @@ Duplicates (同じ領域のリード) を重複リードとしてマークする
 </section>
 <section id="samtools-を用いたファイル処理-markdup--r" class="slide level2">
 <h2>SAMtools を用いたファイル処理: <code>markdup -r</code></h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> markdup <span class="at">-r</span> small.cfs.sam small.cfsm.sam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> markdup <span class="at">-r</span> small.cfs.sam small.cfsm.sam</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl>
 <dt><code>samtools markdup -r</code></dt>
 <dd>
@@ -462,23 +462,23 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 <section id="bam-ファイルへの圧縮と閲覧" class="slide level2 scrollable">
 <h2>BAM ファイルへの圧縮と閲覧</h2>
 <p>BAM は SAM をバイナリに圧縮したファイル形式。 バイナリファイルなのでそのままでは読めず、インデックスを作って閲覧する。</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> small.cfsm.sam <span class="op">&gt;</span> small.bam</span>
-<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index small.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> small.cfsm.sam <span class="op">&gt;</span> small.bam</span>
+<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index small.bam</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr style="margin-block: 20px;">
 <p><strong>閲覧方法</strong></p>
 <ol type="1">
 <li>SAM として閲覧</li>
 </ol>
-<div class="sourceCode" id="cb19"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-h</span> <span class="at">--no-PG</span> small.bam <span class="kw">|</span> <span class="fu">less</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-h</span> <span class="at">--no-PG</span> small.bam <span class="kw">|</span> <span class="fu">less</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="1">
 <li>リードの貼りつき状況を視覚的に表示 (Q で閲覧画面を閉じる)</li>
 </ol>
-<div class="sourceCode" id="cb20"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> tview small.bam ref.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> tview small.bam ref.fa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="公開データを使ってリードマッピング" class="slide level2">
 <h2>公開データを使ってリードマッピング</h2>
 <p>改めて先ほど取得した大腸菌のデータを使って、リードマッピングを行う。</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..  <span class="co"># 元の snp24 ディレクトリへ移動</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..  <span class="co"># 元の snp24 ディレクトリへ移動</span></span>
 <span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a aria-hidden="true" tabindex="-1"></a><span class="co">## インデックス作成とマッピング</span></span>
 <span id="cb21-4"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> index Ecoli.fa</span>
@@ -490,7 +490,7 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 <span id="cb21-10"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> fixmate <span class="at">-m</span> SRR030257.c.bam SRR030257.cf.bam   <span class="co"># MC, ms タグを付加</span></span>
 <span id="cb21-11"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort SRR030257.cf.bam <span class="at">-o</span> SRR030257.cfs.bam    <span class="co"># 位置順ソート</span></span>
 <span id="cb21-12"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> markdup SRR030257.cfs.bam SRR030257.cfsm.bam  <span class="co"># PCR duplicates をマーク</span></span>
-<span id="cb21-13"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index SRR030257.cfsm.bam                      <span class="co"># インデックス作成</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-13"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index SRR030257.cfsm.bam                      <span class="co"># インデックス作成</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div style="height: 20px;">
 
 </div>
@@ -529,8 +529,8 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 </section>
 <section id="bcftools-によるバリアントコール" class="slide level2">
 <h2>BCFtools によるバリアントコール</h2>
-<div class="sourceCode" id="cb22"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> mpileup <span class="at">-f</span> Ecoli.fa SRR030257.cfsm.bam <span class="op">&gt;</span> SRR030257.mpileup</span>
-<span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> call <span class="at">-c</span> <span class="at">-v</span> <span class="at">--ploidy</span> 1 SRR030257.mpileup <span class="at">-o</span> SRR030257.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> mpileup <span class="at">-f</span> Ecoli.fa SRR030257.cfsm.bam <span class="op">&gt;</span> SRR030257.mpileup</span>
+<span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> call <span class="at">-c</span> <span class="at">-v</span> <span class="at">--ploidy</span> 1 SRR030257.mpileup <span class="at">-o</span> SRR030257.vcf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl>
 <dt><code>bcftools mpileup</code></dt>
 <dd>
@@ -555,14 +555,14 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 <h2>VCF (<u>V</u>ariant <u>C</u>all <u>F</u>ormat)</h2>
 <p><small> <a href="https://samtools.github.io/hts-specs/VCFv4.2.pdf" class="uri">https://samtools.github.io/hts-specs/VCFv4.2.pdf</a> </small></p>
 <p>バリアントコールした変異の情報を記述するフォーマット。 BCF は VCF をバイナリ化したもの。</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a>##fileformat=VCFv4.2</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a>##fileformat=VCFv4.2</span>
 <span id="cb23-2"><a aria-hidden="true" tabindex="-1"></a>##FILTER=&lt;ID=PASS,Description="All filters passed"&gt;</span>
 <span id="cb23-3"><a aria-hidden="true" tabindex="-1"></a>##bcftoolsVersion=1.13+htslib-1.13+ds</span>
 <span id="cb23-4"><a aria-hidden="true" tabindex="-1"></a>︙</span>
 <span id="cb23-5"><a aria-hidden="true" tabindex="-1"></a>#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  SRR030257.cfsm.bam</span>
 <span id="cb23-6"><a aria-hidden="true" tabindex="-1"></a>Chromosome      161041  .       T       G       225.007 .       DP=55;VDB=0.000910305;SGB=-0.693147;MQSBZ=1.32288;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,20,35;MQ=60;FQ=-999   GT:PL   1:255,0</span>
 <span id="cb23-7"><a aria-hidden="true" tabindex="-1"></a>Chromosome      380188  .       A       C       225.007 .       DP=42;VDB=0.701392;SGB=-0.693146;MQSBZ=-0.595683;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,11,31;MQ=60;FQ=-999    GT:PL   1:255,0</span>
-<span id="cb23-8"><a aria-hidden="true" tabindex="-1"></a>︙</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-8"><a aria-hidden="true" tabindex="-1"></a>︙</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>##</code> で始まるヘッダー行と、1座位1行のデータ行からなる。</p>
 <p>8列目までは共通、10列目以降は各サンプルの列。</p>
 </section>
@@ -583,8 +583,8 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 </section>
 <section id="format-フィールドの読み方" class="slide level2">
 <h2><code>FORMAT</code> フィールドの読み方</h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a aria-hidden="true" tabindex="-1"></a>... FORMAT  sampleA         sampleB</span>
-<span id="cb25-2"><a aria-hidden="true" tabindex="-1"></a>... GT:PL   0/1:139,0,112   1/1:245,27,0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a aria-hidden="true" tabindex="-1"></a>... FORMAT  sampleA         sampleB</span>
+<span id="cb25-2"><a aria-hidden="true" tabindex="-1"></a>... GT:PL   0/1:139,0,112   1/1:245,27,0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>sampleA</code> 以降の列には <code>GT</code> と <code>PL</code> の情報が <code>:</code> 区切りで書いてある。</li>
 <li><code>sampleA</code> の <code>GT</code> は <code>0/1</code>、<code>PL</code> は <code>139,0,112</code>。</li>
@@ -603,7 +603,7 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 </section>
 <section id="srr030257.vcf-を見てみる" class="slide level2">
 <h2><code>SRR030257.vcf</code> を見てみる</h2>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a></a>## ヘッダー省略</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a></a>## ヘッダー省略</span>
 <span id="cb26-2"><a></a>#CHROM          POS     ID      REF     ALT     QUAL    FILTER  FORMAT  SRR030257.cfsm.bam</span>
 <span id="cb26-3"><a></a>Chromosome      161041  .       T       G       225.007 .       DP=55;VDB=0.000910305;SGB=-0.693147;MQSBZ=1.32288;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,20,35;MQ=60;FQ=-999   GT:PL   1:255,0</span>
 <span id="cb26-4"><a></a>Chromosome      380188  .       A       C       225.007 .       DP=42;VDB=0.701392;SGB=-0.693146;MQSBZ=-0.595683;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,11,31;MQ=60;FQ=-999    GT:PL   1:255,0</span>
@@ -615,11 +615,11 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 <span id="cb26-10"><a></a>Chromosome      1329516 .       C       T       225.007 .       DP=50;VDB=0.0979545;SGB=-0.693147;MQSBZ=2.05363;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,31;MQ=59;FQ=-999     GT:PL   1:255,0</span>
 <span id="cb26-11"><a></a>Chromosome      1976879 .       T       G       225.007 .       DP=48;VDB=0.218639;SGB=-0.693147;MQSBZ=-1.29099;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,30,18;MQ=60;FQ=-999     GT:PL   1:255,0</span>
 <span id="cb26-12"><a></a>Chromosome      2031736 .       A       G       18.0728 .       DP=5;VDB=0.0672958;SGB=-0.590765;FS=0;MQ0F=0.2;AF1=1;AC1=1;DP4=0,0,0,5;MQ=19;FQ=-999    GT:PL   1:48,0</span>
-<span id="cb26-13"><a></a>Chromosome      2054876 .       A       G       119.006 .       DP=18;VDB=0.155125;SGB=-0.691153;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,0;MQ=31;FQ=-999     GT:PL   1:149,0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-13"><a></a>Chromosome      2054876 .       A       G       119.006 .       DP=18;VDB=0.155125;SGB=-0.691153;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,0;MQ=31;FQ=-999     GT:PL   1:149,0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="クオリティがよろしくない変異もある" class="slide level2">
 <h2>クオリティがよろしくない変異もある</h2>
-<div class="sourceCode" id="cb27" data-code-line-numbers="12"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb27-1"><a></a>## ヘッダー省略</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-code-line-numbers="12"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb27-1"><a></a>## ヘッダー省略</span>
 <span id="cb27-2"><a></a>#CHROM          POS     ID      REF     ALT     QUAL    FILTER  FORMAT  SRR030257.cfsm.bam</span>
 <span id="cb27-3"><a></a>Chromosome      161041  .       T       G       225.007 .       DP=55;VDB=0.000910305;SGB=-0.693147;MQSBZ=1.32288;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,20,35;MQ=60;FQ=-999   GT:PL   1:255,0</span>
 <span id="cb27-4"><a></a>Chromosome      380188  .       A       C       225.007 .       DP=42;VDB=0.701392;SGB=-0.693146;MQSBZ=-0.595683;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,11,31;MQ=60;FQ=-999    GT:PL   1:255,0</span>
@@ -631,12 +631,12 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 <span id="cb27-10"><a></a>Chromosome      1329516 .       C       T       225.007 .       DP=50;VDB=0.0979545;SGB=-0.693147;MQSBZ=2.05363;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,31;MQ=59;FQ=-999     GT:PL   1:255,0</span>
 <span id="cb27-11"><a></a>Chromosome      1976879 .       T       G       225.007 .       DP=48;VDB=0.218639;SGB=-0.693147;MQSBZ=-1.29099;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,30,18;MQ=60;FQ=-999     GT:PL   1:255,0</span>
 <span id="cb27-12"><a></a>Chromosome      2031736 .       A       G       18.0728 .       DP=5;VDB=0.0672958;SGB=-0.590765;FS=0;MQ0F=0.2;AF1=1;AC1=1;DP4=0,0,0,5;MQ=19;FQ=-999    GT:PL   1:48,0</span>
-<span id="cb27-13"><a></a>Chromosome      2054876 .       A       G       119.006 .       DP=18;VDB=0.155125;SGB=-0.691153;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,0;MQ=31;FQ=-999     GT:PL   1:149,0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-13"><a></a>Chromosome      2054876 .       A       G       119.006 .       DP=18;VDB=0.155125;SGB=-0.691153;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,0;MQ=31;FQ=-999     GT:PL   1:149,0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="高品質な変異をフィルタリングする" class="slide level2">
 <h2>高品質な変異をフィルタリングする</h2>
 <p><small> <a href="https://samtools.github.io/bcftools/howtos/filtering.html" class="uri">https://samtools.github.io/bcftools/howtos/filtering.html</a> </small></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> filter <span class="at">-i</span> <span class="st">"QUAL&gt;20 &amp;&amp; INFO/DP&gt;10"</span> SRR030257.vcf <span class="at">-o</span> hq_SRR030257.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> filter <span class="at">-i</span> <span class="st">"QUAL&gt;20 &amp;&amp; INFO/DP&gt;10"</span> SRR030257.vcf <span class="at">-o</span> hq_SRR030257.vcf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl>
 <dt><code>-i</code> (or <code>-e</code>)</dt>
 <dd>
@@ -717,10 +717,10 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 
 </div>
 <p>使い方:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> mpileup <span class="at">-f</span> Ecoli.fa SRR030257.cfsm.bam <span class="op">&gt;</span> SRR030257.mpileup</span>
-<span id="cb29-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> call <span class="at">-c</span> <span class="at">-v</span> <span class="at">--ploidy</span> 1 SRR030257.mpileup <span class="at">-o</span> SRR030257.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> mpileup <span class="at">-f</span> Ecoli.fa SRR030257.cfsm.bam <span class="op">&gt;</span> SRR030257.mpileup</span>
+<span id="cb29-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> call <span class="at">-c</span> <span class="at">-v</span> <span class="at">--ploidy</span> 1 SRR030257.mpileup <span class="at">-o</span> SRR030257.vcf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>  <img data-src="../..\images/share/arrow.svg"></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> mpileup <span class="at">-f</span> Ecoli.fa SRR030257.cfsm.bam <span class="kw">|</span> <span class="ex">bcftools</span> call <span class="at">-c</span> <span class="at">-v</span> <span class="at">--ploidy</span> 1 <span class="at">-o</span> SRR030257.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> mpileup <span class="at">-f</span> Ecoli.fa SRR030257.cfsm.bam <span class="kw">|</span> <span class="ex">bcftools</span> call <span class="at">-c</span> <span class="at">-v</span> <span class="at">--ploidy</span> 1 <span class="at">-o</span> SRR030257.vcf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>bcftools mpileup</code> の出力 (<code>SRR030257.mpileup</code>) を <code>bcftools call</code> の入力として直接使う。</p>
 </section>
 <section id="tips-2.-apptainer-イメージの使用" class="slide level2">
@@ -728,13 +728,13 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 <p><small> <a href="https://sc.ddbj.nig.ac.jp/software/BioContainers/" class="uri">https://sc.ddbj.nig.ac.jp/software/BioContainers/</a> </small></p>
 <p>Apptainer はユーザが解析ソフトウェアをインストール不要で使える仕組み。</p>
 <p>「使いたいコマンドが遺伝研スパコンにない！」ときや「違うバージョンのソフトが使いたい！」ときに便利。</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> samtools <span class="at">--version</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> samtools <span class="at">--version</span></span>
 <span id="cb31-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> 1.13</span>
 <span id="cb31-3"><a aria-hidden="true" tabindex="-1"></a><span class="co"># デフォルトの SAMtools のバージョンは 1.13 だけど</span></span>
 <span id="cb31-4"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-5"><a aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> apptainer exec /usr/local/biotools/s/samtools:1.19.1--h50ea8bc_0 samtools <span class="at">--version</span></span>
 <span id="cb31-6"><a aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> 1.19.1</span>
-<span id="cb31-7"><a aria-hidden="true" tabindex="-1"></a><span class="co"># もっと新しいバージョンを使うこともできる。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-7"><a aria-hidden="true" tabindex="-1"></a><span class="co"># もっと新しいバージョンを使うこともできる。</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
@@ -929,7 +929,7 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
         margin: 0,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1003,13 +1003,14 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

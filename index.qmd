@@ -7,7 +7,7 @@ format:
 
 ## About
 
-松田 優樹 / MATSUDA Yuki
+松田 優樹 / MATSUDA, Yuki
 : [東京農工大学](https://www.tuat.ac.jp/)
   [大学院 連合農学研究科](https://www.tuat.ac.jp/uni-grad/)
   [システム行動生物学研究グループ](https://tsuyoshishimmura.wixsite.com/website-1)

@@ -34,7 +34,7 @@ website:
       - section: "Windows"
         contents: win/*.qmd
   page-footer:
-    right: "Copyright 2023 &ndash; 2025, Yuki Matsuda"
+    right: "Copyright 2023 &ndash; 2026, Yuki MATSUDA"
   google-analytics: "G-HLCP5V0Y7N"
 
 format:

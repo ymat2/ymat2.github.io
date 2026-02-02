@@ -7,7 +7,7 @@ format:
 
 <https://learn.microsoft.com/ja-jp/powershell/>
 
-Microsoft 製 CUI。
+Microsoft 製 コマンドラインシェル。
 
 
 ## コマンドレット
@@ -97,7 +97,7 @@ function which() {(Get-Command $args).Path}
 - 既存のコマンドの上書きはできない？
 
 
-## Windows 標準のターミナル
+## Misc.
 
 コマンドプロンプト
 : 古の Microsoft 製 CUI
@@ -107,8 +107,9 @@ function which() {(Get-Command $args).Path}
 : コマンドプロンプトで使えたコマンドも基本的に使える。
 
 Windows Terminal
-: コマンドプロンプト、PowerShell、bash (WSL 経由)
-  など複数のコマンドラインシェルのホストアプリケーション。
+: 標準搭載のターミナルエミュレータ。
+  コマンドプロンプト、PowerShell、bash (WSL 経由)
+  など複数のコマンドラインシェルをホストできる。
 : <kbd>Win</kbd><kbd>X</kbd> → <kbd>I</kbd>/<kbd>A</kbd>(管理者として実行)
 : <kbd>Ctrl</kbd><kbd>,</kbd>で設定画面。
   デフォルトのプロファイルや外観をいじれる。

@@ -30,6 +30,7 @@ Git Bash
   パッケージ管理ツールとして Arch Linux で使われる [`pacman`](https://gitlab.archlinux.org/pacman/pacman)
   をフォークしている。
 : MinGW は Windows 用の C/C++ ビルドツールチェイン。
+: R 用のビルドツールチェイン [Rtools](https://cran.r-project.org/bin/windows/Rtools/) もこれがベース。
 
 他の UNIX 系 OS との互換性をできる限り保つなら WSL、
 Windows (C ドライブ) 内の作業で完結させつつもビルド環境が必要なら MSYS2 + MinGW、
@@ -64,6 +65,9 @@ Microsoft 公式の [Winget](https://learn.microsoft.com/ja-jp/windows/package-m
 `winget search`
 : パッケージの検索
 : 例: `winget search rstat`
+
+`winget upgrade`
+: パッケージのアップグレード
 
 `winget list`
 : インストール済みパッケージの表示
@@ -104,6 +108,12 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 プロジェクトのバージョン管理のためにも必須。
 インストールは winget か、[Git for Windows](/win/git4win.qmd) を参照。
 
+::: {.note}
+
+ちょっとした注意点で、Git Bash 起動中は `winget upgrade` による Git の更新はできない。
+
+:::
+
 
 ## R
 
@@ -135,6 +145,7 @@ VSCode で使うには PATH を教えてあげる必要がある:
 - [VSCode](https://code.visualstudio.com/Download)
 - [Rstudio](https://posit.co/download/rstudio-desktop/)
 - [Positron](https://github.com/posit-dev/positron)
+- [Zed](https://zed.dev/windows)
 
 
 ## Quarto

@@ -524,6 +524,9 @@ MSYS2 は Windows における POSIX 準拠を目指した開発環境。 パッ
 <dd>
 MinGW は Windows 用の C/C++ ビルドツールチェイン。
 </dd>
+<dd>
+R 用のビルドツールチェイン <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> もこれがベース。
+</dd>
 </dl>
 <p>他の UNIX 系 OS との互換性をできる限り保つなら WSL、 Windows (C ドライブ) 内の作業で完結させつつもビルド環境が必要なら MSYS2 + MinGW、 それ以外の用途なら PowerShell か Git Bash がいいのでは。</p>
 <div class="note">
@@ -549,6 +552,10 @@ MinGW は Windows 用の C/C++ ビルドツールチェイン。
 </dd>
 <dd>
 例: <code>winget search rstat</code>
+</dd>
+<dt><code>winget upgrade</code></dt>
+<dd>
+パッケージのアップグレード
 </dd>
 <dt><code>winget list</code></dt>
 <dd>
@@ -594,6 +601,9 @@ MinGW は Windows 用の C/C++ ビルドツールチェイン。
 <section id="git" class="level2">
 <h2 class="anchored" data-anchor-id="git">Git</h2>
 <p>プロジェクトのバージョン管理のためにも必須。 インストールは winget か、<a href="../win/git4win.html">Git for Windows</a> を参照。</p>
+<div class="note">
+<p>ちょっとした注意点で、Git Bash 起動中は <code>winget upgrade</code> による Git の更新はできない。</p>
+</div>
 </section>
 <section id="r" class="level2">
 <h2 class="anchored" data-anchor-id="r">R</h2>
@@ -627,6 +637,7 @@ MinGW は Windows 用の C/C++ ビルドツールチェイン。
 <li><a href="https://code.visualstudio.com/Download">VSCode</a></li>
 <li><a href="https://posit.co/download/rstudio-desktop/">Rstudio</a></li>
 <li><a href="https://github.com/posit-dev/positron">Positron</a></li>
+<li><a href="https://zed.dev/windows">Zed</a></li>
 </ul>
 </section>
 <section id="quarto" class="level2">

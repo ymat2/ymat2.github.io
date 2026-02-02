@@ -48,7 +48,7 @@
     "href": "win/powershell.html",
     "title": "PowerShell",
     "section": "",
-    "text": "https://learn.microsoft.com/ja-jp/powershell/\nMicrosoft 製 CUI。",
+    "text": "https://learn.microsoft.com/ja-jp/powershell/\nMicrosoft 製 コマンドラインシェル。",
     "crumbs": [
       "Windows",
       "PowerShell"
@@ -77,11 +77,11 @@
     ]
   },
   {
-    "objectID": "win/powershell.html#windows-標準のターミナル",
-    "href": "win/powershell.html#windows-標準のターミナル",
+    "objectID": "win/powershell.html#misc.",
+    "href": "win/powershell.html#misc.",
     "title": "PowerShell",
-    "section": "Windows 標準のターミナル",
-    "text": "Windows 標準のターミナル\n\nコマンドプロンプト\n\n古の Microsoft 製 CUI\n\nPowerShell\n\nコマンドプロンプトの後継 (Windows7 以降)。\n\n\nコマンドプロンプトで使えたコマンドも基本的に使える。\n\nWindows Terminal\n\nコマンドプロンプト、PowerShell、bash (WSL 経由) など複数のコマンドラインシェルのホストアプリケーション。\n\n\nWinX → I/A(管理者として実行)\n\n\nCtrl,で設定画面。 デフォルトのプロファイルや外観をいじれる。",
+    "section": "Misc.",
+    "text": "Misc.\n\nコマンドプロンプト\n\n古の Microsoft 製 CUI\n\nPowerShell\n\nコマンドプロンプトの後継 (Windows7 以降)。\n\n\nコマンドプロンプトで使えたコマンドも基本的に使える。\n\nWindows Terminal\n\n標準搭載のターミナルエミュレータ。 コマンドプロンプト、PowerShell、bash (WSL 経由) など複数のコマンドラインシェルをホストできる。\n\n\nWinX → I/A(管理者として実行)\n\n\nCtrl,で設定画面。 デフォルトのプロファイルや外観をいじれる。",
     "crumbs": [
       "Windows",
       "PowerShell"
@@ -92,7 +92,7 @@
     "href": "win/0-dev-win.html#はじめに",
     "title": "Windows 開発環境",
     "section": "はじめに",
-    "text": "はじめに\nWindows で UNIX ライクなコマンドライン操作を行うには、いくつかの選択肢がある。\n\nWSL (Windows Subsystem for Linux)\n\nWindows で Linux ディストリビューションを実行する環境を提供する機能。\n\n\nWSL2 からは、カーネルも Linux になっている。\n\n\nMicrosoft としては WSL を推奨している。\n\n\n便利だが、ディスクスペースを食いつぶす問題がある。\n\nPowerShell\n\nMicrosoft 製 CUI。UNIX とは異なる体系。\n\n\nコマンドレットエイリアスのおかげで多少の互換はある。\n\n\nいずれにしても最初はアプリケーションのインストールのために PowerShell での作業になる。 (GUI でもいける。)\n\nGit Bash\n\n後述する Git for Windows をインストールするとついてくる UNIX ライクな環境。\n\n\nパッケージ管理とかビルドユーティリティとかはついてない最低限の構成。\n\nMSYS2 + MinGW\n\nMSYS2 は Windows における POSIX 準拠を目指した開発環境。 パッケージ管理ツールとして Arch Linux で使われる pacman をフォークしている。\n\n\nMinGW は Windows 用の C/C++ ビルドツールチェイン。\n\n\n他の UNIX 系 OS との互換性をできる限り保つなら WSL、 Windows (C ドライブ) 内の作業で完結させつつもビルド環境が必要なら MSYS2 + MinGW、 それ以外の用途なら PowerShell か Git Bash がいいのでは。\n\nデスクトップを OneDrive 下に置く設定は無効にして C:/Users/_username_ で作業する方が安全。",
+    "text": "はじめに\nWindows で UNIX ライクなコマンドライン操作を行うには、いくつかの選択肢がある。\n\nWSL (Windows Subsystem for Linux)\n\nWindows で Linux ディストリビューションを実行する環境を提供する機能。\n\n\nWSL2 からは、カーネルも Linux になっている。\n\n\nMicrosoft としては WSL を推奨している。\n\n\n便利だが、ディスクスペースを食いつぶす問題がある。\n\nPowerShell\n\nMicrosoft 製 CUI。UNIX とは異なる体系。\n\n\nコマンドレットエイリアスのおかげで多少の互換はある。\n\n\nいずれにしても最初はアプリケーションのインストールのために PowerShell での作業になる。 (GUI でもいける。)\n\nGit Bash\n\n後述する Git for Windows をインストールするとついてくる UNIX ライクな環境。\n\n\nパッケージ管理とかビルドユーティリティとかはついてない最低限の構成。\n\nMSYS2 + MinGW\n\nMSYS2 は Windows における POSIX 準拠を目指した開発環境。 パッケージ管理ツールとして Arch Linux で使われる pacman をフォークしている。\n\n\nMinGW は Windows 用の C/C++ ビルドツールチェイン。\n\n\nR 用のビルドツールチェイン Rtools もこれがベース。\n\n\n他の UNIX 系 OS との互換性をできる限り保つなら WSL、 Windows (C ドライブ) 内の作業で完結させつつもビルド環境が必要なら MSYS2 + MinGW、 それ以外の用途なら PowerShell か Git Bash がいいのでは。\n\nデスクトップを OneDrive 下に置く設定は無効にして C:/Users/_username_ で作業する方が安全。",
     "crumbs": [
       "Windows",
       "Windows 開発環境"
@@ -103,7 +103,7 @@
     "href": "win/0-dev-win.html#パッケージ管理",
     "title": "Windows 開発環境",
     "section": "パッケージ管理",
-    "text": "パッケージ管理\nWindows におけるパッケージ管理の主な選択肢として、 Microsoft 公式の Winget、 古株で対応するパッケージも多い Chocolatey、 ユーザー権限で使いやすい Scoop の3つがある。\n\nWinget\n新しめの Windows ならデフォルトで使えるはず。 後述のツールはどれも winget で入れることができる。\n\nBasic usage\n\nwinget install/uninstall\n\nパッケージのインストール/アンインストール\n\nwinget search\n\nパッケージの検索\n\n\n例: winget search rstat\n\nwinget list\n\nインストール済みパッケージの表示\n\n\n\n\n\nChocolatey\n\nChocolatey のインストール\nPowerShell を管理者として開く。その後下記のインストールコマンドを実行:\nSet-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))\n\n\nBasic usage\n\nchoco install/uninstall\n\nパッケージのインストール/アンインストール (管理者権限が必要)\n\nchoco search\n\nパッケージの検索\n\nchoco list\n\nインストール済みパッケージの表示\n\n\n\n\n\nScoop\n\nインストール\nSet-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser\nInvoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression",
+    "text": "パッケージ管理\nWindows におけるパッケージ管理の主な選択肢として、 Microsoft 公式の Winget、 古株で対応するパッケージも多い Chocolatey、 ユーザー権限で使いやすい Scoop の3つがある。\n\nWinget\n新しめの Windows ならデフォルトで使えるはず。 後述のツールはどれも winget で入れることができる。\n\nBasic usage\n\nwinget install/uninstall\n\nパッケージのインストール/アンインストール\n\nwinget search\n\nパッケージの検索\n\n\n例: winget search rstat\n\nwinget upgrade\n\nパッケージのアップグレード\n\nwinget list\n\nインストール済みパッケージの表示\n\n\n\n\n\nChocolatey\n\nChocolatey のインストール\nPowerShell を管理者として開く。その後下記のインストールコマンドを実行:\nSet-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))\n\n\nBasic usage\n\nchoco install/uninstall\n\nパッケージのインストール/アンインストール (管理者権限が必要)\n\nchoco search\n\nパッケージの検索\n\nchoco list\n\nインストール済みパッケージの表示\n\n\n\n\n\nScoop\n\nインストール\nSet-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser\nInvoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression",
     "crumbs": [
       "Windows",
       "Windows 開発環境"
@@ -114,7 +114,7 @@
     "href": "win/0-dev-win.html#git",
     "title": "Windows 開発環境",
     "section": "Git",
-    "text": "Git\nプロジェクトのバージョン管理のためにも必須。 インストールは winget か、Git for Windows を参照。",
+    "text": "Git\nプロジェクトのバージョン管理のためにも必須。 インストールは winget か、Git for Windows を参照。\n\nちょっとした注意点で、Git Bash 起動中は winget upgrade による Git の更新はできない。",
     "crumbs": [
       "Windows",
       "Windows 開発環境"
@@ -147,7 +147,7 @@
     "href": "win/0-dev-win.html#統合開発環境",
     "title": "Windows 開発環境",
     "section": "統合開発環境",
-    "text": "統合開発環境\n好きなやつを入れる:\n\nVSCode\nRstudio\nPositron",
+    "text": "統合開発環境\n好きなやつを入れる:\n\nVSCode\nRstudio\nPositron\nZed",
     "crumbs": [
       "Windows",
       "Windows 開発環境"

@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Python 環境構築 – Yuki MATSUDA</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -68,15 +71,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../images/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8f761792feb2489904170432943ca7f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b8484662480500b84131a23a83f7d24e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7b548b2fc890d70c5a6222fab91b7951.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-edc4c3ba940c01618b5c8cb2b918d70d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -182,9 +184,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../"><img src="../images/favicon.png" height="28" vertical-align="text-bottom"> Yuki MATSUDA</a> 
     </div>
@@ -251,14 +251,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/gwas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GWAS</span></a>
+  <a href="../bio/genome_data_download.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ゲノムデータ取得</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/ncbi_download.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ゲノムデータ取得</span></a>
+  <a href="../bio/gwas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GWAS</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -329,12 +329,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cli/rsync.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">rsync</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../cli/ssh.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SSH</span></a>
   </div>
@@ -348,7 +342,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cli/vscode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visual Studio Code</span></a>
+ <span class="menu-text">VS Code</span></a>
   </div>
 </li>
       </ul>
@@ -425,12 +419,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../win/git4win.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git for Windows</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../win/powershell.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PowerShell</span></a>
   </div>
@@ -439,12 +427,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../win/wsl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">WSL</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL Disk Space</span></a>
   </div>
 </li>
       </ul>
@@ -457,24 +439,6 @@ window.Quarto = {
     
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">Python 環境構築</h1></header>
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  let toc = document.getElementById("TOC");
-
-  let beforeToc = document.querySelector(".before-toc");
-
-  if (toc && beforeToc) {
-
-    toc.parentNode.insertBefore(beforeToc, toc);
-
-  }
-
-});
-
-</script>
-
 
 <header id="title-block-header">
 
@@ -486,6 +450,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <p>Python を使うための環境構築に関するメモ。</p>
 <section id="ガイドライン" class="level2">
 <h2 class="anchored" data-anchor-id="ガイドライン">ガイドライン</h2>
+<p><a href="https://www.python.jp/install/install.html" class="uri">https://www.python.jp/install/install.html</a></p>
 <section id="python-と-anaconda" class="level3">
 <h3 class="anchored" data-anchor-id="python-と-anaconda">Python と Anaconda</h3>
 <p>Python パッケージをどう利用するかに、大きく2つの方法 (流派?) がある。</p>
@@ -493,10 +458,13 @@ document.addEventListener("DOMContentLoaded", function () {
 <li><code>pip</code> を使って <a href="https://pypi.org/">The Python Package Index (PyPI)</a> から取得する。</li>
 <li><code>conda</code> を使って <a href="https://www.anaconda.com/">Anaconda</a> から取得する。</li>
 </ol>
-<div class="note">
+<div class="info">
 <p><strong>Anaconda</strong> はデータサイエンスや科学技術計算のためのさまざまなツールやライブラリの実行環境。 パッケージ管理も仮想環境も全部担う。</p>
 </div>
 <p>PyPI と Anaconda の併用は困難。 特に同じパッケージを <code>pip</code> と <code>conda</code> の両方で入れるのは避けたほうがいいらしい。 プログラミング入門の場合は PyPI、データサイエンス・科学技術計算には Anaconda が推奨されている。</p>
+<div class="info">
+<p>最近は Python 自体のインストール、仮想環境/パッケージ管理、プロジェクト管理まですべて <a href="https://docs.astral.sh/uv/">uv</a> に任せるというのが主流になりつつある (が、生命科学系のツールの乗り換えはまだまだな印象)。</p>
+</div>
 </section>
 </section>
 <section id="python-のインストール" class="level2">
@@ -674,11 +642,6 @@ document.addEventListener("DOMContentLoaded", function () {
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> pip install <span class="at">-r</span> requirements.txt   <span class="co"># まとめてインストール</span></span></code></pre></div>
 <p>仮想環境でのパッケージのインストール先は <code>.venv/lib/python3.11/site-packages/</code> になる。 バイナリ実行ファイルは <code>.venv/bin/</code> にあり、<code>python3</code>, <code>pip</code> もここに PATH が通る。</p></li>
 </ol>
-</section>
-<section id="uv" class="level2">
-<h2 class="anchored" data-anchor-id="uv"><a href="../python/1_uv.html">uv</a></h2>
-<p>上記すべてをお世話してくれる Rust 製コマンドラインツールの uv という選択肢もある。</p>
-<p>Python 自体のインストールは <code>uv python install</code>、 パッケージ管理は <code>uv tool</code> や <code>uv add</code>、 仮想環境込みのプロジェクト管理は <code>uv init</code> など。</p>
 
 
 </section>
@@ -1037,7 +1000,7 @@ document.addEventListener("DOMContentLoaded", function () {
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Copyright 2023 – 2026, Yuki MATSUDA</p>
+<p>© 2023–2026, Yuki MATSUDA</p>
 </div>
   </div>
 </footer>

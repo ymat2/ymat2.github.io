@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>SSH – Yuki MATSUDA</title>
+<title>ゲノムデータ取得 – Yuki MATSUDA</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -172,7 +172,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">SSH — <u>S</u>ecure <u>Sh</u>ell</h1>
+          <h1 class="quarto-secondary-nav-title">ゲノムデータ取得</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -212,13 +212,13 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Bioinformatics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../bio/cafe5.html" class="sidebar-item-text sidebar-link">
@@ -251,7 +251,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/genome_data_download.html" class="sidebar-item-text sidebar-link">
+  <a href="../bio/genome_data_download.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">ゲノムデータ取得</span></a>
   </div>
 </li>
@@ -290,13 +290,13 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">開発環境</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cli/apt.html" class="sidebar-item-text sidebar-link">
@@ -329,7 +329,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cli/ssh.html" class="sidebar-item-text sidebar-link active">
+  <a href="../cli/ssh.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SSH</span></a>
   </div>
 </li>
@@ -438,7 +438,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">SSH — <u>S</u>ecure <u>Sh</u>ell</h1></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">ゲノムデータ取得</h1></header>
 
 <header id="title-block-header">
 
@@ -447,165 +447,83 @@ window.Quarto = {
 </header>
 
 
-<p>リモートのマシンに安全に接続し、管理するためのツール。</p>
-<section id="クライアント-ssh-する側-の設定" class="level2">
-<h2 class="anchored" data-anchor-id="クライアント-ssh-する側-の設定">クライアント ( <code>ssh</code> する側) の設定</h2>
-<section id="公開鍵の作成と登録" class="level3">
-<h3 class="anchored" data-anchor-id="公開鍵の作成と登録">公開鍵の作成と登録</h3>
-<p>公開鍵と秘密鍵を作成:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Generating public/private ed25519 key pair.</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter file in which to save the key:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter passphrase (empty for no passphrase):</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter same passphrase again:</span></span></code></pre></div>
-<dl>
-<dt><code>-t (rsa/ecdsa/ed25519/etc.)</code></dt>
-<dd>
-作成する鍵の種類の指定。
-</dd>
-<dd>
-ed25519 の他に dsa, ecdsa, ecdsa-sk, ed25519-sk, rsa など
-</dd>
-<dt><code>-f filename</code></dt>
-<dd>
-鍵のファイル名の指定。デフォルトは <code>~/.ssh/id_鍵タイプ</code>
-</dd>
-</dl>
-<p>公開鍵をサーバーに登録する。方法はそれぞれ:</p>
+<section id="ncbi-から-gui-でダウンロード" class="level2">
+<h2 class="anchored" data-anchor-id="ncbi-から-gui-でダウンロード">NCBI から GUI でダウンロード</h2>
+<ol type="1">
+<li><p><a href="https://www.ncbi.nlm.nih.gov/data-hub/genome/" class="uri">https://www.ncbi.nlm.nih.gov/data-hub/genome/</a> にアクセス</p></li>
+<li><p>検索窓に分類群を指定 (例えば “Aves”, “Primates” など)</p></li>
+<li><p>“Filters” でフィルタリング</p></li>
+<li><p>下に検索と Filter にヒットするゲノム一覧が表示される。 “Assembly” を選択して <kbd>Download</kbd></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Download Table は検索結果の表</label></li>
+<li><label><input type="checkbox">Download Package は file type (<code>gff</code>, <code>fna</code>, <code>faa</code> など) を指定してダウンロード</label></li>
+</ul></li>
+<li><p><kbd>Select columns</kbd> からゲノムサイズや Gene Content なども表示させることができる。</p></li>
+</ol>
+</section>
+<section id="datasets-コマンドを用いたダウンロード" class="level2">
+<h2 class="anchored" data-anchor-id="datasets-コマンドを用いたダウンロード"><code>datasets</code> コマンドを用いたダウンロード</h2>
+<p><code>datasets</code> は NCBI が提供するゲノム配列、遺伝子配列、オーソログなどをダウンロードするためのコマンドラインツール。</p>
 <ul>
-<li><p>サイトに登録する場合などは公開鍵をコピー&amp;ペースト</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 公開鍵のコピー</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub <span class="kw">|</span> <span class="ex">pbcopy</span></span></code></pre></div></li>
-<li><p>コマンドで送る場合 (<code>PasswordAuthentication yes</code> である必要がある):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> id_ed25519.pub <span class="kw">|</span> <span class="fu">ssh</span> ユーザー名@ipアドレス <span class="st">"mkdir ~/.ssh; cat&gt;&gt;~/.ssh/authorized_keys"</span></span></code></pre></div></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/datasets" class="uri">https://www.ncbi.nlm.nih.gov/datasets</a></li>
+<li><a href="https://github.com/ncbi/datasets" class="uri">https://github.com/ncbi/datasets</a></li>
 </ul>
-<p>パーミッションの確認:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># total 28</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># drwxr-xr-x  2 yukimatsu yukimatsu 4096 May 10 16:51 .</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># drwxr-x--- 16 yukimatsu yukimatsu 4096 May 29 16:06 ..</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># -rw-------  1 yukimatsu yukimatsu  342 May 10 16:51 config</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># -rw-------  1 yukimatsu yukimatsu  411 Apr 25 17:30 id_ed25519</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># -rw-r--r--  1 yukimatsu yukimatsu   96 Apr 25 17:30 id_ed25519.pub</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># -rw-------  1 yukimatsu yukimatsu 2320 May  1 12:45 known_hosts</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># -rw-------  1 yukimatsu yukimatsu 1484 May  1 12:40 known_hosts.old</span></span></code></pre></div>
-<p>公開鍵 <code>.pub</code> 以外はユーザー本人だけが読み書きできる設定( <code>-rw-------</code> )にする:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 600 ~/.ssh/config</span></code></pre></div>
+<p><code>rsync</code>, <code>wget</code>, <code>curl</code> なども使えるらしいが、 公式には <code>datasets</code> コマンドが推奨されている。</p>
+<section id="installation" class="level3">
+<h3 class="anchored" data-anchor-id="installation">Installation</h3>
+<p><a href="https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/" class="uri">https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/</a></p>
+<p>上記のダウンロードページから実行バイナリを取得してパスを通す。 conda や curl を使ってもいい:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># exanmple for Linux</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-o</span> datasets <span class="st">'https://ftp.ncbi.nlm.nih.gov/pub/datasets/command-line/v2/linux-amd64/datasets'</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x datasets</span></code></pre></div>
 </section>
-<section id="sshconfig-の設定" class="level3">
-<h3 class="anchored" data-anchor-id="sshconfig-の設定"><code>~/.ssh/config</code> の設定</h3>
-<p>一般的な接続方法:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> username@example.com    <span class="co"># 毎回打つのは面倒！</span></span></code></pre></div>
-<p>そこで <code>.ssh/config</code> に以下のような設定を追記:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>~/.ssh/config</strong></pre>
-</div>
-<div class="sourceCode" id="cb7" data-filename="~/.ssh/config"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Host hoge</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    Hostname example.com                 # ホスト名(@のうしろ)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    User username                        # ユーザー名</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    IdentityFile ~/.ssh/id_ed25519_hoge  # 秘密鍵への PATH</span></code></pre></div>
-</div>
-<p>こうすると以下の二つは等価:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> username@example.com</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> hoge</span></code></pre></div>
-<p>後述の SCP や Rsync を用いたファイル送受信時も記述を省略できて便利:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-auvz</span> src/ username@example.com:dest/</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-auvz</span> src/ hoge:dest/</span></code></pre></div>
+<section id="usage" class="level3">
+<h3 class="anchored" data-anchor-id="usage">Usage</h3>
+<ul>
+<li><a href="https://www.ncbi.nlm.nih.gov/datasets/docs/v2/how-tos/" class="uri">https://www.ncbi.nlm.nih.gov/datasets/docs/v2/how-tos/</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/datasets/docs/v2/tutorials/" class="uri">https://www.ncbi.nlm.nih.gov/datasets/docs/v2/tutorials/</a></li>
+</ul>
+<p>例えば Assembly accession を指定して全ゲノムの FASTA ファイルを取得するには:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">datasets</span> download genome accession GCF_000001405.40 <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--filename</span> human_GRCh38_dataset.zip <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--include</span> genome</span></code></pre></div>
+<p><code>--include</code> でほしいファイルを指定する。 デフォルトは <code>genomic.fna</code>のみで、他に <code>gtf</code>, <code>gff</code>, <code>cds</code>, <code>protein</code>, <code>rna</code> など。 <code>none</code> を指定すると <a href="https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/data-reports/">data report</a> だけ取得する。</p>
 </section>
 </section>
-<section id="サーバー-ssh-される側-の設定" class="level2">
-<h2 class="anchored" data-anchor-id="サーバー-ssh-される側-の設定">サーバー (<code>ssh</code> される側) の設定</h2>
-<p><code>openssh-server</code> をインストールして起動を確認:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt <span class="at">-y</span> install openssh-server</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl status sshd.service  <span class="co"># Active: active (running) となっていれば起動している。</span></span></code></pre></div>
-<p>この状態でいったん同一 LAN 内の別のマシンから <code>ssh</code> してみる:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> ユーザー名@ipアドレス</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Are you sure you want to continue(yes/no/[fingerprint])? yes</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ユーザー名@ipアドレス's password:</span></span></code></pre></div>
-<section id="etcsshsshd_config-の設定" class="level3">
-<h3 class="anchored" data-anchor-id="etcsshsshd_config-の設定"><code>/etc/ssh/sshd_config</code> の設定</h3>
-<p><code>openssh-server</code> をインストールしたことで設定ファイルが <code>/etc/ssh/</code> に生成される。 これを編集することでどの接続を許可してどれを弾くかを設定する。</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>/etc/ssh/sshd_config</strong></pre>
-</div>
-<div class="sourceCode" id="cb12" data-filename="/etc/ssh/sshd_config"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ssh公開鍵の種類を指定する。</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">HostKey</span> /etc/ssh/ssh_host_rsa_key</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">HostKey</span> /etc/ssh/ssh_host_ecdsa_key</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">HostKey</span> /etc/ssh/ssh_host_ed25519_key</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ルートユーザーとしてのログインを禁止する。</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ex">PermitRootLogin</span> prohibit-password</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># SSHサーバーへの認証の最大試行回数を制限する。</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="ex">MaxAuthTries</span> 5</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 公開鍵による接続を許可する。</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="ex">PubkeyAuthentication</span> yes</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># パスワードによる接続を許可する。公開鍵の登録を終えたら`no`に変える。</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="ex">PasswordAuthentication</span> yes</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 空のパスワードでの接続を無効にする。</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="ex">PermitEmptyPassword</span> no</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># キーボードインタラクティブ認証を無効にする。公開鍵で接続する場合は無効にしたほうが良い。</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="ex">KbdInteractiveAuthentication</span> no</span></code></pre></div>
-</div>
+<section id="遺伝研で-aspera-を用いて-fastq-をダウンロード" class="level2">
+<h2 class="anchored" data-anchor-id="遺伝研で-aspera-を用いて-fastq-をダウンロード">遺伝研で Aspera を用いて FASTQ をダウンロード</h2>
+<ul>
+<li><a href="https://sc.ddbj.nig.ac.jp/guides/software/CopyTool/aspera_client/" class="uri">https://sc.ddbj.nig.ac.jp/guides/software/CopyTool/aspera_client/</a></li>
+<li><a href="https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_data_transfer/#usage-aspera" class="uri">https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_data_transfer/#usage-aspera</a></li>
+<li><a href="https://www.ebi.ac.uk/ena/browser/downloading-data" class="uri">https://www.ebi.ac.uk/ena/browser/downloading-data</a></li>
+<li><a href="https://ena-docs.readthedocs.io/en/latest/retrieval/file-download.html#using-aspera" class="uri">https://ena-docs.readthedocs.io/en/latest/retrieval/file-download.html#using-aspera</a></li>
+<li><a href="https://github.com/IBM/aspera-cli" class="uri">https://github.com/IBM/aspera-cli</a></li>
+</ul>
+<p>Aspera は <a href="https://www.ebi.ac.uk/ena/browser/home">ENA</a> から SRA のデータを遺伝研スパコンに取り寄せるときに使える通信プロトコルのひとつ。</p>
+<p><code>prefetch</code> + <code>fasterq-dump</code> と違って <code>gzip</code> 済みファイルを直接取得できる。</p>
+<section id="install-apptainer-sif" class="level3">
+<h3 class="anchored" data-anchor-id="install-apptainer-sif">Install Apptainer SIF</h3>
+<p>(おそらく Aspera が対応しているプラットフォームが Cent OS なので？) 遺伝研スパコンでは、Apptainer のファイルイメージを取得して使う。</p>
+<p><a href="https://github.com/nig-sc/apptainer_ascp3" class="uri">https://github.com/nig-sc/apptainer_ascp3</a></p>
+<p>SIF をダウンロードする:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> sif <span class="kw">&amp;&amp;</span> <span class="fu">mv</span> sif</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://raw.githubusercontent.com/nig-sc/docker_ascp3/main/ascp4_ubuntu22.sif</span></code></pre></div>
+<p>インストールコマンドを走らせる:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec ascp3_ubuntu22.sif bash /usr/local/src/ibm-aspera-connect-3.9.5.172984-linux-g2.12-64.sh</span></code></pre></div>
+<p>ちゃんと入ったか確認:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec ascp3_ubuntu22.sif <span class="va">$HOME</span>/.aspera/connect/bin/ascp <span class="at">--help</span></span></code></pre></div>
+<p>ちなみに <a href="https://github.com/nig-sc/apptainer_ascp4">version 4 の SIF</a> もあるが、 実行ファイルが <code>~/.aspera/connect/bin/ascp</code> で共通なので、 両方の SIF があっても使えるのは最後にインストールコマンドを走らせた方だけ。</p>
+<p>あと、ascp4 の方には Authentication file っぽい <code>~/.aspera/connect/etc/asperaweb_id_dsa.openssh</code> がない？</p>
 </section>
-</section>
-<section id="ファイルの送受信" class="level2">
-<h2 class="anchored" data-anchor-id="ファイルの送受信">ファイルの送受信</h2>
-<section id="scp" class="level3">
-<h3 class="anchored" data-anchor-id="scp">SCP</h3>
-<p>SSH を用いたファイルコピー。</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> path/to/file_to_send <span class="op">&lt;</span>user<span class="op">&gt;</span>@<span class="op">&lt;</span>hostname<span class="op">&gt;</span>:path/to/destination</span></code></pre></div>
-<dl>
-<dt><code>-r</code></dt>
-<dd>
-ディレクトリを再帰的にコピー
-</dd>
-<dt><code>-l</code></dt>
-<dd>
-帯域を制限する (Kb/sec 単位)
-</dd>
-</dl>
-</section>
-<section id="rsync" class="level3">
-<h3 class="anchored" data-anchor-id="rsync">Rsync</h3>
-<p>送信元と送信先の差分を検出してファイルの同期を行う。 SSH でリモートにファイル送信・同期を行うほか、ローカルどうしのバックアップにも使える。</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-auvz</span> path/to/file_to_send <span class="op">&lt;</span>user<span class="op">&gt;</span>@<span class="op">&lt;</span>hostname<span class="op">&gt;</span>:path/to/destination</span></code></pre></div>
-<dl>
-<dt><code>-a</code>, <code>--archive</code></dt>
-<dd>
-<code>-rlptgoD</code> と同義
-</dd>
-<dt><code>-r</code>, <code>--recursive</code></dt>
-<dd>
-ディレクトリを再帰的に同期
-</dd>
-<dt><code>-l</code>, <code>--links</code></dt>
-<dd>
-symlinks を symlinks のままにする。
-</dd>
-<dt><code>-p</code>, <code>--perms</code> / <code>-t</code>, <code>--times</code> / <code>-g</code>, <code>--group</code> / <code>-o</code>, <code>--owner</code></dt>
-<dd>
-それぞれファイルの permissions、更新タイムスタンプ、グループ、オーナーの情報を保持
-</dd>
-<dt><code>-D</code> = <code>--devices --specials</code></dt>
-<dd>
-デバイスファイル、特殊ファイルを保持
-</dd>
-<dt><code>-u</code>, <code>--update</code></dt>
-<dd>
-送信先側で更新されているファイルをスキップする。
-</dd>
-<dt><code>-v</code>, <code>--vervose</code></dt>
-<dd>
-冗長なメッセージ表示
-</dd>
-<dt><code>-z</code>, <code>--compress</code></dt>
-<dd>
-送受信中にファイルを圧縮する。
-</dd>
-</dl>
+<section id="usage-1" class="level3">
+<h3 class="anchored" data-anchor-id="usage-1">Usage</h3>
+<p>ENA のブラウザで Run alias や Project ID で検索する。 “Show Column Selection” から “fastq_aspera” にチェックを入れると Aspera 用のリンクを表示できる。</p>
+<p>Download report を JSON や TSV でダウウンロードして、 リンクを指定して下記のように FASTQ をダウウンロードする:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec ./ascp3_ubuntu22.sif ~/.aspera/connect/bin/ascp <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-P33001</span> <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-i</span> ~/.aspera/connect/etc/asperaweb_id_dsa.openssh <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  era-fasp@fasp.sra.ebi.ac.uk:/vol1/fastq/SRR144/004/SRR1448774/SRR1448774.fastq.gz <span class="dt">\</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  /path/to/download_dir/</span></code></pre></div>
 
 
 </section>

@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>遺伝研スパコン – Yuki MATSUDA</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -68,15 +71,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../images/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8f761792feb2489904170432943ca7f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b8484662480500b84131a23a83f7d24e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7b548b2fc890d70c5a6222fab91b7951.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-edc4c3ba940c01618b5c8cb2b918d70d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -182,9 +184,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../"><img src="../images/favicon.png" height="28" vertical-align="text-bottom"> Yuki MATSUDA</a> 
     </div>
@@ -251,14 +251,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/gwas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GWAS</span></a>
+  <a href="../bio/genome_data_download.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ゲノムデータ取得</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/ncbi_download.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ゲノムデータ取得</span></a>
+  <a href="../bio/gwas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GWAS</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -329,12 +329,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cli/rsync.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">rsync</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../cli/ssh.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SSH</span></a>
   </div>
@@ -348,7 +342,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cli/vscode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visual Studio Code</span></a>
+ <span class="menu-text">VS Code</span></a>
   </div>
 </li>
       </ul>
@@ -425,12 +419,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../win/git4win.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git for Windows</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../win/powershell.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PowerShell</span></a>
   </div>
@@ -439,12 +427,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../win/wsl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">WSL</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL Disk Space</span></a>
   </div>
 </li>
       </ul>
@@ -457,24 +439,6 @@ window.Quarto = {
     
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">遺伝研スパコン</h1></header>
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  let toc = document.getElementById("TOC");
-
-  let beforeToc = document.querySelector(".before-toc");
-
-  if (toc && beforeToc) {
-
-    toc.parentNode.insertBefore(beforeToc, toc);
-
-  }
-
-});
-
-</script>
-
 
 <header id="title-block-header">
 
@@ -486,6 +450,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <p><a href="https://sc.ddbj.nig.ac.jp/" class="uri">https://sc.ddbj.nig.ac.jp/</a></p>
 <section id="ログイン" class="level2">
 <h2 class="anchored" data-anchor-id="ログイン">ログイン</h2>
+<p><a href="https://sc.ddbj.nig.ac.jp/guides/from_application_to_approval/" class="uri">https://sc.ddbj.nig.ac.jp/guides/from_application_to_approval/</a></p>
 <p><a href="https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_application/">ユーザーアカウントを発行</a>したら、 <a href="../cli/ssh.html">ssh 接続</a>の設定をする。</p>
 <ul>
 <li><a href="https://sc.ddbj.nig.ac.jp/application/ssh_keys" class="uri">https://sc.ddbj.nig.ac.jp/application/ssh_keys</a></li>
@@ -499,7 +464,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  IdentityFile ~/.ssh/id_ed25519</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  Hostname gw.ddbj.nig.ac.jp</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  RequestTTY yes</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  User usename</span></code></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  User &lt;usename&gt;</span></code></pre></div>
 </div>
 </section>
 <section id="ジョブ実行" class="level2">
@@ -509,14 +474,16 @@ document.addEventListener("DOMContentLoaded", function () {
 <li><a href="https://slurm.schedmd.com/documentation.html" class="uri">https://slurm.schedmd.com/documentation.html</a></li>
 </ul>
 <section id="インタラクティブジョブ" class="level3">
-<h3 class="anchored" data-anchor-id="インタラクティブジョブ"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/interactive_jobs">インタラクティブジョブ</a></h3>
+<h3 class="anchored" data-anchor-id="インタラクティブジョブ">インタラクティブジョブ</h3>
+<p><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/interactive_jobs" class="uri">https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/interactive_jobs</a></p>
 <p><code>a001</code>, <code>a002</code>, <code>a003</code> の3つのインタラクティブノードが用意されている。 ゲートウェイノードへ <code>ssh</code> ログイン後、インタラクティブノードのいずれかに <code>ssh</code> ログインする:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[youraccount@local</span> ~]$ ssh username@gw.ddbj.nig.ac.jp</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[youraccount@gw</span> ~]$ ssh a001</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[youraccount@a001</span> ~]$</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[localaccount@local</span> ~]$ ssh <span class="op">&lt;</span>username<span class="op">&gt;</span>@gw.ddbj.nig.ac.jp</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[</span><span class="op">&lt;</span>username<span class="op">&gt;</span>@gw ~]$ ssh a001</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[</span><span class="op">&lt;</span>username<span class="op">&gt;</span>@a001 ~]$</span></code></pre></div>
 </section>
 <section id="バッチジョブ" class="level3">
-<h3 class="anchored" data-anchor-id="バッチジョブ"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/batch_jobs">バッチジョブ</a></h3>
+<h3 class="anchored" data-anchor-id="バッチジョブ">バッチジョブ</h3>
+<p><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/batch_jobs" class="uri">https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/batch_jobs</a></p>
 <p><a href="https://slurm.schedmd.com/sbatch.html"><code>sbatch</code></a> コマンドを使う。 基本的な流れは AGE と同じで、ジョブスクリプトを書いて <code>sbatch example.sh</code> するだけ:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -532,7 +499,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 <p>ジョブ実行時のオプション設定は <code>#SBATCH</code> で渡す。 <code>sbatch</code> のコマンドライン引数で渡してもいい。 AGE でいう <code>#$ -cwd</code> (カレントディレクトリの設定) と <code>#$ -V</code> (環境変数の引継ぎ) は、Slurm ではデフォルトらしい。</p>
 <p>インタープリタの指定オプションはない (<a href="https://cvw.cac.cornell.edu/slurm/basics/execution-sbatch">?</a>) ので、shebang で指定する必要がある: <code>#!/bin/bash</code>, <code>#!/bin/csh</code>, <code>#!/use/bin/python</code></p>
-<p>使いそうなオプション:</p>
+<p>よく使いそうなオプション:</p>
 <dl>
 <dt><code>-b</code>, <code>--bigin</code></dt>
 <dd>
@@ -770,12 +737,13 @@ CPU あたりに必要なメモリ量の指定。
 </tr>
 </tbody>
 </table>
+c.f. <code>sinfo -o "%P %n %c %m %l"</code>
 </dd>
 </dl>
-<p>c.f. <code>sinfo -o "%P %n %c %m %l"</code></p>
 </section>
 <section id="アレイジョブ" class="level3">
-<h3 class="anchored" data-anchor-id="アレイジョブ"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/array_jobs">アレイジョブ</a></h3>
+<h3 class="anchored" data-anchor-id="アレイジョブ">アレイジョブ</h3>
+<p><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/array_jobs" class="uri">https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/array_jobs</a></p>
 <p><code>-a</code> で制御する。 <code>SLURM_ARRAY_TASK_ID</code>, <code>SLURM_ARRAY_TASK_COUNT</code> などの変数を参照可能。</p>
 <p>例えば6個の SRA データを同時に取得する場合:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
@@ -790,8 +758,11 @@ CPU あたりに必要なメモリ量の指定。
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -a 1-1000%100  # 1から1000までの並列。同時に走る上限は100。</span></span></code></pre></div>
 </section>
 <section id="パラレルジョブ" class="level3">
-<h3 class="anchored" data-anchor-id="パラレルジョブ"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/parallel_jobs">パラレルジョブ</a></h3>
-<p><a href="https://slurm.schedmd.com/mc_support.html" class="uri">https://slurm.schedmd.com/mc_support.html</a></p>
+<h3 class="anchored" data-anchor-id="パラレルジョブ">パラレルジョブ</h3>
+<ul>
+<li><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/parallel_jobs" class="uri">https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/parallel_jobs</a></li>
+<li><a href="https://slurm.schedmd.com/mc_support.html" class="uri">https://slurm.schedmd.com/mc_support.html</a></li>
+</ul>
 <p>Slurm には AGE でいうパラレルジョブに直接該当する機能はない。 <code>--nodes</code>, <code>--ntasks</code>, <code>--ntasks-per-node</code> などを使って並列ジョブを制御する。</p>
 <dl>
 <dt><code>-N</code>, <code>--nodes</code></dt>
@@ -814,16 +785,20 @@ CPU あたりに必要なメモリ量の指定。
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem-per-cpu 4G</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">orthofinder</span> <span class="at">-f</span> ExampleData <span class="at">-a</span> 5</span></code></pre></div>
-<div class="note">
+<div class="info">
 <p>この時ノード全体では、<code>4G</code>×<code>5core</code>=<code>20G</code> のメモリを使う。</p>
 </div>
 </section>
 <section id="その他のコマンド" class="level3">
-<h3 class="anchored" data-anchor-id="その他のコマンド"><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/other_commands">その他のコマンド</a></h3>
+<h3 class="anchored" data-anchor-id="その他のコマンド">その他のコマンド</h3>
+<p><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/other_commands" class="uri">https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/other_commands</a></p>
 <dl>
 <dt><code>squeue</code></dt>
 <dd>
 ジョブの状況を確認 (i.e.&nbsp;<code>qstat</code>)
+</dd>
+<dd>
+<code>-u [username]</code> で自分の投げたジョブのみ確認
 </dd>
 <dt><code>scancel [JOBID]</code></dt>
 <dd>
@@ -846,7 +821,7 @@ CPU あたりに必要なメモリ量の指定。
 <p>複数のバージョン用意されている場合もある。 たとえば:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/s/samtools<span class="pp">*</span></span></code></pre></div>
 <p>使用例:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec /usr/local/biotools/s/samtools</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec /usr/local/biotools/s/samtools samtools <span class="at">--help</span></span></code></pre></div>
 
 
 </section>
@@ -1205,7 +1180,7 @@ CPU あたりに必要なメモリ量の指定。
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Copyright 2023 – 2026, Yuki MATSUDA</p>
+<p>© 2023–2026, Yuki MATSUDA</p>
 </div>
   </div>
 </footer>

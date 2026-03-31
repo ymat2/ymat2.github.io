@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Visual Studio Code – Yuki MATSUDA</title>
+<title>VS Code – Yuki MATSUDA</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -68,15 +71,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../images/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8f761792feb2489904170432943ca7f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b8484662480500b84131a23a83f7d24e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7b548b2fc890d70c5a6222fab91b7951.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-edc4c3ba940c01618b5c8cb2b918d70d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -170,7 +172,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Visual Studio Code</h1>
+          <h1 class="quarto-secondary-nav-title">VS Code</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -182,9 +184,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../"><img src="../images/favicon.png" height="28" vertical-align="text-bottom"> Yuki MATSUDA</a> 
     </div>
@@ -251,14 +251,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/gwas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GWAS</span></a>
+  <a href="../bio/genome_data_download.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ゲノムデータ取得</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/ncbi_download.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ゲノムデータ取得</span></a>
+  <a href="../bio/gwas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GWAS</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -329,12 +329,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cli/rsync.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">rsync</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../cli/ssh.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SSH</span></a>
   </div>
@@ -348,7 +342,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cli/vscode.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Visual Studio Code</span></a>
+ <span class="menu-text">VS Code</span></a>
   </div>
 </li>
       </ul>
@@ -425,12 +419,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../win/git4win.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git for Windows</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../win/powershell.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PowerShell</span></a>
   </div>
@@ -439,12 +427,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../win/wsl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">WSL</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL Disk Space</span></a>
   </div>
 </li>
       </ul>
@@ -456,25 +438,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">Visual Studio Code</h1></header>
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  let toc = document.getElementById("TOC");
-
-  let beforeToc = document.querySelector(".before-toc");
-
-  if (toc && beforeToc) {
-
-    toc.parentNode.insertBefore(beforeToc, toc);
-
-  }
-
-});
-
-</script>
-
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">VS Code</h1></header>
 
 <header id="title-block-header">
 
@@ -484,75 +448,44 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 <p><a href="https://code.visualstudio.com/" class="uri">https://code.visualstudio.com/</a></p>
-<section id="wsl-で使う場合" class="level2">
-<h2 class="anchored" data-anchor-id="wsl-で使う場合">WSL で使う場合</h2>
-<p><a href="https://learn.microsoft.com/ja-jp/windows/wsl/tutorials/wsl-vscode" class="uri">https://learn.microsoft.com/ja-jp/windows/wsl/tutorials/wsl-vscode</a></p>
-<section id="vscode-本体と拡張機能のインストール" class="level3">
-<h3 class="anchored" data-anchor-id="vscode-本体と拡張機能のインストール">VSCode 本体と拡張機能のインストール</h3>
-<p><a href="https://code.visualstudio.com/download" class="uri">https://code.visualstudio.com/download</a></p>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p><a href="https://code.visualstudio.com/docs/setup/setup-overview" class="uri">https://code.visualstudio.com/docs/setup/setup-overview</a></p>
+<p><a href="https://code.visualstudio.com/Download">ダウンロードページ</a> からインストーラをダウンロードして実行する。</p>
+<section id="path-への追加" class="level3">
+<h3 class="anchored" data-anchor-id="path-への追加">PATH への追加</h3>
+<p>ターミナルや PowerShell から <code>code /path/to/project</code> で開けるようにする設定。</p>
+<p>インストール中に “追加タスクの選択” が求められたときに “PATH への追加” オプションをオンにするか、 VS Code を起動して <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>P</kbd> でコマンドパレットを開き、 “shell” と検索して出てくる “Shell Command: Install ‘code’ command in PATH” をクリック。</p>
+</section>
+<section id="wsl-で使う場合" class="level3">
+<h3 class="anchored" data-anchor-id="wsl-で使う場合">WSL で使う場合</h3>
+<ul>
+<li><a href="https://code.visualstudio.com/docs/remote/wsl" class="uri">https://code.visualstudio.com/docs/remote/wsl</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/windows/wsl/tutorials/wsl-vscode" class="uri">https://learn.microsoft.com/ja-jp/windows/wsl/tutorials/wsl-vscode</a></li>
+</ul>
 <ol type="1">
-<li><p>VSCode を (WSL ではなく) Windows にインストールする。</p></li>
+<li><p>VS Code を (WSL 側ではなく) Windows にインストールする。</p></li>
 <li><p>インストール中に “追加タスクの選択” が求められたときは、 “PATH への追加” オプションをオンにする。</p></li>
-<li><p><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack">Remote Development 拡張機能</a>をインストールする。</p></li>
+<li><p><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>X</kbd> で拡張機能を検索して、 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack">Remote Development 拡張機能</a> をインストールする。</p></li>
 </ol>
-<p>Remote Development 拡張機能なしで WSL にアクセスすることは非推奨とされている。</p>
+<p>プロジェクトを開くには WSL から <code>code /path/to/project</code> するか、 VS Code から <kbd>Control</kbd><kbd>Shift</kbd><kbd>P</kbd> でコマンドパレットを開いて “WSL: Connect to WSL” を選択。</p>
 </section>
-<section id="linux-ディストリビューションの更新と必要なパッケージのインストール" class="level3">
-<h3 class="anchored" data-anchor-id="linux-ディストリビューションの更新と必要なパッケージのインストール">Linux ディストリビューションの更新と必要なパッケージのインストール</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install wget ca-certificates</span></code></pre></div>
 </section>
-<section id="プロジェクトを開く" class="level3">
-<h3 class="anchored" data-anchor-id="プロジェクトを開く">プロジェクトを開く</h3>
-<p>WSL から <code>code .</code> 、 もしくは VSCode から <kbd>Control</kbd><kbd>Shift</kbd><kbd>P</kbd> でコマンドパレットを開いて “WSL: Connect to WSL” を選択。</p>
-<p>なお、WSL から VSCode を立ち上げた場合、 ログインシェルの設定 (<code>~/.bash_profile</code>, <code>~/.zprofile</code>)は読まれない。</p>
-</section>
-<section id="環境設定" class="level3">
-<h3 class="anchored" data-anchor-id="環境設定">環境設定</h3>
-<p>VSCode 本体は Windows のものなのでユーザー設定も Windows 側。 WSL で使う場合これを WSL 用の設定が上書きする。</p>
+<section id="settings" class="level2">
+<h2 class="anchored" data-anchor-id="settings">Settings</h2>
 <ul>
-<li>拡張機能は <code>.vscode/extensions/</code></li>
-<li>環境設定は <code>/AppData/Roaming/Code/User/settings.json</code></li>
-<li>キーボードショートカットは <code>/AppData/Roaming/Code/User/keybindings.json</code></li>
+<li><a href="https://code.visualstudio.com/docs/configure/settings" class="uri">https://code.visualstudio.com/docs/configure/settings</a></li>
+<li><a href="https://code.visualstudio.com/docs/configure/keybindings" class="uri">https://code.visualstudio.com/docs/configure/keybindings</a></li>
 </ul>
-<p>WSL で VSCode を使う場合、ユーザーホームに <code>.vscode-server/</code> が作られてこの中で設定をいじったりする。</p>
+<p>エディタの設定をカスタムするための <code>settings.json</code> と キーボードショートカットを割り当てるための <code>keybindings.json</code> がある。</p>
+<p>グローバルな設定ファイルの場所は OS によって異なり、</p>
 <ul>
-<li>拡張機能は <code>.vscode-server/extensions/</code></li>
-<li>環境設定は <code>.vscode-server/data/Machine/settings.json</code></li>
+<li>Windows: <code>%APPDATA%\Code\User\</code></li>
+<li>macOS: <code>$HOME/Library/Application\ Support/Code/User/</code></li>
+<li>Linux: <code>$HOME/.config/Code/User/</code></li>
 </ul>
-</section>
-</section>
-<section id="mac-で使う場合" class="level2">
-<h2 class="anchored" data-anchor-id="mac-で使う場合">Mac で使う場合</h2>
-<section id="vscode-のインストール" class="level3">
-<h3 class="anchored" data-anchor-id="vscode-のインストール">VSCode のインストール</h3>
-<p><a href="https://code.visualstudio.com/download" class="uri">https://code.visualstudio.com/download</a></p>
-<ol type="1">
-<li><p>Mac 版の VSCode をダウンロードして解凍</p></li>
-<li><p><code>Visual Studio Code.app</code> を <code>/Applications</code> フォルダに移動</p></li>
-</ol>
-</section>
-<section id="terminal-から-vscode-を起動する設定" class="level3">
-<h3 class="anchored" data-anchor-id="terminal-から-vscode-を起動する設定">terminal から VSCode を起動する設定</h3>
-<p><code>code</code> の実行ファイルは <code>/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code</code> にある。 ここに <code>$PATH</code> を通せばいい。</p>
-<dl>
-<dt>公式のやり方</dt>
-<dd>
-VSCode を起動してコマンドパレットを開き (<kbd>Command</kbd><kbd>Shift</kbd><kbd>P</kbd>)、 “shell” と検索して出てくる “Shell Command: Install ‘cpde’ command in PATH” をクリック。
-</dd>
-<dd>
-これで上記の実行ファイル PATH が <code>/usr/local/bin/</code> にシンボリックリンクされる。
-</dd>
-<dt>もしくは</dt>
-<dd>
-<code>.zshrc</code> とかに上記の PATH を通す。
-</dd>
-</dl>
-</section>
-<section id="環境設定-1" class="level3">
-<h3 class="anchored" data-anchor-id="環境設定-1">環境設定</h3>
-<p>Mac の VSCode の環境設定ファイルは <code>/Library/application Support/Code/User/settings.json</code> にある。</p>
-</section>
+<p>にある。 これに加えて、プロジェクト (ワークスペース) 専用の設定は <code>/path/to/project/.vscode/</code> 内においておけばグローバル設定に追加 (または上書き) される。</p>
+<p>WSL を含め、リモートホストで VS Code を使う場合、基本的にローカルマシンの設定が反映されるほか、 <code>$HOME/.vscode-server/data/Machine/settings.json</code> も読まれる。</p>
 </section>
 <section id="拡張機能" class="level2">
 <h2 class="anchored" data-anchor-id="拡張機能">拡張機能</h2>
@@ -560,67 +493,53 @@ VSCode を起動してコマンドパレットを開き (<kbd>Command</kbd><kbd>
 <h3 class="anchored" data-anchor-id="ssh">SSH</h3>
 <p><a href="https://code.visualstudio.com/docs/remote/ssh-tutorial" class="uri">https://code.visualstudio.com/docs/remote/ssh-tutorial</a></p>
 <p>マシン自体に SSH の設定をしてあれば、 拡張機能をインストールするだけで SSH ホストのファイルにアクセスできる。 コマンドパレットを開いて “ssh” で検索し、“Romote-SSH: Connect to host…” を選択して接続先を選ぶだけ。</p>
-<p>WSL で使う場合すでに Remote で使っている扱いになるからか SSH できない…?</p>
-<ul>
-<li>これは Windows 側のホームを参照してコマンドプロンプトから <code>ssh</code> しようとするかららしい。</li>
-<li>解決策を調べてみると鍵を Windows ホームに置くとか出るけどほんとにそれでええんか？</li>
-<li>WSL で動かしてるときは WSL のホームを参照する、みたいな設定できないだろうか。
-<ul>
-<li>これは<a href="https://github.com/microsoft/vscode-remote-release/issues/937">偉大な先人たちが試している</a>けどどうも <code>settings.json</code> の設定では無理らしい。</li>
-<li>windows 側に <code>.bat</code> おいて wsl の ssh 使わせれば行けるらしいがそこまでするのは気が引ける。</li>
-</ul></li>
-<li>ということで WSL のホームにある <code>~/.ssh/</code> を Windows 側のホームにコピーしてしのぐ。</li>
-</ul>
+<div class="info">
+<p>WSL で使っているときに SSH をすると、 VS Code は Windows 側のホームを参照してコマンドプロンプトから <code>ssh</code> するため、 WSL ホームの SSH 設定は使われない。 (see also <a href="https://github.com/microsoft/vscode-remote-release/issues/937">#937</a>)</p>
+</div>
 </section>
 <section id="quarto" class="level3">
 <h3 class="anchored" data-anchor-id="quarto">Quarto</h3>
 <p><a href="https://quarto.org/docs/tools/vscode.html" class="uri">https://quarto.org/docs/tools/vscode.html</a></p>
-<section id="準備" class="level4">
-<h4 class="anchored" data-anchor-id="準備">準備</h4>
 <ol type="1">
-<li><p>VSCode に <a href="https://marketplace.visualstudio.com/items?itemName=quarto.quarto">Quarto の拡張機能</a>をインストールする。</p></li>
+<li><p>VS Code に <a href="https://marketplace.visualstudio.com/items?itemName=quarto.quarto">Quarto 拡張機能</a> をインストールする。</p></li>
 <li><p>Quarto CLI をマシンにインストールする。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Mac なら homebrew で</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> quarto</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">## WSL は .deb を落としてくるのが正攻法？</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> curl <span class="at">-LO</span> https://quarto.org/download/latest/quarto-linux-amd64.deb</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># sudo apt-get install gdebi-core  # if needed</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gdebi quarto-linux-amd64.deb</span></code></pre></div></li>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Mac なら homebrew で</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> quarto</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">## WSL は .deb を落としてくるのが正攻法？</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> curl <span class="at">-LO</span> https://quarto.org/download/latest/quarto-linux-amd64.deb</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># sudo apt-get install gdebi-core  # if needed</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gdebi quarto-linux-amd64.deb</span></code></pre></div></li>
 </ol>
-</section>
-<section id="render" class="level4">
-<h4 class="anchored" data-anchor-id="render">Render</h4>
-<p>右上の Render ボタンから。 もしくは <kbd>Control/Command</kbd><kbd>Shift</kbd><kbd>K</kbd>。</p>
-</section>
+<p>Qmd のプレビューをするには、右上の Preview ボタンや <kbd>Control/Command</kbd><kbd>Shift</kbd><kbd>K</kbd> が使える。</p>
 </section>
 <section id="r" class="level3">
 <h3 class="anchored" data-anchor-id="r">R</h3>
 <ol type="1">
 <li><p>R に <code>languageserver</code> を入れる。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"languageserver"</span>)</span></code></pre></div></li>
-<li><p>VSCode に <a href="https://marketplace.visualstudio.com/items?itemName=REditorSupport.r">R の拡張機能</a>を入れる。</p></li>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"languageserver"</span>)</span></code></pre></div></li>
+<li><p>VS Code に <a href="https://marketplace.visualstudio.com/items?itemName=REditorSupport.r">R の拡張機能</a>を入れる。</p></li>
 <li><p>環境設定ファイルに追記:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>settings.json</strong></pre>
 </div>
-<div class="sourceCode" id="cb4" data-filename="settings.json"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.sessionWatcher"</span><span class="fu">:</span> <span class="kw">true</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb3" data-filename="settings.json"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.sessionWatcher"</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
 </div>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>keybindings.json</strong></pre>
 </div>
-<div class="sourceCode" id="cb5" data-filename="keybindings.json"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">ctrl+enterでコマンドをターミナルに送るための設定</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"key"</span><span class="fu">:</span> <span class="st">"ctrl+enter"</span><span class="fu">,</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"workbench.action.terminal.runSelectedText"</span><span class="fu">,</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"when"</span><span class="fu">:</span> <span class="st">"editorTextFocus"</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb4" data-filename="keybindings.json"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">ctrl+enterでコマンドをターミナルに送るための設定</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"key"</span><span class="fu">:</span> <span class="st">"ctrl+enter"</span><span class="fu">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"workbench.action.terminal.runSelectedText"</span><span class="fu">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"when"</span><span class="fu">:</span> <span class="st">"editorTextFocus"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div>
 </div></li>
 <li><p>コマンドパレットを開いて “R: Create R terminal”</p></li>
 </ol>
@@ -983,7 +902,7 @@ VSCode を起動してコマンドパレットを開き (<kbd>Command</kbd><kbd>
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Copyright 2023 – 2026, Yuki MATSUDA</p>
+<p>© 2023–2026, Yuki MATSUDA</p>
 </div>
   </div>
 </footer>

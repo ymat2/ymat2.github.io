@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Slides – Yuki MATSUDA</title>
+<title>WSL Disk Space – Yuki MATSUDA</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -81,329 +116,19 @@ gtag('js', new Date());
 gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
 </script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-sidebar floating fullcontent quarto-light">
+<body class="fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Slides</h1>
-        </a>     
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../"><img src="../images/favicon.png" height="28" vertical-align="text-bottom"> Yuki MATSUDA</a> 
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HOME</span></a>
-  </div>
-</li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../slides/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">スライド</span></a>
-  </div>
-</li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Bioinformatics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/cafe5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CAFE5</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/clusterProfiler.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">clusterProfiler</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/ddbj.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">遺伝研スパコン</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/ete-toolkit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ETE Toolkit</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/fst_hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="math inline">F_\text{st}</span> 解析ハンズオン</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/genome_data_download.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ゲノムデータ取得</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/gwas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GWAS</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/orthofinder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">OrthoFinder</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/paml-tutorial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PAML チュートリアル</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/rerconverge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">RERconverge</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/snpEff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">snpEff</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">開発環境</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/apt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">apt</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git/GitHub</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/hugo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HUGO</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/nano.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">nano</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quarto</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/ssh.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SSH</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/vi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Vi/Vim</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/vscode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">VS Code</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
- <span class="menu-text">Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../python/0_install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 環境構築</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../python/1_uv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">uv</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../python/argparse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ArgumentParser</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../python/class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">オブジェクト指向とクラス</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../python/evoltree.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">EvolTree</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../python/package.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python パッケージ作成</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../python/python-tips.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 小技メモ</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Windows</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../win/0-dev-win.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Windows 開発環境</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../win/powershell.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PowerShell</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../win/wsl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">Slides</h1></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7">WSL Disk Space — 逼迫した WSL のディスクスペースを解放する</h1></header>
 
 <header id="title-block-header">
 
@@ -413,16 +138,137 @@ window.Quarto = {
 
 
 <ul>
-<li><a href="../slides/snp24/index.html">2024-11-29 全ゲノム解析 ハンズオン — スモールデータで理解する SNP 解析の流れ</a></li>
-<li><a href="../slides/lt/tuat2024pipeline.html">2024-04-03 新村グループ プロトコル共有 — 遺伝研スパコンで集団ゲノミクス解析</a></li>
-<li><a href="../slides/lt/ggtree.html">Rで系統樹を扱う — ggtreeによる系統樹の可視化</a></li>
-<li><a href="../slides/lt/html-css.html">WEBサイト作成のための基礎知識 — HTML, CSS, JavaScript, 静的サイトジェネレータ</a></li>
-<li><a href="../slides/git-circle/git-vol2.html">2023-06-13 Git 基本操作② — <code>fetch</code>, <code>merge</code>, <code>pull</code></a></li>
-<li><a href="../slides/git-circle/git-vol1.html">2023-06-06 Git 基本操作① — GitとGitHubを使い始める</a></li>
-<li><a href="../slides/lt/gnu-nano.html">2023-05-09 牧野研 技術輪読会 — GNU nanoエディタを便利に使う</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/windows/wsl/disk-space" class="uri">https://learn.microsoft.com/ja-jp/windows/wsl/disk-space</a></li>
+<li><a href="https://qiita.com/TsuyoshiUshio@github/items/7a745582bbcd35062430" class="uri">https://qiita.com/TsuyoshiUshio@github/items/7a745582bbcd35062430</a></li>
+<li><a href="https://01futabato10.hateblo.jp/entry/2022/12/02/095031" class="uri">https://01futabato10.hateblo.jp/entry/2022/12/02/095031</a></li>
 </ul>
+<section id="wsl-を使っている人へ" class="level2">
+<h2 class="anchored" data-anchor-id="wsl-を使っている人へ">WSL を使っている人へ</h2>
+<p><strong>WSL2 のディスク消費は、WSL2 内部でファイルを消してもサイズが小さくならない</strong>らしい。 つまり、いくら WSL 側でファイルを <code>rm</code> しようが garbage collection しようが、 マシンのストレージは圧迫され続ける。</p>
+<p>WSL2 で使用する Linux ディストリビューションのデータは仮想ハードディスク (VHD) で管理されていて、 ここがデータの本体を持っているから、だと思う。</p>
+<p>なので根本的にディスク容量を開放するには、 VHD を最適化する必要がある。</p>
+</section>
+<section id="vhd-.vhdx-を探す" class="level2">
+<h2 class="anchored" data-anchor-id="vhd-.vhdx-を探す">VHD (<code>.vhdx</code>) を探す</h2>
+<p><a href="https://01futabato10.hateblo.jp/entry/2022/12/02/095031" class="uri">https://01futabato10.hateblo.jp/entry/2022/12/02/095031</a></p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>PowerShell</strong></pre>
+</div>
+<div class="sourceCode" id="cb1" data-filename="PowerShell"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ls <span class="ex">C:\Users\_username_\AppData\Local\Packages\Canonical*</span>  <span class="co"># _username_ は自分のものを</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">ディレクトリ:</span> C:<span class="dt">\U</span>sers<span class="dt">\_</span>username_<span class="dt">\A</span>ppData<span class="dt">\L</span>ocal<span class="dt">\P</span>ackages</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Mode</span>                 LastWriteTime         Length Name</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">----</span>                 <span class="at">-------------</span>         <span class="at">------</span> <span class="at">----</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">d-----</span>        2023/01/05     21:33                CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">d-----</span>        2023/01/05     21:36                CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc</span></code></pre></div>
+</div>
+<p>使っているディストリビューションのディレクトリ内にある <code>LocalState\</code> に <code>ext4.vhdx</code> がいる。 (<code>onWindows</code> の方にはなかった。)</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>PowerShell</strong></pre>
+</div>
+<div class="sourceCode" id="cb2" data-filename="PowerShell"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ls <span class="ex">C:\Users\_username_\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState</span><span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">ディレクトリ:</span> C:<span class="dt">\U</span>sers<span class="dt">\_</span>username_<span class="dt">\A</span>ppData<span class="dt">\L</span>ocal<span class="dt">\P</span>ackages<span class="dt">\C</span>anonicalGroupLimited.Ubuntu_79rhkp1fndgsc<span class="dt">\L</span>ocalState</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Mode</span>                 LastWriteTime         Length Name</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">----</span>                 <span class="at">-------------</span>         <span class="at">------</span> <span class="at">----</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">-a----</span>        2024/06/06     14:04   208281796608 ext4.vhdx</span></code></pre></div>
+</div>
+</section>
+<section id="diskpart-を使って-vhd-を確認する" class="level2">
+<h2 class="anchored" data-anchor-id="diskpart-を使って-vhd-を確認する">DISKPART を使って VHD を確認する</h2>
+<p>まず <code>wsl</code> をシャットダウンする:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>PowerShell</strong></pre>
+</div>
+<div class="sourceCode" id="cb3" data-filename="PowerShell"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wsl</span> <span class="at">--shutdown</span></span></code></pre></div>
+</div>
+<p>DISKPART インタプリタを起動する:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>PowerShell</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="PowerShell"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">diskpart</span></span></code></pre></div>
+</div>
+<p>先ほど調べた VHD を選択する:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>DISKPART</strong></pre>
+</div>
+<div class="sourceCode" id="cb5" data-filename="DISKPART"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DISKPART</span><span class="op">&gt;</span> select vdisk file=C:<span class="dt">\U</span>sers<span class="dt">\_</span>username_<span class="dt">\A</span>ppData<span class="dt">\L</span>ocal<span class="dt">\P</span>ackages<span class="dt">\C</span>anonicalGroupLimited.Ubuntu_79rhkp1fndgsc<span class="dt">\L</span>ocalState<span class="dt">\e</span>xt4.vhdx</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">DiskPart</span> により、仮想ディスク ファイルが選択されました。</span></code></pre></div>
+</div>
+<p>VHD の情報を確認する:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>DISKPART</strong></pre>
+</div>
+<div class="sourceCode" id="cb6" data-filename="DISKPART"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DISKPART</span><span class="op">&gt;</span> detail vdisk</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">デバイスの種類</span> ID: 0 <span class="er">(</span><span class="ex">不明</span><span class="kw">)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">ベンダー</span> ID: {00000000-0000-0000-0000-000000000000} <span class="er">(</span><span class="ex">不明</span><span class="kw">)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">状態:</span> 追加済み</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">仮想サイズ:</span> 1024 GB</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">物理サイズ:</span>  193 GB</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ex">ファイル名:</span> C:<span class="dt">\U</span>sers<span class="dt">\_</span>username_<span class="dt">\A</span>ppData<span class="dt">\L</span>ocal<span class="dt">\P</span>ackages<span class="dt">\C</span>anonicalGroupLimited.Ubuntu_79rhkp1fndgsc<span class="dt">\L</span>ocalState<span class="dt">\e</span>xt4.vhdx</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">子:</span> いいえ</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">親ファイル名:</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ex">関連付けられたディスク番号:</span> 見つかりません。</span></code></pre></div>
+</div>
+</section>
+<section id="vhd-ディスクスペースを最適化する" class="level2">
+<h2 class="anchored" data-anchor-id="vhd-ディスクスペースを最適化する">VHD ディスクスペースを最適化する</h2>
+<p>Attach -&gt; Compact -&gt; Detach の順に実行する。</p>
+<p>Attach:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>DISKPART</strong></pre>
+</div>
+<div class="sourceCode" id="cb7" data-filename="DISKPART"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DISKPART</span><span class="op">&gt;</span> attach vdisk readonly</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">100%</span> 完了しました</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">DiskPart</span> により、仮想ディスク ファイルがアタッチされました。</span></code></pre></div>
+</div>
+<p>Compact (本質):</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>DISKPART</strong></pre>
+</div>
+<div class="sourceCode" id="cb8" data-filename="DISKPART"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DISKPART</span><span class="op">&gt;</span> compact vdisk</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">100%</span> 完了しました</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">DiskPart</span> により、仮想ディスク ファイルは正常に圧縮されました。</span></code></pre></div>
+</div>
+<p>Detach:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>DISKPART</strong></pre>
+</div>
+<div class="sourceCode" id="cb9" data-filename="DISKPART"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DISKPART</span><span class="op">&gt;</span> detach vdisk</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">DiskPart</span> により、仮想ディスク ファイルがデタッチされました。</span></code></pre></div>
+</div>
+<p>DISKPART を終了する (その前にもう一回 <code>detail</code> してもよい):</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>DISKPART</strong></pre>
+</div>
+<div class="sourceCode" id="cb10" data-filename="DISKPART"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DISKPART</span><span class="op">&gt;</span> exit</span></code></pre></div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

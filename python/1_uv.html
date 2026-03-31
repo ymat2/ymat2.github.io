@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>uv – Yuki MATSUDA</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -68,15 +71,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../images/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8f761792feb2489904170432943ca7f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b8484662480500b84131a23a83f7d24e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7b548b2fc890d70c5a6222fab91b7951.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-edc4c3ba940c01618b5c8cb2b918d70d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -182,9 +184,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../"><img src="../images/favicon.png" height="28" vertical-align="text-bottom"> Yuki MATSUDA</a> 
     </div>
@@ -251,14 +251,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/gwas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GWAS</span></a>
+  <a href="../bio/genome_data_download.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ゲノムデータ取得</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/ncbi_download.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ゲノムデータ取得</span></a>
+  <a href="../bio/gwas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GWAS</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -329,12 +329,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cli/rsync.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">rsync</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../cli/ssh.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SSH</span></a>
   </div>
@@ -348,7 +342,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cli/vscode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visual Studio Code</span></a>
+ <span class="menu-text">VS Code</span></a>
   </div>
 </li>
       </ul>
@@ -425,12 +419,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../win/git4win.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git for Windows</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../win/powershell.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PowerShell</span></a>
   </div>
@@ -439,12 +427,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../win/wsl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">WSL</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL Disk Space</span></a>
   </div>
 </li>
       </ul>
@@ -457,24 +439,6 @@ window.Quarto = {
     
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">uv — Rust 製 Python マネージャ</h1></header>
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  let toc = document.getElementById("TOC");
-
-  let beforeToc = document.querySelector(".before-toc");
-
-  if (toc && beforeToc) {
-
-    toc.parentNode.insertBefore(beforeToc, toc);
-
-  }
-
-});
-
-</script>
-
 
 <header id="title-block-header">
 
@@ -495,9 +459,9 @@ document.addEventListener("DOMContentLoaded", function () {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Windows</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">powershell</span> <span class="at">-c</span> <span class="st">"irm https://astral.sh/uv/install.ps1 | iex"</span></span></code></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">powershell</span> <span class="at">-ExecutionPolicy</span> ByPass <span class="at">-c</span> <span class="st">"irm https://astral.sh/uv/install.ps1 | iex"</span></span></code></pre></div>
 <p>Unix 系 OS では <code>.bashrc</code>, <code>.bash_profile</code>, <code>.profile</code> の全部に <code>. "$HOME/.cargo/env"</code> が追加される。 先に Rust の環境作っておけばカスタム可能かも。</p>
-<p>Windows ではcurrent user &amp; current host の <code>.ps1</code> に PATH 設定が追記される。</p>
+<p>Windows では current user &amp; current host の <code>.ps1</code> に PATH 設定が追記される。</p>
 <p>ほかに <code>pipx</code>, <code>pip</code>, Homebrew, Docker でも入る。 先に Rust の環境があって Crate として入れる場合は GitHub から入れる:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pipx</span> install uv</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install uv</span>
@@ -509,7 +473,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <section id="python-インストーラとしての使用" class="level2">
 <h2 class="anchored" data-anchor-id="python-インストーラとしての使用">Python インストーラとしての使用</h2>
 <p><a href="https://docs.astral.sh/uv/guides/install-python/" class="uri">https://docs.astral.sh/uv/guides/install-python/</a></p>
-<div class="note">
+<div class="info">
 <p><code>uv python install</code> は<a href="https://github.com/indygreg/python-build-standalone">サードパーティ</a>製の binary distribution をとってくる。</p>
 </div>
 <dl>
@@ -583,29 +547,29 @@ Python のバージョンを指定してアンインストール
 <li><code>.gitignore</code></li>
 <li><code>.python-version</code></li>
 <li><code>README.md</code></li>
-<li><code>hello.py</code> (<code>{project-name}.py</code>)</li>
+<li><code>main.py</code></li>
 <li><code>pyproject.toml</code></li>
 </ul>
 <p>が作られ、すでに <code>git init</code> もされた状態で構築される (<code>git</code> があれば)。</p>
 <p>どのようなプロジェクトにするかでいくつかオプションがある:</p>
 <dl>
+<dt><code>--app</code></dt>
+<dd>
+デフォルトの挙動。アプリケーション用プロジェクトとして立ち上げる。
+</dd>
 <dt><code>--package</code></dt>
 <dd>
 パッケージ用プロジェクトとして立ち上げる。
 </dd>
 <dd>
-<code>{project-name}.py</code> の代わりに <code>src/{project-name}/__init__.py</code>
-</dd>
-<dt><code>--app</code></dt>
-<dd>
-アプリケーション用プロジェクトとして立ち上げる。
+<code>main.py</code> の代わりに <code>src/&lt;project_name&gt;/__init__.py</code>
 </dd>
 <dt><code>--lib</code></dt>
 <dd>
 ライブラリ用プロジェクトとして立ち上げる。
 </dd>
 <dd>
-<code>--package</code> 同様の <code>__init__.py</code> と、加えて <code>py.typed</code>
+<code>--package</code> 同様の構造に、<code>__init__.py</code> + <code>py.typed</code>
 </dd>
 </dl>
 <p>プロジェクト作成後に初めて <code>uv run</code>, <code>uv sync</code>, <code>uv lock</code> を使ったときに <code>.venv/</code> と <code>uv.lock</code> も作られる。</p>
@@ -625,7 +589,8 @@ Python のバージョンを指定してアンインストール
 </dl>
 <section id="パッケージのインストール" class="level3">
 <h3 class="anchored" data-anchor-id="パッケージのインストール">パッケージのインストール</h3>
-<p>プロジェクトで使用するパッケージの管理もすべて uv がやってくれる。 例えば開発用パッケージとして <code>pytest</code> を使う場合:</p>
+<p><a href="https://docs.astral.sh/uv/guides/projects/#managing-dependencies" class="uri">https://docs.astral.sh/uv/guides/projects/#managing-dependencies</a></p>
+<p>プロジェクトで使用するパッケージの管理もすべて <code>uv</code> がやってくれる。 例えば開発用パッケージとして <code>pytest</code> を使う場合:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add pytest <span class="at">--dev</span></span></code></pre></div>
 <p>自動で <code>pyproject.toml</code> に記述される:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[tool.uv]</span></span>
@@ -641,15 +606,17 @@ Python のバージョンを指定してアンインストール
 <li><a href="https://docs.astral.sh/uv/guides/tools/" class="uri">https://docs.astral.sh/uv/guides/tools/</a></li>
 </ul>
 <p>Python 製コマンドラインツールを使うためのインターフェイスとして、 インストールせず一時的に実行する <code>uvx</code> と、インストールしてグローバルに使う <code>uv tool</code> が用意されている。 (<code>uvx</code> は <code>uv tool run</code> のエイリアス。) 一応、ほとんどの場面ではインストールせず一時的に使うことが推奨されているっぽい。</p>
-<div class="note">
+<div class="info">
 <p><a href="https://peps.python.org/pep-0668/">PEP 668</a> にある通り <code>pip</code> でグローバルに使うツールを入れることができなくなったので、 今のところその代わりとしても使える。</p>
 </div>
 <section id="インストールせず一時的に使う" class="level3">
-<h3 class="anchored" data-anchor-id="インストールせず一時的に使う"><a href="https://docs.astral.sh/uv/guides/tools/#running-tools">インストールせず一時的に使う</a></h3>
+<h3 class="anchored" data-anchor-id="インストールせず一時的に使う">インストールせず一時的に使う</h3>
+<p><a href="https://docs.astral.sh/uv/guides/tools/#running-tools" class="uri">https://docs.astral.sh/uv/guides/tools/#running-tools</a></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uvx</span> ruff  <span class="co"># or `uv tool run ruff`</span></span></code></pre></div>
 </section>
 <section id="インストールして使う" class="level3">
-<h3 class="anchored" data-anchor-id="インストールして使う"><a href="https://docs.astral.sh/uv/guides/tools/#installing-tools">インストールして使う</a></h3>
+<h3 class="anchored" data-anchor-id="インストールして使う">インストールして使う</h3>
+<p><a href="https://docs.astral.sh/uv/guides/tools/#installing-tools" class="uri">https://docs.astral.sh/uv/guides/tools/#installing-tools</a></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> tool install ruff</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ruff</span></span></code></pre></div>
 <p>その他コマンド:</p>
@@ -1033,7 +1000,7 @@ Python のバージョンを指定してアンインストール
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Copyright 2023 – 2026, Yuki MATSUDA</p>
+<p>© 2023–2026, Yuki MATSUDA</p>
 </div>
   </div>
 </footer>

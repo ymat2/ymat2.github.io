@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>ETE Toolkit – Yuki MATSUDA</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -68,15 +71,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../images/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8f761792feb2489904170432943ca7f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b8484662480500b84131a23a83f7d24e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7b548b2fc890d70c5a6222fab91b7951.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-edc4c3ba940c01618b5c8cb2b918d70d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -182,9 +184,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../"><img src="../images/favicon.png" height="28" vertical-align="text-bottom"> Yuki MATSUDA</a> 
     </div>
@@ -251,14 +251,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/gwas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GWAS</span></a>
+  <a href="../bio/genome_data_download.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ゲノムデータ取得</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/ncbi_download.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ゲノムデータ取得</span></a>
+  <a href="../bio/gwas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GWAS</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -329,12 +329,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cli/rsync.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">rsync</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../cli/ssh.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SSH</span></a>
   </div>
@@ -348,7 +342,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cli/vscode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visual Studio Code</span></a>
+ <span class="menu-text">VS Code</span></a>
   </div>
 </li>
       </ul>
@@ -425,12 +419,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../win/git4win.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git for Windows</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../win/powershell.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PowerShell</span></a>
   </div>
@@ -439,12 +427,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../win/wsl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">WSL</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL Disk Space</span></a>
   </div>
 </li>
       </ul>
@@ -457,24 +439,6 @@ window.Quarto = {
     
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">ETE Toolkit — ete-evol による配列解析</h1></header>
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  let toc = document.getElementById("TOC");
-
-  let beforeToc = document.querySelector(".before-toc");
-
-  if (toc && beforeToc) {
-
-    toc.parentNode.insertBefore(beforeToc, toc);
-
-  }
-
-});
-
-</script>
-
 
 <header id="title-block-header">
 
@@ -483,16 +447,20 @@ document.addEventListener("DOMContentLoaded", function () {
 </header>
 
 
-<p><a href="http://etetoolkit.org">ETE Toolkit</a> は系統樹データを扱うための Python フレームワーク。</p>
-<p>その中の <a href="http://etetoolkit.org/documentation/ete-evol/"><em>ete-evol</em></a> は <a href="http://abacus.gene.ucl.ac.uk/software/paml.html">CODEML</a> や <a href="https://doi.org/10.1534/genetics.104.032144">SLR</a> の実行を手助けする Python 製コマンドラインツール。</p>
-<p>パッケージとして <code>import</code> して <a href="../python/evoltree.html">Python スクリプトの中で使う</a>こともできる。</p>
+<ul>
+<li><a href="https://etetoolkit.org/" class="uri">https://etetoolkit.org/</a></li>
+<li><a href="https://etetoolkit.github.io/ete/" class="uri">https://etetoolkit.github.io/ete/</a></li>
+<li><a href="https://github.com/etetoolkit/ete" class="uri">https://github.com/etetoolkit/ete</a></li>
+</ul>
+<p>ETE Toolkit は系統樹データを扱うための Python フレームワーク。</p>
+<p>その中の <a href="http://etetoolkit.org/documentation/ete-evol/"><em>ete-evol</em></a> は <a href="http://abacus.gene.ucl.ac.uk/software/paml.html">CODEML</a> や <a href="https://doi.org/10.1534/genetics.104.032144">SLR</a> の実行を手助けする Python 製コマンドラインツール。 パッケージとして <code>import</code> して <a href="../python/evoltree.html">Python スクリプトの中で使う</a>こともできる。</p>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<p><code>codeml</code> と <code>slr</code> がインストールされて PATH が通っている必要がある。 (使わない方は入っていなくても解析はできる。)</p>
+<p>仮想環境を作って <code>pip</code> / <code>uv pip</code> / <code>uv add</code> で入れる。 <code>codeml</code> と <code>slr</code> がインストールされて PATH が通っている必要がある。 (使わない方は入っていなくても解析はできる。)</p>
 <section id="ete4" class="level3">
 <h3 class="anchored" data-anchor-id="ete4"><code>ete4</code></h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pip3 install lap  # if needed</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install https://github.com/etetoolkit/ete/archive/ete4.zip</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pip install lap  # if needed</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install https://github.com/etetoolkit/ete/archive/ete4.zip</span></code></pre></div>
 </section>
 <section id="ete3" class="level3">
 <h3 class="anchored" data-anchor-id="ete3"><code>ete3</code></h3>
@@ -503,14 +471,14 @@ document.addEventListener("DOMContentLoaded", function () {
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">ete3</span> build check</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate ete3</span></code></pre></div>
 <p><code>conda</code> を介さないインストール:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install cython bottle brotli numpy scipy PyQt5</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install ete3</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ete3</span> upgrade-external-tools   <span class="co"># codeml, slrをここからインストールすることもできる</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install cython bottle brotli numpy scipy PyQt5</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install ete3</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ete3</span> upgrade-external-tools   <span class="co"># codeml, slrをここからインストールすることもできるらしい</span></span></code></pre></div>
 </section>
-<section id="遺伝研" class="level3">
-<h3 class="anchored" data-anchor-id="遺伝研">遺伝研</h3>
+<section id="遺伝研スパコン" class="level3">
+<h3 class="anchored" data-anchor-id="遺伝研スパコン">遺伝研スパコン</h3>
+<p>2026/03/29 時点で <code>ete2</code> と <code>ete3</code> が利用可能:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/e/ete<span class="pp">*</span></span></code></pre></div>
-<p>2023/09/11時点で <code>ete2</code> と <code>ete3</code> が利用可能。 でもちゃんと動かなそう？ (バージョンによるかも。)</p>
 </section>
 </section>
 <section id="基本的な使い方" class="level2">
@@ -1160,7 +1128,7 @@ document.addEventListener("DOMContentLoaded", function () {
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Copyright 2023 – 2026, Yuki MATSUDA</p>
+<p>© 2023–2026, Yuki MATSUDA</p>
 </div>
   </div>
 </footer>

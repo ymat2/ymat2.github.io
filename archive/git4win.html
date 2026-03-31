@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Slides – Yuki MATSUDA</title>
+<title>Git for Windows – Yuki MATSUDA</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -81,329 +116,19 @@ gtag('js', new Date());
 gtag('config', 'G-HLCP5V0Y7N', { 'anonymize_ip': true});
 </script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-sidebar floating fullcontent quarto-light">
+<body class="fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Slides</h1>
-        </a>     
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../"><img src="../images/favicon.png" height="28" vertical-align="text-bottom"> Yuki MATSUDA</a> 
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HOME</span></a>
-  </div>
-</li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../slides/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">スライド</span></a>
-  </div>
-</li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Bioinformatics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/cafe5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CAFE5</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/clusterProfiler.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">clusterProfiler</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/ddbj.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">遺伝研スパコン</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/ete-toolkit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ETE Toolkit</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/fst_hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="math inline">F_\text{st}</span> 解析ハンズオン</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/genome_data_download.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ゲノムデータ取得</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/gwas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GWAS</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/orthofinder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">OrthoFinder</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/paml-tutorial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PAML チュートリアル</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/rerconverge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">RERconverge</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bio/snpEff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">snpEff</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">開発環境</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/apt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">apt</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git/GitHub</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/hugo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HUGO</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/nano.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">nano</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quarto</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/ssh.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SSH</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/vi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Vi/Vim</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cli/vscode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">VS Code</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
- <span class="menu-text">Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../python/0_install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 環境構築</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../python/1_uv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">uv</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../python/argparse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ArgumentParser</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../python/class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">オブジェクト指向とクラス</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../python/evoltree.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">EvolTree</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../python/package.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python パッケージ作成</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../python/python-tips.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 小技メモ</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Windows</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../win/0-dev-win.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Windows 開発環境</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../win/powershell.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PowerShell</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../win/wsl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">Slides</h1></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7">Git for Windows — Windows で Git を使う</h1></header>
 
 <header id="title-block-header">
 
@@ -413,16 +138,119 @@ window.Quarto = {
 
 
 <ul>
-<li><a href="../slides/snp24/index.html">2024-11-29 全ゲノム解析 ハンズオン — スモールデータで理解する SNP 解析の流れ</a></li>
-<li><a href="../slides/lt/tuat2024pipeline.html">2024-04-03 新村グループ プロトコル共有 — 遺伝研スパコンで集団ゲノミクス解析</a></li>
-<li><a href="../slides/lt/ggtree.html">Rで系統樹を扱う — ggtreeによる系統樹の可視化</a></li>
-<li><a href="../slides/lt/html-css.html">WEBサイト作成のための基礎知識 — HTML, CSS, JavaScript, 静的サイトジェネレータ</a></li>
-<li><a href="../slides/git-circle/git-vol2.html">2023-06-13 Git 基本操作② — <code>fetch</code>, <code>merge</code>, <code>pull</code></a></li>
-<li><a href="../slides/git-circle/git-vol1.html">2023-06-06 Git 基本操作① — GitとGitHubを使い始める</a></li>
-<li><a href="../slides/lt/gnu-nano.html">2023-05-09 牧野研 技術輪読会 — GNU nanoエディタを便利に使う</a></li>
+<li><a href="https://gitforwindows.org/" class="uri">https://gitforwindows.org/</a></li>
+<li><a href="https://github.com/git-for-windows" class="uri">https://github.com/git-for-windows</a></li>
+<li><a href="https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-PowerShell" class="uri">https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-PowerShell</a></li>
+<li><a href="https://qiita.com/kerobot/items/718d50ba8ebc2e199bc1" class="uri">https://qiita.com/kerobot/items/718d50ba8ebc2e199bc1</a></li>
 </ul>
+<section id="git-for-windows-をインストールする" class="level2">
+<h2 class="anchored" data-anchor-id="git-for-windows-をインストールする">Git for Windows をインストールする</h2>
+<p><a href="https://git-scm.com/download/win">Download for Windows のページ</a>からインストーラを入手。</p>
+<p>インストール時の設定は基本的にデフォルトでいい。 コミット時のエディタと <code>git pull</code> の挙動は適当なものを選ぶ。</p>
+<dl>
+<dt>Select Destination Location</dt>
+<dd>
+<code>C:\Program Files\Git</code>
+</dd>
+<dt>Select Components, Select Start Menu Folder</dt>
+<dd>
+default
+</dd>
+<dt>Choosing the default editor used by Git</dt>
+<dd>
+Use Visual Studio Code as Git’s default editor
+</dd>
+<dt>Adjusting the name of the initil branch in new repositories</dt>
+<dd>
+Override the default branch name for new repositories <code>main</code>
+</dd>
+<dt>Adjusting your PATH environment</dt>
+<dd>
+Git from the command line and also from 3rd-party software (recommended)
+</dd>
+<dt>Choosing the SSH executable</dt>
+<dd>
+Use bundle OpenSSH
+</dd>
+<dt>Choose HTTPS transport backend</dt>
+<dd>
+Use the OpenSSL library
+</dd>
+<dt>Configuring the line ending conversion</dt>
+<dd>
+Checkout Windows-style, commit Unix-style line ending
+</dd>
+<dt>Configuring the terminal emulator to use with Git Bash</dt>
+<dd>
+Use MinTTY (the default terminal of MSYS2)
+</dd>
+<dt>Choose the default behavior of <code>git pull</code></dt>
+<dd>
+Fast-forward or merge
+</dd>
+<dt>Choose a credential helper</dt>
+<dd>
+Git Credential Manager
+</dd>
+<dt>Configuring extra options</dt>
+<dd>
+Enable file system caching
+</dd>
+<dd>
+Enable symboic links
+</dd>
+<dt>Configuring experimental options</dt>
+<dd>
+チェックなし
+</dd>
+</dl>
+</section>
+<section id="グローバル設定" class="level2">
+<h2 class="anchored" data-anchor-id="グローバル設定">グローバル設定</h2>
+<p>Windows のホームディレクトリに <code>.gitconfig</code> ができる。</p>
+<p>ここに必要な設定を追加していく:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>~/.gitconfig</strong></pre>
+</div>
+<div class="sourceCode" id="cb1" data-filename="~/.gitconfig"><pre class="sourceCode conf"><code class="sourceCode toml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[user]</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">name</span> <span class="op">=</span> <span class="dt">ymat2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">email</span> <span class="op">=</span> <span class="dt">ymat2</span><span class="er">@</span><span class="dt">users.noreply.github.com</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">[init]</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">defaultBranch</span> <span class="op">=</span> <span class="dt">main</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">[push]</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">default</span> <span class="op">=</span> <span class="dt">simple</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">[pull]</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ff</span> <span class="op">=</span> <span class="dt">only</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">[url</span> <span class="kw">"</span><span class="dt">git@github.com:"</span><span class="kw">]</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pushinsteadof</span> <span class="op">=</span> <span class="dt">https</span><span class="er">://</span><span class="dt">github.com</span><span class="er">/</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="kw">[diff]</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">submodule</span> <span class="op">=</span> <span class="dt">log</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="kw">[core]</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">editor</span> <span class="op">=</span> <span class="dt">vim</span></span></code></pre></div>
+</div>
+<p>これだけでもほぼ Unix と同じように使える。 実際の使い方は <a href="../cli/git.html">Git/GitHub</a> を参照。</p>
+</section>
+<section id="git-bash" class="level2">
+<h2 class="anchored" data-anchor-id="git-bash">Git Bash</h2>
+<p>Git for Windows に同梱されている Bash エミュレーション。 Bash と基本的なコマンドが提供されている。 <a href="https://www.msys2.org/">MSYS</a> ベース。 パッケージ管理ツール (<code>pacman</code>) とビルドツールチェイン (<code>gcc</code> など) は付いていない。</p>
+<p>Git Bash アプリからターミナルを開くか、 Windows Terminal のプロンプトの1つとして登録する。 起動オプションで明示的にログインシェルとして立ち上げる <code>--login</code> 必要がある?</p>
+</section>
+<section id="posh-git" class="level2">
+<h2 class="anchored" data-anchor-id="posh-git">posh-git</h2>
+<blockquote class="blockquote">
+<p>posh-git is a PowerShell module that integrates Git and PowerShell by providing Git status summary information that can be displayed in the PowerShell prompt</p>
+</blockquote>
+<p>らしい。 PowerShell で Git を便利に使うためのモジュールっぽいが、必ずしも必要ではない。</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Windows 開発環境 – Yuki MATSUDA</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -68,15 +71,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../images/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8f761792feb2489904170432943ca7f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b8484662480500b84131a23a83f7d24e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7b548b2fc890d70c5a6222fab91b7951.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-edc4c3ba940c01618b5c8cb2b918d70d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -182,9 +184,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../"><img src="../images/favicon.png" height="28" vertical-align="text-bottom"> Yuki MATSUDA</a> 
     </div>
@@ -251,14 +251,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/gwas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GWAS</span></a>
+  <a href="../bio/genome_data_download.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ゲノムデータ取得</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bio/ncbi_download.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ゲノムデータ取得</span></a>
+  <a href="../bio/gwas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GWAS</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -329,12 +329,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cli/rsync.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">rsync</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../cli/ssh.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SSH</span></a>
   </div>
@@ -348,7 +342,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cli/vscode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visual Studio Code</span></a>
+ <span class="menu-text">VS Code</span></a>
   </div>
 </li>
       </ul>
@@ -425,12 +419,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../win/git4win.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git for Windows</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../win/powershell.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PowerShell</span></a>
   </div>
@@ -439,12 +427,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../win/wsl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">WSL</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../win/wsl-disk-space.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WSL Disk Space</span></a>
   </div>
 </li>
       </ul>
@@ -457,24 +439,6 @@ window.Quarto = {
     
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title d-none d-lg-block display-7">Windows 開発環境</h1></header>
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  let toc = document.getElementById("TOC");
-
-  let beforeToc = document.querySelector(".before-toc");
-
-  if (toc && beforeToc) {
-
-    toc.parentNode.insertBefore(beforeToc, toc);
-
-  }
-
-});
-
-</script>
-
 
 <header id="title-block-header">
 
@@ -483,9 +447,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </header>
 
 
-<section id="はじめに" class="level2">
-<h2 class="anchored" data-anchor-id="はじめに">はじめに</h2>
-<p>Windows で UNIX ライクなコマンドライン操作を行うには、いくつかの選択肢がある。</p>
+<p>Windows で UNIX っぽいコマンドライン操作を行うには、いくつかの選択肢がある。</p>
 <dl>
 <dt><a href="../win/wsl.html">WSL (Windows Subsystem for Linux)</a></dt>
 <dd>
@@ -498,7 +460,7 @@ WSL2 からは、カーネルも Linux になっている。
 Microsoft としては WSL を推奨している。
 </dd>
 <dd>
-便利だが、<a href="../win/wsl-disk-space.html">ディスクスペースを食いつぶす問題</a>がある。
+便利だが、<a href="../archive/wsl-disk-space.html">ディスクスペースを食いつぶす問題</a>がある。
 </dd>
 <dt><a href="../win/powershell.html">PowerShell</a></dt>
 <dd>
@@ -512,7 +474,7 @@ Microsoft 製 CUI。UNIX とは異なる体系。
 </dd>
 <dt>Git Bash</dt>
 <dd>
-後述する <a href="../win/git4win.html">Git for Windows</a> をインストールするとついてくる UNIX ライクな環境。
+後述する Git for Windows をインストールするとついてくる UNIX ライクな環境。
 </dd>
 <dd>
 パッケージ管理とかビルドユーティリティとかはついてない最低限の構成。
@@ -529,18 +491,16 @@ R 用のビルドツールチェイン <a href="https://cran.r-project.org/bin/w
 </dd>
 </dl>
 <p>他の UNIX 系 OS との互換性をできる限り保つなら WSL、 Windows (C ドライブ) 内の作業で完結させつつもビルド環境が必要なら MSYS2 + MinGW、 それ以外の用途なら PowerShell か Git Bash がいいのでは。</p>
-<div class="note">
-<p>デスクトップを OneDrive 下に置く設定は無効にして <code>C:/Users/_username_</code> で作業する方が安全。</p>
+<div class="info">
+<p>デスクトップを OneDrive 下に置く設定は無効にして <code>C:/Users/&lt;username&gt;/</code> で作業する方が安全。</p>
 </div>
-</section>
 <section id="パッケージ管理" class="level2">
 <h2 class="anchored" data-anchor-id="パッケージ管理">パッケージ管理</h2>
-<p>Windows におけるパッケージ管理の主な選択肢として、 Microsoft 公式の <a href="https://learn.microsoft.com/ja-jp/windows/package-manager/winget/">Winget</a>、 古株で対応するパッケージも多い <a href="https://chocolatey.org/install">Chocolatey</a>、 ユーザー権限で使いやすい <a href="https://scoop.sh/">Scoop</a> の3つがある。</p>
+<p>Windows におけるパッケージ・アプリケーション管理は、 Microsoft 公式の <a href="https://learn.microsoft.com/ja-jp/windows/package-manager/winget/">WinGet</a> を使うのが主流。 その他の選択肢として、古株で対応するパッケージも多い <a href="https://chocolatey.org/install">Chocolatey</a> や、ユーザー権限で使いやすい <a href="https://scoop.sh/">Scoop</a> もある。</p>
 <section id="winget" class="level3">
-<h3 class="anchored" data-anchor-id="winget"><a href="https://learn.microsoft.com/ja-jp/windows/package-manager/winget/">Winget</a></h3>
-<p>新しめの Windows ならデフォルトで使えるはず。 後述のツールはどれも winget で入れることができる。</p>
-<section id="basic-usage" class="level4">
-<h4 class="anchored" data-anchor-id="basic-usage">Basic usage</h4>
+<h3 class="anchored" data-anchor-id="winget">WinGet</h3>
+<p><a href="https://learn.microsoft.com/ja-jp/windows/package-manager/winget/" class="uri">https://learn.microsoft.com/ja-jp/windows/package-manager/winget/</a></p>
+<p>新しめの Windows ならデフォルトで使えるはず。 後述のツールはどれも WinGet で入れることができる。</p>
 <dl>
 <dt><code>winget install/uninstall</code></dt>
 <dd>
@@ -564,46 +524,27 @@ R 用のビルドツールチェイン <a href="https://cran.r-project.org/bin/w
 </dl>
 </section>
 </section>
-<section id="chocolatey" class="level3">
-<h3 class="anchored" data-anchor-id="chocolatey"><a href="https://chocolatey.org/install">Chocolatey</a></h3>
-<section id="chocolatey-のインストール" class="level4">
-<h4 class="anchored" data-anchor-id="chocolatey-のインストール">Chocolatey のインストール</h4>
-<p>PowerShell を<strong>管理者として</strong>開く。その後下記のインストールコマンドを実行:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-ExecutionPolicy</span> Bypass <span class="at">-Scope</span> Process <span class="at">-Force</span><span class="kw">;</span> <span class="ex">[System.Net.ServicePointManager]::SecurityProtocol</span> = <span class="pp">[</span><span class="ss">System.Net.ServicePointManager</span><span class="pp">]</span>::SecurityProtocol <span class="at">-bor</span> 3072<span class="kw">;</span> <span class="ex">iex</span> <span class="er">(</span><span class="kw">(</span><span class="ex">New-Object</span> System.Net.WebClient<span class="kw">)</span><span class="ex">.DownloadString</span><span class="er">(</span><span class="st">'https://community.chocolatey.org/install.ps1'</span><span class="kw">))</span></span></code></pre></div>
-</section>
-<section id="basic-usage-1" class="level4">
-<h4 class="anchored" data-anchor-id="basic-usage-1">Basic usage</h4>
-<dl>
-<dt><code>choco install/uninstall</code></dt>
-<dd>
-パッケージのインストール/アンインストール (管理者権限が必要)
-</dd>
-<dt><code>choco search</code></dt>
-<dd>
-パッケージの検索
-</dd>
-<dt><code>choco list</code></dt>
-<dd>
-インストール済みパッケージの表示
-</dd>
-</dl>
-</section>
-</section>
-<section id="scoop" class="level3">
-<h3 class="anchored" data-anchor-id="scoop"><a href="https://scoop.sh/">Scoop</a></h3>
-<section id="インストール" class="level4">
-<h4 class="anchored" data-anchor-id="インストール">インストール</h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set-ExecutionPolicy</span> <span class="at">-ExecutionPolicy</span> RemoteSigned <span class="at">-Scope</span> CurrentUser</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Invoke-RestMethod</span> <span class="at">-Uri</span> https://get.scoop.sh <span class="kw">|</span> <span class="ex">Invoke-Expression</span></span></code></pre></div>
-</section>
-</section>
-</section>
 <section id="git" class="level2">
 <h2 class="anchored" data-anchor-id="git">Git</h2>
-<p>プロジェクトのバージョン管理のためにも必須。 インストールは winget か、<a href="../win/git4win.html">Git for Windows</a> を参照。</p>
-<div class="note">
+<ul>
+<li><a href="https://gitforwindows.org/" class="uri">https://gitforwindows.org/</a></li>
+<li><a href="https://github.com/git-for-windows" class="uri">https://github.com/git-for-windows</a></li>
+<li><a href="https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-PowerShell" class="uri">https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-PowerShell</a></li>
+</ul>
+<section id="installation" class="level3">
+<h3 class="anchored" data-anchor-id="installation">Installation</h3>
+<p><a href="https://git-scm.com/download/win">ダウンロードページ</a> からインストーラを落としてくる。 基本的にはデフォルト設定で、コミット時のエディタと <code>git pull</code> の挙動は適当なものを選ぶ。</p>
+<p>もしくは <code>winget</code> を使う:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">winget</span> install <span class="at">--id</span> Git.Git <span class="at">-e</span> <span class="at">--source</span> winget</span></code></pre></div>
+</section>
+<section id="git-bash" class="level3">
+<h3 class="anchored" data-anchor-id="git-bash">Git Bash</h3>
+<p>Git for Windows に同梱されている Bash エミュレーション。 Bash と基本的なコマンドが提供されている。 <a href="https://www.msys2.org/">MSYS</a> ベース。 パッケージ管理ツール (<code>pacman</code>) やビルドツールチェイン (<code>gcc</code> など) は付いていない。</p>
+<p>Git Bash アプリからターミナルを開くか、 Windows Terminal のプロンプトの1つとして登録する。 起動オプションで明示的にログインシェルとして立ち上げる <code>--login</code> 必要がある?</p>
+<div class="info">
 <p>ちょっとした注意点で、Git Bash 起動中は <code>winget upgrade</code> による Git の更新はできない。</p>
 </div>
+</section>
 </section>
 <section id="r" class="level2">
 <h2 class="anchored" data-anchor-id="r">R</h2>
@@ -616,10 +557,10 @@ R 用のビルドツールチェイン <a href="https://cran.r-project.org/bin/w
 <div class="code-with-filename-file">
 <pre><strong>settings.json</strong></pre>
 </div>
-<div class="sourceCode" id="cb3" data-filename="settings.json"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rpath.windows"</span><span class="fu">:</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">R</span><span class="ch">\\</span><span class="st">R-4.4.0</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">x64</span><span class="ch">\\</span><span class="st">R.exe"</span><span class="fu">,</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rterm.windows"</span><span class="fu">:</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">R</span><span class="ch">\\</span><span class="st">R-4.4.0</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">x64</span><span class="ch">\\</span><span class="st">Rterm.exe"</span><span class="fu">,</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb2" data-filename="settings.json"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rpath.windows"</span><span class="fu">:</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">R</span><span class="ch">\\</span><span class="st">R-4.4.0</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">x64</span><span class="ch">\\</span><span class="st">R.exe"</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rterm.windows"</span><span class="fu">:</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">R</span><span class="ch">\\</span><span class="st">R-4.4.0</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">x64</span><span class="ch">\\</span><span class="st">Rterm.exe"</span><span class="fu">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
 </div>
 </section>
 <section id="python" class="level2">
@@ -635,7 +576,7 @@ R 用のビルドツールチェイン <a href="https://cran.r-project.org/bin/w
 <p>好きなやつを入れる:</p>
 <ul>
 <li><a href="https://code.visualstudio.com/Download">VSCode</a></li>
-<li><a href="https://posit.co/download/rstudio-desktop/">Rstudio</a></li>
+<li><a href="https://posit.co/download/rstudio-desktop/">RStudio</a></li>
 <li><a href="https://github.com/posit-dev/positron">Positron</a></li>
 <li><a href="https://zed.dev/windows">Zed</a></li>
 </ul>
@@ -645,20 +586,20 @@ R 用のビルドツールチェイン <a href="https://cran.r-project.org/bin/w
 <p><a href="https://quarto.org/docs/get-started/" class="uri">https://quarto.org/docs/get-started/</a></p>
 <p>Windows 用のやつを入れてあげる。 (R に付属しているやつを使うことはできなさそう?)</p>
 <p>PDF のレンダリング用に tex を入れてやる (c.f. <code>~/AppData/Roaming/TinyTeX/</code>):</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code></pre></div>
 <section id="pdf-で日本語フォントを使うには" class="level3">
-<h3 class="anchored" data-anchor-id="pdf-で日本語フォントを使うには">PDF で日本語フォントを使うには?</h3>
+<h3 class="anchored" data-anchor-id="pdf-で日本語フォントを使うには">PDF で日本語フォントを使うには</h3>
 <p>Quarto PDF で日本語フォントを使う場合、 デフォルトでは<a href="https://github.com/trueroad/HaranoAjiFonts">原ノ味フォント</a>が使われるらしい。 Ubuntu とかは最初のインストールでプリセットされていたはずだが、 Windows の Quarto では原ノ味含め、日本語フォントがプリセットされていないっぽい。</p>
 <p>そこで、<code>tlmgr</code> を使ってフォントをインストールしてやることで使えるようになる:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> .\AppData\Roaming\TinyTeX\bin\windows\tlmgr.bat <span class="fu">install</span> haranoaji</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Locale</span> <span class="st">'Japanese_Japan.932'</span> is unsupported, and may crash the interpreter.</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> package repository https://ftp.kddilabs.jp/CTAN/systems/texlive/tlnet/ <span class="er">(</span><span class="ex">verified</span><span class="kw">)</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[1/1,</span> <span class="pp">??</span>:<span class="pp">??</span>/<span class="pp">??</span>:<span class="pp">??</span>] install: haranoaji <span class="pp">[</span><span class="ss">25570k</span><span class="pp">]</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Locale</span> <span class="st">'Japanese_Japan.932'</span> is unsupported, and may crash the interpreter.</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">running</span> mktexlsr ...</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span> <span class="ex">running</span> mktexlsr.</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> package log updated: C:/Users/kokep/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr.log</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> command log updated: C:/Users/kokep/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr-commands.log</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> .\AppData\Roaming\TinyTeX\bin\windows\tlmgr.bat <span class="fu">install</span> haranoaji</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Locale</span> <span class="st">'Japanese_Japan.932'</span> is unsupported, and may crash the interpreter.</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> package repository https://ftp.kddilabs.jp/CTAN/systems/texlive/tlnet/ <span class="er">(</span><span class="ex">verified</span><span class="kw">)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[1/1,</span> <span class="pp">??</span>:<span class="pp">??</span>/<span class="pp">??</span>:<span class="pp">??</span>] install: haranoaji <span class="pp">[</span><span class="ss">25570k</span><span class="pp">]</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Locale</span> <span class="st">'Japanese_Japan.932'</span> is unsupported, and may crash the interpreter.</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">running</span> mktexlsr ...</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span> <span class="ex">running</span> mktexlsr.</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> package log updated: C:/Users/<span class="op">&lt;</span>user<span class="op">&gt;</span>/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr.log</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr.pl:</span> command log updated: C:/Users/<span class="op">&lt;</span>user<span class="op">&gt;</span>/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr-commands.log</span></code></pre></div>
 
 
 </section>
@@ -1018,7 +959,7 @@ R 用のビルドツールチェイン <a href="https://cran.r-project.org/bin/w
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Copyright 2023 – 2026, Yuki MATSUDA</p>
+<p>© 2023–2026, Yuki MATSUDA</p>
 </div>
   </div>
 </footer>

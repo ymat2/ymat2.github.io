@@ -42,7 +42,7 @@ bcftools index file.snp.vcf.gz
 
 ### PCA (主成分分析) をおこなう
 
-::: {.note}
+::: {.info}
 
 GWAS では SNP 以外の変数を共変量として組み込むことがある。
 集団構造の主成分はこの典型で、

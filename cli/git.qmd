@@ -63,7 +63,7 @@ format:
 
 ### 手元の変更をリモートリポジトリに反映
 
-::: {.note}
+::: {.info}
 **基本**: `git add` → `git commit` → `git push`
 :::
 
@@ -97,7 +97,7 @@ format:
 
 ### リモートリポジトリの変更を手元に反映
 
-::: {.note}
+::: {.info}
 **基本**: `git fetch` → `git merge` もしくは `git pull`
 :::
 

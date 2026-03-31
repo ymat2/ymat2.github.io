@@ -73,7 +73,7 @@ apptainer exec /usr/local/biotools/v/vcftools:0.1.16--h9a82719_5 vcftools --vers
 軍鶏 vs 他品種で分化しているゲノム領域を特定する。
 [VCFtools](https://vcftools.github.io/index.html) を使う。
 
-::: {.note}
+::: {.info}
 
 遺伝研での作業なので、以降の操作はシェルスクリプト (`.sh`) を書いて `qsub` してもよい。
 今回は便宜上、通常のコマンドラインで実行する形で説明する。
@@ -197,7 +197,7 @@ AWK コマンドで $F_\text{st} > 0.3$ の行を抽出:
 awk -F'\t' '$5 > 0.3' shamo_vs_other.windowed.weir.fst > shamo_vs_other.03.fst
 ```
 
-::: {.note}
+::: {.info}
 
 `.fst` ファイルの5列目 (`$5`) が `WEIGHTED_FST` なので、これが 0.3 より大きい行を抽出する。
 この作業自体はエクセルでやっても R でやってもいい。

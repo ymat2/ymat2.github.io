@@ -2,50 +2,57 @@
 format:
   html:
     title: "ゲノムデータ取得"
-    subtitle: "NCBI から一括ダウンロード"
+    aliases:
+      - /bio/ncbi_download.html
 ---
 
-<https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/>
 
-`rsync`, `wget`, `curl` などが使えるらしい。
-公式には `datasets` コマンドが推奨されている。
-
-
-## data_hub から分類群を指定してダウンロード (GUI)
+## NCBI から GUI でダウンロード
 
 1. <https://www.ncbi.nlm.nih.gov/data-hub/genome/> にアクセス
 
-2. <kbd>Selected taxa</kbd> で分類群を指定 (例えば "Aves", "Primates" など)
+2. 検索窓に分類群を指定 (例えば "Aves", "Primates" など)
 
-3. <kbd>Filters</kbd> でフィルタリング
+3. "Filters" でフィルタリング
 
-4. Assembly を選択して <kbd>Download</kbd>
+4. 下に検索と Filter にヒットするゲノム一覧が表示される。
+   "Assembly" を選択して <kbd>Download</kbd>
 
-	- Download Table は検索結果の表
-	- Download Package は file type (`gff`, `fna`, `faa` など) を指定してダウンロード
+	- [ ] Download Table は検索結果の表
+	- [ ] Download Package は file type (`gff`, `fna`, `faa` など) を指定してダウンロード
 
 5. <kbd>Select columns</kbd> からゲノムサイズや Gene Content なども表示させることができる。
 
 
-## コマンドラインで一括ダウンロード
+## `datasets` コマンドを用いたダウンロード
 
-### `datasets` コマンドを使う方法
+`datasets` は NCBI が提供するゲノム配列、遺伝子配列、オーソログなどをダウンロードするためのコマンドラインツール。
 
-<https://www.ncbi.nlm.nih.gov/datasets/docs/v2/how-tos/genomes/download-genome/>
+- <https://www.ncbi.nlm.nih.gov/datasets>
+- <https://github.com/ncbi/datasets>
 
-`datasets` コマンドをインストールする:
+`rsync`, `wget`, `curl` なども使えるらしいが、
+公式には `datasets` コマンドが推奨されている。
+
+### Installation
+
+<https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/>
+
+上記のダウンロードページから実行バイナリを取得してパスを通す。
+conda や curl を使ってもいい:
 
 ```sh
-## Linux
+# exanmple for Linux
 curl -o datasets 'https://ftp.ncbi.nlm.nih.gov/pub/datasets/command-line/v2/linux-amd64/datasets'
-chmod +x datasets	# 実行権限を付与
-
-## Mac
-curl -o datasets 'https://ftp.ncbi.nlm.nih.gov/pub/datasets/command-line/v2/mac/datasets'
 chmod +x datasets
 ```
 
-accession を指定してダウンロード:
+### Usage
+
+- <https://www.ncbi.nlm.nih.gov/datasets/docs/v2/how-tos/>
+- <https://www.ncbi.nlm.nih.gov/datasets/docs/v2/tutorials/>
+
+例えば Assembly accession を指定して全ゲノムの FASTA ファイルを取得するには:
 
 ```sh
 datasets download genome accession GCF_000001405.40 \
@@ -53,14 +60,73 @@ datasets download genome accession GCF_000001405.40 \
 	--include genome
 ```
 
-`--include` でファイルを指定。デフォルトは `genomic.fna`。
-他に `gtf`, `gff`, `cds`, `protein`, `rna` など。
-`none` を指定すると data report だけ取得する。
+`--include` でほしいファイルを指定する。
+デフォルトは `genomic.fna`のみで、他に `gtf`, `gff`, `cds`, `protein`, `rna` など。
+`none` を指定すると
+[data report](https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/data-reports/)
+だけ取得する。
 
-### `curl` コマンドを使う方法
+
+## 遺伝研で Aspera を用いて FASTQ をダウンロード
+
+- <https://sc.ddbj.nig.ac.jp/guides/software/CopyTool/aspera_client/>
+- <https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_data_transfer/#usage-aspera>
+- <https://www.ebi.ac.uk/ena/browser/downloading-data>
+- <https://ena-docs.readthedocs.io/en/latest/retrieval/file-download.html#using-aspera>
+- <https://github.com/IBM/aspera-cli>
+
+Aspera は [ENA](https://www.ebi.ac.uk/ena/browser/home) から
+SRA のデータを遺伝研スパコンに取り寄せるときに使える通信プロトコルのひとつ。
+
+`prefetch` + `fasterq-dump` と違って `gzip` 済みファイルを直接取得できる。
+
+
+### Install Apptainer SIF
+
+(おそらく Aspera が対応しているプラットフォームが Cent OS なので？)
+遺伝研スパコンでは、Apptainer のファイルイメージを取得して使う。
+
+<https://github.com/nig-sc/apptainer_ascp3>
+
+SIF をダウンロードする:
 
 ```sh
-curl -OJ https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_000001405.40/download?include_annotation_type=GENOME_FASTA,GENOME_GFF,RNA_FASTA,CDS_FASTA,PROT_FASTA,SEQUENCE_REPORT
+mkdir sif && mv sif
+wget https://raw.githubusercontent.com/nig-sc/docker_ascp3/main/ascp4_ubuntu22.sif
 ```
 
-`unclude_annotation_type=` でほしいファイルを指定する。
+インストールコマンドを走らせる:
+
+```sh
+apptainer exec ascp3_ubuntu22.sif bash /usr/local/src/ibm-aspera-connect-3.9.5.172984-linux-g2.12-64.sh
+```
+
+ちゃんと入ったか確認:
+
+```sh
+apptainer exec ascp3_ubuntu22.sif $HOME/.aspera/connect/bin/ascp --help
+```
+
+ちなみに [version 4 の SIF](https://github.com/nig-sc/apptainer_ascp4) もあるが、
+実行ファイルが `~/.aspera/connect/bin/ascp` で共通なので、
+両方の SIF があっても使えるのは最後にインストールコマンドを走らせた方だけ。
+
+あと、ascp4 の方には Authentication file っぽい
+`~/.aspera/connect/etc/asperaweb_id_dsa.openssh`
+がない？
+
+### Usage
+
+ENA のブラウザで Run alias や Project ID で検索する。
+"Show Column Selection" から "fastq_aspera" にチェックを入れると Aspera 用のリンクを表示できる。
+
+Download report を JSON や TSV でダウウンロードして、
+リンクを指定して下記のように FASTQ をダウウンロードする:
+
+```sh
+apptainer exec ./ascp3_ubuntu22.sif ~/.aspera/connect/bin/ascp \
+  -P33001 \
+  -i ~/.aspera/connect/etc/asperaweb_id_dsa.openssh \
+  era-fasp@fasp.sra.ebi.ac.uk:/vol1/fastq/SRR144/004/SRR1448774/SRR1448774.fastq.gz \
+  /path/to/download_dir/
+```

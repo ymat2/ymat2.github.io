@@ -7,14 +7,34 @@ format:
 複数種の遺伝子配列を、共通の1遺伝子に由来するパラログ + オーソログのグループ
 (Orthogroup; OG) に分類する。
 
-- 公式: <https://davidemms.github.io/>
-- GitHub リポジトリ: <https://github.com/davidemms/OrthoFinder>
-- 論文: [Emms and Kelly 2015](https://doi.org/10.1186/s13059-015-0721-2)
+::: {.warn}
+
+Version 3.0.1 以降、元のリポジトリをフォークした別のリポジトリで開発が進められている模様。
+最近使っていないので、このページの情報はかなり古い (Version 2.5.2 より前のもの)。
+最新の使い方については
+[README](https://github.com/OrthoFinder/OrthoFinder/blob/main/README.md)
+や
+[Tutorial](https://orthofinder.github.io/OrthoFinder/tutorial/)
+のページを参照。
+
+:::
+
+
+**`3.0.1` 以降**
+
+- <https://orthofinder.github.io/OrthoFinder/>
+- <https://github.com/OrthoFinder/OrthoFinder>
+
+**`2.5.5` 以前**
+
+- <https://davidemms.github.io/>
+- <https://github.com/davidemms/OrthoFinder>
+
 
 ## Usage
 
 解析したい種の遺伝子の配列 (Fasta ファイル) を
-1つのディレクトリ (ex. `fasta_dir/`) に用意して`-f`に渡すだけ。
+1つのディレクトリ (ex. `fasta_dir/`) に用意して `-f` に渡すだけ。
 
 ```sh
 orthofinder -f fasta_dir
@@ -101,6 +121,10 @@ Species-specific Orthogroup はそのうち重複遺伝子であるもの。
 
 ## 種の追加/除外
 
+OrthoFinder3 以降、Orthogroup を推定したい全種のうち、
+各分類群から抜粋した一部の種 (`core`) で一度 Orthogroup の推定を行い、
+その後 `--assign` で残りの種を追加する、という使い方が可能になった。
+
 ### 種の追加を行う場合
 
 追加したい種の Fasta ファイルが入ったディレクトリを用意して、`-f` で指定:
@@ -124,7 +148,7 @@ orthofinder -b /Result_*/WorkingDirectory
 `-f` で追加ディレクトリを指定しつつ追加と除外を同時に行うことも可能。
 
 
-## 遺伝研
+## 遺伝研スパコン
 
 `biotools` にある:
 
@@ -139,13 +163,11 @@ ls /usr/local/biotools/o/orthofinder*
 下記は5スロットで投げる例。
 
 ```sh
-#$ -S /bin/bash
-#$ -cwd
-#$ -pe def_slot 5
-#$ -l medium
-#$ -l s_vmem=64G
-#$ -l mem_req=64G
+#!/bin/bash
+#SBATCH -N 1-1
+#SBATCH -n 2
+#SBATCH --partition medium
+#SBATCH --mem-per-cpu=64G
 
-module load singularity
-singularity exec /usr/local/biotools/o/orthofinder:%ver orthofinder -f dir -t 5 -a 5
+apptainer exec /usr/local/biotools/o/orthofinder:%ver orthofinder -f dir -t 5 -a 5
 ```

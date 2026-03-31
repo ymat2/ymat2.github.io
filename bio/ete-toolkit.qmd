@@ -5,28 +5,32 @@ format:
     subtitle: "ete-evol による配列解析"
 ---
 
-[ETE Toolkit](http://etetoolkit.org) は系統樹データを扱うための
-Python フレームワーク。
+
+- <https://etetoolkit.org/>
+- <https://etetoolkit.github.io/ete/>
+- <https://github.com/etetoolkit/ete>
+
+ETE Toolkit は系統樹データを扱うための Python フレームワーク。
 
 その中の [*ete-evol*](http://etetoolkit.org/documentation/ete-evol/) は
 [CODEML](http://abacus.gene.ucl.ac.uk/software/paml.html) や
 [SLR](https://doi.org/10.1534/genetics.104.032144) の実行を手助けする
 Python 製コマンドラインツール。
-
 パッケージとして `import` して
 [Python スクリプトの中で使う](/python/evoltree.qmd)こともできる。
 
 
 ## Installation
 
+仮想環境を作って `pip` / `uv pip` / `uv add` で入れる。
 `codeml` と `slr` がインストールされて PATH が通っている必要がある。
 (使わない方は入っていなくても解析はできる。)
 
 ### `ete4`
 
 ```sh
-# pip3 install lap  # if needed
-pip3 install https://github.com/etetoolkit/ete/archive/ete4.zip
+# pip install lap  # if needed
+pip install https://github.com/etetoolkit/ete/archive/ete4.zip
 ```
 
 ### `ete3`
@@ -45,19 +49,18 @@ conda activate ete3
 `conda` を介さないインストール:
 
 ```sh
-pip3 install cython bottle brotli numpy scipy PyQt5
-pip3 install ete3
-ete3 upgrade-external-tools   # codeml, slrをここからインストールすることもできる
+pip install cython bottle brotli numpy scipy PyQt5
+pip install ete3
+ete3 upgrade-external-tools   # codeml, slrをここからインストールすることもできるらしい
 ```
 
-### 遺伝研
+### 遺伝研スパコン
+
+2026/03/29 時点で `ete2` と `ete3` が利用可能:
 
 ```sh
 ls /usr/local/biotools/e/ete*
 ```
-
-2023/09/11時点で `ete2` と `ete3` が利用可能。
-でもちゃんと動かなそう？ (バージョンによるかも。)
 
 
 ## 基本的な使い方

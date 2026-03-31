@@ -5,10 +5,8 @@ format:
     subtitle: "書類・スライド作成からウェブサイト構築まで"
     aliases:
       - /site/quarto.html
-    toc: true
 ---
 
-::: {.before-toc}
 
 <https://quarto.org/>
 
@@ -30,8 +28,6 @@ format:
 
 ここでは、「細かいことは後回しにしてひとまずメモやスライドをウェブサイトとして公開できる形にする」
 までの方法を紹介する。
-
-:::
 
 
 ## インストール

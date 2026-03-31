@@ -1,87 +1,70 @@
 ---
 format:
   html:
-    title: "Visual Studio Code"
+    title: "VS Code"
 ---
+
 
 <https://code.visualstudio.com/>
 
 
-## WSL で使う場合
+## Installation
 
-<https://learn.microsoft.com/ja-jp/windows/wsl/tutorials/wsl-vscode>
+<https://code.visualstudio.com/docs/setup/setup-overview>
 
-### VSCode 本体と拡張機能のインストール
+[ダウンロードページ](https://code.visualstudio.com/Download)
+からインストーラをダウンロードして実行する。
 
-<https://code.visualstudio.com/download>
+### PATH への追加
 
-1. VSCode を (WSL ではなく) Windows にインストールする。
+ターミナルや PowerShell から `code /path/to/project` で開けるようにする設定。
 
-1. インストール中に "追加タスクの選択" が求められたときは、
+インストール中に "追加タスクの選択" が求められたときに "PATH への追加" オプションをオンにするか、
+VS Code を起動して <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>P</kbd> でコマンドパレットを開き、
+"shell" と検索して出てくる "Shell Command: Install 'code' command in PATH" をクリック。
+
+
+### WSL で使う場合
+
+- <https://code.visualstudio.com/docs/remote/wsl>
+- <https://learn.microsoft.com/ja-jp/windows/wsl/tutorials/wsl-vscode>
+
+1. VS Code を (WSL 側ではなく) Windows にインストールする。
+
+2. インストール中に "追加タスクの選択" が求められたときは、
    "PATH への追加" オプションをオンにする。
 
-1. [Remote Development 拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)をインストールする。
+3. <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>X</kbd> で拡張機能を検索して、
+   [Remote Development 拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
+   をインストールする。
 
-Remote Development 拡張機能なしで WSL にアクセスすることは非推奨とされている。
-
-### Linux ディストリビューションの更新と必要なパッケージのインストール
-
-```sh
-sudo apt update
-sudo apt install wget ca-certificates
-```
-
-### プロジェクトを開く
-
-WSL から `code .` 、
-もしくは VSCode から <kbd>Control</kbd><kbd>Shift</kbd><kbd>P</kbd>
-でコマンドパレットを開いて "WSL: Connect to WSL" を選択。
-
-なお、WSL から VSCode を立ち上げた場合、
-ログインシェルの設定 (`~/.bash_profile`, `~/.zprofile`)は読まれない。
-
-### 環境設定
-
-VSCode 本体は Windows のものなのでユーザー設定も Windows 側。
-WSL で使う場合これを WSL 用の設定が上書きする。
-
-- 拡張機能は `.vscode/extensions/`
-- 環境設定は `/AppData/Roaming/Code/User/settings.json`
-- キーボードショートカットは `/AppData/Roaming/Code/User/keybindings.json`
-
-WSL で VSCode を使う場合、ユーザーホームに `.vscode-server/` が作られてこの中で設定をいじったりする。
-
-- 拡張機能は `.vscode-server/extensions/`
-- 環境設定は `.vscode-server/data/Machine/settings.json`
+プロジェクトを開くには WSL から `code /path/to/project` するか、
+VS Code から <kbd>Control</kbd><kbd>Shift</kbd><kbd>P</kbd> でコマンドパレットを開いて
+"WSL: Connect to WSL" を選択。
 
 
-## Mac で使う場合
+## Settings
 
-### VSCode のインストール
+- <https://code.visualstudio.com/docs/configure/settings>
+- <https://code.visualstudio.com/docs/configure/keybindings>
 
-<https://code.visualstudio.com/download>
+エディタの設定をカスタムするための `settings.json` と
+キーボードショートカットを割り当てるための `keybindings.json` がある。
 
-1. Mac 版の VSCode をダウンロードして解凍
+グローバルな設定ファイルの場所は OS によって異なり、
 
-1. `Visual Studio Code.app` を `/Applications` フォルダに移動
+- Windows: `%APPDATA%\Code\User\`
+- macOS: `$HOME/Library/Application\ Support/Code/User/`
+- Linux: `$HOME/.config/Code/User/`
 
-### terminal から VSCode を起動する設定
+にある。
+これに加えて、プロジェクト (ワークスペース) 専用の設定は
+`/path/to/project/.vscode/`
+内においておけばグローバル設定に追加 (または上書き) される。
 
-`code` の実行ファイルは `/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code` にある。
-ここに `$PATH` を通せばいい。
-
-公式のやり方
-: VSCode を起動してコマンドパレットを開き (<kbd>Command</kbd><kbd>Shift</kbd><kbd>P</kbd>)、
-  "shell" と検索して出てくる "Shell Command: Install 'cpde' command in PATH" をクリック。
-: これで上記の実行ファイル PATH が `/usr/local/bin/` にシンボリックリンクされる。
-
-もしくは
-: `.zshrc` とかに上記の PATH を通す。
-
-### 環境設定
-
-Mac の VSCode の環境設定ファイルは
-`/Library/application Support/Code/User/settings.json` にある。
+WSL を含め、リモートホストで VS Code を使う場合、基本的にローカルマシンの設定が反映されるほか、
+`$HOME/.vscode-server/data/Machine/settings.json`
+も読まれる。
 
 
 ## 拡張機能
@@ -94,25 +77,24 @@ Mac の VSCode の環境設定ファイルは
 拡張機能をインストールするだけで SSH ホストのファイルにアクセスできる。
 コマンドパレットを開いて "ssh" で検索し、"Romote-SSH: Connect to host..." を選択して接続先を選ぶだけ。
 
-WSL で使う場合すでに Remote で使っている扱いになるからか SSH できない...?
+::: {.info}
 
-- これは Windows 側のホームを参照してコマンドプロンプトから `ssh` しようとするかららしい。
-- 解決策を調べてみると鍵を Windows ホームに置くとか出るけどほんとにそれでええんか？
-- WSL で動かしてるときは WSL のホームを参照する、みたいな設定できないだろうか。
-  - これは[偉大な先人たちが試している](https://github.com/microsoft/vscode-remote-release/issues/937)けどどうも `settings.json` の設定では無理らしい。
-  - windows 側に `.bat` おいて wsl の ssh 使わせれば行けるらしいがそこまでするのは気が引ける。
-- ということで WSL のホームにある `~/.ssh/` を Windows 側のホームにコピーしてしのぐ。
+WSL で使っているときに SSH をすると、
+VS Code は Windows 側のホームを参照してコマンドプロンプトから `ssh` するため、
+WSL ホームの SSH 設定は使われない。
+(see also [#937](https://github.com/microsoft/vscode-remote-release/issues/937))
 
+:::
 
 ### Quarto
 
 <https://quarto.org/docs/tools/vscode.html>
 
-#### 準備
+1. VS Code に
+   [Quarto 拡張機能](https://marketplace.visualstudio.com/items?itemName=quarto.quarto)
+   をインストールする。
 
-1. VSCode に [Quarto の拡張機能](https://marketplace.visualstudio.com/items?itemName=quarto.quarto)をインストールする。
-
-1. Quarto CLI をマシンにインストールする。
+2. Quarto CLI をマシンにインストールする。
 
    ```sh
    ## Mac なら homebrew で
@@ -124,11 +106,8 @@ WSL で使う場合すでに Remote で使っている扱いになるからか S
    sudo gdebi quarto-linux-amd64.deb
    ```
 
-#### Render
-
-右上の Render ボタンから。
-もしくは <kbd>Control/Command</kbd><kbd>Shift</kbd><kbd>K</kbd>。
-
+Qmd のプレビューをするには、右上の Preview ボタンや
+<kbd>Control/Command</kbd><kbd>Shift</kbd><kbd>K</kbd> が使える。
 
 ### R
 
@@ -138,7 +117,7 @@ WSL で使う場合すでに Remote で使っている扱いになるからか S
    install.packages("languageserver")
    ```
 
-1. VSCode に [R の拡張機能](https://marketplace.visualstudio.com/items?itemName=REditorSupport.r)を入れる。
+1. VS Code に [R の拡張機能](https://marketplace.visualstudio.com/items?itemName=REditorSupport.r)を入れる。
 
 1. 環境設定ファイルに追記:
 

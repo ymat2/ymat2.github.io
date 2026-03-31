@@ -5,6 +5,7 @@ format:
     toc: true
 ---
 
+
 ## `main()` 関数
 
 Python コードで以下のように `main()` という関数を定義してその中に処理を書き、最後に実行する書き方。
@@ -127,34 +128,3 @@ None
 >>> print(dict.get("four", "No such a key"))
 No such a key
 ```
-
-
-## `pdf2pptx` --- PDF から PowerPoint スライドへの簡易変換
-
-PDF をページごとにパワーポイントのスライドに貼り付けて使いたい、という単純な操作が、
-既存の方法だとページごとにスクショして貼る、という原始的な方法くらいしかなかった。
-
-`pdf2pptx` は `pdf2pptx input` という単純なコマンドで
-PDF の各ページを PNG イメージとしてパワポに貼り付ける。
-
-```sh
-python3 -m pip install pdf2pptx
-pdf2pptx --help
-pdf2pptx hoge.pdf
-```
-
-`-o`, `--output`
-:	出力ファイルの指定。デフォルトは入力ファイルの拡張子 `.pptx` 。
-
-`-r`, `--resolution`
-:	1inch あたりのドット数で解像度を指定。
-  デフォルトは300だが150とかでも十分可読でファイルサイズも抑えられる。
-
-`-q`, `--quiet`
-:	ログの非表示
-
-`--from`
-:	PDF の何ページ目からパワポに変換するか。
-
-`--count`
-:	PDF の何ページ分パワポに変換するか。

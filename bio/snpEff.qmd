@@ -103,7 +103,9 @@ snpEff Galgal4.75 [VCF] > [OUTFILE]
 ```
 
 
-## [ANN field](https://pcingola.github.io/SnpEff/snpeff/inputoutput/)
+## ANN field
+
+<https://pcingola.github.io/SnpEff/snpeff/inputoutput/>
 
 アノテーションは、出力 VCF の `INFO` フィールドに `ANN=` の形で書かれる。
 以前は `EFF` フィールドというのが使われていたらしく、こっちが良ければ `-formatEff` を付ける。
@@ -115,7 +117,9 @@ Example   : ANN=T|downstream_gene_variant|MODIFIER|FABP5P11|ENSG00000240122|tran
 ```
 
 
-## [Output summary](https://pcingola.github.io/SnpEff/snpeff/outputsummary/)
+## Output summary
+
+<https://pcingola.github.io/SnpEff/snpeff/outputsummary/>
 
 デフォルトでは `snpEff` を実行したディレクトリに
 `snpEff_summary.html` と `snpEff_genes.txt` の2種類の
@@ -126,7 +130,7 @@ Example   : ANN=T|downstream_gene_variant|MODIFIER|FABP5P11|ENSG00000240122|tran
 `-csvStats` で HTML ではなく CSV として出力。
 
 
-## [Custom Annotation](https://pcingola.github.io/SnpEff/snpeff/build_db/)
+## Custom Annotation
 
 <https://pcingola.github.io/SnpEff/snpeff/build_db/>
 
@@ -135,7 +139,7 @@ Example   : ANN=T|downstream_gene_variant|MODIFIER|FABP5P11|ENSG00000240122|tran
 アノテーションファイルは (GTF/GFF/GenBank file/RefSeq table) のいずれかでできる。
 今回 GFF/GTF を使う。
 
-::: {.note}
+::: {.info}
 後述するが少なくとも GRCg7b については GFF ではなく GTF がおすすめ。
 :::
 

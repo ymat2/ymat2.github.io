@@ -3,6 +3,8 @@ format:
   html:
     title: "SSH"
     subtitle: "<u>S</u>ecure <u>Sh</u>ell"
+    aliases:
+      - /cli/rsync.html
 ---
 
 リモートのマシンに安全に接続し、管理するためのツール。
@@ -89,7 +91,7 @@ ssh username@example.com
 ssh hoge
 ```
 
-[rsync](/cli/rsync.qmd) でリモートに接続するときも記述を省略できて便利:
+後述の SCP や Rsync を用いたファイル送受信時も記述を省略できて便利:
 
 ```sh
 rsync -auvz src/ username@example.com:dest/
@@ -139,3 +141,53 @@ PermitEmptyPassword no
 # キーボードインタラクティブ認証を無効にする。公開鍵で接続する場合は無効にしたほうが良い。
 KbdInteractiveAuthentication no
 ```
+
+
+## ファイルの送受信
+
+### SCP
+
+SSH を用いたファイルコピー。
+
+```sh
+scp path/to/file_to_send <user>@<hostname>:path/to/destination
+```
+
+`-r`
+: ディレクトリを再帰的にコピー
+
+`-l`
+: 帯域を制限する (Kb/sec 単位)
+
+### Rsync
+
+送信元と送信先の差分を検出してファイルの同期を行う。
+SSH でリモートにファイル送信・同期を行うほか、ローカルどうしのバックアップにも使える。
+
+```sh
+rsync -auvz path/to/file_to_send <user>@<hostname>:path/to/destination
+```
+
+`-a`, `--archive`
+:	`-rlptgoD` と同義
+
+`-r`, `--recursive`
+: ディレクトリを再帰的に同期
+
+`-l`, `--links`
+: symlinks を symlinks のままにする。
+
+`-p`, `--perms` / `-t`, `--times` / `-g`, `--group` / `-o`, `--owner`
+: それぞれファイルの permissions、更新タイムスタンプ、グループ、オーナーの情報を保持
+
+`-D` = `--devices --specials`
+: デバイスファイル、特殊ファイルを保持
+
+`-u`, `--update`
+:	送信先側で更新されているファイルをスキップする。
+
+`-v`, `--vervose`
+: 冗長なメッセージ表示
+
+`-z`, `--compress`
+:	送受信中にファイルを圧縮する。

@@ -18,6 +18,13 @@ format:
 
 ## `pyproject.toml` を使う方法
 
+::: {.info}
+
+いまは [uv](./1_uv.qmd) が下記の面倒な部分もすべてお世話してくれる。
+詳しくは <https://docs.astral.sh/uv/guides/projects/> などを参照。
+
+:::
+
 ファイル構成:
 
 ```txt
@@ -51,7 +58,7 @@ build-backend = "hatchling.build"
 name = "bithon"
 version = "0.0.1"
 authors = [
-  { name="ymat2", email="yuki.matsuda.r7@dc.tohoku.ac.jp" },
+  { name="ymat2", email="example@hogwarts.ac.jp" },
 ]
 description = "Personal python package for bioinformatics"
 readme = "README.md"
@@ -77,7 +84,7 @@ Repository = "https://github.com/ymat2/bithon"
 
 ## `setup.py` を使う方法
 
-::: {.note}
+::: {.info}
 
 `setuptools` に依存する `setup.py` を使う方法は現在は非推奨 (Legacy) らしい。
 `pyproject.toml` で一元管理する方法が主流で、[Poetry](https://python-poetry.org/) など

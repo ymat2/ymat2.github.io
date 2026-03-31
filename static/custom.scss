@@ -11,8 +11,8 @@ $grey1: #f1f1f1 !default;
 $grey2: #f4f4f4 !default;
 $grey3: #ccc !default;
 $grey4: #888 !default;
-$color-code-bg: #f5f5f9 !default;
-$color-link: #4575B4 !default;
+$color-code-bg: #f6f8fa !default;
+$color-link: #4575b4 !default;
 
 $callout-color-note: #0072B2cc;
 $callout-color-tip: #009E73cc;
@@ -28,18 +28,15 @@ $link-color: $color-link;
 // Fonts
 //
 $font-family-sans-serif:
-  -apple-system,
-  BlinkMacSystemFont,
   "Segoe UI",
   "Arial",
   "Helvetica",
-  "Noto Sans JP",
-  "Hiragino Sans",
   "Hiragino Kaku Gothic ProN",
-  "Yu Gothic Medium",
-  "Meiryo",
-  system-ui,
-  sans-serif;
+  "Hiragino Sans",
+  "Noto Sans JP",
+  sans-serif,
+  -apple-system,
+  BlinkMacSystemFont;
 $font-family-monospace:
   Menlo,
   Consolas,
@@ -49,10 +46,10 @@ $font-family-monospace:
 $toc-font-size: 1rem;
 $h1-font-size: 1.6rem;
 $h2-font-size: 1.5rem;
-$h3-font-size: 1.4rem;
-$h4-font-size: 1.3rem;
-$h5-font-size: 1.2rem;
-$h6-font-size: 1.1rem;
+$h3-font-size: 1.3rem;
+$h4-font-size: 1.2rem;
+$h5-font-size: 1.1rem;
+$h6-font-size: 1.05rem;
 
 //
 // Code blocks, Inline code
@@ -115,80 +112,36 @@ main {
 //
 // Fonts
 //
-h1 {
+h1,
+h2,
+h3,
+h4 {
   font-weight: bold;
 }
 
 h2 {
-	background-color: $grey2;
-	border-bottom: none;
-	padding: 0.5rem .75rem;
-	font-weight: normal;
-	margin-top: 1.5em;
-	margin-bottom: 1em;
-	margin-inline-start: -12px;
-  border-inline-start: 12px solid $grey3;
+  position: relative;
+  padding: 0.2rem 0rem;
+  border-bottom: 1.5px solid $grey3;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem;
+}
+
+h2:before {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 25%;
+  height: 1px;
+  content: "";
+  background: $black;
 }
 
 h3 {
   position: relative;
-  padding: .2rem 0rem;
-	border-bottom: 1.5px solid $grey3;
-	font-weight: normal;
-	margin-top: 1.33em;
-	margin-bottom: 1em;
-}
-
-h3:before {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 20%;
-  height: 1px;
-  content: "";
-  background: #444;
-}
-
-h3:after {
-  position: absolute;
-  bottom: 0px;
-  right: 0;
-  height: .875rem;
-  content: '###';
-  font-size: .875rem;
-  color: $grey4;
-}
-
-h4 {
-  position: relative;
-  padding: .2rem 0rem;
+  padding: 0.2rem 0rem;
   border-bottom: 1.5px solid $grey3;
-  font-weight: normal;
-}
-
-h4:before {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 15%;
-  height: 1px;
-  content: "";
-  background: #444;
-}
-
-h4:after {
-  position: absolute;
-  bottom: 0px;
-  right: 0;
-  height: .875rem;
-  content: '####';
-  font-size: .875rem;
-  color: $grey4;
-}
-
-h5, h6 {
-  font-weight: normal;
-  padding: .2rem 0rem;
+  margin-bottom: 1rem;
 }
 
 //
@@ -289,7 +242,7 @@ kbd {
 
 .sidebar-navigation .sidebar-section .sidebar-item:hover {
   /* For subitems */
-	background-color: #e4e4e4;
+  border-left: solid 5px $grey3
 }
 
 .sidebar-item-text {
@@ -333,17 +286,18 @@ kbd {
 // Callouts
 //
 div {
-  .note {
-  	margin-block: 0.5rem 1.5rem;
+  .info {
+    margin: 0.5rem 0;
     padding-block: 0.5rem;
     padding-inline: 2rem 1rem;
     position: relative;
-    background-color: #4575B411;
+    background-color: #4575b411;
+    border-left: 3px solid #4575b4;
   }
 
-  .note::before {
+  .info::before {
     content: "i";
-    color: #4575B4;
+    color: #4575b4;
     font-family: "Ubuntu mono", monospace;
     font-size: 1.2rem;
     font-weight: bold;
@@ -354,16 +308,17 @@ div {
   }
 
   .warn {
-    margin-block: 0.5rem 1.5rem;
+    margin: 0.5rem 0;
     padding-block: 0.5rem;
     padding-inline: 2rem 1rem;
     position: relative;
-    background-color: #D7302711;
+    background-color: #d7302711;
+    border-left: 3px solid #d73027;
   }
 
   .warn::before {
     content: "!";
-    color: #D73027;
+    color: #d73027;
     font-family: "Ubuntu mono", monospace;
     font-size: 1.2rem;
     font-weight: bold;
@@ -372,10 +327,12 @@ div {
     position: absolute;
     left: 0.7rem;
   }
-}
 
-.warn > p, .note > p {
-	margin: 0.2rem 0;
+  .warn > p,
+  .info > p {
+    margin: 0.2rem 0;
+  }
+
 }
 
 //
@@ -405,11 +362,4 @@ div {
   .news dl dd::before {
     content: none;
   }
-}
-
-///
-/// before-toc
-///
-.before-toc {
-  margin-top: 1.5rem;
 }

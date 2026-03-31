@@ -54,8 +54,6 @@ format:
     highlight-style: github
     template-partials:
       - static/title-block.html
-    include-before-body:
-      - static/before-toc.js
     html-math-method: katex
   revealjs:
     theme: static/slide.scss

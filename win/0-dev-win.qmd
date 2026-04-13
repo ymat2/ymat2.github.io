@@ -140,7 +140,7 @@ VSCode で使うには PATH を教えてあげる必要がある:
 
 好きなやつを入れる:
 
-- [VSCode](https://code.visualstudio.com/Download)
+- [VS Code](https://code.visualstudio.com/Download)
 - [RStudio](https://posit.co/download/rstudio-desktop/)
 - [Positron](https://github.com/posit-dev/positron)
 - [Zed](https://zed.dev/windows)
@@ -151,7 +151,8 @@ VSCode で使うには PATH を教えてあげる必要がある:
 <https://quarto.org/docs/get-started/>
 
 Windows 用のやつを入れてあげる。
-(R に付属しているやつを使うことはできなさそう?)
+(RStudio に付属している Quarto は `path/to/RStudio/resources/app/bin/quarto/bin`
+に実行ファイルがいる。ここに PATH を通して使うという手もある...?)
 
 PDF のレンダリング用に tex を入れてやる (c.f. `~/AppData/Roaming/TinyTeX/`):
 

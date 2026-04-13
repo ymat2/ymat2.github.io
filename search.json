@@ -92,7 +92,7 @@
     "href": "win/0-dev-win.html#統合開発環境",
     "title": "Windows 開発環境",
     "section": "統合開発環境",
-    "text": "統合開発環境\n好きなやつを入れる:\n\nVSCode\nRStudio\nPositron\nZed",
+    "text": "統合開発環境\n好きなやつを入れる:\n\nVS Code\nRStudio\nPositron\nZed",
     "crumbs": [
       "Windows",
       "Windows 開発環境"
@@ -103,7 +103,7 @@
     "href": "win/0-dev-win.html#quarto",
     "title": "Windows 開発環境",
     "section": "Quarto",
-    "text": "Quarto\nhttps://quarto.org/docs/get-started/\nWindows 用のやつを入れてあげる。 (R に付属しているやつを使うことはできなさそう?)\nPDF のレンダリング用に tex を入れてやる (c.f. ~/AppData/Roaming/TinyTeX/):\nquarto install tinytex\n\nPDF で日本語フォントを使うには\nQuarto PDF で日本語フォントを使う場合、 デフォルトでは原ノ味フォントが使われるらしい。 Ubuntu とかは最初のインストールでプリセットされていたはずだが、 Windows の Quarto では原ノ味含め、日本語フォントがプリセットされていないっぽい。\nそこで、tlmgr を使ってフォントをインストールしてやることで使えるようになる:\n&gt; .\\AppData\\Roaming\\TinyTeX\\bin\\windows\\tlmgr.bat install haranoaji\nLocale 'Japanese_Japan.932' is unsupported, and may crash the interpreter.\ntlmgr.pl: package repository https://ftp.kddilabs.jp/CTAN/systems/texlive/tlnet/ (verified)\n[1/1, ??:??/??:??] install: haranoaji [25570k]\nLocale 'Japanese_Japan.932' is unsupported, and may crash the interpreter.\nrunning mktexlsr ...\ndone running mktexlsr.\ntlmgr.pl: package log updated: C:/Users/&lt;user&gt;/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr.log\ntlmgr.pl: command log updated: C:/Users/&lt;user&gt;/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr-commands.log",
+    "text": "Quarto\nhttps://quarto.org/docs/get-started/\nWindows 用のやつを入れてあげる。 (RStudio に付属している Quarto は path/to/RStudio/resources/app/bin/quarto/bin に実行ファイルがいる。ここに PATH を通して使うという手もある…?)\nPDF のレンダリング用に tex を入れてやる (c.f. ~/AppData/Roaming/TinyTeX/):\nquarto install tinytex\n\nPDF で日本語フォントを使うには\nQuarto PDF で日本語フォントを使う場合、 デフォルトでは原ノ味フォントが使われるらしい。 Ubuntu とかは最初のインストールでプリセットされていたはずだが、 Windows の Quarto では原ノ味含め、日本語フォントがプリセットされていないっぽい。\nそこで、tlmgr を使ってフォントをインストールしてやることで使えるようになる:\n&gt; .\\AppData\\Roaming\\TinyTeX\\bin\\windows\\tlmgr.bat install haranoaji\nLocale 'Japanese_Japan.932' is unsupported, and may crash the interpreter.\ntlmgr.pl: package repository https://ftp.kddilabs.jp/CTAN/systems/texlive/tlnet/ (verified)\n[1/1, ??:??/??:??] install: haranoaji [25570k]\nLocale 'Japanese_Japan.932' is unsupported, and may crash the interpreter.\nrunning mktexlsr ...\ndone running mktexlsr.\ntlmgr.pl: package log updated: C:/Users/&lt;user&gt;/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr.log\ntlmgr.pl: command log updated: C:/Users/&lt;user&gt;/AppData/Roaming/TinyTeX/texmf-var/web2c/tlmgr-commands.log",
     "crumbs": [
       "Windows",
       "Windows 開発環境"
@@ -1853,7 +1853,7 @@
     "href": "cli/vscode.html#拡張機能",
     "title": "VS Code",
     "section": "拡張機能",
-    "text": "拡張機能\n\nSSH\nhttps://code.visualstudio.com/docs/remote/ssh-tutorial\nマシン自体に SSH の設定をしてあれば、 拡張機能をインストールするだけで SSH ホストのファイルにアクセスできる。 コマンドパレットを開いて “ssh” で検索し、“Romote-SSH: Connect to host…” を選択して接続先を選ぶだけ。\n\nWSL で使っているときに SSH をすると、 VS Code は Windows 側のホームを参照してコマンドプロンプトから ssh するため、 WSL ホームの SSH 設定は使われない。 (see also #937)\n\n\n\nQuarto\nhttps://quarto.org/docs/tools/vscode.html\n\nVS Code に Quarto 拡張機能 をインストールする。\nQuarto CLI をマシンにインストールする。\n## Mac なら homebrew で\nbrew install --cask quarto\n\n## WSL は .deb を落としてくるのが正攻法？\nsudo curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb\n# sudo apt-get install gdebi-core  # if needed\nsudo gdebi quarto-linux-amd64.deb\n\nQmd のプレビューをするには、右上の Preview ボタンや Control/CommandShiftK が使える。\n\n\nR\n\nR に languageserver を入れる。\ninstall.packages(\"languageserver\")\nVS Code に R の拡張機能を入れる。\n環境設定ファイルに追記:\n\n\nsettings.json\n\n{\n  \"r.sessionWatcher\": true\n}\n\n\n\nkeybindings.json\n\n# ctrl+enterでコマンドをターミナルに送るための設定\n[\n  {\n    \"key\": \"ctrl+enter\",\n    \"command\": \"workbench.action.terminal.runSelectedText\",\n    \"when\": \"editorTextFocus\"\n  }\n]\n\nコマンドパレットを開いて “R: Create R terminal”",
+    "text": "拡張機能\n\nJapanese Language Pack\nhttps://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-ja\nVSCode の UI を日本語にする Microsoft 公式の拡張機能。\n\n\nSSH\nhttps://code.visualstudio.com/docs/remote/ssh-tutorial\nマシン自体に SSH の設定をしてあれば、 拡張機能をインストールするだけで SSH ホストのファイルにアクセスできる。 コマンドパレットを開いて “ssh” で検索し、“Romote-SSH: Connect to host…” を選択して接続先を選ぶだけ。\n\nWSL で使っているときに SSH をすると、 VS Code は Windows 側のホームを参照してコマンドプロンプトから ssh するため、 WSL ホームの SSH 設定は使われない。 (see also #937)\n\n\n\nQuarto\nhttps://quarto.org/docs/tools/vscode.html\n\nVS Code に Quarto 拡張機能 をインストールする。\nQuarto CLI をマシンにインストールする。\n## Mac なら homebrew で\nbrew install --cask quarto\n\n## WSL は .deb を落としてくるのが正攻法？\nsudo curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb\n# sudo apt-get install gdebi-core  # if needed\nsudo gdebi quarto-linux-amd64.deb\n\nQmd のプレビューをするには、右上の Preview ボタンや Control/CommandShiftK が使える。\n\n\nR\n\nR に languageserver を入れる。\ninstall.packages(\"languageserver\")\nVS Code に R の拡張機能を入れる。\n環境設定ファイルに追記:\n\n\nsettings.json\n\n{\n  \"r.sessionWatcher\": true\n}\n\n\n\nkeybindings.json\n\n# ctrl+enterでコマンドをターミナルに送るための設定\n[\n  {\n    \"key\": \"ctrl+enter\",\n    \"command\": \"workbench.action.terminal.runSelectedText\",\n    \"when\": \"editorTextFocus\"\n  }\n]\n\nコマンドパレットを開いて “R: Create R terminal”",
     "crumbs": [
       "開発環境",
       "VS Code"

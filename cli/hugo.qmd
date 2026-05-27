@@ -122,7 +122,7 @@ Github Pages でホストする場合、この中身を公開する。
 
 - 参考: <https://sat8bit.github.io/posts/hugo-with-github-pages/>
 - HUGO 公式: <https://gohugo.io/hosting-and-deployment/hosting-on-github/>
-- Github Pages: >https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages>
+- Github Pages: <https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages>
 
 1. Github で `ユーザ名.github.io` という名の[リポジトリを作成](/cli/git.qmd)
 

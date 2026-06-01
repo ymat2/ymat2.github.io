@@ -1,8 +1,22 @@
 /*-- scss:defaults --*/
 
 // fonts
-$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Yu Gothic medium", "Yu Gothic UI",
-"Noto Sans", Helvetica, Arial, sans-serif, system-ui, "Segoe UI", "Hiragino Sans", "Meiryo" !default;
+$font-family-sans-serif:
+  "Segoe UI",
+  "Arial",
+  "Helvetica",
+  "Hiragino Kaku Gothic ProN",
+  "Hiragino Sans",
+  "Noto Sans JP",
+  sans-serif,
+  -apple-system,
+  BlinkMacSystemFont;
+$font-family-monospace:
+  Menlo,
+  Consolas,
+  Monaco,
+  Courier,
+  monospace;
 $presentation-font-size-root: 30px !default;
 $presentation-line-height: 1.4 !default;
 $presentation-h1-font-size: 1.55em !default;

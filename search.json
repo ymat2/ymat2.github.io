@@ -1677,7 +1677,7 @@
     "href": "cli/git.html",
     "title": "Git/GitHub",
     "section": "",
-    "text": "https://git-scm.com/\nhttps://github.co.jp/",
+    "text": "https://git-scm.com /  https://github.co.jp",
     "crumbs": [
       "開発環境",
       "Git/GitHub"
@@ -1732,7 +1732,7 @@
     "href": "cli/git.html#そのほかのコマンド",
     "title": "Git/GitHub",
     "section": "そのほかのコマンド",
-    "text": "そのほかのコマンド\n\n直前の操作を修正:\n## 直前のミスコミットを修正\ngit commit --amend -m \"hogehoge\"\n\n## commitの取り消し\ngit reset --soft HEAD^\n\n## addの取り消し\ngit restore --staged file_name\nすでにリポジトリに登録されたファイルを削除:\ngit rm --cached *file*\nファイル名を変更:\ngit mv file file_renamed\ngit stash\ngit merge や git pull の際、コミットするほどでもない手元の変更を一時的に退避するために使う。\nworking directory と staging area の変更を退避する:\ngit stash -u        # -u: Untrackedなファイルも含める\n退避した変更を確認:\ngit stash list\n# stash@{0}: WIP on main: d426bc4 Fix a bug\ngit merge や git pull でリモートの変更を手元に反映した後、 退避していた変更を戻す:\ngit stash apply stash@{0} --index\n--index オプションなしだと、もともとステージングされていた変更も add 前の扱いで戻ってくる。\n退避していた変更を消す:\ngit stash drop stash@{0}  # 退避内容を指定して削除\ngit stash pop stash@{0}   # 退避内容を指定してブランチに戻すとともに削除\ngit stash clear           # 退避内容を全て削除\nリポジトリ名を変更:\n\nリモート側の操作： リポジトリのページ &gt;  “Setting” &gt; “Rename” から変更\n手元の操作：ローカルリポジトリの名前と .git/config を書き換える\nmv repository_name_before repository_name_after\nsed -i -e 's/repository_name_before/repository_name_after/g' .git/config",
+    "text": "そのほかのコマンド\n\n修正関連\n直前のミスコミットを修正:\ngit commit --amend -m \"hogehoge\"\n2個以上の (push する前の) コミットの修正には git rebase を使う。\ngit commit の取り消し:\ngit reset --soft HEAD^\ngit add の取り消し:\ngit restore --staged file_name\n\n\n削除関連\nすでにリポジトリに登録されたファイルを削除:\ngit rm --cached *file*\nファイル名を変更:\ngit mv file file_renamed\n\n\ngit stash\ngit merge や git pull の際、コミットするほどでもない手元の変更を一時的に退避するために使う。\nworking directory と staging area の変更を退避する:\ngit stash -u        # -u: Untrackedなファイルも含める\n退避した変更を確認:\ngit stash list\n# stash@{0}: WIP on main: d426bc4 Fix a bug\ngit merge や git pull でリモートの変更を手元に反映した後、 退避していた変更を戻す:\ngit stash apply stash@{0} --index\n--index オプションなしだと、もともと staging されていた変更も add 前の扱いで戻ってくる。\n退避していた変更を消す:\ngit stash drop stash@{0}  # 退避内容を指定して削除\ngit stash pop stash@{0}   # 退避内容を指定してブランチに戻すとともに削除\ngit stash clear           # 退避内容を全て削除\n\n\nリポジトリ名の変更\nhttps://docs.github.com/ja/repositories/creating-and-managing-repositories/renaming-a-repository\nリモート側の操作:\nリポジトリのページ →  “Setting” → “Rename” から変更\n手元の操作:\ngit remote set-url origin NEW_URL",
     "crumbs": [
       "開発環境",
       "Git/GitHub"

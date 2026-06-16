@@ -149,7 +149,7 @@ Example   : ANN=T|downstream_gene_variant|MODIFIER|FABP5P11|ENSG00000240122|tran
 datasets download genome accession GCF_016699485.2 --include gff3,genome
 ```
 
-`datasets` コマンドについては[ゲノムデータ取得 &mdash; datasets コマンドを使う方法](./ncbi_download.qmd#datasets-コマンドを使う方法)を参照。
+`datasets` コマンドについては[ゲノムデータ取得 &mdash; datasets コマンドを使う方法](./genome_data_download.qmd#datasets-コマンドを用いたダウンロード)を参照。
 
 `snpEff/snpEff.config` に追記:
 

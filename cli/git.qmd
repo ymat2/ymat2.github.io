@@ -4,9 +4,9 @@ format:
     title: "Git/GitHub"
 ---
 
-<img height="20" width="20" src="https://cdn.simpleicons.org/git/F05032" style="vertical-align: text-bottom;"> <https://git-scm.com/>
-
-<img height="20" width="20" src="https://cdn.simpleicons.org/github/181717" style="vertical-align: text-bottom;"> <https://github.co.jp/>
+<img height="20" width="20" src="https://cdn.simpleicons.org/git/F05032" style="vertical-align: text-bottom;"> <https://git-scm.com>
+/
+<img height="20" width="20" src="https://cdn.simpleicons.org/github/181717" style="vertical-align: text-bottom;"> <https://github.co.jp>
 
 
 ## 基本操作
@@ -220,74 +220,89 @@ git submodule update --init
 
 ## そのほかのコマンド
 
-- 直前の操作を修正:
+### 修正関連
 
-	```sh
-	## 直前のミスコミットを修正
-	git commit --amend -m "hogehoge"
+直前のミスコミットを修正:
 
-	## commitの取り消し
-	git reset --soft HEAD^
+```sh
+git commit --amend -m "hogehoge"
+```
 
-	## addの取り消し
-	git restore --staged file_name
-	```
+2個以上の (`push` する前の) コミットの修正には
+[`git rebase`](https://git-scm.com/docs/git-rebase) を使う。
 
-- すでにリポジトリに登録されたファイルを削除:
+`git commit` の取り消し:
 
-	```sh
-	git rm --cached *file*
-	```
+```sh
+git reset --soft HEAD^
+```
 
-- ファイル名を変更:
+`git add` の取り消し:
 
-	```sh
-	git mv file file_renamed
-	```
+```sh
+git restore --staged file_name
+```
 
-- `git stash`
+### 削除関連
 
-  `git merge` や `git pull` の際、コミットするほどでもない手元の変更を一時的に退避するために使う。
+すでにリポジトリに登録されたファイルを削除:
 
-	working directory と staging area の変更を退避する:
+```sh
+git rm --cached *file*
+```
 
-	```sh
-	git stash -u		# -u: Untrackedなファイルも含める
-	```
+ファイル名を変更:
 
-	退避した変更を確認:
+```sh
+git mv file file_renamed
+```
 
-	```sh
-	git stash list
-	# stash@{0}: WIP on main: d426bc4 Fix a bug
-	```
+### `git stash`
 
-	`git merge` や `git pull` でリモートの変更を手元に反映した後、
-	退避していた変更を戻す:
+`git merge` や `git pull` の際、コミットするほどでもない手元の変更を一時的に退避するために使う。
 
-	```sh
-	git stash apply stash@{0} --index
-	```
+working directory と staging area の変更を退避する:
 
-	`--index` オプションなしだと、もともとステージングされていた変更も `add` 前の扱いで戻ってくる。
+```sh
+git stash -u		# -u: Untrackedなファイルも含める
+```
 
-	退避していた変更を消す:
+退避した変更を確認:
 
-	```sh
-	git stash drop stash@{0}  # 退避内容を指定して削除
-	git stash pop stash@{0}   # 退避内容を指定してブランチに戻すとともに削除
-	git stash clear           # 退避内容を全て削除
-	```
+```sh
+git stash list
+# stash@{0}: WIP on main: d426bc4 Fix a bug
+```
 
-- リポジトリ名を変更:
+`git merge` や `git pull` でリモートの変更を手元に反映した後、
+退避していた変更を戻す:
 
-	-	リモート側の操作： リポジトリのページ >
-    ![](/images/share/settings.svg){height="22"} "Setting" >
-    "Rename" から変更
+```sh
+git stash apply stash@{0} --index
+```
 
-	- 手元の操作：ローカルリポジトリの名前と `.git/config` を書き換える
+`--index` オプションなしだと、もともと staging されていた変更も `add` 前の扱いで戻ってくる。
 
-		```sh
-		mv repository_name_before repository_name_after
-		sed -i -e 's/repository_name_before/repository_name_after/g' .git/config
-		```
+退避していた変更を消す:
+
+```sh
+git stash drop stash@{0}  # 退避内容を指定して削除
+git stash pop stash@{0}   # 退避内容を指定してブランチに戻すとともに削除
+git stash clear           # 退避内容を全て削除
+```
+
+### リポジトリ名の変更
+
+<https://docs.github.com/ja/repositories/creating-and-managing-repositories/renaming-a-repository>
+
+リモート側の操作:
+
+リポジトリのページ →
+![](/images/share/settings.svg){height="22"} "Setting" →
+"Rename" から変更
+
+手元の操作:
+
+```sh
+git remote set-url origin NEW_URL
+```

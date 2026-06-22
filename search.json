@@ -925,7 +925,18 @@
     "href": "cli/apt.html#usage",
     "title": "apt — Debian 系 Linux パッケージマネージャ",
     "section": "Usage",
-    "text": "Usage\n\nsudo apt update\n\nパッケージ一覧を更新\n\nsudo apt upgrade\n\nインストール済みのソフトウェアを更新\n\n\n必要に応じて依存パッケージをインストールすることがある。 (古い apt-get だと新規インストールは起こらない。)\n\nsudo apt install パッケージ\n\nパッケージのダウンロード\n\nsudo apt remove パッケージ\n\nパッケージの削除\n\nsudo apt purge パッケージ\n\n設定ファイルを含め、パッケージを完全削除\n\nsudo apt autoremove\n\n更新に伴い、必要なくなった依存パッケージを削除\n\napt search 検索キーワード\n\nパッケージの検索\n\napt list --upgradable\n\n更新可能なパッケージ一覧を表示\n\napt list --installed\n\nインストール済みのパッケージ一覧を表示\n\napt show パッケージ\n\nパッケージの詳細を表示\n\n\nおまけ:\napt moo\n           (__)\n           (oo)\n     /------\\/\n    / |    ||\n   *  /\\---/\\\n      ~~   ~~\n...\"Have you mooed today?\"...",
+    "text": "Usage\n\nsudo apt update\n\nパッケージ一覧を更新\n\nsudo apt upgrade\n\nインストール済みのソフトウェアを更新\n\n\n必要に応じて依存パッケージをインストールすることがある。 (古い apt-get だと新規インストールは起こらない。)\n\nsudo apt install &lt;package&gt;\n\nパッケージのダウンロード\n\nsudo apt remove &lt;package&gt;\n\nパッケージの削除\n\nsudo apt purge &lt;package&gt;\n\n設定ファイルを含め、パッケージを完全削除\n\nsudo apt autoremove\n\n更新に伴い、必要なくなった依存パッケージを削除\n\n\nc.f. apt-mark\n\napt search &lt;string&gt;\n\nパッケージの検索\n\napt list --upgradable\n\n更新可能なパッケージ一覧を表示\n\napt list --installed\n\nインストール済みのパッケージ一覧を表示\n\napt show &lt;package&gt;\n\nパッケージの詳細を表示\n\n\nおまけ:\n~$ apt moo\n\n           (__)\n           (oo)\n     /------\\/\n    / |    ||\n   *  /\\---/\\\n      ~~   ~~\n...\"Have you mooed today?\"...",
+    "crumbs": [
+      "開発環境",
+      "apt"
+    ]
+  },
+  {
+    "objectID": "cli/apt.html#apt-mark",
+    "href": "cli/apt.html#apt-mark",
+    "title": "apt — Debian 系 Linux パッケージマネージャ",
+    "section": "apt-mark",
+    "text": "apt-mark\nインストールされたパッケージが手動インストールによるもの (manual) か 依存関係で自動インストールされたもの (auto) かを管理するヘルパーコマンド。\nauto としてマークされたパッケージは apt autoremove の対象になる。\n\napt-mark auto &lt;package&gt;/apt-mark manual &lt;package&gt;\n\nパッケージを auto または manual としてマークする。\n\n\n基本的には apt install で明示的に入れたかどうかでもともとマークされている。\n\napt-mark showauto/apt-mark showmanual\n\nauto または manual としてマークされているパッケージ一覧を表示する。\n\nsudo apt-mark hold &lt;package&gt;\n\nパッケージをホールドして sudo apt upgrade の対象から外す。\n\n\n解除するときは unhold / 一覧表示は showhold\n\nsudo apt-mark minimize-manual\n\nもともと明示的にインストールしたパッケージでも、他のパッケージの依存パッケージである場合に auto としてマークする。",
     "crumbs": [
       "開発環境",
       "apt"
@@ -936,7 +947,7 @@
     "href": "cli/apt.html#apt-get-apt-cache",
     "title": "apt — Debian 系 Linux パッケージマネージャ",
     "section": "apt-get, apt-cache",
-    "text": "apt-get, apt-cache\napt はパッケージの管理を担う apt-get と検索を担う apt-cache の統合を図るコマンド。 それぞれのコマンドの対応は以下のようになっている。\napt-get update             -&gt;  apt update\napt-get upgrade            -&gt;  apt upgrade\napt-get dist-upgrade       -&gt;  apt full-upgrade\napt-get install package    -&gt;  apt install package\napt-get remove package     -&gt;  apt remove package\napt-get autoremove         -&gt;  apt autoremove\napt-cache search string    -&gt;  apt search string\napt-cache policy package   -&gt;  apt list -a package\napt-cache show package     -&gt;  apt show package\napt-cache showpkg package  -&gt;  apt show -a package",
+    "text": "apt-get, apt-cache\napt はパッケージの管理を担う apt-get と検索を担う apt-cache の統合を図るコマンド。 それぞれのコマンドの対応は以下のようになっている。\napt-get update               -&gt;  apt update\napt-get upgrade              -&gt;  apt upgrade\napt-get dist-upgrade         -&gt;  apt full-upgrade\napt-get install &lt;package&gt;    -&gt;  apt install &lt;package&gt;\napt-get remove &lt;package&gt;     -&gt;  apt remove &lt;package&gt;\napt-get autoremove           -&gt;  apt autoremove\napt-cache search &lt;string&gt;    -&gt;  apt search &lt;string&gt;\napt-cache policy &lt;package&gt;   -&gt;  apt list -a &lt;package&gt;\napt-cache show &lt;package&gt;     -&gt;  apt show &lt;package&gt;\napt-cache showpkg &lt;package&gt;  -&gt;  apt show -a &lt;package&gt;",
     "crumbs": [
       "開発環境",
       "apt"

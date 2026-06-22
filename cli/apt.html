@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-b8484662480500b84131a23a83f7d24e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-edc4c3ba940c01618b5c8cb2b918d70d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-010eb5858e9fadca16c872af79e736c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -465,15 +465,15 @@ window.Quarto = {
 <dd>
 必要に応じて依存パッケージをインストールすることがある。 (古い <code>apt-get</code> だと新規インストールは起こらない。)
 </dd>
-<dt><code>sudo apt install パッケージ</code></dt>
+<dt><code>sudo apt install &lt;package&gt;</code></dt>
 <dd>
 パッケージのダウンロード
 </dd>
-<dt><code>sudo apt remove パッケージ</code></dt>
+<dt><code>sudo apt remove &lt;package&gt;</code></dt>
 <dd>
 パッケージの削除
 </dd>
-<dt><code>sudo apt purge パッケージ</code></dt>
+<dt><code>sudo apt purge &lt;package&gt;</code></dt>
 <dd>
 設定ファイルを含め、パッケージを完全削除
 </dd>
@@ -481,7 +481,10 @@ window.Quarto = {
 <dd>
 更新に伴い、必要なくなった依存パッケージを削除
 </dd>
-<dt><code>apt search 検索キーワード</code></dt>
+<dd>
+c.f. <a href="../cli/apt.html#apt-mark"><code>apt-mark</code></a>
+</dd>
+<dt><code>apt search &lt;string&gt;</code></dt>
 <dd>
 パッケージの検索
 </dd>
@@ -493,34 +496,64 @@ window.Quarto = {
 <dd>
 インストール済みのパッケージ一覧を表示
 </dd>
-<dt><code>apt show パッケージ</code></dt>
+<dt><code>apt show &lt;package&gt;</code></dt>
 <dd>
 パッケージの詳細を表示
 </dd>
 </dl>
 <p>おまけ:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> moo</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>           (__)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>           (oo)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>     /------\/</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    / |    ||</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>   *  /\---/\</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      ~~   ~~</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>..."Have you mooed today?"...</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~$</span> apt moo</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>           <span class="kw">(</span><span class="ex">__</span><span class="kw">)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>           <span class="kw">(</span><span class="ex">oo</span><span class="kw">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>     <span class="ex">/------\/</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">/</span> <span class="kw">|</span>    <span class="kw">||</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>   <span class="ex">*</span>  /\---/<span class="dt">\</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      ~~   ~~</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span><span class="st">"Have you mooed today?"</span><span class="ex">...</span></span></code></pre></div>
+</section>
+<section id="apt-mark" class="level2">
+<h2 class="anchored" data-anchor-id="apt-mark"><code>apt-mark</code></h2>
+<p>インストールされたパッケージが手動インストールによるもの (<code>manual</code>) か 依存関係で自動インストールされたもの (<code>auto</code>) かを管理するヘルパーコマンド。</p>
+<p><code>auto</code> としてマークされたパッケージは <code>apt autoremove</code> の対象になる。</p>
+<dl>
+<dt><code>apt-mark auto &lt;package&gt;</code>/<code>apt-mark manual &lt;package&gt;</code></dt>
+<dd>
+パッケージを <code>auto</code> または <code>manual</code> としてマークする。
+</dd>
+<dd>
+基本的には <code>apt install</code> で明示的に入れたかどうかでもともとマークされている。
+</dd>
+<dt><code>apt-mark showauto</code>/<code>apt-mark showmanual</code></dt>
+<dd>
+<code>auto</code> または <code>manual</code> としてマークされているパッケージ一覧を表示する。
+</dd>
+<dt><code>sudo apt-mark hold &lt;package&gt;</code></dt>
+<dd>
+パッケージをホールドして <code>sudo apt upgrade</code> の対象から外す。
+</dd>
+<dd>
+解除するときは <code>unhold</code> / 一覧表示は <code>showhold</code>
+</dd>
+<dt><code>sudo apt-mark minimize-manual</code></dt>
+<dd>
+もともと明示的にインストールしたパッケージでも、他のパッケージの依存パッケージである場合に <code>auto</code> としてマークする。
+</dd>
+</dl>
 </section>
 <section id="apt-get-apt-cache" class="level2">
 <h2 class="anchored" data-anchor-id="apt-get-apt-cache"><code>apt-get</code>, <code>apt-cache</code></h2>
 <p><code>apt</code> はパッケージの管理を担う <code>apt-get</code> と検索を担う <code>apt-cache</code> の統合を図るコマンド。 それぞれのコマンドの対応は以下のようになっている。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> update             <span class="at">-</span><span class="op">&gt;</span>  apt update</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> upgrade            <span class="at">-</span><span class="op">&gt;</span>  apt upgrade</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> dist-upgrade       <span class="at">-</span><span class="op">&gt;</span>  apt full-upgrade</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> install package    <span class="at">-</span><span class="op">&gt;</span>  apt install package</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> remove package     <span class="at">-</span><span class="op">&gt;</span>  apt remove package</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> autoremove         <span class="at">-</span><span class="op">&gt;</span>  apt autoremove</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-cache</span> search string    <span class="at">-</span><span class="op">&gt;</span>  apt search string</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-cache</span> policy package   <span class="at">-</span><span class="op">&gt;</span>  apt list <span class="at">-a</span> package</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-cache</span> show package     <span class="at">-</span><span class="op">&gt;</span>  apt show package</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-cache</span> showpkg package  <span class="at">-</span><span class="op">&gt;</span>  apt show <span class="at">-a</span> package</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> update               <span class="at">-</span><span class="op">&gt;</span>  apt update</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> upgrade              <span class="at">-</span><span class="op">&gt;</span>  apt upgrade</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> dist-upgrade         <span class="at">-</span><span class="op">&gt;</span>  apt full-upgrade</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> install <span class="op">&lt;</span>package<span class="op">&gt;</span>    -<span class="op">&gt;</span>  apt install <span class="op">&lt;</span>package<span class="op">&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> remove <span class="op">&lt;</span>package<span class="op">&gt;</span>     -<span class="op">&gt;</span>  apt remove <span class="op">&lt;</span>package<span class="op">&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> autoremove           <span class="at">-</span><span class="op">&gt;</span>  apt autoremove</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-cache</span> search <span class="op">&lt;</span>string<span class="op">&gt;</span>    -<span class="op">&gt;</span>  apt search <span class="op">&lt;</span>string<span class="op">&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-cache</span> policy <span class="op">&lt;</span>package<span class="op">&gt;</span>   -<span class="op">&gt;</span>  apt list <span class="at">-a</span> <span class="op">&lt;</span>package<span class="op">&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-cache</span> show <span class="op">&lt;</span>package<span class="op">&gt;</span>     -<span class="op">&gt;</span>  apt show <span class="op">&lt;</span>package<span class="op">&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-cache</span> showpkg <span class="op">&lt;</span>package<span class="op">&gt;</span>  -<span class="op">&gt;</span>  apt show <span class="at">-a</span> <span class="op">&lt;</span>package<span class="op">&gt;</span></span></code></pre></div>
 
 
 </section>

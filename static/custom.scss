@@ -173,6 +173,10 @@ dl dd::before {
   left: -0.8em;
 }
 
+dl dt code, dl dt a {
+  font-weight: bold;
+}
+
 //
 // Tables
 //

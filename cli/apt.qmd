@@ -19,19 +19,20 @@ format:
 : 必要に応じて依存パッケージをインストールすることがある。
 	(古い `apt-get` だと新規インストールは起こらない。)
 
-`sudo apt install パッケージ`
+`sudo apt install <package>`
 :	パッケージのダウンロード
 
-`sudo apt remove パッケージ`
+`sudo apt remove <package>`
 : パッケージの削除
 
-`sudo apt purge パッケージ`
+`sudo apt purge <package>`
 :	設定ファイルを含め、パッケージを完全削除
 
 `sudo apt autoremove`
 : 更新に伴い、必要なくなった依存パッケージを削除
+: c.f. [`apt-mark`](./apt.qmd#apt-mark)
 
-`apt search 検索キーワード`
+`apt search <string>`
 :	パッケージの検索
 
 `apt list --upgradable`
@@ -40,16 +41,15 @@ format:
 `apt list --installed`
 : インストール済みのパッケージ一覧を表示
 
-`apt show パッケージ`
+`apt show <package>`
 : パッケージの詳細を表示
 
 
 おまけ:
 
 ```sh
-apt moo
-```
-```txt
+~$ apt moo
+
            (__)
            (oo)
      /------\/
@@ -60,20 +60,42 @@ apt moo
 ```
 
 
+## `apt-mark`
+
+インストールされたパッケージが手動インストールによるもの (`manual`) か
+依存関係で自動インストールされたもの (`auto`) かを管理するヘルパーコマンド。
+
+`auto` としてマークされたパッケージは `apt autoremove` の対象になる。
+
+`apt-mark auto <package>`/`apt-mark manual <package>`
+: パッケージを `auto` または `manual` としてマークする。
+: 基本的には `apt install` で明示的に入れたかどうかでもともとマークされている。
+
+`apt-mark showauto`/`apt-mark showmanual`
+: `auto` または `manual` としてマークされているパッケージ一覧を表示する。
+
+`sudo apt-mark hold <package>`
+: パッケージをホールドして `sudo apt upgrade` の対象から外す。
+: 解除するときは `unhold` / 一覧表示は `showhold`
+
+`sudo apt-mark minimize-manual`
+: もともと明示的にインストールしたパッケージでも、他のパッケージの依存パッケージである場合に `auto` としてマークする。
+
+
 ## `apt-get`, `apt-cache`
 
 `apt` はパッケージの管理を担う `apt-get` と検索を担う `apt-cache` の統合を図るコマンド。
 それぞれのコマンドの対応は以下のようになっている。
 
 ```sh
-apt-get update             ->  apt update
-apt-get upgrade            ->  apt upgrade
-apt-get dist-upgrade       ->  apt full-upgrade
-apt-get install package    ->  apt install package
-apt-get remove package     ->  apt remove package
-apt-get autoremove         ->  apt autoremove
-apt-cache search string    ->  apt search string
-apt-cache policy package   ->  apt list -a package
-apt-cache show package     ->  apt show package
-apt-cache showpkg package  ->  apt show -a package
+apt-get update               ->  apt update
+apt-get upgrade              ->  apt upgrade
+apt-get dist-upgrade         ->  apt full-upgrade
+apt-get install <package>    ->  apt install <package>
+apt-get remove <package>     ->  apt remove <package>
+apt-get autoremove           ->  apt autoremove
+apt-cache search <string>    ->  apt search <string>
+apt-cache policy <package>   ->  apt list -a <package>
+apt-cache show <package>     ->  apt show <package>
+apt-cache showpkg <package>  ->  apt show -a <package>
 ```

@@ -7,24 +7,35 @@ format:
 <https://sc.ddbj.nig.ac.jp/>
 
 
+## 新規登録
+
+- <https://sc.ddbj.nig.ac.jp/guides/from_application_to_approval/>
+- <https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_application/>
+
+コマンドライン操作をともなうので、Windows では
+[WSL](/win/wsl.qmd) や [Git for Windows](/win/0-dev-win.qmd)
+を入れておくのがオススメ。
+
+事前に [SSH 公開鍵・秘密鍵](/cli/ssh.qmd)を作成しておく。
+すでにある場合はそれを使ってもよい。
+[SSH公開鍵の作成方法](https://sc.ddbj.nig.ac.jp/application/ssh_keys/)や
+[SSH公開鍵の設置方法](https://sc.ddbj.nig.ac.jp/application/ssh_copy_id/)を参照。
+
+
 ## ログイン
 
-<https://sc.ddbj.nig.ac.jp/guides/from_application_to_approval/>
+- <https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_login/>
+- <https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_interactive_login/>
 
-[ユーザーアカウントを発行](https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_application/)したら、
-[ssh 接続](/cli/ssh.qmd)の設定をする。
+ゲートウェイノード &rarr; インタラクティブノードの順に `ssh` ログインする。
+ゲートウェイノードは `gw.ddbj.nig.ac.jp`, `gw2.ddbj.nig.ac.jp` の2つ、
+インタラクティブノード `a001`, `a002`, `a003` の3つからいずれかを指定する。
 
-- <https://sc.ddbj.nig.ac.jp/application/ssh_keys>
-- <https://sc.ddbj.nig.ac.jp/application/ssh_copy_id/>
-
-```{.txt filename="~/.ssh/config"}
-Host ddbj
-  IdentityFile ~/.ssh/id_ed25519
-  Hostname gw.ddbj.nig.ac.jp
-  RequestTTY yes
-  User <usename>
+```sh
+[localaccount@local ~]$ ssh <username>@gw.ddbj.nig.ac.jp
+[<username>@gw ~]$ ssh a001
+[<username>@a001 ~]$
 ```
-
 
 ## ジョブ実行
 
@@ -36,13 +47,12 @@ Host ddbj
 
 <https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/interactive_jobs>
 
-`a001`, `a002`, `a003` の3つのインタラクティブノードが用意されている。
-ゲートウェイノードへ `ssh` ログイン後、インタラクティブノードのいずれかに `ssh` ログインする:
+インタラクティブノードではファイルの確認など軽い作業のみ行う。
+大量のメモリ・CPU を使う作業をインタラクティブに行うには
+[`srun`](https://slurm.schedmd.com/srun.html) コマンドを使って計算ノードを確保する:
 
 ```sh
-[localaccount@local ~]$ ssh <username>@gw.ddbj.nig.ac.jp
-[<username>@gw ~]$ ssh a001
-[<username>@a001 ~]$
+srun --pty bash
 ```
 
 ### バッチジョブ
@@ -50,7 +60,7 @@ Host ddbj
 <https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/batch_jobs>
 
 [`sbatch`](https://slurm.schedmd.com/sbatch.html) コマンドを使う。
-基本的な流れは AGE と同じで、ジョブスクリプトを書いて `sbatch example.sh` するだけ:
+基本的な流れは Grid Engine と同じで、ジョブスクリプトを書いて `sbatch example.sh` するだけ:
 
 ```{.sh filename="example.sh"}
 #!/bin/bash
@@ -64,24 +74,21 @@ pwd
 
 ジョブ実行時のオプション設定は `#SBATCH` で渡す。
 `sbatch` のコマンドライン引数で渡してもいい。
-AGE でいう `#$ -cwd` (カレントディレクトリの設定) と `#$ -V` (環境変数の引継ぎ) は、Slurm ではデフォルトらしい。
+Grid Engine でいう `#$ -cwd` (カレントディレクトリの設定) と `#$ -V` (環境変数の引継ぎ) は、Slurm ではデフォルトらしい。
 
 インタープリタの指定オプションはない
 ([?](https://cvw.cac.cornell.edu/slurm/basics/execution-sbatch))
 ので、shebang で指定する必要がある:
-`#!/bin/bash`, `#!/bin/csh`, `#!/use/bin/python`
+`#!/bin/bash`, `#!/bin/csh`, `#!/usr/bin/python`
 
 
 よく使いそうなオプション:
 
-`-b`, `--bigin`
+`-b`, `--begin`
 : ジョブの実行割り当て開始時間を指定するする。
 
 `-D`, `--chdir`
 : バッチジョブのワーキングディレクトリを指定。 (デフォルトはカレントディレクトリ。)
-
-`-c`, `--cpus-per-tasks`
-: 複数のタスクがあるときに、タスクあたりに必要な CPU の数を指定する。
 
 `-o`, `--output`
 : 標準出力の出力先をファイル名で指定する。
@@ -89,7 +96,7 @@ AGE でいう `#$ -cwd` (カレントディレクトリの設定) と `#$ -V` (�
 
 `-e`, `--error`
 : 標準エラーの出力先をファイル名で指定する。
-  デフォルトでは標準出力と同じファイルで、なにも指定しなければ `slurm-[JOBID]_[JOBインデックス].out` に吐き出される。
+  デフォルトでは標準出力と同じファイルに吐き出される。
 
 `-i`, `--input`
 : バッチジョブの標準入力。
@@ -100,12 +107,14 @@ AGE でいう `#$ -cwd` (カレントディレクトリの設定) と `#$ -V` (�
 `-J`, `--job-name`
 : ジョブの名前。デフォルトではスクリプトのファイル名になる。
 
+`-c`, `--cpus-per-task`
+: 1タスクあたりに必要な CPU コア数を指定する。
+
 `--mem`
-: ノードごとに必要なメモリの指定。単位は K, M, G, T を使う。(デフォルトは M)
+: ノードごとに必要なメモリの指定。単位は K, M, G, T を使う。(省略時は M)
 
 `--mem-per-cpu`
 : CPU あたりに必要なメモリ量の指定。
-: バッチジョブで使うのは1ノード1コアなので、`--mem` でも同じ。
 
 `-t`, `--time`
 : ジョブの実行時間を指定する。
@@ -130,7 +139,7 @@ AGE でいう `#$ -cwd` (カレントディレクトリの設定) と `#$ -V` (�
 `-a` で制御する。
 `SLURM_ARRAY_TASK_ID`, `SLURM_ARRAY_TASK_COUNT` などの変数を参照可能。
 
-例えば6個の SRA データを同時に取得する場合:
+例えば6個の SRA データを取得する場合:
 
 ```sh
 #!/bin/bash
@@ -143,20 +152,16 @@ seq_id=${seq_ids[$SLURM_ARRAY_TASK_ID-1]}
 prefetch ${seq_id}
 ```
 
-一度に投入されるタスク数の上限は `%` で制御する。
-(AGE でいう `-tc`):
-
-```sh
-#SBATCH -a 1-1000%100  # 1から1000までの並列。同時に走る上限は100。
-```
-
+同時に投入されるタスク数の上限は `%N` で制御する (Grid Engine でいう `-tc N`)。
+例えば1から1000までの並列ジョブで、同時に走るジョブ数の上限を10にするには:
+`#SBATCH -a 1-1000%10`
 
 ### パラレルジョブ
 
 - <https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/parallel_jobs>
 - <https://slurm.schedmd.com/mc_support.html>
 
-Slurm には AGE でいうパラレルジョブに直接該当する機能はない。
+Slurm には Grid Engine でいうパラレルジョブに直接該当する機能はない。
 `--nodes`, `--ntasks`, `--ntasks-per-node` などを使って並列ジョブを制御する。
 
 `-N`, `--nodes`
@@ -166,7 +171,7 @@ Slurm には AGE でいうパラレルジョブに直接該当する機能はな
 : ジョブの割り当てをできるだけ多くのノードに均等に分散させる。
 
 `-n`, `--ntasks`
-: ジョブに割り当てる CPU コアの数を指定する。
+: ジョブに割り当てるタスク数を指定する。
 
 ```sh
 # 例

@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.36">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="畜産研 博士1年 松田 優樹">
   <title>Yuki MATSUDA – Part. 2 リードマッピング、バリアントコール</title>
@@ -21,10 +21,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -214,7 +217,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-畜産研 博士1年 松田 優樹 
+畜産研 博士1年 松田 優樹
 </div>
 </div>
 </div>
@@ -606,35 +609,35 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 </section>
 <section id="srr030257.vcf-を見てみる" class="slide level2">
 <h2><code>SRR030257.vcf</code> を見てみる</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a></a>## ヘッダー省略</span>
-<span id="cb26-2"><a></a>#CHROM          POS     ID      REF     ALT     QUAL    FILTER  FORMAT  SRR030257.cfsm.bam</span>
-<span id="cb26-3"><a></a>Chromosome      161041  .       T       G       225.007 .       DP=55;VDB=0.000910305;SGB=-0.693147;MQSBZ=1.32288;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,20,35;MQ=60;FQ=-999   GT:PL   1:255,0</span>
-<span id="cb26-4"><a></a>Chromosome      380188  .       A       C       225.007 .       DP=42;VDB=0.701392;SGB=-0.693146;MQSBZ=-0.595683;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,11,31;MQ=60;FQ=-999    GT:PL   1:255,0</span>
-<span id="cb26-5"><a></a>Chromosome      430835  .       C       T       225.007 .       DP=72;VDB=0.0514064;SGB=-0.693147;RPBZ=-4.55905;MQBZ=5.72838;MQSBZ=-2.34454;BQBZ=-1.62502;SCBZ=-1.61283;FS=0;MQ0F=0.208333;AF1=1;AC1=1;DP4=1,13,31,27;MQ=46;FQ=-999;PV4=0.0020037,0.174994,1,1    GT:PL   1:255,0</span>
-<span id="cb26-6"><a></a>Chromosome      475288  .       CGGGG   CGGGGG  217.469 .       INDEL;IDV=34;IMF=0.772727;DP=44;VDB=0.0585699;SGB=-0.693132;RPBZ=-1.90593;MQBZ=-1.12363;MQSBZ=2.23545;SCBZ=-3.81819;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=3,1,14,20;MQ=60;FQ=-999;PV4=0.30678,1,0.282827,1  GT:PL   1:255,65,0</span>
-<span id="cb26-7"><a></a>Chromosome      649391  .       T       A       225.007 .       DP=60;VDB=0.100294;SGB=-0.693147;MQSBZ=-0.0713471;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,31,29;MQ=60;FQ=-999   GT:PL   1:255,0</span>
-<span id="cb26-8"><a></a>︙</span>
-<span id="cb26-9"><a></a>Chromosome      1286699 .       C       A       225.007 .       DP=53;VDB=0.327747;SGB=-0.693147;MQSBZ=2.54111;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,21,32;MQ=59;FQ=-999      GT:PL   1:255,0</span>
-<span id="cb26-10"><a></a>Chromosome      1329516 .       C       T       225.007 .       DP=50;VDB=0.0979545;SGB=-0.693147;MQSBZ=2.05363;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,31;MQ=59;FQ=-999     GT:PL   1:255,0</span>
-<span id="cb26-11"><a></a>Chromosome      1976879 .       T       G       225.007 .       DP=48;VDB=0.218639;SGB=-0.693147;MQSBZ=-1.29099;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,30,18;MQ=60;FQ=-999     GT:PL   1:255,0</span>
-<span id="cb26-12"><a></a>Chromosome      2031736 .       A       G       18.0728 .       DP=5;VDB=0.0672958;SGB=-0.590765;FS=0;MQ0F=0.2;AF1=1;AC1=1;DP4=0,0,0,5;MQ=19;FQ=-999    GT:PL   1:48,0</span>
-<span id="cb26-13"><a></a>Chromosome      2054876 .       A       G       119.006 .       DP=18;VDB=0.155125;SGB=-0.691153;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,0;MQ=31;FQ=-999     GT:PL   1:149,0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a aria-label="1"></a>## ヘッダー省略</span>
+<span id="cb26-2"><a aria-label="2"></a>#CHROM          POS     ID      REF     ALT     QUAL    FILTER  FORMAT  SRR030257.cfsm.bam</span>
+<span id="cb26-3"><a aria-label="3"></a>Chromosome      161041  .       T       G       225.007 .       DP=55;VDB=0.000910305;SGB=-0.693147;MQSBZ=1.32288;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,20,35;MQ=60;FQ=-999   GT:PL   1:255,0</span>
+<span id="cb26-4"><a aria-label="4"></a>Chromosome      380188  .       A       C       225.007 .       DP=42;VDB=0.701392;SGB=-0.693146;MQSBZ=-0.595683;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,11,31;MQ=60;FQ=-999    GT:PL   1:255,0</span>
+<span id="cb26-5"><a aria-label="5"></a>Chromosome      430835  .       C       T       225.007 .       DP=72;VDB=0.0514064;SGB=-0.693147;RPBZ=-4.55905;MQBZ=5.72838;MQSBZ=-2.34454;BQBZ=-1.62502;SCBZ=-1.61283;FS=0;MQ0F=0.208333;AF1=1;AC1=1;DP4=1,13,31,27;MQ=46;FQ=-999;PV4=0.0020037,0.174994,1,1    GT:PL   1:255,0</span>
+<span id="cb26-6"><a aria-label="6"></a>Chromosome      475288  .       CGGGG   CGGGGG  217.469 .       INDEL;IDV=34;IMF=0.772727;DP=44;VDB=0.0585699;SGB=-0.693132;RPBZ=-1.90593;MQBZ=-1.12363;MQSBZ=2.23545;SCBZ=-3.81819;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=3,1,14,20;MQ=60;FQ=-999;PV4=0.30678,1,0.282827,1  GT:PL   1:255,65,0</span>
+<span id="cb26-7"><a aria-label="7"></a>Chromosome      649391  .       T       A       225.007 .       DP=60;VDB=0.100294;SGB=-0.693147;MQSBZ=-0.0713471;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,31,29;MQ=60;FQ=-999   GT:PL   1:255,0</span>
+<span id="cb26-8"><a aria-label="8"></a>︙</span>
+<span id="cb26-9"><a aria-label="9"></a>Chromosome      1286699 .       C       A       225.007 .       DP=53;VDB=0.327747;SGB=-0.693147;MQSBZ=2.54111;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,21,32;MQ=59;FQ=-999      GT:PL   1:255,0</span>
+<span id="cb26-10"><a aria-label="10"></a>Chromosome      1329516 .       C       T       225.007 .       DP=50;VDB=0.0979545;SGB=-0.693147;MQSBZ=2.05363;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,31;MQ=59;FQ=-999     GT:PL   1:255,0</span>
+<span id="cb26-11"><a aria-label="11"></a>Chromosome      1976879 .       T       G       225.007 .       DP=48;VDB=0.218639;SGB=-0.693147;MQSBZ=-1.29099;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,30,18;MQ=60;FQ=-999     GT:PL   1:255,0</span>
+<span id="cb26-12"><a aria-label="12"></a>Chromosome      2031736 .       A       G       18.0728 .       DP=5;VDB=0.0672958;SGB=-0.590765;FS=0;MQ0F=0.2;AF1=1;AC1=1;DP4=0,0,0,5;MQ=19;FQ=-999    GT:PL   1:48,0</span>
+<span id="cb26-13"><a aria-label="13"></a>Chromosome      2054876 .       A       G       119.006 .       DP=18;VDB=0.155125;SGB=-0.691153;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,0;MQ=31;FQ=-999     GT:PL   1:149,0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="クオリティがよろしくない変異もある" class="slide level2">
 <h2>クオリティがよろしくない変異もある</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-code-line-numbers="12"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb27-1"><a></a>## ヘッダー省略</span>
-<span id="cb27-2"><a></a>#CHROM          POS     ID      REF     ALT     QUAL    FILTER  FORMAT  SRR030257.cfsm.bam</span>
-<span id="cb27-3"><a></a>Chromosome      161041  .       T       G       225.007 .       DP=55;VDB=0.000910305;SGB=-0.693147;MQSBZ=1.32288;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,20,35;MQ=60;FQ=-999   GT:PL   1:255,0</span>
-<span id="cb27-4"><a></a>Chromosome      380188  .       A       C       225.007 .       DP=42;VDB=0.701392;SGB=-0.693146;MQSBZ=-0.595683;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,11,31;MQ=60;FQ=-999    GT:PL   1:255,0</span>
-<span id="cb27-5"><a></a>Chromosome      430835  .       C       T       225.007 .       DP=72;VDB=0.0514064;SGB=-0.693147;RPBZ=-4.55905;MQBZ=5.72838;MQSBZ=-2.34454;BQBZ=-1.62502;SCBZ=-1.61283;FS=0;MQ0F=0.208333;AF1=1;AC1=1;DP4=1,13,31,27;MQ=46;FQ=-999;PV4=0.0020037,0.174994,1,1    GT:PL   1:255,0</span>
-<span id="cb27-6"><a></a>Chromosome      475288  .       CGGGG   CGGGGG  217.469 .       INDEL;IDV=34;IMF=0.772727;DP=44;VDB=0.0585699;SGB=-0.693132;RPBZ=-1.90593;MQBZ=-1.12363;MQSBZ=2.23545;SCBZ=-3.81819;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=3,1,14,20;MQ=60;FQ=-999;PV4=0.30678,1,0.282827,1  GT:PL   1:255,65,0</span>
-<span id="cb27-7"><a></a>Chromosome      649391  .       T       A       225.007 .       DP=60;VDB=0.100294;SGB=-0.693147;MQSBZ=-0.0713471;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,31,29;MQ=60;FQ=-999   GT:PL   1:255,0</span>
-<span id="cb27-8"><a></a>︙</span>
-<span id="cb27-9"><a></a>Chromosome      1286699 .       C       A       225.007 .       DP=53;VDB=0.327747;SGB=-0.693147;MQSBZ=2.54111;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,21,32;MQ=59;FQ=-999      GT:PL   1:255,0</span>
-<span id="cb27-10"><a></a>Chromosome      1329516 .       C       T       225.007 .       DP=50;VDB=0.0979545;SGB=-0.693147;MQSBZ=2.05363;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,31;MQ=59;FQ=-999     GT:PL   1:255,0</span>
-<span id="cb27-11"><a></a>Chromosome      1976879 .       T       G       225.007 .       DP=48;VDB=0.218639;SGB=-0.693147;MQSBZ=-1.29099;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,30,18;MQ=60;FQ=-999     GT:PL   1:255,0</span>
-<span id="cb27-12"><a></a>Chromosome      2031736 .       A       G       18.0728 .       DP=5;VDB=0.0672958;SGB=-0.590765;FS=0;MQ0F=0.2;AF1=1;AC1=1;DP4=0,0,0,5;MQ=19;FQ=-999    GT:PL   1:48,0</span>
-<span id="cb27-13"><a></a>Chromosome      2054876 .       A       G       119.006 .       DP=18;VDB=0.155125;SGB=-0.691153;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,0;MQ=31;FQ=-999     GT:PL   1:149,0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-code-line-numbers="12"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb27-1"><a aria-label="1"></a>## ヘッダー省略</span>
+<span id="cb27-2"><a aria-label="2"></a>#CHROM          POS     ID      REF     ALT     QUAL    FILTER  FORMAT  SRR030257.cfsm.bam</span>
+<span id="cb27-3"><a aria-label="3"></a>Chromosome      161041  .       T       G       225.007 .       DP=55;VDB=0.000910305;SGB=-0.693147;MQSBZ=1.32288;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,20,35;MQ=60;FQ=-999   GT:PL   1:255,0</span>
+<span id="cb27-4"><a aria-label="4"></a>Chromosome      380188  .       A       C       225.007 .       DP=42;VDB=0.701392;SGB=-0.693146;MQSBZ=-0.595683;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,11,31;MQ=60;FQ=-999    GT:PL   1:255,0</span>
+<span id="cb27-5"><a aria-label="5"></a>Chromosome      430835  .       C       T       225.007 .       DP=72;VDB=0.0514064;SGB=-0.693147;RPBZ=-4.55905;MQBZ=5.72838;MQSBZ=-2.34454;BQBZ=-1.62502;SCBZ=-1.61283;FS=0;MQ0F=0.208333;AF1=1;AC1=1;DP4=1,13,31,27;MQ=46;FQ=-999;PV4=0.0020037,0.174994,1,1    GT:PL   1:255,0</span>
+<span id="cb27-6"><a aria-label="6"></a>Chromosome      475288  .       CGGGG   CGGGGG  217.469 .       INDEL;IDV=34;IMF=0.772727;DP=44;VDB=0.0585699;SGB=-0.693132;RPBZ=-1.90593;MQBZ=-1.12363;MQSBZ=2.23545;SCBZ=-3.81819;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=3,1,14,20;MQ=60;FQ=-999;PV4=0.30678,1,0.282827,1  GT:PL   1:255,65,0</span>
+<span id="cb27-7"><a aria-label="7"></a>Chromosome      649391  .       T       A       225.007 .       DP=60;VDB=0.100294;SGB=-0.693147;MQSBZ=-0.0713471;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,31,29;MQ=60;FQ=-999   GT:PL   1:255,0</span>
+<span id="cb27-8"><a aria-label="8"></a>︙</span>
+<span id="cb27-9"><a aria-label="9"></a>Chromosome      1286699 .       C       A       225.007 .       DP=53;VDB=0.327747;SGB=-0.693147;MQSBZ=2.54111;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,21,32;MQ=59;FQ=-999      GT:PL   1:255,0</span>
+<span id="cb27-10"><a aria-label="10"></a>Chromosome      1329516 .       C       T       225.007 .       DP=50;VDB=0.0979545;SGB=-0.693147;MQSBZ=2.05363;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,31;MQ=59;FQ=-999     GT:PL   1:255,0</span>
+<span id="cb27-11"><a aria-label="11"></a>Chromosome      1976879 .       T       G       225.007 .       DP=48;VDB=0.218639;SGB=-0.693147;MQSBZ=-1.29099;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,30,18;MQ=60;FQ=-999     GT:PL   1:255,0</span>
+<span id="cb27-12"><a aria-label="12"></a>Chromosome      2031736 .       A       G       18.0728 .       DP=5;VDB=0.0672958;SGB=-0.590765;FS=0;MQ0F=0.2;AF1=1;AC1=1;DP4=0,0,0,5;MQ=19;FQ=-999    GT:PL   1:48,0</span>
+<span id="cb27-13"><a aria-label="13"></a>Chromosome      2054876 .       A       G       119.006 .       DP=18;VDB=0.155125;SGB=-0.691153;FS=0;MQ0F=0;AF1=1;AC1=1;DP4=0,0,18,0;MQ=31;FQ=-999     GT:PL   1:149,0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="高品質な変異をフィルタリングする" class="slide level2">
 <h2>高品質な変異をフィルタリングする</h2>
@@ -722,7 +725,7 @@ Duplicates (同じ領域のリード) を重複リードとしてマークして
 <p>使い方:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> mpileup <span class="at">-f</span> Ecoli.fa SRR030257.cfsm.bam <span class="op">&gt;</span> SRR030257.mpileup</span>
 <span id="cb29-2"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> call <span class="at">-c</span> <span class="at">-v</span> <span class="at">--ploidy</span> 1 SRR030257.mpileup <span class="at">-o</span> SRR030257.vcf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>  <img data-src="../..\images/share/arrow.svg"></p>
+<p>  <img data-src="../../images/share/arrow.svg"></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> mpileup <span class="at">-f</span> Ecoli.fa SRR030257.cfsm.bam <span class="kw">|</span> <span class="ex">bcftools</span> call <span class="at">-c</span> <span class="at">-v</span> <span class="at">--ploidy</span> 1 <span class="at">-o</span> SRR030257.vcf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>bcftools mpileup</code> の出力 (<code>SRR030257.mpileup</code>) を <code>bcftools call</code> の入力として直接使う。</p>
 </section>

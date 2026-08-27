@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -75,10 +78,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b8484662480500b84131a23a83f7d24e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8cc8a6873deeaab8e52f70d70b812bc7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-010eb5858e9fadca16c872af79e736c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d99797607d0e2e08bc415c16f7281dd6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -448,24 +451,29 @@ window.Quarto = {
 
 
 <p><a href="https://sc.ddbj.nig.ac.jp/" class="uri">https://sc.ddbj.nig.ac.jp/</a></p>
+<section id="新規登録" class="level2">
+<h2 class="anchored" data-anchor-id="新規登録">新規登録</h2>
+<ul>
+<li><a href="https://sc.ddbj.nig.ac.jp/guides/from_application_to_approval/" class="uri">https://sc.ddbj.nig.ac.jp/guides/from_application_to_approval/</a></li>
+<li><a href="https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_application/" class="uri">https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_application/</a></li>
+</ul>
+<p>コマンドライン操作をともなうので、Windows では <a href="../win/powershell.html">PowerShell</a> を使う。 <a href="../win/wsl.html">WSL</a> や <a href="../win/0-dev-win.html">Git for Windows</a> 同梱の Bash を使うのもオススメ。</p>
+<p>事前に <a href="../cli/ssh.html">SSH 公開鍵・秘密鍵</a>を作成しておく。 すでにある場合はそれを使ってもよい。</p>
+<ul>
+<li><a href="https://sc.ddbj.nig.ac.jp/application/ssh_keys/">SSH公開鍵の作成方法</a></li>
+<li><a href="https://sc.ddbj.nig.ac.jp/application/ssh_copy_id/">SSH公開鍵の設置方法</a></li>
+</ul>
+</section>
 <section id="ログイン" class="level2">
 <h2 class="anchored" data-anchor-id="ログイン">ログイン</h2>
-<p><a href="https://sc.ddbj.nig.ac.jp/guides/from_application_to_approval/" class="uri">https://sc.ddbj.nig.ac.jp/guides/from_application_to_approval/</a></p>
-<p><a href="https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_application/">ユーザーアカウントを発行</a>したら、 <a href="../cli/ssh.html">ssh 接続</a>の設定をする。</p>
 <ul>
-<li><a href="https://sc.ddbj.nig.ac.jp/application/ssh_keys" class="uri">https://sc.ddbj.nig.ac.jp/application/ssh_keys</a></li>
-<li><a href="https://sc.ddbj.nig.ac.jp/application/ssh_copy_id/" class="uri">https://sc.ddbj.nig.ac.jp/application/ssh_copy_id/</a></li>
+<li><a href="https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_login/" class="uri">https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_login/</a></li>
+<li><a href="https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_interactive_login/" class="uri">https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_interactive_login/</a></li>
 </ul>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>~/.ssh/config</strong></pre>
-</div>
-<div class="sourceCode" id="cb1" data-filename="~/.ssh/config"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Host ddbj</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  IdentityFile ~/.ssh/id_ed25519</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  Hostname gw.ddbj.nig.ac.jp</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  RequestTTY yes</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  User &lt;usename&gt;</span></code></pre></div>
-</div>
+<p>ゲートウェイノード → インタラクティブノードの順に <code>ssh</code> する。 ゲートウェイノードは <code>gw.ddbj.nig.ac.jp</code>, <code>gw2.ddbj.nig.ac.jp</code> の2つ、 インタラクティブノード <code>a001</code>, <code>a002</code>, <code>a003</code> の3つからいずれかを指定する。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>localaccount<span class="op">&gt;</span>@local <span class="ex">~$</span> ssh <span class="op">&lt;</span>username<span class="op">&gt;</span>@gw.ddbj.nig.ac.jp</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>username<span class="op">&gt;</span>@gw <span class="ex">~$</span> ssh a001</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>username<span class="op">&gt;</span>@a001 <span class="ex">~$</span></span></code></pre></div>
 </section>
 <section id="ジョブ実行" class="level2">
 <h2 class="anchored" data-anchor-id="ジョブ実行">ジョブ実行</h2>
@@ -476,15 +484,13 @@ window.Quarto = {
 <section id="インタラクティブジョブ" class="level3">
 <h3 class="anchored" data-anchor-id="インタラクティブジョブ">インタラクティブジョブ</h3>
 <p><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/interactive_jobs" class="uri">https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/interactive_jobs</a></p>
-<p><code>a001</code>, <code>a002</code>, <code>a003</code> の3つのインタラクティブノードが用意されている。 ゲートウェイノードへ <code>ssh</code> ログイン後、インタラクティブノードのいずれかに <code>ssh</code> ログインする:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[localaccount@local</span> ~]$ ssh <span class="op">&lt;</span>username<span class="op">&gt;</span>@gw.ddbj.nig.ac.jp</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[</span><span class="op">&lt;</span>username<span class="op">&gt;</span>@gw ~]$ ssh a001</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[</span><span class="op">&lt;</span>username<span class="op">&gt;</span>@a001 ~]$</span></code></pre></div>
+<p>インタラクティブノードではファイルの確認など軽い作業のみ行う。 大量のメモリ・CPU を使う作業をインタラクティブに行うには <a href="https://slurm.schedmd.com/srun.html"><code>srun</code></a> コマンドを使って計算ノードを確保する:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> <span class="at">--pty</span> bash</span></code></pre></div>
 </section>
 <section id="バッチジョブ" class="level3">
 <h3 class="anchored" data-anchor-id="バッチジョブ">バッチジョブ</h3>
 <p><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/batch_jobs" class="uri">https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/batch_jobs</a></p>
-<p><a href="https://slurm.schedmd.com/sbatch.html"><code>sbatch</code></a> コマンドを使う。 基本的な流れは AGE と同じで、ジョブスクリプトを書いて <code>sbatch example.sh</code> するだけ:</p>
+<p><a href="https://slurm.schedmd.com/sbatch.html"><code>sbatch</code></a> コマンドを使う。 基本的な流れは Grid Engine と同じで、ジョブスクリプトを書いて <code>sbatch example.sh</code> するだけ:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>example.sh</strong></pre>
@@ -497,11 +503,11 @@ window.Quarto = {
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div>
 </div>
-<p>ジョブ実行時のオプション設定は <code>#SBATCH</code> で渡す。 <code>sbatch</code> のコマンドライン引数で渡してもいい。 AGE でいう <code>#$ -cwd</code> (カレントディレクトリの設定) と <code>#$ -V</code> (環境変数の引継ぎ) は、Slurm ではデフォルトらしい。</p>
-<p>インタープリタの指定オプションはない (<a href="https://cvw.cac.cornell.edu/slurm/basics/execution-sbatch">?</a>) ので、shebang で指定する必要がある: <code>#!/bin/bash</code>, <code>#!/bin/csh</code>, <code>#!/use/bin/python</code></p>
+<p>ジョブ実行時のオプション設定は <code>#SBATCH</code> で渡す。 <code>sbatch</code> のコマンドライン引数で渡してもいい。 Grid Engine でいう <code>#$ -cwd</code> (カレントディレクトリの設定) と <code>#$ -V</code> (環境変数の引継ぎ) は、Slurm ではデフォルトらしい。</p>
+<p>インタープリタの指定オプションはない (<a href="https://cvw.cac.cornell.edu/slurm/basics/execution-sbatch">?</a>) ので、shebang で指定する必要がある: <code>#!/bin/bash</code>, <code>#!/bin/csh</code>, <code>#!/usr/bin/python</code></p>
 <p>よく使いそうなオプション:</p>
 <dl>
-<dt><code>-b</code>, <code>--bigin</code></dt>
+<dt><code>-b</code>, <code>--begin</code></dt>
 <dd>
 ジョブの実行割り当て開始時間を指定するする。
 </dd>
@@ -509,17 +515,13 @@ window.Quarto = {
 <dd>
 バッチジョブのワーキングディレクトリを指定。 (デフォルトはカレントディレクトリ。)
 </dd>
-<dt><code>-c</code>, <code>--cpus-per-tasks</code></dt>
-<dd>
-複数のタスクがあるときに、タスクあたりに必要な CPU の数を指定する。
-</dd>
 <dt><code>-o</code>, <code>--output</code></dt>
 <dd>
 標準出力の出力先をファイル名で指定する。 デフォルトでは <code>slurm-[JOBID]_[JOBインデックス].out</code> に吐き出される。
 </dd>
 <dt><code>-e</code>, <code>--error</code></dt>
 <dd>
-標準エラーの出力先をファイル名で指定する。 デフォルトでは標準出力と同じファイルで、なにも指定しなければ <code>slurm-[JOBID]_[JOBインデックス].out</code> に吐き出される。
+標準エラーの出力先をファイル名で指定する。 デフォルトでは標準出力と同じファイルに吐き出される。
 </dd>
 <dt><code>-i</code>, <code>--input</code></dt>
 <dd>
@@ -533,16 +535,17 @@ window.Quarto = {
 <dd>
 ジョブの名前。デフォルトではスクリプトのファイル名になる。
 </dd>
+<dt><code>-c</code>, <code>--cpus-per-task</code></dt>
+<dd>
+1タスクあたりに必要な CPU コア数を指定する。
+</dd>
 <dt><code>--mem</code></dt>
 <dd>
-ノードごとに必要なメモリの指定。単位は K, M, G, T を使う。(デフォルトは M)
+ノードごとに必要なメモリの指定。単位は K, M, G, T を使う。(省略時は M)
 </dd>
 <dt><code>--mem-per-cpu</code></dt>
 <dd>
 CPU あたりに必要なメモリ量の指定。
-</dd>
-<dd>
-バッチジョブで使うのは1ノード1コアなので、<code>--mem</code> でも同じ。
 </dd>
 <dt><code>-t</code>, <code>--time</code></dt>
 <dd>
@@ -567,7 +570,7 @@ CPU あたりに必要なメモリ量の指定。
 <h3 class="anchored" data-anchor-id="アレイジョブ">アレイジョブ</h3>
 <p><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/array_jobs" class="uri">https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/array_jobs</a></p>
 <p><code>-a</code> で制御する。 <code>SLURM_ARRAY_TASK_ID</code>, <code>SLURM_ARRAY_TASK_COUNT</code> などの変数を参照可能。</p>
-<p>例えば6個の SRA データを同時に取得する場合:</p>
+<p>例えば6個の SRA データを取得する場合:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -a 1-6</span></span>
@@ -576,8 +579,7 @@ CPU あたりに必要なメモリ量の指定。
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">seq_id</span><span class="op">=</span><span class="va">${seq_ids</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span>-1<span class="op">]</span><span class="va">}</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">prefetch</span> <span class="va">${seq_id}</span></span></code></pre></div>
-<p>一度に投入されるタスク数の上限は <code>%</code> で制御する。 (AGE でいう <code>-tc</code>):</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -a 1-1000%100  # 1から1000までの並列。同時に走る上限は100。</span></span></code></pre></div>
+<p>同時に投入されるタスク数の上限は <code>%N</code> で制御する (Grid Engine でいう <code>-tc N</code>)。 例えば1から1000までの並列ジョブで、同時に走るジョブ数の上限を10にするには: <code>#SBATCH -a 1-1000%10</code></p>
 </section>
 <section id="パラレルジョブ" class="level3">
 <h3 class="anchored" data-anchor-id="パラレルジョブ">パラレルジョブ</h3>
@@ -585,7 +587,7 @@ CPU あたりに必要なメモリ量の指定。
 <li><a href="https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/parallel_jobs" class="uri">https://sc.ddbj.nig.ac.jp/guides/software/JobScheduler/Slurm/parallel_jobs</a></li>
 <li><a href="https://slurm.schedmd.com/mc_support.html" class="uri">https://slurm.schedmd.com/mc_support.html</a></li>
 </ul>
-<p>Slurm には AGE でいうパラレルジョブに直接該当する機能はない。 <code>--nodes</code>, <code>--ntasks</code>, <code>--ntasks-per-node</code> などを使って並列ジョブを制御する。</p>
+<p>Slurm には Grid Engine でいうパラレルジョブに直接該当する機能はない。 <code>--nodes</code>, <code>--ntasks</code>, <code>--ntasks-per-node</code> などを使って並列ジョブを制御する。</p>
 <dl>
 <dt><code>-N</code>, <code>--nodes</code></dt>
 <dd>
@@ -597,16 +599,16 @@ CPU あたりに必要なメモリ量の指定。
 </dd>
 <dt><code>-n</code>, <code>--ntasks</code></dt>
 <dd>
-ジョブに割り当てる CPU コアの数を指定する。
+ジョブに割り当てるタスク数を指定する。
 </dd>
 </dl>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --nodes 1-1</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --ntasks 5</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem-per-cpu 4G</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">orthofinder</span> <span class="at">-f</span> ExampleData <span class="at">-a</span> 5</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --nodes 1-1</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --ntasks 5</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem-per-cpu 4G</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">orthofinder</span> <span class="at">-f</span> ExampleData <span class="at">-a</span> 5</span></code></pre></div>
 <div class="info">
 <p>この時ノード全体では、<code>4G</code>×<code>5core</code>=<code>20G</code> のメモリを使う。</p>
 </div>
@@ -641,9 +643,9 @@ CPU あたりに必要なメモリ量の指定。
 </ul>
 <p>バイオインフォマティクスでよく使われる解析ツールは各ソフトウェアの頭文字ごとに <code>/usr/local/biotools/</code> に配置されており、インストール不要で使うことができる。</p>
 <p>複数のバージョン用意されている場合もある。 たとえば:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/s/samtools<span class="pp">*</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/local/biotools/s/samtools<span class="pp">*</span></span></code></pre></div>
 <p>使用例:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec /usr/local/biotools/s/samtools samtools <span class="at">--help</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec /usr/local/biotools/s/samtools samtools <span class="at">--help</span></span></code></pre></div>
 
 
 </section>

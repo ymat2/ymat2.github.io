@@ -12,14 +12,14 @@ format:
 - <https://sc.ddbj.nig.ac.jp/guides/from_application_to_approval/>
 - <https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_application/>
 
-コマンドライン操作をともなうので、Windows では
-[WSL](/win/wsl.qmd) や [Git for Windows](/win/0-dev-win.qmd)
-を入れておくのがオススメ。
+コマンドライン操作をともなうので、Windows では [PowerShell](/win/powershell.qmd) を使う。
+[WSL](/win/wsl.qmd) や [Git for Windows](/win/0-dev-win.qmd) 同梱の Bash を使うのもオススメ。
 
 事前に [SSH 公開鍵・秘密鍵](/cli/ssh.qmd)を作成しておく。
 すでにある場合はそれを使ってもよい。
-[SSH公開鍵の作成方法](https://sc.ddbj.nig.ac.jp/application/ssh_keys/)や
-[SSH公開鍵の設置方法](https://sc.ddbj.nig.ac.jp/application/ssh_copy_id/)を参照。
+
+- [SSH公開鍵の作成方法](https://sc.ddbj.nig.ac.jp/application/ssh_keys/)
+- [SSH公開鍵の設置方法](https://sc.ddbj.nig.ac.jp/application/ssh_copy_id/)
 
 
 ## ログイン
@@ -27,14 +27,14 @@ format:
 - <https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_login/>
 - <https://sc.ddbj.nig.ac.jp/guides/using_general_analysis_division/ga_interactive_login/>
 
-ゲートウェイノード &rarr; インタラクティブノードの順に `ssh` ログインする。
+ゲートウェイノード &rarr; インタラクティブノードの順に `ssh` する。
 ゲートウェイノードは `gw.ddbj.nig.ac.jp`, `gw2.ddbj.nig.ac.jp` の2つ、
 インタラクティブノード `a001`, `a002`, `a003` の3つからいずれかを指定する。
 
 ```sh
-[localaccount@local ~]$ ssh <username>@gw.ddbj.nig.ac.jp
-[<username>@gw ~]$ ssh a001
-[<username>@a001 ~]$
+<localaccount>@local ~$ ssh <username>@gw.ddbj.nig.ac.jp
+<username>@gw ~$ ssh a001
+<username>@a001 ~$
 ```
 
 ## ジョブ実行

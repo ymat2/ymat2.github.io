@@ -1,28 +1,16 @@
 /*-- scss:defaults --*/
 
 $theme: "default" !default;
+$enable-rounded: false !default;
 
 //
 // Color system
 //
 $white: #fff !default;
 $black: #444 !default;
-$grey1: #f1f1f1 !default;
-$grey2: #f4f4f4 !default;
-$grey3: #ccc !default;
-$grey4: #888 !default;
-$color-code-bg: #f6f8fa !default;
-$color-link: #4575b4 !default;
-
-$callout-color-note: #0072B2cc;
-$callout-color-tip: #009E73cc;
-$callout-color-caution: #E69F00cc;
-$callout-color-warning: #F0E442cc;
-$callout-color-important: #D55E00cc;
-
-$body-bg: $grey2;
+$border-color: #ccc !default;
+$primary: #4575b4 !default;
 $body-color: $black;
-$link-color: $color-link;
 
 //
 // Fonts
@@ -31,7 +19,6 @@ $font-family-sans-serif:
   "Segoe UI",
   "Arial",
   "Helvetica",
-  "Hiragino Kaku Gothic ProN",
   "Hiragino Sans",
   "Noto Sans JP",
   sans-serif,
@@ -44,30 +31,33 @@ $font-family-monospace:
   Courier,
   monospace;
 $toc-font-size: 1rem;
-$h1-font-size: 1.6rem;
-$h2-font-size: 1.5rem;
+$h1-font-size: 1.5rem;
+$h2-font-size: 1.4rem;
 $h3-font-size: 1.3rem;
 $h4-font-size: 1.2rem;
 $h5-font-size: 1.1rem;
 $h6-font-size: 1.05rem;
 
+$line-height-base: 1.67 !default;
+
+$link-decoration: none !default;
+$link-hover-decoration: underline !default;
+
 //
 // Code blocks, Inline code
 //
-$code-block-bg: $color-code-bg;
-$code-bg: $color-code-bg;
-$code-color: $black;
+$code-color: $black !default;
+
+$kbd-padding-y: 0.05rem !default;
+$kbd-padding-x: .375rem !default;
 
 //
-// Layout
+// Quarto HTML theming variables
+// : https://quarto.org/docs/output-formats/html-themes.html
 //
 $content-padding-top: 24px;
-
-//
-// Navgation
-//
 $sidebar-fg: $black;
-$sidebar-hl: $color-link;
+$code-block-bg: #f4f6f8;
 
 
 /*-- scss:rules --*/
@@ -79,69 +69,20 @@ html {
 	overflow-y: scroll;
 }
 
-main {
-	line-height: 1.5;
-  background-color: $white;
+body {
 	hyphens: auto;
 	overflow-wrap: break-word;
 	text-rendering: optimizeLegibility;
-  letter-spacing: 0.025em;
+  letter-spacing: 0.015rem;
 	font-kerning: normal;
-	padding: 24px;
-	box-shadow: 0 2px 5px 1px $grey3;
 }
 
-@media (max-width: 992px) {
-  body {
-    background-color: $white;
-    font-size: .875rem;
-  }
-
-  main {
-  	line-height: 1.4;
-    background-color: $white;
-    hyphens: auto;
-    overflow-wrap: break-word;
-    text-rendering: optimizeLegibility;
-    font-kerning: normal;
-    padding: 12px;
-    box-shadow: none;
-  }
-}
-
-//
-// Fonts
-//
-h1,
-h2,
-h3,
-h4 {
+h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
-h2 {
-  position: relative;
-  padding: 0.2rem 0rem;
-  border-bottom: 1.5px solid $grey3;
-  margin-top: 2rem !important;
-  margin-bottom: 1rem;
-}
-
-h2:before {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 25%;
-  height: 1px;
-  content: "";
-  background: $black;
-}
-
-h3 {
-  position: relative;
-  padding: 0.2rem 0rem;
-  border-bottom: 1.5px solid $grey3;
-  margin-bottom: 1rem;
+:is(h1, h2, h3, h4, h5, h6) :is(code, a) {
+  font-weight: inherit;
 }
 
 //
@@ -168,7 +109,7 @@ dl dd {
 
 dl dd::before {
   content: ":";
-  color: $grey3;
+  color: $border-color;
   position: absolute;
   left: -0.8em;
 }
@@ -178,112 +119,27 @@ dl dt code, dl dt a {
 }
 
 //
-// Tables
+// Code and Keyboard
 //
-table {
-	margin-left: 0;
-  margin-top: .5rem !important;
-  margin-bottom: 1.5rem !important;
-  box-shadow: 1px 1px 5px #808080;
-	font-size: 0.875rem;
-}
-
-td, th{
-	padding: 10px;
-  border: none !important;
-}
-
-th {
-	background: $grey2;
-}
-
-//
-// Other styles
-//
-pre code {
-	font-size: 0.875rem;
-}
-
-blockquote {
-	margin: 1em 0 1em 0em;
-	padding-left: 2em;
-	border-left: 5px solid $grey2;
-	color: #505050;
-}
-
-a {
-	text-decoration: none;
-}
-
-a:hover{
-  text-decoration: underline;
-	text-underline-offset: 2px;
-}
-
 kbd {
-	display: inline-block;
-	vertical-align: middle;
 	font-family: system-ui;
-	font-size: 0.875rem;
-	padding: 1px 4px;
-	margin: -4px 2px 0 0;
 	box-shadow: 1px 1px 1px #808080;
-	border: solid 1px $grey3;
 	border-radius: 3px;
 }
 
 //
 // Navbar and Sidebar
 //
-.sidebar-navigation .sidebar-item {
-	cursor: pointer;
-}
-
 .sidebar-navigation .sidebar-item a{
-	font-weight: bold !important;
 	line-height: 2;
 }
 
-.sidebar-navigation .sidebar-section .sidebar-item:hover {
-  /* For subitems */
-  border-left: solid 5px $grey3
+.sidebar-navigation .sidebar-item a:hover {
+  font-weight: bold;
 }
 
-.sidebar-item-text {
-	width: 100%;
-	padding-left: 0.25rem;
-}
-
-//
-// Codeblocks
-//
-.code-with-filename .code-with-filename-file, .code-with-filename .code-with-filename-file pre {
-  background-color: #dee2e6;
-}
-
-.cell .souceCode, .cell .cell-code {
-	margin-bottom: 2px;
-}
-
-.cell-output, .cell-output-stdout {
-	background-color: $code-bg;
-	padding: 0.4em;
-}
-
-.cell-output pre, .cell-output-stdout pre {
-  margin: 0;
-}
-
-.sourceCode::-webkit-scrollbar {
-  background: $grey2;
-  width: 5px;
-  height: 5px;
-  border-radius: 0.25rem;
-}
-
-.sourceCode::-webkit-scrollbar-thumb {
-  background-color: $grey3;
-  border-radius: 0.25rem;
+div.sidebar-item-container .active {
+  font-weight: bold;
 }
 
 //
@@ -291,7 +147,7 @@ kbd {
 //
 div {
   .info {
-    margin: 0.5rem 0;
+    margin: 1em 0;
     padding-block: 0.5rem;
     padding-inline: 2rem 1rem;
     position: relative;
@@ -312,7 +168,7 @@ div {
   }
 
   .warn {
-    margin: 0.5rem 0;
+    margin: 1rem 0;
     padding-block: 0.5rem;
     padding-inline: 2rem 1rem;
     position: relative;
@@ -345,10 +201,9 @@ div {
 div {
   .news {
     width: 100%;
-    height: 300px;
-    padding-inline: 1em;
+    height: 270px;
+    padding-inline-end: 1em;
     overflow-y: scroll;
-    box-shadow: 0px 0px 10px -3px inset #808080;
   }
 
   .news dl dt {
@@ -360,7 +215,7 @@ div {
   	margin-block: 0.3em;
   	margin-inline: 0;
   	position: relative;
-    border-bottom: dashed 1px $grey3;
+    border-bottom: dashed 1px $border-color;
   }
 
   .news dl dd::before {

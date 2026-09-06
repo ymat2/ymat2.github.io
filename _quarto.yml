@@ -10,7 +10,7 @@ website:
   favicon: images/favicon.png
   bread-crumbs: false
   sidebar:
-    title: <img src="/images/favicon.png" height="28" vertical-align="text-bottom">
+    title: <img src="/images/favicon.png" height="28" style="vertical-align:text-bottom;">
            Yuki MATSUDA
     style: "floating"
     search: true
@@ -33,8 +33,9 @@ website:
       - text: "---"
       - section: "Windows"
         contents: win/*.qmd
+      - text: "---"
   page-footer:
-    right: "&copy; 2023&ndash;2026, Yuki MATSUDA"
+    center: "&copy; 2023 Yuki MATSUDA"
   google-analytics: "G-HLCP5V0Y7N"
 
 format:
@@ -43,11 +44,14 @@ format:
     fontsize: 16px
     grid:
       sidebar-width: 270px
-      body-width: 810px
+      body-width: 720px
       margin-width: 0px
+      gutter-width: 2rem
     toc: false
     toc-location: body
     toc-title: "Table Of Contents:"
+    date: last-modified
+    date-format: YYYY-MM-DD
     link-external-icon: false
     link-external-newwindow: true
     code-copy: false

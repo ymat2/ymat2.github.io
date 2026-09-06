@@ -13,7 +13,7 @@ Windows で UNIX っぽいコマンドライン操作を行うには、いくつ
 : Windows で Linux ディストリビューションを実行する環境を提供する機能。
 : WSL2 からは、カーネルも Linux になっている。
 : Microsoft としては WSL を推奨している。
-: 便利だが、[ディスクスペースを食いつぶす問題](/archive/wsl-disk-space.qmd)がある。
+: 便利だが、[ディスクスペースを食いつぶす問題](/win/wsl.qmd#disk-space-の問題)がある。
 
 [PowerShell](/win/powershell.qmd)
 : Microsoft 製 CUI。UNIX とは異なる体系。

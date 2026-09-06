@@ -1,10 +1,14 @@
-<header id="title-block-header">
+<div id="title-block-header">
 $if(title)$
 $if(subtitle)$
 <h1 class="title">$title$ &mdash; $subtitle$</h1>
 $else$
 <h1 class="title">$title$</h1>
 $endif$
+$endif$
+
+$if(date)$
+<p class="date small text-body-tertiary">最終更新日: $date$</p>
 $endif$
 
 $for(author)$
@@ -17,4 +21,4 @@ $if(abstract)$
 $abstract$
 </div>
 $endif$
-</header>
+</div>

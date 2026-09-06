@@ -3,10 +3,7 @@
     "listing": "/archive/index.html",
     "items": [
       "/archive/cafe.html",
-      "/archive/git4win.html",
-      "/archive/gollum.html",
-      "/archive/wsl-disk-space.html",
-      "/archive/rsync.html"
+      "/archive/gollum.html"
     ]
   }
 ]

@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ymat2.github.io/win/wsl.html</loc>
-    <lastmod>2026-03-30T02:50:35.751Z</lastmod>
+    <lastmod>2026-09-05T20:00:26.325Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/win/0-dev-win.html</loc>
-    <lastmod>2026-06-22T04:16:06.112Z</lastmod>
+    <lastmod>2026-09-05T20:00:18.605Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/slides/snp24/03_snpeff.html</loc>
@@ -46,7 +46,7 @@
   </url>
   <url>
     <loc>https://ymat2.github.io/index.html</loc>
-    <lastmod>2026-07-02T07:33:29.089Z</lastmod>
+    <lastmod>2026-09-06T15:37:41.060Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/cli/vi.html</loc>
@@ -70,7 +70,7 @@
   </url>
   <url>
     <loc>https://ymat2.github.io/bio/orthofinder.html</loc>
-    <lastmod>2026-03-29T04:43:00.073Z</lastmod>
+    <lastmod>2026-09-05T19:22:51.982Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/bio/genome_data_download.html</loc>
@@ -85,16 +85,8 @@
     <lastmod>2025-07-25T13:35:53.697Z</lastmod>
   </url>
   <url>
-    <loc>https://ymat2.github.io/archive/wsl-disk-space.html</loc>
-    <lastmod>2026-03-30T02:14:35.907Z</lastmod>
-  </url>
-  <url>
     <loc>https://ymat2.github.io/archive/index.html</loc>
-    <lastmod>2026-03-27T10:56:24.246Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/archive/git4win.html</loc>
-    <lastmod>2025-02-04T09:44:47.610Z</lastmod>
+    <lastmod>2026-09-05T19:07:59.884Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/archive/cafe.html</loc>
@@ -102,11 +94,7 @@
   </url>
   <url>
     <loc>https://ymat2.github.io/archive/gollum.html</loc>
-    <lastmod>2024-10-14T06:56:50.898Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ymat2.github.io/archive/rsync.html</loc>
-    <lastmod>2024-08-25T14:20:46.000Z</lastmod>
+    <lastmod>2026-09-05T19:51:40.463Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/bio/cafe5.html</loc>
@@ -134,19 +122,19 @@
   </url>
   <url>
     <loc>https://ymat2.github.io/cli/git.html</loc>
-    <lastmod>2026-06-16T08:30:14.650Z</lastmod>
+    <lastmod>2026-09-05T16:38:33.577Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/cli/nano.html</loc>
-    <lastmod>2024-08-27T07:21:14.000Z</lastmod>
+    <lastmod>2026-09-05T15:59:50.269Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/cli/ssh.html</loc>
-    <lastmod>2026-03-30T04:31:07.301Z</lastmod>
+    <lastmod>2026-09-04T21:48:01.887Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/cli/vscode.html</loc>
-    <lastmod>2026-04-02T00:31:15.684Z</lastmod>
+    <lastmod>2026-09-02T09:50:52.785Z</lastmod>
   </url>
   <url>
     <loc>https://ymat2.github.io/python/0_install.html</loc>
@@ -190,6 +178,6 @@
   </url>
   <url>
     <loc>https://ymat2.github.io/win/powershell.html</loc>
-    <lastmod>2026-03-29T04:30:58.589Z</lastmod>
+    <lastmod>2026-09-05T20:00:23.105Z</lastmod>
   </url>
 </urlset>

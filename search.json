@@ -4,7 +4,7 @@
     "href": "win/wsl.html",
     "title": "WSL — Windows Subsystem for Linux",
     "section": "",
-    "text": "Windows で Linux ディストリビューションを扱うための機能",
+    "text": "最終更新日: 2026-09-05\nWindows で Linux ディストリビューションを扱うための機能",
     "crumbs": [
       "Windows",
       "WSL"
@@ -37,7 +37,7 @@
     "href": "win/0-dev-win.html",
     "title": "Windows 開発環境",
     "section": "",
-    "text": "Windows で UNIX っぽいコマンドライン操作を行うには、いくつかの選択肢がある。\n他の UNIX 系 OS との互換性をできる限り保つなら WSL、 Windows (C ドライブ) 内の作業で完結させつつもビルド環境が必要なら MSYS2 + MinGW、 それ以外の用途なら PowerShell か Git Bash がいいのでは。",
+    "text": "最終更新日: 2026-09-05\nWindows で UNIX っぽいコマンドライン操作を行うには、いくつかの選択肢がある。\n他の UNIX 系 OS との互換性をできる限り保つなら WSL、 Windows (C ドライブ) 内の作業で完結させつつもビルド環境が必要なら MSYS2 + MinGW、 それ以外の用途なら PowerShell か Git Bash がいいのでは。",
     "crumbs": [
       "Windows",
       "Windows 開発環境"
@@ -586,7 +586,7 @@
     "href": "python/package.html",
     "title": "Python パッケージ作成",
     "section": "",
-    "text": "参考:\n特に:",
+    "text": "最終更新日: 2026-03-30\n参考:\n特に:",
     "crumbs": [
       "Python",
       "Python パッケージ作成"
@@ -619,7 +619,7 @@
     "href": "python/class.html",
     "title": "オブジェクト指向とクラス",
     "section": "",
-    "text": "https://docs.python.org/3/tutorial/classes.html",
+    "text": "最終更新日: 2026-03-29\nhttps://docs.python.org/3/tutorial/classes.html",
     "crumbs": [
       "Python",
       "オブジェクト指向とクラス"
@@ -674,7 +674,7 @@
     "href": "python/1_uv.html",
     "title": "uv — Rust 製 Python マネージャ",
     "section": "",
-    "text": "Python プロジェクト管理、コマンドラインツール管理、Python バージョン管理など一通りの機能を備える。 Rust 製で高速。",
+    "text": "最終更新日: 2026-03-30\nPython プロジェクト管理、コマンドラインツール管理、Python バージョン管理など一通りの機能を備える。 Rust 製で高速。",
     "crumbs": [
       "Python",
       "uv"
@@ -749,7 +749,7 @@
     "href": "cli/vi.html",
     "title": "Vi/Vim",
     "section": "",
-    "text": "https://www.vim.org/\nvi (ヴィーアイ) は UNIX に標準搭載されているテキストエディタ。 Vim (ヴィム) は vi の発展版で、近年の UNIX 系 OS で vi を打って起動するのは Vim であることが多い。",
+    "text": "最終更新日: 2024-08-27\nhttps://www.vim.org/\nvi (ヴィーアイ) は UNIX に標準搭載されているテキストエディタ。 Vim (ヴィム) は vi の発展版で、近年の UNIX 系 OS で vi を打って起動するのは Vim であることが多い。",
     "crumbs": [
       "開発環境",
       "Vi/Vim"
@@ -793,7 +793,7 @@
     "href": "cli/quarto.html",
     "title": "Quarto — 書類・スライド作成からウェブサイト構築まで",
     "section": "",
-    "text": "https://quarto.org/\nマークダウンで書いた記事を HTML、PDF、MS Word などへ変換し、 ウェブサイトや書籍として公開するまでを一手に担うフレームワーク。\nコードチャンクで R、Python、Julia を実行でき、 研究ノートなどにも有用。 Jupyter, RStudio, VSCode などのエディタと連携してより快適に利用できる。\n類似フレームワークの HUGO と比べて高機能でラクに使えるが、 その分細かいところをいじろうとするとむしろ面倒くさかったり、 単純にマークダウンの変換が遅かったりするので、その辺りは HUGO に軍配があがる。\nドキュメントがこれでもかというほど 丁寧に書かれているので、基本的にここを見ればなんでもできる。\nここでは、「細かいことは後回しにしてひとまずメモやスライドをウェブサイトとして公開できる形にする」 までの方法を紹介する。",
+    "text": "最終更新日: 2026-03-29\nhttps://quarto.org/\nマークダウンで書いた記事を HTML、PDF、MS Word などへ変換し、 ウェブサイトや書籍として公開するまでを一手に担うフレームワーク。\nコードチャンクで R、Python、Julia を実行でき、 研究ノートなどにも有用。 Jupyter, RStudio, VSCode などのエディタと連携してより快適に利用できる。\n類似フレームワークの HUGO と比べて高機能でラクに使えるが、 その分細かいところをいじろうとするとむしろ面倒くさかったり、 単純にマークダウンの変換が遅かったりするので、その辺りは HUGO に軍配があがる。\nドキュメントがこれでもかというほど 丁寧に書かれているので、基本的にここを見ればなんでもできる。\nここでは、「細かいことは後回しにしてひとまずメモやスライドをウェブサイトとして公開できる形にする」 までの方法を紹介する。",
     "crumbs": [
       "開発環境",
       "Quarto"
@@ -870,7 +870,7 @@
     "href": "cli/hugo.html",
     "title": "HUGO — Go 製静的サイトジェネレータ",
     "section": "",
-    "text": "https://gohugo.io/about/\nマークダウンで書いたファイルから HTML を生成し、静的ウェブサイトを構築するフレームワーク。 本サイトも以前は HUGO でビルドしていた。 (現在は Quarto に移行)",
+    "text": "最終更新日: 2026-05-27\nhttps://gohugo.io/about/\nマークダウンで書いたファイルから HTML を生成し、静的ウェブサイトを構築するフレームワーク。 本サイトも以前は HUGO でビルドしていた。 (現在は Quarto に移行)",
     "crumbs": [
       "開発環境",
       "HUGO"
@@ -921,6 +921,17 @@
     ]
   },
   {
+    "objectID": "cli/apt.html",
+    "href": "cli/apt.html",
+    "title": "apt — Debian 系 Linux パッケージマネージャ",
+    "section": "",
+    "text": "最終更新日: 2026-06-22",
+    "crumbs": [
+      "開発環境",
+      "apt"
+    ]
+  },
+  {
     "objectID": "cli/apt.html#usage",
     "href": "cli/apt.html#usage",
     "title": "apt — Debian 系 Linux パッケージマネージャ",
@@ -958,7 +969,7 @@
     "href": "bio/rerconverge.html",
     "title": "RERconverge",
     "section": "",
-    "text": "相同な配列の進化速度の相対的な加速度合いを計算して、表現型との相関を調べる R パッケージ。 系統樹さえ描ければいいので、遺伝子のほかに非コード領域にも応用できる。 (本ページでは便宜上「遺伝子」として記述する。)\n開発者たちのグループは 水棲適応 や 地中生活などの二値的な形質、 体サイズや寿命などの連続形質に関わる遺伝子を報告している。",
+    "text": "最終更新日: 2026-03-30\n相同な配列の進化速度の相対的な加速度合いを計算して、表現型との相関を調べる R パッケージ。 系統樹さえ描ければいいので、遺伝子のほかに非コード領域にも応用できる。 (本ページでは便宜上「遺伝子」として記述する。)\n開発者たちのグループは 水棲適応 や 地中生活などの二値的な形質、 体サイズや寿命などの連続形質に関わる遺伝子を報告している。",
     "crumbs": [
       "Bioinformatics",
       "RERconverge"
@@ -1035,7 +1046,7 @@
     "href": "bio/orthofinder.html",
     "title": "OrthoFinder",
     "section": "",
-    "text": "複数種の遺伝子配列を、共通の1遺伝子に由来するパラログ + オーソログのグループ (Orthogroup; OG) に分類する。\n3.0.1 以降\n2.5.5 以前",
+    "text": "最終更新日: 2026-09-05\n複数種の遺伝子配列を、共通の1遺伝子に由来するパラログ + オーソログのグループ (Orthogroup; OG) に分類する。\n3.0.1 以降\n2.5.5 以前",
     "crumbs": [
       "Bioinformatics",
       "OrthoFinder"
@@ -1086,6 +1097,17 @@
     ]
   },
   {
+    "objectID": "bio/genome_data_download.html",
+    "href": "bio/genome_data_download.html",
+    "title": "ゲノムデータ取得",
+    "section": "",
+    "text": "最終更新日: 2026-03-31",
+    "crumbs": [
+      "Bioinformatics",
+      "ゲノムデータ取得"
+    ]
+  },
+  {
     "objectID": "bio/genome_data_download.html#ncbi-から-gui-でダウンロード",
     "href": "bio/genome_data_download.html#ncbi-から-gui-でダウンロード",
     "title": "ゲノムデータ取得",
@@ -1123,7 +1145,7 @@
     "href": "bio/ete-toolkit.html",
     "title": "ETE Toolkit — ete-evol による配列解析",
     "section": "",
-    "text": "ETE Toolkit は系統樹データを扱うための Python フレームワーク。\nその中の ete-evol は CODEML や SLR の実行を手助けする Python 製コマンドラインツール。 パッケージとして import して Python スクリプトの中で使うこともできる。",
+    "text": "最終更新日: 2026-03-29\nETE Toolkit は系統樹データを扱うための Python フレームワーク。\nその中の ete-evol は CODEML や SLR の実行を手助けする Python 製コマンドラインツール。 パッケージとして import して Python スクリプトの中で使うこともできる。",
     "crumbs": [
       "Bioinformatics",
       "ETE Toolkit"
@@ -1156,7 +1178,7 @@
     "href": "bio/clusterProfiler.html",
     "title": "clusterProfiler — R でエンリッチメント解析",
     "section": "",
-    "text": "https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html\nエンリッチメント解析には大きく二つの方法がある:",
+    "text": "最終更新日: 2025-07-25\nhttps://bioconductor.org/packages/release/bioc/html/clusterProfiler.html\nエンリッチメント解析には大きく二つの方法がある:",
     "crumbs": [
       "Bioinformatics",
       "clusterProfiler"
@@ -1207,74 +1229,18 @@
     ]
   },
   {
-    "objectID": "archive/wsl-disk-space.html#wsl-を使っている人へ",
-    "href": "archive/wsl-disk-space.html#wsl-を使っている人へ",
-    "title": "WSL Disk Space — 逼迫した WSL のディスクスペースを解放する",
-    "section": "WSL を使っている人へ",
-    "text": "WSL を使っている人へ\nWSL2 のディスク消費は、WSL2 内部でファイルを消してもサイズが小さくならないらしい。 つまり、いくら WSL 側でファイルを rm しようが garbage collection しようが、 マシンのストレージは圧迫され続ける。\nWSL2 で使用する Linux ディストリビューションのデータは仮想ハードディスク (VHD) で管理されていて、 ここがデータの本体を持っているから、だと思う。\nなので根本的にディスク容量を開放するには、 VHD を最適化する必要がある。"
-  },
-  {
-    "objectID": "archive/wsl-disk-space.html#vhd-.vhdx-を探す",
-    "href": "archive/wsl-disk-space.html#vhd-.vhdx-を探す",
-    "title": "WSL Disk Space — 逼迫した WSL のディスクスペースを解放する",
-    "section": "VHD (.vhdx) を探す",
-    "text": "VHD (.vhdx) を探す\nhttps://01futabato10.hateblo.jp/entry/2022/12/02/095031\n\n\nPowerShell\n\n&gt; ls C:\\Users\\_username_\\AppData\\Local\\Packages\\Canonical*  # _username_ は自分のものを\n\n\n    ディレクトリ: C:\\Users\\_username_\\AppData\\Local\\Packages\n\n\nMode                 LastWriteTime         Length Name\n----                 -------------         ------ ----\nd-----        2023/01/05     21:33                CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\nd-----        2023/01/05     21:36                CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\n\n使っているディストリビューションのディレクトリ内にある LocalState\\ に ext4.vhdx がいる。 (onWindows の方にはなかった。)\n\n\nPowerShell\n\n&gt; ls C:\\Users\\_username_\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\\LocalState\\\n\n\n    ディレクトリ: C:\\Users\\_username_\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\\LocalState\n\n\nMode                 LastWriteTime         Length Name\n----                 -------------         ------ ----\n-a----        2024/06/06     14:04   208281796608 ext4.vhdx"
-  },
-  {
-    "objectID": "archive/wsl-disk-space.html#diskpart-を使って-vhd-を確認する",
-    "href": "archive/wsl-disk-space.html#diskpart-を使って-vhd-を確認する",
-    "title": "WSL Disk Space — 逼迫した WSL のディスクスペースを解放する",
-    "section": "DISKPART を使って VHD を確認する",
-    "text": "DISKPART を使って VHD を確認する\nまず wsl をシャットダウンする:\n\n\nPowerShell\n\nwsl --shutdown\n\nDISKPART インタプリタを起動する:\n\n\nPowerShell\n\ndiskpart\n\n先ほど調べた VHD を選択する:\n\n\nDISKPART\n\nDISKPART&gt; select vdisk file=C:\\Users\\_username_\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\\LocalState\\ext4.vhdx\n\nDiskPart により、仮想ディスク ファイルが選択されました。\n\nVHD の情報を確認する:\n\n\nDISKPART\n\nDISKPART&gt; detail vdisk\n\nデバイスの種類 ID: 0 (不明)\nベンダー ID: {00000000-0000-0000-0000-000000000000} (不明)\n状態: 追加済み\n仮想サイズ: 1024 GB\n物理サイズ:  193 GB\nファイル名: C:\\Users\\_username_\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\\LocalState\\ext4.vhdx\n子: いいえ\n親ファイル名:\n関連付けられたディスク番号: 見つかりません。"
-  },
-  {
-    "objectID": "archive/wsl-disk-space.html#vhd-ディスクスペースを最適化する",
-    "href": "archive/wsl-disk-space.html#vhd-ディスクスペースを最適化する",
-    "title": "WSL Disk Space — 逼迫した WSL のディスクスペースを解放する",
-    "section": "VHD ディスクスペースを最適化する",
-    "text": "VHD ディスクスペースを最適化する\nAttach -&gt; Compact -&gt; Detach の順に実行する。\nAttach:\n\n\nDISKPART\n\nDISKPART&gt; attach vdisk readonly\n\n  100% 完了しました\n\nDiskPart により、仮想ディスク ファイルがアタッチされました。\n\nCompact (本質):\n\n\nDISKPART\n\nDISKPART&gt; compact vdisk\n\n  100% 完了しました\n\nDiskPart により、仮想ディスク ファイルは正常に圧縮されました。\n\nDetach:\n\n\nDISKPART\n\nDISKPART&gt; detach vdisk\n\nDiskPart により、仮想ディスク ファイルがデタッチされました。\n\nDISKPART を終了する (その前にもう一回 detail してもよい):\n\n\nDISKPART\n\nDISKPART&gt; exit"
-  },
-  {
     "objectID": "archive/index.html",
     "href": "archive/index.html",
     "title": "Archived contents",
     "section": "",
-    "text": "CAFE\n\n\nGit for Windows\n\n\nGollum\n\n\nWSL Disk Space\n\n\nrsync\n\n\nNo matching items"
-  },
-  {
-    "objectID": "archive/git4win.html#git-for-windows-をインストールする",
-    "href": "archive/git4win.html#git-for-windows-をインストールする",
-    "title": "Git for Windows — Windows で Git を使う",
-    "section": "Git for Windows をインストールする",
-    "text": "Git for Windows をインストールする\nDownload for Windows のページからインストーラを入手。\nインストール時の設定は基本的にデフォルトでいい。 コミット時のエディタと git pull の挙動は適当なものを選ぶ。\n\nSelect Destination Location\n\nC:\\Program Files\\Git\n\nSelect Components, Select Start Menu Folder\n\ndefault\n\nChoosing the default editor used by Git\n\nUse Visual Studio Code as Git’s default editor\n\nAdjusting the name of the initil branch in new repositories\n\nOverride the default branch name for new repositories main\n\nAdjusting your PATH environment\n\nGit from the command line and also from 3rd-party software (recommended)\n\nChoosing the SSH executable\n\nUse bundle OpenSSH\n\nChoose HTTPS transport backend\n\nUse the OpenSSL library\n\nConfiguring the line ending conversion\n\nCheckout Windows-style, commit Unix-style line ending\n\nConfiguring the terminal emulator to use with Git Bash\n\nUse MinTTY (the default terminal of MSYS2)\n\nChoose the default behavior of git pull\n\nFast-forward or merge\n\nChoose a credential helper\n\nGit Credential Manager\n\nConfiguring extra options\n\nEnable file system caching\n\n\nEnable symboic links\n\nConfiguring experimental options\n\nチェックなし"
-  },
-  {
-    "objectID": "archive/git4win.html#グローバル設定",
-    "href": "archive/git4win.html#グローバル設定",
-    "title": "Git for Windows — Windows で Git を使う",
-    "section": "グローバル設定",
-    "text": "グローバル設定\nWindows のホームディレクトリに .gitconfig ができる。\nここに必要な設定を追加していく:\n\n\n~/.gitconfig\n\n[user]\n    name = ymat2\n    email = ymat2@users.noreply.github.com\n\n[init]\n    defaultBranch = main\n\n[push]\n    default = simple\n\n[pull]\n    ff = only\n\n[url \"git@github.com:\"]\n    pushinsteadof = https://github.com/\n\n[diff]\n    submodule = log\n\n[core]\n    editor = vim\n\nこれだけでもほぼ Unix と同じように使える。 実際の使い方は Git/GitHub を参照。"
-  },
-  {
-    "objectID": "archive/git4win.html#git-bash",
-    "href": "archive/git4win.html#git-bash",
-    "title": "Git for Windows — Windows で Git を使う",
-    "section": "Git Bash",
-    "text": "Git Bash\nGit for Windows に同梱されている Bash エミュレーション。 Bash と基本的なコマンドが提供されている。 MSYS ベース。 パッケージ管理ツール (pacman) とビルドツールチェイン (gcc など) は付いていない。\nGit Bash アプリからターミナルを開くか、 Windows Terminal のプロンプトの1つとして登録する。 起動オプションで明示的にログインシェルとして立ち上げる --login 必要がある?"
-  },
-  {
-    "objectID": "archive/git4win.html#posh-git",
-    "href": "archive/git4win.html#posh-git",
-    "title": "Git for Windows — Windows で Git を使う",
-    "section": "posh-git",
-    "text": "posh-git\n\nposh-git is a PowerShell module that integrates Git and PowerShell by providing Git status summary information that can be displayed in the PowerShell prompt\n\nらしい。 PowerShell で Git を便利に使うためのモジュールっぽいが、必ずしも必要ではない。"
+    "text": "最終更新日: 2026-09-05\n\n\n\n\n\n\n\n\n\n\n\n\nCAFE\n\n\nGollum\n\n\nNo matching items"
   },
   {
     "objectID": "archive/cafe.html",
     "href": "archive/cafe.html",
     "title": "CAFE — 遺伝子ファミリーの進化解析",
     "section": "",
-    "text": "Computational Analysis of gene Family Evolution\n遺伝子ファミリーサイズの進化（系統樹上のどのノードで、いくつ遺伝子が増減したか）を、 MCMC 法で推定するプログラム。\n基本的な動かし方は、入力となるシェルスクリプトを書いて CAFE に渡す、という形になる。 このシェルスクリプトを書く過程で、 OrthoFinder の出力である Orthogroups.GeneCount.tsv と 種の系統樹 (Species_Tree/SpeciesTree_rooted.txt) が必要。"
+    "text": "最終更新日: 2024-10-14\nComputational Analysis of gene Family Evolution\n遺伝子ファミリーサイズの進化（系統樹上のどのノードで、いくつ遺伝子が増減したか）を、 MCMC 法で推定するプログラム。\n基本的な動かし方は、入力となるシェルスクリプトを書いて CAFE に渡す、という形になる。 このシェルスクリプトを書く過程で、 OrthoFinder の出力である Orthogroups.GeneCount.tsv と 種の系統樹 (Species_Tree/SpeciesTree_rooted.txt) が必要。"
   },
   {
     "objectID": "archive/cafe.html#インストール",
@@ -1302,7 +1268,7 @@
     "href": "archive/gollum.html",
     "title": "Gollum",
     "section": "",
-    "text": "Linux サーバーに gollum で wiki を立てたときの奮闘記。"
+    "text": "最終更新日: 2026-09-05\nLinux サーバーに gollum で wiki を立てたときの奮闘記。"
   },
   {
     "objectID": "archive/gollum.html#開発",
@@ -1333,32 +1299,11 @@
     "text": "Misc.\nrbenv は ruby のバージョン管理、bundle は ruby のパッケージ管理をしてくれる。\nGemfile は Ruby プロジェクトにおける依存関係を管理するファイル。 bundle が読む。"
   },
   {
-    "objectID": "archive/rsync.html",
-    "href": "archive/rsync.html",
-    "title": "rsync",
-    "section": "",
-    "text": "https://rsync.samba.org/\nファイルやディレクトリの同期/バックアップを行うツール。 2つのディレクトリの差分を検出して差分のみ反映するといった使い方が可能。"
-  },
-  {
-    "objectID": "archive/rsync.html#基本",
-    "href": "archive/rsync.html#基本",
-    "title": "rsync",
-    "section": "基本",
-    "text": "基本\n### Local\nrsync -option src/ dest/\n\n### Access via remote shell:\n# Push:\nrsync -option src/ user@host:dest/\n# Pull:\nrsync -option user@host:dest/ src/\n/ の有無で挙動が異なる。\n\nsrc/ dest/\n\nsrc 配下のファイルが dest/ にコピーされる。\n\nsrc dset/\n\nsrc ごと dest/ にコピーされる。\n\n\ndest/src/files"
-  },
-  {
-    "objectID": "archive/rsync.html#option",
-    "href": "archive/rsync.html#option",
-    "title": "rsync",
-    "section": "Option",
-    "text": "Option\n\n-a, --archive\n\n?\n\n-u, --update\n\ndest 側で更新されているファイルをスキップする。\n\n-v, --verbose\n\nメッセージを冗長に表示させる。\n\n-z, --compress\n\n送受信中にファイルを圧縮する。"
-  },
-  {
     "objectID": "bio/cafe5.html",
     "href": "bio/cafe5.html",
     "title": "CAFE5 — 遺伝子ファミリーの進化解析",
     "section": "",
-    "text": "CAFE のメジャーアップデート版。\nドキュメントが丁寧に書いてあるので基本的には読めば OK。",
+    "text": "最終更新日: 2024-11-27\nCAFE のメジャーアップデート版。\nドキュメントが丁寧に書いてあるので基本的には読めば OK。",
     "crumbs": [
       "Bioinformatics",
       "CAFE5"
@@ -1435,7 +1380,7 @@
     "href": "bio/ddbj.html",
     "title": "遺伝研スパコン",
     "section": "",
-    "text": "https://sc.ddbj.nig.ac.jp/",
+    "text": "最終更新日: 2026-08-27\nhttps://sc.ddbj.nig.ac.jp/",
     "crumbs": [
       "Bioinformatics",
       "遺伝研スパコン"
@@ -1483,6 +1428,17 @@
     "crumbs": [
       "Bioinformatics",
       "遺伝研スパコン"
+    ]
+  },
+  {
+    "objectID": "bio/fst_hands_on.html",
+    "href": "bio/fst_hands_on.html",
+    "title": "F_\\text{st} 解析ハンズオン — 候補遺伝子・SNPの抽出",
+    "section": "",
+    "text": "最終更新日: 2026-03-29",
+    "crumbs": [
+      "Bioinformatics",
+      "$F_\\text{st}$ 解析ハンズオン"
     ]
   },
   {
@@ -1556,7 +1512,7 @@
     "href": "bio/gwas.html",
     "title": "GWAS — Genome Wide Association Study",
     "section": "",
-    "text": "疾患や特定の表現型などと統計的に相関する遺伝子変異を網羅的に探索する手法。\n最近のレビュー: Uffelmann et al. 2021",
+    "text": "最終更新日: 2026-03-29\n疾患や特定の表現型などと統計的に相関する遺伝子変異を網羅的に探索する手法。\n最近のレビュー: Uffelmann et al. 2021",
     "crumbs": [
       "Bioinformatics",
       "GWAS"
@@ -1589,7 +1545,7 @@
     "href": "bio/paml-tutorial.html",
     "title": "PAML チュートリアル",
     "section": "",
-    "text": "PAML のテストデータを材料に codeml を一通り動かしてみる。\nPhylogenetic Analysis by Maximum Likelihood (PAML) は、DNA やタンパク質の配列を最尤法で系統解析するための 種々のプログラムを含むパッケージ。\n今回はその中で、コドンの配列から同義置換に対する非同義置換の速度である \\omega = d_\\text{N} / d_\\text{S} を推定して正の自然選択の検出を行う codeml を使う。",
+    "text": "最終更新日: 2025-10-19\nPAML のテストデータを材料に codeml を一通り動かしてみる。\nPhylogenetic Analysis by Maximum Likelihood (PAML) は、DNA やタンパク質の配列を最尤法で系統解析するための 種々のプログラムを含むパッケージ。\n今回はその中で、コドンの配列から同義置換に対する非同義置換の速度である \\omega = d_\\text{N} / d_\\text{S} を推定して正の自然選択の検出を行う codeml を使う。",
     "crumbs": [
       "Bioinformatics",
       "PAML チュートリアル"
@@ -1633,7 +1589,7 @@
     "href": "bio/snpEff.html",
     "title": "snpEff — 変異のアノテーション",
     "section": "",
-    "text": "参考になる日本語のサイト:",
+    "text": "最終更新日: 2026-06-16\n参考になる日本語のサイト:",
     "crumbs": [
       "Bioinformatics",
       "snpEff"
@@ -1699,7 +1655,7 @@
     "href": "cli/git.html",
     "title": "Git/GitHub",
     "section": "",
-    "text": "https://git-scm.com /  https://github.co.jp",
+    "text": "最終更新日: 2026-09-05\nhttps://git-scm.com /  https://github.co.jp",
     "crumbs": [
       "開発環境",
       "Git/GitHub"
@@ -1761,6 +1717,17 @@
     ]
   },
   {
+    "objectID": "cli/nano.html",
+    "href": "cli/nano.html",
+    "title": "nano — small で friendly なテキストエディタ",
+    "section": "",
+    "text": "最終更新日: 2026-09-05",
+    "crumbs": [
+      "開発環境",
+      "nano"
+    ]
+  },
+  {
     "objectID": "cli/nano.html#install",
     "href": "cli/nano.html#install",
     "title": "nano — small で friendly なテキストエディタ",
@@ -1798,7 +1765,7 @@
     "href": "cli/ssh.html",
     "title": "SSH — Secure Shell",
     "section": "",
-    "text": "リモートのマシンに安全に接続し、管理するためのツール。",
+    "text": "最終更新日: 2026-09-04\nリモートのマシンに安全に接続し、管理するためのツール。",
     "crumbs": [
       "開発環境",
       "SSH"
@@ -1842,7 +1809,7 @@
     "href": "cli/vscode.html",
     "title": "VS Code",
     "section": "",
-    "text": "https://code.visualstudio.com/",
+    "text": "最終更新日: 2026-09-02\nhttps://code.visualstudio.com/",
     "crumbs": [
       "開発環境",
       "VS Code"
@@ -1886,7 +1853,7 @@
     "href": "python/0_install.html",
     "title": "Python 環境構築",
     "section": "",
-    "text": "Python を使うための環境構築に関するメモ。",
+    "text": "最終更新日: 2026-03-30\nPython を使うための環境構築に関するメモ。",
     "crumbs": [
       "Python",
       "Python 環境構築"
@@ -1952,7 +1919,7 @@
     "href": "python/argparse.html",
     "title": "ArgumentParser — コマンドライン引数の実装",
     "section": "",
-    "text": "Python プログラム実行時にコマンドライン引数を受け取る処理を簡単に実装できる標準ライブラリ。 sys とかでも似たことは実現できるけど使い勝手と可読性は argparse の方が圧倒的にいい。",
+    "text": "最終更新日: 2024-09-14\nPython プログラム実行時にコマンドライン引数を受け取る処理を簡単に実装できる標準ライブラリ。 sys とかでも似たことは実現できるけど使い勝手と可読性は argparse の方が圧倒的にいい。",
     "crumbs": [
       "Python",
       "ArgumentParser"
@@ -1996,7 +1963,7 @@
     "href": "python/evoltree.html",
     "title": "EvolTree — Python で dN/dS 解析",
     "section": "",
-    "text": "EvolTree は、ETE toolkit の ete-evol を Python スクリプトの中で動かすための拡張クラス。",
+    "text": "最終更新日: 2024-08-27\nEvolTree は、ETE toolkit の ete-evol を Python スクリプトの中で動かすための拡張クラス。",
     "crumbs": [
       "Python",
       "EvolTree"
@@ -2066,6 +2033,17 @@
     "crumbs": [
       "Python",
       "EvolTree"
+    ]
+  },
+  {
+    "objectID": "python/python-tips.html",
+    "href": "python/python-tips.html",
+    "title": "Python 小技メモ",
+    "section": "",
+    "text": "最終更新日: 2026-03-30",
+    "crumbs": [
+      "Python",
+      "Python 小技メモ"
     ]
   },
   {
@@ -2743,6 +2721,13 @@
     "text": "Tips 2. apptainer イメージの使用\n https://sc.ddbj.nig.ac.jp/software/BioContainers/ \nApptainer はユーザが解析ソフトウェアをインストール不要で使える仕組み。\n「使いたいコマンドが遺伝研スパコンにない！」ときや「違うバージョンのソフトが使いたい！」ときに便利。\n$ samtools --version\nsamtools 1.13\n# デフォルトの SAMtools のバージョンは 1.13 だけど\n\n$ apptainer exec /usr/local/biotools/s/samtools:1.19.1--h50ea8bc_0 samtools --version\nsamtools 1.19.1\n# もっと新しいバージョンを使うこともできる。"
   },
   {
+    "objectID": "slides/snp24/index.html",
+    "href": "slides/snp24/index.html",
+    "title": "全ゲノム解析ハンズオン — スモールデータで理解する SNP 解析の流れ",
+    "section": "",
+    "text": "最終更新日: 2024-11-27"
+  },
+  {
     "objectID": "slides/snp24/index.html#概要",
     "href": "slides/snp24/index.html#概要",
     "title": "全ゲノム解析ハンズオン — スモールデータで理解する SNP 解析の流れ",
@@ -2775,7 +2760,7 @@
     "href": "win/powershell.html",
     "title": "PowerShell",
     "section": "",
-    "text": "https://learn.microsoft.com/ja-jp/powershell/\nMicrosoft 製 コマンドラインシェル。",
+    "text": "最終更新日: 2026-09-05\nhttps://learn.microsoft.com/ja-jp/powershell/\nMicrosoft 製 コマンドラインシェル。",
     "crumbs": [
       "Windows",
       "PowerShell"
